@@ -2,6 +2,8 @@
 
 The shared design system of Codemasters, Sembuh AI and Flipmaster: a static documentation site plus plain-file exports.
 
+**Live:** https://codemasters-design-systems.pages.dev (Cloudflare Pages, deploys every push to `main`).
+
 ## Run the site
 
 No build step. Serve the folder and open it:
@@ -24,7 +26,8 @@ Commit `dist/` with the change; CI fails when it is stale.
 ## Files for tools and skills
 
 `dist/` holds the system as plain files, readable at
-`https://raw.githubusercontent.com/ramadharma/codemasters-design-systems/main/dist/<file>`:
+`https://codemasters-design-systems.pages.dev/dist/<file>`
+(or `https://raw.githubusercontent.com/ramadharma/codemasters-design-systems/main/dist/<file>` while the repo is public):
 
 - `index.json`: version and every page with its path. Start here.
 - `DESIGN.md`: the whole system in one file.
