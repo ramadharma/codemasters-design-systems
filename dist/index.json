@@ -65,6 +65,24 @@
       "path": "foundations/grids-spacing.md"
     },
     {
+      "slug": "avatar",
+      "name": "Avatar",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-07",
+      "description": "A person or a company, shown as a photo, initials or a placeholder icon. Comes alone, in an overlapping group, or with a name and a secondary line.",
+      "path": "components/avatar.md"
+    },
+    {
+      "slug": "badge",
+      "name": "Badge",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "A small, non-interactive label for a status, category or count. Status pills, claim type tags, AI confidence and filter chips are all badges.",
+      "path": "components/badge.md"
+    },
+    {
       "slug": "button",
       "name": "Button",
       "category": "Components",
@@ -81,87 +99,6 @@
       "updated": "2026-10-06",
       "description": "A row of joined buttons for related, equal-weight choices: a view switch (Hari, Minggu, Bulan), pagination arrows or a small set of tools.",
       "path": "components/button-group.md"
-    },
-    {
-      "slug": "social-button",
-      "name": "Social button",
-      "category": "Components",
-      "status": "In Figma",
-      "updated": "2026-10-06",
-      "description": "Signs the user in with an account on another platform. For third-party sign-in only.",
-      "path": "components/social-button.md"
-    },
-    {
-      "slug": "badge",
-      "name": "Badge",
-      "category": "Components",
-      "status": "In Figma and app",
-      "updated": "2026-10-06",
-      "description": "A small, non-interactive label for a status, category or count. Status pills, claim type tags, AI confidence and filter chips are all badges.",
-      "path": "components/badge.md"
-    },
-    {
-      "slug": "input-field",
-      "name": "Input field",
-      "category": "Components",
-      "status": "In Figma and app",
-      "updated": "2026-10-06",
-      "description": "A single-line text field with a label above, an optional hint below, and an error state that says what is wrong and how to fix it.",
-      "path": "components/input-field.md"
-    },
-    {
-      "slug": "textarea",
-      "name": "Textarea input field",
-      "category": "Components",
-      "status": "In Figma and app",
-      "updated": "2026-10-06",
-      "description": "Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint and error as Input field, plus an optional character counter.",
-      "path": "components/textarea.md"
-    },
-    {
-      "slug": "verification-code",
-      "name": "Verification code",
-      "category": "Components",
-      "status": "In Figma",
-      "updated": "2026-10-06",
-      "description": "One large box per digit, for OTP and verification codes only. Figma calls it Mega input field.",
-      "path": "components/verification-code.md"
-    },
-    {
-      "slug": "wysiwyg",
-      "name": "WYSIWYG editor",
-      "category": "Components",
-      "status": "In Figma",
-      "updated": "2026-10-06",
-      "description": "Rich-text formatting for long text a user writes or edits: the AI summary (\"Edit Ringkasan\") and advisor notes. Use a plain Textarea when formatting is not needed.",
-      "path": "components/wysiwyg.md"
-    },
-    {
-      "slug": "input-dropdown",
-      "name": "Input dropdown",
-      "category": "Components",
-      "status": "In Figma and app",
-      "updated": "2026-10-06",
-      "description": "A select field: pick one value for a form field or a filter. For running an action from a button, use Dropdown menu.",
-      "path": "components/input-dropdown.md"
-    },
-    {
-      "slug": "dropdown-menu",
-      "name": "Dropdown menu",
-      "category": "Components",
-      "status": "In Figma and app",
-      "updated": "2026-10-06",
-      "description": "An action menu opened from a button, a row-actions icon or the account avatar. For choosing a value in a form, use Input dropdown.",
-      "path": "components/dropdown-menu.md"
-    },
-    {
-      "slug": "toggle",
-      "name": "Toggle",
-      "category": "Components",
-      "status": "In Figma and app",
-      "updated": "2026-10-06",
-      "description": "An on/off switch whose change takes effect immediately, such as \"Tampilkan hanya klaim saya\" or a notification setting. If the choice is applied only after Save, use a Checkbox.",
-      "path": "components/toggle.md"
     },
     {
       "slug": "checkbox",
@@ -182,22 +119,31 @@
       "path": "components/checkbox-group.md"
     },
     {
-      "slug": "avatar",
-      "name": "Avatar",
-      "category": "Components",
-      "status": "In Figma and app",
-      "updated": "2026-10-07",
-      "description": "A person or a company, shown as a photo, initials or a placeholder icon. Comes alone, in an overlapping group, or with a name and a secondary line.",
-      "path": "components/avatar.md"
-    },
-    {
-      "slug": "tooltip",
-      "name": "Tooltip and help icon",
+      "slug": "dropdown-menu",
+      "name": "Dropdown menu",
       "category": "Components",
       "status": "In Figma and app",
       "updated": "2026-10-06",
-      "description": "A small label that appears on hover or keyboard focus to explain an element or show text that was cut off. The help icon is the standard trigger after a label or inside an input.",
-      "path": "components/tooltip.md"
+      "description": "An action menu opened from a button, a row-actions icon or the account avatar. For choosing a value in a form, use Input dropdown.",
+      "path": "components/dropdown-menu.md"
+    },
+    {
+      "slug": "input-dropdown",
+      "name": "Input dropdown",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "A select field: pick one value for a form field or a filter. For running an action from a button, use Dropdown menu.",
+      "path": "components/input-dropdown.md"
+    },
+    {
+      "slug": "input-field",
+      "name": "Input field",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "A single-line text field with a label above, an optional hint below, and an error state that says what is wrong and how to fix it.",
+      "path": "components/input-field.md"
     },
     {
       "slug": "progress",
@@ -218,6 +164,60 @@
       "path": "components/slider.md"
     },
     {
+      "slug": "social-button",
+      "name": "Social button",
+      "category": "Components",
+      "status": "In Figma",
+      "updated": "2026-10-06",
+      "description": "Signs the user in with an account on another platform. For third-party sign-in only.",
+      "path": "components/social-button.md"
+    },
+    {
+      "slug": "textarea",
+      "name": "Textarea input field",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint and error as Input field, plus an optional character counter.",
+      "path": "components/textarea.md"
+    },
+    {
+      "slug": "toggle",
+      "name": "Toggle",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "An on/off switch whose change takes effect immediately, such as \"Tampilkan hanya klaim saya\" or a notification setting. If the choice is applied only after Save, use a Checkbox.",
+      "path": "components/toggle.md"
+    },
+    {
+      "slug": "tooltip",
+      "name": "Tooltip and help icon",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "A small label that appears on hover or keyboard focus to explain an element or show text that was cut off. The help icon is the standard trigger after a label or inside an input.",
+      "path": "components/tooltip.md"
+    },
+    {
+      "slug": "verification-code",
+      "name": "Verification code",
+      "category": "Components",
+      "status": "In Figma",
+      "updated": "2026-10-06",
+      "description": "One large box per digit, for OTP and verification codes only. Figma calls it Mega input field.",
+      "path": "components/verification-code.md"
+    },
+    {
+      "slug": "wysiwyg",
+      "name": "WYSIWYG editor",
+      "category": "Components",
+      "status": "In Figma",
+      "updated": "2026-10-06",
+      "description": "Rich-text formatting for long text a user writes or edits: the AI summary (\"Edit Ringkasan\") and advisor notes. Use a plain Textarea when formatting is not needed.",
+      "path": "components/wysiwyg.md"
+    },
+    {
       "slug": "slides",
       "name": "Slides",
       "category": "Applications",
@@ -230,34 +230,34 @@
   "code": [
     "code/logo.css",
     "code/icon.css",
+    "code/avatar.css",
+    "code/avatar-initials.js",
+    "code/badge.css",
     "code/button.css",
     "code/button-group.css",
     "code/button-group-switch.js",
-    "code/social-button.css",
-    "code/badge.css",
-    "code/input-field.css",
-    "code/textarea.css",
-    "code/textarea-counter.js",
-    "code/verification-code.css",
-    "code/verification-code.js",
-    "code/wysiwyg.css",
-    "code/wysiwyg.js",
-    "code/input-dropdown.css",
-    "code/input-dropdown.js",
-    "code/dropdown-menu.css",
-    "code/dropdown-menu.js",
-    "code/toggle.css",
     "code/checkbox.css",
     "code/checkbox-select-all.js",
     "code/checkbox-group.css",
-    "code/avatar.css",
-    "code/avatar-initials.js",
-    "code/tooltip.css",
-    "code/tooltip.js",
+    "code/dropdown-menu.css",
+    "code/dropdown-menu.js",
+    "code/input-dropdown.css",
+    "code/input-dropdown.js",
+    "code/input-field.css",
     "code/progress.js",
     "code/progress.css",
     "code/slider.css",
     "code/slider.js",
+    "code/social-button.css",
+    "code/textarea.css",
+    "code/textarea-counter.js",
+    "code/toggle.css",
+    "code/tooltip.css",
+    "code/tooltip.js",
+    "code/verification-code.css",
+    "code/verification-code.js",
+    "code/wysiwyg.css",
+    "code/wysiwyg.js",
     "code/slides.tokens.json"
   ]
 }

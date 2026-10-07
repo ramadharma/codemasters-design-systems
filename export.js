@@ -2,6 +2,8 @@
 // (build.mjs, files in dist/), so both always produce the same text. No DOM.
 (() => {
   const { meta, components, foundations, applications, snippet, tokens } = DS;
+  // Components list A–Z everywhere (sidebar, cards, exports), whatever order the data files load in.
+  components.sort((a, b) => a.name.localeCompare(b.name));
 
   const usedTokens = css => {
     const used = new Set(css.match(/--[\w-]+/g));
