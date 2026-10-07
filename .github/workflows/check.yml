@@ -13,4 +13,5 @@ jobs:
       - run: node check.mjs
       - run: node build.mjs
       - name: dist/ is up to date
-        run: git diff --exit-code -- dist || (echo "dist/ is stale: run node build.mjs and commit" && exit 1)
+        run: |
+          git diff --exit-code -- dist || { echo "dist/ is stale - run node build.mjs and commit"; exit 1; }
