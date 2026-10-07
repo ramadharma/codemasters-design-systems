@@ -1,0 +1,96 @@
+/* Input field, Codemasters Design System
+   Figma: Shared components / Input fields: _Input field base (1090-57627), Input field (1090-57817)
+   Needs tokens.css.
+
+   <div class="sb-field">
+     <label class="sb-field-label" for="polis">Nomor polis</label>
+     <div class="sb-input">
+       <input id="polis" type="text" placeholder="10 digit nomor polis" aria-describedby="polis-hint">
+     </div>
+     <p class="sb-field-hint" id="polis-hint">Ada di kartu peserta, 10 digit.</p>
+   </div>
+
+   data-type on .sb-input   leading-dropdown | trailing-dropdown | leading-text | payment   (omit for Default)
+   Destructive              aria-invalid="true" on the input. The hint becomes the error message.
+   Disabled                 the disabled attribute on the input. A disabled field is never in error.
+   data-state="focus"       on .sb-input forces Focused in static mockups and docs only. */
+
+/* Label, control and hint sit 6 apart: Figma component spec (DESIGN.md Input field anatomy). */
+.sb-field { display: grid; gap: 6px; }
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+
+.sb-input {
+  --inp-border: var(--gray-300); --inp-focus: var(--brand-300); --inp-ring: var(--focus-ring);
+  position: relative; box-sizing: border-box;
+  display: flex; align-items: center; gap: 8px;
+  height: 44px; padding: 0 14px; /* control padding exception: 10 14 lands the height on 44 */
+  background: var(--white);
+  border: 1px solid var(--inp-border); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-input > svg { width: 20px; height: 20px; flex: none; color: var(--gray-500); }
+.sb-input input {
+  flex: 1; min-width: 0; height: 100%; margin: 0; padding: 0;
+  font: 400 var(--text-md) var(--font); color: var(--gray-900);
+  background: none; border: 0; outline: 0; /* focus shows on the whole field below */
+}
+.sb-input input::placeholder { color: var(--gray-500); opacity: 1; }
+
+/* States */
+.sb-input:hover:not(:focus-within, :has(input:disabled, [aria-invalid="true"])) { border-color: var(--gray-400); }
+.sb-input:has(input:focus), .sb-input[data-state="focus"] {
+  border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--inp-ring);
+}
+.sb-input:has(input:disabled) { background: var(--gray-50); cursor: not-allowed; }
+.sb-input input:disabled { color: var(--gray-500); cursor: not-allowed; }
+.sb-input:has([aria-invalid="true"]) { --inp-border: var(--error-300); --inp-focus: var(--error-300); --inp-ring: var(--error-100); }
+.sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
+
+/* Help icon: 16 px help-circle at the end, opens a Dark tooltip on hover and focus.
+   In error it is an alert-circle in error-500. */
+.sb-input-help {
+  display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-sm);
+  background: none; color: var(--gray-400); cursor: help;
+}
+.sb-input-help > svg { width: 16px; height: 16px; }
+.sb-input-help:hover, .sb-input-help:focus-visible { color: var(--gray-500); }
+.sb-input-help:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.sb-input:has([aria-invalid="true"]) .sb-input-help { color: var(--error-500); }
+.sb-input-tip {
+  position: absolute; z-index: 10; bottom: calc(100% + 8px); inset-inline-end: 4px;
+  max-width: 320px; padding: 8px 12px; border-radius: var(--radius-md);
+  background: var(--gray-900); box-shadow: var(--shadow-lg);
+  font: 600 var(--text-xs) var(--font); color: var(--white); white-space: nowrap;
+  visibility: hidden; opacity: 0; transition: opacity 150ms var(--ease), visibility 0s 150ms;
+}
+.sb-input-help:is(:hover, :focus-visible) + .sb-input-tip { visibility: visible; opacity: 1; transition: opacity 150ms var(--ease); }
+
+/* Types */
+.sb-input-select {
+  flex: none; height: 100%; margin: 0; padding: 0 24px 0 0; border: 0; outline: 0; appearance: none; cursor: pointer;
+  font: 400 var(--text-md) var(--font); color: var(--gray-900);
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center / 20px;
+}
+.sb-input-select:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; border-radius: var(--radius-sm); }
+.sb-input[data-type="leading-dropdown"] .sb-input-select { margin-inline-end: 4px; } /* dropdown padding 10 12 10 14 */
+.sb-input-prefix { flex: none; font: 400 var(--text-md) var(--font); color: var(--gray-500); }
+.sb-input[data-type="leading-text"] { padding-inline-start: 0; gap: 0; }
+.sb-input[data-type="leading-text"] input { padding-inline-start: 14px; }
+.sb-input-addon {
+  align-self: stretch; display: flex; align-items: center; flex: none;
+  padding: 0 12px 0 14px; border-inline-end: 1px solid var(--gray-300);
+  font: 400 var(--text-md) var(--font); color: var(--gray-500);
+}
+.sb-input[data-type="payment"] { padding-inline-start: 10px; }
+.sb-input-card {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 34px; height: 24px; box-sizing: border-box;
+  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-sm);
+}
+.sb-input-card > svg { width: 22px; height: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-input, .sb-input-tip { transition: none; }
+}

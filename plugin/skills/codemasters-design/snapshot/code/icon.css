@@ -1,0 +1,9 @@
+/* Icons that change colour with state: an SVG file drawn as a mask, coloured by currentColor. */
+.ic {
+  display: inline-block; flex: none; width: 20px; height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--ic) center / contain no-repeat;
+  mask: var(--ic) center / contain no-repeat;
+}
+
+<span class="ic" style="--ic: url(/assets/icons/file-text.svg)" aria-hidden="true"></span>

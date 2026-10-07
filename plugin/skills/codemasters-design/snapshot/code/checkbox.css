@@ -1,0 +1,71 @@
+/* Checkbox, radio and check circle, Codemasters Design System
+   Figma: _Checkbox base (1097-63886), Checkbox (1097-63652). Needs tokens.css. No script for the control itself.
+
+   <div class="sb-check" data-size="sm">
+     <input class="sb-check-input" type="checkbox" id="setuju" aria-describedby="setuju-sup">
+     <div class="sb-check-text">
+       <label class="sb-check-label" for="setuju">Kirim salinan ke peserta</label>
+       <p class="sb-check-sup" id="setuju-sup">Peserta menerima email berisi keputusan klaim.</p>
+     </div>
+   </div>
+
+   Type          type="checkbox" (square) | type="radio" (circle) | data-variant="circle" (check circle, filled when checked)
+   data-size     sm (16 px) | md (20 px)
+   Checked       checked. Indeterminate (checkbox only): input.indeterminate = true in JS;
+                 data-indeterminate draws it before the script runs.
+   Disabled      disabled. data-state="hover" | "focus" forces a state in static mockups and docs only. */
+
+.sb-check { --ck: 16px; --ck-r: var(--radius-sm); --ck-mark: 12px; --ck-dot: 6px; display: inline-flex; align-items: flex-start; gap: 8px; }
+.sb-check[data-size="md"] { --ck: 20px; --ck-r: var(--radius-sm); --ck-mark: 14px; --ck-dot: 8px; gap: 12px; }
+
+.sb-check-input {
+  --ck-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M10 3 4.5 8.5 2 6' fill='none' stroke='black' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  position: relative; flex: none; box-sizing: border-box;
+  width: var(--ck); height: var(--ck); margin: 0;
+  background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--ck-r);
+  color: var(--brand-600);
+  appearance: none; cursor: pointer;
+  transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+/* The control sits 2 px down so it centres on the first line of its label. */
+.sb-check:has(.sb-check-text) .sb-check-input { margin-top: 2px; }
+.sb-check-input[type="radio"], .sb-check-input[data-variant="circle"] { border-radius: var(--radius-full); }
+.sb-check-input[type="checkbox"]:indeterminate, .sb-check-input[data-indeterminate] { --ck-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6h7' fill='none' stroke='black' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+
+/* Mark: check, minus or radio dot, drawn in currentColor.
+   :indeterminate is scoped to checkboxes: browsers also match it on a radio whose group has nothing checked. */
+.sb-check-input::before {
+  content: ''; position: absolute; inset: 0; margin: auto;
+  width: var(--ck-mark); height: var(--ck-mark);
+  background: currentColor; -webkit-mask: var(--ck-icon) center / contain no-repeat; mask: var(--ck-icon) center / contain no-repeat;
+  visibility: hidden;
+}
+.sb-check-input[type="radio"]:not([data-variant])::before { width: var(--ck-dot); height: var(--ck-dot); border-radius: var(--radius-full); -webkit-mask: none; mask: none; }
+.sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate])::before { visibility: visible; }
+
+/* States. Disabled uses [type] so it outranks the checked rule. */
+.sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]) { background: var(--brand-50); border-color: var(--brand-600); }
+.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate], :disabled):is(:hover, [data-state="hover"]) { background: var(--brand-50); border-color: var(--brand-600); }
+.sb-check-input:focus-visible, .sb-check-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]):is(:focus-visible, [data-state="focus"]) { border-color: var(--brand-300); }
+.sb-check-input[type]:disabled { background: var(--gray-100); border-color: var(--gray-200); color: var(--gray-200); cursor: not-allowed; }
+
+/* Check circle: solid brand-600 with a white check when checked. */
+.sb-check-input[data-variant="circle"]:checked { background: var(--brand-600); border-color: var(--brand-600); color: var(--white); }
+.sb-check-input[data-variant="circle"]:checked:disabled { background: var(--gray-200); border-color: var(--gray-200); color: var(--white); }
+
+/* Text: same layout as Toggle */
+.sb-check-text { display: grid; }
+.sb-check-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); cursor: pointer; }
+.sb-check-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-check[data-size="md"] .sb-check-label { font-size: 16px; line-height: 24px; }
+.sb-check[data-size="md"] .sb-check-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
+.sb-check:has(:disabled) .sb-check-label, .sb-check:has(:disabled) .sb-check-sup { color: var(--gray-300); cursor: not-allowed; }
+
+/* A list of choices: 12 between rows. A radio group gets one visible label. */
+.sb-choices { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; }
+.sb-choices-label { margin-bottom: 4px; padding: 0; font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-check-input { transition: none; }
+}

@@ -34,3 +34,12 @@ Commit `dist/` with the change; CI fails when it is stale.
 - `foundations/`, `components/`, `applications/`: one Markdown file per page.
 - `tokens.css`, `tokens.json`, `slides.tokens.json`.
 - `code/`: component CSS and scripts (`button.css`, `slider.js`, ...).
+
+## Claude skill
+
+The repo is also a Claude Code plugin marketplace. The `codemasters` plugin has one skill, `codemasters-design`: ask for a website, app UI, pitch deck, document or poster for Codemasters, Sembuh AI or Flipmaster, or ask to refine existing work to the system. It reads the live spec from `dist/` every time (offline: `plugin/skills/codemasters-design/snapshot/`, refreshed by `node build.mjs`).
+
+```bash
+/plugin marketplace add ramadharma/codemasters-design-systems
+/plugin install codemasters@codemasters-design-systems
+```

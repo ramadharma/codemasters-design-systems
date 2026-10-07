@@ -1,0 +1,58 @@
+/* Button group, Codemasters Design System
+   Figma: Shared components / Button group (node 1046-10171), _Button group base (node 1046-9312)
+   Needs tokens.css.
+
+   Switch, one choice at a time (arrow keys move the choice):
+   <div class="sb-btn-group" role="radiogroup" aria-label="Rentang waktu">
+     <button type="button" role="radio" aria-checked="true" tabindex="0">Hari</button>
+     <button type="button" role="radio" aria-checked="false" tabindex="-1">Minggu</button>
+   </div>
+
+   Toggles, each on or off: <div class="sb-btn-group" role="group"> with <button aria-pressed="true|false">.
+
+   Current=True     aria-checked="true" (switch) or aria-pressed="true" (toggle). The ARIA state is the style hook,
+                    so the choice is never shown by colour alone.
+   data-icon="only" icon-only segments; each button needs aria-label
+   data-state       hover | focus on a segment. Static mockups and docs only. */
+
+.sb-btn-group {
+  box-sizing: border-box;
+  display: inline-flex; height: 40px;
+  background: var(--white);
+  border: 1px solid var(--gray-300); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden; /* only the outer corners are rounded */
+}
+.sb-btn-group > button {
+  --seg-icon: var(--gray-500);
+  box-sizing: border-box;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 100%; margin: 0; padding: 0 16px;
+  font: 600 var(--text-sm) var(--font); white-space: nowrap;
+  color: var(--gray-700); background: var(--white);
+  border: 0; border-inline-end: 1px solid var(--gray-300); border-radius: 0;
+  cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-btn-group > button:last-child { border-inline-end: 0; }
+.sb-btn-group > button > svg { width: 20px; height: 20px; flex: none; color: var(--seg-icon); }
+.sb-btn-group[data-icon="only"] > button { padding: 0 12px; }
+.sb-btn-group-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
+
+/* States (fill / text / icon). Order matters: Current overrides Hover and Focused, Disabled only fades the text. */
+.sb-btn-group > button:hover:not(:disabled), .sb-btn-group > button[data-state="hover"] {
+  --seg-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50);
+}
+.sb-btn-group > button:focus-visible, .sb-btn-group > button[data-state="focus"] {
+  --seg-icon: var(--gray-700); color: var(--gray-700); background: var(--gray-50);
+  outline: 2px solid var(--brand-500); outline-offset: -2px; /* inside, because the group clips */
+}
+.sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
+  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50);
+}
+.sb-btn-group > button:disabled { --seg-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
+.sb-btn-group > button:disabled > .sb-btn-group-dot { background: var(--gray-300); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-btn-group > button { transition: none; }
+}

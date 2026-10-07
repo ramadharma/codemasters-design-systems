@@ -1,0 +1,54 @@
+/* Verification code input field (Mega input field), Codemasters Design System
+   Figma: _Mega input field base (1106-66560), Verification code input field (1106-66757)
+   Needs tokens.css and verification-code.js.
+
+   <div class="sb-field">
+     <span class="sb-field-label" id="otp-label">Kode verifikasi</span>
+     <div class="sb-code" data-size="md" role="group" aria-labelledby="otp-label" aria-describedby="otp-hint">
+       <input class="sb-code-digit" inputmode="numeric" autocomplete="one-time-code" placeholder="0" aria-label="Digit 1 dari 6">
+       … one input per digit; 6 digits put <span class="sb-code-sep" aria-hidden="true">-</span> after the 3rd
+     </div>
+     <p class="sb-field-hint" id="otp-hint">Kode dikirim ke email Anda.</p>
+   </div>
+
+   data-size   sm | md | lg
+   Error       aria-invalid="true" on every digit. The hint becomes the error message.
+   Disabled    the disabled attribute on every digit.
+   Filled      comes from the value itself (:not(:placeholder-shown)).
+   data-state="focus" on a digit forces Focused in static mockups and docs only. */
+
+.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
+
+.sb-code { --code-box: 80px; --code-gap: 12px; --code-type: var(--display-lg); display: flex; align-items: center; gap: var(--code-gap); }
+.sb-code[data-size="sm"] { --code-box: 64px; --code-gap: 8px; }
+.sb-code[data-size="lg"] { --code-box: 96px; --code-type: var(--display-xl); }
+
+.sb-code-digit {
+  box-sizing: border-box; flex: none;
+  width: var(--code-box); height: var(--code-box); margin: 0; padding: 8px;
+  font: 500 var(--code-type) var(--font); letter-spacing: var(--tracking-display); text-align: center;
+  color: var(--brand-600); caret-color: var(--brand-600);
+  background: var(--white);
+  border: 1px solid var(--gray-300); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-code-digit::placeholder { color: var(--gray-300); opacity: 1; }
+.sb-code-digit:not(:placeholder-shown) { border-color: var(--brand-300); }
+.sb-code-digit:focus, .sb-code-digit[data-state="focus"] {
+  outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+}
+.sb-code-digit:disabled { background: var(--gray-50); border-color: var(--gray-300); color: var(--gray-200); cursor: not-allowed; }
+.sb-code-digit:disabled::placeholder { color: var(--gray-200); }
+.sb-code-digit[aria-invalid="true"] { border-color: var(--error-300); color: var(--error-600); caret-color: var(--error-600); }
+.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--error-100); }
+
+/* 6 digits split 3 + 3 by a dash in Display xl / Medium. */
+.sb-code-sep { font: 500 var(--display-xl) var(--font); letter-spacing: var(--tracking-display); color: var(--gray-300); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-code-digit { transition: none; }
+}

@@ -1,0 +1,57 @@
+/* Toggle, Codemasters Design System
+   Figma: _Toggle base (122-3294), Toggle (1102-4208). Needs tokens.css. No script: it is a native checkbox.
+
+   <div class="sb-toggle" data-size="sm">
+     <input class="sb-toggle-input" type="checkbox" role="switch" id="notif" aria-describedby="notif-sup">
+     <div class="sb-toggle-text">
+       <label class="sb-toggle-label" for="notif">Notifikasi email</label>
+       <p class="sb-toggle-sup" id="notif-sup">Kirim email saat status klaim berubah.</p>
+     </div>
+   </div>
+
+   data-size    sm | md
+   data-theme   light: brand-tinted, only on brand-tinted surfaces (omit for the standard Dark theme)
+   Pressed      the checked attribute. Disabled: the disabled attribute.
+   data-state   hover | focus on the input forces a state in static mockups and docs only. */
+
+.sb-toggle {
+  --tg-w: 36px; --tg-h: 20px; --tg-knob: 16px;
+  --tg-off: var(--gray-100); --tg-off-hover: var(--gray-200); --tg-on: var(--brand-600); --tg-on-hover: var(--brand-700);
+  display: inline-flex; align-items: flex-start; gap: 8px;
+}
+.sb-toggle[data-size="md"] { --tg-w: 44px; --tg-h: 24px; --tg-knob: 20px; gap: 12px; }
+.sb-toggle[data-theme="light"] { --tg-off: var(--brand-50); --tg-off-hover: var(--brand-100); --tg-on: var(--brand-200); --tg-on-hover: var(--brand-200); }
+
+/* Track: fully rounded, 2 px padding. Knob: white, shadow-sm, slides 150 ms. */
+.sb-toggle-input {
+  position: relative; flex: none; box-sizing: border-box;
+  width: var(--tg-w); height: var(--tg-h); margin: 0;
+  border-radius: var(--radius-full); background: var(--tg-off);
+  appearance: none; cursor: pointer;
+  transition: background-color 150ms var(--ease), box-shadow 150ms var(--ease);
+}
+.sb-toggle-input::before {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
+  background: var(--white); box-shadow: var(--shadow-sm);
+  transition: translate 150ms var(--ease);
+}
+.sb-toggle-input:checked { background: var(--tg-on); }
+.sb-toggle-input:checked::before { translate: calc(var(--tg-w) - var(--tg-knob) - 4px) 0; }
+.sb-toggle-input:hover:not(:disabled), .sb-toggle-input[data-state="hover"] { background: var(--tg-off-hover); }
+.sb-toggle-input:checked:hover:not(:disabled), .sb-toggle-input:checked[data-state="hover"] { background: var(--tg-on-hover); }
+.sb-toggle-input:focus-visible, .sb-toggle-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-toggle-input:disabled { background: var(--gray-100); cursor: not-allowed; }
+.sb-toggle-input:disabled::before { background: var(--gray-50); }
+
+/* Text */
+.sb-toggle-text { display: grid; }
+.sb-toggle-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); cursor: pointer; }
+.sb-toggle-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-toggle[data-size="md"] .sb-toggle-label { font-size: 16px; line-height: 24px; }
+.sb-toggle[data-size="md"] .sb-toggle-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
+.sb-toggle:has(:disabled) .sb-toggle-label, .sb-toggle:has(:disabled) .sb-toggle-sup { color: var(--gray-300); cursor: not-allowed; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-toggle-input, .sb-toggle-input::before { transition: none; }
+}

@@ -1,0 +1,113 @@
+{
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "margin": 80,
+    "unit": "px; 1 px = 0.5 pt on a 13.333 × 7.5 in page"
+  },
+  "grid": {
+    "columns": 12,
+    "column": 110,
+    "gutter": 40,
+    "contentWidth": 1760
+  },
+  "anchors": {
+    "eyebrow": 80,
+    "logo": 80,
+    "headline": 124,
+    "content": 222,
+    "footerRule": 1000,
+    "legalText": 1017,
+    "sourceText": 1027
+  },
+  "font": "Inter",
+  "type": {
+    "title1": {
+      "size": 96,
+      "lineHeight": 1.2,
+      "weight": 500
+    },
+    "headline1": {
+      "size": 48,
+      "lineHeight": 1.2,
+      "weight": 500
+    },
+    "headline2": {
+      "size": 36,
+      "lineHeight": 1.2,
+      "weight": 500
+    },
+    "body_large": {
+      "size": 30,
+      "lineHeight": 1.4,
+      "weight": 400
+    },
+    "body": {
+      "size": 24,
+      "lineHeight": 1.4,
+      "weight": 400
+    },
+    "note": {
+      "size": 20,
+      "lineHeight": 1.4,
+      "weight": 400
+    },
+    "table": {
+      "size": 20,
+      "lineHeight": 1.4,
+      "weight": 400
+    },
+    "footer": {
+      "size": 16,
+      "lineHeight": 1.4,
+      "weight": 400
+    }
+  },
+  "colour": {
+    "primary": "var(--gray-900)",
+    "secondary": "var(--gray-500)",
+    "grey": "var(--gray-300)",
+    "surface": "var(--gray-100)",
+    "white": "var(--white)",
+    "blue.dark": "var(--brand-800)",
+    "blue.main": "var(--brand-400)",
+    "blue.secondary": "var(--brand-300)",
+    "blue.surface": "var(--brand-100)"
+  },
+  "spacing": [
+    4,
+    8,
+    16,
+    20,
+    24,
+    28,
+    32,
+    40,
+    56,
+    64,
+    80
+  ],
+  "radius": {
+    "card": 12,
+    "small": 8,
+    "max": 16
+  },
+  "shadow": "none",
+  "logo": {
+    "ratio": 6.84,
+    "cover": {
+      "x": 1540,
+      "width": 300
+    },
+    "content": {
+      "x": 1620,
+      "y": 80,
+      "width": 220
+    },
+    "backCover": {
+      "x": 80,
+      "y": 80,
+      "width": 384
+    }
+  }
+}

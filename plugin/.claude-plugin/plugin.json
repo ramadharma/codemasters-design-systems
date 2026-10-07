@@ -1,0 +1,8 @@
+{
+  "name": "codemasters",
+  "description": "Design anything with the Codemasters design system: websites, app UI, pitch decks, documents, posters, and refining existing work to match it. Always reads the latest published spec.",
+  "version": "0.1.0",
+  "author": { "name": "Rama Dharma" },
+  "homepage": "https://codemasters-design-systems.pages.dev",
+  "repository": "https://github.com/ramadharma/codemasters-design-systems"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "codemasters-design-systems",
+  "owner": {
+    "name": "Rama Dharma"
+  },
+  "metadata": {
+    "description": "The Codemasters design system (Codemasters, Sembuh AI, Flipmaster) as Claude skills."
+  },
+  "plugins": [
+    {
+      "name": "codemasters",
+      "source": "./plugin",
+      "description": "Design anything with the Codemasters design system: websites, app UI, pitch decks, documents, posters, and refining existing work to match it."
+    }
+  ]
+}

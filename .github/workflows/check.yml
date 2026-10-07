@@ -14,4 +14,4 @@ jobs:
       - run: node build.mjs
       - name: dist/ is up to date
         run: |
-          git diff --exit-code -- dist || { echo "dist/ is stale - run node build.mjs and commit"; exit 1; }
+          git diff --exit-code -- dist plugin/skills/codemasters-design/snapshot || { echo "dist/ is stale - run node build.mjs and commit"; exit 1; }
