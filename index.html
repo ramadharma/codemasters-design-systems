@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codemasters Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <!-- Data first: each file injects its CSS (tokens, components) before the page paints.
+       Add a component: create data/<name>.js and add one script tag here. -->
+  <script src="data/foundations.js"></script>
+  <script src="data/logo.js"></script>
+  <script src="data/colors.js"></script>
+  <script src="data/typography.js"></script>
+  <script src="data/icons.js"></script>
+  <script src="data/shadows.js"></script>
+  <script src="data/grids-spacing.js"></script>
+  <script src="data/button.js"></script>
+  <script src="data/button-group.js"></script>
+  <script src="data/social-button.js"></script>
+  <script src="data/badge.js"></script>
+  <script src="data/input-field.js"></script>
+  <script src="data/textarea.js"></script>
+  <script src="data/verification-code.js"></script>
+  <script src="data/wysiwyg.js"></script>
+  <script src="data/input-dropdown.js"></script>
+  <script src="data/dropdown-menu.js"></script>
+  <script src="data/toggle.js"></script>
+  <script src="data/checkbox.js"></script>
+  <script src="data/checkbox-group.js"></script>
+  <script src="data/avatar.js"></script>
+  <script src="data/tooltip.js"></script>
+  <script src="data/progress.js"></script>
+  <script src="data/slider.js"></script>
+  <script src="data/slides.js"></script>
+  <link rel="stylesheet" href="docs.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <button class="sb-btn nav-toggle" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Open navigation" aria-controls="side" aria-expanded="false"><svg data-i="menu"></svg></button>
+    <a class="brand" href="#/"><strong>Codemasters</strong><span>Design System</span></a>
+    <div class="top-actions">
+      <button class="sb-btn search-trigger" type="button" data-hierarchy="secondary-gray" data-size="sm" aria-haspopup="dialog" aria-label="Search documentation" data-search><svg data-i="search"></svg><span>Search documentation…</span><kbd></kbd></button>
+      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm" data-export><svg data-i="download"></svg>Export DESIGN.md</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side" id="side" aria-label="Documentation"></nav>
+    <main class="page" id="main"></main>
+    <aside class="toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="md-dialog" aria-labelledby="md-title">
+    <header>
+      <h2 id="md-title">Markdown</h2>
+      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Close" data-dialog="close"><svg data-i="x"></svg></button>
+    </header>
+    <pre></pre>
+    <footer>
+      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-dialog="download"><svg data-i="download"></svg>Download</button>
+      <button class="sb-btn" type="button" data-hierarchy="secondary-color" data-size="md" data-dialog="copy"><svg data-i="copy"></svg>Copy Markdown</button>
+    </footer>
+  </dialog>
+
+  <dialog class="search-dialog" aria-label="Search documentation">
+    <div class="sb-input search-field">
+      <svg data-i="search"></svg>
+      <input type="text" role="combobox" aria-expanded="true" aria-controls="search-list" aria-autocomplete="list" placeholder="Search documentation…" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="search-list" id="search-list" role="listbox" aria-label="Results"></div>
+    <footer class="search-foot">
+      <span><kbd><svg data-i="corner-down-left"></svg></kbd>Go to page</span>
+      <span><kbd>↑</kbd><kbd>↓</kbd>Move</span>
+      <span><kbd>Esc</kbd>Close</span>
+    </footer>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
