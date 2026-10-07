@@ -93,7 +93,7 @@ ${TYPE.map(([t, px, lh, w]) => `<div class="f-type-row"><div class="f-type-meta"
     ['color.blue.surface', 'brand-100', 'Blue-tinted surfaces, table group rows'],
   ];
 
-  const SLIDE_TOKENS = JSON.stringify({
+  DS.slideTokens = {
     canvas: { width: 1920, height: 1080, margin: 80, unit: 'px; 1 px = 0.5 pt on a 13.333 × 7.5 in page' },
     grid: { columns: 12, column: 110, gutter: 40, contentWidth: 1760 },
     anchors: { eyebrow: 80, logo: 80, headline: 124, content: 222, footerRule: 1000, legalText: 1017, sourceText: 1027 },
@@ -104,7 +104,8 @@ ${TYPE.map(([t, px, lh, w]) => `<div class="f-type-row"><div class="f-type-meta"
     radius: { card: 12, small: 8, max: 16 },
     shadow: 'none',
     logo: { ratio: 6.84, cover: { x: 1540, width: 300 }, content: { x: 1620, y: 80, width: 220 }, backCover: { x: 80, y: 80, width: 384 } },
-  }, null, 2);
+  };
+  const SLIDE_TOKENS = JSON.stringify(DS.slideTokens, null, 2);
 
   DS.applications.push({
     slug: 'slides',

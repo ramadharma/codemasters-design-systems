@@ -1,0 +1,104 @@
+/* WYSIWYG editor, Codemasters Design System
+   Figma: _WYSIWYG editor icon (1705-454356), WYSIWYG toolbar (1705-454581), WYSIWYG tooltip (1706-438373)
+   Needs tokens.css. Behaviour comes from the app's editor (reference: wysiwyg.js).
+
+   <div class="sb-wys">
+     <div class="sb-wys-toolbar" role="toolbar" aria-label="Format teks">
+       <select class="sb-wys-select" aria-label="Gaya teks">…</select>
+       <div class="sb-wys-icons">
+         <button class="sb-wys-btn" type="button" data-cmd="bold" aria-pressed="false" aria-label="Bold"
+                 aria-keyshortcuts="Control+B" data-tip="Bold · Ctrl+B"><svg aria-hidden="true">…</svg></button>
+         …
+       </div>
+     </div>
+     <div class="sb-wys-area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Ringkasan"></div>
+   </div>
+
+   data-breakpoint="mobile" on .sb-wys-toolbar: column layout, 28 px icons.
+   .sb-wys-bubble instead of the toolbar: floating Dark tooltip above the selection. Use one, not both. */
+
+.sb-wys { position: relative; display: grid; gap: 12px; }
+
+/* Toolbar */
+.sb-wys-toolbar { display: flex; align-items: center; gap: 12px; }
+.sb-wys-toolbar[data-breakpoint="mobile"] { flex-direction: column; align-items: stretch; gap: 8px; }
+.sb-wys-select {
+  box-sizing: border-box; width: 240px; height: 44px; margin: 0; padding: 0 40px 0 14px;
+  font: 500 var(--text-md) var(--font); color: var(--gray-900);
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 20px;
+  border: 1px solid var(--gray-300); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  appearance: none; cursor: pointer;
+}
+.sb-wys-select:focus-visible { outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-select { width: 100%; }
+.sb-wys-icons { display: flex; flex-wrap: wrap; gap: 4px; }
+.sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* Figma spec: 28 px icons, gap 2 */
+
+/* Editor icon: 32 x 32, 20 px glyph, radius 8 like every icon button of 32+. Light theme on the white toolbar. */
+.sb-wys-btn {
+  position: relative; box-sizing: border-box;
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 32px; height: 32px; margin: 0; padding: 0;
+  color: var(--gray-400); background: none; border: 0; border-radius: var(--radius-md);
+  cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-wys-btn > svg { width: 20px; height: 20px; }
+.sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-btn { width: 28px; height: 28px; }
+.sb-wys-btn:hover { background: var(--gray-50); color: var(--gray-600); }
+.sb-wys-btn[aria-pressed="true"] { background: var(--brand-100); color: var(--brand-700); }
+.sb-wys-btn:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 0; }
+
+/* Tooltip on each icon: name and shortcut, Dark tooltip spec. */
+.sb-wys-btn[data-tip]::after {
+  content: attr(data-tip); position: absolute; z-index: 10; bottom: calc(100% + 8px); left: 50%; translate: -50% 0;
+  padding: 8px 12px; border-radius: var(--radius-md); background: var(--gray-900); box-shadow: var(--shadow-lg);
+  font: 600 var(--text-xs) var(--font); color: var(--white); white-space: nowrap;
+  visibility: hidden; opacity: 0; transition: opacity 150ms var(--ease), visibility 0s 150ms; pointer-events: none;
+}
+.sb-wys-btn[data-tip]:is(:hover, :focus-visible)::after { visibility: visible; opacity: 1; transition: opacity 150ms var(--ease) 300ms; }
+
+/* Floating tooltip (Dark): gray-900, radius 8, padding 8, icons gap 4, 16 x 6 arrow, shadow-lg drawn as a filter. */
+.sb-wys-bubble {
+  position: absolute; z-index: 20; display: flex; gap: 4px; padding: 8px;
+  background: var(--gray-900); border-radius: var(--radius-md);
+  filter: drop-shadow(0 12px 8px rgba(16,24,40,.08)) drop-shadow(0 4px 3px rgba(16,24,40,.03));
+}
+.sb-wys-bubble[hidden] { display: none; }
+.sb-wys-bubble::after {
+  content: ''; position: absolute; top: 100%; left: 50%; translate: -50% 0;
+  border: 8px solid transparent; border-top: 6px solid var(--gray-900); border-bottom: 0;
+}
+.sb-wys-bubble[data-arrow="left"]::after { left: 24px; }
+.sb-wys-bubble[data-arrow="right"]::after { left: auto; right: 8px; translate: 0 0; }
+.sb-wys-bubble[data-breakpoint="mobile"] .sb-wys-btn { width: 28px; height: 28px; }
+.sb-wys-bubble[data-breakpoint="mobile"] { gap: 2px; }
+/* Dark theme icons (inside the tooltip) */
+.sb-wys-bubble .sb-wys-btn { color: var(--gray-300); }
+.sb-wys-bubble .sb-wys-btn:hover { background: var(--gray-700); color: var(--white); }
+.sb-wys-bubble .sb-wys-btn[aria-pressed="true"] { background: var(--gray-600); color: var(--white); }
+
+/* Editor area: same box as Textarea input field. */
+.sb-wys-area {
+  box-sizing: border-box; min-height: 128px; padding: 10px 14px;
+  font: 400 var(--text-md) var(--font); color: var(--gray-900);
+  background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  overflow-wrap: anywhere;
+  transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-wys-area:focus { outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-wys-area[aria-invalid="true"] { border-color: var(--error-300); }
+.sb-wys-area[aria-invalid="true"]:focus { box-shadow: var(--shadow-xs), 0 0 0 4px var(--error-100); }
+/* Content styles map to the type scale. */
+.sb-wys-area > * { margin: 0; }
+.sb-wys-area > * + * { margin-top: 8px; }
+.sb-wys-area h1 { font: 600 var(--text-lg) var(--font); }
+.sb-wys-area h2 { font: 600 var(--text-md) var(--font); }
+.sb-wys-area blockquote { padding-inline-start: 12px; border-inline-start: 2px solid var(--gray-300); color: var(--gray-600); }
+.sb-wys-area ul, .sb-wys-area ol { padding-inline-start: 24px; }
+.sb-wys-area a { color: var(--brand-700); text-underline-offset: 4px; }
+.sb-wys-area img { max-width: 100%; border-radius: var(--radius-md); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-wys-btn, .sb-wys-area, .sb-wys-btn[data-tip]::after { transition: none; }
+}

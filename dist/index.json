@@ -1,0 +1,262 @@
+{
+  "name": "Codemasters Design System",
+  "version": "0.1.0",
+  "figma": "https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems",
+  "files": {
+    "system": "DESIGN.md",
+    "tokensCss": "tokens.css",
+    "tokensJson": "tokens.json",
+    "slideTokens": "slides.tokens.json"
+  },
+  "pages": [
+    {
+      "slug": "logo",
+      "name": "Logo",
+      "category": "Foundations",
+      "status": "In progress",
+      "updated": "2026-10-07",
+      "description": "One system, three companies. Codemasters is the parent of Sembuh AI and Flipmaster; company materials carry their own logo with \"Powered by Codemasters\" underneath.",
+      "path": "foundations/logo.md"
+    },
+    {
+      "slug": "colors",
+      "name": "Colors",
+      "category": "Foundations",
+      "status": "In Figma and app",
+      "updated": "2026-10-07",
+      "description": "Thirteen colour families of 11 steps each. Every colour on screen is one of these tokens, never a free-picked hex.",
+      "path": "foundations/colors.md"
+    },
+    {
+      "slug": "typography",
+      "name": "Typography",
+      "category": "Foundations",
+      "status": "In Figma and app",
+      "updated": "2026-10-07",
+      "description": "One typeface, Inter, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.",
+      "path": "foundations/typography.md"
+    },
+    {
+      "slug": "icons",
+      "name": "Icons",
+      "category": "Foundations",
+      "status": "In Figma and app",
+      "updated": "2026-10-07",
+      "description": "Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour of their text, so one file serves every state.",
+      "path": "foundations/icons.md"
+    },
+    {
+      "slug": "shadows",
+      "name": "Shadows & Blur",
+      "category": "Foundations",
+      "status": "In Figma and app",
+      "updated": "2026-10-07",
+      "description": "Seven shadows and four background blurs that put elements on the z-axis. The higher the layer, the bigger the shadow.",
+      "path": "foundations/shadows.md"
+    },
+    {
+      "slug": "grids-spacing",
+      "name": "Grids & Spacing",
+      "category": "Foundations",
+      "status": "In Figma and app",
+      "updated": "2026-10-07",
+      "description": "A 4 px soft grid: a fixed spacing scale, four containers, column grids for desktop, tablet and mobile, and the radius set.",
+      "path": "foundations/grids-spacing.md"
+    },
+    {
+      "slug": "button",
+      "name": "Button",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "Runs an action on the current page: save, submit, open a dialog, start an analysis. Seven hierarchies tell the user which action matters most.",
+      "path": "components/button.md"
+    },
+    {
+      "slug": "button-group",
+      "name": "Button group",
+      "category": "Components",
+      "status": "In Figma",
+      "updated": "2026-10-06",
+      "description": "A row of joined buttons for related, equal-weight choices: a view switch (Hari, Minggu, Bulan), pagination arrows or a small set of tools.",
+      "path": "components/button-group.md"
+    },
+    {
+      "slug": "social-button",
+      "name": "Social button",
+      "category": "Components",
+      "status": "In Figma",
+      "updated": "2026-10-06",
+      "description": "Signs the user in with an account on another platform. For third-party sign-in only.",
+      "path": "components/social-button.md"
+    },
+    {
+      "slug": "badge",
+      "name": "Badge",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "A small, non-interactive label for a status, category or count. Status pills, claim type tags, AI confidence and filter chips are all badges.",
+      "path": "components/badge.md"
+    },
+    {
+      "slug": "input-field",
+      "name": "Input field",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "A single-line text field with a label above, an optional hint below, and an error state that says what is wrong and how to fix it.",
+      "path": "components/input-field.md"
+    },
+    {
+      "slug": "textarea",
+      "name": "Textarea input field",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint and error as Input field, plus an optional character counter.",
+      "path": "components/textarea.md"
+    },
+    {
+      "slug": "verification-code",
+      "name": "Verification code",
+      "category": "Components",
+      "status": "In Figma",
+      "updated": "2026-10-06",
+      "description": "One large box per digit, for OTP and verification codes only. Figma calls it Mega input field.",
+      "path": "components/verification-code.md"
+    },
+    {
+      "slug": "wysiwyg",
+      "name": "WYSIWYG editor",
+      "category": "Components",
+      "status": "In Figma",
+      "updated": "2026-10-06",
+      "description": "Rich-text formatting for long text a user writes or edits: the AI summary (\"Edit Ringkasan\") and advisor notes. Use a plain Textarea when formatting is not needed.",
+      "path": "components/wysiwyg.md"
+    },
+    {
+      "slug": "input-dropdown",
+      "name": "Input dropdown",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "A select field: pick one value for a form field or a filter. For running an action from a button, use Dropdown menu.",
+      "path": "components/input-dropdown.md"
+    },
+    {
+      "slug": "dropdown-menu",
+      "name": "Dropdown menu",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "An action menu opened from a button, a row-actions icon or the account avatar. For choosing a value in a form, use Input dropdown.",
+      "path": "components/dropdown-menu.md"
+    },
+    {
+      "slug": "toggle",
+      "name": "Toggle",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "An on/off switch whose change takes effect immediately, such as \"Tampilkan hanya klaim saya\" or a notification setting. If the choice is applied only after Save, use a Checkbox.",
+      "path": "components/toggle.md"
+    },
+    {
+      "slug": "checkbox",
+      "name": "Checkbox and radio",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "One component for three selection controls, picked with Type: Checkbox for any number of options, Radio for exactly one, and Check circle for selectable cards and rows.",
+      "path": "components/checkbox.md"
+    },
+    {
+      "slug": "checkbox-group",
+      "name": "Checkbox group",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "Selectable cards: a list of bordered cards where the whole card is the control. Use it when each option needs a description or a visual, such as a plan, a payment method or an assignee.",
+      "path": "components/checkbox-group.md"
+    },
+    {
+      "slug": "avatar",
+      "name": "Avatar",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-07",
+      "description": "A person or a company, shown as a photo, initials or a placeholder icon. Comes alone, in an overlapping group, or with a name and a secondary line.",
+      "path": "components/avatar.md"
+    },
+    {
+      "slug": "tooltip",
+      "name": "Tooltip and help icon",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "A small label that appears on hover or keyboard focus to explain an element or show text that was cut off. The help icon is the standard trigger after a label or inside an input.",
+      "path": "components/tooltip.md"
+    },
+    {
+      "slug": "progress",
+      "name": "Progress bar and circle",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-06",
+      "description": "Shows how far a measurable task or value has got: an upload, AI analysis steps, quota used. For work of unknown length use a spinner instead.",
+      "path": "components/progress.md"
+    },
+    {
+      "slug": "slider",
+      "name": "Slider",
+      "category": "Components",
+      "status": "In Figma and app",
+      "updated": "2026-10-07",
+      "description": "Picks a value or a range by dragging, when the position matters more than the exact number: a confidence threshold, an amount range.",
+      "path": "components/slider.md"
+    },
+    {
+      "slug": "slides",
+      "name": "Slides",
+      "category": "Applications",
+      "status": "In progress",
+      "updated": "2026-10-07",
+      "description": "Pitch decks and presentations for Codemasters, Sembuh AI and Flipmaster: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.",
+      "path": "applications/slides.md"
+    }
+  ],
+  "code": [
+    "code/logo.css",
+    "code/icon.css",
+    "code/button.css",
+    "code/button-group.css",
+    "code/button-group-switch.js",
+    "code/social-button.css",
+    "code/badge.css",
+    "code/input-field.css",
+    "code/textarea.css",
+    "code/textarea-counter.js",
+    "code/verification-code.css",
+    "code/verification-code.js",
+    "code/wysiwyg.css",
+    "code/wysiwyg.js",
+    "code/input-dropdown.css",
+    "code/input-dropdown.js",
+    "code/dropdown-menu.css",
+    "code/dropdown-menu.js",
+    "code/toggle.css",
+    "code/checkbox.css",
+    "code/checkbox-select-all.js",
+    "code/checkbox-group.css",
+    "code/avatar.css",
+    "code/avatar-initials.js",
+    "code/tooltip.css",
+    "code/tooltip.js",
+    "code/progress.js",
+    "code/progress.css",
+    "code/slider.css",
+    "code/slider.js",
+    "code/slides.tokens.json"
+  ]
+}

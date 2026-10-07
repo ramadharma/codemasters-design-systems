@@ -1,0 +1,96 @@
+/* Input dropdown, Codemasters Design System
+   Figma: _Input dropdown base (1096-2), _Input dropdown menu item (1096-3156), _Input dropdown menu (1096-4590),
+   Input dropdown (1096-8566). Needs tokens.css and input-dropdown.js. Label and hint rules match input-field.css.
+
+   <div class="sb-field">
+     <span class="sb-field-label" id="jenis-label">Jenis klaim</span>
+     <div class="sb-dd">
+       <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false"
+               aria-controls="jenis-list" aria-labelledby="jenis-label jenis-value">
+         <span class="sb-dd-value" id="jenis-value"><span class="sb-dd-placeholder">Pilih jenis klaim</span></span>
+         <svg class="sb-dd-chevron" aria-hidden="true">…chevron-down…</svg>
+       </button>
+       <div class="sb-dd-menu" id="jenis-list" role="listbox" aria-labelledby="jenis-label" hidden>
+         <div class="sb-dd-opt" id="jenis-1" role="option" aria-selected="false">
+           <span class="sb-dd-main"><span class="sb-dd-label">Inpatient</span><span class="sb-dd-sup">Rawat inap</span></span>
+           <svg class="sb-dd-check" aria-hidden="true">…check…</svg>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   Leading element (Type): <svg> icon, <span class="sb-dd-avatar">, or <span class="sb-dd-dot"> before .sb-dd-label.
+   Search type: <div class="sb-dd-trigger" data-type="search"> holding <svg> + <input role="combobox">, no chevron.
+   Disabled option: aria-disabled="true". Disabled field: disabled on the button.
+   data-state="open" on .sb-dd-trigger forces Open/focused in static mockups and docs only. */
+
+.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+
+.sb-dd { position: relative; }
+
+/* Field: same box as Input field */
+.sb-dd-trigger {
+  box-sizing: border-box; display: flex; align-items: center; gap: 8px;
+  width: 100%; height: 44px; margin: 0; padding: 0 14px;
+  font: 400 var(--text-md) var(--font); color: var(--gray-900); text-align: start;
+  background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  cursor: pointer;
+  transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-dd-trigger:hover:not(:disabled, [aria-expanded="true"], :focus-within) { border-color: var(--gray-400); }
+.sb-dd-trigger:focus-visible, .sb-dd-trigger[aria-expanded="true"], .sb-dd-trigger:has([aria-expanded="true"], input:focus), .sb-dd-trigger[data-state="open"] {
+  outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+}
+.sb-dd-trigger:disabled { background: var(--gray-50); color: var(--gray-500); cursor: not-allowed; }
+.sb-dd-value, .sb-dd-main { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+.sb-dd-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sb-dd-sup { flex: none; color: var(--gray-500); font-weight: 400; }
+.sb-dd-placeholder { color: var(--gray-500); }
+.sb-dd-trigger > svg, .sb-dd-value > svg, .sb-dd-main > svg { width: 20px; height: 20px; flex: none; color: var(--gray-500); }
+.sb-dd-chevron { transition: rotate 200ms var(--ease); }
+.sb-dd-trigger[aria-expanded="true"] .sb-dd-chevron, .sb-dd-trigger[data-state="open"] .sb-dd-chevron { rotate: 180deg; }
+.sb-dd-trigger[data-type="search"] { cursor: text; }
+.sb-dd-trigger input { flex: 1; min-width: 0; height: 100%; margin: 0; padding: 0; border: 0; outline: 0; background: none; font: inherit; color: inherit; }
+.sb-dd-trigger input::placeholder { color: var(--gray-500); opacity: 1; }
+
+/* Leading elements */
+.sb-dd-avatar {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 24px; height: 24px; border-radius: var(--radius-full);
+  background: var(--brand-50); font: 500 var(--text-xs) var(--font); color: var(--brand-600);
+}
+.sb-dd-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
+
+/* Menu: width of the field, max height 320 (about 7 options), opens 8 below. */
+.sb-dd-menu {
+  position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline: 0;
+  box-sizing: border-box; max-height: 320px; overflow-y: auto; padding: 4px 0;
+  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+  scrollbar-width: thin; scrollbar-color: var(--gray-200) transparent;
+}
+.sb-dd-menu[hidden] { display: none; }
+/* _Scroll bar: 16 wide with padding 4, thumb 8 wide gray-200 radius 8, no track. Shows only when the list scrolls. */
+.sb-dd-menu::-webkit-scrollbar { width: 16px; }
+.sb-dd-menu::-webkit-scrollbar-thumb { background: var(--gray-200); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
+
+/* Option row: 44 high, padding 10 14, gap 8 */
+.sb-dd-opt {
+  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
+  font: 500 var(--text-md) var(--font); color: var(--gray-900); cursor: pointer;
+}
+.sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--gray-50); }
+.sb-dd-opt:hover .sb-dd-main > svg, .sb-dd-opt[data-active] .sb-dd-main > svg { color: var(--gray-700); }
+.sb-dd-check { width: 20px; height: 20px; flex: none; color: var(--brand-600); visibility: hidden; }
+.sb-dd-opt[aria-selected="true"] .sb-dd-check { visibility: visible; }
+.sb-dd-opt[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
+.sb-dd-opt[aria-disabled="true"] .sb-dd-sup, .sb-dd-opt[aria-disabled="true"] .sb-dd-main > svg, .sb-dd-opt[aria-disabled="true"] .sb-dd-check { color: var(--gray-200); }
+.sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--gray-25); }
+.sb-dd-opt[aria-disabled="true"] .sb-dd-avatar { opacity: .5; }
+.sb-dd-empty { margin: 0; padding: 12px 14px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-dd-empty[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-dd-trigger, .sb-dd-chevron { transition: none; }
+}

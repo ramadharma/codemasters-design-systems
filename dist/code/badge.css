@@ -1,0 +1,93 @@
+/* Badge, Codemasters Design System
+   Figma: Shared components / Badges: _Badge base (1046-28), Badge (1046-3819), Badge group (1046-8088)
+   Needs tokens.css.
+
+   <span class="sb-badge" data-size="sm" data-color="success">Disetujui: Sembuh</span>
+
+   data-size   sm | md | lg
+   data-color  gray | primary | error | warning | success | blue-gray | blue-light | blue | indigo | purple | pink | rose | orange
+   data-icon   dot | country | avatar | icon-left | icon-right | x-close | only   (omit for text only)
+   A badge is not a button. The only interactive part allowed is the X close button (aria-label "Hapus …"). */
+
+.sb-badge {
+  --bdg-h: 22px; --bdg-px: 8px; --bdg-type: var(--text-xs);
+  --bdg-bg: var(--gray-100); --bdg-fg: var(--gray-700); --bdg-icon: var(--gray-500);
+  box-sizing: border-box;
+  display: inline-flex; align-items: center; gap: 4px;
+  height: var(--bdg-h); padding: 0 var(--bdg-px);
+  font: 500 var(--bdg-type) var(--font); white-space: nowrap;
+  color: var(--bdg-fg); background: var(--bdg-bg);
+  border-radius: var(--radius-xl); /* fully rounded, no border */
+}
+.sb-badge > svg { width: 12px; height: 12px; flex: none; color: var(--bdg-icon); }
+.sb-badge-dot { width: 8px; height: 8px; flex: none; border-radius: var(--radius-full); background: var(--bdg-icon); }
+.sb-badge-img { display: inline-flex; width: 16px; height: 16px; flex: none; border-radius: var(--radius-full); overflow: hidden; }
+.sb-badge-img > svg { width: 100%; height: 100%; }
+/* Placeholder avatar: user icon in brand-600 on brand-50 (DESIGN.md Avatar). Real screens use the photo or initials. */
+.sb-badge-avatar { align-items: center; justify-content: center; background: var(--brand-50); color: var(--brand-600); }
+.sb-badge-avatar > svg { width: 12px; height: 12px; }
+.sb-badge-x {
+  display: inline-flex; margin: -2px; padding: 2px; border: 0; border-radius: var(--radius-sm);
+  background: none; color: var(--bdg-icon); cursor: pointer;
+  transition: color 150ms var(--ease);
+}
+.sb-badge-x > svg { width: 12px; height: 12px; }
+.sb-badge-x:hover { color: var(--bdg-fg); }
+.sb-badge-x:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 0; }
+
+/* Sizes. Height comes from the text line plus the vertical padding (sm 2, md 2, lg 4). */
+.sb-badge[data-size="md"] { --bdg-h: 24px; --bdg-px: 10px; --bdg-type: var(--text-sm); }
+.sb-badge[data-size="lg"] { --bdg-h: 28px; --bdg-px: 12px; --bdg-type: var(--text-sm); }
+
+/* Icon variants. Figma gives the sm values; md and lg follow the same rule. */
+.sb-badge[data-icon="dot"], .sb-badge[data-icon="icon-left"] { padding-inline-start: calc(var(--bdg-px) - 2px); }
+.sb-badge[data-icon="icon-right"], .sb-badge[data-icon="x-close"] { padding-inline-end: calc(var(--bdg-px) - 2px); }
+.sb-badge[data-icon="dot"], .sb-badge[data-icon="country"], .sb-badge[data-icon="avatar"] { gap: 6px; }
+.sb-badge[data-icon="country"], .sb-badge[data-icon="avatar"] { padding-inline-start: calc((var(--bdg-h) - 16px) / 2); }
+.sb-badge[data-icon="only"] { width: var(--bdg-h); padding: 0; justify-content: center; }
+.sb-badge[data-icon="only"]:not([data-size="md"], [data-size="lg"]) { --bdg-h: 20px; }
+
+/* Colours */
+.sb-badge[data-color="primary"] { --bdg-bg: var(--brand-50); --bdg-fg: var(--brand-700); --bdg-icon: var(--brand-500); }
+.sb-badge[data-color="error"] { --bdg-bg: var(--error-50); --bdg-fg: var(--error-700); --bdg-icon: var(--error-500); }
+.sb-badge[data-color="warning"] { --bdg-bg: var(--warning-50); --bdg-fg: var(--warning-700); --bdg-icon: var(--warning-500); }
+.sb-badge[data-color="success"] { --bdg-bg: var(--success-50); --bdg-fg: var(--success-700); --bdg-icon: var(--success-500); }
+.sb-badge[data-color="blue-gray"] { --bdg-bg: var(--blue-gray-50); --bdg-fg: var(--blue-gray-700); --bdg-icon: var(--blue-gray-500); }
+.sb-badge[data-color="blue-light"] { --bdg-bg: var(--blue-light-50); --bdg-fg: var(--blue-light-700); --bdg-icon: var(--blue-light-500); }
+.sb-badge[data-color="blue"] { --bdg-bg: var(--blue-50); --bdg-fg: var(--blue-700); --bdg-icon: var(--blue-500); }
+.sb-badge[data-color="indigo"] { --bdg-bg: var(--indigo-50); --bdg-fg: var(--indigo-700); --bdg-icon: var(--indigo-500); }
+.sb-badge[data-color="purple"] { --bdg-bg: var(--purple-50); --bdg-fg: var(--purple-700); --bdg-icon: var(--purple-500); }
+.sb-badge[data-color="pink"] { --bdg-bg: var(--pink-50); --bdg-fg: var(--pink-700); --bdg-icon: var(--pink-500); }
+.sb-badge[data-color="rose"] { --bdg-bg: var(--rose-50); --bdg-fg: var(--rose-700); --bdg-icon: var(--rose-500); }
+.sb-badge[data-color="orange"] { --bdg-bg: var(--orange-50); --bdg-fg: var(--orange-700); --bdg-icon: var(--orange-500); }
+
+/* Badge group: a badge plus a short message in one pill.
+   <a class="sb-badge-group" href="…" data-color="primary" data-theme="light">
+     <span class="sb-badge" data-size="sm">Fitur baru</span>
+     Ringkasan AI kini bisa diedit
+     <svg aria-hidden="true">…arrow-right…</svg>
+   </a>
+   data-size md | lg, data-color primary | gray | error | warning | success,
+   data-theme light | medium | dark, data-badge leading | trailing */
+.sb-badge-group {
+  --g50: var(--brand-50); --g100: var(--brand-100); --g500: var(--brand-500); --g600: var(--brand-600); --g700: var(--brand-700);
+  box-sizing: border-box;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 4px; padding-inline-end: 12px;
+  font: 500 var(--text-xs) var(--font); white-space: nowrap; text-decoration: none;
+  color: var(--g700); background: var(--g50);
+  border-radius: var(--radius-xl);
+}
+.sb-badge-group > svg { width: 12px; height: 12px; flex: none; color: var(--g500); }
+.sb-badge-group > .sb-badge { --bdg-bg: var(--white); --bdg-fg: var(--g700); --bdg-icon: var(--g500); }
+.sb-badge-group[data-size="lg"] { gap: 12px; padding-inline-end: 14px; font-size: 14px; line-height: 20px; }
+.sb-badge-group[data-badge="trailing"] { padding-inline: 12px 4px; }
+.sb-badge-group[data-badge="trailing"][data-size="lg"] { padding-inline: 14px 4px; }
+.sb-badge-group[data-theme="medium"] { background: var(--g100); }
+.sb-badge-group[data-theme="medium"] > .sb-badge { --bdg-bg: var(--g50); }
+.sb-badge-group[data-theme="dark"] > .sb-badge { --bdg-bg: var(--g600); --bdg-fg: var(--white); --bdg-icon: var(--white); }
+.sb-badge-group[data-color="gray"] { --g50: var(--gray-50); --g100: var(--gray-100); --g500: var(--gray-500); --g600: var(--gray-700); --g700: var(--gray-700); }
+.sb-badge-group[data-color="error"] { --g50: var(--error-50); --g100: var(--error-100); --g500: var(--error-500); --g600: var(--error-600); --g700: var(--error-700); }
+.sb-badge-group[data-color="warning"] { --g50: var(--warning-50); --g100: var(--warning-100); --g500: var(--warning-500); --g600: var(--warning-600); --g700: var(--warning-700); }
+.sb-badge-group[data-color="success"] { --g50: var(--success-50); --g100: var(--success-100); --g500: var(--success-500); --g600: var(--success-600); --g700: var(--success-700); }
+a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }

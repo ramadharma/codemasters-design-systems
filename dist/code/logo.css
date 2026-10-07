@@ -1,0 +1,14 @@
+/* Logo lockup, Codemasters Design System. Needs tokens.css.
+   A company logo with the "Powered by Codemasters" endorsement underneath.
+
+   <div class="sb-lockup">
+     <img class="sb-lockup-main" src="sembuh-logo.svg" alt="Sembuh AI">
+     <p class="sb-lockup-endorse">Powered by <img src="codemasters-logo.svg" alt="Codemasters"></p>
+   </div>
+
+   --lockup-h   height of the company logo (default 40px). The Codemasters logo is 40 % of it. */
+
+.sb-lockup { --lockup-h: 40px; display: inline-grid; justify-items: start; gap: calc(var(--lockup-h) * .2); }
+.sb-lockup-main { display: block; width: auto; height: var(--lockup-h); }
+.sb-lockup-endorse { display: inline-flex; align-items: center; gap: 8px; margin: 0; font: 500 var(--text-xs) var(--font); color: var(--gray-500); white-space: nowrap; }
+.sb-lockup-endorse img { display: block; width: auto; height: calc(var(--lockup-h) * .4); }

@@ -1,0 +1,59 @@
+/* Textarea input field, Codemasters Design System
+   Figma: _Textarea input field base (1238-80), Textarea input field (1238-278)
+   Needs tokens.css. Label and hint rules are the same as input-field.css; loading both is safe.
+
+   <div class="sb-field">
+     <label class="sb-field-label" for="alasan">Alasan penolakan</label>
+     <div class="sb-textarea">
+       <textarea id="alasan" data-limit="150" aria-describedby="alasan-hint alasan-count"></textarea>
+       <span class="sb-textarea-count" id="alasan-count">0/150</span>
+     </div>
+     <p class="sb-field-hint" id="alasan-hint" aria-live="polite"
+        data-hint="Alasan ini dikirim ke peserta." data-error="Maksimal 150 karakter.">Alasan ini dikirim ke peserta.</p>
+   </div>
+
+   Show limit   data-limit on the textarea + .sb-textarea-count (needs textarea-counter.js). Never use maxlength.
+   Destructive  aria-invalid="true" on the textarea.
+   Disabled     the disabled attribute.
+   data-state="focus" on .sb-textarea forces Focused in static mockups and docs only. */
+
+.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
+
+.sb-textarea { position: relative; display: grid; }
+.sb-textarea textarea {
+  --ta-border: var(--gray-300); --ta-focus: var(--brand-300); --ta-ring: var(--focus-ring);
+  box-sizing: border-box; width: 100%; height: 128px; min-height: 128px; margin: 0;
+  padding: 10px 14px; /* control padding exception, same as Input field */
+  resize: vertical;
+  font: 400 var(--text-md) var(--font); color: var(--gray-900);
+  background: var(--white);
+  border: 1px solid var(--ta-border); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-textarea textarea::placeholder { color: var(--gray-500); opacity: 1; }
+/* Room for the counter so the last line never runs under it: 10 + 18 + 4. */
+.sb-textarea:has(.sb-textarea-count) textarea { padding-bottom: 32px; }
+
+/* States */
+.sb-textarea textarea:hover:not(:focus, :disabled, [aria-invalid="true"]) { border-color: var(--gray-400); }
+.sb-textarea textarea:focus, .sb-textarea[data-state="focus"] textarea {
+  outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--ta-ring);
+}
+.sb-textarea textarea:disabled { background: var(--gray-50); color: var(--gray-500); cursor: not-allowed; resize: none; }
+.sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--error-300); --ta-focus: var(--error-300); --ta-ring: var(--error-100); }
+
+/* Character counter: bottom-right inside the box. Kept 24 from the edge so it clears the resize grip. */
+.sb-textarea-count {
+  position: absolute; bottom: 10px; inset-inline-end: 24px;
+  font: 400 var(--text-xs) var(--font); color: var(--gray-500);
+  pointer-events: none; font-variant-numeric: tabular-nums;
+}
+.sb-textarea-count[data-over] { color: var(--error-500); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-textarea textarea { transition: none; }
+}

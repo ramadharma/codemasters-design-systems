@@ -73,6 +73,7 @@
   ];
 
   DS.tokens = Object.assign({}, ...GROUPS.map(([, t]) => t));
+  DS.tokenGroups = GROUPS;
   DS.scales = SCALES;
   DS.steps = STEPS;
   // A slice of tokens.css for one foundation page: the groups whose title starts with one of the names.
@@ -176,6 +177,7 @@
               '**One component:** open its page and use **Copy Markdown**, or open the menu next to it to download `button.md` or preview it first.',
               '**Whole system:** **Export DESIGN.md** in the header downloads principles, tokens, foundations and every documented component in one file.',
               '**Tokens:** download `tokens.css` below. Component CSS (`button.css`, `social-button.css`) reads only these tokens.',
+              '**Files for tools and skills:** `node build.mjs` writes everything to `dist/` (`index.json`, `DESIGN.md`, one Markdown file per page, `tokens.json`, `code/`). On GitHub they are readable at `raw.githubusercontent.com/ramadharma/codemasters-design-systems/main/dist/`.',
             ],
           },
         ],

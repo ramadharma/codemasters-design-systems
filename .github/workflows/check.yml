@@ -1,0 +1,16 @@
+# Keeps data and dist/ honest: data must pass check.mjs, and dist/ must match a fresh build
+# (run `node build.mjs` and commit dist/ with every data change).
+name: check
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node check.mjs
+      - run: node build.mjs
+      - name: dist/ is up to date
+        run: git diff --exit-code -- dist || (echo "dist/ is stale: run node build.mjs and commit" && exit 1)
