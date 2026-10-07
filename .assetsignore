@@ -1,0 +1,6 @@
+.git
+.github
+.claude
+node_modules
+.DS_Store
+wrangler.jsonc

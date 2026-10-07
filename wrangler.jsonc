@@ -1,0 +1,6 @@
+// Cloudflare Workers: serve this folder as a static site (no Worker code). Deploys on every push to main.
+{
+  "name": "codemasters-design-systems",
+  "compatibility_date": "2025-10-01",
+  "assets": { "directory": "." }
+}
