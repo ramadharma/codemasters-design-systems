@@ -380,7 +380,7 @@ Load `tokens.css` and `logo.css`. Swap the PNG paths for SVG files when they arr
    --lockup-h   height of the company logo (default 40px). The Codemasters logo is 40 % of it. */
 
 .sb-lockup { --lockup-h: 40px; display: inline-grid; justify-items: start; gap: calc(var(--lockup-h) * .2); }
-.sb-lockup-main { display: block; width: auto; height: var(--lockup-h); }
+.sb-lockup-main { display: block; width: auto; max-width: 100%; height: var(--lockup-h); object-fit: contain; object-position: left; }
 .sb-lockup-endorse { display: inline-flex; align-items: center; gap: 8px; margin: 0; font: 500 var(--text-xs) var(--font); color: var(--gray-500); white-space: nowrap; }
 .sb-lockup-endorse img { display: block; width: auto; height: calc(var(--lockup-h) * .4); }
 ```
