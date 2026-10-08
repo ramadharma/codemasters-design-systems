@@ -1,4 +1,4 @@
-// Table: sortable headers and foldable groups.
+// Table: sortable headers, foldable groups and the sticky column edge.
 function tableSort(e) {
   const btn = e.target.closest?.('.sb-table-sort');
   if (!btn) return;
@@ -21,5 +21,10 @@ function tableGroup(e) {
   btn.setAttribute('aria-expanded', String(open));
   for (const row of btn.closest('tbody').querySelectorAll('tr[data-child]')) row.hidden = !open;
 }
+function tableScroll(e) {
+  const wrap = e.target.closest?.('.sb-table-wrap');
+  if (wrap) wrap.toggleAttribute('data-scrolled', wrap.scrollLeft > 0);
+}
 document.addEventListener('click', tableSort);
 document.addEventListener('click', tableGroup);
+document.addEventListener('scroll', tableScroll, true); // scroll does not bubble: listen in the capture phase

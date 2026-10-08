@@ -28,11 +28,18 @@
     btn.setAttribute('aria-expanded', String(open));
     for (const row of btn.closest('tbody').querySelectorAll('tr[data-child]')) row.hidden = !open;
   }
-  const SCRIPT = `// Table: sortable headers and foldable groups.
+  // ---- Sticky column edge: shows only once the table has scrolled sideways.
+  function tableScroll(e) {
+    const wrap = e.target.closest?.('.sb-table-wrap');
+    if (wrap) wrap.toggleAttribute('data-scrolled', wrap.scrollLeft > 0);
+  }
+  const SCRIPT = `// Table: sortable headers, foldable groups and the sticky column edge.
 ${tableSort.toString().replace(/^  /gm, '')}
 ${tableGroup.toString().replace(/^  /gm, '')}
+${tableScroll.toString().replace(/^  /gm, '')}
 document.addEventListener('click', tableSort);
-document.addEventListener('click', tableGroup);`;
+document.addEventListener('click', tableGroup);
+document.addEventListener('scroll', tableScroll, true); // scroll does not bubble: listen in the capture phase`;
 
   const CSS = `/* Table, Codemasters Design System
    Needs tokens.css; badge.css for status pills, checkbox.css for row selection; table.js for sorting and groups.
@@ -45,7 +52,7 @@ document.addEventListener('click', tableGroup);`;
    </div>
 
    data-size     sm  (compact rows; omit for md)
-   data-sticky   on the table: the first column stays while the table scrolls sideways
+   data-sticky   on the table: the first column stays while the table scrolls sideways; its edge shows once scrolled (table.js)
    data-num      on th and td: right-aligned, tabular figures (amounts, counts, dates)
    aria-sort     on a sortable th: ascending | descending (one column at a time)
    data-tone     on a body row: error (flagged) | warning (needs review)
@@ -104,9 +111,10 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 .sb-table[data-sticky] :is(th, td):first-child { position: sticky; left: 0; z-index: 1; }
 /* With row selection the checkbox and the ID column stick together; the ID column starts after the 16 px box. */
 .sb-table[data-sticky] :is(th, td):has(> .sb-check) + :is(th, td) { position: sticky; left: calc(var(--cell-px) + 16px); z-index: 1; }
-/* The edge sits on the last sticky column. */
-.sb-table[data-sticky] tbody td:first-child:not(:has(> .sb-check)),
-.sb-table[data-sticky] tbody td:has(> .sb-check) + td { box-shadow: inset -1px 0 var(--gray-200); }
+/* The edge sits on the last sticky column and shows only once the table has scrolled (data-scrolled, set by table.js). */
+.sb-table[data-sticky] tbody td { transition: box-shadow 150ms var(--ease); }
+[data-scrolled] > .sb-table[data-sticky] tbody td:first-child:not(:has(> .sb-check)),
+[data-scrolled] > .sb-table[data-sticky] tbody td:has(> .sb-check) + td { box-shadow: inset -1px 0 var(--gray-200); }
 
 /* Grouped table: group row (chevron, number, name, total), item rows indented on gray-50, gray-100 total row. */
 .sb-table tbody tr[data-group] td { font-weight: 600; color: var(--gray-900); }
@@ -353,7 +361,7 @@ ${items.map(([label, v, t]) => `      <tr data-child${t ? ` data-tone="${t}"` : 
           { type: 'p', text: 'Keep the header, so people see what would be there, and put the Card empty state in one full-width cell.' },
           { type: 'example', html: stage(empty), code: false },
           { type: 'h3', id: 'state-wide', text: 'Wide tables' },
-          { type: 'p', text: 'The table scrolls sideways inside its card. With `data-sticky` the first column (usually the ID) stays put, with a 1 px `gray-200` edge.' },
+          { type: 'p', text: 'The table scrolls sideways inside its card. With `data-sticky` the first column (usually the ID; with selection, the checkbox and the ID) stays put. A 1 px `gray-200` edge appears once the table has scrolled, so a table at rest has no extra line.' },
           { type: 'example', html: stage(table({ sticky: true }), 'is-narrow'), code: false },
         ],
       },
@@ -427,4 +435,5 @@ ${items.map(([label, v, t]) => `      <tr data-child${t ? ` data-tone="${t}"` : 
   DS.addCss(CSS);
   document.addEventListener('click', tableSort);
   document.addEventListener('click', tableGroup);
+  document.addEventListener('scroll', tableScroll, true);
 })();

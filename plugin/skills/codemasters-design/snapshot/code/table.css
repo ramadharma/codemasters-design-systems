@@ -9,7 +9,7 @@
    </div>
 
    data-size     sm  (compact rows; omit for md)
-   data-sticky   on the table: the first column stays while the table scrolls sideways
+   data-sticky   on the table: the first column stays while the table scrolls sideways; its edge shows once scrolled (table.js)
    data-num      on th and td: right-aligned, tabular figures (amounts, counts, dates)
    aria-sort     on a sortable th: ascending | descending (one column at a time)
    data-tone     on a body row: error (flagged) | warning (needs review)
@@ -68,9 +68,10 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 .sb-table[data-sticky] :is(th, td):first-child { position: sticky; left: 0; z-index: 1; }
 /* With row selection the checkbox and the ID column stick together; the ID column starts after the 16 px box. */
 .sb-table[data-sticky] :is(th, td):has(> .sb-check) + :is(th, td) { position: sticky; left: calc(var(--cell-px) + 16px); z-index: 1; }
-/* The edge sits on the last sticky column. */
-.sb-table[data-sticky] tbody td:first-child:not(:has(> .sb-check)),
-.sb-table[data-sticky] tbody td:has(> .sb-check) + td { box-shadow: inset -1px 0 var(--gray-200); }
+/* The edge sits on the last sticky column and shows only once the table has scrolled (data-scrolled, set by table.js). */
+.sb-table[data-sticky] tbody td { transition: box-shadow 150ms var(--ease); }
+[data-scrolled] > .sb-table[data-sticky] tbody td:first-child:not(:has(> .sb-check)),
+[data-scrolled] > .sb-table[data-sticky] tbody td:has(> .sb-check) + td { box-shadow: inset -1px 0 var(--gray-200); }
 
 /* Grouped table: group row (chevron, number, name, total), item rows indented on gray-50, gray-100 total row. */
 .sb-table tbody tr[data-group] td { font-weight: 600; color: var(--gray-900); }
