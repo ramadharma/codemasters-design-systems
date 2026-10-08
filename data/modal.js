@@ -127,7 +127,13 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
   }
   // Static specimen on a scrim, plus the <dialog> markup as its code.
   const stage = html => `<div class="modal-stage">\n${html}\n</div>`;
-  const show = (o, extra = {}) => ({ type: 'example', html: stage(modal(o)), code: DS.snippet(modal({ ...o, live: true })), ...extra });
+  // Every preview is a trigger button plus its closed <dialog>: click it to see the modal and how it behaves.
+  const live = (o, label, h = 'secondary-gray') => {
+    const id = `demo-modal-${++uid}`;
+    return `${btn(label, h, ` data-modal-open="${id}"`)}\n${modal({ ...o, live: true, id })}`;
+  };
+  const trigger = (o, label, h) => `<div class="modal-live">\n${live(o, label, h)}\n</div>`;
+  const show = (o, label, extra = {}) => { const html = live(o, label); return { type: 'example', html: `<div class="modal-live">\n${html}\n</div>`, code: DS.snippet(html), ...extra }; };
 
   const REJECT = {
     size: 'sm', tone: 'error', glyph: 'trash', title: 'Tolak Klaim?',
@@ -175,10 +181,6 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
     const base = { reject: REJECT, warn: WARN, done: DONE, send: SEND }[s.type];
     return { ...base, size: s.size, close: s.close, tone: s.icon ? base.tone || 'brand' : undefined, glyph: base.glyph || 'send' };
   };
-  const liveDemo = (o, label) => {
-    const id = `demo-modal-${++uid}`;
-    return `<div class="modal-live">${btn(label, 'secondary-gray', ` data-modal-open="${id}"`)}\n${modal({ ...o, live: true, id })}</div>`;
-  };
 
   DS.components.push({
     slug: 'modal',
@@ -194,7 +196,7 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
         id: 'playground',
         title: 'Playground',
         blocks: [
-          { type: 'p', text: 'Open the live modal: Tab stays inside it, Esc or a click on the scrim closes it, and focus returns to the button.' },
+          { type: 'p', text: 'Click the button to open the modal. Tab stays inside it, Esc or a click on the scrim closes it, and focus returns to the button.' },
           {
             type: 'playground',
             initial: { type: 'reject', size: 'sm', icon: true, close: true },
@@ -204,8 +206,8 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
               { key: 'icon', label: 'Icon', type: 'toggle' },
               { key: 'close', label: 'Close button', type: 'toggle' },
             ],
-            render: s => `<div class="modal-pg">\n${stage(modal(pgOpts(s)))}\n${liveDemo(pgOpts(s), 'Buka Modal')}\n</div>`,
-            code: s => DS.snippet(modal({ ...pgOpts(s), live: true, id: 'modal' })),
+            render: s => trigger(pgOpts(s), 'Buka Modal'),
+            code: s => DS.snippet(`${btn('Buka Modal', 'secondary-gray', ' data-modal-open="modal"')}\n${modal({ ...pgOpts(s), live: true, id: 'modal' })}`),
           },
         ],
       },
@@ -268,16 +270,16 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
         blocks: [
           { type: 'h3', id: 'type-destructive', text: 'Destructive confirmation' },
           { type: 'p', text: 'Error icon, the action as a Destructive Primary button. Focus starts on Batal (`autofocus`), so Enter never destroys by accident.' },
-          show(REJECT),
+          show(REJECT, 'Tolak Klaim'),
           { type: 'h3', id: 'type-warning', text: 'Warning' },
           { type: 'p', text: 'For losing work or a step that is hard to undo. The safe choice is the primary button.' },
-          show(WARN, { code: false }),
+          show(WARN, 'Keluar dari Editor', { code: false }),
           { type: 'h3', id: 'type-form', text: 'Form' },
           { type: 'p', text: 'md, no icon, fields in the body (Input field, Textarea, Input dropdown). Keep it to a few fields; the primary button is disabled until the form can be sent.' },
-          show(SEND, { code: false }),
+          show(SEND, 'Kirim ke Advisor', { code: false }),
           { type: 'h3', id: 'type-done', text: 'Acknowledgement' },
           { type: 'p', text: 'Only when the user must see the result before going on. One full-width button, no close button. For anything lighter, use a toast.' },
-          show(DONE, { code: false }),
+          show(DONE, 'Kirim Klaim', { code: false }),
         ],
       },
       {
@@ -294,7 +296,10 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
               ['Motion', 'Fades in and scales from 96 % in 150 ms with `--ease`; the scrim fades with it. Reduced motion: no animation.'],
             ],
           },
-          { type: 'example', html: `<div class="modal-live">${liveDemo(REJECT, 'Tolak Klaim').replace('<div class="modal-live">', '').replace(/<\/div>$/, '')}\n${liveDemo(SEND, 'Kirim ke Advisor').replace('<div class="modal-live">', '').replace(/<\/div>$/, '')}</div>`, code: false, caption: 'Live: open, Tab through, press Esc.' },
+          { type: 'example', html: `<div class="modal-live">
+${live(REJECT, 'Tolak Klaim')}
+${live(SEND, 'Kirim ke Advisor')}
+</div>`, code: false, caption: 'Open one, Tab through, press Esc or click the scrim.' },
         ],
       },
       {
@@ -304,15 +309,15 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
           {
             type: 'dodont',
             items: [
-              { kind: 'do', html: stage(modal({ ...REJECT, close: false })), text: 'The button says the action: Tolak Klaim.' },
-              { kind: 'dont', html: stage(modal({ ...REJECT, close: false, title: 'Apakah Anda yakin?', actions: [btn('Tidak'), btn('Ya', 'primary')] })), text: '"Apakah Anda yakin?" with Ya / Tidak. People answer without reading; say what will happen.' },
+              { kind: 'do', html: trigger({ ...REJECT, close: false }, 'Lihat Contoh'), text: 'The button says the action: Tolak Klaim.' },
+              { kind: 'dont', html: trigger({ ...REJECT, close: false, title: 'Apakah Anda yakin?', actions: [btn('Tidak', 'secondary-gray', ' data-modal-close'), btn('Ya', 'primary', ' data-modal-close')] }, 'Lihat Contoh'), text: '"Apakah Anda yakin?" with Ya / Tidak. People answer without reading; say what will happen.' },
             ],
           },
           {
             type: 'dodont',
             items: [
-              { kind: 'do', html: stage(modal({ ...WARN, close: false })), text: 'Batal or the safe choice on the left, the action on the right.' },
-              { kind: 'dont', html: stage(modal({ ...WARN, close: false, actions: [btn('Simpan', 'primary'), btn('Buang', 'primary', ' data-destructive')] })), text: 'Two primary buttons. Only one next step looks like one.' },
+              { kind: 'do', html: trigger({ ...WARN, close: false }, 'Lihat Contoh'), text: 'Batal or the safe choice on the left, the action on the right.' },
+              { kind: 'dont', html: trigger({ ...WARN, close: false, actions: [btn('Simpan', 'primary', ' data-modal-close'), btn('Buang', 'primary', ' data-destructive data-modal-close')] }, 'Lihat Contoh'), text: 'Two primary buttons. Only one next step looks like one.' },
             ],
           },
         ],

@@ -5744,12 +5744,13 @@ A dialog that stops the page for one decision or one short form: confirmations, 
 Error icon, the action as a Destructive Primary button. Focus starts on Batal (`autofocus`), so Enter never destroys by accident.
 
 ```html
-<dialog class="sb-modal" id="modal-2" data-size="sm" aria-labelledby="modal-2-title" aria-describedby="modal-2-desc">
+<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-1">Tolak Klaim</button>
+<dialog class="sb-modal" id="demo-modal-1" data-size="sm" aria-labelledby="demo-modal-1-title" aria-describedby="demo-modal-1-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="error" aria-hidden="true"><svg aria-hidden="true"><!-- trash --></svg></span>
     <div class="sb-modal-heading">
-      <h2 class="sb-modal-title" id="modal-2-title">Tolak Klaim?</h2>
-      <p class="sb-modal-desc" id="modal-2-desc">Klaim KLM-0241 dikembalikan ke rumah sakit dengan alasan penolakan. Tindakan ini tidak bisa dibatalkan.</p>
+      <h2 class="sb-modal-title" id="demo-modal-1-title">Tolak Klaim?</h2>
+      <p class="sb-modal-desc" id="demo-modal-1-desc">Klaim KLM-0241 dikembalikan ke rumah sakit dengan alasan penolakan. Tindakan ini tidak bisa dibatalkan.</p>
     </div>
   </header>
   <button class="sb-btn sb-modal-close" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" data-modal-close><svg aria-hidden="true"><!-- x --></svg></button>
@@ -5786,72 +5787,84 @@ Only when the user must see the result before going on. One full-width button, n
 **Do:** The button says the action: Tolak Klaim.
 
 ```html
-<div class="sb-modal" role="dialog" aria-modal="false" data-size="sm" aria-labelledby="modal-11-title" aria-describedby="modal-11-desc">
+<div class="modal-live">
+<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-7">Lihat Contoh</button>
+<dialog class="sb-modal" id="demo-modal-7" data-size="sm" aria-labelledby="demo-modal-7-title" aria-describedby="demo-modal-7-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="error" aria-hidden="true"><svg aria-hidden="true"><!-- trash --></svg></span>
     <div class="sb-modal-heading">
-      <h2 class="sb-modal-title" id="modal-11-title">Tolak Klaim?</h2>
-      <p class="sb-modal-desc" id="modal-11-desc">Klaim KLM-0241 dikembalikan ke rumah sakit dengan alasan penolakan. Tindakan ini tidak bisa dibatalkan.</p>
+      <h2 class="sb-modal-title" id="demo-modal-7-title">Tolak Klaim?</h2>
+      <p class="sb-modal-desc" id="demo-modal-7-desc">Klaim KLM-0241 dikembalikan ke rumah sakit dengan alasan penolakan. Tindakan ini tidak bisa dibatalkan.</p>
     </div>
   </header>
   <footer class="sb-modal-foot">
     <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
     <button class="sb-btn" type="button" data-hierarchy="primary" data-destructive>Tolak Klaim</button>
   </footer>
+</dialog>
 </div>
 ```
 
 **Don't:** "Apakah Anda yakin?" with Ya / Tidak. People answer without reading; say what will happen.
 
 ```html
-<div class="sb-modal" role="dialog" aria-modal="false" data-size="sm" aria-labelledby="modal-12-title" aria-describedby="modal-12-desc">
+<div class="modal-live">
+<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-8">Lihat Contoh</button>
+<dialog class="sb-modal" id="demo-modal-8" data-size="sm" aria-labelledby="demo-modal-8-title" aria-describedby="demo-modal-8-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="error" aria-hidden="true"><svg aria-hidden="true"><!-- trash --></svg></span>
     <div class="sb-modal-heading">
-      <h2 class="sb-modal-title" id="modal-12-title">Apakah Anda yakin?</h2>
-      <p class="sb-modal-desc" id="modal-12-desc">Klaim KLM-0241 dikembalikan ke rumah sakit dengan alasan penolakan. Tindakan ini tidak bisa dibatalkan.</p>
+      <h2 class="sb-modal-title" id="demo-modal-8-title">Apakah Anda yakin?</h2>
+      <p class="sb-modal-desc" id="demo-modal-8-desc">Klaim KLM-0241 dikembalikan ke rumah sakit dengan alasan penolakan. Tindakan ini tidak bisa dibatalkan.</p>
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray">Tidak</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary">Ya</button>
+    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close>Tidak</button>
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-modal-close>Ya</button>
   </footer>
+</dialog>
 </div>
 ```
 
 **Do:** Batal or the safe choice on the left, the action on the right.
 
 ```html
-<div class="sb-modal" role="dialog" aria-modal="false" data-size="sm" aria-labelledby="modal-13-title" aria-describedby="modal-13-desc">
+<div class="modal-live">
+<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-9">Lihat Contoh</button>
+<dialog class="sb-modal" id="demo-modal-9" data-size="sm" aria-labelledby="demo-modal-9-title" aria-describedby="demo-modal-9-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="warning" aria-hidden="true"><svg aria-hidden="true"><!-- alert --></svg></span>
     <div class="sb-modal-heading">
-      <h2 class="sb-modal-title" id="modal-13-title">Simpan Perubahan?</h2>
-      <p class="sb-modal-desc" id="modal-13-desc">Ada perubahan pada ringkasan yang belum disimpan. Kalau keluar sekarang, perubahan itu hilang.</p>
+      <h2 class="sb-modal-title" id="demo-modal-9-title">Simpan Perubahan?</h2>
+      <p class="sb-modal-desc" id="demo-modal-9-desc">Ada perubahan pada ringkasan yang belum disimpan. Kalau keluar sekarang, perubahan itu hilang.</p>
     </div>
   </header>
   <footer class="sb-modal-foot">
     <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close>Buang</button>
     <button class="sb-btn" type="button" data-hierarchy="primary">Simpan</button>
   </footer>
+</dialog>
 </div>
 ```
 
 **Don't:** Two primary buttons. Only one next step looks like one.
 
 ```html
-<div class="sb-modal" role="dialog" aria-modal="false" data-size="sm" aria-labelledby="modal-14-title" aria-describedby="modal-14-desc">
+<div class="modal-live">
+<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-10">Lihat Contoh</button>
+<dialog class="sb-modal" id="demo-modal-10" data-size="sm" aria-labelledby="demo-modal-10-title" aria-describedby="demo-modal-10-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="warning" aria-hidden="true"><svg aria-hidden="true"><!-- alert --></svg></span>
     <div class="sb-modal-heading">
-      <h2 class="sb-modal-title" id="modal-14-title">Simpan Perubahan?</h2>
-      <p class="sb-modal-desc" id="modal-14-desc">Ada perubahan pada ringkasan yang belum disimpan. Kalau keluar sekarang, perubahan itu hilang.</p>
+      <h2 class="sb-modal-title" id="demo-modal-10-title">Simpan Perubahan?</h2>
+      <p class="sb-modal-desc" id="demo-modal-10-desc">Ada perubahan pada ringkasan yang belum disimpan. Kalau keluar sekarang, perubahan itu hilang.</p>
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="primary">Simpan</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-destructive>Buang</button>
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-modal-close>Simpan</button>
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-destructive data-modal-close>Buang</button>
   </footer>
+</dialog>
 </div>
 ```
 

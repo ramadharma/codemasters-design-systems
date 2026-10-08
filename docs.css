@@ -252,7 +252,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .ex-preview:has(> .modal-stage) { min-height: 0; padding: 24px; }
 .dd-preview .modal-stage { padding: 16px 8px; }
 .modal-live { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-.modal-pg { display: grid; gap: 16px; width: 100%; }
+.ex-preview:has(> .modal-live) { min-height: 160px; }
 .anat .sb-modal { overflow: visible; } /* the panel scrolls in real use; here the pins sit outside it */
 .anat .modal-stage { padding: 48px 72px; }
 
