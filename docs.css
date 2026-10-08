@@ -249,6 +249,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 /* Slide mockups: children are placed in canvas px converted to % and cqw, so the frame can be any width. */
 /* Toast page: specimens on a light stage, live buttons fire the real toasts. */
 .toast-stage { display: grid; justify-items: center; gap: 12px; width: 100%; }
+.toast-stage > .sb-toast { width: min(360px, 100%); }
 .toast-live { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .ex-preview:has(> .toast-stage, > .toast-live) { min-height: 0; padding: 32px; }
 

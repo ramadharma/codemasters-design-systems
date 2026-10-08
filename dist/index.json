@@ -231,7 +231,7 @@
       "category": "Components",
       "status": "Ready",
       "updated": "2026-10-08",
-      "description": "Short feedback after an action that then goes away: \"Klaim terkirim\". The react-hot-toast API (toast.success, toast.error, toast.loading, toast.promise) in plain JS, in the design-system look.",
+      "description": "Short feedback after an action that closes itself: a white card with a status icon and a timer bar. The react-toastify API (toast.success, toast.error, toast.loading + toast.update, toast.promise) in plain JS.",
       "path": "components/toast.md"
     },
     {

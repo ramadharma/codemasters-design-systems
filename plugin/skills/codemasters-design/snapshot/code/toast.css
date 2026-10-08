@@ -1,63 +1,74 @@
 /* Toast, Codemasters Design System
    Needs tokens.css; toast.js creates the region and the toasts. Call toast() / toast.success() from your code.
 
-   <section class="sb-toaster" aria-label="Notifikasi" aria-live="polite" data-position="bottom-center">
+   <section class="sb-toaster" aria-label="Notifikasi" aria-live="polite" data-position="top-right">
      <div class="sb-toast" data-type="success" role="status">
        <span class="sb-toast-icon">…check-circle…</span>
-       <div class="sb-toast-text"><p class="sb-toast-msg">Klaim terkirim</p><p class="sb-toast-desc">…</p></div>
-       <button class="sb-toast-action" type="button">Batalkan</button>
+       <div class="sb-toast-text">
+         <p class="sb-toast-msg">Klaim terkirim</p>
+         <p class="sb-toast-desc">…</p>
+         <button class="sb-toast-action" type="button">Lihat Klaim</button>
+       </div>
        <button class="sb-toast-close" type="button" aria-label="Tutup notifikasi">…x…</button>
+       <div class="sb-toast-progress" style="animation-duration: 5000ms"></div>
      </div>
    </section>
 
-   data-position  bottom-center (default) | bottom-right | bottom-left | top-center | top-right | top-left
-   data-type      blank | success | error | warning | loading */
+   data-position  top-right (default) | top-center | top-left | bottom-right | bottom-center | bottom-left
+   data-type      default | info | success | warning | error | loading */
 
 .sb-toaster {
-  position: fixed; z-index: 60; inset-inline: 0; bottom: 24px;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  padding-inline: 16px; pointer-events: none;
+  position: fixed; z-index: 60; top: 16px; right: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+  width: min(360px, calc(100% - 32px)); pointer-events: none;
 }
-.sb-toaster[data-position^="top"] { top: 24px; bottom: auto; flex-direction: column-reverse; } /* newest nearest the edge */
-.sb-toaster[data-position$="right"] { align-items: flex-end; }
-.sb-toaster[data-position$="left"] { align-items: flex-start; }
+.sb-toaster[data-position^="bottom"] { top: auto; bottom: 16px; }
+.sb-toaster[data-position$="left"] { right: auto; left: 16px; }
+.sb-toaster[data-position$="center"] { right: auto; left: 50%; translate: -50% 0; }
 
 .sb-toast {
-  --enter-y: 8px;
-  box-sizing: border-box; pointer-events: auto;
-  display: flex; align-items: center; gap: 12px;
-  width: max-content; max-width: min(420px, 100%); min-height: 44px; padding: 10px 12px 10px 14px;
-  background: var(--gray-900); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
-  font: 500 var(--text-sm) var(--font); color: var(--white);
+  --tone: var(--brand-600); --bar: var(--brand-600); --enter-x: 16px; --enter-y: 0px;
+  position: relative; overflow: hidden; box-sizing: border-box; pointer-events: auto;
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 16px 12px 16px 16px;
+  background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  font: 400 var(--text-sm) var(--font); color: var(--gray-600);
   transition: opacity 200ms var(--ease), translate 200ms var(--ease), scale 200ms var(--ease);
 }
-.sb-toaster[data-position^="top"] .sb-toast { --enter-y: -8px; }
-@starting-style { .sb-toast { opacity: 0; translate: 0 var(--enter-y); scale: .96; } }
+.sb-toaster[data-position$="left"] .sb-toast { --enter-x: -16px; }
+.sb-toaster[data-position$="center"] .sb-toast { --enter-x: 0px; --enter-y: -8px; }
+.sb-toaster[data-position="bottom-center"] .sb-toast { --enter-y: 8px; }
+@starting-style { .sb-toast { opacity: 0; translate: var(--enter-x) var(--enter-y); } }
 .sb-toast[data-state="closing"] { opacity: 0; scale: .96; transition-duration: 150ms; }
+.sb-toast[data-type="success"] { --tone: var(--success-600); --bar: var(--success-500); }
+.sb-toast[data-type="warning"] { --tone: var(--warning-600); --bar: var(--warning-500); }
+.sb-toast[data-type="error"] { --tone: var(--error-600); --bar: var(--error-500); }
 
-.sb-toast-icon { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; }
+.sb-toast-icon { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; color: var(--tone); }
 .sb-toast-icon > svg { width: 20px; height: 20px; }
-.sb-toast[data-type="success"] .sb-toast-icon { color: var(--success-400); }
-.sb-toast[data-type="error"] .sb-toast-icon { color: var(--error-400); }
-.sb-toast[data-type="warning"] .sb-toast-icon { color: var(--warning-400); }
-.sb-toast-spinner { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--gray-600); border-top-color: var(--white); border-radius: var(--radius-full); animation: sb-toast-spin 700ms linear infinite; }
+.sb-toast-spinner { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--gray-200); border-top-color: var(--brand-600); border-radius: var(--radius-full); animation: sb-toast-spin 700ms linear infinite; }
 @keyframes sb-toast-spin { to { rotate: 1turn; } }
 
-.sb-toast-text { display: grid; gap: 2px; min-width: 0; }
+.sb-toast-text { display: grid; justify-items: start; gap: 4px; flex: 1; min-width: 0; }
 .sb-toast .sb-toast-text p { margin: 0; }
-.sb-toast .sb-toast-msg { color: var(--white); text-wrap: pretty; }
-.sb-toast .sb-toast-desc { font-weight: 400; color: var(--gray-300); text-wrap: pretty; }
-
-/* Action: one text button, brand-300 on the dark fill. Close: a 20 px x in gray-400. */
-.sb-toast-action {
-  flex: none; margin: -6px 0 -6px 4px; padding: 6px 8px; border: 0; border-radius: var(--radius-sm);
-  background: none; font: 600 var(--text-sm) var(--font); color: var(--brand-300); cursor: pointer;
-}
-.sb-toast-action:hover { background: var(--gray-800); }
-.sb-toast-close { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; margin: -4px -4px -4px 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--gray-400); cursor: pointer; }
-.sb-toast-close:hover { background: var(--gray-800); color: var(--white); }
+.sb-toast .sb-toast-msg { font-weight: 600; color: var(--gray-900); text-wrap: pretty; }
+.sb-toast .sb-toast-desc { color: var(--gray-600); text-wrap: pretty; }
+.sb-toast-action { margin: 4px 0 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; font: 600 var(--text-sm) var(--font); color: var(--brand-700); cursor: pointer; }
+.sb-toast-action:hover { color: var(--brand-800); text-decoration: underline; text-underline-offset: 2px; }
+.sb-toast-close { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; margin: -4px 0 -4px auto; padding: 0; border: 0; border-radius: var(--radius-md); background: none; color: var(--gray-400); cursor: pointer; }
+.sb-toast-close:hover { background: var(--gray-50); color: var(--gray-600); }
 .sb-toast-close > svg { width: 20px; height: 20px; }
-.sb-toast :is(.sb-toast-action, .sb-toast-close):focus-visible { outline: 2px solid var(--brand-300); outline-offset: 0; }
+.sb-toast :is(.sb-toast-action, .sb-toast-close):focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+
+/* Timer bar: 3 px along the bottom in the status colour, shrinking to nothing over autoClose. Paused on hover and focus. */
+.sb-toast-progress {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: var(--bar); transform-origin: left;
+  animation: sb-toast-timer linear forwards;
+}
+.sb-toast-progress[data-hidden] { opacity: 0; }
+@keyframes sb-toast-timer { from { scale: 1 1; } to { scale: 0 1; } }
+.sb-toaster:hover .sb-toast-progress, .sb-toast:focus-within .sb-toast-progress { animation-play-state: paused; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-toast { transition: none; }

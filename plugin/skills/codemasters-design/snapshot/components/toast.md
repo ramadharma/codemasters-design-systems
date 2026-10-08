@@ -10,75 +10,77 @@ requires: tokens.css
 
 # Toast
 
-Short feedback after an action that then goes away: "Klaim terkirim". The react-hot-toast API (toast.success, toast.error, toast.loading, toast.promise) in plain JS, in the design-system look.
+Short feedback after an action that closes itself: a white card with a status icon and a timer bar. The react-toastify API (toast.success, toast.error, toast.loading + toast.update, toast.promise) in plain JS.
 
 ## Usage
 
 | Situation | Use |
 | --- | --- |
-| An action finished and the user can carry on | Toast: "Klaim terkirim" |
-| An action is running in the background | `toast.loading`, then the same toast turns into success or error (`toast.promise`) |
-| Something went wrong that the user can retry | Error toast with an action ("Coba Lagi") |
+| An action finished and the user can carry on | Success toast: "Klaim terkirim" |
+| Something arrived or changed elsewhere | Info toast: "Klaim baru dari RS Medika Utama" |
+| An action runs in the background | `toast.loading`, then `toast.update` to success or error (or `toast.promise`) |
+| Something failed that the user can retry | Error toast with a description and an action |
 | A field or form is wrong | Not a toast: show it at the field |
 | The user must decide before going on | Not a toast: a Modal |
-| A state that stays (offline, read-only) | Not a toast: a banner on the page |
 
 - Say what happened, in a few words and past tense: "Klaim terkirim", not "Klaim berhasil dikirim!". No exclamation marks.
-- At most one action, and only one that is also possible elsewhere (Batalkan, Coba Lagi, Lihat).
-- One toast per action. Three at most on screen; older ones close.
+- At most one action, and only one that is also possible elsewhere (Lihat Klaim, Coba Lagi).
+- One toast per action. Use `toastId` for events that can repeat, so they do not pile up.
 
 ## Anatomy
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Container | `gray-900`, radius 8, `shadow-lg`, padding `10 12 10 14`, gap 12, min height 44, max width 420. Bottom centre, 24 from the edge, 8 between toasts. |
-| 2 | Icon | 20 px. Success `success-400`, error `error-400`, warning `warning-400`, loading a 16 px spinner. None for a blank toast. |
-| 3 | Message | Text sm / Medium `white`. One line where possible. |
-| 4 | Description | Optional second line, Text sm / Regular `gray-300`. |
-| 5 | Action | Optional text button, Text sm / Semibold `brand-300`, hover `gray-800` fill. Closes the toast. |
-| 6 | Close | Optional 20 px ×, `gray-400`, hover `white`. Add it to toasts that stay longer or forever. |
+| 1 | Container | `white`, 1 px `gray-200` border, radius 12, `shadow-lg`, padding `16 12 16 16`, gap 12, 360 wide (screen minus 32 on phones). Top right, 16 from the edges, 12 between toasts. |
+| 2 | Icon | 20 px in the status colour: info `brand-600`, success `success-600`, warning `warning-600`, error `error-600`; loading a 16 px spinner. None for a default toast. |
+| 3 | Message | Text sm / Semibold `gray-900`. |
+| 4 | Description | Optional, Text sm / Regular `gray-600`, 4 under the message. |
+| 5 | Action | Optional text button, Text sm / Semibold `brand-700`. Closes the toast. |
+| 6 | Close | 28 px hit area, 20 px × `gray-400`; hover `gray-50` fill. On by default. |
+| 7 | Progress bar | 3 px along the bottom in the status colour (`500` step; `brand-600` for default and info). It is the timer: it shrinks to nothing over `autoClose`, then the toast closes. Pauses on hover and focus. |
 
 ## API
 
-The same calls as react-hot-toast, so code and habits carry over. `toast.js` sets `window.toast`.
+The same calls as react-toastify, so code and habits carry over. `toast.js` sets `window.toast`; `toast.config()` does what `<ToastContainer>` props do.
 
-| Call | Does | Default duration |
-| --- | --- | --- |
-| `toast('Pesan')` | A blank toast, no icon | 4 s |
-| `toast.success('Pesan')` | Green check | 3 s |
-| `toast.error('Pesan')` | Red alert, announced at once (`role="alert"`) | 5 s |
-| `toast.warning('Pesan')` | Amber warning | 5 s |
-| `toast.loading('Pesan')` | Spinner; stays until updated or dismissed. Returns the id | stays |
-| `toast.success('Pesan', { id })` | Updates the toast with that id in place (loading → success) | — |
-| `toast.promise(p, { loading, success, error })` | Loading while `p` runs, then success or error in the same toast. `success` and `error` may be functions of the result | — |
-| `toast.dismiss(id)` / `toast.dismiss()` | Closes one, or all | — |
-| `toast.config({ position: 'top-right' })` | Moves all toasts: `bottom-center` (default), `bottom-right`, `bottom-left`, `top-center`, `top-right`, `top-left` | — |
+| Call | Does |
+| --- | --- |
+| `toast('Pesan', options)` | A default toast, no icon. Returns its id |
+| `toast.info` / `.success` / `.warning` / `.error` | The same with the status icon and bar colour. Errors are announced at once (`role="alert"`) |
+| `toast.loading('Pesan')` | Spinner, no timer; stays until updated or dismissed |
+| `toast.update(id, { render, type, isLoading: false, autoClose })` | Changes a toast in place, e.g. loading → success; the timer starts again |
+| `toast.promise(p, { pending, success, error })` | Loading while `p` runs, then success or error in the same toast. `success` and `error` may be functions of the result |
+| `toast.dismiss(id)` / `toast.dismiss()` | Closes one, or all |
+| `toast.isActive(id)` | Whether that toast is on screen |
+| `toast.config({ position, autoClose, hideProgressBar, closeButton, max })` | Defaults for every toast: `top-right`, 5000 ms, bar shown, × shown, 5 at most |
 
 | Option | Type | What |
 | --- | --- | --- |
-| `id` | string | Reuse to update a toast instead of adding one |
-| `duration` | ms | Override the default; `Infinity` keeps it until dismissed |
-| `description` | string | Second line |
-| `action` | `{ label, onClick }` | One text button; the toast closes after the click |
-| `closeButton` | boolean | Shows the × |
+| `toastId` | string | Your own id; a second toast with the same id is ignored (no duplicates) |
+| `autoClose` | ms or `false` | How long it stays; `false` keeps it until closed |
+| `hideProgressBar` | boolean | Hides the bar; the timer still runs |
+| `closeButton` | boolean | Shows the × (default true) |
+| `description` | string | A second line |
+| `action` | `{ label, onClick }` | One text button; closes the toast after the click |
+| `onClick`, `onClose` | function | Called on a click on the toast, and after it has closed |
 
 ```js
 const id = toast.loading('Menganalisis klaim…');
 try {
   await analisis(klaim);
-  toast.success('Analisis selesai', { id });
+  toast.update(id, { render: 'Analisis selesai', type: 'success', isLoading: false });
 } catch {
-  toast.error('Analisis gagal', { id, action: { label: 'Coba Lagi', onClick: ulangi } });
+  toast.update(id, { render: 'Analisis gagal', type: 'error', isLoading: false, description: 'Coba lagi dalam beberapa menit.' });
 }
 ```
 
 ## Behaviour
 
-- Enters from 8 px below (above for top positions) and 96 % scale in 200 ms; leaves by fading and shrinking in 150 ms.
-- New toasts sit nearest the screen edge; the others move up. Three at most; the oldest closes when a fourth arrives.
-- Hovering or focusing the toasts pauses every timer; they resume with the time that was left.
+- Slides in 16 px from its side (8 px from the top or bottom for centre positions) and fades in over 200 ms; leaves by fading and shrinking in 150 ms.
+- The bar is the timer: a CSS animation as long as `autoClose`. When it ends, the toast closes. Hovering any toast or focusing inside one pauses it; it resumes where it stopped.
+- New toasts stack under the older ones, 12 apart. Five at most; the oldest closes when a sixth arrives.
 - A toast never takes focus, so typing is never interrupted.
-- With reduced motion, toasts appear and disappear without movement.
+- With reduced motion, toasts appear and leave without sliding; the bar still shows the time left.
 
 ## Do and don't
 
@@ -86,7 +88,7 @@ try {
 
 ```html
 <div class="toast-stage">
-<div class="sb-toast" data-type="success" role="presentation"><span class="sb-toast-icon" aria-hidden="true"><svg aria-hidden="true"><!-- check-circle --></svg></span><div class="sb-toast-text"><p class="sb-toast-msg">Klaim terkirim</p></div></div>
+<div class="sb-toast" data-type="success" role="presentation"><span class="sb-toast-icon" aria-hidden="true"><svg aria-hidden="true"><!-- check-circle --></svg></span><div class="sb-toast-text"><p class="sb-toast-msg">Klaim terkirim</p></div><button class="sb-toast-close" type="button" aria-label="Tutup notifikasi" tabindex="-1"><svg aria-hidden="true"><!-- x --></svg></button><div class="sb-toast-progress" style="animation: none; scale: 0.6 1"></div></div>
 </div>
 ```
 
@@ -94,7 +96,7 @@ try {
 
 ```html
 <div class="toast-stage">
-<div class="sb-toast" data-type="success" role="presentation"><span class="sb-toast-icon" aria-hidden="true"><svg aria-hidden="true"><!-- check-circle --></svg></span><div class="sb-toast-text"><p class="sb-toast-msg">Selamat! Klaim Anda telah berhasil dikirim ke Advisor untuk ditinjau!</p></div></div>
+<div class="sb-toast" data-type="success" role="presentation"><span class="sb-toast-icon" aria-hidden="true"><svg aria-hidden="true"><!-- check-circle --></svg></span><div class="sb-toast-text"><p class="sb-toast-msg">Selamat! Klaim Anda telah berhasil dikirim ke Advisor untuk ditinjau!</p></div><button class="sb-toast-close" type="button" aria-label="Tutup notifikasi" tabindex="-1"><svg aria-hidden="true"><!-- x --></svg></button><div class="sb-toast-progress" style="animation: none; scale: 0.6 1"></div></div>
 </div>
 ```
 
@@ -102,24 +104,24 @@ try {
 
 ```html
 <div class="toast-stage">
-<div class="sb-toast" data-type="error" role="presentation"><span class="sb-toast-icon" aria-hidden="true"><svg aria-hidden="true"><!-- alert-circle --></svg></span><div class="sb-toast-text"><p class="sb-toast-msg">Gagal mengirim klaim</p></div><button class="sb-toast-action" type="button" tabindex="-1">Coba Lagi</button></div>
+<div class="sb-toast" data-type="error" role="presentation"><span class="sb-toast-icon" aria-hidden="true"><svg aria-hidden="true"><!-- alert-circle --></svg></span><div class="sb-toast-text"><p class="sb-toast-msg">Gagal mengirim klaim</p><button class="sb-toast-action" type="button" tabindex="-1">Coba Lagi</button></div><button class="sb-toast-close" type="button" aria-label="Tutup notifikasi" tabindex="-1"><svg aria-hidden="true"><!-- x --></svg></button><div class="sb-toast-progress" style="animation: none; scale: 0.6 1"></div></div>
 </div>
 ```
 
-**Don't:** A decision in a toast. It disappears before people read it; use a Modal.
+**Don't:** A decision in a toast. It closes before people read it; use a Modal.
 
 ```html
 <div class="toast-stage">
-<div class="sb-toast" data-type="warning" role="presentation"><span class="sb-toast-icon" aria-hidden="true"><svg aria-hidden="true"><!-- alert --></svg></span><div class="sb-toast-text"><p class="sb-toast-msg">Hapus 12 klaim?</p></div><button class="sb-toast-action" type="button" tabindex="-1">Hapus</button></div>
+<div class="sb-toast" data-type="warning" role="presentation"><span class="sb-toast-icon" aria-hidden="true"><svg aria-hidden="true"><!-- alert --></svg></span><div class="sb-toast-text"><p class="sb-toast-msg">Hapus 12 klaim?</p><button class="sb-toast-action" type="button" tabindex="-1">Hapus</button></div><button class="sb-toast-close" type="button" aria-label="Tutup notifikasi" tabindex="-1"><svg aria-hidden="true"><!-- x --></svg></button><div class="sb-toast-progress" style="animation: none; scale: 0.6 1"></div></div>
 </div>
 ```
 
 ## Accessibility
 
 - The toasts live in one `aria-live="polite"` region that is in the page from the start, so screen readers announce each one. Error toasts are `role="alert"`, announced at once.
-- Toasts do not take focus. Anything a toast offers (Batalkan, Coba Lagi) must also be possible elsewhere, because the toast may be gone before someone reaches it.
-- Timers pause on hover and focus. Toasts with an action or important text get a longer `duration` or `closeButton`.
-- Message `white` on `gray-900` is 17.75:1; description `gray-300` 12.04:1; action `brand-300` 9.96:1. Icons: `success-400` 9.28:1, `error-400` 6.37:1, `warning-400` 9.64:1.
+- Toasts do not take focus. Anything a toast offers (Lihat Klaim, Coba Lagi) must also be possible elsewhere, because it may be gone before someone reaches it.
+- The timer pauses on hover and on focus inside the toast. Give toasts with an action or a long message a longer `autoClose`, or `autoClose: false`.
+- Message `gray-900` on white is 17.75:1, description `gray-600` 7.56:1, action `brand-700` 6.61:1. Icons are 3:1 or more.
 
 ## Code
 
@@ -131,63 +133,74 @@ Load `tokens.css` and `toast.css`, then `toast.js` once. Call `toast()` from any
 /* Toast, Codemasters Design System
    Needs tokens.css; toast.js creates the region and the toasts. Call toast() / toast.success() from your code.
 
-   <section class="sb-toaster" aria-label="Notifikasi" aria-live="polite" data-position="bottom-center">
+   <section class="sb-toaster" aria-label="Notifikasi" aria-live="polite" data-position="top-right">
      <div class="sb-toast" data-type="success" role="status">
        <span class="sb-toast-icon">…check-circle…</span>
-       <div class="sb-toast-text"><p class="sb-toast-msg">Klaim terkirim</p><p class="sb-toast-desc">…</p></div>
-       <button class="sb-toast-action" type="button">Batalkan</button>
+       <div class="sb-toast-text">
+         <p class="sb-toast-msg">Klaim terkirim</p>
+         <p class="sb-toast-desc">…</p>
+         <button class="sb-toast-action" type="button">Lihat Klaim</button>
+       </div>
        <button class="sb-toast-close" type="button" aria-label="Tutup notifikasi">…x…</button>
+       <div class="sb-toast-progress" style="animation-duration: 5000ms"></div>
      </div>
    </section>
 
-   data-position  bottom-center (default) | bottom-right | bottom-left | top-center | top-right | top-left
-   data-type      blank | success | error | warning | loading */
+   data-position  top-right (default) | top-center | top-left | bottom-right | bottom-center | bottom-left
+   data-type      default | info | success | warning | error | loading */
 
 .sb-toaster {
-  position: fixed; z-index: 60; inset-inline: 0; bottom: 24px;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  padding-inline: 16px; pointer-events: none;
+  position: fixed; z-index: 60; top: 16px; right: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+  width: min(360px, calc(100% - 32px)); pointer-events: none;
 }
-.sb-toaster[data-position^="top"] { top: 24px; bottom: auto; flex-direction: column-reverse; } /* newest nearest the edge */
-.sb-toaster[data-position$="right"] { align-items: flex-end; }
-.sb-toaster[data-position$="left"] { align-items: flex-start; }
+.sb-toaster[data-position^="bottom"] { top: auto; bottom: 16px; }
+.sb-toaster[data-position$="left"] { right: auto; left: 16px; }
+.sb-toaster[data-position$="center"] { right: auto; left: 50%; translate: -50% 0; }
 
 .sb-toast {
-  --enter-y: 8px;
-  box-sizing: border-box; pointer-events: auto;
-  display: flex; align-items: center; gap: 12px;
-  width: max-content; max-width: min(420px, 100%); min-height: 44px; padding: 10px 12px 10px 14px;
-  background: var(--gray-900); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
-  font: 500 var(--text-sm) var(--font); color: var(--white);
+  --tone: var(--brand-600); --bar: var(--brand-600); --enter-x: 16px; --enter-y: 0px;
+  position: relative; overflow: hidden; box-sizing: border-box; pointer-events: auto;
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 16px 12px 16px 16px;
+  background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  font: 400 var(--text-sm) var(--font); color: var(--gray-600);
   transition: opacity 200ms var(--ease), translate 200ms var(--ease), scale 200ms var(--ease);
 }
-.sb-toaster[data-position^="top"] .sb-toast { --enter-y: -8px; }
-@starting-style { .sb-toast { opacity: 0; translate: 0 var(--enter-y); scale: .96; } }
+.sb-toaster[data-position$="left"] .sb-toast { --enter-x: -16px; }
+.sb-toaster[data-position$="center"] .sb-toast { --enter-x: 0px; --enter-y: -8px; }
+.sb-toaster[data-position="bottom-center"] .sb-toast { --enter-y: 8px; }
+@starting-style { .sb-toast { opacity: 0; translate: var(--enter-x) var(--enter-y); } }
 .sb-toast[data-state="closing"] { opacity: 0; scale: .96; transition-duration: 150ms; }
+.sb-toast[data-type="success"] { --tone: var(--success-600); --bar: var(--success-500); }
+.sb-toast[data-type="warning"] { --tone: var(--warning-600); --bar: var(--warning-500); }
+.sb-toast[data-type="error"] { --tone: var(--error-600); --bar: var(--error-500); }
 
-.sb-toast-icon { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; }
+.sb-toast-icon { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; color: var(--tone); }
 .sb-toast-icon > svg { width: 20px; height: 20px; }
-.sb-toast[data-type="success"] .sb-toast-icon { color: var(--success-400); }
-.sb-toast[data-type="error"] .sb-toast-icon { color: var(--error-400); }
-.sb-toast[data-type="warning"] .sb-toast-icon { color: var(--warning-400); }
-.sb-toast-spinner { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--gray-600); border-top-color: var(--white); border-radius: var(--radius-full); animation: sb-toast-spin 700ms linear infinite; }
+.sb-toast-spinner { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--gray-200); border-top-color: var(--brand-600); border-radius: var(--radius-full); animation: sb-toast-spin 700ms linear infinite; }
 @keyframes sb-toast-spin { to { rotate: 1turn; } }
 
-.sb-toast-text { display: grid; gap: 2px; min-width: 0; }
+.sb-toast-text { display: grid; justify-items: start; gap: 4px; flex: 1; min-width: 0; }
 .sb-toast .sb-toast-text p { margin: 0; }
-.sb-toast .sb-toast-msg { color: var(--white); text-wrap: pretty; }
-.sb-toast .sb-toast-desc { font-weight: 400; color: var(--gray-300); text-wrap: pretty; }
-
-/* Action: one text button, brand-300 on the dark fill. Close: a 20 px x in gray-400. */
-.sb-toast-action {
-  flex: none; margin: -6px 0 -6px 4px; padding: 6px 8px; border: 0; border-radius: var(--radius-sm);
-  background: none; font: 600 var(--text-sm) var(--font); color: var(--brand-300); cursor: pointer;
-}
-.sb-toast-action:hover { background: var(--gray-800); }
-.sb-toast-close { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; margin: -4px -4px -4px 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--gray-400); cursor: pointer; }
-.sb-toast-close:hover { background: var(--gray-800); color: var(--white); }
+.sb-toast .sb-toast-msg { font-weight: 600; color: var(--gray-900); text-wrap: pretty; }
+.sb-toast .sb-toast-desc { color: var(--gray-600); text-wrap: pretty; }
+.sb-toast-action { margin: 4px 0 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; font: 600 var(--text-sm) var(--font); color: var(--brand-700); cursor: pointer; }
+.sb-toast-action:hover { color: var(--brand-800); text-decoration: underline; text-underline-offset: 2px; }
+.sb-toast-close { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; margin: -4px 0 -4px auto; padding: 0; border: 0; border-radius: var(--radius-md); background: none; color: var(--gray-400); cursor: pointer; }
+.sb-toast-close:hover { background: var(--gray-50); color: var(--gray-600); }
 .sb-toast-close > svg { width: 20px; height: 20px; }
-.sb-toast :is(.sb-toast-action, .sb-toast-close):focus-visible { outline: 2px solid var(--brand-300); outline-offset: 0; }
+.sb-toast :is(.sb-toast-action, .sb-toast-close):focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+
+/* Timer bar: 3 px along the bottom in the status colour, shrinking to nothing over autoClose. Paused on hover and focus. */
+.sb-toast-progress {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: var(--bar); transform-origin: left;
+  animation: sb-toast-timer linear forwards;
+}
+.sb-toast-progress[data-hidden] { opacity: 0; }
+@keyframes sb-toast-timer { from { scale: 1 1; } to { scale: 0 1; } }
+.sb-toaster:hover .sb-toast-progress, .sb-toast:focus-within .sb-toast-progress { animation-play-state: paused; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-toast { transition: none; }
@@ -200,19 +213,19 @@ Load `tokens.css` and `toast.css`, then `toast.js` once. Call `toast()` from any
 `toast.js`
 
 ```js
-// Toast: the react-hot-toast API in plain JS. Load once; then call toast() anywhere.
-//   toast('Disimpan')                         toast.success('Klaim terkirim')
-//   toast.error('Gagal mengirim', { description: 'Periksa koneksi lalu coba lagi.' })
-//   const id = toast.loading('Mengirim…');    toast.success('Klaim terkirim', { id })
-//   toast.promise(fetch(url), { loading: 'Mengirim…', success: 'Klaim terkirim', error: 'Gagal mengirim' })
-//   toast('Klaim dihapus', { action: { label: 'Batalkan', onClick: undo } })
-//   toast.dismiss(id)   toast.dismiss()   toast.config({ position: 'top-right' })
-// Options: id, duration (ms, Infinity to stay), description, action { label, onClick }, closeButton.
+// Toast: the react-toastify API in plain JS. Load once; then call toast() anywhere.
+//   toast('Perubahan disimpan')             toast.success('Klaim terkirim')
+//   toast.info('Klaim baru masuk')          toast.warning('Sesi berakhir dalam 5 menit')
+//   toast.error('Gagal mengirim klaim', { description: 'Periksa koneksi, lalu coba lagi.' })
+//   const id = toast.loading('Mengirim klaim…');
+//   toast.update(id, { render: 'Klaim terkirim', type: 'success', isLoading: false })
+//   toast.promise(kirimKlaim(), { pending: 'Mengirim klaim…', success: 'Klaim terkirim', error: 'Gagal mengirim klaim' })
+//   toast.dismiss(id)   toast.dismiss()   toast.isActive(id)
+//   toast.config({ position: 'bottom-right', autoClose: 3000 })   // like <ToastContainer>
+// Options: toastId, autoClose (ms or false), hideProgressBar, closeButton, description, action { label, onClick }, onClick, onClose.
 window.toast = (function installToast(ICONS) {
-  const DURATION = { blank: 4000, success: 3000, warning: 5000, error: 5000, loading: Infinity };
-  const MAX = 3; // visible at once; older ones close
-  const config = { position: 'bottom-center' };
-  const live = new Map(); // id -> { el, left, started, timer }
+  const config = { position: 'top-right', autoClose: 5000, hideProgressBar: false, closeButton: true, max: 5 };
+  const live = new Map(); // toastId -> element
   let seq = 0;
 
   const region = document.createElement('section');
@@ -223,44 +236,23 @@ window.toast = (function installToast(ICONS) {
   const mount = () => document.body.append(region);
   document.body ? mount() : document.addEventListener('DOMContentLoaded', mount);
 
-  // Pause every timer while the pointer or focus is on the toasts, as react-hot-toast does.
-  let paused = false;
-  const pause = on => {
-    paused = on;
-    for (const t of live.values()) on ? stop(t) : start(t);
-  };
-  region.addEventListener('pointerenter', () => pause(true));
-  region.addEventListener('pointerleave', () => pause(false));
-  region.addEventListener('focusin', () => pause(true));
-  region.addEventListener('focusout', e => region.contains(e.relatedTarget) || pause(false));
-
-  function start(t) {
-    if (paused || !Number.isFinite(t.left)) return;
-    t.started = Date.now();
-    t.timer = setTimeout(() => close(t.id), t.left);
-  }
-  function stop(t) {
-    clearTimeout(t.timer);
-    if (t.started) t.left -= Date.now() - t.started;
-    t.started = 0;
-  }
-
-  function fill(el, type, message, o) {
+  function render(el, o) {
+    const type = o.isLoading ? 'loading' : o.type || 'default';
     el.dataset.type = type;
     el.setAttribute('role', type === 'error' ? 'alert' : 'status');
     el.replaceChildren();
-    if (type !== 'blank') {
+    if (ICONS[type]) {
       const ic = document.createElement('span');
       ic.className = 'sb-toast-icon';
       ic.setAttribute('aria-hidden', 'true');
-      ic.innerHTML = ICONS[type] || ''; // our own SVG strings, never user text
+      ic.innerHTML = ICONS[type]; // our own SVG strings, never user text
       el.append(ic);
     }
     const text = document.createElement('div');
     text.className = 'sb-toast-text';
     const msg = document.createElement('p');
     msg.className = 'sb-toast-msg';
-    msg.textContent = message; // messages are data: textContent only
+    msg.textContent = o.render; // messages are data: textContent only
     text.append(msg);
     if (o.description) {
       const d = document.createElement('p');
@@ -268,16 +260,16 @@ window.toast = (function installToast(ICONS) {
       d.textContent = o.description;
       text.append(d);
     }
-    el.append(text);
     if (o.action) {
       const a = document.createElement('button');
       a.type = 'button';
       a.className = 'sb-toast-action';
       a.textContent = o.action.label;
       a.addEventListener('click', () => { o.action.onClick?.(); close(el.dataset.id); });
-      el.append(a);
+      text.append(a);
     }
-    if (o.closeButton) {
+    el.append(text);
+    if (o.closeButton ?? config.closeButton) {
       const x = document.createElement('button');
       x.type = 'button';
       x.className = 'sb-toast-close';
@@ -286,57 +278,74 @@ window.toast = (function installToast(ICONS) {
       x.addEventListener('click', () => close(el.dataset.id));
       el.append(x);
     }
+    // Loading toasts and autoClose: false stay until updated or dismissed.
+    const ms = o.isLoading ? false : o.autoClose ?? config.autoClose;
+    if (ms) {
+      const bar = document.createElement('div');
+      bar.className = 'sb-toast-progress';
+      bar.style.animationDuration = `${ms}ms`;
+      if (o.hideProgressBar ?? config.hideProgressBar) bar.dataset.hidden = '';
+      bar.addEventListener('animationend', () => close(el.dataset.id));
+      el.append(bar);
+    }
+    el._opts = o;
   }
 
-  function show(type, message, o = {}) {
-    const id = o.id ?? `toast-${++seq}`;
-    let t = live.get(id);
-    if (t) stop(t); // same id: update in place (loading -> success)
-    else {
-      const el = document.createElement('div');
-      el.className = 'sb-toast';
-      el.dataset.id = id;
-      region.append(el);
-      t = { id, el };
-      live.set(id, t);
-      const extra = [...live.keys()].slice(0, Math.max(0, live.size - MAX));
-      extra.forEach(close);
-    }
-    fill(t.el, type, message, o);
-    t.left = o.duration ?? DURATION[type];
-    start(t);
+  function show(content, o = {}) {
+    const id = String(o.toastId ?? `toast-${++seq}`);
+    if (live.has(id)) return id; // same toastId: no duplicate (use toast.update to change it)
+    const el = document.createElement('div');
+    el.className = 'sb-toast';
+    el.dataset.id = id;
+    el.addEventListener('click', e => o.onClick && !e.target.closest('button') && o.onClick(e));
+    render(el, { ...o, render: content });
+    region.append(el);
+    live.set(id, el);
+    [...live.keys()].slice(0, Math.max(0, live.size - config.max)).forEach(close);
     return id;
   }
 
   function close(id) {
-    const t = live.get(id);
-    if (!t) return;
-    live.delete(id);
-    stop(t);
-    t.el.dataset.state = 'closing';
-    const gone = () => t.el.remove();
-    t.el.addEventListener('transitionend', gone, { once: true });
+    const el = live.get(String(id));
+    if (!el) return;
+    live.delete(String(id));
+    el.dataset.state = 'closing';
+    let done = false;
+    const gone = () => { if (done) return; done = true; el.remove(); el._opts.onClose?.(); };
+    el.addEventListener('transitionend', gone, { once: true });
     setTimeout(gone, 300); // reduced motion has no transition to wait for
   }
 
-  const toast = (message, o) => show('blank', message, o);
-  for (const type of ['success', 'error', 'warning', 'loading']) toast[type] = (message, o) => show(type, message, o);
-  toast.dismiss = id => (id ? [id] : [...live.keys()]).forEach(close);
+  const toast = (content, o) => show(content, o);
+  for (const type of ['info', 'success', 'warning', 'error']) toast[type] = (content, o) => show(content, { ...o, type });
+  toast.loading = (content, o) => show(content, { ...o, isLoading: true });
+  // update(id, { render, type, isLoading, autoClose, … }): change a toast in place, e.g. loading -> success.
+  toast.update = (id, changes) => {
+    const el = live.get(String(id));
+    if (el) render(el, { ...el._opts, ...changes, render: changes.render ?? el._opts.render });
+  };
   toast.promise = (promise, msgs, o = {}) => {
-    const id = toast.loading(msgs.loading, o);
+    const id = toast.loading(msgs.pending, o);
     const pick = (m, v) => (typeof m === 'function' ? m(v) : m);
-    promise.then(v => toast.success(pick(msgs.success, v), { ...o, id }), e => toast.error(pick(msgs.error, e), { ...o, id }));
+    promise.then(
+      v => toast.update(id, { render: pick(msgs.success, v), type: 'success', isLoading: false }),
+      e => toast.update(id, { render: pick(msgs.error, e), type: 'error', isLoading: false }),
+    );
     return promise;
   };
+  toast.dismiss = id => (id === undefined ? [...live.keys()] : [id]).forEach(close);
+  toast.isActive = id => live.has(String(id));
+  // Like <ToastContainer position autoClose hideProgressBar closeButton limit>.
   toast.config = o => {
     Object.assign(config, o);
     region.dataset.position = config.position;
   };
   return toast;
 })({
+  "info": "<svg data-i=\"info\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4M12 8h.01\"/></svg>",
   "success": "<svg data-i=\"check-circle\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"/><path d=\"M22 4 12 14.01l-3-3\"/></svg>",
-  "error": "<svg data-i=\"alert-circle\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 8v4M12 16h.01\"/></svg>",
   "warning": "<svg data-i=\"alert\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01\"/></svg>",
+  "error": "<svg data-i=\"alert-circle\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 8v4M12 16h.01\"/></svg>",
   "loading": "<span class=\"sb-toast-spinner\"></span>",
   "close": "<svg data-i=\"x\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg>"
 });
@@ -347,17 +356,23 @@ window.toast = (function installToast(ICONS) {
 ```css
 :root {
   --white: #ffffff;
-  --gray-300: #d0d5dd;
+  --gray-50: #f9fafb;
+  --gray-200: #eaecf0;
   --gray-400: #98a2b3;
   --gray-600: #475467;
-  --gray-800: #1d2939;
   --gray-900: #101828;
-  --brand-300: #9fc5f6;
-  --error-400: #f97066;
-  --warning-400: #fdb022;
-  --success-400: #32d583;
+  --brand-600: #3966e0;
+  --brand-700: #2e51cd;
+  --brand-800: #2942a7;
+  --error-500: #f04438;
+  --error-600: #d92d20;
+  --warning-500: #f79009;
+  --warning-600: #dc6803;
+  --success-500: #12b76a;
+  --success-600: #039855;
   --radius-sm: 4px;
   --radius-md: 8px;
+  --radius-lg: 12px;
   --radius-full: 9999px;
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
   --ease: cubic-bezier(.22,.61,.36,1);
