@@ -98,7 +98,8 @@ for (const type of ['pointerover', 'pointerout', 'pointermove', 'focusin', 'focu
 .sb-chart-dot.is-on { opacity: 1; }
 .sb-chart-cross { stroke: var(--gray-300); stroke-width: 1; opacity: 0; shape-rendering: crispEdges; }
 .sb-chart[data-hover] .sb-chart-cross { opacity: 1; }
-.sb-chart-hit { fill: transparent; outline: none; cursor: default; }
+.sb-chart-hit { fill: transparent; outline: none; cursor: default; transition: fill 150ms var(--ease); }
+.sb-chart-hit[data-band].is-on { fill: var(--gray-100); } /* bar charts: the hovered period's band fills behind its bars */
 .sb-chart-mark { transition: opacity 150ms var(--ease); }
 .sb-chart[data-hover] .sb-chart-mark:not(.is-on) { opacity: .25; } /* the hovered mark stays, the rest step back */
 .sb-chart [data-tip]:focus-visible { stroke: var(--brand-600); stroke-width: 2; }
@@ -137,7 +138,7 @@ for (const type of ['pointerover', 'pointerout', 'pointermove', 'focusin', 'focu
 .sb-chart-table th { font: 500 var(--text-xs) var(--font); color: var(--gray-500); background: var(--gray-50); }
 
 @media (prefers-reduced-motion: reduce) {
-  .sb-chart-mark, .sb-chart-tip { transition: none; }
+  .sb-chart-mark, .sb-chart-tip, .sb-chart-hit { transition: none; }
 }
 `;
 
@@ -185,10 +186,10 @@ for (const type of ['pointerover', 'pointerout', 'pointermove', 'focusin', 'focu
       const gw = bw * series.length + 2 * (series.length - 1), x0 = cx(i) - gw / 2;
       const bars = series.map((s, k) => {
         const h = (s.data[i] / max) * PH;
-        return `  <path class="sb-chart-mark" data-i="${i}" d="${barPath(x0 + k * (bw + 2), BASE - h, bw, h)}" fill="${s.color}"/>`;
+        return `  <path class="sb-chart-mark" data-i="${i}" d="${barPath(x0 + k * (bw + 2), BASE - h, bw, h)}" fill="${s.color}" pointer-events="none"/>`;
       }).join('\n');
-      const hit = `  <rect class="sb-chart-hit" data-i="${i}" x="${L + band * i}" y="${T}" width="${band}" height="${PH}" tabindex="0" aria-label="${m}: ${series.map(s => `${s.name} ${num(s.data[i])}`).join(', ')}" data-tip="${tip(m, series.map(s => [s.name, num(s.data[i]), s.color]))}"/>`;
-      return `${bars}\n${hit}`;
+      const hit = `  <rect class="sb-chart-hit" data-band data-i="${i}" x="${L + band * i}" y="${T}" width="${band}" height="${PH}" tabindex="0" aria-label="${m}: ${series.map(s => `${s.name} ${num(s.data[i])}`).join(', ')}" data-tip="${tip(m, series.map(s => [s.name, num(s.data[i]), s.color]))}"/>`;
+      return `${hit}\n${bars}`; // the band sits behind its bars and takes the hover
     }).join('\n');
     const svg = `<svg>\n${yAxis(max)}\n${marks}\n${xLabels(cx)}\n</svg>`;
     return figure(`Klaim disetujui per bulan, ${series.map(s => s.name).join(' dan ')}`, [
@@ -367,7 +368,7 @@ ${xLabels(i => L + (PW / 6) * i + PW / 12)}
         title: 'Types',
         blocks: [
           { type: 'h3', id: 'type-bar', text: 'Bar' },
-          { type: 'p', text: 'Grouped columns per period. The whole band is the hover target; the hovered group stays, the others step back to 25 %.' },
+          { type: 'p', text: 'Grouped columns per period. The whole band is the hover target: it fills `gray-100` behind its bars, the hovered group stays and the others step back to 25 %.' },
           { type: 'example', html: stage(barChart()) },
           { type: 'h3', id: 'type-line', text: 'Line' },
           { type: 'p', text: '2 px lines, one point per label, centred on it. Hovering anywhere in a band snaps a hairline crosshair to it, shows the dots (8 px with a 2 px white ring) and lists every series in one tooltip. Rejected is dashed.' },

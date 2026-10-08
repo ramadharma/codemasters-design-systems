@@ -29,7 +29,8 @@
 .sb-chart-dot.is-on { opacity: 1; }
 .sb-chart-cross { stroke: var(--gray-300); stroke-width: 1; opacity: 0; shape-rendering: crispEdges; }
 .sb-chart[data-hover] .sb-chart-cross { opacity: 1; }
-.sb-chart-hit { fill: transparent; outline: none; cursor: default; }
+.sb-chart-hit { fill: transparent; outline: none; cursor: default; transition: fill 150ms var(--ease); }
+.sb-chart-hit[data-band].is-on { fill: var(--gray-100); } /* bar charts: the hovered period's band fills behind its bars */
 .sb-chart-mark { transition: opacity 150ms var(--ease); }
 .sb-chart[data-hover] .sb-chart-mark:not(.is-on) { opacity: .25; } /* the hovered mark stays, the rest step back */
 .sb-chart [data-tip]:focus-visible { stroke: var(--brand-600); stroke-width: 2; }
@@ -68,5 +69,5 @@
 .sb-chart-table th { font: 500 var(--text-xs) var(--font); color: var(--gray-500); background: var(--gray-50); }
 
 @media (prefers-reduced-motion: reduce) {
-  .sb-chart-mark, .sb-chart-tip { transition: none; }
+  .sb-chart-mark, .sb-chart-tip, .sb-chart-hit { transition: none; }
 }

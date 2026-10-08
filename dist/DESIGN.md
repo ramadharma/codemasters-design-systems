@@ -3252,7 +3252,7 @@ Six series colours in a fixed order. The order and steps were checked with a col
 
 #### Bar
 
-Grouped columns per period. The whole band is the hover target; the hovered group stays, the others step back to 25 %.
+Grouped columns per period. The whole band is the hover target: it fills `gray-100` behind its bars, the hovered group stays and the others step back to 25 %.
 
 ```html
 <figure class="sb-chart">
@@ -3271,24 +3271,24 @@ Grouped columns per period. The whole band is the hover target; the hovered grou
   <text x="32" y="63" text-anchor="end">150</text>
   <line class="sb-chart-grid" x1="40" x2="552" y1="8" y2="8"/>
   <text x="32" y="12" text-anchor="end">200</text>
-  <path class="sb-chart-mark" data-i="0" d="M57.66666666666666,212V93.60000000000001Q57.66666666666666,89.60000000000001 61.66666666666666,89.60000000000001H77.66666666666666Q81.66666666666666,89.60000000000001 81.66666666666666,93.60000000000001V212Z" fill="var(--chart-1)"/>
-  <path class="sb-chart-mark" data-i="0" d="M83.66666666666666,212V116.04Q83.66666666666666,112.04 87.66666666666666,112.04H103.66666666666666Q107.66666666666666,112.04 107.66666666666666,116.04V212Z" fill="var(--chart-2)"/>
-  <rect class="sb-chart-hit" data-i="0" x="40" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jan: Sembuh AI 120, TPA 98" data-tip="{&quot;t&quot;:&quot;Jan&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;120&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;98&quot;,&quot;var(--chart-2)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="1" d="M143,212V78.29999999999998Q143,74.29999999999998 147,74.29999999999998H163Q167,74.29999999999998 167,78.29999999999998V212Z" fill="var(--chart-1)"/>
-  <path class="sb-chart-mark" data-i="1" d="M169,212V111.96Q169,107.96 173,107.96H189Q193,107.96 193,111.96V212Z" fill="var(--chart-2)"/>
-  <rect class="sb-chart-hit" data-i="1" x="125.33333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Feb: Sembuh AI 135, TPA 102" data-tip="{&quot;t&quot;:&quot;Feb&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;135&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;102&quot;,&quot;var(--chart-2)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="2" d="M228.33333333333331,212V63Q228.33333333333331,59 232.33333333333331,59H248.33333333333331Q252.33333333333331,59 252.33333333333331,63V212Z" fill="var(--chart-1)"/>
-  <path class="sb-chart-mark" data-i="2" d="M254.33333333333331,212V103.8Q254.33333333333331,99.8 258.3333333333333,99.8H274.3333333333333Q278.3333333333333,99.8 278.3333333333333,103.8V212Z" fill="var(--chart-2)"/>
-  <rect class="sb-chart-hit" data-i="2" x="210.66666666666666" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mar: Sembuh AI 150, TPA 110" data-tip="{&quot;t&quot;:&quot;Mar&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;150&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;110&quot;,&quot;var(--chart-2)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="3" d="M313.6666666666667,212V71.16Q313.6666666666667,67.16 317.6666666666667,67.16H333.6666666666667Q337.6666666666667,67.16 337.6666666666667,71.16V212Z" fill="var(--chart-1)"/>
-  <path class="sb-chart-mark" data-i="3" d="M339.6666666666667,212V108.89999999999999Q339.6666666666667,104.89999999999999 343.6666666666667,104.89999999999999H359.6666666666667Q363.6666666666667,104.89999999999999 363.6666666666667,108.89999999999999V212Z" fill="var(--chart-2)"/>
-  <rect class="sb-chart-hit" data-i="3" x="296" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Apr: Sembuh AI 142, TPA 105" data-tip="{&quot;t&quot;:&quot;Apr&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;142&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;105&quot;,&quot;var(--chart-2)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="4" d="M399,212V44.640000000000015Q399,40.640000000000015 403,40.640000000000015H419Q423,40.640000000000015 423,44.640000000000015V212Z" fill="var(--chart-1)"/>
-  <path class="sb-chart-mark" data-i="4" d="M425,212V95.64Q425,91.64 429,91.64H445Q449,91.64 449,95.64V212Z" fill="var(--chart-2)"/>
-  <rect class="sb-chart-hit" data-i="4" x="381.3333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mei: Sembuh AI 168, TPA 118" data-tip="{&quot;t&quot;:&quot;Mei&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;168&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;118&quot;,&quot;var(--chart-2)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="5" d="M484.3333333333333,212V32.400000000000006Q484.3333333333333,28.400000000000006 488.3333333333333,28.400000000000006H504.3333333333333Q508.3333333333333,28.400000000000006 508.3333333333333,32.400000000000006V212Z" fill="var(--chart-1)"/>
-  <path class="sb-chart-mark" data-i="5" d="M510.3333333333333,212V92.58Q510.3333333333333,88.58 514.3333333333333,88.58H530.3333333333333Q534.3333333333333,88.58 534.3333333333333,92.58V212Z" fill="var(--chart-2)"/>
-  <rect class="sb-chart-hit" data-i="5" x="466.66666666666663" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jun: Sembuh AI 180, TPA 121" data-tip="{&quot;t&quot;:&quot;Jun&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;180&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;121&quot;,&quot;var(--chart-2)&quot;]]}"/>
+  <rect class="sb-chart-hit" data-band data-i="0" x="40" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jan: Sembuh AI 120, TPA 98" data-tip="{&quot;t&quot;:&quot;Jan&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;120&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;98&quot;,&quot;var(--chart-2)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="0" d="M57.66666666666666,212V93.60000000000001Q57.66666666666666,89.60000000000001 61.66666666666666,89.60000000000001H77.66666666666666Q81.66666666666666,89.60000000000001 81.66666666666666,93.60000000000001V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <path class="sb-chart-mark" data-i="0" d="M83.66666666666666,212V116.04Q83.66666666666666,112.04 87.66666666666666,112.04H103.66666666666666Q107.66666666666666,112.04 107.66666666666666,116.04V212Z" fill="var(--chart-2)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="1" x="125.33333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Feb: Sembuh AI 135, TPA 102" data-tip="{&quot;t&quot;:&quot;Feb&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;135&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;102&quot;,&quot;var(--chart-2)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="1" d="M143,212V78.29999999999998Q143,74.29999999999998 147,74.29999999999998H163Q167,74.29999999999998 167,78.29999999999998V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <path class="sb-chart-mark" data-i="1" d="M169,212V111.96Q169,107.96 173,107.96H189Q193,107.96 193,111.96V212Z" fill="var(--chart-2)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="2" x="210.66666666666666" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mar: Sembuh AI 150, TPA 110" data-tip="{&quot;t&quot;:&quot;Mar&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;150&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;110&quot;,&quot;var(--chart-2)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="2" d="M228.33333333333331,212V63Q228.33333333333331,59 232.33333333333331,59H248.33333333333331Q252.33333333333331,59 252.33333333333331,63V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <path class="sb-chart-mark" data-i="2" d="M254.33333333333331,212V103.8Q254.33333333333331,99.8 258.3333333333333,99.8H274.3333333333333Q278.3333333333333,99.8 278.3333333333333,103.8V212Z" fill="var(--chart-2)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="3" x="296" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Apr: Sembuh AI 142, TPA 105" data-tip="{&quot;t&quot;:&quot;Apr&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;142&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;105&quot;,&quot;var(--chart-2)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="3" d="M313.6666666666667,212V71.16Q313.6666666666667,67.16 317.6666666666667,67.16H333.6666666666667Q337.6666666666667,67.16 337.6666666666667,71.16V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <path class="sb-chart-mark" data-i="3" d="M339.6666666666667,212V108.89999999999999Q339.6666666666667,104.89999999999999 343.6666666666667,104.89999999999999H359.6666666666667Q363.6666666666667,104.89999999999999 363.6666666666667,108.89999999999999V212Z" fill="var(--chart-2)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="4" x="381.3333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mei: Sembuh AI 168, TPA 118" data-tip="{&quot;t&quot;:&quot;Mei&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;168&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;118&quot;,&quot;var(--chart-2)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="4" d="M399,212V44.640000000000015Q399,40.640000000000015 403,40.640000000000015H419Q423,40.640000000000015 423,44.640000000000015V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <path class="sb-chart-mark" data-i="4" d="M425,212V95.64Q425,91.64 429,91.64H445Q449,91.64 449,95.64V212Z" fill="var(--chart-2)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="5" x="466.66666666666663" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jun: Sembuh AI 180, TPA 121" data-tip="{&quot;t&quot;:&quot;Jun&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;180&quot;,&quot;var(--chart-1)&quot;],[&quot;TPA&quot;,&quot;121&quot;,&quot;var(--chart-2)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="5" d="M484.3333333333333,212V32.400000000000006Q484.3333333333333,28.400000000000006 488.3333333333333,28.400000000000006H504.3333333333333Q508.3333333333333,28.400000000000006 508.3333333333333,32.400000000000006V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <path class="sb-chart-mark" data-i="5" d="M510.3333333333333,212V92.58Q510.3333333333333,88.58 514.3333333333333,88.58H530.3333333333333Q534.3333333333333,88.58 534.3333333333333,92.58V212Z" fill="var(--chart-2)" pointer-events="none"/>
   <text x="82.66666666666666" y="232" text-anchor="middle">Jan</text>
   <text x="168" y="232" text-anchor="middle">Feb</text>
   <text x="253.33333333333331" y="232" text-anchor="middle">Mar</text>
@@ -3362,18 +3362,18 @@ While new data loads, keep the last chart at 50 % opacity (`aria-busy="true"` on
   <text x="32" y="63" text-anchor="end">150</text>
   <line class="sb-chart-grid" x1="40" x2="552" y1="8" y2="8"/>
   <text x="32" y="12" text-anchor="end">200</text>
-  <path class="sb-chart-mark" data-i="0" d="M70.66666666666666,212V93.60000000000001Q70.66666666666666,89.60000000000001 74.66666666666666,89.60000000000001H90.66666666666666Q94.66666666666666,89.60000000000001 94.66666666666666,93.60000000000001V212Z" fill="var(--chart-1)"/>
-  <rect class="sb-chart-hit" data-i="0" x="40" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jan: Sembuh AI 120" data-tip="{&quot;t&quot;:&quot;Jan&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;120&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="1" d="M156,212V78.29999999999998Q156,74.29999999999998 160,74.29999999999998H176Q180,74.29999999999998 180,78.29999999999998V212Z" fill="var(--chart-1)"/>
-  <rect class="sb-chart-hit" data-i="1" x="125.33333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Feb: Sembuh AI 135" data-tip="{&quot;t&quot;:&quot;Feb&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;135&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="2" d="M241.33333333333331,212V63Q241.33333333333331,59 245.33333333333331,59H261.3333333333333Q265.3333333333333,59 265.3333333333333,63V212Z" fill="var(--chart-1)"/>
-  <rect class="sb-chart-hit" data-i="2" x="210.66666666666666" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mar: Sembuh AI 150" data-tip="{&quot;t&quot;:&quot;Mar&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;150&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="3" d="M326.6666666666667,212V71.16Q326.6666666666667,67.16 330.6666666666667,67.16H346.6666666666667Q350.6666666666667,67.16 350.6666666666667,71.16V212Z" fill="var(--chart-1)"/>
-  <rect class="sb-chart-hit" data-i="3" x="296" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Apr: Sembuh AI 142" data-tip="{&quot;t&quot;:&quot;Apr&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;142&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="4" d="M412,212V44.640000000000015Q412,40.640000000000015 416,40.640000000000015H432Q436,40.640000000000015 436,44.640000000000015V212Z" fill="var(--chart-1)"/>
-  <rect class="sb-chart-hit" data-i="4" x="381.3333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mei: Sembuh AI 168" data-tip="{&quot;t&quot;:&quot;Mei&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;168&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="5" d="M497.3333333333333,212V32.400000000000006Q497.3333333333333,28.400000000000006 501.3333333333333,28.400000000000006H517.3333333333333Q521.3333333333333,28.400000000000006 521.3333333333333,32.400000000000006V212Z" fill="var(--chart-1)"/>
-  <rect class="sb-chart-hit" data-i="5" x="466.66666666666663" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jun: Sembuh AI 180" data-tip="{&quot;t&quot;:&quot;Jun&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;180&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <rect class="sb-chart-hit" data-band data-i="0" x="40" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jan: Sembuh AI 120" data-tip="{&quot;t&quot;:&quot;Jan&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;120&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="0" d="M70.66666666666666,212V93.60000000000001Q70.66666666666666,89.60000000000001 74.66666666666666,89.60000000000001H90.66666666666666Q94.66666666666666,89.60000000000001 94.66666666666666,93.60000000000001V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="1" x="125.33333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Feb: Sembuh AI 135" data-tip="{&quot;t&quot;:&quot;Feb&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;135&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="1" d="M156,212V78.29999999999998Q156,74.29999999999998 160,74.29999999999998H176Q180,74.29999999999998 180,78.29999999999998V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="2" x="210.66666666666666" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mar: Sembuh AI 150" data-tip="{&quot;t&quot;:&quot;Mar&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;150&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="2" d="M241.33333333333331,212V63Q241.33333333333331,59 245.33333333333331,59H261.3333333333333Q265.3333333333333,59 265.3333333333333,63V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="3" x="296" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Apr: Sembuh AI 142" data-tip="{&quot;t&quot;:&quot;Apr&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;142&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="3" d="M326.6666666666667,212V71.16Q326.6666666666667,67.16 330.6666666666667,67.16H346.6666666666667Q350.6666666666667,67.16 350.6666666666667,71.16V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="4" x="381.3333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mei: Sembuh AI 168" data-tip="{&quot;t&quot;:&quot;Mei&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;168&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="4" d="M412,212V44.640000000000015Q412,40.640000000000015 416,40.640000000000015H432Q436,40.640000000000015 436,44.640000000000015V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="5" x="466.66666666666663" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jun: Sembuh AI 180" data-tip="{&quot;t&quot;:&quot;Jun&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;180&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="5" d="M497.3333333333333,212V32.400000000000006Q497.3333333333333,28.400000000000006 501.3333333333333,28.400000000000006H517.3333333333333Q521.3333333333333,28.400000000000006 521.3333333333333,32.400000000000006V212Z" fill="var(--chart-1)" pointer-events="none"/>
   <text x="82.66666666666666" y="232" text-anchor="middle">Jan</text>
   <text x="168" y="232" text-anchor="middle">Feb</text>
   <text x="253.33333333333331" y="232" text-anchor="middle">Mar</text>
@@ -3400,18 +3400,18 @@ While new data loads, keep the last chart at 50 % opacity (`aria-busy="true"` on
   <text x="32" y="63" text-anchor="end">150</text>
   <line class="sb-chart-grid" x1="40" x2="552" y1="8" y2="8"/>
   <text x="32" y="12" text-anchor="end">200</text>
-  <path class="sb-chart-mark" data-i="0" d="M70.66666666666666,212V93.60000000000001Q70.66666666666666,89.60000000000001 74.66666666666666,89.60000000000001H90.66666666666666Q94.66666666666666,89.60000000000001 94.66666666666666,93.60000000000001V212Z" fill="var(--chart-1)"/>
-  <rect class="sb-chart-hit" data-i="0" x="40" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jan: Sembuh AI 120" data-tip="{&quot;t&quot;:&quot;Jan&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;120&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="1" d="M156,212V78.29999999999998Q156,74.29999999999998 160,74.29999999999998H176Q180,74.29999999999998 180,78.29999999999998V212Z" fill="var(--chart-2)"/>
-  <rect class="sb-chart-hit" data-i="1" x="125.33333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Feb: Sembuh AI 135" data-tip="{&quot;t&quot;:&quot;Feb&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;135&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="2" d="M241.33333333333331,212V63Q241.33333333333331,59 245.33333333333331,59H261.3333333333333Q265.3333333333333,59 265.3333333333333,63V212Z" fill="var(--chart-3)"/>
-  <rect class="sb-chart-hit" data-i="2" x="210.66666666666666" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mar: Sembuh AI 150" data-tip="{&quot;t&quot;:&quot;Mar&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;150&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="3" d="M326.6666666666667,212V71.16Q326.6666666666667,67.16 330.6666666666667,67.16H346.6666666666667Q350.6666666666667,67.16 350.6666666666667,71.16V212Z" fill="var(--chart-4)"/>
-  <rect class="sb-chart-hit" data-i="3" x="296" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Apr: Sembuh AI 142" data-tip="{&quot;t&quot;:&quot;Apr&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;142&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="4" d="M412,212V44.640000000000015Q412,40.640000000000015 416,40.640000000000015H432Q436,40.640000000000015 436,44.640000000000015V212Z" fill="var(--chart-5)"/>
-  <rect class="sb-chart-hit" data-i="4" x="381.3333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mei: Sembuh AI 168" data-tip="{&quot;t&quot;:&quot;Mei&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;168&quot;,&quot;var(--chart-1)&quot;]]}"/>
-  <path class="sb-chart-mark" data-i="5" d="M497.3333333333333,212V32.400000000000006Q497.3333333333333,28.400000000000006 501.3333333333333,28.400000000000006H517.3333333333333Q521.3333333333333,28.400000000000006 521.3333333333333,32.400000000000006V212Z" fill="var(--chart-6)"/>
-  <rect class="sb-chart-hit" data-i="5" x="466.66666666666663" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jun: Sembuh AI 180" data-tip="{&quot;t&quot;:&quot;Jun&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;180&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <rect class="sb-chart-hit" data-band data-i="0" x="40" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jan: Sembuh AI 120" data-tip="{&quot;t&quot;:&quot;Jan&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;120&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="0" d="M70.66666666666666,212V93.60000000000001Q70.66666666666666,89.60000000000001 74.66666666666666,89.60000000000001H90.66666666666666Q94.66666666666666,89.60000000000001 94.66666666666666,93.60000000000001V212Z" fill="var(--chart-1)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="1" x="125.33333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Feb: Sembuh AI 135" data-tip="{&quot;t&quot;:&quot;Feb&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;135&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="1" d="M156,212V78.29999999999998Q156,74.29999999999998 160,74.29999999999998H176Q180,74.29999999999998 180,78.29999999999998V212Z" fill="var(--chart-2)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="2" x="210.66666666666666" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mar: Sembuh AI 150" data-tip="{&quot;t&quot;:&quot;Mar&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;150&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="2" d="M241.33333333333331,212V63Q241.33333333333331,59 245.33333333333331,59H261.3333333333333Q265.3333333333333,59 265.3333333333333,63V212Z" fill="var(--chart-3)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="3" x="296" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Apr: Sembuh AI 142" data-tip="{&quot;t&quot;:&quot;Apr&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;142&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="3" d="M326.6666666666667,212V71.16Q326.6666666666667,67.16 330.6666666666667,67.16H346.6666666666667Q350.6666666666667,67.16 350.6666666666667,71.16V212Z" fill="var(--chart-4)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="4" x="381.3333333333333" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Mei: Sembuh AI 168" data-tip="{&quot;t&quot;:&quot;Mei&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;168&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="4" d="M412,212V44.640000000000015Q412,40.640000000000015 416,40.640000000000015H432Q436,40.640000000000015 436,44.640000000000015V212Z" fill="var(--chart-5)" pointer-events="none"/>
+  <rect class="sb-chart-hit" data-band data-i="5" x="466.66666666666663" y="8" width="85.33333333333333" height="204" tabindex="0" aria-label="Jun: Sembuh AI 180" data-tip="{&quot;t&quot;:&quot;Jun&quot;,&quot;rows&quot;:[[&quot;Sembuh AI&quot;,&quot;180&quot;,&quot;var(--chart-1)&quot;]]}"/>
+  <path class="sb-chart-mark" data-i="5" d="M497.3333333333333,212V32.400000000000006Q497.3333333333333,28.400000000000006 501.3333333333333,28.400000000000006H517.3333333333333Q521.3333333333333,28.400000000000006 521.3333333333333,32.400000000000006V212Z" fill="var(--chart-6)" pointer-events="none"/>
   <text x="82.66666666666666" y="232" text-anchor="middle">Jan</text>
   <text x="168" y="232" text-anchor="middle">Feb</text>
   <text x="253.33333333333331" y="232" text-anchor="middle">Mar</text>
@@ -3622,7 +3622,8 @@ Load `tokens.css`, then `chart.css`, and `chart.js` for the tooltip. Draw the SV
 .sb-chart-dot.is-on { opacity: 1; }
 .sb-chart-cross { stroke: var(--gray-300); stroke-width: 1; opacity: 0; shape-rendering: crispEdges; }
 .sb-chart[data-hover] .sb-chart-cross { opacity: 1; }
-.sb-chart-hit { fill: transparent; outline: none; cursor: default; }
+.sb-chart-hit { fill: transparent; outline: none; cursor: default; transition: fill 150ms var(--ease); }
+.sb-chart-hit[data-band].is-on { fill: var(--gray-100); } /* bar charts: the hovered period's band fills behind its bars */
 .sb-chart-mark { transition: opacity 150ms var(--ease); }
 .sb-chart[data-hover] .sb-chart-mark:not(.is-on) { opacity: .25; } /* the hovered mark stays, the rest step back */
 .sb-chart [data-tip]:focus-visible { stroke: var(--brand-600); stroke-width: 2; }
@@ -3661,7 +3662,7 @@ Load `tokens.css`, then `chart.css`, and `chart.js` for the tooltip. Draw the SV
 .sb-chart-table th { font: 500 var(--text-xs) var(--font); color: var(--gray-500); background: var(--gray-50); }
 
 @media (prefers-reduced-motion: reduce) {
-  .sb-chart-mark, .sb-chart-tip { transition: none; }
+  .sb-chart-mark, .sb-chart-tip, .sb-chart-hit { transition: none; }
 }
 ```
 
