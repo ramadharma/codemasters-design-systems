@@ -116,7 +116,7 @@ document.addEventListener('keydown', menuKeydown);`;
 .sb-menu {
   position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline-end: 0;
   box-sizing: border-box; min-width: 240px; overflow: hidden;
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
 }
 .sb-menu[hidden] { display: none; }
 .sb-menu-group { padding: 4px; } /* items sit inset, as rounded rows; dividers stay full width */
@@ -130,10 +130,10 @@ document.addEventListener('keydown', menuKeydown);`;
 .sb-menu-name { display: block; font: 600 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-menu-email { display: block; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 
-/* Item: 40 high, padding 10 12 (text still 16 from the edge), gap 12, radius 4 (8 panel - 4 padding) */
+/* Item: 40 high, padding 10 12 (text still 16 from the edge), gap 12, radius 8 (12 panel - 4 padding) */
 .sb-menu-item {
   box-sizing: border-box; display: flex; align-items: center; gap: 12px;
-  width: 100%; height: 40px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-sm);
+  width: 100%; height: 40px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-md);
   background: none; font: 500 var(--text-sm) var(--font); color: var(--gray-700); text-align: start; white-space: nowrap;
   cursor: pointer;
 }
@@ -291,12 +291,12 @@ ${item(['', 'Checkbox, disabled'], { checkbox: true, disabled: true })}
             rows: [
               ['1', 'Header', 'Optional. Heading: 44 high, title Text sm / Semibold `gray-700`. Avatar group: 64 high, 40 px avatar with a 10 px `success-500` online dot, name Text sm / Semibold `gray-700`, email Text sm / Regular `gray-500`, gap 12. Padding `12 16`.'],
               ['2', 'Divider', '1 px `gray-100` between the header and each group.'],
-              ['3', 'Item', '40 high, padding `10 12`, radius 4, inset 4 from the panel edge, gap 12, Text sm / Medium `gray-700`. Hover and focus `gray-50`.'],
+              ['3', 'Item', '40 high, padding `10 12`, radius 8, inset 4 from the panel edge, gap 12, Text sm / Medium `gray-700`. Hover and focus `gray-50`.'],
               ['4', 'Icon or checkbox', '16 px icon `gray-700`, or a 16 px checkbox (radius 4). Never both.'],
               ['5', 'Shortcut', 'Optional, right-aligned, Text xs / Regular `gray-500`.'],
             ],
           },
-          { type: 'p', text: 'The panel is 240 wide, `white`, 1 px `gray-100` border, radius 8, `shadow-lg`, and clips its content. It opens 8 below its trigger, right-aligned.' },
+          { type: 'p', text: 'The panel is 240 wide, `white`, 1 px `gray-100` border, radius 12 (like every popover panel), `shadow-lg`, and clips its content. It opens 8 below its trigger, right-aligned.' },
         ],
       },
       {
@@ -340,7 +340,7 @@ ${item(['', 'Checkbox, disabled'], { checkbox: true, disabled: true })}
             type: 'table',
             head: ['Part', 'Default', 'Hover / Focus', 'Disabled'],
             rows: [
-              ['Row (40 high, padding `10 12`, radius 4, gap 12)', 'no fill', '`gray-50`', 'no fill, whole row at 50 % opacity'],
+              ['Row (40 high, padding `10 12`, radius 8, gap 12)', 'no fill', '`gray-50`', 'no fill, whole row at 50 % opacity'],
               ['Label, Text sm / Medium', '`gray-700`', '`gray-700`', 'Default at 50 % opacity'],
               ['Icon 16 px', '`gray-700`', '`gray-700`', 'Default at 50 % opacity'],
               ['Checkbox 16 px, radius 4', '`white`, `gray-300` border', '`brand-50` fill, `brand-600` border', 'Default at 50 % opacity'],

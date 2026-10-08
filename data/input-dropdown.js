@@ -158,7 +158,7 @@ document.addEventListener('input', ddFilter);`;
 .sb-dd-menu {
   position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline: 0;
   box-sizing: border-box; max-height: 320px; overflow-y: auto; padding: 4px; /* options sit inset, as rounded rows */
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
   scrollbar-width: thin; scrollbar-color: var(--gray-200) transparent;
 }
 .sb-dd-menu[hidden] { display: none; }
@@ -166,9 +166,9 @@ document.addEventListener('input', ddFilter);`;
 .sb-dd-menu::-webkit-scrollbar { width: 16px; }
 .sb-dd-menu::-webkit-scrollbar-thumb { background: var(--gray-200); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
 
-/* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 4 (8 panel - 4 padding) */
+/* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 8 (12 panel - 4 padding) */
 .sb-dd-opt {
-  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-md);
   font: 500 var(--text-md) var(--font); color: var(--gray-900); cursor: pointer;
 }
 .sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--gray-50); }
@@ -330,7 +330,7 @@ ${[['placeholder', 'Placeholder'], ['default', 'Default'], ['open', 'Open / focu
               ['3', 'Leading element', 'Optional: 20 px icon `gray-500`, 24 px avatar, 10 px `success-500` dot, or 20 px search icon (Search type).'],
               ['4', 'Value + supporting text', 'Text md / Regular. Placeholder `gray-500`, value `gray-900`, supporting text after it in `gray-500`.'],
               ['5', 'Chevron', '20 px `gray-500`; turns up when open. The Search type has none.'],
-              ['6', 'Menu', 'Width of the field, max height 320, `white`, 1 px `gray-100` border, radius 8, `shadow-lg`, padding 4 so the options sit inset, 8 below the field.'],
+              ['6', 'Menu', 'Width of the field, max height 320, `white`, 1 px `gray-100` border, radius 12, `shadow-lg`, padding 4 so the options sit inset, 8 below the field.'],
               ['7', 'Check', '20 px `brand-600` at the end of the chosen option.'],
             ],
           },
@@ -373,7 +373,7 @@ ${[['placeholder', 'Placeholder'], ['default', 'Default'], ['open', 'Open / focu
             type: 'table',
             head: ['Part', 'Default', 'Hover / Focus', 'Disabled'],
             rows: [
-              ['Row (44 high, padding `10 10`, radius 4, gap 8)', 'no fill', '`gray-50`', 'no fill, whole row at 50 % opacity'],
+              ['Row (44 high, padding `10 10`, radius 8, gap 8)', 'no fill', '`gray-50`', 'no fill, whole row at 50 % opacity'],
               ['Label, Text md / Medium', '`gray-900`', '`gray-900`', 'Default at 50 % opacity'],
               ['Supporting text, Text md / Regular', '`gray-500`', '`gray-500`', 'Default at 50 % opacity'],
               ['Leading icon 20 px', '`gray-500`', '`gray-700`', 'Default at 50 % opacity'],

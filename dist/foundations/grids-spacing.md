@@ -102,8 +102,8 @@ Content sits in a centred container with a fixed max width.
 | Value | Token | Use |
 | --- | --- | --- |
 | 4 | `--radius-sm` | Checkboxes, calendar days, progress and slider tracks, targets under 24 px (help icon, badge ×) |
-| 8 | `--radius-md` | Icon buttons of 32 px and up, buttons, inputs, dropdown menus, tab tops (`8 8 0 0`), inner cards, banners |
-| 12 | `--radius-lg` | Cards, dialogs, popover panels |
+| 8 | `--radius-md` | Icon buttons of 32 px and up, buttons, inputs, menu rows, tab tops (`8 8 0 0`), inner cards, banners |
+| 12 | `--radius-lg` | Cards, dialogs, popover panels, dropdown menus |
 | 16 | `--radius-xl` | Badges, tags, chips |
 | 9999 (full) | `--radius-full` | Avatar, toggle, radio, check circle, dots |
 

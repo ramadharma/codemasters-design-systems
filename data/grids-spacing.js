@@ -9,7 +9,7 @@
 ${SPACE.map(t => `<button class="f-space-row" type="button" data-copy-text="var(${t})" aria-label="Copy var(${t})"><code>${t.slice(2)}</code><span class="f-space-px">${px(t)}</span><span class="f-space-bar" style="width: ${px(t)}px"></span></button>`).join('\n')}
 </div>`;
 
-  const RADIUS = [[4, 'Checkboxes, calendar days, progress and slider tracks, targets under 24 px (help icon, badge ×)', 'radius-sm'], [8, 'Icon buttons of 32 px and up, buttons, inputs, dropdown menus, tab tops (`8 8 0 0`), inner cards, banners', 'radius-md'], [12, 'Cards, dialogs, popover panels', 'radius-lg'], [16, 'Badges, tags, chips', 'radius-xl'], [9999, 'Avatar, toggle, radio, check circle, dots', 'radius-full']];
+  const RADIUS = [[4, 'Checkboxes, calendar days, progress and slider tracks, targets under 24 px (help icon, badge ×)', 'radius-sm'], [8, 'Icon buttons of 32 px and up, buttons, inputs, menu rows, tab tops (`8 8 0 0`), inner cards, banners', 'radius-md'], [12, 'Cards, dialogs, popover panels, dropdown menus', 'radius-lg'], [16, 'Badges, tags, chips', 'radius-xl'], [9999, 'Avatar, toggle, radio, check circle, dots', 'radius-full']];
   const radius = `<div class="f-radius">
 ${RADIUS.map(([r, , t]) => `<figure class="f-radius-tile"><span style="border-radius: ${r}px"></span><figcaption class="mx">${r === 9999 ? 'Full' : r}${t ? `<br><code>${t}</code>` : ''}</figcaption></figure>`).join('\n')}
 </div>`;

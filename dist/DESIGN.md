@@ -1128,8 +1128,8 @@ Content sits in a centred container with a fixed max width.
 | Value | Token | Use |
 | --- | --- | --- |
 | 4 | `--radius-sm` | Checkboxes, calendar days, progress and slider tracks, targets under 24 px (help icon, badge ×) |
-| 8 | `--radius-md` | Icon buttons of 32 px and up, buttons, inputs, dropdown menus, tab tops (`8 8 0 0`), inner cards, banners |
-| 12 | `--radius-lg` | Cards, dialogs, popover panels |
+| 8 | `--radius-md` | Icon buttons of 32 px and up, buttons, inputs, menu rows, tab tops (`8 8 0 0`), inner cards, banners |
+| 12 | `--radius-lg` | Cards, dialogs, popover panels, dropdown menus |
 | 16 | `--radius-xl` | Badges, tags, chips |
 | 9999 (full) | `--radius-full` | Avatar, toggle, radio, check circle, dots |
 
@@ -3975,11 +3975,11 @@ An action menu opened from a button, a row-actions icon or the account avatar. F
 | --- | --- | --- |
 | 1 | Header | Optional. Heading: 44 high, title Text sm / Semibold `gray-700`. Avatar group: 64 high, 40 px avatar with a 10 px `success-500` online dot, name Text sm / Semibold `gray-700`, email Text sm / Regular `gray-500`, gap 12. Padding `12 16`. |
 | 2 | Divider | 1 px `gray-100` between the header and each group. |
-| 3 | Item | 40 high, padding `10 12`, radius 4, inset 4 from the panel edge, gap 12, Text sm / Medium `gray-700`. Hover and focus `gray-50`. |
+| 3 | Item | 40 high, padding `10 12`, radius 8, inset 4 from the panel edge, gap 12, Text sm / Medium `gray-700`. Hover and focus `gray-50`. |
 | 4 | Icon or checkbox | 16 px icon `gray-700`, or a 16 px checkbox (radius 4). Never both. |
 | 5 | Shortcut | Optional, right-aligned, Text xs / Regular `gray-500`. |
 
-The panel is 240 wide, `white`, 1 px `gray-100` border, radius 8, `shadow-lg`, and clips its content. It opens 8 below its trigger, right-aligned.
+The panel is 240 wide, `white`, 1 px `gray-100` border, radius 12 (like every popover panel), `shadow-lg`, and clips its content. It opens 8 below its trigger, right-aligned.
 
 ### Properties
 
@@ -4062,7 +4062,7 @@ Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up an
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (40 high, padding `10 12`, radius 4, gap 12) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Row (40 high, padding `10 12`, radius 8, gap 12) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
 | Label, Text sm / Medium | `gray-700` | `gray-700` | Default at 50 % opacity |
 | Icon 16 px | `gray-700` | `gray-700` | Default at 50 % opacity |
 | Checkbox 16 px, radius 4 | `white`, `gray-300` border | `brand-50` fill, `brand-600` border | Default at 50 % opacity |
@@ -4187,7 +4187,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu {
   position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline-end: 0;
   box-sizing: border-box; min-width: 240px; overflow: hidden;
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
 }
 .sb-menu[hidden] { display: none; }
 .sb-menu-group { padding: 4px; } /* items sit inset, as rounded rows; dividers stay full width */
@@ -4201,10 +4201,10 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-name { display: block; font: 600 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-menu-email { display: block; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 
-/* Item: 40 high, padding 10 12 (text still 16 from the edge), gap 12, radius 4 (8 panel - 4 padding) */
+/* Item: 40 high, padding 10 12 (text still 16 from the edge), gap 12, radius 8 (12 panel - 4 padding) */
 .sb-menu-item {
   box-sizing: border-box; display: flex; align-items: center; gap: 12px;
-  width: 100%; height: 40px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-sm);
+  width: 100%; height: 40px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-md);
   background: none; font: 500 var(--text-sm) var(--font); color: var(--gray-700); text-align: start; white-space: nowrap;
   cursor: pointer;
 }
@@ -4316,7 +4316,7 @@ A select field: pick one value for a form field or a filter. For running an acti
 | 3 | Leading element | Optional: 20 px icon `gray-500`, 24 px avatar, 10 px `success-500` dot, or 20 px search icon (Search type). |
 | 4 | Value + supporting text | Text md / Regular. Placeholder `gray-500`, value `gray-900`, supporting text after it in `gray-500`. |
 | 5 | Chevron | 20 px `gray-500`; turns up when open. The Search type has none. |
-| 6 | Menu | Width of the field, max height 320, `white`, 1 px `gray-100` border, radius 8, `shadow-lg`, padding 4 so the options sit inset, 8 below the field. |
+| 6 | Menu | Width of the field, max height 320, `white`, 1 px `gray-100` border, radius 12, `shadow-lg`, padding 4 so the options sit inset, 8 below the field. |
 | 7 | Check | 20 px `brand-600` at the end of the chosen option. |
 
 ### Properties
@@ -4531,7 +4531,7 @@ A select field: pick one value for a form field or a filter. For running an acti
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (44 high, padding `10 10`, radius 4, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Row (44 high, padding `10 10`, radius 8, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
 | Label, Text md / Medium | `gray-900` | `gray-900` | Default at 50 % opacity |
 | Supporting text, Text md / Regular | `gray-500` | `gray-500` | Default at 50 % opacity |
 | Leading icon 20 px | `gray-500` | `gray-700` | Default at 50 % opacity |
@@ -4730,7 +4730,7 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-menu {
   position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline: 0;
   box-sizing: border-box; max-height: 320px; overflow-y: auto; padding: 4px; /* options sit inset, as rounded rows */
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
   scrollbar-width: thin; scrollbar-color: var(--gray-200) transparent;
 }
 .sb-dd-menu[hidden] { display: none; }
@@ -4738,9 +4738,9 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-menu::-webkit-scrollbar { width: 16px; }
 .sb-dd-menu::-webkit-scrollbar-thumb { background: var(--gray-200); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
 
-/* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 4 (8 panel - 4 padding) */
+/* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 8 (12 panel - 4 padding) */
 .sb-dd-opt {
-  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-md);
   font: 500 var(--text-md) var(--font); color: var(--gray-900); cursor: pointer;
 }
 .sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--gray-50); }

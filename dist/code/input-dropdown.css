@@ -66,7 +66,7 @@
 .sb-dd-menu {
   position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline: 0;
   box-sizing: border-box; max-height: 320px; overflow-y: auto; padding: 4px; /* options sit inset, as rounded rows */
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
   scrollbar-width: thin; scrollbar-color: var(--gray-200) transparent;
 }
 .sb-dd-menu[hidden] { display: none; }
@@ -74,9 +74,9 @@
 .sb-dd-menu::-webkit-scrollbar { width: 16px; }
 .sb-dd-menu::-webkit-scrollbar-thumb { background: var(--gray-200); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
 
-/* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 4 (8 panel - 4 padding) */
+/* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 8 (12 panel - 4 padding) */
 .sb-dd-opt {
-  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-md);
   font: 500 var(--text-md) var(--font); color: var(--gray-900); cursor: pointer;
 }
 .sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--gray-50); }
