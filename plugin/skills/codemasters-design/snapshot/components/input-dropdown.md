@@ -2,21 +2,15 @@
 name: Input dropdown
 slug: input-dropdown
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1096-8566
 requires: tokens.css
 ---
 
 # Input dropdown
 
 A select field: pick one value for a form field or a filter. For running an action from a button, use Dropdown menu.
-
-- Figma: [Input dropdown](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1096-8566)
-- Figma: [_Input dropdown base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1096-2)
-- Figma: [Menu item](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1096-3156)
-- Figma: [Menu](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1096-4590)
 
 ## Usage
 
@@ -39,7 +33,7 @@ A select field: pick one value for a form field or a filter. For running an acti
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Type | Default, Icon leading, Avatar leading, Dot leading, Search | leading `<svg>`, `.sb-dd-avatar` or `.sb-dd-dot` before the label; Search uses `<div class="sb-dd-trigger" data-type="search">` with an `<input role="combobox">` |
 | State | Placeholder, Default (value chosen), Open/focused | `.sb-dd-placeholder`, a chosen value, `aria-expanded="true"`. Static mockups only: `data-state="open"` |
@@ -381,8 +375,7 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 
 ```css
 /* Input dropdown, Codemasters Design System
-   Figma: _Input dropdown base (1096-2), _Input dropdown menu item (1096-3156), _Input dropdown menu (1096-4590),
-   Input dropdown (1096-8566). Needs tokens.css and input-dropdown.js. Label and hint rules match input-field.css.
+   Needs tokens.css and input-dropdown.js. Label and hint rules match input-field.css.
 
    <div class="sb-field">
      <span class="sb-field-label" id="jenis-label">Jenis klaim</span>
@@ -406,7 +399,7 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
    Disabled option: aria-disabled="true". Disabled field: disabled on the button.
    data-state="open" on .sb-dd-trigger forces Open/focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 

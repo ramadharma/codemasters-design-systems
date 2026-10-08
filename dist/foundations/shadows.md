@@ -2,10 +2,9 @@
 name: Shadows & Blur
 slug: shadows
 category: Foundations
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-07
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-352912
 requires: tokens.css
 ---
 
@@ -13,22 +12,19 @@ requires: tokens.css
 
 Seven shadows and four background blurs that put elements on the z-axis. The higher the layer, the bigger the shadow.
 
-- Figma: [Shadows](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-352912)
-- Figma: [Blurs](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-352913)
-
 ## Shadows
 
 All shadows are `gray-900` (`16, 24, 40`) at low opacity. Use only these seven; never write a custom shadow. Click one to copy its token.
 
-| Token | Figma | CSS value |
-| --- | --- | --- |
-| `--shadow-xs` | `Shadow/xs` | `0 1px 2px rgba(16,24,40,.05)` |
-| `--shadow-sm` | `Shadow/sm` | `0 1px 3px rgba(16,24,40,.1), 0 1px 2px rgba(16,24,40,.06)` |
-| `--shadow-md` | `Shadow/md` | `0 4px 8px -2px rgba(16,24,40,.1), 0 2px 4px -2px rgba(16,24,40,.06)` |
-| `--shadow-lg` | `Shadow/lg` | `0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03)` |
-| `--shadow-xl` | `Shadow/xl` | `0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03)` |
-| `--shadow-2xl` | `Shadow/2xl` | `0 24px 48px -12px rgba(16,24,40,.18)` |
-| `--shadow-3xl` | `Shadow/3xl` | `0 32px 64px -12px rgba(16,24,40,.14)` |
+| Token | CSS value |
+| --- | --- |
+| `--shadow-xs` | `0 1px 2px rgba(16,24,40,.05)` |
+| `--shadow-sm` | `0 1px 3px rgba(16,24,40,.1), 0 1px 2px rgba(16,24,40,.06)` |
+| `--shadow-md` | `0 4px 8px -2px rgba(16,24,40,.1), 0 2px 4px -2px rgba(16,24,40,.06)` |
+| `--shadow-lg` | `0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03)` |
+| `--shadow-xl` | `0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03)` |
+| `--shadow-2xl` | `0 24px 48px -12px rgba(16,24,40,.18)` |
+| `--shadow-3xl` | `0 32px 64px -12px rgba(16,24,40,.14)` |
 
 ## Elevation in the app
 
@@ -49,18 +45,18 @@ All shadows are `gray-900` (`16, 24, 40`) at low opacity. Use only these seven; 
 
 ## Background blur
 
-A background blur also lifts an element: it blurs what is behind a translucent surface. Use it as `backdrop-filter`. Figma's blur radius is twice the CSS value.
+A background blur also lifts an element: it blurs what is behind a translucent surface. Use it as `backdrop-filter`.
 
 ### Light
 
 ### Dark
 
-| Token | Figma | CSS value |
-| --- | --- | --- |
-| `--blur-sm` | `Background blur/sm`, radius 8 | `blur(4px)` |
-| `--blur-md` | `Background blur/md`, radius 16 | `blur(8px)` |
-| `--blur-lg` | `Background blur/lg`, radius 24 | `blur(12px)` |
-| `--blur-xl` | `Background blur/xl`, radius 40 | `blur(20px)` |
+| Token | CSS value |
+| --- | --- |
+| `--blur-sm` | `blur(4px)` |
+| `--blur-md` | `blur(8px)` |
+| `--blur-lg` | `blur(12px)` |
+| `--blur-xl` | `blur(20px)` |
 
 - A blur needs a translucent fill to show: **light** `rgba(255,255,255,.6)` (white 60 %) with `gray-900` text, or **dark** `rgba(52,64,84,.6)` (`gray-700` 60 %) with white text.
 - Use blur sparingly, as an accent: scrims behind dialogs, overlays on images or charts. Never put body text or tables on a blurred surface without a fill.

@@ -2,19 +2,15 @@
 name: Toggle
 slug: toggle
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1102-4208
 requires: tokens.css
 ---
 
 # Toggle
 
 An on/off switch whose change takes effect immediately, such as "Tampilkan hanya klaim saya" or a notification setting. If the choice is applied only after Save, use a Checkbox.
-
-- Figma: [Toggle](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1102-4208)
-- Figma: [_Toggle base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=122-3294)
 
 ## Usage
 
@@ -33,7 +29,7 @@ An on/off switch whose change takes effect immediately, such as "Tampilkan hanya
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Pressed | True, False | `checked` |
 | Size | `sm`, `md` | `data-size` on `.sb-toggle` |
@@ -161,7 +157,7 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 
 ```css
 /* Toggle, Codemasters Design System
-   Figma: _Toggle base (122-3294), Toggle (1102-4208). Needs tokens.css. No script: it is a native checkbox.
+   Needs tokens.css. No script: it is a native checkbox.
 
    <div class="sb-toggle" data-size="sm">
      <input class="sb-toggle-input" type="checkbox" role="switch" id="notif" aria-describedby="notif-sup">

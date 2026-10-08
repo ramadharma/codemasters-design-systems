@@ -1,5 +1,4 @@
-// Tabs: switch between panels of content in one place. No Figma component yet: built from DESIGN.md
-// Navigation (Tabs, Mini tab) and the claim detail page, in the style of Button group and Badge.
+// Tabs: switch between panels of content in one place. Built from DESIGN.md Navigation (Tabs, Mini tab) and the claim detail page, in the style of Button group and Badge.
 (() => {
   const { esc, icon, meta } = DS;
 
@@ -38,7 +37,7 @@ document.addEventListener('click', tabsClick);
 document.addEventListener('keydown', tabsKeydown);`;
 
   const CSS = `/* Tabs, Codemasters Design System
-   No Figma component yet: built from DESIGN.md Navigation (Tabs, Mini tab). Needs tokens.css; tabs.js for clicks and keys.
+   Needs tokens.css; tabs.js for clicks and keys.
 
    <div class="sb-tabs" data-type="folder" role="tablist" aria-label="Detail klaim">
      <button class="sb-tab" type="button" role="tab" id="klaim-t1" aria-selected="true" aria-controls="klaim-p1" tabindex="0">…icon… Informasi Klaim</button>
@@ -194,10 +193,9 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
     slug: 'tabs',
     name: 'Tabs',
     category: 'Components',
-    status: 'In progress',
+    status: 'Ready',
     updated: '2026-10-08',
     description: 'Switch between panels of content in one place: the sections of a claim, the views of a card or the parts of a settings page. Four types: Folder, Underline, Segmented and Vertical.',
-    figma: [{ label: 'Design system file (no Tabs component yet)', url: meta.figma }],
     css: CSS,
     cssFile: 'tabs.css',
     sections: [

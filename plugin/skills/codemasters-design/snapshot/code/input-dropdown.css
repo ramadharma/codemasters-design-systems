@@ -1,6 +1,5 @@
 /* Input dropdown, Codemasters Design System
-   Figma: _Input dropdown base (1096-2), _Input dropdown menu item (1096-3156), _Input dropdown menu (1096-4590),
-   Input dropdown (1096-8566). Needs tokens.css and input-dropdown.js. Label and hint rules match input-field.css.
+   Needs tokens.css and input-dropdown.js. Label and hint rules match input-field.css.
 
    <div class="sb-field">
      <span class="sb-field-label" id="jenis-label">Jenis klaim</span>
@@ -24,7 +23,7 @@
    Disabled option: aria-disabled="true". Disabled field: disabled on the button.
    data-state="open" on .sb-dd-trigger forces Open/focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 

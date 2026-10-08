@@ -2,7 +2,6 @@
 // Figma nodes 18-319 (list item), 1050-40224 (list header), 1050-109778 (menu base), 1050-146925 (Dropdown), 1050-105632 (Dropdown menu).
 (() => {
   const { icon, esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // ---- Behaviour: WAI-ARIA menu button. Picking an item fires a "sb-menu-select" event the app can listen to.
   function menuParts(el) {
@@ -70,8 +69,7 @@ document.addEventListener('click', menuClick);
 document.addEventListener('keydown', menuKeydown);`;
 
   const CSS = `/* Dropdown menu, Codemasters Design System
-   Figma: _Dropdown list item (18-319), _Dropdown list header (1050-40224), _Dropdown menu base (1050-109778),
-   Dropdown (1050-146925), Dropdown menu (1050-105632). Needs tokens.css and dropdown-menu.js;
+   Needs tokens.css and dropdown-menu.js;
    the Button trigger also needs button.css.
 
    <div class="sb-menu-wrap">
@@ -242,15 +240,9 @@ ${item(['', 'Checkbox, disabled'], { checkbox: true, disabled: true })}
     slug: 'dropdown-menu',
     name: 'Dropdown menu',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'An action menu opened from a button, a row-actions icon or the account avatar. For choosing a value in a form, use Input dropdown.',
-    figma: [
-      { label: 'Dropdown', url: `${FIGMA}1050-146925` },
-      { label: 'Dropdown menu', url: `${FIGMA}1050-105632` },
-      { label: 'List item', url: `${FIGMA}18-319` },
-      { label: 'List header', url: `${FIGMA}1050-40224` },
-    ],
     css: CSS,
     cssFile: 'dropdown-menu.css',
     sections: [
@@ -315,7 +307,7 @@ ${item(['', 'Checkbox, disabled'], { checkbox: true, disabled: true })}
         blocks: [
           {
             type: 'table',
-            head: ['Component', 'Property', 'Figma values', 'Code'],
+            head: ['Component', 'Property', 'Values', 'Code'],
             rows: [
               ['Dropdown', 'Type', 'Button, Icon, Avatar', '`.sb-btn` + chevron, `.sb-menu-icon`, `.sb-menu-avatar`'],
               ['Dropdown', 'Open', 'True, False', '`aria-expanded` on the trigger, `hidden` on the menu'],

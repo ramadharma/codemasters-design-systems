@@ -2,7 +2,6 @@
 // 1274-812 (Avatar group), 82-2793 (Avatar label group).
 (() => {
   const { esc, icon } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // ---- Initials: first + last name, at most 2 letters.
   function initials(name) {
@@ -17,7 +16,7 @@ ${initials.toString().replace(/^  /gm, '')}
 // initials('Nama Pengguna') === 'NP', initials('Advisor') === 'A'`;
 
   const CSS = `/* Avatar, avatar group and avatar label group, Codemasters Design System
-   Figma: Avatar (19-1012), Avatar group (1274-812), Avatar label group (82-2793). Needs tokens.css.
+   Needs tokens.css.
 
    <span class="sb-avatar" data-size="md" role="img" aria-label="Nama Pengguna">NP</span>
    <span class="sb-avatar" data-size="md"><img src="foto.jpg" alt="Nama Pengguna"></span>
@@ -60,7 +59,7 @@ ${initials.toString().replace(/^  /gm, '')}
 .sb-avatar-stack > :is(.sb-avatar, .sb-tooltip-wrap) + * { margin-left: var(--av-overlap); }
 .sb-avatar-stack .sb-avatar { box-shadow: 0 0 0 1.5px var(--white); }
 .sb-avatar-stack button.sb-avatar:is(:focus-visible, [data-state="focus"]) { box-shadow: 0 0 0 1.5px var(--white), 0 0 0 5.5px var(--focus-ring); }
-/* Add: white, dashed gray-300 border (dashed in Figma), gray-400 plus icon at half the box. */
+/* Add: white, dashed gray-300 border, gray-400 plus icon at half the box. */
 .sb-avatar-add {
   display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: var(--av, 40px); height: var(--av, 40px);
   margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--white); color: var(--gray-400); cursor: pointer;
@@ -74,7 +73,7 @@ ${initials.toString().replace(/^  /gm, '')}
 
 /* ---- Avatar label group: avatar + name + secondary line. Long text truncates (show it in a tooltip). */
 .sb-avatar-label { display: inline-flex; align-items: center; gap: 12px; max-width: 100%; margin: 0; padding: 0; border: 0; background: none; text-align: start; text-decoration: none; }
-.sb-avatar-label[data-size="sm"] { gap: 10px; } /* Figma spec; between the 8 and 12 steps */
+.sb-avatar-label[data-size="sm"] { gap: 10px; } /* between the 8 and 12 steps */
 .sb-avatar-label[data-size="xl"] { gap: 16px; }
 .sb-avatar-label-text { display: grid; min-width: 0; }
 .sb-avatar-name, .sb-avatar-sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -172,14 +171,9 @@ ${[['photo', 'Photo'], ['initials', 'Initials'], ['placeholder', 'Placeholder']]
     slug: 'avatar',
     name: 'Avatar',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-07',
     description: 'A person or a company, shown as a photo, initials or a placeholder icon. Comes alone, in an overlapping group, or with a name and a secondary line.',
-    figma: [
-      { label: 'Avatar', url: `${FIGMA}19-1012` },
-      { label: 'Avatar group', url: `${FIGMA}1274-812` },
-      { label: 'Avatar label group', url: `${FIGMA}82-2793` },
-    ],
     css: CSS,
     cssFile: 'avatar.css',
     sections: [
@@ -212,7 +206,7 @@ ${[['photo', 'Photo'], ['initials', 'Initials'], ['placeholder', 'Placeholder']]
               'Online indicator for people who can be reached now; Company badge for the organisation a user belongs to, such as the insurer of a TPA user.',
               'Avatar groups show at most 5 avatars, then "+N" that opens a list of the rest.',
               'Avatar label groups sit in the sidebar profile, dropdown headers, assignee fields and table cells (`sm`).',
-              'Figma\'s demo photos and names (Olivia Rhye, Phoenix Baker) are for mock-ups only. Real screens show the user\'s photo or initials.',
+              'Demo photos and names are for mock-ups only. Real screens show the user\'s photo or initials.',
             ],
           },
         ],
@@ -239,7 +233,7 @@ ${[['photo', 'Photo'], ['initials', 'Initials'], ['placeholder', 'Placeholder']]
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Size', '`xs`, `sm`, `md`, `lg`, `xl`, `2xl`', '`data-size`'],
               ['Placeholder / Text', 'Photo, Text, Placeholder', '`<img>`, initials as text, or the `user` icon `<svg>`'],

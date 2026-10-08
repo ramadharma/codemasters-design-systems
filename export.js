@@ -30,8 +30,8 @@
     const h = n => '#'.repeat(base + n - 1);
     const out = [];
     if (base === 1)
-      out.push(['---', `name: ${c.name}`, `slug: ${c.slug}`, `category: ${c.category}`, `status: ${c.status}`, `version: ${meta.version}`, `updated: ${c.updated}`, `figma: ${c.figma[0].url}`, 'requires: tokens.css', '---'].join('\n'));
-    out.push(`${h(1)} ${c.name}`, c.description, c.figma.map(f => `- Figma: [${f.label}](${f.url})`).join('\n'));
+      out.push(['---', `name: ${c.name}`, `slug: ${c.slug}`, `category: ${c.category}`, `status: ${c.status}`, `version: ${meta.version}`, `updated: ${c.updated}`, 'requires: tokens.css', '---'].join('\n'));
+    out.push(`${h(1)} ${c.name}`, c.description);
     for (const s of c.sections) {
       // Playground is interactive only; the full export already carries every token once.
       if (s.blocks.some(b => b.type === 'playground' || (base > 1 && b.type === 'tokens'))) continue;
@@ -48,7 +48,6 @@
       `# ${meta.name}`,
       `> Exported from the design system dashboard. Version ${meta.version}${date ? `, ${date.toISOString().slice(0, 10)}` : ''}.`,
       meta.intro,
-      `Figma: [Codemasters Design System](${meta.figma})`,
       '## Contents',
       ['- Principles', '- Tokens', ...foundations.map(c => `- ${c.name}`), ...components.map(c => `- ${c.name}`), ...applications.map(c => `- ${c.name}`)].join('\n'),
       '## Principles',

@@ -1,7 +1,6 @@
 // Tooltip and help icon. Source: DESIGN.md §6 Tooltip and help icon, Figma nodes 1052-489 (Tooltip), 1054-13 (Help icon).
 (() => {
   const { esc, icon } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // ---- Esc closes the open tooltip (WCAG 1.4.13) until the pointer leaves or focus moves on.
   function tooltipKeydown(e) {
@@ -20,7 +19,7 @@ document.addEventListener('mouseleave', tooltipReset, true); // mouseleave does 
 document.addEventListener('focusout', tooltipReset);`;
 
   const CSS = `/* Tooltip and help icon, Codemasters Design System
-   Figma: Tooltip (1052-489), Help icon (1054-13). Needs tokens.css; tooltip.js only for Esc to close.
+   Needs tokens.css; tooltip.js only for Esc to close.
 
    <span class="sb-tooltip-wrap">
      <button class="sb-help" type="button" aria-label="Info" aria-describedby="polis-tip">…help-circle…</button>
@@ -34,7 +33,7 @@ document.addEventListener('focusout', tooltipReset);`;
    data-theme   dark (default) | light (on dark surfaces such as the sidebar)
    data-arrow   bottom-center (default: tooltip above) | bottom-left | bottom-right | top-center (below) |
                 left (tooltip on the right) | right (tooltip on the left) | none (above, no arrow)
-                The arrow side names where the arrow sits, as in Figma. Pick the one that keeps the tooltip on screen.
+                The arrow side names where the arrow sits. Pick the one that keeps the tooltip on screen.
    data-state="open" on .sb-tooltip-wrap forces it open in static mockups and docs only. */
 
 .sb-tooltip-wrap { position: relative; display: inline-flex; }
@@ -58,7 +57,7 @@ document.addEventListener('focusout', tooltipReset);`;
 .sb-tooltip-wrap:hover:not(:has(:focus-visible), [data-state="open"]) > .sb-tooltip { transition-delay: 300ms; }
 .sb-tooltip-wrap[data-dismissed] > .sb-tooltip { visibility: hidden; opacity: 0; }
 
-/* Arrow: 16 x 6 in the fill colour. Corner arrows sit 14 from the edge (centre of Figma's 28 px frame). */
+/* Arrow: 16 x 6 in the fill colour. Corner arrows sit 14 from the edge (centre of a 28 px corner). */
 .sb-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; translate: -50% 0; width: 16px; height: 6px; background: var(--tip-bg); clip-path: polygon(0 0, 100% 0, 50% 100%); }
 .sb-tooltip[data-arrow="none"] { --tip-gap: 4px; }
 .sb-tooltip[data-arrow="none"]::after { content: none; }
@@ -143,13 +142,9 @@ ${indent(help({ id: 'tp-help', text: TEXT, arrow: 'bottom-left' }), 4)}
     slug: 'tooltip',
     name: 'Tooltip and help icon',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'A small label that appears on hover or keyboard focus to explain an element or show text that was cut off. The help icon is the standard trigger after a label or inside an input.',
-    figma: [
-      { label: 'Tooltip', url: `${FIGMA}1052-489` },
-      { label: 'Help icon', url: `${FIGMA}1054-13` },
-    ],
     css: CSS,
     cssFile: 'tooltip.css',
     sections: [
@@ -210,7 +205,7 @@ ${indent(help({ id: 'tp-help', text: TEXT, arrow: 'bottom-left' }), 4)}
         blocks: [
           {
             type: 'table',
-            head: ['Component', 'Property', 'Figma values', 'Code'],
+            head: ['Component', 'Property', 'Values', 'Code'],
             rows: [
               ['Tooltip', 'Theme', 'Dark, Light', '`data-theme="light"`; Dark is the default'],
               ['Tooltip', 'Supporting text', 'True, False', '`<span class="sb-tooltip-text">`'],
@@ -219,7 +214,6 @@ ${indent(help({ id: 'tp-help', text: TEXT, arrow: 'bottom-left' }), 4)}
               ['Help icon', 'Tooltip', 'Top no arrow, Top arrow, Top left, Top right, Bottom, Left, Right', '`data-arrow`: `none`, `bottom-center`, `bottom-left`, `bottom-right`, `top-center`, `right`, `left`'],
             ],
           },
-          { type: 'note', tone: 'info', text: 'Figma names the Tooltip arrow by the side it sits on, and the Help icon tooltip by where the tooltip goes. Help icon "Left" (tooltip to the left) is `data-arrow="right"`.' },
         ],
       },
       {

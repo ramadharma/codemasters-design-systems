@@ -2,18 +2,15 @@
 name: Tabs
 slug: tabs
 category: Components
-status: In progress
+status: Ready
 version: 0.1.0
 updated: 2026-10-08
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems
 requires: tokens.css
 ---
 
 # Tabs
 
 Switch between panels of content in one place: the sections of a claim, the views of a card or the parts of a settings page. Four types: Folder, Underline, Segmented and Vertical.
-
-- Figma: [Design system file (no Tabs component yet)](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
 
 ## Usage
 
@@ -438,7 +435,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 
 ```css
 /* Tabs, Codemasters Design System
-   No Figma component yet: built from DESIGN.md Navigation (Tabs, Mini tab). Needs tokens.css; tabs.js for clicks and keys.
+   Needs tokens.css; tabs.js for clicks and keys.
 
    <div class="sb-tabs" data-type="folder" role="tablist" aria-label="Detail klaim">
      <button class="sb-tab" type="button" role="tab" id="klaim-t1" aria-selected="true" aria-controls="klaim-p1" tabindex="0">…icon… Informasi Klaim</button>

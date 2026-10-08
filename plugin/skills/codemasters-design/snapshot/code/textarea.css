@@ -1,5 +1,4 @@
 /* Textarea input field, Codemasters Design System
-   Figma: _Textarea input field base (1238-80), Textarea input field (1238-278)
    Needs tokens.css. Label and hint rules are the same as input-field.css; loading both is safe.
 
    <div class="sb-field">
@@ -17,7 +16,7 @@
    Disabled     the disabled attribute.
    data-state="focus" on .sb-textarea forces Focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }

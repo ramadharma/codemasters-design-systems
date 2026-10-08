@@ -2,7 +2,6 @@
 // Swatches are generated from DS.scales, so the page, tokens.css and the export never disagree.
 (() => {
   const { scales, steps, tokenGroupCss } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // WCAG contrast, used to say which text colour each swatch can carry.
   const lum = hex => {
@@ -57,13 +56,9 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
     slug: 'colors',
     name: 'Colors',
     category: 'Foundations',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-07',
     description: 'Thirteen colour families of 11 steps each. Every colour on screen is one of these tokens, never a free-picked hex.',
-    figma: [
-      { label: 'Colors', url: `${FIGMA}1525-271581` },
-      { label: 'Notes and documentation', url: `${FIGMA}1525-274384` },
-    ],
     sections: [
       {
         id: 'principles',
@@ -73,7 +68,7 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
           {
             type: 'list',
             items: [
-              '**Define before you design.** Never pick a colour with the colour picker. Pick a colour style (Figma) or a token (code). Free-picked colours give inconsistent screens and developers cannot tell which colour to use.',
+              '**Define before you design.** Never pick a colour with the colour picker. Pick a colour token. Free-picked colours give inconsistent screens and developers cannot tell which colour to use.',
               '**Full scales from the start.** Every family has 11 steps (25–900), also when a screen needs only two of them.',
               '**Data first, chrome second.** Colour is reserved for status, data series and the one primary action.',
             ],
@@ -247,24 +242,6 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
               { kind: 'dont', html: '<span class="sb-badge" data-size="sm" style="background: #e8f8ee; color: #2f9e5b">Disetujui: Sembuh</span>', text: 'A hex from the colour picker. Close to the scale, but not on it, and it fails AA.' },
             ],
           },
-        ],
-      },
-      {
-        id: 'figma',
-        title: 'Changing colours in Figma',
-        blocks: [
-          { type: 'p', text: 'Colours are Figma styles / variables. A change to a style cascades to every component and design that uses it.' },
-          {
-            type: 'list',
-            ordered: true,
-            items: [
-              'Open the style: click the edit icon on the colour style, or select any layer that uses it and click **Edit style**.',
-              'Change the colour properties.',
-              'Repeat for every style that changes, in one pass, so none is missed. Large files take time to update.',
-              'To change the brand colour, edit the **Brand** styles. Do not switch components to another family one by one.',
-            ],
-          },
-          { type: 'p', text: 'When a Figma colour changes, update `data/foundations.js` (the scales) in the same change; this page and `tokens.css` follow.' },
         ],
       },
       { id: 'tokens', title: 'Tokens', blocks: [{ type: 'code', lang: 'css', filename: 'tokens.css (colour)', code: tokenGroupCss('Colour') }] },

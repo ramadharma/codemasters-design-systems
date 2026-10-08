@@ -2,7 +2,6 @@
 // Built on native <input type="range">: keyboard, touch and the slider role come from the browser.
 (() => {
   const { esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // ---- Script: keeps the two handles apart, then mirrors the values into the CSS positions, labels and aria-valuetext.
   function sliderText(root, value) {
@@ -37,7 +36,7 @@ ${[sliderText, sliderSync, sliderInput].map(f => f.toString().replace(/^  /gm, '
 document.addEventListener('input', sliderInput);`;
 
   const CSS = `/* Slider, Codemasters Design System
-   Figma: Slider (1086-534). Needs tokens.css and slider.js. Native <input type="range">, one per handle.
+   Needs tokens.css and slider.js. Native <input type="range">, one per handle.
 
    <div class="sb-slider" data-label="bottom" data-suffix="%" role="group" aria-label="Skor FWA"
         style="--lo: 20%; --hi: 80%">
@@ -55,9 +54,9 @@ document.addEventListener('input', sliderInput);`;
    data-state="hover" | "focus" on an input forces a handle state in static mockups and docs only. */
 
 .sb-slider { --lo: 0%; --hi: 50%; width: 100%; }
-/* Space for the labels, so they never cover the content around the slider. Figma's floating variants are only
-   24 high and let the tooltips overhang; in code the slider reserves the room instead. */
-.sb-slider[data-label="bottom"] { padding-bottom: 32px; }          /* 8 gap + 24 label, from the handle's bottom edge (Figma: 56 high) */
+/* Space for the labels, so they never cover the content around the slider. The slider reserves
+   the room instead of letting the labels overhang. */
+.sb-slider[data-label="bottom"] { padding-bottom: 32px; }          /* 8 gap + 24 label, from the handle's bottom edge */
 .sb-slider[data-label="top-floating"] { padding-top: 44px; }       /* 34 label + 6 arrow + 4 gap */
 .sb-slider[data-label="bottom-floating"] { padding-bottom: 44px; }
 
@@ -165,10 +164,9 @@ ${slider({ ...opts, id, labelledby: `${id}-label` }).replace(/^/gm, '  ')}
     slug: 'slider',
     name: 'Slider',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-07',
     description: 'Picks a value or a range by dragging, when the position matters more than the exact number: a confidence threshold, an amount range.',
-    figma: [{ label: 'Slider', url: `${FIGMA}1086-534` }],
     css: CSS,
     cssFile: 'slider.css',
     sections: [
@@ -218,7 +216,7 @@ ${slider({ ...opts, id, labelledby: `${id}-label` }).replace(/^/gm, '  ')}
             type: 'table',
             head: ['#', 'Part', 'Spec'],
             rows: [
-              ['1', 'Track', '8 high, full width (320 in Figma), `gray-200`, radius 4'],
+              ['1', 'Track', '8 high, full width (320 in examples), `gray-200`, radius 4'],
               ['2', 'Selected range', '`brand-600`, radius 4, between the handles (from 0 for a single slider)'],
               ['3', 'Handle', '24 px circle, `white`, 1 px `brand-600` border, `shadow-md`, centred on the value'],
               ['4', 'Label', 'Optional. Bottom: Text md / Medium `gray-900`, 8 below the handle. Floating: Light tooltip with an arrow, 4 from the handle'],
@@ -232,7 +230,7 @@ ${slider({ ...opts, id, labelledby: `${id}-label` }).replace(/^/gm, '  ')}
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Left control', '0 % to 75 %', 'First `<input type="range">` value; leave it out for a single slider'],
               ['Right control', '25 % to 100 %', 'Last `<input type="range">` value'],

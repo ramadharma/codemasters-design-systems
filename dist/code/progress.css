@@ -1,5 +1,5 @@
 /* Progress bar and progress circle, Codemasters Design System
-   Figma: Progress bar (1085-57382), Progress circle (1154-89981). Needs tokens.css. progress.js sets the value.
+   Needs tokens.css. progress.js sets the value.
 
    <div class="sb-progress" data-label="right" role="progressbar" aria-label="Unggah dokumen klaim"
         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--value: 40">

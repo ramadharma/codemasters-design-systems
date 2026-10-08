@@ -2,19 +2,15 @@
 name: Button group
 slug: button-group
 category: Components
-status: In Figma
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-10171
 requires: tokens.css
 ---
 
 # Button group
 
 A row of joined buttons for related, equal-weight choices: a view switch (Hari, Minggu, Bulan), pagination arrows or a small set of tools.
-
-- Figma: [Button group](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-10171)
-- Figma: [_Button group base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-9312)
 
 ## Usage
 
@@ -35,7 +31,7 @@ A row of joined buttons for related, equal-weight choices: a view switch (Hari, 
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Icon (group) | False, Leading, Only | Label only, `<svg>` before the label, or `data-icon="only"` with `aria-label` per segment |
 | Icon (segment) | False, Leading, Only, Dot | Dot: `<span class="sb-btn-group-dot">` before the label |
@@ -119,7 +115,7 @@ For status filters. The dot stays `success-500` in every state except Disabled (
 | Focused | `gray-50` / `gray-700` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
 | Disabled | `white` / `gray-300` / `gray-300` | `gray-50` / `gray-300` / `gray-300` |
 
-> **Note:** Figma's Focused state is only a `gray-50` fill, the same as Hover. Code adds the 2 px `brand-500` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
+> **Note:** Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-500` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
 
 ## Switch, toggle or actions
 
@@ -249,7 +245,6 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 
 ```css
 /* Button group, Codemasters Design System
-   Figma: Shared components / Button group (node 1046-10171), _Button group base (node 1046-9312)
    Needs tokens.css.
 
    Switch, one choice at a time (arrow keys move the choice):

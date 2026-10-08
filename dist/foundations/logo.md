@@ -5,15 +5,12 @@ category: Foundations
 status: In progress
 version: 0.1.0
 updated: 2026-10-07
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems
 requires: tokens.css
 ---
 
 # Logo
 
 One system, three companies. Codemasters is the parent of Sembuh AI and Flipmaster; company materials carry their own logo with "Powered by Codemasters" underneath.
-
-- Figma: [Design system file](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
 
 ## Brand architecture
 

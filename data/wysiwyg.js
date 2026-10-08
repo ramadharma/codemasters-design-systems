@@ -2,7 +2,6 @@
 // Figma nodes 1705-454356 (_WYSIWYG editor icon), 1705-454581 (WYSIWYG toolbar), 1706-438373 (WYSIWYG tooltip).
 (() => {
   const { icon, esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // Fixed order (DESIGN.md): Bold, Italic, H1, H2, Quote, Link, Photo, List bullet, List numbers.
   const TOOLS = [
@@ -96,7 +95,6 @@ document.addEventListener('change', wysSelect);
 document.addEventListener('selectionchange', wysSelection);`;
 
   const CSS = `/* WYSIWYG editor, Codemasters Design System
-   Figma: _WYSIWYG editor icon (1705-454356), WYSIWYG toolbar (1705-454581), WYSIWYG tooltip (1706-438373)
    Needs tokens.css. Behaviour comes from the app's editor (reference: wysiwyg.js).
 
    <div class="sb-wys">
@@ -129,7 +127,7 @@ document.addEventListener('selectionchange', wysSelection);`;
 .sb-wys-select:focus-visible { outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-select { width: 100%; }
 .sb-wys-icons { display: flex; flex-wrap: wrap; gap: 4px; }
-.sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* Figma spec: 28 px icons, gap 2 */
+.sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* 28 px icons, gap 2 */
 
 /* Editor icon: 32 x 32, 20 px glyph, radius 8 like every icon button of 32+. Light theme on the white toolbar. */
 .sb-wys-btn {
@@ -246,14 +244,9 @@ ${['left', 'center', 'right'].map(a => `<div class="sb-wys-bubble" style="positi
     slug: 'wysiwyg',
     name: 'WYSIWYG editor',
     category: 'Components',
-    status: 'In Figma',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'Rich-text formatting for long text a user writes or edits: the AI summary ("Edit Ringkasan") and advisor notes. Use a plain Textarea when formatting is not needed.',
-    figma: [
-      { label: 'Editor icon', url: `${FIGMA}1705-454356` },
-      { label: 'Toolbar', url: `${FIGMA}1705-454581` },
-      { label: 'Tooltip', url: `${FIGMA}1706-438373` },
-    ],
     css: CSS,
     cssFile: 'wysiwyg.css',
     sections: [
@@ -312,7 +305,7 @@ ${['left', 'center', 'right'].map(a => `<div class="sb-wys-bubble" style="positi
         blocks: [
           {
             type: 'table',
-            head: ['Component', 'Property', 'Figma values', 'Code'],
+            head: ['Component', 'Property', 'Values', 'Code'],
             rows: [
               ['Editor icon', 'Type', 'Bold, Italic, H1, H2, Quote, Link, Photo, List bullet, List numbers', '`data-cmd` + `aria-label`'],
               ['Editor icon', 'Active', 'True, False', '`aria-pressed="true"`'],
@@ -337,7 +330,7 @@ ${['left', 'center', 'right'].map(a => `<div class="sb-wys-bubble" style="positi
               ['Dark (in the tooltip)', '`gray-300`', '`gray-600` fill, `white` glyph'],
             ],
           },
-          { type: 'p', text: 'Active means the format is applied to the current selection (`aria-pressed="true"`). Every icon has an `aria-label` and a tooltip with its name and, where one works, the shortcut: "Bold · Ctrl+B". Hover adds a `gray-50` fill so the icon reads as a button; Figma does not define hover yet.' },
+          { type: 'p', text: 'Active means the format is applied to the current selection (`aria-pressed="true"`). Every icon has an `aria-label` and a tooltip with its name and, where one works, the shortcut: "Bold · Ctrl+B". Hover adds a `gray-50` fill so the icon reads as a button.' },
         ],
       },
       {
@@ -383,7 +376,7 @@ ${['left', 'center', 'right'].map(a => `<div class="sb-wys-bubble" style="positi
               ['Lists', 'Indented 24'],
             ],
           },
-          { type: 'p', text: 'Blocks sit 8 apart. Quote, link and list styles are not in Figma yet; they follow the existing type and colour rules.' },
+          { type: 'p', text: 'Blocks sit 8 apart. Quote, link and list styles follow the existing type and colour rules.' },
         ],
       },
       {

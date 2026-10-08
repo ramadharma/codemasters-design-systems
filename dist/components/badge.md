@@ -2,20 +2,15 @@
 name: Badge
 slug: badge
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-3819
 requires: tokens.css
 ---
 
 # Badge
 
 A small, non-interactive label for a status, category or count. Status pills, claim type tags, AI confidence and filter chips are all badges.
-
-- Figma: [Badge](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-3819)
-- Figma: [_Badge base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-28)
-- Figma: [Badge group](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-8088)
 
 ## Usage
 
@@ -35,7 +30,7 @@ A small, non-interactive label for a status, category or count. Status pills, cl
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Size | `sm`, `md`, `lg` | `data-size="sm"` |
 | Icon | False, Dot, Country, Avatar, X close, Icon left, Icon right, Only | `data-icon="dot"`, `"country"`, `"avatar"`, `"x-close"`, `"icon-left"`, `"icon-right"`, `"only"` |
@@ -96,7 +91,7 @@ A small, non-interactive label for a status, category or count. Status pills, cl
 | X close | 12 px × button that removes the badge | 4 | right 6 |
 | Only | 12 px icon, no label; needs an `aria-label` | — | padding 4 |
 
-> **Note:** Figma gives the paddings for `sm` only (and Dot at `md`). The CSS keeps the same rule for every size: the icon side is 2 px tighter than the text side, and a flag or avatar sits as far from the edge as from the top and bottom.
+> **Note:** Every size follows the same padding rule: the icon side is 2 px tighter than the text side, and a flag or avatar sits as far from the edge as from the top and bottom.
 
 ### Chips (X close)
 
@@ -121,7 +116,7 @@ A filter chip is a Gray `sm` badge with X close. The × button is the only inter
 
 Every colour uses the same steps of its scale: fill `50`, text `700`, dot and icons `500`. **Gray** is the exception: fill `gray-100`, text `gray-700`, dot `gray-500`.
 
-| Figma Color | Token family | Use in the app |
+| Color | Token family | Use in the app |
 | --- | --- | --- |
 | Gray | `gray` (fill 100) | Neutral info, Baru, chips |
 | Primary | `brand` | Selected filters, Sembuh AI labels |
@@ -137,7 +132,7 @@ Every colour uses the same steps of its scale: fill `50`, text `700`, dot and ic
 | Rosé | `rose` | Not used yet |
 | Orange | `orange` | Perlu Revisi, Potensi Duplikat, Dental |
 
-In Figma the fill uses `mix-blend-mode: multiply`, so it tints on coloured backgrounds. On white it is the plain `50` colour, which is what the CSS draws.
+The fill is the plain `50` colour of the family.
 
 ## Status pills
 
@@ -194,7 +189,7 @@ A badge plus a short message in one pill, for announcements and inline notices (
 </a>
 ```
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Badge | Leading, Trailing | `data-badge="trailing"` (omit for Leading) |
 | Icon | True, False | 12 px arrow-right `<svg>` at the end |
@@ -276,7 +271,6 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 
 ```css
 /* Badge, Codemasters Design System
-   Figma: Shared components / Badges: _Badge base (1046-28), Badge (1046-3819), Badge group (1046-8088)
    Needs tokens.css.
 
    <span class="sb-badge" data-size="sm" data-color="success">Disetujui: Sembuh</span>
@@ -316,7 +310,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 .sb-badge[data-size="md"] { --bdg-h: 24px; --bdg-px: 10px; --bdg-type: var(--text-sm); }
 .sb-badge[data-size="lg"] { --bdg-h: 28px; --bdg-px: 12px; --bdg-type: var(--text-sm); }
 
-/* Icon variants. Figma gives the sm values; md and lg follow the same rule. */
+/* Icon variants. md and lg follow the sm rule. */
 .sb-badge[data-icon="dot"], .sb-badge[data-icon="icon-left"] { padding-inline-start: calc(var(--bdg-px) - 2px); }
 .sb-badge[data-icon="icon-right"], .sb-badge[data-icon="x-close"] { padding-inline-end: calc(var(--bdg-px) - 2px); }
 .sb-badge[data-icon="dot"], .sb-badge[data-icon="country"], .sb-badge[data-icon="avatar"] { gap: 6px; }

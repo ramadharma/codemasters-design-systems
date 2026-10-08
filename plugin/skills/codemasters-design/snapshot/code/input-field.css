@@ -1,5 +1,4 @@
 /* Input field, Codemasters Design System
-   Figma: Shared components / Input fields: _Input field base (1090-57627), Input field (1090-57817)
    Needs tokens.css.
 
    <div class="sb-field">
@@ -15,7 +14,7 @@
    Disabled                 the disabled attribute on the input. A disabled field is never in error.
    data-state="focus"       on .sb-input forces Focused in static mockups and docs only. */
 
-/* Label, control and hint sit 6 apart: Figma component spec (DESIGN.md Input field anatomy). */
+/* Label, control and hint sit 6 apart. */
 .sb-field { display: grid; gap: 6px; }
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }

@@ -1,7 +1,6 @@
 // Foundations: Shadows and blur. Source: DESIGN.md §4.5–4.6, Figma Foundations → Shadows & blurs.
 (() => {
   const { tokens, tokenGroupCss } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
   const SHADOWS = ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'];
   const BLURS = [['sm', 8], ['md', 16], ['lg', 24], ['xl', 40]];
 
@@ -24,13 +23,9 @@ ${BLURS.map(([b]) => `<div class="f-blur is-${tone}" style="backdrop-filter: var
     slug: 'shadows',
     name: 'Shadows & Blur',
     category: 'Foundations',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-07',
     description: 'Seven shadows and four background blurs that put elements on the z-axis. The higher the layer, the bigger the shadow.',
-    figma: [
-      { label: 'Shadows', url: `${FIGMA}1532-352912` },
-      { label: 'Blurs', url: `${FIGMA}1532-352913` },
-    ],
     sections: [
       {
         id: 'shadows',
@@ -40,8 +35,8 @@ ${BLURS.map(([b]) => `<div class="f-blur is-${tone}" style="backdrop-filter: var
           { type: 'example', html: shadowCards, code: false },
           {
             type: 'table',
-            head: ['Token', 'Figma', 'CSS value'],
-            rows: SHADOWS.map(s => [`\`--shadow-${s}\``, `\`Shadow/${s}\``, `\`${tokens[`--shadow-${s}`]}\``]),
+            head: ['Token', 'CSS value'],
+            rows: SHADOWS.map(s => [`\`--shadow-${s}\``, `\`${tokens[`--shadow-${s}`]}\``]),
           },
         ],
       },
@@ -68,15 +63,15 @@ ${BLURS.map(([b]) => `<div class="f-blur is-${tone}" style="backdrop-filter: var
         id: 'blur',
         title: 'Background blur',
         blocks: [
-          { type: 'p', text: 'A background blur also lifts an element: it blurs what is behind a translucent surface. Use it as `backdrop-filter`. Figma\'s blur radius is twice the CSS value.' },
+          { type: 'p', text: 'A background blur also lifts an element: it blurs what is behind a translucent surface. Use it as `backdrop-filter`.' },
           { type: 'h3', id: 'blur-light', text: 'Light' },
           { type: 'example', html: blurs('light'), code: false },
           { type: 'h3', id: 'blur-dark', text: 'Dark' },
           { type: 'example', html: blurs('dark'), code: false },
           {
             type: 'table',
-            head: ['Token', 'Figma', 'CSS value'],
-            rows: BLURS.map(([b, r]) => [`\`--blur-${b}\``, `\`Background blur/${b}\`, radius ${r}`, `\`${tokens[`--blur-${b}`]}\``]),
+            head: ['Token', 'CSS value'],
+            rows: BLURS.map(([b]) => [`\`--blur-${b}\``, `\`${tokens[`--blur-${b}`]}\``]),
           },
           {
             type: 'list',

@@ -1,16 +1,14 @@
 // Button: spec, reference CSS and examples. Source: DESIGN.md §6 Buttons and Figma node 1038-34411.
 (() => {
   const { icon, esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   const CSS = `/* Button, Codemasters Design System
-   Figma: Shared components / Buttons / Button (node 1038-34411)
    Needs tokens.css.
 
    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
 
    data-hierarchy    primary | secondary-gray | secondary-color | tertiary-color | tertiary-gray | link-color | link-gray
-   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only, not in Figma yet)
+   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only)
    data-destructive  present = Destructive=True
    data-icon="only"  square icon-only button; add aria-label
    data-state        hover | focus. Forces a state in static mockups and docs. Never ship it in live UI:
@@ -186,14 +184,10 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
     slug: 'button',
     name: 'Button',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description:
       'Runs an action on the current page: save, submit, open a dialog, start an analysis. Seven hierarchies tell the user which action matters most.',
-    figma: [
-      { label: 'Button', url: `${FIGMA}1038-34411` },
-      { label: 'Notes and documentation', url: `${FIGMA}1532-357715` },
-    ],
     css: CSS,
     cssFile: 'button.css',
     sections: [
@@ -201,7 +195,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
         id: 'playground',
         title: 'Playground',
         blocks: [
-          { type: 'p', text: 'Set any combination of Figma properties and copy the HTML. Hover and Focused are forced here with `data-state` so you can inspect them; in live UI they come from the browser.' },
+          { type: 'p', text: 'Set any combination of properties and copy the HTML. Hover and Focused are forced here with `data-state` so you can inspect them; in live UI they come from the browser.' },
           {
             type: 'playground',
             initial: { h: 'primary', size: 'md', icon: 'none', state: 'default', label: 'Simpan', destructive: false },
@@ -256,10 +250,10 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
         id: 'properties',
         title: 'Properties',
         blocks: [
-          { type: 'p', text: 'Each Figma property maps to one attribute, so a Figma file, a slide and the code describe a button with the same words.' },
+          { type: 'p', text: 'Each property maps to one attribute, so a slide, a spec and the code describe a button with the same words.' },
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Hierarchy', 'Primary, Secondary gray, Secondary color, Tertiary color, Tertiary gray, Link color, Link gray', '`data-hierarchy="primary"` to `"link-gray"`'],
               ['Size', '`sm`, `md`, `lg`, `xl`, `2xl` (`xs` is code-only for now)', '`data-size="md"`'],
@@ -310,7 +304,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
               ['`2xl`', '60', '`16 28`', '60 × 60, padding 18', 'Text lg / Semibold', '24', '12'],
             ],
           },
-          { type: 'note', tone: 'info', text: '`xs` is new in code and not in Figma yet. Padding `6 12` uses the control padding exception (Grids & Spacing): it lands the height on 32. Add the variant to the Figma Button set before designers use it.' },
+          { type: 'note', tone: 'info', text: '`xs` is for dense desktop UI only. Padding `6 12` uses the control padding exception (Grids & Spacing): it lands the height on 32.' },
           { type: 'h3', id: 'choosing-a-size', text: 'Choosing a size' },
           {
             type: 'list',
@@ -468,7 +462,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
           {
             type: 'note',
             tone: 'warning',
-            text: '**Open decision.** Primary Default (`white` on `brand-500`) is 3.62:1, below the 4.5:1 that DESIGN.md §8 requires for button text. Options: move Primary Default to `brand-600` (5.06:1) and Hover to `brand-700`, or record an exception. This page documents the current Figma spec until the design team decides.',
+            text: '**Open decision.** Primary Default (`white` on `brand-500`) is 3.62:1, below the 4.5:1 that DESIGN.md §8 requires for button text. Options: move Primary Default to `brand-600` (5.06:1) and Hover to `brand-700`, or record an exception. This page documents the current spec until the design team decides.',
           },
         ],
       },

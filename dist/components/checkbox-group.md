@@ -2,19 +2,15 @@
 name: Checkbox group
 slug: checkbox-group
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=124-2838
 requires: tokens.css
 ---
 
 # Checkbox group
 
 Selectable cards: a list of bordered cards where the whole card is the control. Use it when each option needs a description or a visual, such as a plan, a payment method or an assignee.
-
-- Figma: [Checkbox group item](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=124-2838)
-- Figma: [Checkbox group](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1142-87213)
 
 ## Usage
 
@@ -44,7 +40,7 @@ Selectable cards: a list of bordered cards where the whole card is the control. 
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Selected | True, False | `checked` on the input; the card follows with `:has()` |
 | Size | `sm`, `md` | `data-size` on `.sb-cg-item` |
@@ -339,7 +335,6 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 
 ```css
 /* Checkbox group (selectable cards), Codemasters Design System
-   Figma: Checkbox group item (124-2838), Checkbox group (1142-87213).
    Needs tokens.css and checkbox.css (the control). Avatar cards also use avatar.css, Payment icon cards button.css, Icon cards badge.css.
 
    <div class="sb-choices" role="radiogroup" aria-labelledby="lap-label">
@@ -397,7 +392,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 .sb-cg-icon svg { width: 16px; height: 16px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon { width: 40px; height: 40px; margin-block: -4px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon svg { width: 20px; height: 20px; }
-/* Card logo tile, 46 x 32. Real brand logos come from Figma's Payment method icon set. */
+/* Card logo tile, 46 x 32. Use the real brand logos. */
 .sb-cg-pay { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 46px; height: 32px; border: 1px solid var(--gray-100); border-radius: var(--radius-sm); background: var(--white); color: var(--gray-700); }
 .sb-cg-pay svg { width: 20px; height: 20px; }
 

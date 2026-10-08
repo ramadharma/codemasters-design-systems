@@ -114,7 +114,6 @@ ${TYPE.map(([t, px, lh, w]) => `<div class="f-type-row"><div class="f-type-meta"
     status: 'In progress',
     updated: '2026-10-07',
     description: 'Pitch decks and presentations for Codemasters, Sembuh AI and Flipmaster: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.',
-    figma: [{ label: 'Design system file', url: DS.meta.figma }],
     sections: [
       {
         id: 'overview',

@@ -7,7 +7,6 @@
     name: 'Codemasters Design System',
     version: '0.1.0',
     updated: '2026-10-06',
-    figma: 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems',
     intro:
       'The shared visual language of Codemasters and its companies, Sembuh AI and Flipmaster: web apps, websites, mobile, slides, documents and posters. ' +
       'Every value is a token and every component documents its variants, states and rules, so each surface ' +

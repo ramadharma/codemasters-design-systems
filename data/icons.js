@@ -34,10 +34,9 @@ ${[['gray-400', 'Inactive'], ['gray-500', 'Default in inputs'], ['brand-600', 'A
     slug: 'icons',
     name: 'Icons',
     category: 'Foundations',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-07',
     description: 'Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour of their text, so one file serves every state.',
-    figma: [{ label: 'Design system file', url: meta.figma }],
     sections: [
       {
         id: 'style',
@@ -49,7 +48,7 @@ ${[['gray-400', 'Inactive'], ['gray-500', 'Default in inputs'], ['brand-600', 'A
               '**Outline, Feather style.** Drawn on a 24 × 24 grid with a 2 px round stroke, which renders at 1.67 px when the icon is 20 px.',
               '**Sizes 12, 16, 20, 24.** 20 is the default in buttons, inputs and menus; 16 in small controls and badges; 24 in large buttons and empty states.',
               '**Colour = text colour.** Icons use `currentColor`, so they follow the label next to them and every state change.',
-              'Exported from Figma as SVG into `public/assets/`. Do not mix in filled or two-tone icons from other sets.',
+              'SVG files in `public/assets/`. Do not mix in filled or two-tone icons from other sets.',
             ],
           },
           { type: 'h3', id: 'sizes', text: 'Sizes' },
@@ -86,7 +85,7 @@ ${[['gray-400', 'Inactive'], ['gray-500', 'Default in inputs'], ['brand-600', 'A
         id: 'library',
         title: 'Library',
         blocks: [
-          { type: 'p', text: `The ${iconNames.length} icons used in this documentation. Click one to copy its name. The full set lives in the Figma file.` },
+          { type: 'p', text: `The ${iconNames.length} icons used in this documentation. Click one to copy its name.` },
           { type: 'example', html: gallery, code: false },
         ],
       },

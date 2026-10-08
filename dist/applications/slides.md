@@ -5,15 +5,12 @@ category: Applications
 status: In progress
 version: 0.1.0
 updated: 2026-10-07
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems
 requires: tokens.css
 ---
 
 # Slides
 
 Pitch decks and presentations for Codemasters, Sembuh AI and Flipmaster: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.
-
-- Figma: [Design system file](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
 
 ## Overview
 

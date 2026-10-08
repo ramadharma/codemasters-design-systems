@@ -2,19 +2,15 @@
 name: Button
 slug: button
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1038-34411
 requires: tokens.css
 ---
 
 # Button
 
 Runs an action on the current page: save, submit, open a dialog, start an analysis. Seven hierarchies tell the user which action matters most.
-
-- Figma: [Button](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1038-34411)
-- Figma: [Notes and documentation](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-357715)
 
 ## Usage
 
@@ -38,9 +34,9 @@ Use a button for an action on the current page. Link hierarchies exist for links
 
 ## Properties
 
-Each Figma property maps to one attribute, so a Figma file, a slide and the code describe a button with the same words.
+Each property maps to one attribute, so a slide, a spec and the code describe a button with the same words.
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Hierarchy | Primary, Secondary gray, Secondary color, Tertiary color, Tertiary gray, Link color, Link gray | `data-hierarchy="primary"` to `"link-gray"` |
 | Size | `sm`, `md`, `lg`, `xl`, `2xl` (`xs` is code-only for now) | `data-size="md"` |
@@ -115,7 +111,7 @@ Seven levels, from the one next step (Primary) to links inside text. Primary, Se
 | `xl` | 48 | `12 20` | 48 × 48, padding 14 | Text md / Semibold | 20 | 8 |
 | `2xl` | 60 | `16 28` | 60 × 60, padding 18 | Text lg / Semibold | 24 | 12 |
 
-> **Note:** `xs` is new in code and not in Figma yet. Padding `6 12` uses the control padding exception (Grids & Spacing): it lands the height on 32. Add the variant to the Figma Button set before designers use it.
+> **Note:** `xs` is for dense desktop UI only. Padding `6 12` uses the control padding exception (Grids & Spacing): it lands the height on 32.
 
 ### Choosing a size
 
@@ -290,7 +286,7 @@ Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for bu
 | Destructive Secondary gray, Tertiary, Link | `error-700` on `white` | 6.57:1 | Passes |
 | Destructive Secondary color | `error-700` on `error-50` | 6.05:1 | Passes |
 
-> **Warning:** **Open decision.** Primary Default (`white` on `brand-500`) is 3.62:1, below the 4.5:1 that DESIGN.md §8 requires for button text. Options: move Primary Default to `brand-600` (5.06:1) and Hover to `brand-700`, or record an exception. This page documents the current Figma spec until the design team decides.
+> **Warning:** **Open decision.** Primary Default (`white` on `brand-500`) is 3.62:1, below the 4.5:1 that DESIGN.md §8 requires for button text. Options: move Primary Default to `brand-600` (5.06:1) and Hover to `brand-700`, or record an exception. This page documents the current spec until the design team decides.
 
 ## Code
 
@@ -300,13 +296,12 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 ```css
 /* Button, Codemasters Design System
-   Figma: Shared components / Buttons / Button (node 1038-34411)
    Needs tokens.css.
 
    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
 
    data-hierarchy    primary | secondary-gray | secondary-color | tertiary-color | tertiary-gray | link-color | link-gray
-   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only, not in Figma yet)
+   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only)
    data-destructive  present = Destructive=True
    data-icon="only"  square icon-only button; add aria-label
    data-state        hover | focus. Forces a state in static mockups and docs. Never ship it in live UI:

@@ -2,10 +2,9 @@
 // Figma nodes 122-3294 (_Toggle base), 1102-4208 (Toggle).
 (() => {
   const { esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   const CSS = `/* Toggle, Codemasters Design System
-   Figma: _Toggle base (122-3294), Toggle (1102-4208). Needs tokens.css. No script: it is a native checkbox.
+   Needs tokens.css. No script: it is a native checkbox.
 
    <div class="sb-toggle" data-size="sm">
      <input class="sb-toggle-input" type="checkbox" role="switch" id="notif" aria-describedby="notif-sup">
@@ -105,13 +104,9 @@
     slug: 'toggle',
     name: 'Toggle',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'An on/off switch whose change takes effect immediately, such as "Tampilkan hanya klaim saya" or a notification setting. If the choice is applied only after Save, use a Checkbox.',
-    figma: [
-      { label: 'Toggle', url: `${FIGMA}1102-4208` },
-      { label: '_Toggle base', url: `${FIGMA}122-3294` },
-    ],
     css: CSS,
     cssFile: 'toggle.css',
     sections: [
@@ -172,7 +167,7 @@
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Pressed', 'True, False', '`checked`'],
               ['Size', '`sm`, `md`', '`data-size` on `.sb-toggle`'],

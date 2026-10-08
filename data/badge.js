@@ -2,9 +2,8 @@
 // Figma nodes 1046-28 (_Badge base), 1046-3819 (Badge), 1046-8088 (Badge group).
 (() => {
   const { icon, esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
-  // Figma Color -> token family. Every colour uses fill 50, text 700, dot/icon 500; Gray uses fill 100.
+  // Badge colour -> token family. Every colour uses fill 50, text 700, dot/icon 500; Gray uses fill 100.
   const COLORS = [
     ['gray', 'gray', 'Gray'], ['primary', 'brand', 'Primary'], ['error', 'error', 'Error'], ['warning', 'warning', 'Warning'],
     ['success', 'success', 'Success'], ['blue-gray', 'blue-gray', 'Blue gray'], ['blue-light', 'blue-light', 'Blue light'],
@@ -15,7 +14,6 @@
   const family = c => COLORS.find(x => x[0] === c)[1];
 
   const CSS = `/* Badge, Codemasters Design System
-   Figma: Shared components / Badges: _Badge base (1046-28), Badge (1046-3819), Badge group (1046-8088)
    Needs tokens.css.
 
    <span class="sb-badge" data-size="sm" data-color="success">Disetujui: Sembuh</span>
@@ -55,7 +53,7 @@
 .sb-badge[data-size="md"] { --bdg-h: 24px; --bdg-px: 10px; --bdg-type: var(--text-sm); }
 .sb-badge[data-size="lg"] { --bdg-h: 28px; --bdg-px: 12px; --bdg-type: var(--text-sm); }
 
-/* Icon variants. Figma gives the sm values; md and lg follow the same rule. */
+/* Icon variants. md and lg follow the sm rule. */
 .sb-badge[data-icon="dot"], .sb-badge[data-icon="icon-left"] { padding-inline-start: calc(var(--bdg-px) - 2px); }
 .sb-badge[data-icon="icon-right"], .sb-badge[data-icon="x-close"] { padding-inline-end: calc(var(--bdg-px) - 2px); }
 .sb-badge[data-icon="dot"], .sb-badge[data-icon="country"], .sb-badge[data-icon="avatar"] { gap: 6px; }
@@ -167,15 +165,10 @@ ${GROUP_COLORS.map(c => `<span class="mx">${COLORS.find(x => x[0] === c)[2]}</sp
     slug: 'badge',
     name: 'Badge',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description:
       'A small, non-interactive label for a status, category or count. Status pills, claim type tags, AI confidence and filter chips are all badges.',
-    figma: [
-      { label: 'Badge', url: `${FIGMA}1046-3819` },
-      { label: '_Badge base', url: `${FIGMA}1046-28` },
-      { label: 'Badge group', url: `${FIGMA}1046-8088` },
-    ],
     css: CSS,
     cssFile: 'badge.css',
     sections: [
@@ -239,7 +232,7 @@ ${GROUP_COLORS.map(c => `<span class="mx">${COLORS.find(x => x[0] === c)[2]}</sp
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Size', '`sm`, `md`, `lg`', '`data-size="sm"`'],
               ['Icon', 'False, Dot, Country, Avatar, X close, Icon left, Icon right, Only', '`data-icon="dot"`, `"country"`, `"avatar"`, `"x-close"`, `"icon-left"`, `"icon-right"`, `"only"`'],
@@ -294,7 +287,7 @@ ${GROUP_COLORS.map(c => `<span class="mx">${COLORS.find(x => x[0] === c)[2]}</sp
           },
           {
             type: 'note',
-            text: 'Figma gives the paddings for `sm` only (and Dot at `md`). The CSS keeps the same rule for every size: the icon side is 2 px tighter than the text side, and a flag or avatar sits as far from the edge as from the top and bottom.',
+            text: 'Every size follows the same padding rule: the icon side is 2 px tighter than the text side, and a flag or avatar sits as far from the edge as from the top and bottom.',
           },
           { type: 'h3', id: 'chips', text: 'Chips (X close)' },
           { type: 'p', text: 'A filter chip is a Gray `sm` badge with X close. The × button is the only interactive part and says what it removes: `aria-label="Hapus Inpatient"`.' },
@@ -313,7 +306,7 @@ ${GROUP_COLORS.map(c => `<span class="mx">${COLORS.find(x => x[0] === c)[2]}</sp
           { type: 'example', html: colorMatrix, code: false },
           {
             type: 'table',
-            head: ['Figma Color', 'Token family', 'Use in the app'],
+            head: ['Color', 'Token family', 'Use in the app'],
             rows: [
               ['Gray', '`gray` (fill 100)', 'Neutral info, Baru, chips'],
               ['Primary', '`brand`', 'Selected filters, Sembuh AI labels'],
@@ -330,7 +323,7 @@ ${GROUP_COLORS.map(c => `<span class="mx">${COLORS.find(x => x[0] === c)[2]}</sp
               ['Orange', '`orange`', 'Perlu Revisi, Potensi Duplikat, Dental'],
             ],
           },
-          { type: 'p', text: 'In Figma the fill uses `mix-blend-mode: multiply`, so it tints on coloured backgrounds. On white it is the plain `50` colour, which is what the CSS draws.' },
+          { type: 'p', text: 'The fill is the plain `50` colour of the family.' },
         ],
       },
       {
@@ -368,7 +361,7 @@ ${GROUP_COLORS.map(c => `<span class="mx">${COLORS.find(x => x[0] === c)[2]}</sp
           { type: 'example', html: groupMatrix, code: false },
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Badge', 'Leading, Trailing', '`data-badge="trailing"` (omit for Leading)'],
               ['Icon', 'True, False', '12 px arrow-right `<svg>` at the end'],

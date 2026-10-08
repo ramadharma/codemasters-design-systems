@@ -1,6 +1,5 @@
 /* Dropdown menu, Codemasters Design System
-   Figma: _Dropdown list item (18-319), _Dropdown list header (1050-40224), _Dropdown menu base (1050-109778),
-   Dropdown (1050-146925), Dropdown menu (1050-105632). Needs tokens.css and dropdown-menu.js;
+   Needs tokens.css and dropdown-menu.js;
    the Button trigger also needs button.css.
 
    <div class="sb-menu-wrap">

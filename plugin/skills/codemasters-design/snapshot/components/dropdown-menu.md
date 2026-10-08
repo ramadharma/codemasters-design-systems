@@ -2,21 +2,15 @@
 name: Dropdown menu
 slug: dropdown-menu
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1050-146925
 requires: tokens.css
 ---
 
 # Dropdown menu
 
 An action menu opened from a button, a row-actions icon or the account avatar. For choosing a value in a form, use Input dropdown.
-
-- Figma: [Dropdown](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1050-146925)
-- Figma: [Dropdown menu](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1050-105632)
-- Figma: [List item](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=18-319)
-- Figma: [List header](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1050-40224)
 
 ## Usage
 
@@ -41,7 +35,7 @@ The panel is 240 wide, `white`, 1 px `gray-100` border, radius 8, `shadow-lg`, a
 
 ## Properties
 
-| Component | Property | Figma values | Code |
+| Component | Property | Values | Code |
 | --- | --- | --- | --- |
 | Dropdown | Type | Button, Icon, Avatar | `.sb-btn` + chevron, `.sb-menu-icon`, `.sb-menu-avatar` |
 | Dropdown | Open | True, False | `aria-expanded` on the trigger, `hidden` on the menu |
@@ -198,8 +192,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 
 ```css
 /* Dropdown menu, Codemasters Design System
-   Figma: _Dropdown list item (18-319), _Dropdown list header (1050-40224), _Dropdown menu base (1050-109778),
-   Dropdown (1050-146925), Dropdown menu (1050-105632). Needs tokens.css and dropdown-menu.js;
+   Needs tokens.css and dropdown-menu.js;
    the Button trigger also needs button.css.
 
    <div class="sb-menu-wrap">

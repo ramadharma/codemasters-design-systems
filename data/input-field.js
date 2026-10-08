@@ -2,10 +2,8 @@
 // Figma nodes 1090-57627 (_Input field base), 1090-57817 (Input field).
 (() => {
   const { icon, esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   const CSS = `/* Input field, Codemasters Design System
-   Figma: Shared components / Input fields: _Input field base (1090-57627), Input field (1090-57817)
    Needs tokens.css.
 
    <div class="sb-field">
@@ -21,7 +19,7 @@
    Disabled                 the disabled attribute on the input. A disabled field is never in error.
    data-state="focus"       on .sb-input forces Focused in static mockups and docs only. */
 
-/* Label, control and hint sit 6 apart: Figma component spec (DESIGN.md Input field anatomy). */
+/* Label, control and hint sit 6 apart. */
 .sb-field { display: grid; gap: 6px; }
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
@@ -175,13 +173,9 @@ ${[...STATES.map(([s, l]) => [l, field({ state: s, id: `st-${s}` })]), ['Destruc
     slug: 'input-field',
     name: 'Input field',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'A single-line text field with a label above, an optional hint below, and an error state that says what is wrong and how to fix it.',
-    figma: [
-      { label: 'Input field', url: `${FIGMA}1090-57817` },
-      { label: '_Input field base', url: `${FIGMA}1090-57627` },
-    ],
     css: CSS,
     cssFile: 'input-field.css',
     sections: [
@@ -247,7 +241,7 @@ ${[...STATES.map(([s, l]) => [l, field({ state: s, id: `st-${s}` })]), ['Destruc
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Type', 'Default, Leading dropdown, Trailing dropdown, Leading text, Payment input', '`data-type` on `.sb-input` (omit for Default)'],
               ['Leading icon', 'True, False', '20 px `<svg>` before the input'],

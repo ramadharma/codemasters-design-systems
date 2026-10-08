@@ -50,7 +50,6 @@ ${tile('<span class="f-logo-missing">Flipmaster logo<br><small>file not supplied
     status: 'In progress',
     updated: '2026-10-07',
     description: 'One system, three companies. Codemasters is the parent of Sembuh AI and Flipmaster; company materials carry their own logo with "Powered by Codemasters" underneath.',
-    figma: [{ label: 'Design system file', url: meta.figma }],
     css: CSS,
     cssFile: 'logo.css',
     sections: [

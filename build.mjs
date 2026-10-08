@@ -50,7 +50,6 @@ for (const [name, text] of code) write(`code/${name}`, text);
 write('index.json', JSON.stringify({
   name: DS.meta.name,
   version: DS.meta.version,
-  figma: DS.meta.figma,
   files: { system: 'DESIGN.md', principles: 'principles.md', tokensCss: 'tokens.css', tokensJson: 'tokens.json', slideTokens: 'slides.tokens.json' },
   pages: pages.map(p => ({ slug: p.slug, name: p.name, category: p.category, status: p.status, updated: p.updated, description: p.description, path: `${folder(p)}/${p.slug}.md` })),
   code: [...code.keys()].map(name => `code/${name}`),

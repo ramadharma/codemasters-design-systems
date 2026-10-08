@@ -1,5 +1,5 @@
 /* Toggle, Codemasters Design System
-   Figma: _Toggle base (122-3294), Toggle (1102-4208). Needs tokens.css. No script: it is a native checkbox.
+   Needs tokens.css. No script: it is a native checkbox.
 
    <div class="sb-toggle" data-size="sm">
      <input class="sb-toggle-input" type="checkbox" role="switch" id="notif" aria-describedby="notif-sup">

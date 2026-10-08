@@ -2,7 +2,6 @@
 // Figma nodes 1085-57382 (Progress bar), 1154-89981 (Progress circle).
 (() => {
   const { esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // ---- Updating: one function sets the fill, the ARIA value and the visible percentage together.
   function setProgress(el, value) {
@@ -18,7 +17,7 @@ ${setProgress.toString().replace(/^  /gm, '')}
 // setProgress(document.querySelector('#unggah'), 40);`;
 
   const CSS = `/* Progress bar and progress circle, Codemasters Design System
-   Figma: Progress bar (1085-57382), Progress circle (1154-89981). Needs tokens.css. progress.js sets the value.
+   Needs tokens.css. progress.js sets the value.
 
    <div class="sb-progress" data-label="right" role="progressbar" aria-label="Unggah dokumen klaim"
         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--value: 40">
@@ -137,13 +136,9 @@ ${circle({ value: 0, size: 'xs', caption: 'Analisis AI', id: 'pd-circle' })}
     slug: 'progress',
     name: 'Progress bar and circle',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'Shows how far a measurable task or value has got: an upload, AI analysis steps, quota used. For work of unknown length use a spinner instead.',
-    figma: [
-      { label: 'Progress bar', url: `${FIGMA}1085-57382` },
-      { label: 'Progress circle', url: `${FIGMA}1154-89981` },
-    ],
     css: CSS,
     cssFile: 'progress.css',
     sections: [
@@ -264,7 +259,7 @@ ${circle({ value: 0, size: 'xs', caption: 'Analisis AI', id: 'pd-circle' })}
         blocks: [
           {
             type: 'table',
-            head: ['Component', 'Property', 'Figma values', 'Code'],
+            head: ['Component', 'Property', 'Values', 'Code'],
             rows: [
               ['Progress bar', 'Progress', '0–100 % in steps of 10', '`--value` + `aria-valuenow` + label text (any integer works)'],
               ['Progress bar', 'Label', 'False, Right, Bottom, Top floating, Bottom floating', '`data-label`; leave out the label span for False'],

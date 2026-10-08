@@ -1,9 +1,8 @@
 // Foundations: Typography. Source: DESIGN.md §3, Figma Foundations → Typography.
 (() => {
   const { tokens, tokenGroupCss } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
-  // [token, Figma name, tracked]. Sizes and line heights come from the tokens.
+  // [token, style name, tracked]. Sizes and line heights come from the tokens.
   const SCALE = [
     ['display-2xl', 'Display 2xl', true], ['display-xl', 'Display xl', true], ['display-lg', 'Display lg', true], ['display-md', 'Display md', true],
     ['display-sm', 'Display sm', false], ['display-xs', 'Display xs', false],
@@ -44,13 +43,9 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
     slug: 'typography',
     name: 'Typography',
     category: 'Foundations',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-07',
     description: 'One typeface, Inter, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.',
-    figma: [
-      { label: 'Typography', url: `${FIGMA}1023-36826` },
-      { label: 'Notes and documentation', url: `${FIGMA}1518-346785` },
-    ],
     sections: [
       {
         id: 'typeface',
@@ -65,7 +60,7 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
         id: 'scale',
         title: 'Type scale',
         blocks: [
-          { type: 'p', text: 'Click a style name to copy its `font` declaration. Every style comes in four weights; the Figma style name is `{Style}/{Weight}`, for example `Text sm/Medium`.' },
+          { type: 'p', text: 'Click a style name to copy its `font` declaration. Every style comes in four weights, named `{Style}/{Weight}`, for example `Text sm/Medium`.' },
           { type: 'example', html: specimen, code: false },
           {
             type: 'table',
@@ -76,7 +71,7 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
             }),
           },
           { type: 'code', lang: 'css', filename: 'Usage', code: `.card-title { font: 600 var(--text-xl) var(--font); }\n.page-hero  { font: 600 var(--display-md) var(--font); letter-spacing: var(--tracking-display); }` },
-          { type: 'p', text: 'Figma also has `Text xl/Regular underlined` and `Text lg/Medium underlined` for inline links.' },
+          { type: 'p', text: 'There are also `Text xl/Regular underlined` and `Text lg/Medium underlined` for inline links.' },
         ],
       },
       {
@@ -106,7 +101,7 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
               '**Display vs text.** Display styles are for headings only (H1–H6), never for running copy. Text styles cover everything else: body, labels, UI elements.',
               '**Base size 16 px** (`Text md`): paragraphs, inputs, dropdown options, buttons. Dense app UI (tables, tabs, labels) steps down to `Text sm`.',
               '**Line height.** Body text 1.5–2× the size (16 → 24). The bigger the text, the tighter the ratio: display text 1–1.25× (60 → 72). The scale already does this; do not override it.',
-              '**Letter spacing.** Display md and larger use −2 %. Figma stores it as a percentage; in CSS write `letter-spacing: var(--tracking-display)` (`-0.02em`), never `%`.',
+              '**Letter spacing.** Display md and larger use −2 %. In CSS write `letter-spacing: var(--tracking-display)` (`-0.02em`), never `%`.',
               '**Numbers** use `font-variant-numeric: tabular-nums` in tables, KPIs and amounts, so digits line up.',
             ],
           },
@@ -131,7 +126,7 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
             ],
           },
           { type: 'p', text: 'Colour pairing: titles and values `gray-900`, labels `gray-500`, form labels `gray-700`.' },
-          { type: 'note', tone: 'warning', text: 'The app also uses **Micro 10 / 16** (stat card labels, step notes). It is off the scale and not in Figma. Do not use it in new work.' },
+          { type: 'note', tone: 'warning', text: 'The app also uses **Micro 10 / 16** (stat card labels, step notes). It is off the scale. Do not use it in new work.' },
         ],
       },
       {
@@ -158,24 +153,6 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
               { kind: 'dont', html: '<p style="margin: 0; font: 600 19px/23px var(--font); color: var(--gray-900)">Ringkasan klaim</p>', text: '19 / 23 set by hand. Nearly Text xl, but off the scale, so the rhythm breaks.' },
             ],
           },
-        ],
-      },
-      {
-        id: 'figma',
-        title: 'Changing text styles in Figma',
-        blocks: [
-          { type: 'p', text: 'Text styles cascade to every component that uses them.' },
-          {
-            type: 'list',
-            ordered: true,
-            items: [
-              'Open the style: click the edit-style icon next to it, or select a text layer and open it from there.',
-              'Change the property (typeface, size, line height).',
-              'Change **all** text styles in one pass, not one at a time. The **Batch Styler** plugin edits many styles at once.',
-              'Keep the sizes and line heights of the scale; change only the typeface if the brand needs it.',
-            ],
-          },
-          { type: 'p', text: 'When a Figma text style changes, update the typography tokens in `data/foundations.js` in the same change.' },
         ],
       },
       { id: 'tokens', title: 'Tokens', blocks: [{ type: 'code', lang: 'css', filename: 'tokens.css (typography)', code: tokenGroupCss('Typography') }] },

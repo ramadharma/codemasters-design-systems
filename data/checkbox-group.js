@@ -2,10 +2,8 @@
 // 1142-87213 (Checkbox group). The control inside is Checkbox and radio (checkbox.css); this file adds the card.
 (() => {
   const { esc, icon } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   const CSS = `/* Checkbox group (selectable cards), Codemasters Design System
-   Figma: Checkbox group item (124-2838), Checkbox group (1142-87213).
    Needs tokens.css and checkbox.css (the control). Avatar cards also use avatar.css, Payment icon cards button.css, Icon cards badge.css.
 
    <div class="sb-choices" role="radiogroup" aria-labelledby="lap-label">
@@ -63,7 +61,7 @@
 .sb-cg-icon svg { width: 16px; height: 16px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon { width: 40px; height: 40px; margin-block: -4px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon svg { width: 20px; height: 20px; }
-/* Card logo tile, 46 x 32. Real brand logos come from Figma's Payment method icon set. */
+/* Card logo tile, 46 x 32. Use the real brand logos. */
 .sb-cg-pay { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 46px; height: 32px; border: 1px solid var(--gray-100); border-radius: var(--radius-sm); background: var(--white); color: var(--gray-700); }
 .sb-cg-pay svg { width: 20px; height: 20px; }
 
@@ -212,13 +210,9 @@ ${STATES.map(([s, l]) => `<span class="mx">${l}</span>\n${[false, true].map(sel 
     slug: 'checkbox-group',
     name: 'Checkbox group',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'Selectable cards: a list of bordered cards where the whole card is the control. Use it when each option needs a description or a visual, such as a plan, a payment method or an assignee.',
-    figma: [
-      { label: 'Checkbox group item', url: `${FIGMA}124-2838` },
-      { label: 'Checkbox group', url: `${FIGMA}1142-87213` },
-    ],
     css: CSS,
     cssFile: 'checkbox-group.css',
     sections: [
@@ -291,7 +285,7 @@ ${STATES.map(([s, l]) => `<span class="mx">${l}</span>\n${[false, true].map(sel 
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Selected', 'True, False', '`checked` on the input; the card follows with `:has()`'],
               ['Size', '`sm`, `md`', '`data-size` on `.sb-cg-item`'],

@@ -2,7 +2,6 @@
 // Figma nodes 1096-2 (base), 1096-3156 (menu item), 1096-4590 (menu), 1096-8566 (Input dropdown).
 (() => {
   const { icon, esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // ---- Behaviour: select-only combobox (Default, Icon, Avatar, Dot) and editable combobox (Search), WAI-ARIA APG.
   function ddParts(el) {
@@ -92,8 +91,7 @@ document.addEventListener('input', ddFilter);`;
 
 
   const CSS = `/* Input dropdown, Codemasters Design System
-   Figma: _Input dropdown base (1096-2), _Input dropdown menu item (1096-3156), _Input dropdown menu (1096-4590),
-   Input dropdown (1096-8566). Needs tokens.css and input-dropdown.js. Label and hint rules match input-field.css.
+   Needs tokens.css and input-dropdown.js. Label and hint rules match input-field.css.
 
    <div class="sb-field">
      <span class="sb-field-label" id="jenis-label">Jenis klaim</span>
@@ -117,7 +115,7 @@ document.addEventListener('input', ddFilter);`;
    Disabled option: aria-disabled="true". Disabled field: disabled on the button.
    data-state="open" on .sb-dd-trigger forces Open/focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 
@@ -279,15 +277,9 @@ ${[['placeholder', 'Placeholder'], ['default', 'Default'], ['open', 'Open / focu
     slug: 'input-dropdown',
     name: 'Input dropdown',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'A select field: pick one value for a form field or a filter. For running an action from a button, use Dropdown menu.',
-    figma: [
-      { label: 'Input dropdown', url: `${FIGMA}1096-8566` },
-      { label: '_Input dropdown base', url: `${FIGMA}1096-2` },
-      { label: 'Menu item', url: `${FIGMA}1096-3156` },
-      { label: 'Menu', url: `${FIGMA}1096-4590` },
-    ],
     css: CSS,
     cssFile: 'input-dropdown.css',
     sections: [
@@ -352,7 +344,7 @@ ${[['placeholder', 'Placeholder'], ['default', 'Default'], ['open', 'Open / focu
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Type', 'Default, Icon leading, Avatar leading, Dot leading, Search', 'leading `<svg>`, `.sb-dd-avatar` or `.sb-dd-dot` before the label; Search uses `<div class="sb-dd-trigger" data-type="search">` with an `<input role="combobox">`'],
               ['State', 'Placeholder, Default (value chosen), Open/focused', '`.sb-dd-placeholder`, a chosen value, `aria-expanded="true"`. Static mockups only: `data-state="open"`'],

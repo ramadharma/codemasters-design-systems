@@ -2,7 +2,6 @@
 // Source: DESIGN.md §6 Mega input field, Figma nodes 1106-66560 (_Mega input field base), 1106-66757 (Verification code input field).
 (() => {
   const { esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // ---- Behaviour (published as verification-code.js and run by this page)
   function codeInput(e) {
@@ -60,7 +59,6 @@ document.addEventListener('keydown', codeKeydown);
 document.addEventListener('paste', codePaste);`;
 
   const CSS = `/* Verification code input field (Mega input field), Codemasters Design System
-   Figma: _Mega input field base (1106-66560), Verification code input field (1106-66757)
    Needs tokens.css and verification-code.js.
 
    <div class="sb-field">
@@ -78,7 +76,7 @@ document.addEventListener('paste', codePaste);`;
    Filled      comes from the value itself (:not(:placeholder-shown)).
    data-state="focus" on a digit forces Focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
@@ -176,13 +174,9 @@ document.addEventListener('paste', codePaste);`;
     slug: 'verification-code',
     name: 'Verification code',
     category: 'Components',
-    status: 'In Figma',
+    status: 'Ready',
     updated: '2026-10-06',
-    description: 'One large box per digit, for OTP and verification codes only. Figma calls it Mega input field.',
-    figma: [
-      { label: 'Verification code input field', url: `${FIGMA}1106-66757` },
-      { label: '_Mega input field base', url: `${FIGMA}1106-66560` },
-    ],
+    description: 'One large box per digit, for OTP and verification codes only. Also called Mega input field.',
     css: CSS,
     cssFile: 'verification-code.css',
     sections: [
@@ -246,14 +240,14 @@ document.addEventListener('paste', codePaste);`;
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Size', '`sm`, `md`, `lg`', '`data-size` on `.sb-code`'],
               ['Digits', '4, 6', 'one `<input class="sb-code-digit">` per digit; 6 adds `.sb-code-sep` after the third'],
               ['Label', 'True, False', 'label element referenced by `aria-labelledby`; without it, `aria-label` on the group'],
               ['Hint text', 'True, False', '`<p class="sb-field-hint" id>` referenced by `aria-describedby`'],
               ['State (base)', 'Placeholder, Filled, Focused, Disabled', 'empty, `value`, `:focus`, `disabled`. Static mockups only: `data-state="focus"`'],
-              ['Destructive (base, to add in Figma)', 'True, False', '`aria-invalid="true"` on every digit'],
+              ['Destructive', 'True, False', '`aria-invalid="true"` on every digit'],
             ],
           },
         ],

@@ -1,9 +1,7 @@
 // Social button: third-party sign-in. Source: DESIGN.md §6 Social buttons and Figma nodes 1256-130788, 1256-132638.
 (() => {
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   const CSS = `/* Social button, Codemasters Design System
-   Figma: Shared components / Buttons / Social button (node 1256-130788), Social button groups (node 1256-132638)
    Needs tokens.css.
 
    <button class="sb-social" type="button" data-social="google" data-theme="brand">
@@ -128,13 +126,9 @@ ${[['google', 'color-brand'], ['facebook', 'brand']]
     slug: 'social-button',
     name: 'Social button',
     category: 'Components',
-    status: 'In Figma',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'Signs the user in with an account on another platform. For third-party sign-in only.',
-    figma: [
-      { label: 'Social button', url: `${FIGMA}1256-130788` },
-      { label: 'Social button groups', url: `${FIGMA}1256-132638` },
-    ],
     css: CSS,
     cssFile: 'social-button.css',
     sections: [
@@ -193,7 +187,7 @@ ${[['google', 'color-brand'], ['facebook', 'brand']]
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Social', 'Google, Facebook, Apple, Twitter, Figma, Dribbble', '`data-social="google"`'],
               ['Supporting text', 'True (logo + "Masuk dengan …"), False (logo only)', 'Label text, or `data-icon="only"` with `aria-label`'],

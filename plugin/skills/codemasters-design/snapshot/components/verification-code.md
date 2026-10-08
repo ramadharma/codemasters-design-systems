@@ -2,19 +2,15 @@
 name: Verification code
 slug: verification-code
 category: Components
-status: In Figma
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1106-66757
 requires: tokens.css
 ---
 
 # Verification code
 
-One large box per digit, for OTP and verification codes only. Figma calls it Mega input field.
-
-- Figma: [Verification code input field](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1106-66757)
-- Figma: [_Mega input field base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1106-66560)
+One large box per digit, for OTP and verification codes only. Also called Mega input field.
 
 ## Usage
 
@@ -36,14 +32,14 @@ One large box per digit, for OTP and verification codes only. Figma calls it Meg
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Size | `sm`, `md`, `lg` | `data-size` on `.sb-code` |
 | Digits | 4, 6 | one `<input class="sb-code-digit">` per digit; 6 adds `.sb-code-sep` after the third |
 | Label | True, False | label element referenced by `aria-labelledby`; without it, `aria-label` on the group |
 | Hint text | True, False | `<p class="sb-field-hint" id>` referenced by `aria-describedby` |
 | State (base) | Placeholder, Filled, Focused, Disabled | empty, `value`, `:focus`, `disabled`. Static mockups only: `data-state="focus"` |
-| Destructive (base, to add in Figma) | True, False | `aria-invalid="true"` on every digit |
+| Destructive | True, False | `aria-invalid="true"` on every digit |
 
 ## Sizes
 
@@ -200,7 +196,6 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
 
 ```css
 /* Verification code input field (Mega input field), Codemasters Design System
-   Figma: _Mega input field base (1106-66560), Verification code input field (1106-66757)
    Needs tokens.css and verification-code.js.
 
    <div class="sb-field">
@@ -218,7 +213,7 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
    Filled      comes from the value itself (:not(:placeholder-shown)).
    data-state="focus" on a digit forces Focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }

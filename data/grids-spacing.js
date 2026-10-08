@@ -2,7 +2,6 @@
 // Figma Foundations → Grids & spacing.
 (() => {
   const { tokens, tokenGroupCss } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
   const SPACE = Object.keys(tokens).filter(t => t.startsWith('--space-'));
   const px = t => parseInt(tokens[t], 10);
 
@@ -33,14 +32,9 @@ ${GRIDS.map(([n, frame, pad, cols, gut]) => `<figure class="f-grid-frame" style=
     slug: 'grids-spacing',
     name: 'Grids & Spacing',
     category: 'Foundations',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-07',
     description: 'A 4 px soft grid: a fixed spacing scale, four containers, column grids for desktop, tablet and mobile, and the radius set.',
-    figma: [
-      { label: 'Spacing', url: `${FIGMA}1532-353525` },
-      { label: 'Grid layouts', url: `${FIGMA}1532-353584` },
-      { label: 'Notes and documentation', url: `${FIGMA}1532-353109` },
-    ],
     sections: [
       {
         id: 'spacing',
@@ -61,7 +55,6 @@ ${GRIDS.map(([n, frame, pad, cols, gut]) => `<figure class="f-grid-frame" style=
               '**Only values from the set.** A value on the 4 px grid but not in the set is still off: use 128, not 124.',
               '**Line things up** on both axes, and give similar components the same values so the vertical rhythm repeats.',
               '**Control padding exception.** Buttons, inputs and tabs may use inner padding off the set (`10 18`, `10 14`, `9 16`) when that lands the outer height on the grid (40 / 44 / 52). Gaps between elements never do.',
-              'Figma tip: set **Preferences → Nudge amount → Big nudge** to 8 px, so Shift + arrow moves one grid step.',
             ],
           },
           { type: 'h3', id: 'spacing-app', text: 'Use in the app' },
@@ -77,7 +70,7 @@ ${GRIDS.map(([n, frame, pad, cols, gut]) => `<figure class="f-grid-frame" style=
               ['Between inline items', '8'],
             ],
           },
-          { type: 'note', tone: 'warning', text: 'The app also uses `2` and `6` (for example the 6 px gap between a field label and its control). They are off the Figma scale; use 4 or 8 in new work.' },
+          { type: 'note', tone: 'warning', text: 'The app also uses `2` and `6` (for example the 6 px gap between a field label and its control). They are off the scale; use 4 or 8 in new work.' },
         ],
       },
       {

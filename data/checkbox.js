@@ -2,7 +2,6 @@
 // Figma nodes 1097-63886 (_Checkbox base), 1097-63652 (Checkbox).
 (() => {
   const { esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // ---- "Select all": the header box checks every row, and turns indeterminate when only some rows are checked.
   function selectAll(e) {
@@ -30,7 +29,7 @@ document.addEventListener('change', selectAll);`;
   const MARK = (d, w) => `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='${d}' fill='none' stroke='black' stroke-width='${w}' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`;
 
   const CSS = `/* Checkbox, radio and check circle, Codemasters Design System
-   Figma: _Checkbox base (1097-63886), Checkbox (1097-63652). Needs tokens.css. No script for the control itself.
+   Needs tokens.css. No script for the control itself.
 
    <div class="sb-check" data-size="sm">
      <input class="sb-check-input" type="checkbox" id="setuju" aria-describedby="setuju-sup">
@@ -164,13 +163,9 @@ ${['Klaim A', 'Klaim B', 'Klaim C', 'Klaim D'].map((l, i) => indent(check({ labe
     slug: 'checkbox',
     name: 'Checkbox and radio',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'One component for three selection controls, picked with Type: Checkbox for any number of options, Radio for exactly one, and Check circle for selectable cards and rows.',
-    figma: [
-      { label: 'Checkbox', url: `${FIGMA}1097-63652` },
-      { label: '_Checkbox base', url: `${FIGMA}1097-63886` },
-    ],
     css: CSS,
     cssFile: 'checkbox.css',
     sections: [
@@ -241,7 +236,7 @@ ${['Klaim A', 'Klaim B', 'Klaim C', 'Klaim D'].map((l, i) => indent(check({ labe
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Type', 'Checkbox, Radio, Check circle', '`type="checkbox"`, `type="radio"`, `data-variant="circle"`'],
               ['Checked', 'True, False', '`checked`'],

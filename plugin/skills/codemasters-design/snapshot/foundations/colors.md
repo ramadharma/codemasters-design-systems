@@ -2,10 +2,9 @@
 name: Colors
 slug: colors
 category: Foundations
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-07
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1525-271581
 requires: tokens.css
 ---
 
@@ -13,14 +12,11 @@ requires: tokens.css
 
 Thirteen colour families of 11 steps each. Every colour on screen is one of these tokens, never a free-picked hex.
 
-- Figma: [Colors](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1525-271581)
-- Figma: [Notes and documentation](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1525-274384)
-
 ## Principles
 
 Every colour is a step on one of the scales below. Token name = `--{family}-{step}` (`Rosé` is `rose`, `Blue gray` is `blue-gray`, `Blue light` is `blue-light`). Click a swatch to copy its token.
 
-- **Define before you design.** Never pick a colour with the colour picker. Pick a colour style (Figma) or a token (code). Free-picked colours give inconsistent screens and developers cannot tell which colour to use.
+- **Define before you design.** Never pick a colour with the colour picker. Pick a colour token. Free-picked colours give inconsistent screens and developers cannot tell which colour to use.
 - **Full scales from the start.** Every family has 11 steps (25–900), also when a screen needs only two of them.
 - **Data first, chrome second.** Colour is reserved for status, data series and the one primary action.
 
@@ -199,17 +195,6 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
 ```html
 <span class="sb-badge" data-size="sm" style="background: #e8f8ee; color: #2f9e5b">Disetujui: Sembuh</span>
 ```
-
-## Changing colours in Figma
-
-Colours are Figma styles / variables. A change to a style cascades to every component and design that uses it.
-
-1. Open the style: click the edit icon on the colour style, or select any layer that uses it and click **Edit style**.
-2. Change the colour properties.
-3. Repeat for every style that changes, in one pass, so none is missed. Large files take time to update.
-4. To change the brand colour, edit the **Brand** styles. Do not switch components to another family one by one.
-
-When a Figma colour changes, update `data/foundations.js` (the scales) in the same change; this page and `tokens.css` follow.
 
 ## Tokens
 

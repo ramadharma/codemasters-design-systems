@@ -2,19 +2,15 @@
 name: Typography
 slug: typography
 category: Foundations
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-07
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1023-36826
 requires: tokens.css
 ---
 
 # Typography
 
 One typeface, Inter, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.
-
-- Figma: [Typography](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1023-36826)
-- Figma: [Notes and documentation](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1518-346785)
 
 ## Typeface
 
@@ -28,7 +24,7 @@ One typeface, Inter, on an 11-step scale from Display 2xl to Text xs. Every text
 
 ## Type scale
 
-Click a style name to copy its `font` declaration. Every style comes in four weights; the Figma style name is `{Style}/{Weight}`, for example `Text sm/Medium`.
+Click a style name to copy its `font` declaration. Every style comes in four weights, named `{Style}/{Weight}`, for example `Text sm/Medium`.
 
 | Style | Size | Line height | Tracking | Token |
 | --- | --- | --- | --- | --- |
@@ -51,7 +47,7 @@ Click a style name to copy its `font` declaration. Every style comes in four wei
 .page-hero  { font: 600 var(--display-md) var(--font); letter-spacing: var(--tracking-display); }
 ```
 
-Figma also has `Text xl/Regular underlined` and `Text lg/Medium underlined` for inline links.
+There are also `Text xl/Regular underlined` and `Text lg/Medium underlined` for inline links.
 
 ## Weights
 
@@ -67,7 +63,7 @@ Figma also has `Text xl/Regular underlined` and `Text lg/Medium underlined` for 
 - **Display vs text.** Display styles are for headings only (H1–H6), never for running copy. Text styles cover everything else: body, labels, UI elements.
 - **Base size 16 px** (`Text md`): paragraphs, inputs, dropdown options, buttons. Dense app UI (tables, tabs, labels) steps down to `Text sm`.
 - **Line height.** Body text 1.5–2× the size (16 → 24). The bigger the text, the tighter the ratio: display text 1–1.25× (60 → 72). The scale already does this; do not override it.
-- **Letter spacing.** Display md and larger use −2 %. Figma stores it as a percentage; in CSS write `letter-spacing: var(--tracking-display)` (`-0.02em`), never `%`.
+- **Letter spacing.** Display md and larger use −2 %. In CSS write `letter-spacing: var(--tracking-display)` (`-0.02em`), never `%`.
 - **Numbers** use `font-variant-numeric: tabular-nums` in tables, KPIs and amounts, so digits line up.
 
 ## Use in the app
@@ -84,7 +80,7 @@ Figma also has `Text xl/Regular underlined` and `Text lg/Medium underlined` for 
 
 Colour pairing: titles and values `gray-900`, labels `gray-500`, form labels `gray-700`.
 
-> **Warning:** The app also uses **Micro 10 / 16** (stat card labels, step notes). It is off the scale and not in Figma. Do not use it in new work.
+> **Warning:** The app also uses **Micro 10 / 16** (stat card labels, step notes). It is off the scale. Do not use it in new work.
 
 ## Slides and documents
 
@@ -104,17 +100,6 @@ Colour pairing: titles and values `gray-900`, labels `gray-500`, form labels `gr
 ```html
 <p style="margin: 0; font: 600 19px/23px var(--font); color: var(--gray-900)">Ringkasan klaim</p>
 ```
-
-## Changing text styles in Figma
-
-Text styles cascade to every component that uses them.
-
-1. Open the style: click the edit-style icon next to it, or select a text layer and open it from there.
-2. Change the property (typeface, size, line height).
-3. Change **all** text styles in one pass, not one at a time. The **Batch Styler** plugin edits many styles at once.
-4. Keep the sizes and line heights of the scale; change only the typeface if the brand needs it.
-
-When a Figma text style changes, update the typography tokens in `data/foundations.js` in the same change.
 
 ## Tokens
 

@@ -2,20 +2,15 @@
 name: Grids & Spacing
 slug: grids-spacing
 category: Foundations
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-07
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-353525
 requires: tokens.css
 ---
 
 # Grids & Spacing
 
 A 4 px soft grid: a fixed spacing scale, four containers, column grids for desktop, tablet and mobile, and the radius set.
-
-- Figma: [Spacing](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-353525)
-- Figma: [Grid layouts](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-353584)
-- Figma: [Notes and documentation](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-353109)
 
 ## Spacing
 
@@ -47,7 +42,6 @@ A fixed set of values removes guesswork and gives every screen the same rhythm. 
 - **Only values from the set.** A value on the 4 px grid but not in the set is still off: use 128, not 124.
 - **Line things up** on both axes, and give similar components the same values so the vertical rhythm repeats.
 - **Control padding exception.** Buttons, inputs and tabs may use inner padding off the set (`10 18`, `10 14`, `9 16`) when that lands the outer height on the grid (40 / 44 / 52). Gaps between elements never do.
-- Figma tip: set **Preferences → Nudge amount → Big nudge** to 8 px, so Shift + arrow moves one grid step.
 
 ### Use in the app
 
@@ -60,7 +54,7 @@ A fixed set of values removes guesswork and gives every screen the same rhythm. 
 | Between rows of a list | 12 |
 | Between inline items | 8 |
 
-> **Warning:** The app also uses `2` and `6` (for example the 6 px gap between a field label and its control). They are off the Figma scale; use 4 or 8 in new work.
+> **Warning:** The app also uses `2` and `6` (for example the 6 px gap between a field label and its control). They are off the scale; use 4 or 8 in new work.
 
 ## Grid layouts
 

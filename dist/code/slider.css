@@ -1,5 +1,5 @@
 /* Slider, Codemasters Design System
-   Figma: Slider (1086-534). Needs tokens.css and slider.js. Native <input type="range">, one per handle.
+   Needs tokens.css and slider.js. Native <input type="range">, one per handle.
 
    <div class="sb-slider" data-label="bottom" data-suffix="%" role="group" aria-label="Skor FWA"
         style="--lo: 20%; --hi: 80%">
@@ -17,9 +17,9 @@
    data-state="hover" | "focus" on an input forces a handle state in static mockups and docs only. */
 
 .sb-slider { --lo: 0%; --hi: 50%; width: 100%; }
-/* Space for the labels, so they never cover the content around the slider. Figma's floating variants are only
-   24 high and let the tooltips overhang; in code the slider reserves the room instead. */
-.sb-slider[data-label="bottom"] { padding-bottom: 32px; }          /* 8 gap + 24 label, from the handle's bottom edge (Figma: 56 high) */
+/* Space for the labels, so they never cover the content around the slider. The slider reserves
+   the room instead of letting the labels overhang. */
+.sb-slider[data-label="bottom"] { padding-bottom: 32px; }          /* 8 gap + 24 label, from the handle's bottom edge */
 .sb-slider[data-label="top-floating"] { padding-top: 44px; }       /* 34 label + 6 arrow + 4 gap */
 .sb-slider[data-label="bottom-floating"] { padding-bottom: 44px; }
 

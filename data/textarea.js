@@ -2,7 +2,6 @@
 // Source: DESIGN.md §6 Textarea input field, Figma nodes 1238-80 (_Textarea input field base), 1238-278 (Textarea input field).
 (() => {
   const { esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   // Character counter for every textarea with data-limit. Typing past the limit is allowed:
   // the counter turns red, the field goes into error and the hint says what to do. Text is never cut.
@@ -26,7 +25,6 @@ ${updateCounter.toString().replace(/^  /gm, '')}
 document.addEventListener('input', updateCounter);`;
 
   const CSS = `/* Textarea input field, Codemasters Design System
-   Figma: _Textarea input field base (1238-80), Textarea input field (1238-278)
    Needs tokens.css. Label and hint rules are the same as input-field.css; loading both is safe.
 
    <div class="sb-field">
@@ -44,7 +42,7 @@ document.addEventListener('input', updateCounter);`;
    Disabled     the disabled attribute.
    data-state="focus" on .sb-textarea forces Focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
@@ -152,13 +150,9 @@ ${[
     slug: 'textarea',
     name: 'Textarea input field',
     category: 'Components',
-    status: 'In Figma and app',
+    status: 'Ready',
     updated: '2026-10-06',
     description: 'Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint and error as Input field, plus an optional character counter.',
-    figma: [
-      { label: 'Textarea input field', url: `${FIGMA}1238-278` },
-      { label: '_Textarea input field base', url: `${FIGMA}1238-80` },
-    ],
     css: CSS,
     cssFile: 'textarea.css',
     sections: [
@@ -220,7 +214,7 @@ ${[
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Label', 'True, False', '`<label class="sb-field-label" for>`; without it, `aria-label` on the textarea'],
               ['Hint text', 'True, False', '`<p class="sb-field-hint" id>` + `aria-describedby`'],

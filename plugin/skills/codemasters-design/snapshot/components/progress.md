@@ -2,19 +2,15 @@
 name: Progress bar and circle
 slug: progress
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1085-57382
 requires: tokens.css
 ---
 
 # Progress bar and circle
 
 Shows how far a measurable task or value has got: an upload, AI analysis steps, quota used. For work of unknown length use a spinner instead.
-
-- Figma: [Progress bar](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1085-57382)
-- Figma: [Progress circle](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1154-89981)
 
 ## Usage
 
@@ -164,7 +160,7 @@ A gauge that runs left to right. Its height is half the box plus the stroke.
 
 ## Properties
 
-| Component | Property | Figma values | Code |
+| Component | Property | Values | Code |
 | --- | --- | --- | --- |
 | Progress bar | Progress | 0–100 % in steps of 10 | `--value` + `aria-valuenow` + label text (any integer works) |
 | Progress bar | Label | False, Right, Bottom, Top floating, Bottom floating | `data-label`; leave out the label span for False |
@@ -238,7 +234,7 @@ Load `tokens.css` and `progress.css`. Add `progress.js` to update the value from
 
 ```css
 /* Progress bar and progress circle, Codemasters Design System
-   Figma: Progress bar (1085-57382), Progress circle (1154-89981). Needs tokens.css. progress.js sets the value.
+   Needs tokens.css. progress.js sets the value.
 
    <div class="sb-progress" data-label="right" role="progressbar" aria-label="Unggah dokumen klaim"
         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--value: 40">

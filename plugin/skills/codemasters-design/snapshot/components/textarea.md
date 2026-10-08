@@ -2,19 +2,15 @@
 name: Textarea input field
 slug: textarea
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1238-278
 requires: tokens.css
 ---
 
 # Textarea input field
 
 Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint and error as Input field, plus an optional character counter.
-
-- Figma: [Textarea input field](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1238-278)
-- Figma: [_Textarea input field base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1238-80)
 
 ## Usage
 
@@ -35,7 +31,7 @@ Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint an
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Label | True, False | `<label class="sb-field-label" for>`; without it, `aria-label` on the textarea |
 | Hint text | True, False | `<p class="sb-field-hint" id>` + `aria-describedby` |
@@ -145,7 +141,6 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
 
 ```css
 /* Textarea input field, Codemasters Design System
-   Figma: _Textarea input field base (1238-80), Textarea input field (1238-278)
    Needs tokens.css. Label and hint rules are the same as input-field.css; loading both is safe.
 
    <div class="sb-field">
@@ -163,7 +158,7 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
    Disabled     the disabled attribute.
    data-state="focus" on .sb-textarea forces Focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }

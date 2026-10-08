@@ -1,11 +1,10 @@
 /* Button, Codemasters Design System
-   Figma: Shared components / Buttons / Button (node 1038-34411)
    Needs tokens.css.
 
    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
 
    data-hierarchy    primary | secondary-gray | secondary-color | tertiary-color | tertiary-gray | link-color | link-gray
-   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only, not in Figma yet)
+   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only)
    data-destructive  present = Destructive=True
    data-icon="only"  square icon-only button; add aria-label
    data-state        hover | focus. Forces a state in static mockups and docs. Never ship it in live UI:

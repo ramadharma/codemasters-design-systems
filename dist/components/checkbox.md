@@ -2,19 +2,15 @@
 name: Checkbox and radio
 slug: checkbox
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1097-63652
 requires: tokens.css
 ---
 
 # Checkbox and radio
 
 One component for three selection controls, picked with Type: Checkbox for any number of options, Radio for exactly one, and Check circle for selectable cards and rows.
-
-- Figma: [Checkbox](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1097-63652)
-- Figma: [_Checkbox base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1097-63886)
 
 ## Usage
 
@@ -39,7 +35,7 @@ One component for three selection controls, picked with Type: Checkbox for any n
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Type | Checkbox, Radio, Check circle | `type="checkbox"`, `type="radio"`, `data-variant="circle"` |
 | Checked | True, False | `checked` |
@@ -270,7 +266,7 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 
 ```css
 /* Checkbox, radio and check circle, Codemasters Design System
-   Figma: _Checkbox base (1097-63886), Checkbox (1097-63652). Needs tokens.css. No script for the control itself.
+   Needs tokens.css. No script for the control itself.
 
    <div class="sb-check" data-size="sm">
      <input class="sb-check-input" type="checkbox" id="setuju" aria-describedby="setuju-sup">

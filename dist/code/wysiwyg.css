@@ -1,5 +1,4 @@
 /* WYSIWYG editor, Codemasters Design System
-   Figma: _WYSIWYG editor icon (1705-454356), WYSIWYG toolbar (1705-454581), WYSIWYG tooltip (1706-438373)
    Needs tokens.css. Behaviour comes from the app's editor (reference: wysiwyg.js).
 
    <div class="sb-wys">
@@ -32,7 +31,7 @@
 .sb-wys-select:focus-visible { outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-select { width: 100%; }
 .sb-wys-icons { display: flex; flex-wrap: wrap; gap: 4px; }
-.sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* Figma spec: 28 px icons, gap 2 */
+.sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* 28 px icons, gap 2 */
 
 /* Editor icon: 32 x 32, 20 px glyph, radius 8 like every icon button of 32+. Light theme on the white toolbar. */
 .sb-wys-btn {

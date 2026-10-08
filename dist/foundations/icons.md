@@ -2,10 +2,9 @@
 name: Icons
 slug: icons
 category: Foundations
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-07
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems
 requires: tokens.css
 ---
 
@@ -13,14 +12,12 @@ requires: tokens.css
 
 Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour of their text, so one file serves every state.
 
-- Figma: [Design system file](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
-
 ## Style
 
 - **Outline, Feather style.** Drawn on a 24 × 24 grid with a 2 px round stroke, which renders at 1.67 px when the icon is 20 px.
 - **Sizes 12, 16, 20, 24.** 20 is the default in buttons, inputs and menus; 16 in small controls and badges; 24 in large buttons and empty states.
 - **Colour = text colour.** Icons use `currentColor`, so they follow the label next to them and every state change.
-- Exported from Figma as SVG into `public/assets/`. Do not mix in filled or two-tone icons from other sets.
+- SVG files in `public/assets/`. Do not mix in filled or two-tone icons from other sets.
 
 ### Sizes
 
@@ -41,7 +38,7 @@ Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour o
 
 ## Library
 
-The 48 icons used in this documentation. Click one to copy its name. The full set lives in the Figma file.
+The 48 icons used in this documentation. Click one to copy its name.
 
 ## Code
 

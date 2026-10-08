@@ -1,5 +1,5 @@
 /* Checkbox, radio and check circle, Codemasters Design System
-   Figma: _Checkbox base (1097-63886), Checkbox (1097-63652). Needs tokens.css. No script for the control itself.
+   Needs tokens.css. No script for the control itself.
 
    <div class="sb-check" data-size="sm">
      <input class="sb-check-input" type="checkbox" id="setuju" aria-describedby="setuju-sup">

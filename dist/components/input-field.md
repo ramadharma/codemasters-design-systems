@@ -2,19 +2,15 @@
 name: Input field
 slug: input-field
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1090-57817
 requires: tokens.css
 ---
 
 # Input field
 
 A single-line text field with a label above, an optional hint below, and an error state that says what is wrong and how to fix it.
-
-- Figma: [Input field](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1090-57817)
-- Figma: [_Input field base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1090-57627)
 
 ## Usage
 
@@ -37,7 +33,7 @@ A single-line text field with a label above, an optional hint below, and an erro
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Type | Default, Leading dropdown, Trailing dropdown, Leading text, Payment input | `data-type` on `.sb-input` (omit for Default) |
 | Leading icon | True, False | 20 px `<svg>` before the input |
@@ -231,7 +227,6 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 
 ```css
 /* Input field, Codemasters Design System
-   Figma: Shared components / Input fields: _Input field base (1090-57627), Input field (1090-57817)
    Needs tokens.css.
 
    <div class="sb-field">
@@ -247,7 +242,7 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
    Disabled                 the disabled attribute on the input. A disabled field is never in error.
    data-state="focus"       on .sb-input forces Focused in static mockups and docs only. */
 
-/* Label, control and hint sit 6 apart: Figma component spec (DESIGN.md Input field anatomy). */
+/* Label, control and hint sit 6 apart. */
 .sb-field { display: grid; gap: 6px; }
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }

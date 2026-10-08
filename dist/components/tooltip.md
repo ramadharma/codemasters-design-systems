@@ -2,19 +2,15 @@
 name: Tooltip and help icon
 slug: tooltip
 category: Components
-status: In Figma and app
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1052-489
 requires: tokens.css
 ---
 
 # Tooltip and help icon
 
 A small label that appears on hover or keyboard focus to explain an element or show text that was cut off. The help icon is the standard trigger after a label or inside an input.
-
-- Figma: [Tooltip](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1052-489)
-- Figma: [Help icon](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1054-13)
 
 ## Usage
 
@@ -35,15 +31,13 @@ A small label that appears on hover or keyboard focus to explain an element or s
 
 ## Properties
 
-| Component | Property | Figma values | Code |
+| Component | Property | Values | Code |
 | --- | --- | --- | --- |
 | Tooltip | Theme | Dark, Light | `data-theme="light"`; Dark is the default |
 | Tooltip | Supporting text | True, False | `<span class="sb-tooltip-text">` |
 | Tooltip | Arrow | None, Top center, Bottom center, Bottom left, Bottom right, Left, Right | `data-arrow`; Bottom center is the default |
 | Help icon | Open | True, False | `:hover`, `:focus-visible`. Static mockups only: `data-state="open"` on the wrap |
 | Help icon | Tooltip | Top no arrow, Top arrow, Top left, Top right, Bottom, Left, Right | `data-arrow`: `none`, `bottom-center`, `bottom-left`, `bottom-right`, `top-center`, `right`, `left` |
-
-> **Note:** Figma names the Tooltip arrow by the side it sits on, and the Help icon tooltip by where the tooltip goes. Help icon "Left" (tooltip to the left) is `data-arrow="right"`.
 
 ## Arrow positions
 
@@ -159,7 +153,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 
 ```css
 /* Tooltip and help icon, Codemasters Design System
-   Figma: Tooltip (1052-489), Help icon (1054-13). Needs tokens.css; tooltip.js only for Esc to close.
+   Needs tokens.css; tooltip.js only for Esc to close.
 
    <span class="sb-tooltip-wrap">
      <button class="sb-help" type="button" aria-label="Info" aria-describedby="polis-tip">…help-circle…</button>
@@ -173,7 +167,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
    data-theme   dark (default) | light (on dark surfaces such as the sidebar)
    data-arrow   bottom-center (default: tooltip above) | bottom-left | bottom-right | top-center (below) |
                 left (tooltip on the right) | right (tooltip on the left) | none (above, no arrow)
-                The arrow side names where the arrow sits, as in Figma. Pick the one that keeps the tooltip on screen.
+                The arrow side names where the arrow sits. Pick the one that keeps the tooltip on screen.
    data-state="open" on .sb-tooltip-wrap forces it open in static mockups and docs only. */
 
 .sb-tooltip-wrap { position: relative; display: inline-flex; }
@@ -197,7 +191,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 .sb-tooltip-wrap:hover:not(:has(:focus-visible), [data-state="open"]) > .sb-tooltip { transition-delay: 300ms; }
 .sb-tooltip-wrap[data-dismissed] > .sb-tooltip { visibility: hidden; opacity: 0; }
 
-/* Arrow: 16 x 6 in the fill colour. Corner arrows sit 14 from the edge (centre of Figma's 28 px frame). */
+/* Arrow: 16 x 6 in the fill colour. Corner arrows sit 14 from the edge (centre of a 28 px corner). */
 .sb-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; translate: -50% 0; width: 16px; height: 6px; background: var(--tip-bg); clip-path: polygon(0 0, 100% 0, 50% 100%); }
 .sb-tooltip[data-arrow="none"] { --tip-gap: 4px; }
 .sb-tooltip[data-arrow="none"]::after { content: none; }

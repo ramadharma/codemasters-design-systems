@@ -1,10 +1,8 @@
 // Button group: joined segments for equal-weight choices. Source: DESIGN.md §6 Button group, Figma nodes 1046-10171, 1046-9312.
 (() => {
   const { icon, esc } = DS;
-  const FIGMA = 'https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=';
 
   const CSS = `/* Button group, Codemasters Design System
-   Figma: Shared components / Button group (node 1046-10171), _Button group base (node 1046-9312)
    Needs tokens.css.
 
    Switch, one choice at a time (arrow keys move the choice):
@@ -125,14 +123,10 @@
     slug: 'button-group',
     name: 'Button group',
     category: 'Components',
-    status: 'In Figma',
+    status: 'Ready',
     updated: '2026-10-06',
     description:
       'A row of joined buttons for related, equal-weight choices: a view switch (Hari, Minggu, Bulan), pagination arrows or a small set of tools.',
-    figma: [
-      { label: 'Button group', url: `${FIGMA}1046-10171` },
-      { label: '_Button group base', url: `${FIGMA}1046-9312` },
-    ],
     css: CSS,
     cssFile: 'button-group.css',
     sections: [
@@ -193,7 +187,7 @@
         blocks: [
           {
             type: 'table',
-            head: ['Property', 'Figma values', 'Code'],
+            head: ['Property', 'Values', 'Code'],
             rows: [
               ['Icon (group)', 'False, Leading, Only', 'Label only, `<svg>` before the label, or `data-icon="only"` with `aria-label` per segment'],
               ['Icon (segment)', 'False, Leading, Only, Dot', 'Dot: `<span class="sb-btn-group-dot">` before the label'],
@@ -235,7 +229,7 @@
           },
           {
             type: 'note',
-            text: "Figma's Focused state is only a `gray-50` fill, the same as Hover. Code adds the 2 px `brand-500` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.",
+            text: "Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-500` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.",
           },
         ],
       },

@@ -1,5 +1,5 @@
 /* Tabs, Codemasters Design System
-   No Figma component yet: built from DESIGN.md Navigation (Tabs, Mini tab). Needs tokens.css; tabs.js for clicks and keys.
+   Needs tokens.css; tabs.js for clicks and keys.
 
    <div class="sb-tabs" data-type="folder" role="tablist" aria-label="Detail klaim">
      <button class="sb-tab" type="button" role="tab" id="klaim-t1" aria-selected="true" aria-controls="klaim-p1" tabindex="0">…icon… Informasi Klaim</button>

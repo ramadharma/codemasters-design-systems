@@ -195,9 +195,7 @@
           </div>
         </div>
       </header>
-      ${p.figma ? `<div class="meta">${statusBadge(p.status)}<span>Updated ${fmtDate(p.updated)}</span>${p.figma
-        .map(f => `<a href="${f.url}" target="_blank" rel="noopener">Figma: ${f.label}${icon('external-link')}</a>`)
-        .join('')}</div>` : ''}
+      ${p.status ? `<div class="meta">${statusBadge(p.status)}<span>Updated ${fmtDate(p.updated)}</span></div>` : ''}
       ${p.sections.map(s => `<section><h2 id="${s.id}">${s.title}</h2>${s.blocks.map(b => HTML[b.type](b, p, `${s.id}:${s.blocks.indexOf(b)}`)).join('')}</section>`).join('')}
       <nav class="pager" aria-label="Pages">
         ${prev ? `<a class="sb-btn" data-hierarchy="secondary-gray" data-size="sm" href="#/${prev.slug}">${icon('arrow-left')}${prev.name}</a>` : '<span></span>'}

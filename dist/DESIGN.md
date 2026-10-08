@@ -4,8 +4,6 @@
 
 The shared visual language of Codemasters and its companies, Sembuh AI and Flipmaster: web apps, websites, mobile, slides, documents and posters. Every value is a token and every component documents its variants, states and rules, so each surface built from it looks and behaves the same.
 
-Figma: [Codemasters Design System](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
-
 ## Contents
 
 - Principles
@@ -271,8 +269,6 @@ Figma: [Codemasters Design System](https://www.figma.com/design/MKPOHzJT5mlZhE7z
 
 One system, three companies. Codemasters is the parent of Sembuh AI and Flipmaster; company materials carry their own logo with "Powered by Codemasters" underneath.
 
-- Figma: [Design system file](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
-
 ### Brand architecture
 
 An endorsed brand family: the companies keep their own names and logos, and all three use this design system. Only the blue scale (`--brand-25` to `--brand-900`) differs per company.
@@ -390,14 +386,11 @@ Load `tokens.css` and `logo.css`. Swap the PNG paths for SVG files when they arr
 
 Thirteen colour families of 11 steps each. Every colour on screen is one of these tokens, never a free-picked hex.
 
-- Figma: [Colors](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1525-271581)
-- Figma: [Notes and documentation](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1525-274384)
-
 ### Principles
 
 Every colour is a step on one of the scales below. Token name = `--{family}-{step}` (`Rosé` is `rose`, `Blue gray` is `blue-gray`, `Blue light` is `blue-light`). Click a swatch to copy its token.
 
-- **Define before you design.** Never pick a colour with the colour picker. Pick a colour style (Figma) or a token (code). Free-picked colours give inconsistent screens and developers cannot tell which colour to use.
+- **Define before you design.** Never pick a colour with the colour picker. Pick a colour token. Free-picked colours give inconsistent screens and developers cannot tell which colour to use.
 - **Full scales from the start.** Every family has 11 steps (25–900), also when a screen needs only two of them.
 - **Data first, chrome second.** Colour is reserved for status, data series and the one primary action.
 
@@ -577,17 +570,6 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
 <span class="sb-badge" data-size="sm" style="background: #e8f8ee; color: #2f9e5b">Disetujui: Sembuh</span>
 ```
 
-### Changing colours in Figma
-
-Colours are Figma styles / variables. A change to a style cascades to every component and design that uses it.
-
-1. Open the style: click the edit icon on the colour style, or select any layer that uses it and click **Edit style**.
-2. Change the colour properties.
-3. Repeat for every style that changes, in one pass, so none is missed. Large files take time to update.
-4. To change the brand colour, edit the **Brand** styles. Do not switch components to another family one by one.
-
-When a Figma colour changes, update `data/foundations.js` (the scales) in the same change; this page and `tokens.css` follow.
-
 ### Tokens
 
 `tokens.css (colour)`
@@ -746,9 +728,6 @@ When a Figma colour changes, update `data/foundations.js` (the scales) in the sa
 
 One typeface, Inter, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.
 
-- Figma: [Typography](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1023-36826)
-- Figma: [Notes and documentation](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1518-346785)
-
 ### Typeface
 
 **Inter** (Google Fonts), fallback `sans-serif`. One typeface for display and text.
@@ -761,7 +740,7 @@ One typeface, Inter, on an 11-step scale from Display 2xl to Text xs. Every text
 
 ### Type scale
 
-Click a style name to copy its `font` declaration. Every style comes in four weights; the Figma style name is `{Style}/{Weight}`, for example `Text sm/Medium`.
+Click a style name to copy its `font` declaration. Every style comes in four weights, named `{Style}/{Weight}`, for example `Text sm/Medium`.
 
 | Style | Size | Line height | Tracking | Token |
 | --- | --- | --- | --- | --- |
@@ -784,7 +763,7 @@ Click a style name to copy its `font` declaration. Every style comes in four wei
 .page-hero  { font: 600 var(--display-md) var(--font); letter-spacing: var(--tracking-display); }
 ```
 
-Figma also has `Text xl/Regular underlined` and `Text lg/Medium underlined` for inline links.
+There are also `Text xl/Regular underlined` and `Text lg/Medium underlined` for inline links.
 
 ### Weights
 
@@ -800,7 +779,7 @@ Figma also has `Text xl/Regular underlined` and `Text lg/Medium underlined` for 
 - **Display vs text.** Display styles are for headings only (H1–H6), never for running copy. Text styles cover everything else: body, labels, UI elements.
 - **Base size 16 px** (`Text md`): paragraphs, inputs, dropdown options, buttons. Dense app UI (tables, tabs, labels) steps down to `Text sm`.
 - **Line height.** Body text 1.5–2× the size (16 → 24). The bigger the text, the tighter the ratio: display text 1–1.25× (60 → 72). The scale already does this; do not override it.
-- **Letter spacing.** Display md and larger use −2 %. Figma stores it as a percentage; in CSS write `letter-spacing: var(--tracking-display)` (`-0.02em`), never `%`.
+- **Letter spacing.** Display md and larger use −2 %. In CSS write `letter-spacing: var(--tracking-display)` (`-0.02em`), never `%`.
 - **Numbers** use `font-variant-numeric: tabular-nums` in tables, KPIs and amounts, so digits line up.
 
 ### Use in the app
@@ -817,7 +796,7 @@ Figma also has `Text xl/Regular underlined` and `Text lg/Medium underlined` for 
 
 Colour pairing: titles and values `gray-900`, labels `gray-500`, form labels `gray-700`.
 
-> **Warning:** The app also uses **Micro 10 / 16** (stat card labels, step notes). It is off the scale and not in Figma. Do not use it in new work.
+> **Warning:** The app also uses **Micro 10 / 16** (stat card labels, step notes). It is off the scale. Do not use it in new work.
 
 ### Slides and documents
 
@@ -837,17 +816,6 @@ Colour pairing: titles and values `gray-900`, labels `gray-500`, form labels `gr
 ```html
 <p style="margin: 0; font: 600 19px/23px var(--font); color: var(--gray-900)">Ringkasan klaim</p>
 ```
-
-### Changing text styles in Figma
-
-Text styles cascade to every component that uses them.
-
-1. Open the style: click the edit-style icon next to it, or select a text layer and open it from there.
-2. Change the property (typeface, size, line height).
-3. Change **all** text styles in one pass, not one at a time. The **Batch Styler** plugin edits many styles at once.
-4. Keep the sizes and line heights of the scale; change only the typeface if the brand needs it.
-
-When a Figma text style changes, update the typography tokens in `data/foundations.js` in the same change.
 
 ### Tokens
 
@@ -876,14 +844,12 @@ When a Figma text style changes, update the typography tokens in `data/foundatio
 
 Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour of their text, so one file serves every state.
 
-- Figma: [Design system file](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
-
 ### Style
 
 - **Outline, Feather style.** Drawn on a 24 × 24 grid with a 2 px round stroke, which renders at 1.67 px when the icon is 20 px.
 - **Sizes 12, 16, 20, 24.** 20 is the default in buttons, inputs and menus; 16 in small controls and badges; 24 in large buttons and empty states.
 - **Colour = text colour.** Icons use `currentColor`, so they follow the label next to them and every state change.
-- Exported from Figma as SVG into `public/assets/`. Do not mix in filled or two-tone icons from other sets.
+- SVG files in `public/assets/`. Do not mix in filled or two-tone icons from other sets.
 
 #### Sizes
 
@@ -904,7 +870,7 @@ Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour o
 
 ### Library
 
-The 48 icons used in this documentation. Click one to copy its name. The full set lives in the Figma file.
+The 48 icons used in this documentation. Click one to copy its name.
 
 ### Code
 
@@ -948,22 +914,19 @@ For icons loaded as files that still need to change colour with state (the app's
 
 Seven shadows and four background blurs that put elements on the z-axis. The higher the layer, the bigger the shadow.
 
-- Figma: [Shadows](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-352912)
-- Figma: [Blurs](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-352913)
-
 ### Shadows
 
 All shadows are `gray-900` (`16, 24, 40`) at low opacity. Use only these seven; never write a custom shadow. Click one to copy its token.
 
-| Token | Figma | CSS value |
-| --- | --- | --- |
-| `--shadow-xs` | `Shadow/xs` | `0 1px 2px rgba(16,24,40,.05)` |
-| `--shadow-sm` | `Shadow/sm` | `0 1px 3px rgba(16,24,40,.1), 0 1px 2px rgba(16,24,40,.06)` |
-| `--shadow-md` | `Shadow/md` | `0 4px 8px -2px rgba(16,24,40,.1), 0 2px 4px -2px rgba(16,24,40,.06)` |
-| `--shadow-lg` | `Shadow/lg` | `0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03)` |
-| `--shadow-xl` | `Shadow/xl` | `0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03)` |
-| `--shadow-2xl` | `Shadow/2xl` | `0 24px 48px -12px rgba(16,24,40,.18)` |
-| `--shadow-3xl` | `Shadow/3xl` | `0 32px 64px -12px rgba(16,24,40,.14)` |
+| Token | CSS value |
+| --- | --- |
+| `--shadow-xs` | `0 1px 2px rgba(16,24,40,.05)` |
+| `--shadow-sm` | `0 1px 3px rgba(16,24,40,.1), 0 1px 2px rgba(16,24,40,.06)` |
+| `--shadow-md` | `0 4px 8px -2px rgba(16,24,40,.1), 0 2px 4px -2px rgba(16,24,40,.06)` |
+| `--shadow-lg` | `0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03)` |
+| `--shadow-xl` | `0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03)` |
+| `--shadow-2xl` | `0 24px 48px -12px rgba(16,24,40,.18)` |
+| `--shadow-3xl` | `0 32px 64px -12px rgba(16,24,40,.14)` |
 
 ### Elevation in the app
 
@@ -984,18 +947,18 @@ All shadows are `gray-900` (`16, 24, 40`) at low opacity. Use only these seven; 
 
 ### Background blur
 
-A background blur also lifts an element: it blurs what is behind a translucent surface. Use it as `backdrop-filter`. Figma's blur radius is twice the CSS value.
+A background blur also lifts an element: it blurs what is behind a translucent surface. Use it as `backdrop-filter`.
 
 #### Light
 
 #### Dark
 
-| Token | Figma | CSS value |
-| --- | --- | --- |
-| `--blur-sm` | `Background blur/sm`, radius 8 | `blur(4px)` |
-| `--blur-md` | `Background blur/md`, radius 16 | `blur(8px)` |
-| `--blur-lg` | `Background blur/lg`, radius 24 | `blur(12px)` |
-| `--blur-xl` | `Background blur/xl`, radius 40 | `blur(20px)` |
+| Token | CSS value |
+| --- | --- |
+| `--blur-sm` | `blur(4px)` |
+| `--blur-md` | `blur(8px)` |
+| `--blur-lg` | `blur(12px)` |
+| `--blur-xl` | `blur(20px)` |
 
 - A blur needs a translucent fill to show: **light** `rgba(255,255,255,.6)` (white 60 %) with `gray-900` text, or **dark** `rgba(52,64,84,.6)` (`gray-700` 60 %) with white text.
 - Use blur sparingly, as an accent: scrims behind dialogs, overlays on images or charts. Never put body text or tables on a blurred surface without a fill.
@@ -1048,10 +1011,6 @@ A background blur also lifts an element: it blurs what is behind a translucent s
 
 A 4 px soft grid: a fixed spacing scale, four containers, column grids for desktop, tablet and mobile, and the radius set.
 
-- Figma: [Spacing](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-353525)
-- Figma: [Grid layouts](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-353584)
-- Figma: [Notes and documentation](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-353109)
-
 ### Spacing
 
 A fixed set of values removes guesswork and gives every screen the same rhythm. Token number × 4 = px. Click a row to copy its token.
@@ -1082,7 +1041,6 @@ A fixed set of values removes guesswork and gives every screen the same rhythm. 
 - **Only values from the set.** A value on the 4 px grid but not in the set is still off: use 128, not 124.
 - **Line things up** on both axes, and give similar components the same values so the vertical rhythm repeats.
 - **Control padding exception.** Buttons, inputs and tabs may use inner padding off the set (`10 18`, `10 14`, `9 16`) when that lands the outer height on the grid (40 / 44 / 52). Gaps between elements never do.
-- Figma tip: set **Preferences → Nudge amount → Big nudge** to 8 px, so Shift + arrow moves one grid step.
 
 #### Use in the app
 
@@ -1095,7 +1053,7 @@ A fixed set of values removes guesswork and gives every screen the same rhythm. 
 | Between rows of a list | 12 |
 | Between inline items | 8 |
 
-> **Warning:** The app also uses `2` and `6` (for example the 6 px gap between a field label and its control). They are off the Figma scale; use 4 or 8 in new work.
+> **Warning:** The app also uses `2` and `6` (for example the 6 px gap between a field label and its control). They are off the scale; use 4 or 8 in new work.
 
 ### Grid layouts
 
@@ -1208,17 +1166,13 @@ Components use only these tokens, never a px value. 6 was dropped on 7 Oct 2026:
 
 A person or a company, shown as a photo, initials or a placeholder icon. Comes alone, in an overlapping group, or with a name and a secondary line.
 
-- Figma: [Avatar](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=19-1012)
-- Figma: [Avatar group](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1274-812)
-- Figma: [Avatar label group](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=82-2793)
-
 ### Usage
 
 - Content priority: the user's photo, then initials (first + last name, at most 2 letters), then the placeholder user icon. Never leave an avatar empty.
 - Online indicator for people who can be reached now; Company badge for the organisation a user belongs to, such as the insurer of a TPA user.
 - Avatar groups show at most 5 avatars, then "+N" that opens a list of the rest.
 - Avatar label groups sit in the sidebar profile, dropdown headers, assignee fields and table cells (`sm`).
-- Figma's demo photos and names (Olivia Rhye, Phoenix Baker) are for mock-ups only. Real screens show the user's photo or initials.
+- Demo photos and names are for mock-ups only. Real screens show the user's photo or initials.
 
 ### Anatomy
 
@@ -1230,7 +1184,7 @@ A person or a company, shown as a photo, initials or a placeholder icon. Comes a
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Size | `xs`, `sm`, `md`, `lg`, `xl`, `2xl` | `data-size` |
 | Placeholder / Text | Photo, Text, Placeholder | `<img>`, initials as text, or the `user` icon `<svg>` |
@@ -1483,7 +1437,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 
 ```css
 /* Avatar, avatar group and avatar label group, Codemasters Design System
-   Figma: Avatar (19-1012), Avatar group (1274-812), Avatar label group (82-2793). Needs tokens.css.
+   Needs tokens.css.
 
    <span class="sb-avatar" data-size="md" role="img" aria-label="Nama Pengguna">NP</span>
    <span class="sb-avatar" data-size="md"><img src="foto.jpg" alt="Nama Pengguna"></span>
@@ -1526,7 +1480,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 .sb-avatar-stack > :is(.sb-avatar, .sb-tooltip-wrap) + * { margin-left: var(--av-overlap); }
 .sb-avatar-stack .sb-avatar { box-shadow: 0 0 0 1.5px var(--white); }
 .sb-avatar-stack button.sb-avatar:is(:focus-visible, [data-state="focus"]) { box-shadow: 0 0 0 1.5px var(--white), 0 0 0 5.5px var(--focus-ring); }
-/* Add: white, dashed gray-300 border (dashed in Figma), gray-400 plus icon at half the box. */
+/* Add: white, dashed gray-300 border, gray-400 plus icon at half the box. */
 .sb-avatar-add {
   display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: var(--av, 40px); height: var(--av, 40px);
   margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--white); color: var(--gray-400); cursor: pointer;
@@ -1540,7 +1494,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 
 /* ---- Avatar label group: avatar + name + secondary line. Long text truncates (show it in a tooltip). */
 .sb-avatar-label { display: inline-flex; align-items: center; gap: 12px; max-width: 100%; margin: 0; padding: 0; border: 0; background: none; text-align: start; text-decoration: none; }
-.sb-avatar-label[data-size="sm"] { gap: 10px; } /* Figma spec; between the 8 and 12 steps */
+.sb-avatar-label[data-size="sm"] { gap: 10px; } /* between the 8 and 12 steps */
 .sb-avatar-label[data-size="xl"] { gap: 16px; }
 .sb-avatar-label-text { display: grid; min-width: 0; }
 .sb-avatar-name, .sb-avatar-sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1583,10 +1537,6 @@ function initials(name) {
 
 A small, non-interactive label for a status, category or count. Status pills, claim type tags, AI confidence and filter chips are all badges.
 
-- Figma: [Badge](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-3819)
-- Figma: [_Badge base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-28)
-- Figma: [Badge group](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-8088)
-
 ### Usage
 
 - **A badge is not a button.** If it does something, use a Button. The only interactive part allowed is the X close icon.
@@ -1605,7 +1555,7 @@ A small, non-interactive label for a status, category or count. Status pills, cl
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Size | `sm`, `md`, `lg` | `data-size="sm"` |
 | Icon | False, Dot, Country, Avatar, X close, Icon left, Icon right, Only | `data-icon="dot"`, `"country"`, `"avatar"`, `"x-close"`, `"icon-left"`, `"icon-right"`, `"only"` |
@@ -1666,7 +1616,7 @@ A small, non-interactive label for a status, category or count. Status pills, cl
 | X close | 12 px × button that removes the badge | 4 | right 6 |
 | Only | 12 px icon, no label; needs an `aria-label` | — | padding 4 |
 
-> **Note:** Figma gives the paddings for `sm` only (and Dot at `md`). The CSS keeps the same rule for every size: the icon side is 2 px tighter than the text side, and a flag or avatar sits as far from the edge as from the top and bottom.
+> **Note:** Every size follows the same padding rule: the icon side is 2 px tighter than the text side, and a flag or avatar sits as far from the edge as from the top and bottom.
 
 #### Chips (X close)
 
@@ -1691,7 +1641,7 @@ A filter chip is a Gray `sm` badge with X close. The × button is the only inter
 
 Every colour uses the same steps of its scale: fill `50`, text `700`, dot and icons `500`. **Gray** is the exception: fill `gray-100`, text `gray-700`, dot `gray-500`.
 
-| Figma Color | Token family | Use in the app |
+| Color | Token family | Use in the app |
 | --- | --- | --- |
 | Gray | `gray` (fill 100) | Neutral info, Baru, chips |
 | Primary | `brand` | Selected filters, Sembuh AI labels |
@@ -1707,7 +1657,7 @@ Every colour uses the same steps of its scale: fill `50`, text `700`, dot and ic
 | Rosé | `rose` | Not used yet |
 | Orange | `orange` | Perlu Revisi, Potensi Duplikat, Dental |
 
-In Figma the fill uses `mix-blend-mode: multiply`, so it tints on coloured backgrounds. On white it is the plain `50` colour, which is what the CSS draws.
+The fill is the plain `50` colour of the family.
 
 ### Status pills
 
@@ -1764,7 +1714,7 @@ A badge plus a short message in one pill, for announcements and inline notices (
 </a>
 ```
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Badge | Leading, Trailing | `data-badge="trailing"` (omit for Leading) |
 | Icon | True, False | 12 px arrow-right `<svg>` at the end |
@@ -1846,7 +1796,6 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 
 ```css
 /* Badge, Codemasters Design System
-   Figma: Shared components / Badges: _Badge base (1046-28), Badge (1046-3819), Badge group (1046-8088)
    Needs tokens.css.
 
    <span class="sb-badge" data-size="sm" data-color="success">Disetujui: Sembuh</span>
@@ -1886,7 +1835,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 .sb-badge[data-size="md"] { --bdg-h: 24px; --bdg-px: 10px; --bdg-type: var(--text-sm); }
 .sb-badge[data-size="lg"] { --bdg-h: 28px; --bdg-px: 12px; --bdg-type: var(--text-sm); }
 
-/* Icon variants. Figma gives the sm values; md and lg follow the same rule. */
+/* Icon variants. md and lg follow the sm rule. */
 .sb-badge[data-icon="dot"], .sb-badge[data-icon="icon-left"] { padding-inline-start: calc(var(--bdg-px) - 2px); }
 .sb-badge[data-icon="icon-right"], .sb-badge[data-icon="x-close"] { padding-inline-end: calc(var(--bdg-px) - 2px); }
 .sb-badge[data-icon="dot"], .sb-badge[data-icon="country"], .sb-badge[data-icon="avatar"] { gap: 6px; }
@@ -1944,9 +1893,6 @@ a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-500); outline-of
 
 Runs an action on the current page: save, submit, open a dialog, start an analysis. Seven hierarchies tell the user which action matters most.
 
-- Figma: [Button](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1038-34411)
-- Figma: [Notes and documentation](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1532-357715)
-
 ### Usage
 
 Use a button for an action on the current page. Link hierarchies exist for links inside running text, not for actions.
@@ -1969,9 +1915,9 @@ Use a button for an action on the current page. Link hierarchies exist for links
 
 ### Properties
 
-Each Figma property maps to one attribute, so a Figma file, a slide and the code describe a button with the same words.
+Each property maps to one attribute, so a slide, a spec and the code describe a button with the same words.
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Hierarchy | Primary, Secondary gray, Secondary color, Tertiary color, Tertiary gray, Link color, Link gray | `data-hierarchy="primary"` to `"link-gray"` |
 | Size | `sm`, `md`, `lg`, `xl`, `2xl` (`xs` is code-only for now) | `data-size="md"` |
@@ -2046,7 +1992,7 @@ Seven levels, from the one next step (Primary) to links inside text. Primary, Se
 | `xl` | 48 | `12 20` | 48 × 48, padding 14 | Text md / Semibold | 20 | 8 |
 | `2xl` | 60 | `16 28` | 60 × 60, padding 18 | Text lg / Semibold | 24 | 12 |
 
-> **Note:** `xs` is new in code and not in Figma yet. Padding `6 12` uses the control padding exception (Grids & Spacing): it lands the height on 32. Add the variant to the Figma Button set before designers use it.
+> **Note:** `xs` is for dense desktop UI only. Padding `6 12` uses the control padding exception (Grids & Spacing): it lands the height on 32.
 
 #### Choosing a size
 
@@ -2221,7 +2167,7 @@ Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for bu
 | Destructive Secondary gray, Tertiary, Link | `error-700` on `white` | 6.57:1 | Passes |
 | Destructive Secondary color | `error-700` on `error-50` | 6.05:1 | Passes |
 
-> **Warning:** **Open decision.** Primary Default (`white` on `brand-500`) is 3.62:1, below the 4.5:1 that DESIGN.md §8 requires for button text. Options: move Primary Default to `brand-600` (5.06:1) and Hover to `brand-700`, or record an exception. This page documents the current Figma spec until the design team decides.
+> **Warning:** **Open decision.** Primary Default (`white` on `brand-500`) is 3.62:1, below the 4.5:1 that DESIGN.md §8 requires for button text. Options: move Primary Default to `brand-600` (5.06:1) and Hover to `brand-700`, or record an exception. This page documents the current spec until the design team decides.
 
 ### Code
 
@@ -2231,13 +2177,12 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 ```css
 /* Button, Codemasters Design System
-   Figma: Shared components / Buttons / Button (node 1038-34411)
    Needs tokens.css.
 
    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
 
    data-hierarchy    primary | secondary-gray | secondary-color | tertiary-color | tertiary-gray | link-color | link-gray
-   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only, not in Figma yet)
+   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only)
    data-destructive  present = Destructive=True
    data-icon="only"  square icon-only button; add aria-label
    data-state        hover | focus. Forces a state in static mockups and docs. Never ship it in live UI:
@@ -2362,9 +2307,6 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 A row of joined buttons for related, equal-weight choices: a view switch (Hari, Minggu, Bulan), pagination arrows or a small set of tools.
 
-- Figma: [Button group](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-10171)
-- Figma: [_Button group base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1046-9312)
-
 ### Usage
 
 - Use a button group for related, equal-weight choices: a view switch (Hari, Minggu, Bulan), pagination arrows, or a small set of tools.
@@ -2384,7 +2326,7 @@ A row of joined buttons for related, equal-weight choices: a view switch (Hari, 
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Icon (group) | False, Leading, Only | Label only, `<svg>` before the label, or `data-icon="only"` with `aria-label` per segment |
 | Icon (segment) | False, Leading, Only, Dot | Dot: `<span class="sb-btn-group-dot">` before the label |
@@ -2468,7 +2410,7 @@ For status filters. The dot stays `success-500` in every state except Disabled (
 | Focused | `gray-50` / `gray-700` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
 | Disabled | `white` / `gray-300` / `gray-300` | `gray-50` / `gray-300` / `gray-300` |
 
-> **Note:** Figma's Focused state is only a `gray-50` fill, the same as Hover. Code adds the 2 px `brand-500` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
+> **Note:** Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-500` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
 
 ### Switch, toggle or actions
 
@@ -2598,7 +2540,6 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 
 ```css
 /* Button group, Codemasters Design System
-   Figma: Shared components / Button group (node 1046-10171), _Button group base (node 1046-9312)
    Needs tokens.css.
 
    Switch, one choice at a time (arrow keys move the choice):
@@ -2689,9 +2630,6 @@ function select(seg) {
 
 One component for three selection controls, picked with Type: Checkbox for any number of options, Radio for exactly one, and Check circle for selectable cards and rows.
 
-- Figma: [Checkbox](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1097-63652)
-- Figma: [_Checkbox base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1097-63886)
-
 ### Usage
 
 | Type | Shape | Use |
@@ -2715,7 +2653,7 @@ One component for three selection controls, picked with Type: Checkbox for any n
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Type | Checkbox, Radio, Check circle | `type="checkbox"`, `type="radio"`, `data-variant="circle"` |
 | Checked | True, False | `checked` |
@@ -2946,7 +2884,7 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 
 ```css
 /* Checkbox, radio and check circle, Codemasters Design System
-   Figma: _Checkbox base (1097-63886), Checkbox (1097-63652). Needs tokens.css. No script for the control itself.
+   Needs tokens.css. No script for the control itself.
 
    <div class="sb-check" data-size="sm">
      <input class="sb-check-input" type="checkbox" id="setuju" aria-describedby="setuju-sup">
@@ -3049,9 +2987,6 @@ document.addEventListener('change', selectAll);
 
 Selectable cards: a list of bordered cards where the whole card is the control. Use it when each option needs a description or a visual, such as a plan, a payment method or an assignee.
 
-- Figma: [Checkbox group item](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=124-2838)
-- Figma: [Checkbox group](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1142-87213)
-
 ### Usage
 
 | Type | Content | Control | Use for |
@@ -3080,7 +3015,7 @@ Selectable cards: a list of bordered cards where the whole card is the control. 
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Selected | True, False | `checked` on the input; the card follows with `:has()` |
 | Size | `sm`, `md` | `data-size` on `.sb-cg-item` |
@@ -3375,7 +3310,6 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 
 ```css
 /* Checkbox group (selectable cards), Codemasters Design System
-   Figma: Checkbox group item (124-2838), Checkbox group (1142-87213).
    Needs tokens.css and checkbox.css (the control). Avatar cards also use avatar.css, Payment icon cards button.css, Icon cards badge.css.
 
    <div class="sb-choices" role="radiogroup" aria-labelledby="lap-label">
@@ -3433,7 +3367,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 .sb-cg-icon svg { width: 16px; height: 16px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon { width: 40px; height: 40px; margin-block: -4px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon svg { width: 20px; height: 20px; }
-/* Card logo tile, 46 x 32. Real brand logos come from Figma's Payment method icon set. */
+/* Card logo tile, 46 x 32. Use the real brand logos. */
 .sb-cg-pay { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 46px; height: 32px; border: 1px solid var(--gray-100); border-radius: var(--radius-sm); background: var(--white); color: var(--gray-700); }
 .sb-cg-pay svg { width: 20px; height: 20px; }
 
@@ -3462,11 +3396,6 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 
 An action menu opened from a button, a row-actions icon or the account avatar. For choosing a value in a form, use Input dropdown.
 
-- Figma: [Dropdown](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1050-146925)
-- Figma: [Dropdown menu](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1050-105632)
-- Figma: [List item](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=18-319)
-- Figma: [List header](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1050-40224)
-
 ### Usage
 
 - **Dropdown menu runs an action; Input dropdown chooses a value.** Never mix both in one list.
@@ -3490,7 +3419,7 @@ The panel is 240 wide, `white`, 1 px `gray-100` border, radius 8, `shadow-lg`, a
 
 ### Properties
 
-| Component | Property | Figma values | Code |
+| Component | Property | Values | Code |
 | --- | --- | --- | --- |
 | Dropdown | Type | Button, Icon, Avatar | `.sb-btn` + chevron, `.sb-menu-icon`, `.sb-menu-avatar` |
 | Dropdown | Open | True, False | `aria-expanded` on the trigger, `hidden` on the menu |
@@ -3647,8 +3576,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 
 ```css
 /* Dropdown menu, Codemasters Design System
-   Figma: _Dropdown list item (18-319), _Dropdown list header (1050-40224), _Dropdown menu base (1050-109778),
-   Dropdown (1050-146925), Dropdown menu (1050-105632). Needs tokens.css and dropdown-menu.js;
+   Needs tokens.css and dropdown-menu.js;
    the Button trigger also needs button.css.
 
    <div class="sb-menu-wrap">
@@ -3810,11 +3738,6 @@ document.addEventListener('keydown', menuKeydown);
 
 A select field: pick one value for a form field or a filter. For running an action from a button, use Dropdown menu.
 
-- Figma: [Input dropdown](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1096-8566)
-- Figma: [_Input dropdown base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1096-2)
-- Figma: [Menu item](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1096-3156)
-- Figma: [Menu](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1096-4590)
-
 ### Usage
 
 - **Input dropdown chooses a value; Dropdown menu runs an action.** Never mix both in one list.
@@ -3836,7 +3759,7 @@ A select field: pick one value for a form field or a filter. For running an acti
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Type | Default, Icon leading, Avatar leading, Dot leading, Search | leading `<svg>`, `.sb-dd-avatar` or `.sb-dd-dot` before the label; Search uses `<div class="sb-dd-trigger" data-type="search">` with an `<input role="combobox">` |
 | State | Placeholder, Default (value chosen), Open/focused | `.sb-dd-placeholder`, a chosen value, `aria-expanded="true"`. Static mockups only: `data-state="open"` |
@@ -4178,8 +4101,7 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 
 ```css
 /* Input dropdown, Codemasters Design System
-   Figma: _Input dropdown base (1096-2), _Input dropdown menu item (1096-3156), _Input dropdown menu (1096-4590),
-   Input dropdown (1096-8566). Needs tokens.css and input-dropdown.js. Label and hint rules match input-field.css.
+   Needs tokens.css and input-dropdown.js. Label and hint rules match input-field.css.
 
    <div class="sb-field">
      <span class="sb-field-label" id="jenis-label">Jenis klaim</span>
@@ -4203,7 +4125,7 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
    Disabled option: aria-disabled="true". Disabled field: disabled on the button.
    data-state="open" on .sb-dd-trigger forces Open/focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 
@@ -4366,9 +4288,6 @@ document.addEventListener('input', ddFilter);
 
 A single-line text field with a label above, an optional hint below, and an error state that says what is wrong and how to fix it.
 
-- Figma: [Input field](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1090-57817)
-- Figma: [_Input field base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1090-57627)
-
 ### Usage
 
 - **Always show a label above the field.** The placeholder is an example, never the label: it disappears as soon as the user types.
@@ -4390,7 +4309,7 @@ A single-line text field with a label above, an optional hint below, and an erro
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Type | Default, Leading dropdown, Trailing dropdown, Leading text, Payment input | `data-type` on `.sb-input` (omit for Default) |
 | Leading icon | True, False | 20 px `<svg>` before the input |
@@ -4584,7 +4503,6 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 
 ```css
 /* Input field, Codemasters Design System
-   Figma: Shared components / Input fields: _Input field base (1090-57627), Input field (1090-57817)
    Needs tokens.css.
 
    <div class="sb-field">
@@ -4600,7 +4518,7 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
    Disabled                 the disabled attribute on the input. A disabled field is never in error.
    data-state="focus"       on .sb-input forces Focused in static mockups and docs only. */
 
-/* Label, control and hint sit 6 apart: Figma component spec (DESIGN.md Input field anatomy). */
+/* Label, control and hint sit 6 apart. */
 .sb-field { display: grid; gap: 6px; }
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
@@ -4684,9 +4602,6 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 ## Progress bar and circle
 
 Shows how far a measurable task or value has got: an upload, AI analysis steps, quota used. For work of unknown length use a spinner instead.
-
-- Figma: [Progress bar](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1085-57382)
-- Figma: [Progress circle](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1154-89981)
 
 ### Usage
 
@@ -4836,7 +4751,7 @@ A gauge that runs left to right. Its height is half the box plus the stroke.
 
 ### Properties
 
-| Component | Property | Figma values | Code |
+| Component | Property | Values | Code |
 | --- | --- | --- | --- |
 | Progress bar | Progress | 0–100 % in steps of 10 | `--value` + `aria-valuenow` + label text (any integer works) |
 | Progress bar | Label | False, Right, Bottom, Top floating, Bottom floating | `data-label`; leave out the label span for False |
@@ -4910,7 +4825,7 @@ Load `tokens.css` and `progress.css`. Add `progress.js` to update the value from
 
 ```css
 /* Progress bar and progress circle, Codemasters Design System
-   Figma: Progress bar (1085-57382), Progress circle (1154-89981). Needs tokens.css. progress.js sets the value.
+   Needs tokens.css. progress.js sets the value.
 
    <div class="sb-progress" data-label="right" role="progressbar" aria-label="Unggah dokumen klaim"
         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--value: 40">
@@ -4982,8 +4897,6 @@ Load `tokens.css` and `progress.css`. Add `progress.js` to update the value from
 
 Picks a value or a range by dragging, when the position matters more than the exact number: a confidence threshold, an amount range.
 
-- Figma: [Slider](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1086-534)
-
 ### Usage
 
 - Use a slider when the position matters more than the exact number: a confidence threshold filter, an amount range.
@@ -4995,14 +4908,14 @@ Picks a value or a range by dragging, when the position matters more than the ex
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Track | 8 high, full width (320 in Figma), `gray-200`, radius 4 |
+| 1 | Track | 8 high, full width (320 in examples), `gray-200`, radius 4 |
 | 2 | Selected range | `brand-600`, radius 4, between the handles (from 0 for a single slider) |
 | 3 | Handle | 24 px circle, `white`, 1 px `brand-600` border, `shadow-md`, centred on the value |
 | 4 | Label | Optional. Bottom: Text md / Medium `gray-900`, 8 below the handle. Floating: Light tooltip with an arrow, 4 from the handle |
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Left control | 0 % to 75 % | First `<input type="range">` value; leave it out for a single slider |
 | Right control | 25 % to 100 % | Last `<input type="range">` value |
@@ -5122,7 +5035,7 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 
 ```css
 /* Slider, Codemasters Design System
-   Figma: Slider (1086-534). Needs tokens.css and slider.js. Native <input type="range">, one per handle.
+   Needs tokens.css and slider.js. Native <input type="range">, one per handle.
 
    <div class="sb-slider" data-label="bottom" data-suffix="%" role="group" aria-label="Skor FWA"
         style="--lo: 20%; --hi: 80%">
@@ -5140,9 +5053,9 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
    data-state="hover" | "focus" on an input forces a handle state in static mockups and docs only. */
 
 .sb-slider { --lo: 0%; --hi: 50%; width: 100%; }
-/* Space for the labels, so they never cover the content around the slider. Figma's floating variants are only
-   24 high and let the tooltips overhang; in code the slider reserves the room instead. */
-.sb-slider[data-label="bottom"] { padding-bottom: 32px; }          /* 8 gap + 24 label, from the handle's bottom edge (Figma: 56 high) */
+/* Space for the labels, so they never cover the content around the slider. The slider reserves
+   the room instead of letting the labels overhang. */
+.sb-slider[data-label="bottom"] { padding-bottom: 32px; }          /* 8 gap + 24 label, from the handle's bottom edge */
 .sb-slider[data-label="top-floating"] { padding-top: 44px; }       /* 34 label + 6 arrow + 4 gap */
 .sb-slider[data-label="bottom-floating"] { padding-bottom: 44px; }
 
@@ -5242,9 +5155,6 @@ document.addEventListener('input', sliderInput);
 
 Signs the user in with an account on another platform. For third-party sign-in only.
 
-- Figma: [Social button](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1256-130788)
-- Figma: [Social button groups](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1256-132638)
-
 ### Usage
 
 - Use social buttons only to sign in with a third-party account. For any other action use Button.
@@ -5263,7 +5173,7 @@ Signs the user in with an account on another platform. For third-party sign-in o
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Social | Google, Facebook, Apple, Twitter, Figma, Dribbble | `data-social="google"` |
 | Supporting text | True (logo + "Masuk dengan …"), False (logo only) | Label text, or `data-icon="only"` with `aria-label` |
@@ -5402,7 +5312,6 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 
 ```css
 /* Social button, Codemasters Design System
-   Figma: Shared components / Buttons / Social button (node 1256-130788), Social button groups (node 1256-132638)
    Needs tokens.css.
 
    <button class="sb-social" type="button" data-social="google" data-theme="brand">
@@ -5493,8 +5402,6 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 ## Tabs
 
 Switch between panels of content in one place: the sections of a claim, the views of a card or the parts of a settings page. Four types: Folder, Underline, Segmented and Vertical.
-
-- Figma: [Design system file (no Tabs component yet)](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
 
 ### Usage
 
@@ -5919,7 +5826,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 
 ```css
 /* Tabs, Codemasters Design System
-   No Figma component yet: built from DESIGN.md Navigation (Tabs, Mini tab). Needs tokens.css; tabs.js for clicks and keys.
+   Needs tokens.css; tabs.js for clicks and keys.
 
    <div class="sb-tabs" data-type="folder" role="tablist" aria-label="Detail klaim">
      <button class="sb-tab" type="button" role="tab" id="klaim-t1" aria-selected="true" aria-controls="klaim-p1" tabindex="0">…icon… Informasi Klaim</button>
@@ -6042,9 +5949,6 @@ document.addEventListener('keydown', tabsKeydown);
 
 Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint and error as Input field, plus an optional character counter.
 
-- Figma: [Textarea input field](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1238-278)
-- Figma: [_Textarea input field base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1238-80)
-
 ### Usage
 
 - Use a textarea for text longer than one line: notes, reasons, AI summary edits. For one line use Input field.
@@ -6064,7 +5968,7 @@ Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint an
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Label | True, False | `<label class="sb-field-label" for>`; without it, `aria-label` on the textarea |
 | Hint text | True, False | `<p class="sb-field-hint" id>` + `aria-describedby` |
@@ -6174,7 +6078,6 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
 
 ```css
 /* Textarea input field, Codemasters Design System
-   Figma: _Textarea input field base (1238-80), Textarea input field (1238-278)
    Needs tokens.css. Label and hint rules are the same as input-field.css; loading both is safe.
 
    <div class="sb-field">
@@ -6192,7 +6095,7 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
    Disabled     the disabled attribute.
    data-state="focus" on .sb-textarea forces Focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
@@ -6261,9 +6164,6 @@ document.addEventListener('input', updateCounter);
 
 An on/off switch whose change takes effect immediately, such as "Tampilkan hanya klaim saya" or a notification setting. If the choice is applied only after Save, use a Checkbox.
 
-- Figma: [Toggle](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1102-4208)
-- Figma: [_Toggle base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=122-3294)
-
 ### Usage
 
 - **Takes effect immediately.** Use a toggle when flipping it changes something right away. If the choice is only applied after a Save or Submit button, use a Checkbox.
@@ -6281,7 +6181,7 @@ An on/off switch whose change takes effect immediately, such as "Tampilkan hanya
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Pressed | True, False | `checked` |
 | Size | `sm`, `md` | `data-size` on `.sb-toggle` |
@@ -6409,7 +6309,7 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 
 ```css
 /* Toggle, Codemasters Design System
-   Figma: _Toggle base (122-3294), Toggle (1102-4208). Needs tokens.css. No script: it is a native checkbox.
+   Needs tokens.css. No script: it is a native checkbox.
 
    <div class="sb-toggle" data-size="sm">
      <input class="sb-toggle-input" type="checkbox" role="switch" id="notif" aria-describedby="notif-sup">
@@ -6471,9 +6371,6 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 
 A small label that appears on hover or keyboard focus to explain an element or show text that was cut off. The help icon is the standard trigger after a label or inside an input.
 
-- Figma: [Tooltip](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1052-489)
-- Figma: [Help icon](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1054-13)
-
 ### Usage
 
 - A tooltip only adds a short explanation, or the full text of something truncated. Never put essential information or actions in it: it is invisible on touch screens and easy to miss.
@@ -6493,15 +6390,13 @@ A small label that appears on hover or keyboard focus to explain an element or s
 
 ### Properties
 
-| Component | Property | Figma values | Code |
+| Component | Property | Values | Code |
 | --- | --- | --- | --- |
 | Tooltip | Theme | Dark, Light | `data-theme="light"`; Dark is the default |
 | Tooltip | Supporting text | True, False | `<span class="sb-tooltip-text">` |
 | Tooltip | Arrow | None, Top center, Bottom center, Bottom left, Bottom right, Left, Right | `data-arrow`; Bottom center is the default |
 | Help icon | Open | True, False | `:hover`, `:focus-visible`. Static mockups only: `data-state="open"` on the wrap |
 | Help icon | Tooltip | Top no arrow, Top arrow, Top left, Top right, Bottom, Left, Right | `data-arrow`: `none`, `bottom-center`, `bottom-left`, `bottom-right`, `top-center`, `right`, `left` |
-
-> **Note:** Figma names the Tooltip arrow by the side it sits on, and the Help icon tooltip by where the tooltip goes. Help icon "Left" (tooltip to the left) is `data-arrow="right"`.
 
 ### Arrow positions
 
@@ -6617,7 +6512,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 
 ```css
 /* Tooltip and help icon, Codemasters Design System
-   Figma: Tooltip (1052-489), Help icon (1054-13). Needs tokens.css; tooltip.js only for Esc to close.
+   Needs tokens.css; tooltip.js only for Esc to close.
 
    <span class="sb-tooltip-wrap">
      <button class="sb-help" type="button" aria-label="Info" aria-describedby="polis-tip">…help-circle…</button>
@@ -6631,7 +6526,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
    data-theme   dark (default) | light (on dark surfaces such as the sidebar)
    data-arrow   bottom-center (default: tooltip above) | bottom-left | bottom-right | top-center (below) |
                 left (tooltip on the right) | right (tooltip on the left) | none (above, no arrow)
-                The arrow side names where the arrow sits, as in Figma. Pick the one that keeps the tooltip on screen.
+                The arrow side names where the arrow sits. Pick the one that keeps the tooltip on screen.
    data-state="open" on .sb-tooltip-wrap forces it open in static mockups and docs only. */
 
 .sb-tooltip-wrap { position: relative; display: inline-flex; }
@@ -6655,7 +6550,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 .sb-tooltip-wrap:hover:not(:has(:focus-visible), [data-state="open"]) > .sb-tooltip { transition-delay: 300ms; }
 .sb-tooltip-wrap[data-dismissed] > .sb-tooltip { visibility: hidden; opacity: 0; }
 
-/* Arrow: 16 x 6 in the fill colour. Corner arrows sit 14 from the edge (centre of Figma's 28 px frame). */
+/* Arrow: 16 x 6 in the fill colour. Corner arrows sit 14 from the edge (centre of a 28 px corner). */
 .sb-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; translate: -50% 0; width: 16px; height: 6px; background: var(--tip-bg); clip-path: polygon(0 0, 100% 0, 50% 100%); }
 .sb-tooltip[data-arrow="none"] { --tip-gap: 4px; }
 .sb-tooltip[data-arrow="none"]::after { content: none; }
@@ -6706,10 +6601,7 @@ document.addEventListener('focusout', tooltipReset);
 
 ## Verification code
 
-One large box per digit, for OTP and verification codes only. Figma calls it Mega input field.
-
-- Figma: [Verification code input field](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1106-66757)
-- Figma: [_Mega input field base](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1106-66560)
+One large box per digit, for OTP and verification codes only. Also called Mega input field.
 
 ### Usage
 
@@ -6731,14 +6623,14 @@ One large box per digit, for OTP and verification codes only. Figma calls it Meg
 
 ### Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Size | `sm`, `md`, `lg` | `data-size` on `.sb-code` |
 | Digits | 4, 6 | one `<input class="sb-code-digit">` per digit; 6 adds `.sb-code-sep` after the third |
 | Label | True, False | label element referenced by `aria-labelledby`; without it, `aria-label` on the group |
 | Hint text | True, False | `<p class="sb-field-hint" id>` referenced by `aria-describedby` |
 | State (base) | Placeholder, Filled, Focused, Disabled | empty, `value`, `:focus`, `disabled`. Static mockups only: `data-state="focus"` |
-| Destructive (base, to add in Figma) | True, False | `aria-invalid="true"` on every digit |
+| Destructive | True, False | `aria-invalid="true"` on every digit |
 
 ### Sizes
 
@@ -6895,7 +6787,6 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
 
 ```css
 /* Verification code input field (Mega input field), Codemasters Design System
-   Figma: _Mega input field base (1106-66560), Verification code input field (1106-66757)
    Needs tokens.css and verification-code.js.
 
    <div class="sb-field">
@@ -6913,7 +6804,7 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
    Filled      comes from the value itself (:not(:placeholder-shown)).
    data-state="focus" on a digit forces Focused in static mockups and docs only. */
 
-.sb-field { display: grid; gap: 6px; } /* Figma component spec: label, control, hint 6 apart */
+.sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
 .sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
@@ -7010,10 +6901,6 @@ document.addEventListener('paste', codePaste);
 
 Rich-text formatting for long text a user writes or edits: the AI summary ("Edit Ringkasan") and advisor notes. Use a plain Textarea when formatting is not needed.
 
-- Figma: [Editor icon](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1705-454356)
-- Figma: [Toolbar](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1705-454581)
-- Figma: [Tooltip](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1706-438373)
-
 ### Usage
 
 - Use it for long text a user writes or edits and that needs structure: the AI summary ("Edit Ringkasan"), advisor notes.
@@ -7033,7 +6920,7 @@ Rich-text formatting for long text a user writes or edits: the AI summary ("Edit
 
 ### Properties
 
-| Component | Property | Figma values | Code |
+| Component | Property | Values | Code |
 | --- | --- | --- | --- |
 | Editor icon | Type | Bold, Italic, H1, H2, Quote, Link, Photo, List bullet, List numbers | `data-cmd` + `aria-label` |
 | Editor icon | Active | True, False | `aria-pressed="true"` |
@@ -7049,7 +6936,7 @@ Rich-text formatting for long text a user writes or edits: the AI summary ("Edit
 | Light (on the white toolbar) | `gray-400` | `brand-100` fill, `brand-700` glyph |
 | Dark (in the tooltip) | `gray-300` | `gray-600` fill, `white` glyph |
 
-Active means the format is applied to the current selection (`aria-pressed="true"`). Every icon has an `aria-label` and a tooltip with its name and, where one works, the shortcut: "Bold · Ctrl+B". Hover adds a `gray-50` fill so the icon reads as a button; Figma does not define hover yet.
+Active means the format is applied to the current selection (`aria-pressed="true"`). Every icon has an `aria-label` and a tooltip with its name and, where one works, the shortcut: "Bold · Ctrl+B". Hover adds a `gray-50` fill so the icon reads as a button.
 
 ### Toolbar
 
@@ -7140,7 +7027,7 @@ Appears above selected text: `gray-900` fill, radius 8, padding 8, Dark icons wi
 | Link | `brand-700`, underlined |
 | Lists | Indented 24 |
 
-Blocks sit 8 apart. Quote, link and list styles are not in Figma yet; they follow the existing type and colour rules.
+Blocks sit 8 apart. Quote, link and list styles follow the existing type and colour rules.
 
 ### Do and don't
 
@@ -7217,7 +7104,6 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 
 ```css
 /* WYSIWYG editor, Codemasters Design System
-   Figma: _WYSIWYG editor icon (1705-454356), WYSIWYG toolbar (1705-454581), WYSIWYG tooltip (1706-438373)
    Needs tokens.css. Behaviour comes from the app's editor (reference: wysiwyg.js).
 
    <div class="sb-wys">
@@ -7250,7 +7136,7 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 .sb-wys-select:focus-visible { outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-select { width: 100%; }
 .sb-wys-icons { display: flex; flex-wrap: wrap; gap: 4px; }
-.sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* Figma spec: 28 px icons, gap 2 */
+.sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* 28 px icons, gap 2 */
 
 /* Editor icon: 32 x 32, 20 px glyph, radius 8 like every icon button of 32+. Light theme on the white toolbar. */
 .sb-wys-btn {
@@ -7399,8 +7285,6 @@ document.addEventListener('selectionchange', wysSelection);
 ## Slides
 
 Pitch decks and presentations for Codemasters, Sembuh AI and Flipmaster: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.
-
-- Figma: [Design system file](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
 
 ### Overview
 

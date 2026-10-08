@@ -2,19 +2,15 @@
 name: Social button
 slug: social-button
 category: Components
-status: In Figma
+status: Ready
 version: 0.1.0
 updated: 2026-10-06
-figma: https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1256-130788
 requires: tokens.css
 ---
 
 # Social button
 
 Signs the user in with an account on another platform. For third-party sign-in only.
-
-- Figma: [Social button](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1256-130788)
-- Figma: [Social button groups](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1256-132638)
 
 ## Usage
 
@@ -34,7 +30,7 @@ Signs the user in with an account on another platform. For third-party sign-in o
 
 ## Properties
 
-| Property | Figma values | Code |
+| Property | Values | Code |
 | --- | --- | --- |
 | Social | Google, Facebook, Apple, Twitter, Figma, Dribbble | `data-social="google"` |
 | Supporting text | True (logo + "Masuk dengan …"), False (logo only) | Label text, or `data-icon="only"` with `aria-label` |
@@ -173,7 +169,6 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 
 ```css
 /* Social button, Codemasters Design System
-   Figma: Shared components / Buttons / Social button (node 1256-130788), Social button groups (node 1256-132638)
    Needs tokens.css.
 
    <button class="sb-social" type="button" data-social="google" data-theme="brand">
