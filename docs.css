@@ -175,6 +175,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .anat span[data-pin] { display: inline-flex; align-items: center; height: 28px; outline: 1px dashed var(--gray-400); outline-offset: 4px; } /* same height, so top pins line up */
 .anat .sb-btn svg, .anat .sb-social svg { width: 24px; height: 24px; }
 .anat .sb-btn-group svg { width: 20px; height: 20px; color: var(--seg-icon); }
+.anat > .sb-card { width: 520px; max-width: 100%; }
 .anat .sb-tabs { overflow: visible; } /* pins sit outside the row */
 .anat .sb-tab svg { width: 20px; height: 20px; }
 .anat .sb-btn-group { overflow: visible; } /* pins sit outside; round the end segments instead of clipping */
@@ -246,6 +247,15 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 /* ---- Foundations pages. Previews are reference sheets, so they start at the left and use the full width. */
 .ex-preview:has(> .f-swatches, > .f-type, > .f-icons, > .f-space, > .f-grids, > .f-containers) { justify-content: flex-start; min-height: 0; padding: 32px; }
 /* Slide mockups: children are placed in canvas px converted to % and cqw, so the frame can be any width. */
+/* Card page: readable card widths, grids like the app (gap 24). */
+.card-stage { width: 100%; max-width: 640px; min-width: 0; }
+.card-stage.is-narrow { max-width: 400px; }
+.card-stage.is-stack { display: grid; gap: 24px; }
+.card-stage.is-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; max-width: none; }
+.ex-preview:has(> .card-stage) { min-height: 0; padding: 32px; background: var(--gray-50); }
+.dd-preview .card-stage { max-width: none; }
+@media (max-width: 860px) { .ex-preview:has(> .card-stage) { padding: 16px; } }
+
 /* Tabs page: full-width rows, panel text, vertical layout. */
 .tabs-stage { width: 100%; min-width: 0; }
 .matrix .sb-tabs { overflow: visible; } /* one-tab cells never scroll; a scroll box would let the grid squeeze them */

@@ -105,6 +105,7 @@
     'arrow-right': '<path d="M5 12h14M12 5l7 7-7 7"/>',
     'arrow-left': '<path d="M19 12H5M12 19l-7-7 7-7"/>',
     'arrow-up': '<path d="M12 19V5M5 12l7-7 7 7"/>',
+    'arrow-down': '<path d="M12 5v14M19 12l-7 7-7-7"/>',
     layers: '<path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/>',
     'credit-card': '<rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/>',
     user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
@@ -164,7 +165,7 @@
   // Preview HTML to copyable snippet: icon bodies collapse to a named placeholder, docs-only attributes go.
   DS.snippet = html =>
     html
-      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
+      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
       .replace(/<svg data-i="([\w-]+)"[\s\S]*?<\/svg>/g, '<svg aria-hidden="true"><!-- $1 --></svg>')
       .replace(/ data-(state|demo)(="[^"]*")?/g, '')
       .replace(/src="data:image\/[^"]*"/g, 'src="…"'); // inline demo images

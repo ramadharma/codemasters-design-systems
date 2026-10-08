@@ -100,6 +100,15 @@
       "path": "components/button-group.md"
     },
     {
+      "slug": "card",
+      "name": "Card",
+      "category": "Components",
+      "status": "Ready",
+      "updated": "2026-10-08",
+      "description": "The container for one topic on a page: a claim summary, a table, a chart, a metric. White, bordered, radius 12. Includes the inner card, the AI summary card, metric cards and link cards.",
+      "path": "components/card.md"
+    },
+    {
       "slug": "checkbox",
       "name": "Checkbox and radio",
       "category": "Components",
@@ -244,6 +253,8 @@
     "code/button.css",
     "code/button-group.css",
     "code/button-group-switch.js",
+    "code/card.css",
+    "code/card.js",
     "code/checkbox.css",
     "code/checkbox-select-all.js",
     "code/checkbox-group.css",

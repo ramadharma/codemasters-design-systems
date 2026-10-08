@@ -1,0 +1,92 @@
+/* Card, Codemasters Design System
+   Needs tokens.css; button.css and badge.css for the parts inside; card.js only for the fold chevron.
+
+   <section class="sb-card" aria-labelledby="ringkasan-title">
+     <header class="sb-card-head">
+       <div class="sb-card-heading">
+         <h3 class="sb-card-title" id="ringkasan-title">Ringkasan Klaim <span class="sb-badge" …>Disetujui</span></h3>
+         <p class="sb-card-desc">Diperbarui 7 Oktober 2026</p>
+       </div>
+       <div class="sb-card-actions">…sb-btn sm…</div>
+     </header>
+     <div class="sb-card-body">…</div>
+     <footer class="sb-card-foot">…sb-btn…</footer>
+   </section>
+
+   data-variant  inner | tint      (omit for the white card)
+   data-size     sm                (compact: padding 16)
+   Link card     one <a class="sb-card-link"> in the title; its hit area covers the card.
+   data-state    hover | focus on a link card. Static mockups and docs only. */
+
+.sb-card {
+  --card-py: 24px; --card-px: 24px; --card-gap: 16px;
+  box-sizing: border-box; position: relative;
+  display: grid; align-content: start; gap: var(--card-gap); min-width: 0;
+  padding: var(--card-py) var(--card-px);
+  font: 400 var(--text-sm) var(--font); color: var(--gray-700);
+  background: var(--white);
+  border: 1px solid var(--gray-300); border-radius: var(--radius-lg); /* cards are flat: a border, never a shadow */
+}
+.sb-card[data-size="sm"] { --card-py: 16px; --card-px: 16px; --card-gap: 12px; }
+
+/* Head: title (+ badges) and description on the left, actions and the fold chevron on the right. */
+.sb-card-head { display: flex; align-items: flex-start; gap: 16px; }
+.sb-card-heading { display: grid; gap: 4px; flex: 1; min-width: 0; }
+.sb-card-title {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0;
+  font: 600 var(--text-xl) var(--font); color: var(--gray-900); text-wrap: balance;
+}
+.sb-card[data-size="sm"] .sb-card-title { font: 600 var(--text-md) var(--font); }
+.sb-card-title > svg { width: 20px; height: 20px; flex: none; }
+.sb-card-desc { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); text-wrap: pretty; }
+.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; } /* above a link card's hit area */
+.sb-card-fold > svg { transition: rotate 150ms var(--ease); }
+.sb-card-fold[aria-expanded="true"] > svg { rotate: 180deg; }
+
+/* Body and footer. The footer divider runs edge to edge. */
+.sb-card-body { display: grid; gap: var(--card-gap); min-width: 0; }
+.sb-card-foot {
+  display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px;
+  margin-inline: calc(var(--card-px) * -1); padding: var(--card-gap) var(--card-px) 0;
+  border-top: 1px solid var(--gray-200);
+}
+.sb-card-body[hidden], .sb-card-foot[hidden] { display: none; }
+.sb-card-text { margin: 0; text-wrap: pretty; }
+
+/* Inner card: a box inside a card. gray-50, radius 8, padding 12 16. */
+.sb-card[data-variant="inner"] { --card-py: 12px; --card-px: 16px; --card-gap: 8px; background: var(--gray-50); border-color: var(--gray-200); border-radius: var(--radius-md); }
+.sb-card[data-variant="inner"] .sb-card-title { font: 600 var(--text-sm) var(--font); }
+
+/* Tint: AI summary. brand-50, brand-200 border, radius 8, title in brand-700 with the loader icon. */
+.sb-card[data-variant="tint"] { --card-py: 16px; --card-px: 16px; --card-gap: 12px; background: var(--brand-50); border-color: var(--brand-200); border-radius: var(--radius-md); }
+.sb-card[data-variant="tint"] .sb-card-title { font: 600 var(--text-md) var(--font); color: var(--brand-700); }
+
+/* Summary rows: "Label …… Value". */
+.sb-card-rows { display: grid; gap: 8px; margin: 0; }
+.sb-card-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.sb-card-row > dt { color: var(--gray-500); }
+.sb-card-row > dd { margin: 0; font-weight: 500; color: var(--gray-900); text-align: end; font-variant-numeric: tabular-nums; }
+.sb-card-row[data-total] { padding-top: 8px; border-top: 1px solid var(--gray-200); }
+.sb-card-row[data-total] > dt { font-weight: 500; color: var(--gray-900); }
+
+/* Metric: label, value, change. */
+.sb-metric { display: grid; gap: 8px; margin: 0; }
+.sb-metric > dd { margin: 0; }
+.sb-metric-label { font: 500 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-metric-value { margin: 0; font: 600 var(--display-xs) var(--font); color: var(--gray-900); font-variant-numeric: tabular-nums; }
+.sb-metric-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
+
+/* Empty state, inside the body. */
+.sb-card-empty { display: grid; justify-items: center; gap: 12px; padding: 32px 16px; text-align: center; color: var(--gray-500); text-wrap: pretty; }
+.sb-card-empty > svg { width: 24px; height: 24px; color: var(--gray-400); }
+
+/* Link card: the title link stretches over the card. Buttons inside stay clickable (z-index above). */
+.sb-card-link { color: inherit; text-decoration: none; outline: none; }
+.sb-card-link::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; }
+.sb-card:has(.sb-card-link) { transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease); }
+.sb-card:has(.sb-card-link:hover), .sb-card[data-state="hover"] { background: var(--gray-50); border-color: var(--gray-400); }
+.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--brand-300); box-shadow: 0 0 0 4px var(--focus-ring); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-card, .sb-card-fold > svg { transition: none; }
+}
