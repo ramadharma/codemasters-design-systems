@@ -38,7 +38,7 @@
 .sb-toggle-input::before {
   content: ''; position: absolute; top: 2px; left: 2px;
   width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
-  background: var(--white); box-shadow: var(--shadow-sm);
+  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm);
   transition: translate 150ms var(--ease);
 }
 .sb-toggle-input:checked { background: var(--tg-on); }
@@ -154,7 +154,7 @@
             type: 'table',
             head: ['#', 'Part', 'Spec'],
             rows: [
-              ['1', 'Track + knob', 'Track fully rounded with 2 px padding. Knob white with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`.'],
+              ['1', 'Track + knob', 'Track fully rounded with 2 px padding. Knob white, raised (`raised-sheen-light`) with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`.'],
               ['2', 'Label', 'Optional. Text sm / Medium (`md`: Text md / Medium), `gray-700`. Says what is turned on.'],
               ['3', 'Supporting text', 'Optional. Text sm / Regular (`md`: Text md / Regular, 2 px below), `gray-500`.'],
             ],

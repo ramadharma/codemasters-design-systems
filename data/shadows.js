@@ -95,7 +95,7 @@ ${BLURS.map(([b]) => `<div class="f-blur is-${tone}" style="backdrop-filter: var
             head: ['Token', 'Use on', 'CSS value'],
             rows: [
               ['`--raised-sheen`', 'Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme', `\`${tokens['--raised-sheen']}\``],
-              ['`--raised-sheen-light`', 'White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons', `\`${tokens['--raised-sheen-light']}\``],
+              ['`--raised-sheen-light`', 'White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons, Toggle knob, Slider handle, Avatar add button', `\`${tokens['--raised-sheen-light']}\``],
               ['`--raised-highlight`', 'With `--raised-sheen`, first in `box-shadow`', `\`${tokens['--raised-highlight']}\``],
             ],
           },

@@ -62,7 +62,7 @@ ${initials.toString().replace(/^  /gm, '')}
 /* Add: white, dashed gray-300 border, gray-400 plus icon at half the box. */
 .sb-avatar-add {
   display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: var(--av, 40px); height: var(--av, 40px);
-  margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--white); color: var(--gray-400); cursor: pointer;
+  margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--raised-sheen-light) var(--white); color: var(--gray-400); cursor: pointer;
   transition-property: color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-avatar-group[data-size="xs"] .sb-avatar-add { --av: 24px; }

@@ -980,7 +980,7 @@ Pressable controls get a little depth, so they read as buttons: a sheen over the
 | Token | Use on | CSS value |
 | --- | --- | --- |
 | `--raised-sheen` | Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme | `linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))` |
-| `--raised-sheen-light` | White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons | `linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))` |
+| `--raised-sheen-light` | White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons, Toggle knob, Slider handle, Avatar add button | `linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))` |
 | `--raised-highlight` | With `--raised-sheen`, first in `box-shadow` | `inset 0 1px 0 rgb(255 255 255 / .28)` |
 
 - Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.
@@ -1506,7 +1506,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 /* Add: white, dashed gray-300 border, gray-400 plus icon at half the box. */
 .sb-avatar-add {
   display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: var(--av, 40px); height: var(--av, 40px);
-  margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--white); color: var(--gray-400); cursor: pointer;
+  margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--raised-sheen-light) var(--white); color: var(--gray-400); cursor: pointer;
   transition-property: color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-avatar-group[data-size="xs"] .sb-avatar-add { --av: 24px; }
@@ -4932,7 +4932,7 @@ Picks a value or a range by dragging, when the position matters more than the ex
 | --- | --- | --- |
 | 1 | Track | 8 high, full width (320 in examples), `gray-200`, radius 4 |
 | 2 | Selected range | `brand-600`, radius 4, between the handles (from 0 for a single slider) |
-| 3 | Handle | 24 px circle, `white`, 1 px `brand-600` border, `shadow-md`, centred on the value |
+| 3 | Handle | 24 px circle, `white` raised (`raised-sheen-light`), 1 px `brand-600` border, `shadow-md`, centred on the value |
 | 4 | Label | Optional. Bottom: Text md / Medium `gray-900`, 8 below the handle. Floating: Light tooltip with an arrow, 4 from the handle |
 
 ### Properties
@@ -5089,7 +5089,7 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 
 /* Inputs: 24 px wider than the track so each handle centres on 0 % and 100 %. Only the handle takes the pointer. */
 .sb-slider-input {
-  --th-bg: var(--white); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md);
+  --th-bg: var(--white); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md); --th-sheen: var(--raised-sheen-light);
   position: absolute; z-index: 1; top: 0; left: -12px; width: calc(100% + 24px); height: 24px; margin: 0; /* above the rail's ::after, which paints last */
   background: none; appearance: none; -webkit-appearance: none; pointer-events: none;
 }
@@ -5098,12 +5098,12 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 .sb-slider-input::-moz-range-track { height: 24px; background: none; }
 .sb-slider-input::-webkit-slider-thumb {
   box-sizing: border-box; width: 24px; height: 24px; border: 1px solid var(--th-bd); border-radius: var(--radius-full);
-  background: var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto; appearance: none; -webkit-appearance: none;
+  background: var(--th-sheen) var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto; appearance: none; -webkit-appearance: none;
   transition: background-color 150ms var(--ease), box-shadow 150ms var(--ease);
 }
 .sb-slider-input::-moz-range-thumb {
   box-sizing: border-box; width: 24px; height: 24px; border: 1px solid var(--th-bd); border-radius: var(--radius-full);
-  background: var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto;
+  background: var(--th-sheen) var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto;
   transition: background-color 150ms var(--ease), box-shadow 150ms var(--ease);
 }
 
@@ -5114,7 +5114,7 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 .sb-slider-input:active::-moz-range-thumb { cursor: grabbing; }
 .sb-slider:has(:disabled) .sb-slider-rail::before { background: var(--gray-100); }
 .sb-slider:has(:disabled) .sb-slider-rail::after { background: var(--gray-300); }
-.sb-slider-input:disabled { --th-bg: var(--white); --th-bd: var(--gray-300); --th-shadow: none; }
+.sb-slider-input:disabled { --th-bg: var(--white); --th-bd: var(--gray-300); --th-shadow: none; --th-sheen: none; }
 .sb-slider-input:disabled::-webkit-slider-thumb { cursor: not-allowed; }
 .sb-slider-input:disabled::-moz-range-thumb { cursor: not-allowed; }
 
@@ -6198,7 +6198,7 @@ An on/off switch whose change takes effect immediately, such as "Tampilkan hanya
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Track + knob | Track fully rounded with 2 px padding. Knob white with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`. |
+| 1 | Track + knob | Track fully rounded with 2 px padding. Knob white, raised (`raised-sheen-light`) with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`. |
 | 2 | Label | Optional. Text sm / Medium (`md`: Text md / Medium), `gray-700`. Says what is turned on. |
 | 3 | Supporting text | Optional. Text sm / Regular (`md`: Text md / Regular, 2 px below), `gray-500`. |
 
@@ -6366,7 +6366,7 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 .sb-toggle-input::before {
   content: ''; position: absolute; top: 2px; left: 2px;
   width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
-  background: var(--white); box-shadow: var(--shadow-sm);
+  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm);
   transition: translate 150ms var(--ease);
 }
 .sb-toggle-input:checked { background: var(--tg-on); }

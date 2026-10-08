@@ -329,7 +329,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 /* Add: white, dashed gray-300 border, gray-400 plus icon at half the box. */
 .sb-avatar-add {
   display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: var(--av, 40px); height: var(--av, 40px);
-  margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--white); color: var(--gray-400); cursor: pointer;
+  margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--raised-sheen-light) var(--white); color: var(--gray-400); cursor: pointer;
   transition-property: color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-avatar-group[data-size="xs"] .sb-avatar-add { --av: 24px; }
@@ -394,6 +394,7 @@ function initials(name) {
   --brand-600: #3966e0;
   --success-500: #12b76a;
   --radius-full: 9999px;
+  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;

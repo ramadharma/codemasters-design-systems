@@ -68,7 +68,7 @@ document.addEventListener('input', sliderInput);`;
 
 /* Inputs: 24 px wider than the track so each handle centres on 0 % and 100 %. Only the handle takes the pointer. */
 .sb-slider-input {
-  --th-bg: var(--white); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md);
+  --th-bg: var(--white); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md); --th-sheen: var(--raised-sheen-light);
   position: absolute; z-index: 1; top: 0; left: -12px; width: calc(100% + 24px); height: 24px; margin: 0; /* above the rail's ::after, which paints last */
   background: none; appearance: none; -webkit-appearance: none; pointer-events: none;
 }
@@ -77,12 +77,12 @@ document.addEventListener('input', sliderInput);`;
 .sb-slider-input::-moz-range-track { height: 24px; background: none; }
 .sb-slider-input::-webkit-slider-thumb {
   box-sizing: border-box; width: 24px; height: 24px; border: 1px solid var(--th-bd); border-radius: var(--radius-full);
-  background: var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto; appearance: none; -webkit-appearance: none;
+  background: var(--th-sheen) var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto; appearance: none; -webkit-appearance: none;
   transition: background-color 150ms var(--ease), box-shadow 150ms var(--ease);
 }
 .sb-slider-input::-moz-range-thumb {
   box-sizing: border-box; width: 24px; height: 24px; border: 1px solid var(--th-bd); border-radius: var(--radius-full);
-  background: var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto;
+  background: var(--th-sheen) var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto;
   transition: background-color 150ms var(--ease), box-shadow 150ms var(--ease);
 }
 
@@ -93,7 +93,7 @@ document.addEventListener('input', sliderInput);`;
 .sb-slider-input:active::-moz-range-thumb { cursor: grabbing; }
 .sb-slider:has(:disabled) .sb-slider-rail::before { background: var(--gray-100); }
 .sb-slider:has(:disabled) .sb-slider-rail::after { background: var(--gray-300); }
-.sb-slider-input:disabled { --th-bg: var(--white); --th-bd: var(--gray-300); --th-shadow: none; }
+.sb-slider-input:disabled { --th-bg: var(--white); --th-bd: var(--gray-300); --th-shadow: none; --th-sheen: none; }
 .sb-slider-input:disabled::-webkit-slider-thumb { cursor: not-allowed; }
 .sb-slider-input:disabled::-moz-range-thumb { cursor: not-allowed; }
 
@@ -218,7 +218,7 @@ ${slider({ ...opts, id, labelledby: `${id}-label` }).replace(/^/gm, '  ')}
             rows: [
               ['1', 'Track', '8 high, full width (320 in examples), `gray-200`, radius 4'],
               ['2', 'Selected range', '`brand-600`, radius 4, between the handles (from 0 for a single slider)'],
-              ['3', 'Handle', '24 px circle, `white`, 1 px `brand-600` border, `shadow-md`, centred on the value'],
+              ['3', 'Handle', '24 px circle, `white` raised (`raised-sheen-light`), 1 px `brand-600` border, `shadow-md`, centred on the value'],
               ['4', 'Label', 'Optional. Bottom: Text md / Medium `gray-900`, 8 below the handle. Floating: Light tooltip with an arrow, 4 from the handle'],
             ],
           },

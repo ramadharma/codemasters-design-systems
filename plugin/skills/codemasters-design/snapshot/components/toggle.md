@@ -23,7 +23,7 @@ An on/off switch whose change takes effect immediately, such as "Tampilkan hanya
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Track + knob | Track fully rounded with 2 px padding. Knob white with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`. |
+| 1 | Track + knob | Track fully rounded with 2 px padding. Knob white, raised (`raised-sheen-light`) with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`. |
 | 2 | Label | Optional. Text sm / Medium (`md`: Text md / Medium), `gray-700`. Says what is turned on. |
 | 3 | Supporting text | Optional. Text sm / Regular (`md`: Text md / Regular, 2 px below), `gray-500`. |
 
@@ -191,7 +191,7 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 .sb-toggle-input::before {
   content: ''; position: absolute; top: 2px; left: 2px;
   width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
-  background: var(--white); box-shadow: var(--shadow-sm);
+  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm);
   transition: translate 150ms var(--ease);
 }
 .sb-toggle-input:checked { background: var(--tg-on); }
@@ -233,6 +233,7 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
   --brand-700: #2e51cd;
   --radius-full: 9999px;
   --shadow-sm: 0 1px 3px rgba(16,24,40,.1), 0 1px 2px rgba(16,24,40,.06);
+  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;

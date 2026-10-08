@@ -75,7 +75,7 @@ Pressable controls get a little depth, so they read as buttons: a sheen over the
 | Token | Use on | CSS value |
 | --- | --- | --- |
 | `--raised-sheen` | Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme | `linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))` |
-| `--raised-sheen-light` | White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons | `linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))` |
+| `--raised-sheen-light` | White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons, Toggle knob, Slider handle, Avatar add button | `linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))` |
 | `--raised-highlight` | With `--raised-sheen`, first in `box-shadow` | `inset 0 1px 0 rgb(255 255 255 / .28)` |
 
 - Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.

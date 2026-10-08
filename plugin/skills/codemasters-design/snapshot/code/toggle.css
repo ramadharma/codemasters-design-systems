@@ -33,7 +33,7 @@
 .sb-toggle-input::before {
   content: ''; position: absolute; top: 2px; left: 2px;
   width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
-  background: var(--white); box-shadow: var(--shadow-sm);
+  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm);
   transition: translate 150ms var(--ease);
 }
 .sb-toggle-input:checked { background: var(--tg-on); }
