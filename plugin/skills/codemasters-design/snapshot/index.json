@@ -226,6 +226,15 @@
       "path": "components/textarea.md"
     },
     {
+      "slug": "toast",
+      "name": "Toast",
+      "category": "Components",
+      "status": "Ready",
+      "updated": "2026-10-08",
+      "description": "Short feedback after an action that then goes away: \"Klaim terkirim\". The react-hot-toast API (toast.success, toast.error, toast.loading, toast.promise) in plain JS, in the design-system look.",
+      "path": "components/toast.md"
+    },
+    {
       "slug": "toggle",
       "name": "Toggle",
       "category": "Components",
@@ -305,6 +314,8 @@
     "code/tabs.js",
     "code/textarea.css",
     "code/textarea-counter.js",
+    "code/toast.css",
+    "code/toast.js",
     "code/toggle.css",
     "code/tooltip.css",
     "code/tooltip.js",

@@ -124,14 +124,7 @@
   const pageFile = p => (p === overview ? 'DESIGN.md' : `${p.slug}.md`);
 
   // ---- Feedback, clipboard, files
-  const toastEl = $('.toast');
-  let toastTimer;
-  const toast = msg => {
-    toastEl.textContent = msg;
-    toastEl.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 3500);
-  };
+  const { toast } = DS; // the design system's own Toast (data/toast.js)
   const copyText = async (text, what = 'Copied') => {
     try {
       await navigator.clipboard.writeText(text);
@@ -143,11 +136,11 @@
       const ok = document.execCommand('copy');
       ta.remove();
       if (!ok) {
-        toast('Copy failed. Use Download instead.');
+        toast.error('Copy failed', { description: 'Use Download instead.' });
         return false;
       }
     }
-    toast(`${what} to clipboard`);
+    toast.success(`${what} to clipboard`);
     return true;
   };
   const download = (name, text) => {
@@ -155,7 +148,7 @@
     const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([text], { type })), download: name });
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-    toast(`Downloaded ${name}`);
+    toast.success(`Downloaded ${name}`);
   };
 
   // ---- Rendering

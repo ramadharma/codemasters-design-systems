@@ -1,0 +1,65 @@
+/* Toast, Codemasters Design System
+   Needs tokens.css; toast.js creates the region and the toasts. Call toast() / toast.success() from your code.
+
+   <section class="sb-toaster" aria-label="Notifikasi" aria-live="polite" data-position="bottom-center">
+     <div class="sb-toast" data-type="success" role="status">
+       <span class="sb-toast-icon">…check-circle…</span>
+       <div class="sb-toast-text"><p class="sb-toast-msg">Klaim terkirim</p><p class="sb-toast-desc">…</p></div>
+       <button class="sb-toast-action" type="button">Batalkan</button>
+       <button class="sb-toast-close" type="button" aria-label="Tutup notifikasi">…x…</button>
+     </div>
+   </section>
+
+   data-position  bottom-center (default) | bottom-right | bottom-left | top-center | top-right | top-left
+   data-type      blank | success | error | warning | loading */
+
+.sb-toaster {
+  position: fixed; z-index: 60; inset-inline: 0; bottom: 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding-inline: 16px; pointer-events: none;
+}
+.sb-toaster[data-position^="top"] { top: 24px; bottom: auto; flex-direction: column-reverse; } /* newest nearest the edge */
+.sb-toaster[data-position$="right"] { align-items: flex-end; }
+.sb-toaster[data-position$="left"] { align-items: flex-start; }
+
+.sb-toast {
+  --enter-y: 8px;
+  box-sizing: border-box; pointer-events: auto;
+  display: flex; align-items: center; gap: 12px;
+  width: max-content; max-width: min(420px, 100%); min-height: 44px; padding: 10px 12px 10px 14px;
+  background: var(--gray-900); border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+  font: 500 var(--text-sm) var(--font); color: var(--white);
+  transition: opacity 200ms var(--ease), translate 200ms var(--ease), scale 200ms var(--ease);
+}
+.sb-toaster[data-position^="top"] .sb-toast { --enter-y: -8px; }
+@starting-style { .sb-toast { opacity: 0; translate: 0 var(--enter-y); scale: .96; } }
+.sb-toast[data-state="closing"] { opacity: 0; scale: .96; transition-duration: 150ms; }
+
+.sb-toast-icon { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; }
+.sb-toast-icon > svg { width: 20px; height: 20px; }
+.sb-toast[data-type="success"] .sb-toast-icon { color: var(--success-400); }
+.sb-toast[data-type="error"] .sb-toast-icon { color: var(--error-400); }
+.sb-toast[data-type="warning"] .sb-toast-icon { color: var(--warning-400); }
+.sb-toast-spinner { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--gray-600); border-top-color: var(--white); border-radius: var(--radius-full); animation: sb-toast-spin 700ms linear infinite; }
+@keyframes sb-toast-spin { to { rotate: 1turn; } }
+
+.sb-toast-text { display: grid; gap: 2px; min-width: 0; }
+.sb-toast .sb-toast-text p { margin: 0; }
+.sb-toast .sb-toast-msg { color: var(--white); text-wrap: pretty; }
+.sb-toast .sb-toast-desc { font-weight: 400; color: var(--gray-300); text-wrap: pretty; }
+
+/* Action: one text button, brand-300 on the dark fill. Close: a 20 px x in gray-400. */
+.sb-toast-action {
+  flex: none; margin: -6px 0 -6px 4px; padding: 6px 8px; border: 0; border-radius: var(--radius-sm);
+  background: none; font: 600 var(--text-sm) var(--font); color: var(--brand-300); cursor: pointer;
+}
+.sb-toast-action:hover { background: var(--gray-800); }
+.sb-toast-close { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; margin: -4px -4px -4px 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--gray-400); cursor: pointer; }
+.sb-toast-close:hover { background: var(--gray-800); color: var(--white); }
+.sb-toast-close > svg { width: 20px; height: 20px; }
+.sb-toast :is(.sb-toast-action, .sb-toast-close):focus-visible { outline: 2px solid var(--brand-300); outline-offset: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-toast { transition: none; }
+  .sb-toast-spinner { animation-duration: 2s; }
+}
