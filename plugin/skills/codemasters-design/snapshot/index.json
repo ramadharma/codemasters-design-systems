@@ -163,6 +163,15 @@
       "path": "components/input-field.md"
     },
     {
+      "slug": "modal",
+      "name": "Modal",
+      "category": "Components",
+      "status": "Ready",
+      "updated": "2026-10-08",
+      "description": "A dialog that stops the page for one decision or one short form: confirmations, a destructive check, sending a claim. Native <dialog>, so focus, Esc and the inert page come from the browser.",
+      "path": "components/modal.md"
+    },
+    {
       "slug": "progress",
       "name": "Progress bar and circle",
       "category": "Components",
@@ -283,6 +292,8 @@
     "code/input-dropdown.css",
     "code/input-dropdown.js",
     "code/input-field.css",
+    "code/modal.css",
+    "code/modal.js",
     "code/progress.js",
     "code/progress.css",
     "code/slider.css",

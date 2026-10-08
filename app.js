@@ -112,7 +112,7 @@
     playground: (b, page, i) => `<div class="pg" data-block="${i}">
       <div class="pg-stage" aria-live="polite"></div>
       <form class="pg-controls">${b.controls.map(c => control(c, b.initial[c.key], `pg-${i.replace(/\W/g, '-')}-${c.key}`)).join('')}</form>
-      ${codeBox(snippet(b.render(b.initial)), 'html')}
+      ${codeBox(b.code ? b.code(b.initial) : snippet(b.render(b.initial)), 'html')}
     </div>`, // rendered once here so long code starts collapsed
     tokens: (b, page) => codeBox(usedTokens(page.css), 'css'),
     components: b => `<div class="cards">${(b.of === 'foundations' ? foundations : b.of === 'applications' ? applications : components)
@@ -228,8 +228,9 @@
       const state = { ...block.initial, ...Object.fromEntries(block.controls.map(c => [c.key, read(c)])) };
       const html = block.render(state);
       stage.innerHTML = html;
-      code.innerHTML = numbered(snippet(html), 'html');
-      code.style.cssText = gutter(snippet(html));
+      const src = block.code ? block.code(state) : snippet(html); // block.code: the preview is a docs specimen, not the markup to copy
+      code.innerHTML = numbered(src, 'html');
+      code.style.cssText = gutter(src);
     };
     // Button group and dropdown picks are applied by their own document listeners, so read after them.
     for (const type of ['input', 'click', 'keydown']) form.addEventListener(type, () => setTimeout(update));

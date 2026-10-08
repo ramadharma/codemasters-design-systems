@@ -205,6 +205,9 @@
   --chart-grid: var(--gray-100);
   --chart-axis: var(--gray-300);
 
+  /* Overlay: the scrim behind modal dialogs */
+  --scrim: rgba(0, 0, 0, .2);
+
   /* Background blur: use as backdrop-filter: var(--blur-md) */
   --blur-sm: blur(4px);
   --blur-md: blur(8px);

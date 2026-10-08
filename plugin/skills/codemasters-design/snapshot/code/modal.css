@@ -1,0 +1,80 @@
+/* Modal, Codemasters Design System
+   Needs tokens.css and button.css; modal.js to open and close. A native <dialog> opened with showModal().
+
+   <button class="sb-btn" type="button" data-modal-open="tolak">Tolak Klaim</button>
+   <dialog class="sb-modal" id="tolak" data-size="sm" aria-labelledby="tolak-title" aria-describedby="tolak-desc">
+     <header class="sb-modal-head">
+       <span class="sb-modal-icon" data-tone="error">…trash…</span>
+       <div class="sb-modal-heading">
+         <h2 class="sb-modal-title" id="tolak-title">Tolak Klaim?</h2>
+         <p class="sb-modal-desc" id="tolak-desc">…</p>
+       </div>
+     </header>
+     <button class="sb-btn sb-modal-close" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" data-modal-close>…x…</button>
+     <footer class="sb-modal-foot">
+       <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
+       <button class="sb-btn" type="button" data-destructive>Tolak Klaim</button>
+     </footer>
+   </dialog>
+
+   data-size   sm 424 (confirmations) | md 640 (forms, default) | lg 880 (wide content)
+   data-tone   on the icon: brand | error | warning | success */
+
+.sb-modal {
+  --modal-w: 640px;
+  box-sizing: border-box;
+  display: grid; gap: 16px; align-content: start;
+  width: min(var(--modal-w), calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 64px);
+  margin: auto; padding: 24px; overflow-y: auto;
+  font: 400 var(--text-sm) var(--font); color: var(--gray-700);
+  background: var(--white); border: 0; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+}
+.sb-modal[data-size="sm"] { --modal-w: 424px; }
+.sb-modal[data-size="lg"] { --modal-w: 880px; }
+
+/* Open and close: fade and scale from 96 %, 150 ms; the scrim fades with it. */
+div.sb-modal { position: relative; } /* static specimens; a <dialog> stays fixed in the top layer */
+dialog.sb-modal { opacity: 0; scale: .96; transition: opacity 150ms var(--ease), scale 150ms var(--ease), overlay 150ms allow-discrete, display 150ms allow-discrete; }
+dialog.sb-modal:not([open]) { display: none; }
+dialog.sb-modal[open] { opacity: 1; scale: 1; }
+dialog.sb-modal::backdrop { background: transparent; transition: background-color 150ms var(--ease), overlay 150ms allow-discrete, display 150ms allow-discrete; }
+dialog.sb-modal[open]::backdrop { background: var(--scrim); }
+@starting-style {
+  dialog.sb-modal[open] { opacity: 0; scale: .96; }
+  dialog.sb-modal[open]::backdrop { background: transparent; }
+}
+html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does not scroll */
+
+/* Head: optional icon, title, description. The close button sits in the corner. */
+.sb-modal-head { display: grid; gap: 16px; padding-inline-end: 32px; }
+.sb-modal-heading { display: grid; gap: 4px; }
+.sb-modal-title { margin: 0; font: 600 var(--text-xl) var(--font); color: var(--gray-900); text-wrap: balance; }
+.sb-modal[data-size="sm"] .sb-modal-title { font: 600 var(--text-lg) var(--font); }
+.sb-modal-desc { margin: 0; color: var(--gray-500); text-wrap: pretty; }
+.sb-modal-close { position: absolute; top: 16px; right: 16px; }
+
+/* Icon: 48 px circle, tone-100 fill with an 8 px tone-50 ring, 24 px tone-600 icon. */
+.sb-modal-icon {
+  --tone: var(--brand-600); --tone-fill: var(--brand-100); --tone-ring: var(--brand-50);
+  box-sizing: border-box; display: grid; place-items: center; width: 48px; height: 48px;
+  border: 8px solid var(--tone-ring); border-radius: var(--radius-full); background: var(--tone-fill); color: var(--tone);
+}
+.sb-modal-icon > svg { width: 24px; height: 24px; }
+.sb-modal-icon[data-tone="error"] { --tone: var(--error-600); --tone-fill: var(--error-100); --tone-ring: var(--error-50); }
+.sb-modal-icon[data-tone="warning"] { --tone: var(--warning-600); --tone-fill: var(--warning-100); --tone-ring: var(--warning-50); }
+.sb-modal-icon[data-tone="success"] { --tone: var(--success-600); --tone-fill: var(--success-100); --tone-ring: var(--success-50); }
+
+.sb-modal-body { display: grid; gap: 16px; min-width: 0; }
+.sb-modal-body > p { margin: 0; }
+
+/* Footer: actions right-aligned, gap 12, 8 more above them. In a small modal the buttons share the width. */
+.sb-modal-foot { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; margin-top: 8px; }
+.sb-modal[data-size="sm"] .sb-modal-foot > .sb-btn { flex: 1; }
+@media (max-width: 480px) {
+  .sb-modal-foot { flex-direction: column-reverse; }
+  .sb-modal-foot > .sb-btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.sb-modal, dialog.sb-modal::backdrop { transition: none; }
+}
