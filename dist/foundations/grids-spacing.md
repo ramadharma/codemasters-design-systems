@@ -3,7 +3,7 @@ name: Grids & Spacing
 slug: grids-spacing
 category: Foundations
 status: Ready
-version: 0.1.0
+version: 1.0.0
 updated: 2026-10-07
 requires: tokens.css
 ---

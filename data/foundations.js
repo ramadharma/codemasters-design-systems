@@ -5,7 +5,7 @@
 
   DS.meta = {
     name: 'Codemasters Design System',
-    version: '0.1.0',
+    version: '1.0.0',
     updated: '2026-10-06',
     intro:
       'The shared visual language of Codemasters and its companies, Sembuh AI and Flipmaster: web apps, websites, mobile, slides, documents and posters. ' +

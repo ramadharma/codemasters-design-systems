@@ -12,9 +12,10 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 
 /* ---- Header (page padding 32, items gap 8) */
 .top { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; gap: 8px; height: 64px; padding-inline: 32px; background: var(--white); border-bottom: 1px solid var(--gray-200); }
-.brand { display: flex; align-items: baseline; gap: 8px; text-decoration: none; color: var(--gray-900); }
-.brand strong { font: 700 var(--text-lg) var(--font); white-space: nowrap; }
-.brand span { font: 500 var(--text-sm) var(--font); color: var(--gray-500); }
+.brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--gray-900); }
+.brand img { display: block; height: 24px; width: auto; }
+.brand-name { font: 500 var(--text-lg) var(--font); white-space: nowrap; color: var(--gray-900); }
+.brand-version { margin-inline-start: 4px; }
 .top-actions { display: flex; gap: 8px; margin-inline-start: auto; }
 .top .nav-toggle { display: none; }
 
@@ -451,7 +452,7 @@ kbd svg { width: 12px; height: 12px; }
   .layout { grid-template-columns: minmax(0, 1fr); }
   .top { padding-inline: 16px; }
   .top .nav-toggle { display: inline-flex; }
-  .brand span { display: none; }
+  .brand-name { display: none; }
   .search-trigger { width: 44px; height: 44px; padding: 0; justify-content: center; }
   .search-trigger span, .search-trigger kbd { display: none; }
   .side { position: fixed; z-index: 25; top: 64px; inset-inline-start: 0; width: min(280px, 85vw); box-shadow: var(--shadow-lg); translate: -100% 0; visibility: hidden; transition: translate 200ms var(--ease), visibility 0s 200ms; }

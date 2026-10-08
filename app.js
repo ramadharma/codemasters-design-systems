@@ -6,6 +6,8 @@
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
 
+  $('.brand-version').textContent = `v${meta.version.split('.').slice(0, 2).join('.')}`; // 1.0.0 shows as v1.0
+
   const fmtDate = iso => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
   // ---- Inline Markdown subset: `code`, **bold**, [text](url). Colour tokens in code get a swatch.

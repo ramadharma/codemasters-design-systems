@@ -3,7 +3,7 @@ name: Badge
 slug: badge
 category: Components
 status: Ready
-version: 0.1.0
+version: 1.0.0
 updated: 2026-10-06
 requires: tokens.css
 ---
