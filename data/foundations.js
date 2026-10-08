@@ -118,6 +118,7 @@
     'chevron-down': '<path d="m6 9 6 6 6-6"/>',
     'chevron-left': '<path d="m15 18-6-6 6-6"/>',
     'chevron-right': '<path d="m9 18 6-6-6-6"/>',
+    selector: '<path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>',
     list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
     grid: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>',
     calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
@@ -171,7 +172,7 @@
   // Preview HTML to copyable snippet: icon bodies collapse to a named placeholder, docs-only attributes go.
   DS.snippet = html =>
     html
-      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
+      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart|table)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
       .replace(/<svg data-i="([\w-]+)"[\s\S]*?<\/svg>/g, '<svg aria-hidden="true"><!-- $1 --></svg>')
       .replace(/ data-(state|demo)(="[^"]*")?/g, '')
       .replace(/src="data:image\/[^"]*"/g, 'src="…"'); // inline demo images

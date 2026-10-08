@@ -190,6 +190,15 @@
       "path": "components/social-button.md"
     },
     {
+      "slug": "table",
+      "name": "Table",
+      "category": "Components",
+      "status": "Ready",
+      "updated": "2026-10-08",
+      "description": "Rows of records: claims, invoice items, members. A gray-50 header band, gray-200 row dividers, right-aligned tabular numbers, status pills, sortable columns, row selection and grouped rows.",
+      "path": "components/table.md"
+    },
+    {
       "slug": "tabs",
       "name": "Tabs",
       "category": "Components",
@@ -279,6 +288,8 @@
     "code/slider.css",
     "code/slider.js",
     "code/social-button.css",
+    "code/table.css",
+    "code/table.js",
     "code/tabs.css",
     "code/tabs.js",
     "code/textarea.css",

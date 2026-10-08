@@ -247,6 +247,14 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 /* ---- Foundations pages. Previews are reference sheets, so they start at the left and use the full width. */
 .ex-preview:has(> .f-swatches, > .f-type, > .f-icons, > .f-space, > .f-grids, > .f-containers) { justify-content: flex-start; min-height: 0; padding: 32px; }
 /* Slide mockups: children are placed in canvas px converted to % and cqw, so the frame can be any width. */
+/* Table page */
+.table-stage { width: 100%; min-width: 0; }
+.table-stage.is-narrow { max-width: 420px; }
+.ex-preview:has(> .table-stage) { min-height: 0; padding: 32px; justify-content: flex-start; }
+.dd-preview .table-stage { align-self: center; }
+.anat .table-stage { width: 640px; }
+@media (max-width: 860px) { .ex-preview:has(> .table-stage) { padding: 16px; } }
+
 /* Chart page */
 .chart-stage { width: 100%; max-width: 640px; min-width: 0; }
 .ex-preview:has(> .chart-stage) { min-height: 0; padding: 32px; }
