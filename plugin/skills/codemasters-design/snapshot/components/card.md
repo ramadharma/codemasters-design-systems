@@ -28,7 +28,7 @@ The container for one topic on a page: a claim summary, a table, a chart, a metr
 | 2 | Head | Title block on the left, actions on the right, top-aligned, gap 16. |
 | 3 | Title | Text xl / Semibold (sm: Text md), `gray-900`, Title Case. A heading element at the level the page needs. Optional description below: Text sm `gray-500`, 4 apart. |
 | 4 | Badge | Optional status pill or count, Badge sm, 8 after the title. |
-| 5 | Actions | Buttons sm, gap 8: Secondary gray or Tertiary, an icon button with a "more" menu. |
+| 5 | Actions | Buttons sm, gap 8: Secondary gray or Tertiary, an icon button with a "more" menu. Centred on the title line and allowed to overhang it, so the head is only as tall as the title. |
 | 6 | Fold chevron | Optional. Tertiary gray icon button sm; points up when open, down when folded. Hides the body and footer. |
 | 7 | Body | Blocks 16 apart (sm 12): text, inner cards, tables, charts. |
 | 8 | Footer | Optional. Actions right-aligned, gap 12, above a `gray-200` divider that runs edge to edge. |
@@ -410,7 +410,7 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
    data-state    hover | focus on a link card. Static mockups and docs only. */
 
 .sb-card {
-  --card-py: 24px; --card-px: 24px; --card-gap: 16px;
+  --card-py: 24px; --card-px: 24px; --card-gap: 16px; --card-title-lh: 30px; /* title line height: Text xl */
   box-sizing: border-box; position: relative;
   display: grid; align-content: start; gap: var(--card-gap); min-width: 0;
   padding: var(--card-py) var(--card-px);
@@ -418,7 +418,7 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
   background: var(--white);
   border: 1px solid var(--gray-300); border-radius: var(--radius-lg); /* cards are flat: a border, never a shadow */
 }
-.sb-card[data-size="sm"] { --card-py: 16px; --card-px: 16px; --card-gap: 12px; }
+.sb-card[data-size="sm"] { --card-py: 16px; --card-px: 16px; --card-gap: 12px; --card-title-lh: 24px; }
 
 /* Head: title (+ badges) and description on the left, actions and the fold chevron on the right. */
 .sb-card-head { display: flex; align-items: flex-start; gap: 16px; }
@@ -430,7 +430,8 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
 .sb-card[data-size="sm"] .sb-card-title { font: 600 var(--text-md) var(--font); }
 .sb-card-title > svg { width: 20px; height: 20px; flex: none; }
 .sb-card-desc { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); text-wrap: pretty; }
-.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; } /* above a link card's hit area */
+/* Actions (36 px buttons) centre on the title line and overhang it, so they never make the head taller than the title. */
+.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 36px) / 2); }
 .sb-card-fold > svg { transition: rotate 150ms var(--ease); }
 .sb-card-fold[aria-expanded="true"] > svg { rotate: 180deg; }
 
@@ -445,11 +446,11 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
 .sb-card-text { margin: 0; text-wrap: pretty; }
 
 /* Inner card: a box inside a card. gray-50, radius 8, padding 12 16. */
-.sb-card[data-variant="inner"] { --card-py: 12px; --card-px: 16px; --card-gap: 8px; background: var(--gray-50); border-color: var(--gray-200); border-radius: var(--radius-md); }
+.sb-card[data-variant="inner"] { --card-py: 12px; --card-px: 16px; --card-gap: 8px; --card-title-lh: 20px; background: var(--gray-50); border-color: var(--gray-200); border-radius: var(--radius-md); }
 .sb-card[data-variant="inner"] .sb-card-title { font: 600 var(--text-sm) var(--font); }
 
 /* Tint: AI summary. brand-50, brand-200 border, radius 8, title in brand-700 with the loader icon. */
-.sb-card[data-variant="tint"] { --card-py: 16px; --card-px: 16px; --card-gap: 12px; background: var(--brand-50); border-color: var(--brand-200); border-radius: var(--radius-md); }
+.sb-card[data-variant="tint"] { --card-py: 16px; --card-px: 16px; --card-gap: 12px; --card-title-lh: 24px; background: var(--brand-50); border-color: var(--brand-200); border-radius: var(--radius-md); }
 .sb-card[data-variant="tint"] .sb-card-title { font: 600 var(--text-md) var(--font); color: var(--brand-700); }
 
 /* Summary rows: "Label …… Value". */

@@ -59,15 +59,15 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 
 /* ---- Content flow. One rhythm for every section (DESIGN.md: 16 between blocks inside a card):
    sections 48 apart; heading to its content 12 (h3: 8); blocks 16 apart; h3 starts a sub-group 32 down. */
-.page section { margin-top: 48px; }
-.page section > * + * { margin-top: 16px; }
-.page section > h2 + * { margin-top: 12px; }
-.page section > * + h3 { margin-top: 32px; }
-.page section > h3 + * { margin-top: 8px; }
+.page > section { margin-top: 48px; }
+.page > section > * + * { margin-top: 16px; }
+.page > section > h2 + * { margin-top: 12px; }
+.page > section > * + h3 { margin-top: 32px; }
+.page > section > h3 + * { margin-top: 8px; }
 .page h2 { font: 600 var(--display-xs) var(--font); color: var(--gray-900); }
 .page h3 { font: 600 var(--text-lg) var(--font); color: var(--gray-900); }
 .page p { max-width: 70ch; color: var(--gray-600); }
-.page section > ul, .page section > ol { display: grid; gap: 8px; max-width: 70ch; padding-inline-start: 20px; color: var(--gray-600); }
+.page > section > ul, .page > section > ol { display: grid; gap: 8px; max-width: 70ch; padding-inline-start: 20px; color: var(--gray-600); }
 .page li::marker { color: var(--gray-400); }
 .page strong { font-weight: 600; color: var(--gray-900); }
 .page p a, .page li a { color: var(--brand-700); text-underline-offset: 4px; }
@@ -474,7 +474,7 @@ kbd svg { width: 12px; height: 12px; }
   .page { padding: 32px 16px 80px; }
   .head h1 { font: 600 var(--display-xs) var(--font); }
   .head .split { grid-column: 1 / -1; grid-row: auto; justify-self: start; margin-top: 8px; }
-  .page section { margin-top: 40px; }
+  .page > section { margin-top: 40px; }
   .ex-preview, .pg-stage { padding-inline: 16px; }
   .pg-stage { min-height: 256px; padding-block: 48px; }
   .ex-preview { min-height: 256px; padding-block: 48px; }
