@@ -5,12 +5,32 @@
   const { esc } = DS;
 
   // ---- Tooltip: hover or focus a mark (or a column of a line chart). Every value is also in the table view.
+  // It follows the pointer and glides between positions (translate transition); keyboard focus pins it above the mark.
+  function chartTipPlace(chart, tip, e, hit, instant) {
+    const c = chart.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
+    let x, y;
+    if (e.type.startsWith('pointer')) {
+      // 12 right of and below the pointer; flips at the chart's right and bottom edges.
+      const px = e.clientX - c.left, py = e.clientY - c.top;
+      x = px + 12 + w <= c.width ? px + 12 : px - 12 - w;
+      y = py + 12 + h <= c.height ? py + 12 : py - 12 - h;
+    } else {
+      const r = hit.getBoundingClientRect();
+      x = r.left + r.width / 2 - c.left - w / 2;
+      y = r.top - c.top - h - 8;
+    }
+    tip.style.transition = instant ? 'none' : ''; // appear in place, then glide
+    tip.style.translate = `${Math.max(0, Math.min(x, c.width - w))}px ${y}px`;
+  }
   function chartTip(e) {
-    const hit = e.target.closest?.('.sb-chart [data-tip]');
     const chart = e.target.closest?.('.sb-chart');
     if (!chart) return;
     const tip = chart.querySelector('.sb-chart-tip');
+    if (e.type === 'pointermove') return tip.hidden || chartTipPlace(chart, tip, e);
+    const hit = e.target.closest('.sb-chart [data-tip]');
     const off = e.type === 'pointerout' || e.type === 'focusout';
+    // Moving from one mark to the next: keep the tooltip, the next pointerover refills it.
+    if (off && e.relatedTarget?.closest?.('.sb-chart [data-tip]') && e.relatedTarget.closest('.sb-chart') === chart) return;
     chart.querySelectorAll('.is-on').forEach(m => m.classList.remove('is-on'));
     if (off || !hit) {
       chart.removeAttribute('data-hover');
@@ -37,30 +57,15 @@
       row.append(v, ` ${label}`);
       tip.append(row);
     }
+    const fresh = tip.hidden;
     tip.hidden = false;
-    const c = chart.getBoundingClientRect();
-    // Anchor above the highest lit mark (bars, dots), else above the hovered mark itself.
-    const lit = [...chart.querySelectorAll('.is-on')].map(m => m.getBoundingClientRect());
-    // A donut segment's box is the whole ring, so follow the pointer there (keyboard focus falls back to the ring).
-    const ring = hit.hasAttribute('pathLength') && e.clientX;
-    const r = ring ? { left: e.clientX, width: 0, top: e.clientY - 4 } : lit.length ? { left: Math.min(...lit.map(b => b.left)), width: Math.max(...lit.map(b => b.right)) - Math.min(...lit.map(b => b.left)), top: Math.min(...lit.map(b => b.top)) } : hit.getBoundingClientRect();
-    if (hit.dataset.x) {
-      // Line charts: beside the crosshair at the top of the plot, flipped left near the right edge.
-      const h = hit.getBoundingClientRect(), x = h.left + h.width / 2 - c.left;
-      const right = x + 12 + tip.offsetWidth <= c.width;
-      tip.dataset.side = '';
-      tip.style.left = `${right ? x + 12 : x - 12 - tip.offsetWidth}px`;
-      tip.style.top = `${h.top - c.top}px`;
-      return;
-    }
-    delete tip.dataset.side;
-    const x = Math.min(Math.max(r.left + r.width / 2 - c.left, tip.offsetWidth / 2), c.width - tip.offsetWidth / 2);
-    tip.style.left = `${x}px`;
-    tip.style.top = `${r.top - c.top}px`;
+    chartTipPlace(chart, tip, e, hit, fresh);
   }
   const SCRIPT = `// Chart tooltip: hover or focus any [data-tip] mark. Marks with the same data-i light up; the rest fade.
+// The tooltip follows the pointer smoothly; keyboard focus pins it above the mark.
+${chartTipPlace.toString().replace(/^  /gm, '')}
 ${chartTip.toString().replace(/^  /gm, '')}
-for (const type of ['pointerover', 'pointerout', 'focusin', 'focusout']) document.addEventListener(type, chartTip);`;
+for (const type of ['pointerover', 'pointerout', 'pointermove', 'focusin', 'focusout']) document.addEventListener(type, chartTip);`;
 
   const CSS = `/* Chart, Codemasters Design System
    Needs tokens.css (series colours --chart-1 … --chart-6, --chart-other, --chart-grid, --chart-axis); chart.js for the tooltip.
@@ -109,14 +114,14 @@ for (const type of ['pointerover', 'pointerout', 'focusin', 'focusout']) documen
 
 /* Tooltip: white, gray-200 border, radius 8, shadow-lg as a filter. Value first, then the series name. */
 .sb-chart-tip {
-  position: absolute; z-index: 20; translate: -50% calc(-100% - 8px); pointer-events: none;
+  position: absolute; z-index: 20; top: 0; left: 0; pointer-events: none;
+  transition: translate 200ms var(--ease); /* glides after the pointer, like a spring with no bounce */
   display: grid; gap: 4px; min-width: 140px; padding: 8px 12px;
   background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md);
   filter: drop-shadow(0 12px 8px rgba(16,24,40,.08)) drop-shadow(0 4px 3px rgba(16,24,40,.03));
   font: 400 var(--text-xs) var(--font); color: var(--gray-500); white-space: nowrap;
 }
 .sb-chart-tip[hidden] { display: none; }
-.sb-chart-tip[data-side] { translate: 0 0; } /* line charts: beside the crosshair */
 .sb-chart-tip p { margin: 0; }
 .sb-chart-tip-title { font-weight: 500; color: var(--gray-700); }
 .sb-chart-tip-row { --key: var(--chart-1); display: flex; align-items: center; gap: 8px; }
@@ -132,7 +137,7 @@ for (const type of ['pointerover', 'pointerout', 'focusin', 'focusout']) documen
 .sb-chart-table th { font: 500 var(--text-xs) var(--font); color: var(--gray-500); background: var(--gray-50); }
 
 @media (prefers-reduced-motion: reduce) {
-  .sb-chart-mark { transition: none; }
+  .sb-chart-mark, .sb-chart-tip { transition: none; }
 }
 `;
 
@@ -384,7 +389,7 @@ ${xLabels(i => L + (PW / 6) * i + PW / 12)}
           {
             type: 'list',
             items: [
-              '`white`, 1 px `gray-200` border, radius 8, padding `8 12`, `shadow-lg` drawn as a filter. Bars and segments: 8 above the highest hovered mark. Line charts: 12 beside the crosshair at the top of the plot, flipped to the left near the edge. Always inside the chart.',
+              '`white`, 1 px `gray-200` border, radius 8, padding `8 12`, `shadow-lg` drawn as a filter. It follows the pointer, 12 right of and below it, gliding to each new position in 200 ms (`translate` transition, so it can be interrupted); it flips at the right and bottom edges and stays inside the chart. On keyboard focus it sits 8 above the focused mark. With reduced motion it jumps instead of gliding.',
               'Title: the period or category, Text xs / Medium `gray-700`. Rows: a 12 × 2 line key, the value (Text sm / Semibold `gray-900`, tabular), then the series name in `gray-500`. Value first: the reader already knows the series.',
               'Shows on hover and on keyboard focus alike. It adds detail; it never holds a value that is not also in the table view.',
               'Fill it with `textContent`: series names are data.',
@@ -461,5 +466,5 @@ ${xLabels(i => L + (PW / 6) * i + PW / 12)}
   });
 
   DS.addCss(CSS);
-  for (const type of ['pointerover', 'pointerout', 'focusin', 'focusout']) document.addEventListener(type, chartTip);
+  for (const type of ['pointerover', 'pointerout', 'pointermove', 'focusin', 'focusout']) document.addEventListener(type, chartTip);
 })();

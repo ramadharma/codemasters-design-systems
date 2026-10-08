@@ -45,14 +45,14 @@
 
 /* Tooltip: white, gray-200 border, radius 8, shadow-lg as a filter. Value first, then the series name. */
 .sb-chart-tip {
-  position: absolute; z-index: 20; translate: -50% calc(-100% - 8px); pointer-events: none;
+  position: absolute; z-index: 20; top: 0; left: 0; pointer-events: none;
+  transition: translate 200ms var(--ease); /* glides after the pointer, like a spring with no bounce */
   display: grid; gap: 4px; min-width: 140px; padding: 8px 12px;
   background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md);
   filter: drop-shadow(0 12px 8px rgba(16,24,40,.08)) drop-shadow(0 4px 3px rgba(16,24,40,.03));
   font: 400 var(--text-xs) var(--font); color: var(--gray-500); white-space: nowrap;
 }
 .sb-chart-tip[hidden] { display: none; }
-.sb-chart-tip[data-side] { translate: 0 0; } /* line charts: beside the crosshair */
 .sb-chart-tip p { margin: 0; }
 .sb-chart-tip-title { font-weight: 500; color: var(--gray-700); }
 .sb-chart-tip-row { --key: var(--chart-1); display: flex; align-items: center; gap: 8px; }
@@ -68,5 +68,5 @@
 .sb-chart-table th { font: 500 var(--text-xs) var(--font); color: var(--gray-500); background: var(--gray-50); }
 
 @media (prefers-reduced-motion: reduce) {
-  .sb-chart-mark { transition: none; }
+  .sb-chart-mark, .sb-chart-tip { transition: none; }
 }
