@@ -145,8 +145,8 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
             rows: [
               ['`brand-50`', 'Inactive tab, AI summary fill, selected range, Secondary color button'],
               ['`brand-100`', 'Secondary color button hover'],
-              ['`brand-200`', 'Disabled primary button, AI summary border'],
-              ['`brand-300`', 'Input focus border, disabled Secondary color text, light Sembuh AI series'],
+              ['`brand-200`', 'AI summary border'],
+              ['`brand-300`', 'Input focus border, light Sembuh AI series'],
               ['`brand-600`', 'Sembuh AI chart series'],
               ['`brand-600`', '**Primary**: buttons, active tab, links, checked controls, focus outline; at 20 % it is the focus ring (`--focus-ring`)'],
               ['`brand-700`', 'Primary button hover, Secondary color / Tertiary color button text, Link color hover, table ID links, tab text'],

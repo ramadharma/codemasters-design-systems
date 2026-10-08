@@ -114,11 +114,11 @@ Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up an
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (40 high, padding `10 16`, gap 12) | no fill | `gray-50` | no fill |
-| Label, Text sm / Medium | `gray-700` | `gray-700` | `gray-200` |
-| Icon 16 px | `gray-700` | `gray-700` | `gray-200` |
-| Checkbox 16 px, radius 4 | `white`, `gray-300` border | `brand-50` fill, `brand-600` border | `gray-100` fill, `gray-200` border |
-| Shortcut (right-aligned) | Text xs / Regular `gray-500` | `gray-500` | `gray-200` |
+| Row (40 high, padding `10 16`, gap 12) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Label, Text sm / Medium | `gray-700` | `gray-700` | Default at 50 % opacity |
+| Icon 16 px | `gray-700` | `gray-700` | Default at 50 % opacity |
+| Checkbox 16 px, radius 4 | `white`, `gray-300` border | `brand-50` fill, `brand-600` border | Default at 50 % opacity |
+| Shortcut (right-aligned) | Text xs / Regular `gray-500` | `gray-500` | Default at 50 % opacity |
 
 ### Headers
 
@@ -265,8 +265,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-item:focus-visible { box-shadow: inset 0 0 0 2px var(--brand-600); }
 .sb-menu-label { flex: 1; }
 .sb-menu-kbd { margin-inline-start: 16px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
-.sb-menu-item[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
-.sb-menu-item[aria-disabled="true"] .sb-menu-kbd { color: var(--gray-200); }
+.sb-menu-item[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 
 /* Checkbox (16 px, radius 4) */
 .sb-menu-box {
@@ -276,7 +275,6 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-box > svg { width: 12px; height: 12px; visibility: hidden; }
 .sb-menu-item:hover .sb-menu-box, .sb-menu-item:focus .sb-menu-box, .sb-menu-item[aria-checked="true"] .sb-menu-box { background: var(--brand-50); border-color: var(--brand-600); }
 .sb-menu-item[aria-checked="true"] .sb-menu-box > svg { visibility: visible; }
-.sb-menu-item[aria-disabled="true"] .sb-menu-box { background: var(--gray-100); border-color: var(--gray-200); color: var(--gray-200); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-menu-icon, .sb-menu-avatar { transition: none; }
@@ -357,7 +355,6 @@ document.addEventListener('keydown', menuKeydown);
   --white: #ffffff;
   --gray-50: #f9fafb;
   --gray-100: #f2f4f7;
-  --gray-200: #eaecf0;
   --gray-300: #d0d5dd;
   --gray-500: #667085;
   --gray-700: #344054;

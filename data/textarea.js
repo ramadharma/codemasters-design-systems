@@ -68,7 +68,7 @@ document.addEventListener('input', updateCounter);`;
 .sb-textarea textarea:focus, .sb-textarea[data-state="focus"] textarea {
   outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--ta-ring);
 }
-.sb-textarea textarea:disabled { background: var(--gray-50); color: var(--gray-500); cursor: not-allowed; resize: none; }
+.sb-textarea textarea:disabled { opacity: .5; cursor: not-allowed; resize: none; } /* the default look at 50 % opacity */
 .sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--error-300); --ta-focus: var(--error-300); --ta-ring: var(--error-100); }
 
 /* Character counter: bottom-right inside the box. Kept 24 from the edge so it clears the resize grip. */
@@ -237,7 +237,7 @@ ${[
               ['Placeholder', '`white`', '`gray-300`', 'Placeholder `gray-500`. Hover: border `gray-400`'],
               ['Default (filled)', '`white`', '`gray-300`', 'Value `gray-900`'],
               ['Focused', '`white`', '`brand-300`', 'ring `0 0 0 4px` `focus-ring` + `shadow-xs`'],
-              ['Disabled', '`gray-50`', '`gray-300`', 'Text `gray-500`, no resize, `cursor: not-allowed`'],
+              ['Disabled', 'Default at 50 % opacity', 'Default at 50 % opacity', 'No resize, `cursor: not-allowed`'],
               ['Destructive', '`white`', '`error-300`', 'Message in `error-500`; focused ring `error-100`'],
               ['Over the limit', '`white`', '`error-300`', 'Counter `error-500`, message "Maksimal 150 karakter."'],
             ],
@@ -306,7 +306,6 @@ ${[
             rows: [
               ['Value `gray-900`', '`white`', '17.75:1', 'Passes'],
               ['Placeholder, hint, counter `gray-500`', '`white`', '4.97:1', 'Passes'],
-              ['Disabled text `gray-500`', '`gray-50`', '4.76:1', 'Passes'],
               ['Error message, counter over limit `error-500`', '`white`', '3.76:1', '**Fails**'],
             ],
           },

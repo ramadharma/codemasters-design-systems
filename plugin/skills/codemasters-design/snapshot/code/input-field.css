@@ -42,8 +42,8 @@
 .sb-input:has(input:focus), .sb-input[data-state="focus"] {
   border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--inp-ring);
 }
-.sb-input:has(input:disabled) { background: var(--gray-50); cursor: not-allowed; }
-.sb-input input:disabled { color: var(--gray-500); cursor: not-allowed; }
+.sb-input:has(input:disabled) { opacity: .5; cursor: not-allowed; } /* disabled: the default look at 50 % opacity */
+.sb-input input:disabled { cursor: not-allowed; }
 .sb-input:has([aria-invalid="true"]) { --inp-border: var(--error-300); --inp-focus: var(--error-300); --inp-ring: var(--error-100); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
 

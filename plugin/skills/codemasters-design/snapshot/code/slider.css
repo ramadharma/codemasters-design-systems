@@ -54,9 +54,8 @@
 .sb-slider-input:is(:focus-visible, :active, [data-state="focus"]) { --th-shadow: var(--shadow-md), 0 0 0 4px var(--focus-ring); }
 .sb-slider-input:active::-webkit-slider-thumb { cursor: grabbing; }
 .sb-slider-input:active::-moz-range-thumb { cursor: grabbing; }
-.sb-slider:has(:disabled) .sb-slider-rail::before { background: var(--gray-100); }
-.sb-slider:has(:disabled) .sb-slider-rail::after { background: var(--gray-300); }
-.sb-slider-input:disabled { --th-bg: var(--white); --th-bd: var(--gray-300); --th-shadow: none; --th-sheen: none; }
+.sb-slider:has(:disabled) { opacity: .5; } /* disabled: the default look at 50 % opacity, flat handle */
+.sb-slider-input:disabled { --th-shadow: none; --th-sheen: none; }
 .sb-slider-input:disabled::-webkit-slider-thumb { cursor: not-allowed; }
 .sb-slider-input:disabled::-moz-range-thumb { cursor: not-allowed; }
 
@@ -71,7 +70,6 @@
 .sb-slider[data-label="top-floating"] .sb-slider-value::after { top: 100%; clip-path: polygon(0 0, 100% 0, 50% 100%); }
 .sb-slider[data-label="bottom-floating"] .sb-slider-value { top: calc(100% + 10px); }
 .sb-slider[data-label="bottom-floating"] .sb-slider-value::after { bottom: 100%; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-.sb-slider:has(:disabled) .sb-slider-value { color: var(--gray-400); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-slider-input::-webkit-slider-thumb { transition: none; }

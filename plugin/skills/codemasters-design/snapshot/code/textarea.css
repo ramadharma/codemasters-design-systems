@@ -42,7 +42,7 @@
 .sb-textarea textarea:focus, .sb-textarea[data-state="focus"] textarea {
   outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--ta-ring);
 }
-.sb-textarea textarea:disabled { background: var(--gray-50); color: var(--gray-500); cursor: not-allowed; resize: none; }
+.sb-textarea textarea:disabled { opacity: .5; cursor: not-allowed; resize: none; } /* the default look at 50 % opacity */
 .sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--error-300); --ta-focus: var(--error-300); --ta-ring: var(--error-100); }
 
 /* Character counter: bottom-right inside the box. Kept 24 from the edge so it clears the resize grip. */

@@ -87,7 +87,7 @@ A row of joined buttons for related, equal-weight choices: a view switch (Hari, 
 
 ### Dot
 
-For status filters. The dot stays `success-500` in every state except Disabled (`gray-300`).
+For status filters. The dot stays `success-500` in every state.
 
 ```html
 <div class="sb-btn-group" role="radiogroup" aria-label="Status">
@@ -113,7 +113,7 @@ For status filters. The dot stays `success-500` in every state except Disabled (
 | Default | `white` / `gray-700` / `gray-500` | `gray-50` / `gray-800` / `gray-800` |
 | Hover | `gray-50` / `gray-800` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
 | Focused | `gray-50` / `gray-700` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
-| Disabled | `white` / `gray-300` / `gray-300` | `gray-50` / `gray-300` / `gray-300` |
+| Disabled | Default at 50 % opacity | Default at 50 % opacity |
 
 > **Note:** Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-600` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
 
@@ -284,7 +284,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 .sb-btn-group[data-icon="only"] > button { padding: 0 12px; }
 .sb-btn-group-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
 
-/* States (fill / text / icon). Order matters: Current overrides Hover and Focused, Disabled only fades the text. */
+/* States (fill / text / icon). Order matters: Current overrides Hover and Focused. Disabled: the default look at 50 % opacity. */
 .sb-btn-group > button:hover:not(:disabled), .sb-btn-group > button[data-state="hover"] {
   --seg-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50);
 }
@@ -295,8 +295,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
   --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50); /* flat: reads as pressed in */
 }
-.sb-btn-group > button:disabled { --seg-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
-.sb-btn-group > button:disabled > .sb-btn-group-dot { background: var(--gray-300); }
+.sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-btn-group > button { transition: none; }

@@ -72,8 +72,7 @@
 .sb-menu-item:focus-visible { box-shadow: inset 0 0 0 2px var(--brand-600); }
 .sb-menu-label { flex: 1; }
 .sb-menu-kbd { margin-inline-start: 16px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
-.sb-menu-item[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
-.sb-menu-item[aria-disabled="true"] .sb-menu-kbd { color: var(--gray-200); }
+.sb-menu-item[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 
 /* Checkbox (16 px, radius 4) */
 .sb-menu-box {
@@ -83,7 +82,6 @@
 .sb-menu-box > svg { width: 12px; height: 12px; visibility: hidden; }
 .sb-menu-item:hover .sb-menu-box, .sb-menu-item:focus .sb-menu-box, .sb-menu-item[aria-checked="true"] .sb-menu-box { background: var(--brand-50); border-color: var(--brand-600); }
 .sb-menu-item[aria-checked="true"] .sb-menu-box > svg { visibility: visible; }
-.sb-menu-item[aria-disabled="true"] .sb-menu-box { background: var(--gray-100); border-color: var(--gray-200); color: var(--gray-200); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-menu-icon, .sb-menu-avatar { transition: none; }

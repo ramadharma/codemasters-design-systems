@@ -80,7 +80,7 @@ Pressable controls get a little depth, so they read as buttons: a sheen over the
 
 - Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.
 - A solid raised control takes a border one step darker than its fill (`brand-600` fill, `brand-700` border).
-- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state.
+- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state (the default look at 50 % opacity).
 - Never on cards, panels or large surfaces. It is for controls only.
 
 ## Do and don't

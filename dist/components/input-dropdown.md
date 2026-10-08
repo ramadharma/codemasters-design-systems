@@ -243,13 +243,13 @@ A select field: pick one value for a form field or a filter. For running an acti
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (44 high, padding `10 14`, gap 8) | no fill | `gray-50` | no fill |
-| Label, Text md / Medium | `gray-900` | `gray-900` | `gray-200` |
-| Supporting text, Text md / Regular | `gray-500` | `gray-500` | `gray-200` |
-| Leading icon 20 px | `gray-500` | `gray-700` | `gray-200` |
-| Check (selected) | 20 px `brand-600`, row fill `gray-50` | same | check `gray-200`, fill `gray-50` |
+| Row (44 high, padding `10 14`, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Label, Text md / Medium | `gray-900` | `gray-900` | Default at 50 % opacity |
+| Supporting text, Text md / Regular | `gray-500` | `gray-500` | Default at 50 % opacity |
+| Leading icon 20 px | `gray-500` | `gray-700` | Default at 50 % opacity |
+| Check (selected) | 20 px `brand-600`, row fill `gray-50` | same | Default at 50 % opacity, fill `gray-50` |
 
-Keyboard focus (arrow keys) looks like Hover. Avatars in a disabled row get `opacity: .5`. The scroll bar (16 wide, 8 px `gray-200` thumb, no track) shows only when the list scrolls.
+Keyboard focus (arrow keys) looks like Hover. The scroll bar (16 wide, 8 px `gray-200` thumb, no track) shows only when the list scrolls.
 
 ## Do and don't
 
@@ -418,7 +418,7 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-trigger:focus-visible, .sb-dd-trigger[aria-expanded="true"], .sb-dd-trigger:has([aria-expanded="true"], input:focus), .sb-dd-trigger[data-state="open"] {
   outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
 }
-.sb-dd-trigger:disabled { background: var(--gray-50); color: var(--gray-500); cursor: not-allowed; }
+.sb-dd-trigger:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-dd-value, .sb-dd-main { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 .sb-dd-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sb-dd-sup { flex: none; color: var(--gray-500); font-weight: 400; }
@@ -459,10 +459,8 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-opt:hover .sb-dd-main > svg, .sb-dd-opt[data-active] .sb-dd-main > svg { color: var(--gray-700); }
 .sb-dd-check { width: 20px; height: 20px; flex: none; color: var(--brand-600); visibility: hidden; }
 .sb-dd-opt[aria-selected="true"] .sb-dd-check { visibility: visible; }
-.sb-dd-opt[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
-.sb-dd-opt[aria-disabled="true"] .sb-dd-sup, .sb-dd-opt[aria-disabled="true"] .sb-dd-main > svg, .sb-dd-opt[aria-disabled="true"] .sb-dd-check { color: var(--gray-200); }
+.sb-dd-opt[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; }
 .sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--gray-50); }
-.sb-dd-opt[aria-disabled="true"] .sb-dd-avatar { opacity: .5; }
 .sb-dd-empty { margin: 0; padding: 12px 14px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-dd-empty[hidden] { display: none; }
 

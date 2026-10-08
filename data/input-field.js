@@ -47,8 +47,8 @@
 .sb-input:has(input:focus), .sb-input[data-state="focus"] {
   border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--inp-ring);
 }
-.sb-input:has(input:disabled) { background: var(--gray-50); cursor: not-allowed; }
-.sb-input input:disabled { color: var(--gray-500); cursor: not-allowed; }
+.sb-input:has(input:disabled) { opacity: .5; cursor: not-allowed; } /* disabled: the default look at 50 % opacity */
+.sb-input input:disabled { cursor: not-allowed; }
 .sb-input:has([aria-invalid="true"]) { --inp-border: var(--error-300); --inp-focus: var(--error-300); --inp-ring: var(--error-100); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
 
@@ -287,7 +287,7 @@ ${[...STATES.map(([s, l]) => [l, field({ state: s, id: `st-${s}` })]), ['Destruc
               ['Placeholder', '`white`', '`gray-300`', '`gray-500`', 'Hover: border `gray-400`'],
               ['Filled', '`white`', '`gray-300`', '`gray-900`', '—'],
               ['Focused', '`white`', '`brand-300`', '`gray-900`', 'ring `0 0 0 4px` `focus-ring` + `shadow-xs`'],
-              ['Disabled', '`gray-50`', '`gray-300`', '`gray-500`', 'not editable, `cursor: not-allowed`'],
+              ['Disabled', 'Default at 50 % opacity', 'Default at 50 % opacity', 'Default at 50 % opacity', 'not editable, `cursor: not-allowed`'],
               ['Destructive', '`white`', '`error-300`', 'as above', 'help icon becomes 16 px `alert-circle` in `error-500`; hint becomes the error message in `error-500`'],
               ['Destructive + Focused', '`white`', '`error-300`', '`gray-900`', 'ring `0 0 0 4px` `error-100`'],
             ],
@@ -352,7 +352,6 @@ ${[...STATES.map(([s, l]) => [l, field({ state: s, id: `st-${s}` })]), ['Destruc
               ['Label `gray-700`', '`white`', '10.46:1', 'Passes'],
               ['Value `gray-900`', '`white`', '17.75:1', 'Passes'],
               ['Placeholder, hint `gray-500`', '`white`', '4.97:1', 'Passes'],
-              ['Disabled text `gray-500`', '`gray-50`', '4.76:1', 'Passes'],
               ['Error message `error-500`', '`white`', '3.76:1', '**Fails**'],
               ['Field border `gray-300`', '`white`', '1.47:1', 'Below the 3:1 WCAG 1.4.11 asks for control boundaries'],
             ],

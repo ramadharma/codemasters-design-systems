@@ -87,7 +87,7 @@ The step is Rp 500.000; labels and `aria-valuetext` use the Rupiah format.
 | --- | --- |
 | Hover | `brand-50` fill |
 | Focused / dragging | `0 0 0 4px focus-ring` ring + `shadow-md` |
-| Disabled | Track `gray-100`, range `gray-300`, handle border `gray-300`, no shadow |
+| Disabled | Default at 50 % opacity; handle flat, no shadow |
 
 ## Keyboard
 
@@ -205,9 +205,8 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 .sb-slider-input:is(:focus-visible, :active, [data-state="focus"]) { --th-shadow: var(--shadow-md), 0 0 0 4px var(--focus-ring); }
 .sb-slider-input:active::-webkit-slider-thumb { cursor: grabbing; }
 .sb-slider-input:active::-moz-range-thumb { cursor: grabbing; }
-.sb-slider:has(:disabled) .sb-slider-rail::before { background: var(--gray-100); }
-.sb-slider:has(:disabled) .sb-slider-rail::after { background: var(--gray-300); }
-.sb-slider-input:disabled { --th-bg: var(--white); --th-bd: var(--gray-300); --th-shadow: none; --th-sheen: none; }
+.sb-slider:has(:disabled) { opacity: .5; } /* disabled: the default look at 50 % opacity, flat handle */
+.sb-slider-input:disabled { --th-shadow: none; --th-sheen: none; }
 .sb-slider-input:disabled::-webkit-slider-thumb { cursor: not-allowed; }
 .sb-slider-input:disabled::-moz-range-thumb { cursor: not-allowed; }
 
@@ -222,7 +221,6 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 .sb-slider[data-label="top-floating"] .sb-slider-value::after { top: 100%; clip-path: polygon(0 0, 100% 0, 50% 100%); }
 .sb-slider[data-label="bottom-floating"] .sb-slider-value { top: calc(100% + 10px); }
 .sb-slider[data-label="bottom-floating"] .sb-slider-value::after { bottom: 100%; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-.sb-slider:has(:disabled) .sb-slider-value { color: var(--gray-400); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-slider-input::-webkit-slider-thumb { transition: none; }
@@ -271,10 +269,7 @@ document.addEventListener('input', sliderInput);
 ```css
 :root {
   --white: #ffffff;
-  --gray-100: #f2f4f7;
   --gray-200: #eaecf0;
-  --gray-300: #d0d5dd;
-  --gray-400: #98a2b3;
   --gray-700: #344054;
   --gray-900: #101828;
   --brand-50: #f0f6fe;

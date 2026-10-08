@@ -46,8 +46,8 @@
 .sb-toggle-input:hover:not(:disabled), .sb-toggle-input[data-state="hover"] { background: var(--tg-off-hover); }
 .sb-toggle-input:checked:hover:not(:disabled), .sb-toggle-input:checked[data-state="hover"] { background: var(--tg-on-hover); }
 .sb-toggle-input:focus-visible, .sb-toggle-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
-.sb-toggle-input:disabled { background: var(--gray-100); cursor: not-allowed; }
-.sb-toggle-input:disabled::before { background: var(--gray-50); }
+.sb-toggle-input:disabled { cursor: not-allowed; }
+.sb-toggle-input:disabled::before { background-image: none; box-shadow: none; } /* flat */
 
 /* Text */
 .sb-toggle-text { display: grid; }
@@ -55,7 +55,9 @@
 .sb-toggle-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-toggle[data-size="md"] .sb-toggle-label { font-size: 16px; line-height: 24px; }
 .sb-toggle[data-size="md"] .sb-toggle-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
-.sb-toggle:has(:disabled) .sb-toggle-label, .sb-toggle:has(:disabled) .sb-toggle-sup { color: var(--gray-300); cursor: not-allowed; }
+/* Disabled: the whole control, label included, at 50 % opacity. */
+.sb-toggle:has(:disabled) { opacity: .5; }
+.sb-toggle:has(:disabled) :is(.sb-toggle-label, .sb-toggle-sup) { cursor: not-allowed; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-toggle-input, .sb-toggle-input::before { transition: none; }
@@ -205,10 +207,10 @@
               ['Default', '`gray-100`', '`brand-600`'],
               ['Hover', '`gray-200`', '`brand-700`'],
               ['Focus', 'Default + `0 0 0 4px` `focus-ring` ring', 'Default + `0 0 0 4px` `focus-ring` ring'],
-              ['Disabled', '`gray-100`, knob `gray-50`', '`gray-100`, knob `gray-50`'],
+              ['Disabled', 'Default at 50 % opacity, flat knob', 'Default at 50 % opacity, flat knob'],
             ],
           },
-          { type: 'p', text: 'Disabled: the label and supporting text drop to `gray-300`.' },
+          { type: 'p', text: 'Disabled: the whole toggle, label included, at 50 % opacity.' },
         ],
       },
       {

@@ -72,7 +72,7 @@ document.addEventListener('keydown', tabsKeydown);`;
 .sb-tab > svg { width: 20px; height: 20px; flex: none; color: var(--tab-icon); }
 /* Inside the tab, like Button group: the scrolling row clips anything drawn outside. */
 .sb-tab:is(:focus-visible, [data-state="focus"]) { outline: 2px solid var(--brand-600); outline-offset: -2px; }
-.sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
+.sb-tab:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-tab-panel:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 
 /* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-600. */
@@ -86,7 +86,6 @@ document.addEventListener('keydown', tabsKeydown);`;
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
-.sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-50); border-color: var(--gray-200); }
 
 /* Underline: sections inside a card or below folder tabs. A 2 px line marks the selected tab. */
 .sb-tabs[data-type="underline"] { gap: 16px; box-shadow: inset 0 -1px var(--gray-200); }
@@ -113,7 +112,6 @@ document.addEventListener('keydown', tabsKeydown);`;
 .sb-tabs[data-type="vertical"] > .sb-tab > .sb-badge { margin-inline-start: auto; }
 .sb-tabs[data-type="vertical"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { --tab-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50); }
 .sb-tabs[data-type="vertical"] > .sb-tab[aria-selected="true"] { --tab-icon: var(--brand-700); color: var(--brand-700); background: var(--brand-50); }
-.sb-tabs[data-type="vertical"] > .sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-tab { transition: none; }
@@ -322,10 +320,10 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
             type: 'table',
             head: ['Type', 'Default (fill / text)', 'Hover', 'Selected', 'Disabled'],
             rows: [
-              ['Folder', '`brand-50` / `brand-700`, `gray-300` border', '`brand-100` fill', '`brand-600` raised / `white`, `brand-700` border', '`gray-50` / `gray-300`, `gray-200` border'],
-              ['Underline', 'none / `gray-500`', '`gray-700`, 2 px `gray-300` line', '`brand-700`, 2 px `brand-600` line', '`gray-300`'],
-              ['Segmented', 'none / `gray-500`', '`gray-700`', '`white` / `gray-800`, `gray-200` border, `shadow-xs`', '`gray-300`'],
-              ['Vertical', 'none / `gray-700`, icon `gray-500`', '`gray-50` / `gray-800`', '`brand-50` / `brand-700`', '`gray-300`'],
+              ['Folder', '`brand-50` / `brand-700`, `gray-300` border', '`brand-100` fill', '`brand-600` raised / `white`, `brand-700` border', 'Default at 50 % opacity'],
+              ['Underline', 'none / `gray-500`', '`gray-700`, 2 px `gray-300` line', '`brand-700`, 2 px `brand-600` line', 'Default at 50 % opacity'],
+              ['Segmented', 'none / `gray-500`', '`gray-700`', '`white` / `gray-800`, `gray-200` border, `shadow-xs`', 'Default at 50 % opacity'],
+              ['Vertical', 'none / `gray-700`, icon `gray-500`', '`gray-50` / `gray-800`', '`brand-50` / `brand-700`', 'Default at 50 % opacity'],
             ],
           },
           {

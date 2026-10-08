@@ -509,8 +509,8 @@ For pills, tags, alerts, labels and chart series. Use them sparingly, as accents
 | --- | --- |
 | `brand-50` | Inactive tab, AI summary fill, selected range, Secondary color button |
 | `brand-100` | Secondary color button hover |
-| `brand-200` | Disabled primary button, AI summary border |
-| `brand-300` | Input focus border, disabled Secondary color text, light Sembuh AI series |
+| `brand-200` | AI summary border |
+| `brand-300` | Input focus border, light Sembuh AI series |
 | `brand-600` | Sembuh AI chart series |
 | `brand-600` | **Primary**: buttons, active tab, links, checked controls, focus outline; at 20 % it is the focus ring (`--focus-ring`) |
 | `brand-700` | Primary button hover, Secondary color / Tertiary color button text, Link color hover, table ID links, tab text |
@@ -986,7 +986,7 @@ Pressable controls get a little depth, so they read as buttons: a sheen over the
 
 - Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.
 - A solid raised control takes a border one step darker than its fill (`brand-600` fill, `brand-700` border).
-- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state.
+- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state (the default look at 50 % opacity).
 - Never on cards, panels or large surfaces. It is for controls only.
 
 ### Do and don't
@@ -2394,7 +2394,7 @@ A row of joined buttons for related, equal-weight choices: a view switch (Hari, 
 
 #### Dot
 
-For status filters. The dot stays `success-500` in every state except Disabled (`gray-300`).
+For status filters. The dot stays `success-500` in every state.
 
 ```html
 <div class="sb-btn-group" role="radiogroup" aria-label="Status">
@@ -2420,7 +2420,7 @@ For status filters. The dot stays `success-500` in every state except Disabled (
 | Default | `white` / `gray-700` / `gray-500` | `gray-50` / `gray-800` / `gray-800` |
 | Hover | `gray-50` / `gray-800` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
 | Focused | `gray-50` / `gray-700` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
-| Disabled | `white` / `gray-300` / `gray-300` | `gray-50` / `gray-300` / `gray-300` |
+| Disabled | Default at 50 % opacity | Default at 50 % opacity |
 
 > **Note:** Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-600` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
 
@@ -2591,7 +2591,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 .sb-btn-group[data-icon="only"] > button { padding: 0 12px; }
 .sb-btn-group-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
 
-/* States (fill / text / icon). Order matters: Current overrides Hover and Focused, Disabled only fades the text. */
+/* States (fill / text / icon). Order matters: Current overrides Hover and Focused. Disabled: the default look at 50 % opacity. */
 .sb-btn-group > button:hover:not(:disabled), .sb-btn-group > button[data-state="hover"] {
   --seg-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50);
 }
@@ -2602,8 +2602,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
   --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50); /* flat: reads as pressed in */
 }
-.sb-btn-group > button:disabled { --seg-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
-.sb-btn-group > button:disabled > .sb-btn-group-dot { background: var(--gray-300); }
+.sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-btn-group > button { transition: none; }
@@ -3330,9 +3329,9 @@ For selectable cards and rows, where the whole item is the target. Checkbox grou
 | Default | `white`, 1 px `gray-300` border | `brand-50` fill, `brand-600` border, `brand-600` check / minus / dot |
 | Hover | `brand-50` fill, `brand-600` border | same as Default |
 | Focused | `white`, `brand-300` border + 4 px `focus-ring` ring | Default + 4 px `focus-ring` ring |
-| Disabled | `gray-100` fill, `gray-200` border | `gray-100` fill, `gray-200` border, `gray-200` mark |
+| Disabled | Default at 50 % opacity, label included | Default at 50 % opacity, label included |
 
-Check circle, checked: solid `brand-600` with a white check (disabled: `gray-200` fill). Disabled also drops the label and supporting text to `gray-300`.
+Check circle, checked: solid `brand-600` with a white check.
 
 ### Select all (indeterminate)
 
@@ -3495,11 +3494,10 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 .sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate], :disabled):is(:hover, [data-state="hover"]) { background: var(--brand-50); border-color: var(--brand-600); }
 .sb-check-input:focus-visible, .sb-check-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
 .sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]):is(:focus-visible, [data-state="focus"]) { border-color: var(--brand-300); }
-.sb-check-input[type]:disabled { background: var(--gray-100); border-color: var(--gray-200); color: var(--gray-200); cursor: not-allowed; }
+.sb-check-input[type]:disabled { cursor: not-allowed; }
 
 /* Check circle: solid brand-600 with a white check when checked. */
 .sb-check-input[data-variant="circle"]:checked { background: var(--brand-600); border-color: var(--brand-600); color: var(--white); }
-.sb-check-input[data-variant="circle"]:checked:disabled { background: var(--gray-200); border-color: var(--gray-200); color: var(--white); }
 
 /* Text: same layout as Toggle */
 .sb-check-text { display: grid; }
@@ -3507,7 +3505,9 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 .sb-check-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-check[data-size="md"] .sb-check-label { font-size: 16px; line-height: 24px; }
 .sb-check[data-size="md"] .sb-check-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
-.sb-check:has(:disabled) .sb-check-label, .sb-check:has(:disabled) .sb-check-sup { color: var(--gray-300); cursor: not-allowed; }
+/* Disabled: the whole control, label included, at 50 % opacity. */
+.sb-check:has(:disabled) { opacity: .5; }
+.sb-check:has(:disabled) :is(.sb-check-label, .sb-check-sup) { cursor: not-allowed; }
 
 /* A list of choices: 12 between rows. A radio group gets one visible label. */
 .sb-choices { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; }
@@ -3794,10 +3794,10 @@ Icon card titles are Text md in both sizes; `md` raises the price from Display s
 | Default | `white`, `gray-200` border | `brand-50` fill, `brand-300` border |
 | Hover | `white`, `brand-300` border | `brand-50` fill, `brand-600` border |
 | Focused | `white`, `brand-300` border + 4 px `focus-ring` ring | `brand-50`, `brand-300` border + 4 px `focus-ring` ring |
-| Disabled | `gray-50` fill, `gray-200` border | `gray-50` fill, `gray-200` border |
+| Disabled | Default at 50 % opacity | Default at 50 % opacity |
 
 - Only the card shows the focus ring; the control inside keeps its Default or checked look.
-- Selected text: title `brand-800`, subtitle and description `brand-600`. Disabled text stays `gray-700` / `gray-500`, selected or not.
+- Selected text: title `brand-800`, subtitle and description `brand-600`.
 - Icon card: the header takes the fill and border, the body stays white with a `gray-200` border.
 - Payment icon, selected: "Set as default" (Link gray) turns `brand-600`.
 
@@ -3906,7 +3906,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 .sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-300); }
 .sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-600); }
 .sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--brand-300); box-shadow: 0 0 0 4px var(--focus-ring); }
-.sb-cg-item:has(.sb-check-input:disabled) { --cg-bg: var(--gray-50); --cg-bd: var(--gray-200); --cg-title: var(--gray-700); --cg-text: var(--gray-500); cursor: not-allowed; }
+.sb-cg-item:has(.sb-check-input:disabled) { cursor: not-allowed; } /* 50 % opacity comes from .sb-check */
 
 /* Only the card shows focus; the control keeps its Default / checked look. */
 .sb-cg-item .sb-check-input:focus-visible { box-shadow: none; }
@@ -4058,11 +4058,11 @@ Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up an
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (40 high, padding `10 16`, gap 12) | no fill | `gray-50` | no fill |
-| Label, Text sm / Medium | `gray-700` | `gray-700` | `gray-200` |
-| Icon 16 px | `gray-700` | `gray-700` | `gray-200` |
-| Checkbox 16 px, radius 4 | `white`, `gray-300` border | `brand-50` fill, `brand-600` border | `gray-100` fill, `gray-200` border |
-| Shortcut (right-aligned) | Text xs / Regular `gray-500` | `gray-500` | `gray-200` |
+| Row (40 high, padding `10 16`, gap 12) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Label, Text sm / Medium | `gray-700` | `gray-700` | Default at 50 % opacity |
+| Icon 16 px | `gray-700` | `gray-700` | Default at 50 % opacity |
+| Checkbox 16 px, radius 4 | `white`, `gray-300` border | `brand-50` fill, `brand-600` border | Default at 50 % opacity |
+| Shortcut (right-aligned) | Text xs / Regular `gray-500` | `gray-500` | Default at 50 % opacity |
 
 #### Headers
 
@@ -4209,8 +4209,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-item:focus-visible { box-shadow: inset 0 0 0 2px var(--brand-600); }
 .sb-menu-label { flex: 1; }
 .sb-menu-kbd { margin-inline-start: 16px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
-.sb-menu-item[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
-.sb-menu-item[aria-disabled="true"] .sb-menu-kbd { color: var(--gray-200); }
+.sb-menu-item[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 
 /* Checkbox (16 px, radius 4) */
 .sb-menu-box {
@@ -4220,7 +4219,6 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-box > svg { width: 12px; height: 12px; visibility: hidden; }
 .sb-menu-item:hover .sb-menu-box, .sb-menu-item:focus .sb-menu-box, .sb-menu-item[aria-checked="true"] .sb-menu-box { background: var(--brand-50); border-color: var(--brand-600); }
 .sb-menu-item[aria-checked="true"] .sb-menu-box > svg { visibility: visible; }
-.sb-menu-item[aria-disabled="true"] .sb-menu-box { background: var(--gray-100); border-color: var(--gray-200); color: var(--gray-200); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-menu-icon, .sb-menu-avatar { transition: none; }
@@ -4529,13 +4527,13 @@ A select field: pick one value for a form field or a filter. For running an acti
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (44 high, padding `10 14`, gap 8) | no fill | `gray-50` | no fill |
-| Label, Text md / Medium | `gray-900` | `gray-900` | `gray-200` |
-| Supporting text, Text md / Regular | `gray-500` | `gray-500` | `gray-200` |
-| Leading icon 20 px | `gray-500` | `gray-700` | `gray-200` |
-| Check (selected) | 20 px `brand-600`, row fill `gray-50` | same | check `gray-200`, fill `gray-50` |
+| Row (44 high, padding `10 14`, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Label, Text md / Medium | `gray-900` | `gray-900` | Default at 50 % opacity |
+| Supporting text, Text md / Regular | `gray-500` | `gray-500` | Default at 50 % opacity |
+| Leading icon 20 px | `gray-500` | `gray-700` | Default at 50 % opacity |
+| Check (selected) | 20 px `brand-600`, row fill `gray-50` | same | Default at 50 % opacity, fill `gray-50` |
 
-Keyboard focus (arrow keys) looks like Hover. Avatars in a disabled row get `opacity: .5`. The scroll bar (16 wide, 8 px `gray-200` thumb, no track) shows only when the list scrolls.
+Keyboard focus (arrow keys) looks like Hover. The scroll bar (16 wide, 8 px `gray-200` thumb, no track) shows only when the list scrolls.
 
 ### Do and don't
 
@@ -4704,7 +4702,7 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-trigger:focus-visible, .sb-dd-trigger[aria-expanded="true"], .sb-dd-trigger:has([aria-expanded="true"], input:focus), .sb-dd-trigger[data-state="open"] {
   outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
 }
-.sb-dd-trigger:disabled { background: var(--gray-50); color: var(--gray-500); cursor: not-allowed; }
+.sb-dd-trigger:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-dd-value, .sb-dd-main { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 .sb-dd-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sb-dd-sup { flex: none; color: var(--gray-500); font-weight: 400; }
@@ -4745,10 +4743,8 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-opt:hover .sb-dd-main > svg, .sb-dd-opt[data-active] .sb-dd-main > svg { color: var(--gray-700); }
 .sb-dd-check { width: 20px; height: 20px; flex: none; color: var(--brand-600); visibility: hidden; }
 .sb-dd-opt[aria-selected="true"] .sb-dd-check { visibility: visible; }
-.sb-dd-opt[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
-.sb-dd-opt[aria-disabled="true"] .sb-dd-sup, .sb-dd-opt[aria-disabled="true"] .sb-dd-main > svg, .sb-dd-opt[aria-disabled="true"] .sb-dd-check { color: var(--gray-200); }
+.sb-dd-opt[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; }
 .sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--gray-50); }
-.sb-dd-opt[aria-disabled="true"] .sb-dd-avatar { opacity: .5; }
 .sb-dd-empty { margin: 0; padding: 12px 14px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-dd-empty[hidden] { display: none; }
 
@@ -4964,7 +4960,7 @@ A gray add-on (`gray-500`, padding `10 12 10 14`) joined to the input by a divid
 | Placeholder | `white` | `gray-300` | `gray-500` | Hover: border `gray-400` |
 | Filled | `white` | `gray-300` | `gray-900` | — |
 | Focused | `white` | `brand-300` | `gray-900` | ring `0 0 0 4px` `focus-ring` + `shadow-xs` |
-| Disabled | `gray-50` | `gray-300` | `gray-500` | not editable, `cursor: not-allowed` |
+| Disabled | Default at 50 % opacity | Default at 50 % opacity | Default at 50 % opacity | not editable, `cursor: not-allowed` |
 | Destructive | `white` | `error-300` | as above | help icon becomes 16 px `alert-circle` in `error-500`; hint becomes the error message in `error-500` |
 | Destructive + Focused | `white` | `error-300` | `gray-900` | ring `0 0 0 4px` `error-100` |
 
@@ -5049,7 +5045,6 @@ Destructive has no Disabled variant: a disabled field cannot be in error.
 | Label `gray-700` | `white` | 10.46:1 | Passes |
 | Value `gray-900` | `white` | 17.75:1 | Passes |
 | Placeholder, hint `gray-500` | `white` | 4.97:1 | Passes |
-| Disabled text `gray-500` | `gray-50` | 4.76:1 | Passes |
 | Error message `error-500` | `white` | 3.76:1 | **Fails** |
 | Field border `gray-300` | `white` | 1.47:1 | Below the 3:1 WCAG 1.4.11 asks for control boundaries |
 
@@ -5106,8 +5101,8 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 .sb-input:has(input:focus), .sb-input[data-state="focus"] {
   border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--inp-ring);
 }
-.sb-input:has(input:disabled) { background: var(--gray-50); cursor: not-allowed; }
-.sb-input input:disabled { color: var(--gray-500); cursor: not-allowed; }
+.sb-input:has(input:disabled) { opacity: .5; cursor: not-allowed; } /* disabled: the default look at 50 % opacity */
+.sb-input input:disabled { cursor: not-allowed; }
 .sb-input:has([aria-invalid="true"]) { --inp-border: var(--error-300); --inp-focus: var(--error-300); --inp-ring: var(--error-100); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
 
@@ -5532,7 +5527,7 @@ The step is Rp 500.000; labels and `aria-valuetext` use the Rupiah format.
 | --- | --- |
 | Hover | `brand-50` fill |
 | Focused / dragging | `0 0 0 4px focus-ring` ring + `shadow-md` |
-| Disabled | Track `gray-100`, range `gray-300`, handle border `gray-300`, no shadow |
+| Disabled | Default at 50 % opacity; handle flat, no shadow |
 
 ### Keyboard
 
@@ -5650,9 +5645,8 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 .sb-slider-input:is(:focus-visible, :active, [data-state="focus"]) { --th-shadow: var(--shadow-md), 0 0 0 4px var(--focus-ring); }
 .sb-slider-input:active::-webkit-slider-thumb { cursor: grabbing; }
 .sb-slider-input:active::-moz-range-thumb { cursor: grabbing; }
-.sb-slider:has(:disabled) .sb-slider-rail::before { background: var(--gray-100); }
-.sb-slider:has(:disabled) .sb-slider-rail::after { background: var(--gray-300); }
-.sb-slider-input:disabled { --th-bg: var(--white); --th-bd: var(--gray-300); --th-shadow: none; --th-sheen: none; }
+.sb-slider:has(:disabled) { opacity: .5; } /* disabled: the default look at 50 % opacity, flat handle */
+.sb-slider-input:disabled { --th-shadow: none; --th-sheen: none; }
 .sb-slider-input:disabled::-webkit-slider-thumb { cursor: not-allowed; }
 .sb-slider-input:disabled::-moz-range-thumb { cursor: not-allowed; }
 
@@ -5667,7 +5661,6 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 .sb-slider[data-label="top-floating"] .sb-slider-value::after { top: 100%; clip-path: polygon(0 0, 100% 0, 50% 100%); }
 .sb-slider[data-label="bottom-floating"] .sb-slider-value { top: calc(100% + 10px); }
 .sb-slider[data-label="bottom-floating"] .sb-slider-value::after { bottom: 100%; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-.sb-slider:has(:disabled) .sb-slider-value { color: var(--gray-400); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-slider-input::-webkit-slider-thumb { transition: none; }
@@ -6167,10 +6160,10 @@ md for the main level, sm for sub-levels and dense cards. The text stays Text sm
 
 | Type | Default (fill / text) | Hover | Selected | Disabled |
 | --- | --- | --- | --- | --- |
-| Folder | `brand-50` / `brand-700`, `gray-300` border | `brand-100` fill | `brand-600` raised / `white`, `brand-700` border | `gray-50` / `gray-300`, `gray-200` border |
-| Underline | none / `gray-500` | `gray-700`, 2 px `gray-300` line | `brand-700`, 2 px `brand-600` line | `gray-300` |
-| Segmented | none / `gray-500` | `gray-700` | `white` / `gray-800`, `gray-200` border, `shadow-xs` | `gray-300` |
-| Vertical | none / `gray-700`, icon `gray-500` | `gray-50` / `gray-800` | `brand-50` / `brand-700` | `gray-300` |
+| Folder | `brand-50` / `brand-700`, `gray-300` border | `brand-100` fill | `brand-600` raised / `white`, `brand-700` border | Default at 50 % opacity |
+| Underline | none / `gray-500` | `gray-700`, 2 px `gray-300` line | `brand-700`, 2 px `brand-600` line | Default at 50 % opacity |
+| Segmented | none / `gray-500` | `gray-700` | `white` / `gray-800`, `gray-200` border, `shadow-xs` | Default at 50 % opacity |
+| Vertical | none / `gray-700`, icon `gray-500` | `gray-50` / `gray-800` | `brand-50` / `brand-700` | Default at 50 % opacity |
 
 > **Note:** Focus is a 2 px `brand-600` outline inside the tab, as in Button group, because the scrolling row clips anything drawn outside. On the selected Folder tab the outline is `white`, 4 px in.
 
@@ -6422,7 +6415,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tab > svg { width: 20px; height: 20px; flex: none; color: var(--tab-icon); }
 /* Inside the tab, like Button group: the scrolling row clips anything drawn outside. */
 .sb-tab:is(:focus-visible, [data-state="focus"]) { outline: 2px solid var(--brand-600); outline-offset: -2px; }
-.sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
+.sb-tab:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-tab-panel:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 
 /* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-600. */
@@ -6436,7 +6429,6 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
-.sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-50); border-color: var(--gray-200); }
 
 /* Underline: sections inside a card or below folder tabs. A 2 px line marks the selected tab. */
 .sb-tabs[data-type="underline"] { gap: 16px; box-shadow: inset 0 -1px var(--gray-200); }
@@ -6463,7 +6455,6 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tabs[data-type="vertical"] > .sb-tab > .sb-badge { margin-inline-start: auto; }
 .sb-tabs[data-type="vertical"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { --tab-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50); }
 .sb-tabs[data-type="vertical"] > .sb-tab[aria-selected="true"] { --tab-icon: var(--brand-700); color: var(--brand-700); background: var(--brand-50); }
-.sb-tabs[data-type="vertical"] > .sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-tab { transition: none; }
@@ -6544,7 +6535,7 @@ Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint an
 | Placeholder | `white` | `gray-300` | Placeholder `gray-500`. Hover: border `gray-400` |
 | Default (filled) | `white` | `gray-300` | Value `gray-900` |
 | Focused | `white` | `brand-300` | ring `0 0 0 4px` `focus-ring` + `shadow-xs` |
-| Disabled | `gray-50` | `gray-300` | Text `gray-500`, no resize, `cursor: not-allowed` |
+| Disabled | Default at 50 % opacity | Default at 50 % opacity | No resize, `cursor: not-allowed` |
 | Destructive | `white` | `error-300` | Message in `error-500`; focused ring `error-100` |
 | Over the limit | `white` | `error-300` | Counter `error-500`, message "Maksimal 150 karakter." |
 
@@ -6626,7 +6617,6 @@ Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint an
 | --- | --- | --- | --- |
 | Value `gray-900` | `white` | 17.75:1 | Passes |
 | Placeholder, hint, counter `gray-500` | `white` | 4.97:1 | Passes |
-| Disabled text `gray-500` | `gray-50` | 4.76:1 | Passes |
 | Error message, counter over limit `error-500` | `white` | 3.76:1 | **Fails** |
 
 > **Warning:** Same open decision as Input field: `error-500` text is below AA. `error-600` (4.83:1) or `error-700` (6.57:1) would pass.
@@ -6682,7 +6672,7 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
 .sb-textarea textarea:focus, .sb-textarea[data-state="focus"] textarea {
   outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--ta-ring);
 }
-.sb-textarea textarea:disabled { background: var(--gray-50); color: var(--gray-500); cursor: not-allowed; resize: none; }
+.sb-textarea textarea:disabled { opacity: .5; cursor: not-allowed; resize: none; } /* the default look at 50 % opacity */
 .sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--error-300); --ta-focus: var(--error-300); --ta-ring: var(--error-100); }
 
 /* Character counter: bottom-right inside the box. Kept 24 from the edge so it clears the resize grip. */
@@ -6781,9 +6771,9 @@ An on/off switch whose change takes effect immediately, such as "Tampilkan hanya
 | Default | `gray-100` | `brand-600` |
 | Hover | `gray-200` | `brand-700` |
 | Focus | Default + `0 0 0 4px` `focus-ring` ring | Default + `0 0 0 4px` `focus-ring` ring |
-| Disabled | `gray-100`, knob `gray-50` | `gray-100`, knob `gray-50` |
+| Disabled | Default at 50 % opacity, flat knob | Default at 50 % opacity, flat knob |
 
-Disabled: the label and supporting text drop to `gray-300`.
+Disabled: the whole toggle, label included, at 50 % opacity.
 
 ### Light theme
 
@@ -6912,8 +6902,8 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 .sb-toggle-input:hover:not(:disabled), .sb-toggle-input[data-state="hover"] { background: var(--tg-off-hover); }
 .sb-toggle-input:checked:hover:not(:disabled), .sb-toggle-input:checked[data-state="hover"] { background: var(--tg-on-hover); }
 .sb-toggle-input:focus-visible, .sb-toggle-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
-.sb-toggle-input:disabled { background: var(--gray-100); cursor: not-allowed; }
-.sb-toggle-input:disabled::before { background: var(--gray-50); }
+.sb-toggle-input:disabled { cursor: not-allowed; }
+.sb-toggle-input:disabled::before { background-image: none; box-shadow: none; } /* flat */
 
 /* Text */
 .sb-toggle-text { display: grid; }
@@ -6921,7 +6911,9 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 .sb-toggle-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-toggle[data-size="md"] .sb-toggle-label { font-size: 16px; line-height: 24px; }
 .sb-toggle[data-size="md"] .sb-toggle-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
-.sb-toggle:has(:disabled) .sb-toggle-label, .sb-toggle:has(:disabled) .sb-toggle-sup { color: var(--gray-300); cursor: not-allowed; }
+/* Disabled: the whole control, label included, at 50 % opacity. */
+.sb-toggle:has(:disabled) { opacity: .5; }
+.sb-toggle:has(:disabled) :is(.sb-toggle-label, .sb-toggle-sup) { cursor: not-allowed; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-toggle-input, .sb-toggle-input::before { transition: none; }
@@ -7270,7 +7262,7 @@ One large box per digit, for OTP and verification codes only. Also called Mega i
 | Placeholder | `white` | `gray-300` | `0` in `gray-300` |
 | Filled | `white` | `brand-300` | `brand-600` |
 | Focused | `white` | `brand-300` + 4 px `focus-ring` ring | `brand-600` |
-| Disabled | `gray-50` | `gray-300` | `gray-200` |
+| Disabled | Default at 50 % opacity | Default at 50 % opacity | Default at 50 % opacity |
 | Error | `white` | `error-300` | `error-600` |
 | Error + Focused | `white` | `error-300` + 4 px `error-100` ring | `error-600` |
 
@@ -7389,8 +7381,7 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
 .sb-code-digit:focus, .sb-code-digit[data-state="focus"] {
   outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
 }
-.sb-code-digit:disabled { background: var(--gray-50); border-color: var(--gray-300); color: var(--gray-200); cursor: not-allowed; }
-.sb-code-digit:disabled::placeholder { color: var(--gray-200); }
+.sb-code-digit:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-code-digit[aria-invalid="true"] { border-color: var(--error-300); color: var(--error-600); caret-color: var(--error-600); }
 .sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--error-100); }
 

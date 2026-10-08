@@ -118,7 +118,7 @@ One large box per digit, for OTP and verification codes only. Also called Mega i
 | Placeholder | `white` | `gray-300` | `0` in `gray-300` |
 | Filled | `white` | `brand-300` | `brand-600` |
 | Focused | `white` | `brand-300` + 4 px `focus-ring` ring | `brand-600` |
-| Disabled | `gray-50` | `gray-300` | `gray-200` |
+| Disabled | Default at 50 % opacity | Default at 50 % opacity | Default at 50 % opacity |
 | Error | `white` | `error-300` | `error-600` |
 | Error + Focused | `white` | `error-300` + 4 px `error-100` ring | `error-600` |
 
@@ -237,8 +237,7 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
 .sb-code-digit:focus, .sb-code-digit[data-state="focus"] {
   outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
 }
-.sb-code-digit:disabled { background: var(--gray-50); border-color: var(--gray-300); color: var(--gray-200); cursor: not-allowed; }
-.sb-code-digit:disabled::placeholder { color: var(--gray-200); }
+.sb-code-digit:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-code-digit[aria-invalid="true"] { border-color: var(--error-300); color: var(--error-600); caret-color: var(--error-600); }
 .sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--error-100); }
 
@@ -311,8 +310,6 @@ document.addEventListener('paste', codePaste);
 ```css
 :root {
   --white: #ffffff;
-  --gray-50: #f9fafb;
-  --gray-200: #eaecf0;
   --gray-300: #d0d5dd;
   --gray-500: #667085;
   --gray-700: #344054;

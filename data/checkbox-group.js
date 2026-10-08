@@ -40,7 +40,7 @@
 .sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-300); }
 .sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-600); }
 .sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--brand-300); box-shadow: 0 0 0 4px var(--focus-ring); }
-.sb-cg-item:has(.sb-check-input:disabled) { --cg-bg: var(--gray-50); --cg-bd: var(--gray-200); --cg-title: var(--gray-700); --cg-text: var(--gray-500); cursor: not-allowed; }
+.sb-cg-item:has(.sb-check-input:disabled) { cursor: not-allowed; } /* 50 % opacity comes from .sb-check */
 
 /* Only the card shows focus; the control keeps its Default / checked look. */
 .sb-cg-item .sb-check-input:focus-visible { box-shadow: none; }
@@ -332,14 +332,14 @@ ${STATES.map(([s, l]) => `<span class="mx">${l}</span>\n${[false, true].map(sel 
               ['Default', '`white`, `gray-200` border', '`brand-50` fill, `brand-300` border'],
               ['Hover', '`white`, `brand-300` border', '`brand-50` fill, `brand-600` border'],
               ['Focused', '`white`, `brand-300` border + 4 px `focus-ring` ring', '`brand-50`, `brand-300` border + 4 px `focus-ring` ring'],
-              ['Disabled', '`gray-50` fill, `gray-200` border', '`gray-50` fill, `gray-200` border'],
+              ['Disabled', 'Default at 50 % opacity', 'Default at 50 % opacity'],
             ],
           },
           {
             type: 'list',
             items: [
               'Only the card shows the focus ring; the control inside keeps its Default or checked look.',
-              'Selected text: title `brand-800`, subtitle and description `brand-600`. Disabled text stays `gray-700` / `gray-500`, selected or not.',
+              'Selected text: title `brand-800`, subtitle and description `brand-600`.',
               'Icon card: the header takes the fill and border, the body stays white with a `gray-200` border.',
               'Payment icon, selected: "Set as default" (Link gray) turns `brand-600`.',
             ],

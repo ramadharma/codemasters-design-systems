@@ -78,11 +78,10 @@ document.addEventListener('change', selectAll);`;
 .sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate], :disabled):is(:hover, [data-state="hover"]) { background: var(--brand-50); border-color: var(--brand-600); }
 .sb-check-input:focus-visible, .sb-check-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
 .sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]):is(:focus-visible, [data-state="focus"]) { border-color: var(--brand-300); }
-.sb-check-input[type]:disabled { background: var(--gray-100); border-color: var(--gray-200); color: var(--gray-200); cursor: not-allowed; }
+.sb-check-input[type]:disabled { cursor: not-allowed; }
 
 /* Check circle: solid brand-600 with a white check when checked. */
 .sb-check-input[data-variant="circle"]:checked { background: var(--brand-600); border-color: var(--brand-600); color: var(--white); }
-.sb-check-input[data-variant="circle"]:checked:disabled { background: var(--gray-200); border-color: var(--gray-200); color: var(--white); }
 
 /* Text: same layout as Toggle */
 .sb-check-text { display: grid; }
@@ -90,7 +89,9 @@ document.addEventListener('change', selectAll);`;
 .sb-check-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-check[data-size="md"] .sb-check-label { font-size: 16px; line-height: 24px; }
 .sb-check[data-size="md"] .sb-check-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
-.sb-check:has(:disabled) .sb-check-label, .sb-check:has(:disabled) .sb-check-sup { color: var(--gray-300); cursor: not-allowed; }
+/* Disabled: the whole control, label included, at 50 % opacity. */
+.sb-check:has(:disabled) { opacity: .5; }
+.sb-check:has(:disabled) :is(.sb-check-label, .sb-check-sup) { cursor: not-allowed; }
 
 /* A list of choices: 12 between rows. A radio group gets one visible label. */
 .sb-choices { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; }
@@ -291,10 +292,10 @@ ${['Klaim A', 'Klaim B', 'Klaim C', 'Klaim D'].map((l, i) => indent(check({ labe
               ['Default', '`white`, 1 px `gray-300` border', '`brand-50` fill, `brand-600` border, `brand-600` check / minus / dot'],
               ['Hover', '`brand-50` fill, `brand-600` border', 'same as Default'],
               ['Focused', '`white`, `brand-300` border + 4 px `focus-ring` ring', 'Default + 4 px `focus-ring` ring'],
-              ['Disabled', '`gray-100` fill, `gray-200` border', '`gray-100` fill, `gray-200` border, `gray-200` mark'],
+              ['Disabled', 'Default at 50 % opacity, label included', 'Default at 50 % opacity, label included'],
             ],
           },
-          { type: 'p', text: 'Check circle, checked: solid `brand-600` with a white check (disabled: `gray-200` fill). Disabled also drops the label and supporting text to `gray-300`.' },
+          { type: 'p', text: 'Check circle, checked: solid `brand-600` with a white check.' },
         ],
       },
       {
