@@ -252,6 +252,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .card-stage.is-narrow { max-width: 400px; }
 .card-stage.is-stack { display: grid; gap: 24px; }
 .card-stage.is-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; max-width: none; }
+.card-stage.is-grid.is-wide { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); align-items: start; }
 .ex-preview:has(> .card-stage) { min-height: 0; padding: 32px; background: var(--gray-50); }
 .dd-preview .card-stage { max-width: none; }
 @media (max-width: 860px) { .ex-preview:has(> .card-stage) { padding: 16px; } }

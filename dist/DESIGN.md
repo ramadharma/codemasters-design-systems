@@ -1967,15 +1967,15 @@ Primary and Secondary gray are **raised**: a sheen over the fill (lighter top, d
 
 #### Colours per state
 
-| Hierarchy | Default (fill / border / text) | Hover | Disabled | Focused |
+| Hierarchy | Default (fill / border / text) | Hover | Default at 50 % opacity, flat | Focused |
 | --- | --- | --- | --- | --- |
-| Primary | `brand-600` + `raised-sheen` / `brand-700` / `white` | `brand-700` / `brand-800` / `white` | `brand-200` / `brand-200` / `white` | 4 px `focus-ring` ring |
-| Secondary gray | `white` + `raised-sheen-light` / `gray-300` / `gray-700` | `gray-50` / `gray-300` / `gray-800` | `white` / `gray-200` / `gray-300` | 4 px `focus-ring` ring |
-| Secondary color | `brand-50` / `brand-50` / `brand-700` | `brand-100` / `brand-100` / `brand-700` | `brand-50` / `brand-50` / `brand-300` | 4 px `focus-ring` ring |
-| Tertiary color | none / none / `brand-700` | `brand-50` fill | text `gray-300` | 4 px `focus-ring` ring |
-| Tertiary gray | none / none / `gray-500` | `gray-50` fill, text `gray-600` | text `gray-300` | 4 px `focus-ring` ring |
-| Link color | text `brand-600`, no padding | text `brand-700` | text `gray-300` | 2 px `brand-600` outline |
-| Link gray | text `gray-500`, no padding | text `gray-600` | text `gray-300` | 2 px `brand-600` outline |
+| Primary | `brand-600` + `raised-sheen` / `brand-700` / `white` | `brand-700` / `brand-800` / `white` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Secondary gray | `white` + `raised-sheen-light` / `gray-300` / `gray-700` | `gray-50` / `gray-300` / `gray-800` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Secondary color | `brand-50` / `brand-50` / `brand-700` | `brand-100` / `brand-100` / `brand-700` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Tertiary color | none / none / `brand-700` | `brand-50` fill | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Tertiary gray | none / none / `gray-500` | `gray-50` fill, text `gray-600` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Link color | text `brand-600`, no padding | text `brand-700` | Default at 50 % opacity, flat | 2 px `brand-600` outline |
+| Link gray | text `gray-500`, no padding | text `gray-600` | Default at 50 % opacity, flat | 2 px `brand-600` outline |
 
 ### Sizes
 
@@ -2051,7 +2051,7 @@ Primary and Secondary gray are **raised**: a sheen over the fill (lighter top, d
 ```
 
 - **Leading** and **Trailing:** a 20 px icon before or after the label (24 px at `2xl`), same gap as the size.
-- **Dot:** a 10 px `success-500` status dot before the label, same gap as an icon. Disabled turns it to the text colour.
+- **Dot:** a 10 px `success-500` status dot before the label, same gap as an icon.
 - **Only:** a square button, width = height. Always give it an `aria-label` and a tooltip with the same text.
 - Icons are Feather-style outlines with a 1.67 px stroke at 20 px, coloured with `currentColor` so they follow the text in every state.
 
@@ -2068,7 +2068,7 @@ A button that opens a menu carries a trailing chevron-down. Set `aria-expanded`;
 
 ### States
 
-Hover moves one step darker, Focused adds a ring for keyboard users, Disabled fades to the light steps. Pressing scales the button to 96 %.
+Hover moves one step darker, Focused adds a ring for keyboard users, Disabled is the default look at 50 % opacity, flat. Pressing scales the button to 96 %.
 
 - Colour changes take 150 ms with `--ease`. Press is `scale(.96)`.
 - Focused shows only on `:focus-visible`, so a mouse click leaves no ring.
@@ -2089,13 +2089,13 @@ Destructive=True swaps Brand and Gray for Error. Use it only when the destructiv
 <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="md" data-destructive>Link gray</button>
 ```
 
-| Hierarchy | Default | Hover | Disabled | Focused |
+| Hierarchy | Default | Hover | Default at 50 % opacity, flat | Focused |
 | --- | --- | --- | --- | --- |
-| Primary | `error-600` + `raised-sheen` / `error-700` / `white` | `error-700`, border `error-800` | `error-200` | 4 px `error-100` ring |
-| Secondary gray | `white` / `error-300` / `error-700` | `error-50` fill, text `error-800` | border `error-200`, text `error-300` | 4 px `error-100` ring |
-| Secondary color | `error-50` / `error-50` / `error-700` | `error-100` | `error-50`, text `error-300` | 4 px `error-100` ring |
-| Tertiary color, Tertiary gray | text `error-700` | `error-50` fill (gray: text `error-800`) | text `error-300` | 4 px `error-100` ring |
-| Link color, Link gray | text `error-700` | text `error-800` | text `error-300` | 2 px `brand-600` outline |
+| Primary | `error-600` + `raised-sheen` / `error-700` / `white` | `error-700`, border `error-800` | Default at 50 % opacity, flat | 4 px `error-100` ring |
+| Secondary gray | `white` / `error-300` / `error-700` | `error-50` fill, text `error-800` | Default at 50 % opacity, flat | 4 px `error-100` ring |
+| Secondary color | `error-50` / `error-50` / `error-700` | `error-100` | Default at 50 % opacity, flat | 4 px `error-100` ring |
+| Tertiary color, Tertiary gray | text `error-700` | `error-50` fill (gray: text `error-800`) | Default at 50 % opacity, flat | 4 px `error-100` ring |
+| Link color, Link gray | text `error-700` | text `error-800` | Default at 50 % opacity, flat | 2 px `brand-600` outline |
 
 ### Button row
 
@@ -2216,7 +2216,6 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
   --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
   --btn-bg: var(--brand-600); --btn-border: var(--brand-700); --btn-fg: var(--white);
   --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-800); --btn-fg-hover: var(--white);
-  --btn-bg-disabled: var(--brand-200); --btn-border-disabled: var(--brand-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--focus-ring); --btn-shadow: var(--raised-highlight), var(--shadow-xs);
   --btn-sheen: var(--raised-sheen); /* raised: lighter top, darker bottom, over any fill */
   box-sizing: border-box;
@@ -2245,16 +2244,13 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn[data-hierarchy="secondary-gray"] {
   --btn-bg: var(--white); --btn-border: var(--gray-300); --btn-fg: var(--gray-700); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
   --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-300); --btn-fg-hover: var(--gray-800);
-  --btn-bg-disabled: var(--white); --btn-border-disabled: var(--gray-200); --btn-fg-disabled: var(--gray-300);
 }
 .sb-btn[data-hierarchy="secondary-color"] {
   --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
   --btn-bg-hover: var(--brand-100); --btn-border-hover: var(--brand-100); --btn-fg-hover: var(--brand-700);
-  --btn-bg-disabled: var(--brand-50); --btn-border-disabled: var(--brand-50); --btn-fg-disabled: var(--brand-300);
 }
 .sb-btn[data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent;
-  --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--gray-300);
   --btn-shadow: 0 0 #0000; --btn-sheen: none;
 }
 .sb-btn[data-hierarchy="tertiary-color"] {
@@ -2266,7 +2262,6 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn[data-hierarchy^="link"] {
   --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000; --btn-sheen: none;
   --btn-bg: transparent; --btn-border: transparent; --btn-bg-hover: transparent; --btn-border-hover: transparent;
-  --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--gray-300);
   border-width: 0;
 }
 .sb-btn[data-hierarchy="link-color"] { --btn-fg: var(--brand-600); --btn-fg-hover: var(--brand-700); }
@@ -2276,29 +2271,24 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn[data-destructive] {
   --btn-bg: var(--error-600); --btn-border: var(--error-700); --btn-fg: var(--white);
   --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-800); --btn-fg-hover: var(--white);
-  --btn-bg-disabled: var(--error-200); --btn-border-disabled: var(--error-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--error-100);
 }
 .sb-btn[data-destructive][data-hierarchy="secondary-gray"] {
   --btn-bg: var(--white); --btn-border: var(--error-300); --btn-fg: var(--error-700);
   --btn-bg-hover: var(--error-50); --btn-border-hover: var(--error-300); --btn-fg-hover: var(--error-800);
-  --btn-bg-disabled: var(--white); --btn-border-disabled: var(--error-200); --btn-fg-disabled: var(--error-300);
 }
 .sb-btn[data-destructive][data-hierarchy="secondary-color"] {
   --btn-bg: var(--error-50); --btn-border: var(--error-50); --btn-fg: var(--error-700);
   --btn-bg-hover: var(--error-100); --btn-border-hover: var(--error-100); --btn-fg-hover: var(--error-700);
-  --btn-bg-disabled: var(--error-50); --btn-border-disabled: var(--error-50); --btn-fg-disabled: var(--error-300);
 }
 .sb-btn[data-destructive][data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
   --btn-bg-hover: var(--error-50); --btn-border-hover: var(--error-50); --btn-fg-hover: var(--error-700);
-  --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--error-300);
 }
 .sb-btn[data-destructive][data-hierarchy="tertiary-gray"] { --btn-fg-hover: var(--error-800); }
 .sb-btn[data-destructive][data-hierarchy^="link"] {
   --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
   --btn-bg-hover: transparent; --btn-border-hover: transparent; --btn-fg-hover: var(--error-800);
-  --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--error-300);
 }
 
 /* States */
@@ -2311,11 +2301,8 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn[data-hierarchy^="link"]:focus-visible, .sb-btn[data-hierarchy^="link"][data-state="focus"] {
   box-shadow: none; outline: 2px solid var(--brand-600); outline-offset: 2px;
 }
-.sb-btn:disabled, .sb-btn[aria-disabled="true"] {
-  color: var(--btn-fg-disabled); background: var(--btn-bg-disabled); border-color: var(--btn-border-disabled);
-  box-shadow: none; cursor: not-allowed; /* disabled is flat: no sheen, highlight or shadow */
-}
-.sb-btn:disabled > .sb-btn-dot, .sb-btn[aria-disabled="true"] > .sb-btn-dot { background: currentColor; }
+/* Disabled: the default look at half opacity, flat (no sheen, highlight or shadow). One rule for every hierarchy. */
+.sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
 .sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
 
 /* A button that opens a menu: the trailing chevron turns when open. */
@@ -2680,7 +2667,7 @@ The container for one topic on a page: a claim summary, a table, a chart, a metr
 
 | Property | Values | Code |
 | --- | --- | --- |
-| Variant | Card, Inner, Tint | Omit, `data-variant="inner"` or `"tint"` |
+| Variant | Card, Inner, Tint, Framed | Omit, `data-variant="inner"`, `"tint"` or `"framed"` |
 | Size | md, sm | Omit for md, `data-size="sm"` |
 | Description | True, False | `<p class="sb-card-desc">` under the title |
 | Badge | True, False | Badge sm inside the title |
@@ -2696,10 +2683,10 @@ The container for one topic on a page: a claim summary, a table, a chart, a metr
 The white card for a topic. Here with an inner card of summary rows and a footer.
 
 ```html
-<section class="sb-card" aria-labelledby="card-2-title">
+<section class="sb-card" aria-labelledby="card-3-title">
   <header class="sb-card-head">
     <div class="sb-card-heading">
-      <h3 class="sb-card-title" id="card-2-title">Ringkasan Klaim <span class="sb-badge" data-size="sm" data-color="success" data-icon="dot"><span class="sb-badge-dot" aria-hidden="true"></span>Disetujui</span></h3>
+      <h3 class="sb-card-title" id="card-3-title">Ringkasan Klaim <span class="sb-badge" data-size="sm" data-color="success" data-icon="dot"><span class="sb-badge-dot" aria-hidden="true"></span>Disetujui</span></h3>
       <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
     </div>
     <div class="sb-card-actions">
@@ -2707,7 +2694,7 @@ The white card for a topic. Here with an inner card of summary rows and a footer
       <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
     </div>
   </header>
-  <div class="sb-card-body" id="card-2-body">
+  <div class="sb-card-body" id="card-3-body">
     <div class="sb-card" data-variant="inner">
       <dl class="sb-card-rows">
         <div class="sb-card-row"><dt>Total tagihan</dt><dd>Rp 12.450.000</dd></div>
@@ -2717,7 +2704,7 @@ The white card for a topic. Here with an inner card of summary rows and a footer
       </dl>
     </div>
   </div>
-  <footer class="sb-card-foot" id="card-2-foot">
+  <footer class="sb-card-foot" id="card-3-foot">
     <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Tolak</button>
     <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Setujui Klaim</button>
   </footer>
@@ -2745,19 +2732,57 @@ A box inside a card for a group of values: `gray-50`, 1 px `gray-200` border, ra
 For text the AI wrote: `brand-50`, 1 px `brand-200` border, radius 8, padding 16. Title Text md / Semibold `brand-700` with the `loader` icon, "Edit Ringkasan" as Secondary gray sm, fold chevron.
 
 ```html
-<section class="sb-card" data-variant="tint" aria-labelledby="card-3-title">
+<section class="sb-card" data-variant="tint" aria-labelledby="card-4-title">
   <header class="sb-card-head">
     <div class="sb-card-heading">
-      <h3 class="sb-card-title" id="card-3-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
+      <h3 class="sb-card-title" id="card-4-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
     </div>
     <div class="sb-card-actions">
       <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
-      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="true" aria-controls="card-3-body" aria-labelledby="card-3-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="true" aria-controls="card-4-body" aria-labelledby="card-4-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
     </div>
   </header>
-  <div class="sb-card-body" id="card-3-body">
+  <div class="sb-card-body" id="card-4-body">
     <p class="sb-card-text">Klaim rawat inap 3 hari untuk demam berdarah. Tagihan sesuai tarif rumah sakit rekanan; satu item obat di luar formularium (Rp 1.250.000) tidak ditanggung.</p>
   </div>
+</section>
+```
+
+#### Framed
+
+A `gray-100` shell (one step darker than the `gray-50` page) with a `gray-200` border holds the head or the footer; the content sits on a white sheet with its own `gray-200` border and radius 12, laid over the shell's edge. Use it for chart and table panels (title and tools on the shell) and for forms (actions on the shell, so they stay apart from the fields). Head and footer padding `12 16`, sheet padding 16, title Text md / Semibold `gray-700`.
+
+```html
+<section class="sb-card" data-variant="framed" aria-labelledby="card-2-title">
+  <header class="sb-card-head">
+    <div class="sb-card-heading">
+      <h3 class="sb-card-title" id="card-2-title">Klaim Masuk</h3>
+    </div>
+    <div class="sb-card-actions">
+      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Buka Laporan Klaim"><svg aria-hidden="true"><!-- external-link --></svg></button>
+    </div>
+  </header>
+  <div class="sb-card-body" id="card-2-body">
+    <div class="sb-card-empty" data-frame="dashed">
+      <p>Belum ada data untuk rentang waktu ini.</p>
+    </div>
+  </div>
+</section>
+<section class="sb-card" data-variant="framed" aria-labelledby="form-title">
+  <div class="sb-card-body">
+    <div class="sb-card-heading">
+      <h3 class="sb-card-title" id="form-title">Tambah Rekanan</h3>
+      <p class="sb-card-desc">Rumah sakit baru masuk daftar rekanan setelah diverifikasi.</p>
+    </div>
+    <div class="sb-field">
+      <label class="sb-field-label" for="rs-name">Nama rumah sakit</label>
+      <div class="sb-input"><input id="rs-name" type="text" placeholder="RS Medika Utama" aria-describedby="rs-hint"></div>
+      <p class="sb-field-hint" id="rs-hint">Sesuai izin operasional.</p>
+    </div>
+  </div>
+  <footer class="sb-card-foot">
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm" disabled>Lanjutkan</button>
+  </footer>
 </section>
 ```
 
@@ -2832,29 +2857,7 @@ A card that opens a page. The title is the link; its hit area stretches over the
 md for page sections, sm for compact cards in a grid (metrics, links, side panels). sm: padding 16, blocks 12 apart, title Text md.
 
 ```html
-<section class="sb-card" aria-labelledby="card-4-title">
-  <header class="sb-card-head">
-    <div class="sb-card-heading">
-      <h3 class="sb-card-title" id="card-4-title">Ringkasan Klaim <span class="sb-badge" data-size="sm" data-color="success" data-icon="dot"><span class="sb-badge-dot" aria-hidden="true"></span>Disetujui</span></h3>
-      <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
-    </div>
-    <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
-      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
-    </div>
-  </header>
-  <div class="sb-card-body" id="card-4-body">
-    <div class="sb-card" data-variant="inner">
-      <dl class="sb-card-rows">
-        <div class="sb-card-row"><dt>Total tagihan</dt><dd>Rp 12.450.000</dd></div>
-        <div class="sb-card-row"><dt>Ditanggung</dt><dd>Rp 11.200.000</dd></div>
-        <div class="sb-card-row"><dt>Tidak ditanggung</dt><dd>Rp 1.250.000</dd></div>
-        <div class="sb-card-row" data-total><dt>Selisih</dt><dd>Rp 1.250.000</dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
-<section class="sb-card" data-size="sm" aria-labelledby="card-5-title">
+<section class="sb-card" aria-labelledby="card-5-title">
   <header class="sb-card-head">
     <div class="sb-card-heading">
       <h3 class="sb-card-title" id="card-5-title">Ringkasan Klaim <span class="sb-badge" data-size="sm" data-color="success" data-icon="dot"><span class="sb-badge-dot" aria-hidden="true"></span>Disetujui</span></h3>
@@ -2876,6 +2879,28 @@ md for page sections, sm for compact cards in a grid (metrics, links, side panel
     </div>
   </div>
 </section>
+<section class="sb-card" data-size="sm" aria-labelledby="card-6-title">
+  <header class="sb-card-head">
+    <div class="sb-card-heading">
+      <h3 class="sb-card-title" id="card-6-title">Ringkasan Klaim <span class="sb-badge" data-size="sm" data-color="success" data-icon="dot"><span class="sb-badge-dot" aria-hidden="true"></span>Disetujui</span></h3>
+      <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
+    </div>
+    <div class="sb-card-actions">
+      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
+      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
+    </div>
+  </header>
+  <div class="sb-card-body" id="card-6-body">
+    <div class="sb-card" data-variant="inner">
+      <dl class="sb-card-rows">
+        <div class="sb-card-row"><dt>Total tagihan</dt><dd>Rp 12.450.000</dd></div>
+        <div class="sb-card-row"><dt>Ditanggung</dt><dd>Rp 11.200.000</dd></div>
+        <div class="sb-card-row"><dt>Tidak ditanggung</dt><dd>Rp 1.250.000</dd></div>
+        <div class="sb-card-row" data-total><dt>Selisih</dt><dd>Rp 1.250.000</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
 ```
 
 ### States
@@ -2885,20 +2910,6 @@ md for page sections, sm for compact cards in a grid (metrics, links, side panel
 Folding keeps the head and hides the body and footer. The chevron turns in 150 ms; the body appears without animation.
 
 ```html
-<section class="sb-card" data-variant="tint" aria-labelledby="card-6-title">
-  <header class="sb-card-head">
-    <div class="sb-card-heading">
-      <h3 class="sb-card-title" id="card-6-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
-    </div>
-    <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
-      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="true" aria-controls="card-6-body" aria-labelledby="card-6-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
-    </div>
-  </header>
-  <div class="sb-card-body" id="card-6-body">
-    <p class="sb-card-text">Klaim rawat inap 3 hari untuk demam berdarah. Tagihan sesuai tarif rumah sakit rekanan; satu item obat di luar formularium (Rp 1.250.000) tidak ditanggung.</p>
-  </div>
-</section>
 <section class="sb-card" data-variant="tint" aria-labelledby="card-7-title">
   <header class="sb-card-head">
     <div class="sb-card-heading">
@@ -2906,10 +2917,24 @@ Folding keeps the head and hides the body and footer. The chevron turns in 150 m
     </div>
     <div class="sb-card-actions">
       <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
-      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="false" aria-controls="card-7-body" aria-labelledby="card-7-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="true" aria-controls="card-7-body" aria-labelledby="card-7-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
     </div>
   </header>
-  <div class="sb-card-body" id="card-7-body" hidden>
+  <div class="sb-card-body" id="card-7-body">
+    <p class="sb-card-text">Klaim rawat inap 3 hari untuk demam berdarah. Tagihan sesuai tarif rumah sakit rekanan; satu item obat di luar formularium (Rp 1.250.000) tidak ditanggung.</p>
+  </div>
+</section>
+<section class="sb-card" data-variant="tint" aria-labelledby="card-8-title">
+  <header class="sb-card-head">
+    <div class="sb-card-heading">
+      <h3 class="sb-card-title" id="card-8-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
+    </div>
+    <div class="sb-card-actions">
+      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
+      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="false" aria-controls="card-8-body" aria-labelledby="card-8-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
+    </div>
+  </header>
+  <div class="sb-card-body" id="card-8-body" hidden>
     <p class="sb-card-text">Klaim rawat inap 3 hari untuk demam berdarah. Tagihan sesuai tarif rumah sakit rekanan; satu item obat di luar formularium (Rp 1.250.000) tidak ditanggung.</p>
   </div>
 </section>
@@ -2930,13 +2955,18 @@ A card never shows a blank body. Say what is missing in Text sm `gray-500`, cent
   </header>
   <div class="sb-card-body" id="card-1-body">
     <div class="sb-card-empty">
-      <svg aria-hidden="true"><!-- file-text --></svg>
-      <p>Belum ada klaim untuk peserta ini.</p>
+      <svg aria-hidden="true"><!-- search --></svg>
+      <div class="sb-card-empty-text">
+        <p class="sb-card-empty-title">Belum ada klaim</p>
+        <p>Klaim peserta ini akan tampil di sini setelah dikirim rumah sakit.</p>
+      </div>
       <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Tambah Klaim</button>
     </div>
   </div>
 </section>
 ```
+
+Where a chart or table would be, keep its size and draw a dashed `gray-300` frame (radius 8, at least 160 high) with one line of text, so the layout does not jump when data arrives. A page-level empty state adds a title (Text md / Semibold `gray-900`) above the description.
 
 ### Do and don't
 
@@ -2982,19 +3012,19 @@ A card never shows a blank body. Say what is missing in Text sm `gray-500`, cent
 **Do:** One primary action, in the footer.
 
 ```html
-<section class="sb-card" data-size="sm" aria-labelledby="card-8-title">
+<section class="sb-card" data-size="sm" aria-labelledby="card-9-title">
   <header class="sb-card-head">
     <div class="sb-card-heading">
-      <h3 class="sb-card-title" id="card-8-title">Ringkasan Klaim</h3>
+      <h3 class="sb-card-title" id="card-9-title">Ringkasan Klaim</h3>
     </div>
   </header>
-  <div class="sb-card-body" id="card-8-body">
+  <div class="sb-card-body" id="card-9-body">
     <dl class="sb-card-rows">
       <div class="sb-card-row"><dt>Total tagihan</dt><dd>Rp 12.450.000</dd></div>
       <div class="sb-card-row"><dt>Ditanggung</dt><dd>Rp 11.200.000</dd></div>
     </dl>
   </div>
-  <footer class="sb-card-foot" id="card-8-foot">
+  <footer class="sb-card-foot" id="card-9-foot">
     <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Tolak</button>
     <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Setujui Klaim</button>
   </footer>
@@ -3047,7 +3077,7 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
      <footer class="sb-card-foot">…sb-btn…</footer>
    </section>
 
-   data-variant  inner | tint      (omit for the white card)
+   data-variant  inner | tint | framed   (omit for the white card)
    data-size     sm                (compact: padding 16)
    Link card     one <a class="sb-card-link"> in the title; its hit area covers the card.
    data-state    hover | focus on a link card. Static mockups and docs only. */
@@ -3111,9 +3141,24 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
 .sb-metric-value { margin: 0; font: 600 var(--display-xs) var(--font); color: var(--gray-900); font-variant-numeric: tabular-nums; }
 .sb-metric-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
 
-/* Empty state, inside the body. */
-.sb-card-empty { display: grid; justify-items: center; gap: 12px; padding: 32px 16px; text-align: center; color: var(--gray-500); text-wrap: pretty; }
+/* Framed: a gray-100 shell (one step darker than the gray-50 page) holds the head and the footer; the content sits on a white sheet with its own border and
+   radius, laid over the shell's edge. For chart and table panels (head on the shell) and forms (actions on the shell). */
+.sb-card[data-variant="framed"] { --card-px: 16px; --card-title-lh: 24px; gap: 0; padding: 0; background: var(--gray-100); border-color: var(--gray-200); }
+.sb-card[data-variant="framed"] > .sb-card-head { padding: 12px 16px; }
+.sb-card[data-variant="framed"] > .sb-card-head .sb-card-title { font: 600 var(--text-md) var(--font); color: var(--gray-700); }
+.sb-card[data-variant="framed"] > .sb-card-body { margin: -1px; padding: 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); }
+.sb-card[data-variant="framed"] > .sb-card-body .sb-card-title { font: 600 var(--text-md) var(--font); }
+.sb-card[data-variant="framed"] > .sb-card-head + .sb-card-body { margin-top: 0; }
+.sb-card[data-variant="framed"] > .sb-card-body:has(+ .sb-card-foot:not([hidden])) { margin-bottom: 0; }
+.sb-card[data-variant="framed"] > .sb-card-foot { margin: 0; padding: 12px 16px; border-top: 0; }
+
+/* Empty state, inside the body. In a chart or table area it takes a dashed frame the size of the missing content. */
+.sb-card-empty { display: grid; justify-items: center; align-content: center; gap: 12px; padding: 32px 16px; text-align: center; color: var(--gray-500); text-wrap: pretty; }
 .sb-card-empty > svg { width: 24px; height: 24px; color: var(--gray-400); }
+.sb-card-empty p { margin: 0; }
+.sb-card-empty-text { display: grid; gap: 4px; }
+.sb-card-empty-title { font: 600 var(--text-md) var(--font); color: var(--gray-900); }
+.sb-card-empty[data-frame="dashed"] { min-height: 160px; border: 1px dashed var(--gray-300); border-radius: var(--radius-md); }
 
 /* Link card: the title link stretches over the card. Buttons inside stay clickable (z-index above). */
 .sb-card-link { color: inherit; text-decoration: none; outline: none; }

@@ -62,15 +62,15 @@ Primary and Secondary gray are **raised**: a sheen over the fill (lighter top, d
 
 ### Colours per state
 
-| Hierarchy | Default (fill / border / text) | Hover | Disabled | Focused |
+| Hierarchy | Default (fill / border / text) | Hover | Default at 50 % opacity, flat | Focused |
 | --- | --- | --- | --- | --- |
-| Primary | `brand-600` + `raised-sheen` / `brand-700` / `white` | `brand-700` / `brand-800` / `white` | `brand-200` / `brand-200` / `white` | 4 px `focus-ring` ring |
-| Secondary gray | `white` + `raised-sheen-light` / `gray-300` / `gray-700` | `gray-50` / `gray-300` / `gray-800` | `white` / `gray-200` / `gray-300` | 4 px `focus-ring` ring |
-| Secondary color | `brand-50` / `brand-50` / `brand-700` | `brand-100` / `brand-100` / `brand-700` | `brand-50` / `brand-50` / `brand-300` | 4 px `focus-ring` ring |
-| Tertiary color | none / none / `brand-700` | `brand-50` fill | text `gray-300` | 4 px `focus-ring` ring |
-| Tertiary gray | none / none / `gray-500` | `gray-50` fill, text `gray-600` | text `gray-300` | 4 px `focus-ring` ring |
-| Link color | text `brand-600`, no padding | text `brand-700` | text `gray-300` | 2 px `brand-600` outline |
-| Link gray | text `gray-500`, no padding | text `gray-600` | text `gray-300` | 2 px `brand-600` outline |
+| Primary | `brand-600` + `raised-sheen` / `brand-700` / `white` | `brand-700` / `brand-800` / `white` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Secondary gray | `white` + `raised-sheen-light` / `gray-300` / `gray-700` | `gray-50` / `gray-300` / `gray-800` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Secondary color | `brand-50` / `brand-50` / `brand-700` | `brand-100` / `brand-100` / `brand-700` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Tertiary color | none / none / `brand-700` | `brand-50` fill | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Tertiary gray | none / none / `gray-500` | `gray-50` fill, text `gray-600` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
+| Link color | text `brand-600`, no padding | text `brand-700` | Default at 50 % opacity, flat | 2 px `brand-600` outline |
+| Link gray | text `gray-500`, no padding | text `gray-600` | Default at 50 % opacity, flat | 2 px `brand-600` outline |
 
 ## Sizes
 
@@ -146,7 +146,7 @@ Primary and Secondary gray are **raised**: a sheen over the fill (lighter top, d
 ```
 
 - **Leading** and **Trailing:** a 20 px icon before or after the label (24 px at `2xl`), same gap as the size.
-- **Dot:** a 10 px `success-500` status dot before the label, same gap as an icon. Disabled turns it to the text colour.
+- **Dot:** a 10 px `success-500` status dot before the label, same gap as an icon.
 - **Only:** a square button, width = height. Always give it an `aria-label` and a tooltip with the same text.
 - Icons are Feather-style outlines with a 1.67 px stroke at 20 px, coloured with `currentColor` so they follow the text in every state.
 
@@ -163,7 +163,7 @@ A button that opens a menu carries a trailing chevron-down. Set `aria-expanded`;
 
 ## States
 
-Hover moves one step darker, Focused adds a ring for keyboard users, Disabled fades to the light steps. Pressing scales the button to 96 %.
+Hover moves one step darker, Focused adds a ring for keyboard users, Disabled is the default look at 50 % opacity, flat. Pressing scales the button to 96 %.
 
 - Colour changes take 150 ms with `--ease`. Press is `scale(.96)`.
 - Focused shows only on `:focus-visible`, so a mouse click leaves no ring.
@@ -184,13 +184,13 @@ Destructive=True swaps Brand and Gray for Error. Use it only when the destructiv
 <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="md" data-destructive>Link gray</button>
 ```
 
-| Hierarchy | Default | Hover | Disabled | Focused |
+| Hierarchy | Default | Hover | Default at 50 % opacity, flat | Focused |
 | --- | --- | --- | --- | --- |
-| Primary | `error-600` + `raised-sheen` / `error-700` / `white` | `error-700`, border `error-800` | `error-200` | 4 px `error-100` ring |
-| Secondary gray | `white` / `error-300` / `error-700` | `error-50` fill, text `error-800` | border `error-200`, text `error-300` | 4 px `error-100` ring |
-| Secondary color | `error-50` / `error-50` / `error-700` | `error-100` | `error-50`, text `error-300` | 4 px `error-100` ring |
-| Tertiary color, Tertiary gray | text `error-700` | `error-50` fill (gray: text `error-800`) | text `error-300` | 4 px `error-100` ring |
-| Link color, Link gray | text `error-700` | text `error-800` | text `error-300` | 2 px `brand-600` outline |
+| Primary | `error-600` + `raised-sheen` / `error-700` / `white` | `error-700`, border `error-800` | Default at 50 % opacity, flat | 4 px `error-100` ring |
+| Secondary gray | `white` / `error-300` / `error-700` | `error-50` fill, text `error-800` | Default at 50 % opacity, flat | 4 px `error-100` ring |
+| Secondary color | `error-50` / `error-50` / `error-700` | `error-100` | Default at 50 % opacity, flat | 4 px `error-100` ring |
+| Tertiary color, Tertiary gray | text `error-700` | `error-50` fill (gray: text `error-800`) | Default at 50 % opacity, flat | 4 px `error-100` ring |
+| Link color, Link gray | text `error-700` | text `error-800` | Default at 50 % opacity, flat | 2 px `brand-600` outline |
 
 ## Button row
 
@@ -311,7 +311,6 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
   --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
   --btn-bg: var(--brand-600); --btn-border: var(--brand-700); --btn-fg: var(--white);
   --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-800); --btn-fg-hover: var(--white);
-  --btn-bg-disabled: var(--brand-200); --btn-border-disabled: var(--brand-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--focus-ring); --btn-shadow: var(--raised-highlight), var(--shadow-xs);
   --btn-sheen: var(--raised-sheen); /* raised: lighter top, darker bottom, over any fill */
   box-sizing: border-box;
@@ -340,16 +339,13 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn[data-hierarchy="secondary-gray"] {
   --btn-bg: var(--white); --btn-border: var(--gray-300); --btn-fg: var(--gray-700); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
   --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-300); --btn-fg-hover: var(--gray-800);
-  --btn-bg-disabled: var(--white); --btn-border-disabled: var(--gray-200); --btn-fg-disabled: var(--gray-300);
 }
 .sb-btn[data-hierarchy="secondary-color"] {
   --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
   --btn-bg-hover: var(--brand-100); --btn-border-hover: var(--brand-100); --btn-fg-hover: var(--brand-700);
-  --btn-bg-disabled: var(--brand-50); --btn-border-disabled: var(--brand-50); --btn-fg-disabled: var(--brand-300);
 }
 .sb-btn[data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent;
-  --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--gray-300);
   --btn-shadow: 0 0 #0000; --btn-sheen: none;
 }
 .sb-btn[data-hierarchy="tertiary-color"] {
@@ -361,7 +357,6 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn[data-hierarchy^="link"] {
   --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000; --btn-sheen: none;
   --btn-bg: transparent; --btn-border: transparent; --btn-bg-hover: transparent; --btn-border-hover: transparent;
-  --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--gray-300);
   border-width: 0;
 }
 .sb-btn[data-hierarchy="link-color"] { --btn-fg: var(--brand-600); --btn-fg-hover: var(--brand-700); }
@@ -371,29 +366,24 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn[data-destructive] {
   --btn-bg: var(--error-600); --btn-border: var(--error-700); --btn-fg: var(--white);
   --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-800); --btn-fg-hover: var(--white);
-  --btn-bg-disabled: var(--error-200); --btn-border-disabled: var(--error-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--error-100);
 }
 .sb-btn[data-destructive][data-hierarchy="secondary-gray"] {
   --btn-bg: var(--white); --btn-border: var(--error-300); --btn-fg: var(--error-700);
   --btn-bg-hover: var(--error-50); --btn-border-hover: var(--error-300); --btn-fg-hover: var(--error-800);
-  --btn-bg-disabled: var(--white); --btn-border-disabled: var(--error-200); --btn-fg-disabled: var(--error-300);
 }
 .sb-btn[data-destructive][data-hierarchy="secondary-color"] {
   --btn-bg: var(--error-50); --btn-border: var(--error-50); --btn-fg: var(--error-700);
   --btn-bg-hover: var(--error-100); --btn-border-hover: var(--error-100); --btn-fg-hover: var(--error-700);
-  --btn-bg-disabled: var(--error-50); --btn-border-disabled: var(--error-50); --btn-fg-disabled: var(--error-300);
 }
 .sb-btn[data-destructive][data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
   --btn-bg-hover: var(--error-50); --btn-border-hover: var(--error-50); --btn-fg-hover: var(--error-700);
-  --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--error-300);
 }
 .sb-btn[data-destructive][data-hierarchy="tertiary-gray"] { --btn-fg-hover: var(--error-800); }
 .sb-btn[data-destructive][data-hierarchy^="link"] {
   --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
   --btn-bg-hover: transparent; --btn-border-hover: transparent; --btn-fg-hover: var(--error-800);
-  --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--error-300);
 }
 
 /* States */
@@ -406,11 +396,8 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn[data-hierarchy^="link"]:focus-visible, .sb-btn[data-hierarchy^="link"][data-state="focus"] {
   box-shadow: none; outline: 2px solid var(--brand-600); outline-offset: 2px;
 }
-.sb-btn:disabled, .sb-btn[aria-disabled="true"] {
-  color: var(--btn-fg-disabled); background: var(--btn-bg-disabled); border-color: var(--btn-border-disabled);
-  box-shadow: none; cursor: not-allowed; /* disabled is flat: no sheen, highlight or shadow */
-}
-.sb-btn:disabled > .sb-btn-dot, .sb-btn[aria-disabled="true"] > .sb-btn-dot { background: currentColor; }
+/* Disabled: the default look at half opacity, flat (no sheen, highlight or shadow). One rule for every hierarchy. */
+.sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
 .sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
 
 /* A button that opens a menu: the trailing chevron turns when open. */
@@ -431,7 +418,6 @@ The tokens `button.css` reads, with their values. Generated from the stylesheet.
 :root {
   --white: #ffffff;
   --gray-50: #f9fafb;
-  --gray-200: #eaecf0;
   --gray-300: #d0d5dd;
   --gray-500: #667085;
   --gray-600: #475467;
@@ -439,14 +425,11 @@ The tokens `button.css` reads, with their values. Generated from the stylesheet.
   --gray-800: #1d2939;
   --brand-50: #f0f6fe;
   --brand-100: #dfeafb;
-  --brand-200: #c5dbfa;
-  --brand-300: #9fc5f6;
   --brand-600: #3966e0;
   --brand-700: #2e51cd;
   --brand-800: #2942a7;
   --error-50: #fef3f2;
   --error-100: #fee4e2;
-  --error-200: #fecdca;
   --error-300: #fda29b;
   --error-600: #d92d20;
   --error-700: #b42318;

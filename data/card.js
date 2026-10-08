@@ -30,7 +30,7 @@ document.addEventListener('click', cardFold);`;
      <footer class="sb-card-foot">…sb-btn…</footer>
    </section>
 
-   data-variant  inner | tint      (omit for the white card)
+   data-variant  inner | tint | framed   (omit for the white card)
    data-size     sm                (compact: padding 16)
    Link card     one <a class="sb-card-link"> in the title; its hit area covers the card.
    data-state    hover | focus on a link card. Static mockups and docs only. */
@@ -94,9 +94,24 @@ document.addEventListener('click', cardFold);`;
 .sb-metric-value { margin: 0; font: 600 var(--display-xs) var(--font); color: var(--gray-900); font-variant-numeric: tabular-nums; }
 .sb-metric-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
 
-/* Empty state, inside the body. */
-.sb-card-empty { display: grid; justify-items: center; gap: 12px; padding: 32px 16px; text-align: center; color: var(--gray-500); text-wrap: pretty; }
+/* Framed: a gray-100 shell (one step darker than the gray-50 page) holds the head and the footer; the content sits on a white sheet with its own border and
+   radius, laid over the shell's edge. For chart and table panels (head on the shell) and forms (actions on the shell). */
+.sb-card[data-variant="framed"] { --card-px: 16px; --card-title-lh: 24px; gap: 0; padding: 0; background: var(--gray-100); border-color: var(--gray-200); }
+.sb-card[data-variant="framed"] > .sb-card-head { padding: 12px 16px; }
+.sb-card[data-variant="framed"] > .sb-card-head .sb-card-title { font: 600 var(--text-md) var(--font); color: var(--gray-700); }
+.sb-card[data-variant="framed"] > .sb-card-body { margin: -1px; padding: 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); }
+.sb-card[data-variant="framed"] > .sb-card-body .sb-card-title { font: 600 var(--text-md) var(--font); }
+.sb-card[data-variant="framed"] > .sb-card-head + .sb-card-body { margin-top: 0; }
+.sb-card[data-variant="framed"] > .sb-card-body:has(+ .sb-card-foot:not([hidden])) { margin-bottom: 0; }
+.sb-card[data-variant="framed"] > .sb-card-foot { margin: 0; padding: 12px 16px; border-top: 0; }
+
+/* Empty state, inside the body. In a chart or table area it takes a dashed frame the size of the missing content. */
+.sb-card-empty { display: grid; justify-items: center; align-content: center; gap: 12px; padding: 32px 16px; text-align: center; color: var(--gray-500); text-wrap: pretty; }
 .sb-card-empty > svg { width: 24px; height: 24px; color: var(--gray-400); }
+.sb-card-empty p { margin: 0; }
+.sb-card-empty-text { display: grid; gap: 4px; }
+.sb-card-empty-title { font: 600 var(--text-md) var(--font); color: var(--gray-900); }
+.sb-card-empty[data-frame="dashed"] { min-height: 160px; border: 1px dashed var(--gray-300); border-radius: var(--radius-md); }
 
 /* Link card: the title link stretches over the card. Buttons inside stay clickable (z-index above). */
 .sb-card-link { color: inherit; text-decoration: none; outline: none; }
@@ -134,7 +149,7 @@ document.addEventListener('click', cardFold);`;
     a.push(`aria-labelledby="${id}-title"`);
     const controls = [`${id}-body`, footer ? `${id}-foot` : ''].filter(Boolean).join(' ');
     const acts = [
-      actions ? (variant === 'tint' ? btn('Edit Ringkasan') : `${btn('Lihat Detail')}\n      ${iconBtn('more-vertical', 'Opsi lain')}`) : '',
+      typeof actions === 'string' ? actions : actions ? (variant === 'tint' ? btn('Edit Ringkasan') : `${btn('Lihat Detail')}\n      ${iconBtn('more-vertical', 'Opsi lain')}`) : '',
       fold ? iconBtn('chevron-down', '', ` aria-expanded="${open}" aria-controls="${controls}" aria-labelledby="${id}-title"`).replace(' aria-label=""', '').replace('class="sb-btn"', 'class="sb-btn sb-card-fold"') : '',
     ].filter(Boolean);
     const head = `  <header class="sb-card-head">
@@ -180,8 +195,28 @@ document.addEventListener('click', cardFold);`;
 
   const empty = card({
     title: 'Riwayat Klaim', desc: '', badge: false, actions: false,
-    body: `<div class="sb-card-empty">\n  ${icon('file-text')}\n  <p>Belum ada klaim untuk peserta ini.</p>\n  ${btn('Tambah Klaim')}\n</div>`,
+    body: `<div class="sb-card-empty">\n  ${icon('search')}\n  <div class="sb-card-empty-text">\n    <p class="sb-card-empty-title">Belum ada klaim</p>\n    <p>Klaim peserta ini akan tampil di sini setelah dikirim rumah sakit.</p>\n  </div>\n  ${btn('Tambah Klaim')}\n</div>`,
   });
+  const noData = '<div class="sb-card-empty" data-frame="dashed">\n  <p>Belum ada data untuk rentang waktu ini.</p>\n</div>';
+
+  // Framed: a chart panel (head on the shell) and a form (actions on the shell).
+  const framedPanel = card({ variant: 'framed', title: 'Klaim Masuk', desc: '', badge: false, actions: iconBtn('external-link', 'Buka Laporan Klaim'), body: noData });
+  const framedForm = `<section class="sb-card" data-variant="framed" aria-labelledby="form-title">
+  <div class="sb-card-body">
+    <div class="sb-card-heading">
+      <h3 class="sb-card-title" id="form-title">Tambah Rekanan</h3>
+      <p class="sb-card-desc">Rumah sakit baru masuk daftar rekanan setelah diverifikasi.</p>
+    </div>
+    <div class="sb-field">
+      <label class="sb-field-label" for="rs-name">Nama rumah sakit</label>
+      <div class="sb-input"><input id="rs-name" type="text" placeholder="RS Medika Utama" aria-describedby="rs-hint"></div>
+      <p class="sb-field-hint" id="rs-hint">Sesuai izin operasional.</p>
+    </div>
+  </div>
+  <footer class="sb-card-foot">
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm" disabled>Lanjutkan</button>
+  </footer>
+</section>`;
 
   const anatomy = `<section class="sb-card" aria-label="Ringkasan Klaim" data-pin="1" data-pin-at="bottom">
   <header class="sb-card-head" data-pin="2" data-pin-at="start">
@@ -275,7 +310,7 @@ document.addEventListener('click', cardFold);`;
             type: 'table',
             head: ['Property', 'Values', 'Code'],
             rows: [
-              ['Variant', 'Card, Inner, Tint', 'Omit, `data-variant="inner"` or `"tint"`'],
+              ['Variant', 'Card, Inner, Tint, Framed', 'Omit, `data-variant="inner"`, `"tint"` or `"framed"`'],
               ['Size', 'md, sm', 'Omit for md, `data-size="sm"`'],
               ['Description', 'True, False', '`<p class="sb-card-desc">` under the title'],
               ['Badge', 'True, False', 'Badge sm inside the title'],
@@ -300,6 +335,9 @@ document.addEventListener('click', cardFold);`;
           { type: 'h3', id: 'type-tint', text: 'Tint: AI summary' },
           { type: 'p', text: 'For text the AI wrote: `brand-50`, 1 px `brand-200` border, radius 8, padding 16. Title Text md / Semibold `brand-700` with the `loader` icon, "Edit Ringkasan" as Secondary gray sm, fold chevron.' },
           { type: 'example', html: stage(aiCard()) },
+          { type: 'h3', id: 'type-framed', text: 'Framed' },
+          { type: 'p', text: 'A `gray-100` shell (one step darker than the `gray-50` page) with a `gray-200` border holds the head or the footer; the content sits on a white sheet with its own `gray-200` border and radius 12, laid over the shell\'s edge. Use it for chart and table panels (title and tools on the shell) and for forms (actions on the shell, so they stay apart from the fields). Head and footer padding `12 16`, sheet padding 16, title Text md / Semibold `gray-700`.' },
+          { type: 'example', html: stage(`${framedPanel}\n${framedForm}`, 'is-grid is-wide') },
           { type: 'h3', id: 'type-metric', text: 'Metric' },
           { type: 'p', text: 'A compact card (sm) for one number: label Text sm / Medium `gray-500`, value Display xs / Semibold `gray-900` tabular, then a change badge and a caption in Text xs `gray-500`. The badge colour says good or bad, not up or down: a shorter analysis time is `success` with a down arrow. Money stays in full Rupiah.' },
           { type: 'example', html: metrics },
@@ -328,6 +366,8 @@ document.addEventListener('click', cardFold);`;
           { type: 'h3', id: 'state-empty', text: 'Empty' },
           { type: 'p', text: 'A card never shows a blank body. Say what is missing in Text sm `gray-500`, centred, with a 24 px `gray-400` icon and, when the user can fix it, one Secondary gray button.' },
           { type: 'example', html: stage(empty) },
+          { type: 'p', text: 'Where a chart or table would be, keep its size and draw a dashed `gray-300` frame (radius 8, at least 160 high) with one line of text, so the layout does not jump when data arrives. A page-level empty state adds a title (Text md / Semibold `gray-900`) above the description.' },
+          { type: 'example', html: stage(framedPanel), code: false },
         ],
       },
       {
