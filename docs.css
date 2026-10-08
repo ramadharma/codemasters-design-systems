@@ -168,7 +168,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 
 /* Anatomy: dashed parts with numbered pins */
 /* Shared by every component page. data-pin="n" puts a numbered pin above the part;
-   data-pin-at="start" puts it on the leading side (the container), "bottom" below, "edge" on the leading edge. */
+   data-pin-at="start" puts it on the leading side (the container), "end" on the trailing side, "bottom" below, "edge" on the leading edge. */
 .ex-preview.anat { padding-block: 80px; }
 .anat > [data-pin] { outline: 1px dashed var(--brand-400); outline-offset: 8px; }
 .anat [data-pin] { position: relative; }
@@ -194,6 +194,8 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .anat [data-pin-at~="edge"]::after, .anat [data-pin-at~="edge"]::before { left: 0; }
 .anat [data-pin-at="start"]::after { top: 50%; bottom: auto; left: auto; right: calc(100% + 32px); translate: 0 -50%; }
 .anat [data-pin-at="start"]::before { top: 50%; bottom: auto; left: auto; right: calc(100% + 8px); width: 24px; height: 1px; }
+.anat [data-pin-at="end"]::after { top: 50%; bottom: auto; right: auto; left: calc(100% + 32px); translate: 0 -50%; }
+.anat [data-pin-at="end"]::before { top: 50%; bottom: auto; right: auto; left: calc(100% + 8px); width: 24px; height: 1px; translate: 0; }
 
 /* Tooltip demo (DESIGN.md Tooltip: padding 8 12, arrow 6 high + 4 gap to the trigger) */
 .tip-demo { display: inline-flex; flex-direction: column-reverse; align-items: center; gap: 10px; }
@@ -250,6 +252,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 /* Toast page: specimens on a light stage, live buttons fire the real toasts. */
 .toast-stage { display: grid; justify-items: center; gap: 12px; width: 100%; }
 .toast-stage > .sb-toast { width: min(360px, 100%); }
+.ex-preview.anat:has(> .toast-stage) { padding-block: 72px; } /* room for the pins above and below */
 .toast-live { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .ex-preview:has(> .toast-stage, > .toast-live) { min-height: 0; padding: 32px; }
 
