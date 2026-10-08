@@ -97,6 +97,7 @@ ${BLURS.map(([b]) => `<div class="f-blur is-${tone}" style="backdrop-filter: var
               ['`--raised-sheen`', 'Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme', `\`${tokens['--raised-sheen']}\``],
               ['`--raised-sheen-light`', 'White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons, Toggle knob, Slider handle, Avatar add button', `\`${tokens['--raised-sheen-light']}\``],
               ['`--raised-highlight`', 'With `--raised-sheen`, first in `box-shadow`', `\`${tokens['--raised-highlight']}\``],
+              ['`--pressed-inset`', 'The opposite of raised: the chosen Button group segment, on a `gray-100` fill', `\`${tokens['--pressed-inset']}\``],
             ],
           },
           {
@@ -104,7 +105,7 @@ ${BLURS.map(([b]) => `<div class="f-blur is-${tone}" style="backdrop-filter: var
             items: [
               'Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.',
               'A solid raised control takes a border one step darker than its fill (`brand-600` fill, `brand-700` border).',
-              'Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state (the default look at 50 % opacity).',
+              'Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (pressed in with `--pressed-inset`) and every Disabled state (the default look at 50 % opacity).',
               'Never on cards, panels or large surfaces. It is for controls only.',
             ],
           },

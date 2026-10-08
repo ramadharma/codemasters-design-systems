@@ -63,6 +63,7 @@
       '--raised-sheen': 'linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))',
       '--raised-sheen-light': 'linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))',
       '--raised-highlight': 'inset 0 1px 0 rgb(255 255 255 / .28)',
+      '--pressed-inset': 'inset 0 1px 2px rgb(16 24 40 / .1)',
     }],
     ['Background blur: use as backdrop-filter: var(--blur-md)', { '--blur-sm': 'blur(4px)', '--blur-md': 'blur(8px)', '--blur-lg': 'blur(12px)', '--blur-xl': 'blur(20px)' }],
     ['Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible', { '--focus-ring': 'color-mix(in srgb, var(--brand-600) 20%, transparent)' }],

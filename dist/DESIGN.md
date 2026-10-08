@@ -241,6 +241,7 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
   --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
   --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
+  --pressed-inset: inset 0 1px 2px rgb(16 24 40 / .1);
 
   /* Background blur: use as backdrop-filter: var(--blur-md) */
   --blur-sm: blur(4px);
@@ -983,10 +984,11 @@ Pressable controls get a little depth, so they read as buttons: a sheen over the
 | `--raised-sheen` | Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme | `linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))` |
 | `--raised-sheen-light` | White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons, Toggle knob, Slider handle, Avatar add button | `linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))` |
 | `--raised-highlight` | With `--raised-sheen`, first in `box-shadow` | `inset 0 1px 0 rgb(255 255 255 / .28)` |
+| `--pressed-inset` | The opposite of raised: the chosen Button group segment, on a `gray-100` fill | `inset 0 1px 2px rgb(16 24 40 / .1)` |
 
 - Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.
 - A solid raised control takes a border one step darker than its fill (`brand-600` fill, `brand-700` border).
-- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state (the default look at 50 % opacity).
+- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (pressed in with `--pressed-inset`) and every Disabled state (the default look at 50 % opacity).
 - Never on cards, panels or large surfaces. It is for controls only.
 
 ### Do and don't
@@ -1022,6 +1024,7 @@ Pressable controls get a little depth, so they read as buttons: a sheen over the
   --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
   --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
+  --pressed-inset: inset 0 1px 2px rgb(16 24 40 / .1);
 
   /* Background blur: use as backdrop-filter: var(--blur-md) */
   --blur-sm: blur(4px);
@@ -2331,10 +2334,10 @@ A row of joined buttons for related, equal-weight choices: a view switch (Hari, 
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Group | 40 high (same as Button `md`), 1 px `gray-300` border, radius 8, `shadow-xs`. Clips its children, so only the outer corners are rounded. |
-| 2 | Segment | `white` fill, padding `10 16` (icon-only `10 12`). Current=True fills it `gray-50`. |
+| 2 | Segment | `white` fill, padding `10 16` (icon-only `10 12`). Current=True is pressed in: `gray-100` fill with `pressed-inset`. |
 | 3 | Divider | 1 px `gray-300` on the trailing side of each segment. The last one is hidden by the group border. |
-| 4 | Icon | Optional. 20 px, gap 8, `gray-500` (Current: `gray-800`). The Dot variant puts a 10 px `success-500` dot here instead. |
-| 5 | Label | Text sm / Semibold, `gray-700` (Current: `gray-800`). Icon-only segments drop it and carry an `aria-label`. |
+| 4 | Icon | Optional. 20 px, gap 8, `gray-500` (Current: `gray-900`). The Dot variant puts a 10 px `success-500` dot here instead. |
+| 5 | Label | Text sm / Semibold, `gray-700` (Current: `gray-900`). Icon-only segments drop it and carry an `aria-label`. |
 
 ### Properties
 
@@ -2417,9 +2420,9 @@ For status filters. The dot stays `success-500` in every state.
 
 | State | Current=False (fill / text / icon) | Current=True |
 | --- | --- | --- |
-| Default | `white` / `gray-700` / `gray-500` | `gray-50` / `gray-800` / `gray-800` |
-| Hover | `gray-50` / `gray-800` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
-| Focused | `gray-50` / `gray-700` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
+| Default | `white` raised / `gray-700` / `gray-500` | `gray-100` + `pressed-inset` / `gray-900` / `gray-900` |
+| Hover | `gray-50` / `gray-800` / `gray-700` | same as Default |
+| Focused | `gray-50` / `gray-700` / `gray-700` | same as Default + focus outline |
 | Disabled | Default at 50 % opacity | Default at 50 % opacity |
 
 > **Note:** Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-600` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
@@ -2540,7 +2543,8 @@ Tab reaches the group once, on the checked segment. ← → move and select.
 | Segment | Text on fill | Ratio | AA |
 | --- | --- | --- | --- |
 | Default | `gray-700` on `white` | 10.46:1 | Passes |
-| Hover, Current | `gray-800` on `gray-50` | 14.07:1 | Passes |
+| Hover | `gray-800` on `gray-50` | 14.07:1 | Passes |
+| Current | `gray-900` on `gray-100` | 16.11:1 | Passes |
 | Focused | `gray-700` on `gray-50` | 10.01:1 | Passes |
 | Icon, Default | `gray-500` on `white` | 4.97:1 | Passes (3:1 needed for icons) |
 
@@ -2600,7 +2604,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50); /* flat: reads as pressed in */
+  --seg-icon: var(--gray-900); color: var(--gray-900); background: var(--gray-100); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
 }
 .sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 

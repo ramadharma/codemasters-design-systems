@@ -77,10 +77,11 @@ Pressable controls get a little depth, so they read as buttons: a sheen over the
 | `--raised-sheen` | Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme | `linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))` |
 | `--raised-sheen-light` | White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons, Toggle knob, Slider handle, Avatar add button | `linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))` |
 | `--raised-highlight` | With `--raised-sheen`, first in `box-shadow` | `inset 0 1px 0 rgb(255 255 255 / .28)` |
+| `--pressed-inset` | The opposite of raised: the chosen Button group segment, on a `gray-100` fill | `inset 0 1px 2px rgb(16 24 40 / .1)` |
 
 - Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.
 - A solid raised control takes a border one step darker than its fill (`brand-600` fill, `brand-700` border).
-- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state (the default look at 50 % opacity).
+- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (pressed in with `--pressed-inset`) and every Disabled state (the default look at 50 % opacity).
 - Never on cards, panels or large surfaces. It is for controls only.
 
 ## Do and don't
@@ -116,6 +117,7 @@ Pressable controls get a little depth, so they read as buttons: a sheen over the
   --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
   --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
+  --pressed-inset: inset 0 1px 2px rgb(16 24 40 / .1);
 
   /* Background blur: use as backdrop-filter: var(--blur-md) */
   --blur-sm: blur(4px);

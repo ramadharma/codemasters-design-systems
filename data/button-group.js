@@ -51,7 +51,7 @@
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50); /* flat: reads as pressed in */
+  --seg-icon: var(--gray-900); color: var(--gray-900); background: var(--gray-100); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
 }
 .sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 
@@ -172,10 +172,10 @@
             head: ['#', 'Part', 'Spec'],
             rows: [
               ['1', 'Group', '40 high (same as Button `md`), 1 px `gray-300` border, radius 8, `shadow-xs`. Clips its children, so only the outer corners are rounded.'],
-              ['2', 'Segment', '`white` fill, padding `10 16` (icon-only `10 12`). Current=True fills it `gray-50`.'],
+              ['2', 'Segment', '`white` fill, padding `10 16` (icon-only `10 12`). Current=True is pressed in: `gray-100` fill with `pressed-inset`.'],
               ['3', 'Divider', '1 px `gray-300` on the trailing side of each segment. The last one is hidden by the group border.'],
-              ['4', 'Icon', 'Optional. 20 px, gap 8, `gray-500` (Current: `gray-800`). The Dot variant puts a 10 px `success-500` dot here instead.'],
-              ['5', 'Label', 'Text sm / Semibold, `gray-700` (Current: `gray-800`). Icon-only segments drop it and carry an `aria-label`.'],
+              ['4', 'Icon', 'Optional. 20 px, gap 8, `gray-500` (Current: `gray-900`). The Dot variant puts a 10 px `success-500` dot here instead.'],
+              ['5', 'Label', 'Text sm / Semibold, `gray-700` (Current: `gray-900`). Icon-only segments drop it and carry an `aria-label`.'],
             ],
           },
         ],
@@ -220,9 +220,9 @@
             type: 'table',
             head: ['State', 'Current=False (fill / text / icon)', 'Current=True'],
             rows: [
-              ['Default', '`white` / `gray-700` / `gray-500`', '`gray-50` / `gray-800` / `gray-800`'],
-              ['Hover', '`gray-50` / `gray-800` / `gray-700`', '`gray-50` / `gray-800` / `gray-800`'],
-              ['Focused', '`gray-50` / `gray-700` / `gray-700`', '`gray-50` / `gray-800` / `gray-800`'],
+              ['Default', '`white` raised / `gray-700` / `gray-500`', '`gray-100` + `pressed-inset` / `gray-900` / `gray-900`'],
+              ['Hover', '`gray-50` / `gray-800` / `gray-700`', 'same as Default'],
+              ['Focused', '`gray-50` / `gray-700` / `gray-700`', 'same as Default + focus outline'],
               ['Disabled', 'Default at 50 % opacity', 'Default at 50 % opacity'],
             ],
           },
@@ -305,7 +305,8 @@
             head: ['Segment', 'Text on fill', 'Ratio', 'AA'],
             rows: [
               ['Default', '`gray-700` on `white`', '10.46:1', 'Passes'],
-              ['Hover, Current', '`gray-800` on `gray-50`', '14.07:1', 'Passes'],
+              ['Hover', '`gray-800` on `gray-50`', '14.07:1', 'Passes'],
+              ['Current', '`gray-900` on `gray-100`', '16.11:1', 'Passes'],
               ['Focused', '`gray-700` on `gray-50`', '10.01:1', 'Passes'],
               ['Icon, Default', '`gray-500` on `white`', '4.97:1', 'Passes (3:1 needed for icons)'],
             ],

@@ -47,7 +47,7 @@
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50); /* flat: reads as pressed in */
+  --seg-icon: var(--gray-900); color: var(--gray-900); background: var(--gray-100); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
 }
 .sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 
