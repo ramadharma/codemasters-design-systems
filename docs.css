@@ -244,7 +244,8 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .ex-preview:has(> .f-swatches, > .f-type, > .f-icons, > .f-space, > .f-grids, > .f-containers) { justify-content: flex-start; min-height: 0; padding: 32px; }
 /* Slide mockups: children are placed in canvas px converted to % and cqw, so the frame can be any width. */
 .f-slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; width: 100%; }
-.f-slide { display: grid; gap: 8px; margin: 0; }
+.f-slide { display: grid; align-content: start; gap: 8px; min-width: 0; margin: 0; }
+.f-slide .mx { white-space: normal; text-wrap: pretty; }
 .f-slide-frame { position: relative; overflow: hidden; container-type: inline-size; aspect-ratio: 16 / 9; border: 1px solid var(--gray-200); border-radius: 8px; background-size: cover; }
 .f-sl { position: absolute; box-sizing: border-box; margin: 0; }
 .f-sl p { max-width: none; }
