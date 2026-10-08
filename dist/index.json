@@ -173,6 +173,15 @@
       "path": "components/social-button.md"
     },
     {
+      "slug": "tabs",
+      "name": "Tabs",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-08",
+      "description": "Switch between panels of content in one place: the sections of a claim, the views of a card or the parts of a settings page. Four types: Folder, Underline, Segmented and Vertical.",
+      "path": "components/tabs.md"
+    },
+    {
       "slug": "textarea",
       "name": "Textarea input field",
       "category": "Components",
@@ -249,6 +258,8 @@
     "code/slider.css",
     "code/slider.js",
     "code/social-button.css",
+    "code/tabs.css",
+    "code/tabs.js",
     "code/textarea.css",
     "code/textarea-counter.js",
     "code/toggle.css",

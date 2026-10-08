@@ -1,0 +1,82 @@
+/* Tabs, Codemasters Design System
+   No Figma component yet: built from DESIGN.md Navigation (Tabs, Mini tab). Needs tokens.css; tabs.js for clicks and keys.
+
+   <div class="sb-tabs" data-type="folder" role="tablist" aria-label="Detail klaim">
+     <button class="sb-tab" type="button" role="tab" id="klaim-t1" aria-selected="true" aria-controls="klaim-p1" tabindex="0">…icon… Informasi Klaim</button>
+     <button class="sb-tab" type="button" role="tab" id="klaim-t2" aria-selected="false" aria-controls="klaim-p2" tabindex="-1">…icon… FWA <span class="sb-badge" data-size="sm" data-color="error">6</span></button>
+   </div>
+   <div class="sb-tab-panel" role="tabpanel" id="klaim-p1" aria-labelledby="klaim-t1" tabindex="0">…</div>
+   <div class="sb-tab-panel" role="tabpanel" id="klaim-p2" aria-labelledby="klaim-t2" tabindex="0" hidden>…</div>
+
+   data-type   folder | underline | segmented | vertical (vertical also sets aria-orientation="vertical")
+   data-size   sm (omit for md)
+   Selected    aria-selected="true". The ARIA state is the style hook, so selection never shows by colour alone.
+   Badge       Badge sm after the label: error for counts that need action, gray for plain totals.
+   data-state  hover | focus on a tab. Static mockups and docs only. */
+
+.sb-tabs {
+  --tab-h: 44px; --tab-px: 4px;
+  box-sizing: border-box;
+  display: flex; gap: 8px;
+  overflow-x: auto; scrollbar-width: thin; /* too many tabs scroll sideways, never a second row */
+}
+.sb-tab {
+  --tab-icon: currentColor;
+  box-sizing: border-box; flex: none;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: var(--tab-h); margin: 0; padding: 0 var(--tab-px);
+  font: 500 var(--text-sm) var(--font); white-space: nowrap;
+  color: var(--gray-500); background: none;
+  border: 0; border-radius: 0;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-tab > svg { width: 20px; height: 20px; flex: none; color: var(--tab-icon); }
+/* Inside the tab, like Button group: the scrolling row clips anything drawn outside. */
+.sb-tab:is(:focus-visible, [data-state="focus"]) { outline: 2px solid var(--brand-500); outline-offset: -2px; }
+.sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
+.sb-tab-panel:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+/* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-500. */
+.sb-tabs[data-type="folder"] { --tab-h: 52px; --tab-px: 24px; box-shadow: inset 0 -1px var(--gray-300); }
+.sb-tabs[data-type="folder"][data-size="sm"] { --tab-h: 44px; --tab-px: 16px; }
+.sb-tabs[data-type="folder"] > .sb-tab {
+  color: var(--brand-700); background: var(--brand-25);
+  border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-50); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-500); border-color: var(--brand-500); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
+.sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-25); border-color: var(--gray-200); }
+
+/* Underline: sections inside a card or below folder tabs. A 2 px line marks the selected tab. */
+.sb-tabs[data-type="underline"] { gap: 16px; box-shadow: inset 0 -1px var(--gray-200); }
+.sb-tabs[data-type="underline"][data-size="sm"] { --tab-h: 36px; }
+.sb-tabs[data-type="underline"] > .sb-tab { box-shadow: inset 0 -2px transparent; }
+.sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); box-shadow: inset 0 -2px var(--gray-300); }
+.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--brand-700); box-shadow: inset 0 -2px var(--brand-500); }
+
+/* Segmented: 2 to 4 short views of one card. 40 high in all, like Button md; radius 8 = 4 inner + 4 padding. */
+.sb-tabs[data-type="segmented"] {
+  --tab-h: 30px; --tab-px: 12px;
+  display: inline-flex; max-width: 100%; gap: 4px; padding: 4px;
+  background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md);
+}
+.sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 26px; --tab-px: 10px; }
+.sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: var(--radius-sm); }
+.sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
+.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
+
+/* Vertical: settings pages and long section lists. Same look as the sidebar navigation. */
+.sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
+.sb-tabs[data-type="vertical"][data-size="sm"] { --tab-h: 36px; }
+.sb-tabs[data-type="vertical"] > .sb-tab { --tab-icon: var(--gray-500); justify-content: flex-start; color: var(--gray-700); border-radius: var(--radius-md); }
+.sb-tabs[data-type="vertical"] > .sb-tab > .sb-badge { margin-inline-start: auto; }
+.sb-tabs[data-type="vertical"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { --tab-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50); }
+.sb-tabs[data-type="vertical"] > .sb-tab[aria-selected="true"] { --tab-icon: var(--brand-700); color: var(--brand-700); background: var(--brand-50); }
+.sb-tabs[data-type="vertical"] > .sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-tab { transition: none; }
+}

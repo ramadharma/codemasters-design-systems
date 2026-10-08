@@ -28,6 +28,7 @@ Figma: [Codemasters Design System](https://www.figma.com/design/MKPOHzJT5mlZhE7z
 - Progress bar and circle
 - Slider
 - Social button
+- Tabs
 - Textarea input field
 - Toggle
 - Tooltip and help icon
@@ -903,7 +904,7 @@ Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour o
 
 ### Library
 
-The 43 icons used in this documentation. Click one to copy its name. The full set lives in the Figma file.
+The 48 icons used in this documentation. Click one to copy its name. The full set lives in the Figma file.
 
 ### Code
 
@@ -5487,6 +5488,554 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 
 <!-- Dribbble -->
 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.814zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.825 0-1.63.1-2.4.285zm10.335 3.483c-.218.29-1.935 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.38z"/></svg>
+```
+
+## Tabs
+
+Switch between panels of content in one place: the sections of a claim, the views of a card or the parts of a settings page. Four types: Folder, Underline, Segmented and Vertical.
+
+- Figma: [Design system file (no Tabs component yet)](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems)
+
+### Usage
+
+- Use tabs to switch between panels of content in the same place, without leaving the page. Each tab owns one panel.
+- To change how the same data is shown or filtered (Hari, Minggu, Bulan), use a Button group. To go to another page, use a link or the sidebar.
+- One Folder row per page, at the top of the content. Sections inside it use Underline, never a second Folder row.
+- Labels are short and in Title Case, one to three words. Never wrap or truncate a label.
+- When the tabs do not fit, the row scrolls sideways. No second row and no "More" menu.
+
+### Anatomy
+
+| # | Part | Spec |
+| --- | --- | --- |
+| 1 | Tab list | One row, gap 8, on a 1 px `gray-300` baseline. Scrolls sideways when the tabs do not fit. |
+| 2 | Tab | 52 high (sm 44), padding `0 24` (sm `0 16`), radius `8 8 0 0`, 1 px `gray-300` border, `brand-25` fill, `brand-700` text. Hover: `brand-50` fill. |
+| 3 | Selected tab | `brand-500` fill and border, `white` text and icon. Its bottom edge covers the baseline. |
+| 4 | Icon | Optional. 20 px, gap 8, the text colour. Every tab in a row has one, or none has. |
+| 5 | Label | Text sm / Medium, Title Case, never wraps. |
+| 6 | Badge | Optional count, Badge sm. Error for counts that need action (FWA findings), Gray for plain totals. `white` fill on the selected Folder tab. |
+
+### Properties
+
+| Property | Values | Code |
+| --- | --- | --- |
+| Type | Folder, Underline, Segmented, Vertical | `data-type` on the tab list. Vertical also sets `aria-orientation="vertical"` |
+| Size | md, sm | Omit for md, `data-size="sm"` |
+| Icon | True, False | `<svg>` before the label |
+| Badge | True, False | `<span class="sb-badge" data-size="sm">` after the label |
+| Selected | True, False | `aria-selected="true"`, `tabindex="0"`; the others `false` and `-1` |
+| State | Default, Hover, Focused, Disabled | `:hover`, `:focus-visible`, `disabled`. Static mockups only: `data-state="hover"` or `"focus"` |
+
+### Types
+
+| Type | Use for | Height md / sm |
+| --- | --- | --- |
+| Folder | The sections of a detail page (claim detail). One row per page. | 52 / 44 |
+| Underline | Sections inside a card or below Folder tabs; status views of a list. | 44 / 36 |
+| Segmented | Two to four short views of one card (Grafik, Tabel). | 40 / 36, the whole control |
+| Vertical | Settings pages and lists of five or more sections. | 40 / 36 per tab |
+
+#### Folder
+
+```html
+<div class="sb-tabs" data-type="folder" role="tablist" aria-label="Detail klaim">
+  <button class="sb-tab" type="button" role="tab" id="tabs-21-t0" aria-selected="false" aria-controls="tabs-21-p0" tabindex="-1">
+    <svg aria-hidden="true"><!-- loader --></svg>
+    Ringkasan Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-21-t1" aria-selected="false" aria-controls="tabs-21-p1" tabindex="-1">
+    <svg aria-hidden="true"><!-- info --></svg>
+    Informasi Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-21-t2" aria-selected="true" aria-controls="tabs-21-p2" tabindex="0">
+    <svg aria-hidden="true"><!-- activity --></svg>
+    Informasi Medis
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-21-t3" aria-selected="false" aria-controls="tabs-21-p3" tabindex="-1">
+    <svg aria-hidden="true"><!-- database --></svg>
+    Rincian Invoice
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-21-t4" aria-selected="false" aria-controls="tabs-21-p4" tabindex="-1">
+    <svg aria-hidden="true"><!-- signal --></svg>
+    FWA
+    <span class="sb-badge" data-size="sm" data-color="error">6</span>
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-21-t5" aria-selected="false" aria-controls="tabs-21-p5" tabindex="-1">
+    <svg aria-hidden="true"><!-- check-circle --></svg>
+    Plan dan Manfaat
+  </button>
+</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-21-p0" aria-labelledby="tabs-21-t0" tabindex="0" hidden>Isi tab Ringkasan Klaim.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-21-p1" aria-labelledby="tabs-21-t1" tabindex="0" hidden>Isi tab Informasi Klaim.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-21-p2" aria-labelledby="tabs-21-t2" tabindex="0">Isi tab Informasi Medis.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-21-p3" aria-labelledby="tabs-21-t3" tabindex="0" hidden>Isi tab Rincian Invoice.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-21-p4" aria-labelledby="tabs-21-t4" tabindex="0" hidden>Isi tab FWA.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-21-p5" aria-labelledby="tabs-21-t5" tabindex="0" hidden>Isi tab Plan dan Manfaat.</div>
+```
+
+#### Underline
+
+Text `gray-500`, hover `gray-700` with a `gray-300` line, selected `brand-700` with a 2 px `brand-500` line on a `gray-200` baseline. Padding `0 4`, gap 16.
+
+```html
+<div class="sb-tabs" data-type="underline" role="tablist" aria-label="Status klaim">
+  <button class="sb-tab" type="button" role="tab" id="tabs-22-t0" aria-selected="true" aria-controls="tabs-22-p0" tabindex="0">
+    <svg aria-hidden="true"><!-- layers --></svg>
+    Semua
+    <span class="sb-badge" data-size="sm" data-color="gray">128</span>
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-22-t1" aria-selected="false" aria-controls="tabs-22-p1" tabindex="-1">
+    <svg aria-hidden="true"><!-- loader --></svg>
+    Menunggu
+    <span class="sb-badge" data-size="sm" data-color="gray">12</span>
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-22-t2" aria-selected="false" aria-controls="tabs-22-p2" tabindex="-1">
+    <svg aria-hidden="true"><!-- check-circle --></svg>
+    Disetujui
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-22-t3" aria-selected="false" aria-controls="tabs-22-p3" tabindex="-1">
+    <svg aria-hidden="true"><!-- alert-circle --></svg>
+    Ditolak
+  </button>
+</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-22-p0" aria-labelledby="tabs-22-t0" tabindex="0">Isi tab Semua.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-22-p1" aria-labelledby="tabs-22-t1" tabindex="0" hidden>Isi tab Menunggu.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-22-p2" aria-labelledby="tabs-22-t2" tabindex="0" hidden>Isi tab Disetujui.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-22-p3" aria-labelledby="tabs-22-t3" tabindex="0" hidden>Isi tab Ditolak.</div>
+```
+
+#### Segmented
+
+A `gray-50` track with a `gray-200` border, radius 8, padding 4. The selected tab is `white` with a `gray-200` border and `shadow-xs`, radius 4, so the corners stay concentric. Same height as Button md.
+
+```html
+<div class="sb-tabs" data-type="segmented" role="tablist" aria-label="Tampilan data">
+  <button class="sb-tab" type="button" role="tab" id="tabs-23-t0" aria-selected="true" aria-controls="tabs-23-p0" tabindex="0">
+    <svg aria-hidden="true"><!-- activity --></svg>
+    Grafik
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-23-t1" aria-selected="false" aria-controls="tabs-23-p1" tabindex="-1">
+    <svg aria-hidden="true"><!-- list --></svg>
+    Tabel
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-23-t2" aria-selected="false" aria-controls="tabs-23-p2" tabindex="-1">
+    <svg aria-hidden="true"><!-- file-text --></svg>
+    Catatan
+    <span class="sb-badge" data-size="sm" data-color="gray">3</span>
+  </button>
+</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-23-p0" aria-labelledby="tabs-23-t0" tabindex="0">Isi tab Grafik.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-23-p1" aria-labelledby="tabs-23-t1" tabindex="0" hidden>Isi tab Tabel.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-23-p2" aria-labelledby="tabs-23-t2" tabindex="0" hidden>Isi tab Catatan.</div>
+```
+
+> **Note:** Segmented tabs look close to a Button group but switch panels, not the data in one panel. Grafik and Tabel are two panels: tabs. Hari, Minggu, Bulan filter one chart: Button group.
+
+#### Vertical
+
+Same look as the sidebar: radius 8, padding `0 12`, text `gray-700` with a `gray-500` icon; hover `gray-50`; selected `brand-50` fill with `brand-700` text and icon. A badge sits at the end.
+
+```html
+<div class="sb-tabs" data-type="vertical" role="tablist" aria-label="Pengaturan akun" aria-orientation="vertical">
+  <button class="sb-tab" type="button" role="tab" id="tabs-24-t0" aria-selected="true" aria-controls="tabs-24-p0" tabindex="0">
+    <svg aria-hidden="true"><!-- user --></svg>
+    Profil
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-24-t1" aria-selected="false" aria-controls="tabs-24-p1" tabindex="-1">
+    <svg aria-hidden="true"><!-- user-plus --></svg>
+    Tim
+    <span class="sb-badge" data-size="sm" data-color="gray">4</span>
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-24-t2" aria-selected="false" aria-controls="tabs-24-p2" tabindex="-1">
+    <svg aria-hidden="true"><!-- credit-card --></svg>
+    Tagihan
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-24-t3" aria-selected="false" aria-controls="tabs-24-p3" tabindex="-1">
+    <svg aria-hidden="true"><!-- link --></svg>
+    Integrasi
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-24-t4" aria-selected="false" aria-controls="tabs-24-p4" tabindex="-1">
+    <svg aria-hidden="true"><!-- settings --></svg>
+    Preferensi
+  </button>
+</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-24-p0" aria-labelledby="tabs-24-t0" tabindex="0">Isi tab Profil.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-24-p1" aria-labelledby="tabs-24-t1" tabindex="0" hidden>Isi tab Tim.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-24-p2" aria-labelledby="tabs-24-t2" tabindex="0" hidden>Isi tab Tagihan.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-24-p3" aria-labelledby="tabs-24-t3" tabindex="0" hidden>Isi tab Integrasi.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-24-p4" aria-labelledby="tabs-24-t4" tabindex="0" hidden>Isi tab Preferensi.</div>
+```
+
+### Sizes
+
+md for the main level, sm for sub-levels and dense cards. The text stays Text sm in both; only height and padding change.
+
+```html
+<span class="mx">md · 52</span>
+<div class="sb-tabs" data-type="folder" role="tablist" aria-label="md">
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- info --></svg>
+    Informasi Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    <svg aria-hidden="true"><!-- activity --></svg>
+    Informasi Medis
+  </button>
+</div>
+<span class="mx">sm · 44</span>
+<div class="sb-tabs" data-type="folder" data-size="sm" role="tablist" aria-label="sm">
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- info --></svg>
+    Informasi Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    <svg aria-hidden="true"><!-- activity --></svg>
+    Informasi Medis
+  </button>
+</div>
+```
+
+### States
+
+| Type | Default (fill / text) | Hover | Selected | Disabled |
+| --- | --- | --- | --- | --- |
+| Folder | `brand-25` / `brand-700`, `gray-300` border | `brand-50` fill | `brand-500` / `white`, `brand-500` border | `gray-25` / `gray-300`, `gray-200` border |
+| Underline | none / `gray-500` | `gray-700`, 2 px `gray-300` line | `brand-700`, 2 px `brand-500` line | `gray-300` |
+| Segmented | none / `gray-500` | `gray-700` | `white` / `gray-800`, `gray-200` border, `shadow-xs` | `gray-300` |
+| Vertical | none / `gray-700`, icon `gray-500` | `gray-50` / `gray-800` | `brand-50` / `brand-700` | `gray-300` |
+
+> **Note:** Focus is a 2 px `brand-500` outline inside the tab, as in Button group, because the scrolling row clips anything drawn outside. On the selected Folder tab the outline is `white`, 4 px in.
+
+### Overflow
+
+When the tabs do not fit, the row scrolls sideways. Arrow keys move focus and scroll the selected tab into view.
+
+```html
+<div class="sb-tabs" data-type="folder" data-size="sm" role="tablist" aria-label="Detail klaim">
+  <button class="sb-tab" type="button" role="tab" id="tabs-27-t0" aria-selected="false" aria-controls="tabs-27-p0" tabindex="-1">
+    <svg aria-hidden="true"><!-- loader --></svg>
+    Ringkasan Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-27-t1" aria-selected="false" aria-controls="tabs-27-p1" tabindex="-1">
+    <svg aria-hidden="true"><!-- info --></svg>
+    Informasi Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-27-t2" aria-selected="true" aria-controls="tabs-27-p2" tabindex="0">
+    <svg aria-hidden="true"><!-- activity --></svg>
+    Informasi Medis
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-27-t3" aria-selected="false" aria-controls="tabs-27-p3" tabindex="-1">
+    <svg aria-hidden="true"><!-- database --></svg>
+    Rincian Invoice
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-27-t4" aria-selected="false" aria-controls="tabs-27-p4" tabindex="-1">
+    <svg aria-hidden="true"><!-- signal --></svg>
+    FWA
+    <span class="sb-badge" data-size="sm" data-color="error">6</span>
+  </button>
+  <button class="sb-tab" type="button" role="tab" id="tabs-27-t5" aria-selected="false" aria-controls="tabs-27-p5" tabindex="-1">
+    <svg aria-hidden="true"><!-- check-circle --></svg>
+    Plan dan Manfaat
+  </button>
+</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-27-p0" aria-labelledby="tabs-27-t0" tabindex="0" hidden>Isi tab Ringkasan Klaim.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-27-p1" aria-labelledby="tabs-27-t1" tabindex="0" hidden>Isi tab Informasi Klaim.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-27-p2" aria-labelledby="tabs-27-t2" tabindex="0">Isi tab Informasi Medis.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-27-p3" aria-labelledby="tabs-27-t3" tabindex="0" hidden>Isi tab Rincian Invoice.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-27-p4" aria-labelledby="tabs-27-t4" tabindex="0" hidden>Isi tab FWA.</div>
+<div class="sb-tab-panel" role="tabpanel" id="tabs-27-p5" aria-labelledby="tabs-27-t5" tabindex="0" hidden>Isi tab Plan dan Manfaat.</div>
+```
+
+### Do and don't
+
+**Do:** Folder for the page sections, Underline for the sections inside them.
+
+```html
+<div class="sb-tabs" data-type="folder" data-size="sm" role="tablist" aria-label="Contoh">
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    <svg aria-hidden="true"><!-- info --></svg>
+    Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- activity --></svg>
+    Medis
+  </button>
+</div>
+<div class="sb-tabs" data-type="underline" data-size="sm" role="tablist" aria-label="Contoh">
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    Diagnosis
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    Tindakan
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    Obat
+  </button>
+</div>
+```
+
+**Don't:** Folder tabs inside Folder tabs. The two levels look equal.
+
+```html
+<div class="sb-tabs" data-type="folder" data-size="sm" role="tablist" aria-label="Contoh">
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    <svg aria-hidden="true"><!-- info --></svg>
+    Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- activity --></svg>
+    Medis
+  </button>
+</div>
+<div class="sb-tabs" data-type="folder" data-size="sm" role="tablist" aria-label="Contoh">
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    Diagnosis
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    Tindakan
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    Obat
+  </button>
+</div>
+```
+
+**Do:** An icon on every tab, or on none.
+
+```html
+<div class="sb-tabs" data-type="underline" data-size="sm" role="tablist" aria-label="Contoh">
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    <svg aria-hidden="true"><!-- layers --></svg>
+    Semua
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- loader --></svg>
+    Menunggu
+  </button>
+</div>
+```
+
+**Don't:** Icons on some tabs only.
+
+```html
+<div class="sb-tabs" data-type="underline" data-size="sm" role="tablist" aria-label="Contoh">
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    <svg aria-hidden="true"><!-- layers --></svg>
+    Semua
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    Menunggu
+  </button>
+</div>
+```
+
+**Do:** One row that scrolls sideways.
+
+```html
+<div class="sb-tabs" data-type="folder" data-size="sm" role="tablist" aria-label="Detail klaim">
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    <svg aria-hidden="true"><!-- loader --></svg>
+    Ringkasan Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- info --></svg>
+    Informasi Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- activity --></svg>
+    Informasi Medis
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- database --></svg>
+    Rincian Invoice
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- signal --></svg>
+    FWA
+    <span class="sb-badge" data-size="sm" data-color="error">6</span>
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- check-circle --></svg>
+    Plan dan Manfaat
+  </button>
+</div>
+```
+
+**Don't:** Tabs wrapped onto a second row. The selected tab loses its baseline.
+
+```html
+<div class="sb-tabs" data-type="folder" data-size="sm" role="tablist" aria-label="Detail klaim" style="flex-wrap: wrap">
+  <button class="sb-tab" type="button" role="tab" aria-selected="true" tabindex="0">
+    <svg aria-hidden="true"><!-- loader --></svg>
+    Ringkasan Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- info --></svg>
+    Informasi Klaim
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- activity --></svg>
+    Informasi Medis
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- database --></svg>
+    Rincian Invoice
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- signal --></svg>
+    FWA
+    <span class="sb-badge" data-size="sm" data-color="error">6</span>
+  </button>
+  <button class="sb-tab" type="button" role="tab" aria-selected="false" tabindex="-1">
+    <svg aria-hidden="true"><!-- check-circle --></svg>
+    Plan dan Manfaat
+  </button>
+</div>
+```
+
+### Accessibility
+
+- The row is a `role="tablist"` with an `aria-label`; each tab is a `<button role="tab">` with `aria-selected` and `aria-controls`; each panel is a `role="tabpanel"` with `aria-labelledby` and `tabindex="0"`.
+- Roving `tabindex`: Tab reaches the row once, on the selected tab, then moves on to the panel. ← → (↑ ↓ when vertical), Home and End move and select.
+- Selection follows focus (automatic activation). For panels that load slowly, select on Enter instead and keep focus moving without selecting.
+- The selected style comes from `aria-selected`, so it never shows by colour alone; Folder and Segmented also change the fill, Underline adds the line.
+- A badge is read as part of the tab name ("FWA 6"). When the number needs a word, set `aria-label="FWA, 6 temuan"` on the tab.
+
+| Tab | Text on fill | Ratio | AA |
+| --- | --- | --- | --- |
+| Folder, default | `brand-700` on `brand-25` | 6.44:1 | Passes |
+| Folder, selected | `white` on `brand-500` | 3.62:1 | Fails for 14 px text. Same open decision as the Primary button |
+| Underline, default | `gray-500` on `white` | 4.97:1 | Passes |
+| Underline, selected | `brand-700` on `white` | 6.61:1 | Passes; the `brand-500` line is 3.62:1 (3:1 needed) |
+| Segmented, default | `gray-500` on `gray-50` | 4.76:1 | Passes |
+| Segmented, selected | `gray-800` on `white` | 14.70:1 | Passes |
+| Vertical, selected | `brand-700` on `brand-50` | 6.09:1 | Passes |
+
+### Code
+
+Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `tabs.js` for clicks and keys.
+
+`tabs.css`
+
+```css
+/* Tabs, Codemasters Design System
+   No Figma component yet: built from DESIGN.md Navigation (Tabs, Mini tab). Needs tokens.css; tabs.js for clicks and keys.
+
+   <div class="sb-tabs" data-type="folder" role="tablist" aria-label="Detail klaim">
+     <button class="sb-tab" type="button" role="tab" id="klaim-t1" aria-selected="true" aria-controls="klaim-p1" tabindex="0">…icon… Informasi Klaim</button>
+     <button class="sb-tab" type="button" role="tab" id="klaim-t2" aria-selected="false" aria-controls="klaim-p2" tabindex="-1">…icon… FWA <span class="sb-badge" data-size="sm" data-color="error">6</span></button>
+   </div>
+   <div class="sb-tab-panel" role="tabpanel" id="klaim-p1" aria-labelledby="klaim-t1" tabindex="0">…</div>
+   <div class="sb-tab-panel" role="tabpanel" id="klaim-p2" aria-labelledby="klaim-t2" tabindex="0" hidden>…</div>
+
+   data-type   folder | underline | segmented | vertical (vertical also sets aria-orientation="vertical")
+   data-size   sm (omit for md)
+   Selected    aria-selected="true". The ARIA state is the style hook, so selection never shows by colour alone.
+   Badge       Badge sm after the label: error for counts that need action, gray for plain totals.
+   data-state  hover | focus on a tab. Static mockups and docs only. */
+
+.sb-tabs {
+  --tab-h: 44px; --tab-px: 4px;
+  box-sizing: border-box;
+  display: flex; gap: 8px;
+  overflow-x: auto; scrollbar-width: thin; /* too many tabs scroll sideways, never a second row */
+}
+.sb-tab {
+  --tab-icon: currentColor;
+  box-sizing: border-box; flex: none;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: var(--tab-h); margin: 0; padding: 0 var(--tab-px);
+  font: 500 var(--text-sm) var(--font); white-space: nowrap;
+  color: var(--gray-500); background: none;
+  border: 0; border-radius: 0;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-tab > svg { width: 20px; height: 20px; flex: none; color: var(--tab-icon); }
+/* Inside the tab, like Button group: the scrolling row clips anything drawn outside. */
+.sb-tab:is(:focus-visible, [data-state="focus"]) { outline: 2px solid var(--brand-500); outline-offset: -2px; }
+.sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
+.sb-tab-panel:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+/* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-500. */
+.sb-tabs[data-type="folder"] { --tab-h: 52px; --tab-px: 24px; box-shadow: inset 0 -1px var(--gray-300); }
+.sb-tabs[data-type="folder"][data-size="sm"] { --tab-h: 44px; --tab-px: 16px; }
+.sb-tabs[data-type="folder"] > .sb-tab {
+  color: var(--brand-700); background: var(--brand-25);
+  border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-50); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-500); border-color: var(--brand-500); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
+.sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-25); border-color: var(--gray-200); }
+
+/* Underline: sections inside a card or below folder tabs. A 2 px line marks the selected tab. */
+.sb-tabs[data-type="underline"] { gap: 16px; box-shadow: inset 0 -1px var(--gray-200); }
+.sb-tabs[data-type="underline"][data-size="sm"] { --tab-h: 36px; }
+.sb-tabs[data-type="underline"] > .sb-tab { box-shadow: inset 0 -2px transparent; }
+.sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); box-shadow: inset 0 -2px var(--gray-300); }
+.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--brand-700); box-shadow: inset 0 -2px var(--brand-500); }
+
+/* Segmented: 2 to 4 short views of one card. 40 high in all, like Button md; radius 8 = 4 inner + 4 padding. */
+.sb-tabs[data-type="segmented"] {
+  --tab-h: 30px; --tab-px: 12px;
+  display: inline-flex; max-width: 100%; gap: 4px; padding: 4px;
+  background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md);
+}
+.sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 26px; --tab-px: 10px; }
+.sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: var(--radius-sm); }
+.sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
+.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
+
+/* Vertical: settings pages and long section lists. Same look as the sidebar navigation. */
+.sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
+.sb-tabs[data-type="vertical"][data-size="sm"] { --tab-h: 36px; }
+.sb-tabs[data-type="vertical"] > .sb-tab { --tab-icon: var(--gray-500); justify-content: flex-start; color: var(--gray-700); border-radius: var(--radius-md); }
+.sb-tabs[data-type="vertical"] > .sb-tab > .sb-badge { margin-inline-start: auto; }
+.sb-tabs[data-type="vertical"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { --tab-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50); }
+.sb-tabs[data-type="vertical"] > .sb-tab[aria-selected="true"] { --tab-icon: var(--brand-700); color: var(--brand-700); background: var(--brand-50); }
+.sb-tabs[data-type="vertical"] > .sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-tab { transition: none; }
+}
+```
+
+#### Script
+
+`tabs.js`
+
+```js
+// Tabs: click or ← → (↑ ↓ when vertical), Home and End select a tab and show its panel.
+function tabsSelect(tab) {
+  for (const t of tab.closest('[role="tablist"]').querySelectorAll('[role="tab"]')) {
+    const on = t === tab;
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+    const panel = document.getElementById(t.getAttribute('aria-controls'));
+    if (panel) panel.hidden = !on;
+  }
+}
+function tabsClick(e) {
+  const tab = e.target.closest?.('.sb-tabs [role="tab"]');
+  if (tab && !tab.disabled) tabsSelect(tab);
+}
+function tabsKeydown(e) {
+  const tab = e.target.closest?.('.sb-tabs [role="tab"]');
+  if (!tab) return;
+  const list = tab.closest('[role="tablist"]');
+  const [prev, next] = list.getAttribute('aria-orientation') === 'vertical' ? ['ArrowUp', 'ArrowDown'] : ['ArrowLeft', 'ArrowRight'];
+  const tabs = [...list.querySelectorAll('[role="tab"]:not(:disabled)')];
+  const i = tabs.indexOf(tab);
+  const to = { [prev]: (i - 1 + tabs.length) % tabs.length, [next]: (i + 1) % tabs.length, Home: 0, End: tabs.length - 1 }[e.key];
+  if (to === undefined) return;
+  e.preventDefault();
+  tabsSelect(tabs[to]);
+  tabs[to].focus(); // focus also scrolls a long row to the tab
+}
+document.addEventListener('click', tabsClick);
+document.addEventListener('keydown', tabsKeydown);
 ```
 
 ## Textarea input field
