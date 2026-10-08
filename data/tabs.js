@@ -83,7 +83,7 @@ document.addEventListener('keydown', tabsKeydown);`;
   border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-100); }
-.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-600); border-color: var(--brand-600); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
 .sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-50); border-color: var(--gray-200); }
@@ -104,7 +104,7 @@ document.addEventListener('keydown', tabsKeydown);`;
 .sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 26px; --tab-px: 10px; }
 .sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: var(--radius-sm); }
 .sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
-.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
+.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--raised-sheen-light) var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
 
 /* Vertical: settings pages and long section lists. Same look as the sidebar navigation. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
@@ -245,7 +245,7 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
             rows: [
               ['1', 'Tab list', 'One row, gap 8, on a 1 px `gray-300` baseline. Scrolls sideways when the tabs do not fit.'],
               ['2', 'Tab', '52 high (sm 44), padding `0 24` (sm `0 16`), radius `8 8 0 0`, 1 px `gray-300` border, `brand-50` fill, `brand-700` text. Hover: `brand-100` fill.'],
-              ['3', 'Selected tab', '`brand-600` fill and border, `white` text and icon. Its bottom edge covers the baseline.'],
+              ['3', 'Selected tab', 'Raised: `brand-600` fill with `raised-sheen` and `raised-highlight`, `brand-700` border, `white` text and icon. Its bottom edge covers the baseline.'],
               ['4', 'Icon', 'Optional. 20 px, gap 8, the text colour. Every tab in a row has one, or none has.'],
               ['5', 'Label', 'Text sm / Medium, Title Case, never wraps.'],
               ['6', 'Badge', 'Optional count, Badge sm. Error for counts that need action (FWA findings), Gray for plain totals. `white` fill on the selected Folder tab.'],
@@ -322,7 +322,7 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
             type: 'table',
             head: ['Type', 'Default (fill / text)', 'Hover', 'Selected', 'Disabled'],
             rows: [
-              ['Folder', '`brand-50` / `brand-700`, `gray-300` border', '`brand-100` fill', '`brand-600` / `white`, `brand-600` border', '`gray-50` / `gray-300`, `gray-200` border'],
+              ['Folder', '`brand-50` / `brand-700`, `gray-300` border', '`brand-100` fill', '`brand-600` raised / `white`, `brand-700` border', '`gray-50` / `gray-300`, `gray-200` border'],
               ['Underline', 'none / `gray-500`', '`gray-700`, 2 px `gray-300` line', '`brand-700`, 2 px `brand-600` line', '`gray-300`'],
               ['Segmented', 'none / `gray-500`', '`gray-700`', '`white` / `gray-800`, `gray-200` border, `shadow-xs`', '`gray-300`'],
               ['Vertical', 'none / `gray-700`, icon `gray-500`', '`gray-50` / `gray-800`', '`brand-50` / `brand-700`', '`gray-300`'],

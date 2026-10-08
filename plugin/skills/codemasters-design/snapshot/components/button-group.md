@@ -274,7 +274,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: 100%; margin: 0; padding: 0 16px;
   font: 600 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--gray-700); background: var(--white);
+  color: var(--gray-700); background: var(--raised-sheen-light) var(--white);
   border: 0; border-inline-end: 1px solid var(--gray-300); border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
@@ -293,7 +293,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50);
+  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50); /* flat: reads as pressed in */
 }
 .sb-btn-group > button:disabled { --seg-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
 .sb-btn-group > button:disabled > .sb-btn-group-dot { background: var(--gray-300); }
@@ -346,6 +346,7 @@ function select(seg) {
   --radius-md: 8px;
   --radius-full: 9999px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
+  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;
   --text-sm: 14px/20px;

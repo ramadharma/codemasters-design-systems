@@ -32,7 +32,7 @@
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: 100%; margin: 0; padding: 0 16px;
   font: 600 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--gray-700); background: var(--white);
+  color: var(--gray-700); background: var(--raised-sheen-light) var(--white);
   border: 0; border-inline-end: 1px solid var(--gray-300); border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
@@ -51,7 +51,7 @@
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50);
+  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50); /* flat: reads as pressed in */
 }
 .sb-btn-group > button:disabled { --seg-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
 .sb-btn-group > button:disabled > .sb-btn-group-dot { background: var(--gray-300); }

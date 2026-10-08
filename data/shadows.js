@@ -85,6 +85,32 @@ ${BLURS.map(([b]) => `<div class="f-blur is-${tone}" style="backdrop-filter: var
         ],
       },
       {
+        id: 'raised',
+        title: 'Raised controls',
+        blocks: [
+          { type: 'p', text: 'Pressable controls get a little depth, so they read as buttons: a sheen over the fill (lighter top, darker bottom) and, on solid fills, a 1 px light line inside the top edge. The sheen is translucent, so one token works over any fill: brand, error or another company\'s blue.' },
+          { type: 'example', html: `<div class="f-raised">\n  <span class="f-raised-tile" style="background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight), var(--shadow-xs); color: var(--white)">raised-sheen</span>\n  <span class="f-raised-tile" style="background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-xs)">raised-sheen-light</span>\n  <span class="f-raised-tile" style="background: var(--brand-600); border-color: var(--brand-600); color: var(--white)">flat</span>\n</div>`, code: false },
+          {
+            type: 'table',
+            head: ['Token', 'Use on', 'CSS value'],
+            rows: [
+              ['`--raised-sheen`', 'Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme', `\`${tokens['--raised-sheen']}\``],
+              ['`--raised-sheen-light`', 'White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons', `\`${tokens['--raised-sheen-light']}\``],
+              ['`--raised-highlight`', 'With `--raised-sheen`, first in `box-shadow`', `\`${tokens['--raised-highlight']}\``],
+            ],
+          },
+          {
+            type: 'list',
+            items: [
+              'Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.',
+              'A solid raised control takes a border one step darker than its fill (`brand-600` fill, `brand-700` border).',
+              'Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state.',
+              'Never on cards, panels or large surfaces. It is for controls only.',
+            ],
+          },
+        ],
+      },
+      {
         id: 'do-dont',
         title: "Do and don't",
         blocks: [
@@ -97,7 +123,7 @@ ${BLURS.map(([b]) => `<div class="f-blur is-${tone}" style="backdrop-filter: var
           },
         ],
       },
-      { id: 'tokens', title: 'Tokens', blocks: [{ type: 'code', lang: 'css', filename: 'tokens.css (shadows and blur)', code: tokenGroupCss('Shadows', 'Background blur') }] },
+      { id: 'tokens', title: 'Tokens', blocks: [{ type: 'code', lang: 'css', filename: 'tokens.css (shadows and blur)', code: tokenGroupCss('Shadows', 'Raised controls', 'Background blur') }] },
     ],
   });
 })();

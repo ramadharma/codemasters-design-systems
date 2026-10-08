@@ -36,7 +36,7 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
 
 ## Principles
 
-1. **Data first, chrome second.** White cards on a near-white page; colour is reserved for status, series and the one primary action. No decorative gradients or illustrations.
+1. **Data first, chrome second.** White cards on a near-white page; colour is reserved for status, series and the one primary action. No decorative gradients or illustrations; the only gradient is the raised sheen on controls.
 2. **One primary action per view.** The blue button is the next step of the flow (Mulai Analisis, Kirim ke Advisor, Keputusan). Everything else is secondary (white, gray border) or orange for Pending.
 3. **Status is always a coloured pill.** Every claim status has one fixed colour pair, used in tables, headers, summary cards and filters alike.
 4. **Never empty.** Every cell, field and card shows a value. Placeholder data is deterministic (same record, same value).
@@ -235,6 +235,11 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
   --shadow-xl: 0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03);
   --shadow-2xl: 0 24px 48px -12px rgba(16,24,40,.18);
   --shadow-3xl: 0 32px 64px -12px rgba(16,24,40,.14);
+
+  /* Raised controls: background-image and box-shadow on solid and white controls (Button, Tabs, Button group) */
+  --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
+  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
+  --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
 
   /* Background blur: use as backdrop-filter: var(--blur-md) */
   --blur-sm: blur(4px);
@@ -968,6 +973,21 @@ A background blur also lifts an element: it blurs what is behind a translucent s
 .scrim { background: rgba(255,255,255,.6); backdrop-filter: var(--blur-md); }
 ```
 
+### Raised controls
+
+Pressable controls get a little depth, so they read as buttons: a sheen over the fill (lighter top, darker bottom) and, on solid fills, a 1 px light line inside the top edge. The sheen is translucent, so one token works over any fill: brand, error or another company's blue.
+
+| Token | Use on | CSS value |
+| --- | --- | --- |
+| `--raised-sheen` | Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme | `linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))` |
+| `--raised-sheen-light` | White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons | `linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))` |
+| `--raised-highlight` | With `--raised-sheen`, first in `box-shadow` | `inset 0 1px 0 rgb(255 255 255 / .28)` |
+
+- Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.
+- A solid raised control takes a border one step darker than its fill (`brand-600` fill, `brand-700` border).
+- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state.
+- Never on cards, panels or large surfaces. It is for controls only.
+
 ### Do and don't
 
 **Do:** A menu on `shadow-lg`, the token for floating panels.
@@ -996,6 +1016,11 @@ A background blur also lifts an element: it blurs what is behind a translucent s
   --shadow-xl: 0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03);
   --shadow-2xl: 0 24px 48px -12px rgba(16,24,40,.18);
   --shadow-3xl: 0 32px 64px -12px rgba(16,24,40,.14);
+
+  /* Raised controls: background-image and box-shadow on solid and white controls (Button, Tabs, Button group) */
+  --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
+  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
+  --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
 
   /* Background blur: use as backdrop-filter: var(--blur-md) */
   --blur-sm: blur(4px);
@@ -1927,6 +1952,8 @@ Each property maps to one attribute, so a slide, a spec and the code describe a 
 
 Seven levels, from the one next step (Primary) to links inside text. Primary, Secondary gray and Secondary color carry `shadow-xs`; Tertiary and Link have no box until hover.
 
+Primary and Secondary gray are **raised**: a sheen over the fill (lighter top, darker bottom) and, on Primary, a 1 px light line inside the top edge and a border one step darker than the fill. Secondary color, Tertiary, Link and every Disabled state stay flat. Tokens: `--raised-sheen`, `--raised-sheen-light`, `--raised-highlight` (Shadows & Blur).
+
 ```html
 <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Primary</button>
 <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">Secondary gray</button>
@@ -1941,8 +1968,8 @@ Seven levels, from the one next step (Primary) to links inside text. Primary, Se
 
 | Hierarchy | Default (fill / border / text) | Hover | Disabled | Focused |
 | --- | --- | --- | --- | --- |
-| Primary | `brand-600` / `brand-600` / `white` | `brand-700` / `brand-700` / `white` | `brand-200` / `brand-200` / `white` | 4 px `focus-ring` ring |
-| Secondary gray | `white` / `gray-300` / `gray-700` | `gray-50` / `gray-300` / `gray-800` | `white` / `gray-200` / `gray-300` | 4 px `focus-ring` ring |
+| Primary | `brand-600` + `raised-sheen` / `brand-700` / `white` | `brand-700` / `brand-800` / `white` | `brand-200` / `brand-200` / `white` | 4 px `focus-ring` ring |
+| Secondary gray | `white` + `raised-sheen-light` / `gray-300` / `gray-700` | `gray-50` / `gray-300` / `gray-800` | `white` / `gray-200` / `gray-300` | 4 px `focus-ring` ring |
 | Secondary color | `brand-50` / `brand-50` / `brand-700` | `brand-100` / `brand-100` / `brand-700` | `brand-50` / `brand-50` / `brand-300` | 4 px `focus-ring` ring |
 | Tertiary color | none / none / `brand-700` | `brand-50` fill | text `gray-300` | 4 px `focus-ring` ring |
 | Tertiary gray | none / none / `gray-500` | `gray-50` fill, text `gray-600` | text `gray-300` | 4 px `focus-ring` ring |
@@ -2063,7 +2090,7 @@ Destructive=True swaps Brand and Gray for Error. Use it only when the destructiv
 
 | Hierarchy | Default | Hover | Disabled | Focused |
 | --- | --- | --- | --- | --- |
-| Primary | `error-600` / `error-600` / `white` | `error-700` | `error-200` | 4 px `error-100` ring |
+| Primary | `error-600` + `raised-sheen` / `error-700` / `white` | `error-700`, border `error-800` | `error-200` | 4 px `error-100` ring |
 | Secondary gray | `white` / `error-300` / `error-700` | `error-50` fill, text `error-800` | border `error-200`, text `error-300` | 4 px `error-100` ring |
 | Secondary color | `error-50` / `error-50` / `error-700` | `error-100` | `error-50`, text `error-300` | 4 px `error-100` ring |
 | Tertiary color, Tertiary gray | text `error-700` | `error-50` fill (gray: text `error-800`) | text `error-300` | 4 px `error-100` ring |
@@ -2150,7 +2177,7 @@ Least important on the left, Primary on the right, gap 12. Here: Batal (Tertiary
 
 #### Contrast
 
-Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for button text. Disabled states are exempt.
+Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for button text. Disabled states are exempt. On raised buttons the text sits in the middle, where the sheen is transparent, so the ratio is the plain fill.
 
 | Variant | Text on fill | Ratio | AA |
 | --- | --- | --- | --- |
@@ -2186,15 +2213,16 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 .sb-btn {
   --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
-  --btn-bg: var(--brand-600); --btn-border: var(--brand-600); --btn-fg: var(--white);
-  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-700); --btn-fg-hover: var(--white);
+  --btn-bg: var(--brand-600); --btn-border: var(--brand-700); --btn-fg: var(--white);
+  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-800); --btn-fg-hover: var(--white);
   --btn-bg-disabled: var(--brand-200); --btn-border-disabled: var(--brand-200); --btn-fg-disabled: var(--white);
-  --btn-ring: var(--focus-ring); --btn-shadow: var(--shadow-xs);
+  --btn-ring: var(--focus-ring); --btn-shadow: var(--raised-highlight), var(--shadow-xs);
+  --btn-sheen: var(--raised-sheen); /* raised: lighter top, darker bottom, over any fill */
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: var(--btn-gap);
   height: var(--btn-h); padding: 0 var(--btn-px);
   font: 600 var(--btn-type) var(--font); white-space: nowrap; text-decoration: none;
-  color: var(--btn-fg); background: var(--btn-bg);
+  color: var(--btn-fg); background: var(--btn-sheen) var(--btn-bg);
   border: 1px solid var(--btn-border); border-radius: var(--radius-md);
   box-shadow: var(--btn-shadow);
   cursor: pointer;
@@ -2214,19 +2242,19 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 /* Hierarchy. Primary is the base above. */
 .sb-btn[data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--white); --btn-border: var(--gray-300); --btn-fg: var(--gray-700);
+  --btn-bg: var(--white); --btn-border: var(--gray-300); --btn-fg: var(--gray-700); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
   --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-300); --btn-fg-hover: var(--gray-800);
   --btn-bg-disabled: var(--white); --btn-border-disabled: var(--gray-200); --btn-fg-disabled: var(--gray-300);
 }
 .sb-btn[data-hierarchy="secondary-color"] {
-  --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700);
+  --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
   --btn-bg-hover: var(--brand-100); --btn-border-hover: var(--brand-100); --btn-fg-hover: var(--brand-700);
   --btn-bg-disabled: var(--brand-50); --btn-border-disabled: var(--brand-50); --btn-fg-disabled: var(--brand-300);
 }
 .sb-btn[data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent;
   --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--gray-300);
-  --btn-shadow: 0 0 #0000;
+  --btn-shadow: 0 0 #0000; --btn-sheen: none;
 }
 .sb-btn[data-hierarchy="tertiary-color"] {
   --btn-fg: var(--brand-700); --btn-bg-hover: var(--brand-50); --btn-border-hover: var(--brand-50); --btn-fg-hover: var(--brand-700);
@@ -2235,7 +2263,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
   --btn-fg: var(--gray-500); --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-50); --btn-fg-hover: var(--gray-600);
 }
 .sb-btn[data-hierarchy^="link"] {
-  --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000;
+  --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000; --btn-sheen: none;
   --btn-bg: transparent; --btn-border: transparent; --btn-bg-hover: transparent; --btn-border-hover: transparent;
   --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--gray-300);
   border-width: 0;
@@ -2245,8 +2273,8 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 /* Destructive=True swaps Brand and Gray for Error. */
 .sb-btn[data-destructive] {
-  --btn-bg: var(--error-600); --btn-border: var(--error-600); --btn-fg: var(--white);
-  --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-700); --btn-fg-hover: var(--white);
+  --btn-bg: var(--error-600); --btn-border: var(--error-700); --btn-fg: var(--white);
+  --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-800); --btn-fg-hover: var(--white);
   --btn-bg-disabled: var(--error-200); --btn-border-disabled: var(--error-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--error-100);
 }
@@ -2274,7 +2302,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 /* States */
 .sb-btn:hover:not(:disabled, [aria-disabled="true"]), .sb-btn[data-state="hover"] {
-  color: var(--btn-fg-hover); background: var(--btn-bg-hover); border-color: var(--btn-border-hover);
+  color: var(--btn-fg-hover); background-color: var(--btn-bg-hover); border-color: var(--btn-border-hover);
 }
 .sb-btn:focus-visible, .sb-btn[data-state="focus"] {
   outline: none; box-shadow: var(--btn-shadow), 0 0 0 4px var(--btn-ring);
@@ -2284,7 +2312,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 }
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] {
   color: var(--btn-fg-disabled); background: var(--btn-bg-disabled); border-color: var(--btn-border-disabled);
-  cursor: not-allowed;
+  box-shadow: none; cursor: not-allowed; /* disabled is flat: no sheen, highlight or shadow */
 }
 .sb-btn:disabled > .sb-btn-dot, .sb-btn[aria-disabled="true"] > .sb-btn-dot { background: currentColor; }
 .sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
@@ -2565,7 +2593,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: 100%; margin: 0; padding: 0 16px;
   font: 600 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--gray-700); background: var(--white);
+  color: var(--gray-700); background: var(--raised-sheen-light) var(--white);
   border: 0; border-inline-end: 1px solid var(--gray-300); border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
@@ -2584,7 +2612,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50);
+  --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50); /* flat: reads as pressed in */
 }
 .sb-btn-group > button:disabled { --seg-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
 .sb-btn-group > button:disabled > .sb-btn-group-dot { background: var(--gray-300); }
@@ -5327,7 +5355,7 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
   display: inline-flex; align-items: center; justify-content: center; gap: 12px;
   height: 44px; padding: 0 16px;
   font: 600 var(--text-md) var(--font); white-space: nowrap; text-decoration: none;
-  color: var(--sc-fg); background: var(--sc-bg);
+  color: var(--sc-fg); background: var(--sc-sheen, var(--raised-sheen-light)) var(--sc-bg);
   border: 1px solid var(--sc-border); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   cursor: pointer;
@@ -5348,13 +5376,14 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 .sb-social[data-theme="brand"]:not([data-social="google"]) {
   --sc-bg: var(--sc-brand); --sc-border: var(--sc-brand); --sc-fg: var(--white); --sc-logo: var(--white);
   --sc-bg-hover: var(--sc-brand-hover); --sc-border-hover: var(--sc-brand-hover);
+  --sc-sheen: var(--raised-sheen); box-shadow: var(--raised-highlight), var(--shadow-xs);
 }
 /* Color with brand (default): white, colour logo. Color: white, gray logo. */
 .sb-social[data-theme="color"] { --sc-logo: var(--gray-400); }
 .sb-social[data-theme="color"] > svg * { fill: currentColor; }
 
 /* States */
-.sb-social:hover, .sb-social[data-state="hover"] { background: var(--sc-bg-hover); border-color: var(--sc-border-hover); }
+.sb-social:hover, .sb-social[data-state="hover"] { background-color: var(--sc-bg-hover); border-color: var(--sc-border-hover); }
 .sb-social:focus-visible, .sb-social[data-state="focus"] { outline: none; box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
 .sb-social:active { scale: .96; }
 
@@ -5411,7 +5440,7 @@ Switch between panels of content in one place: the sections of a claim, the view
 | --- | --- | --- |
 | 1 | Tab list | One row, gap 8, on a 1 px `gray-300` baseline. Scrolls sideways when the tabs do not fit. |
 | 2 | Tab | 52 high (sm 44), padding `0 24` (sm `0 16`), radius `8 8 0 0`, 1 px `gray-300` border, `brand-50` fill, `brand-700` text. Hover: `brand-100` fill. |
-| 3 | Selected tab | `brand-600` fill and border, `white` text and icon. Its bottom edge covers the baseline. |
+| 3 | Selected tab | Raised: `brand-600` fill with `raised-sheen` and `raised-highlight`, `brand-700` border, `white` text and icon. Its bottom edge covers the baseline. |
 | 4 | Icon | Optional. 20 px, gap 8, the text colour. Every tab in a row has one, or none has. |
 | 5 | Label | Text sm / Medium, Title Case, never wraps. |
 | 6 | Badge | Optional count, Badge sm. Error for counts that need action (FWA findings), Gray for plain totals. `white` fill on the selected Folder tab. |
@@ -5600,7 +5629,7 @@ md for the main level, sm for sub-levels and dense cards. The text stays Text sm
 
 | Type | Default (fill / text) | Hover | Selected | Disabled |
 | --- | --- | --- | --- | --- |
-| Folder | `brand-50` / `brand-700`, `gray-300` border | `brand-100` fill | `brand-600` / `white`, `brand-600` border | `gray-50` / `gray-300`, `gray-200` border |
+| Folder | `brand-50` / `brand-700`, `gray-300` border | `brand-100` fill | `brand-600` raised / `white`, `brand-700` border | `gray-50` / `gray-300`, `gray-200` border |
 | Underline | none / `gray-500` | `gray-700`, 2 px `gray-300` line | `brand-700`, 2 px `brand-600` line | `gray-300` |
 | Segmented | none / `gray-500` | `gray-700` | `white` / `gray-800`, `gray-200` border, `shadow-xs` | `gray-300` |
 | Vertical | none / `gray-700`, icon `gray-500` | `gray-50` / `gray-800` | `brand-50` / `brand-700` | `gray-300` |
@@ -5866,7 +5895,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
   border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-100); }
-.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-600); border-color: var(--brand-600); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
 .sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-50); border-color: var(--gray-200); }
@@ -5887,7 +5916,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 26px; --tab-px: 10px; }
 .sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: var(--radius-sm); }
 .sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
-.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
+.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--raised-sheen-light) var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
 
 /* Vertical: settings pages and long section lists. Same look as the sidebar navigation. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }

@@ -45,7 +45,7 @@
   border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-100); }
-.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-600); border-color: var(--brand-600); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
 .sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-50); border-color: var(--gray-200); }
@@ -66,7 +66,7 @@
 .sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 26px; --tab-px: 10px; }
 .sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: var(--radius-sm); }
 .sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
-.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
+.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--raised-sheen-light) var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
 
 /* Vertical: settings pages and long section lists. Same look as the sidebar navigation. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }

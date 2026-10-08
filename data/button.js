@@ -16,15 +16,16 @@
 
 .sb-btn {
   --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
-  --btn-bg: var(--brand-600); --btn-border: var(--brand-600); --btn-fg: var(--white);
-  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-700); --btn-fg-hover: var(--white);
+  --btn-bg: var(--brand-600); --btn-border: var(--brand-700); --btn-fg: var(--white);
+  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-800); --btn-fg-hover: var(--white);
   --btn-bg-disabled: var(--brand-200); --btn-border-disabled: var(--brand-200); --btn-fg-disabled: var(--white);
-  --btn-ring: var(--focus-ring); --btn-shadow: var(--shadow-xs);
+  --btn-ring: var(--focus-ring); --btn-shadow: var(--raised-highlight), var(--shadow-xs);
+  --btn-sheen: var(--raised-sheen); /* raised: lighter top, darker bottom, over any fill */
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: var(--btn-gap);
   height: var(--btn-h); padding: 0 var(--btn-px);
   font: 600 var(--btn-type) var(--font); white-space: nowrap; text-decoration: none;
-  color: var(--btn-fg); background: var(--btn-bg);
+  color: var(--btn-fg); background: var(--btn-sheen) var(--btn-bg);
   border: 1px solid var(--btn-border); border-radius: var(--radius-md);
   box-shadow: var(--btn-shadow);
   cursor: pointer;
@@ -44,19 +45,19 @@
 
 /* Hierarchy. Primary is the base above. */
 .sb-btn[data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--white); --btn-border: var(--gray-300); --btn-fg: var(--gray-700);
+  --btn-bg: var(--white); --btn-border: var(--gray-300); --btn-fg: var(--gray-700); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
   --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-300); --btn-fg-hover: var(--gray-800);
   --btn-bg-disabled: var(--white); --btn-border-disabled: var(--gray-200); --btn-fg-disabled: var(--gray-300);
 }
 .sb-btn[data-hierarchy="secondary-color"] {
-  --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700);
+  --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
   --btn-bg-hover: var(--brand-100); --btn-border-hover: var(--brand-100); --btn-fg-hover: var(--brand-700);
   --btn-bg-disabled: var(--brand-50); --btn-border-disabled: var(--brand-50); --btn-fg-disabled: var(--brand-300);
 }
 .sb-btn[data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent;
   --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--gray-300);
-  --btn-shadow: 0 0 #0000;
+  --btn-shadow: 0 0 #0000; --btn-sheen: none;
 }
 .sb-btn[data-hierarchy="tertiary-color"] {
   --btn-fg: var(--brand-700); --btn-bg-hover: var(--brand-50); --btn-border-hover: var(--brand-50); --btn-fg-hover: var(--brand-700);
@@ -65,7 +66,7 @@
   --btn-fg: var(--gray-500); --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-50); --btn-fg-hover: var(--gray-600);
 }
 .sb-btn[data-hierarchy^="link"] {
-  --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000;
+  --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000; --btn-sheen: none;
   --btn-bg: transparent; --btn-border: transparent; --btn-bg-hover: transparent; --btn-border-hover: transparent;
   --btn-bg-disabled: transparent; --btn-border-disabled: transparent; --btn-fg-disabled: var(--gray-300);
   border-width: 0;
@@ -75,8 +76,8 @@
 
 /* Destructive=True swaps Brand and Gray for Error. */
 .sb-btn[data-destructive] {
-  --btn-bg: var(--error-600); --btn-border: var(--error-600); --btn-fg: var(--white);
-  --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-700); --btn-fg-hover: var(--white);
+  --btn-bg: var(--error-600); --btn-border: var(--error-700); --btn-fg: var(--white);
+  --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-800); --btn-fg-hover: var(--white);
   --btn-bg-disabled: var(--error-200); --btn-border-disabled: var(--error-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--error-100);
 }
@@ -104,7 +105,7 @@
 
 /* States */
 .sb-btn:hover:not(:disabled, [aria-disabled="true"]), .sb-btn[data-state="hover"] {
-  color: var(--btn-fg-hover); background: var(--btn-bg-hover); border-color: var(--btn-border-hover);
+  color: var(--btn-fg-hover); background-color: var(--btn-bg-hover); border-color: var(--btn-border-hover);
 }
 .sb-btn:focus-visible, .sb-btn[data-state="focus"] {
   outline: none; box-shadow: var(--btn-shadow), 0 0 0 4px var(--btn-ring);
@@ -114,7 +115,7 @@
 }
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] {
   color: var(--btn-fg-disabled); background: var(--btn-bg-disabled); border-color: var(--btn-border-disabled);
-  cursor: not-allowed;
+  box-shadow: none; cursor: not-allowed; /* disabled is flat: no sheen, highlight or shadow */
 }
 .sb-btn:disabled > .sb-btn-dot, .sb-btn[aria-disabled="true"] > .sb-btn-dot { background: currentColor; }
 .sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
@@ -269,14 +270,15 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
         title: 'Hierarchy',
         blocks: [
           { type: 'p', text: 'Seven levels, from the one next step (Primary) to links inside text. Primary, Secondary gray and Secondary color carry `shadow-xs`; Tertiary and Link have no box until hover.' },
+          { type: 'p', text: 'Primary and Secondary gray are **raised**: a sheen over the fill (lighter top, darker bottom) and, on Primary, a 1 px light line inside the top edge and a border one step darker than the fill. Secondary color, Tertiary, Link and every Disabled state stay flat. Tokens: `--raised-sheen`, `--raised-sheen-light`, `--raised-highlight` (Shadows & Blur).' },
           { type: 'example', html: row(HIERARCHIES.map(([h, l]) => btn({ h, label: l }))) },
           { type: 'h3', id: 'hierarchy-colours', text: 'Colours per state' },
           {
             type: 'table',
             head: ['Hierarchy', 'Default (fill / border / text)', 'Hover', 'Disabled', 'Focused'],
             rows: [
-              ['Primary', '`brand-600` / `brand-600` / `white`', '`brand-700` / `brand-700` / `white`', '`brand-200` / `brand-200` / `white`', '4 px `focus-ring` ring'],
-              ['Secondary gray', '`white` / `gray-300` / `gray-700`', '`gray-50` / `gray-300` / `gray-800`', '`white` / `gray-200` / `gray-300`', '4 px `focus-ring` ring'],
+              ['Primary', '`brand-600` + `raised-sheen` / `brand-700` / `white`', '`brand-700` / `brand-800` / `white`', '`brand-200` / `brand-200` / `white`', '4 px `focus-ring` ring'],
+              ['Secondary gray', '`white` + `raised-sheen-light` / `gray-300` / `gray-700`', '`gray-50` / `gray-300` / `gray-800`', '`white` / `gray-200` / `gray-300`', '4 px `focus-ring` ring'],
               ['Secondary color', '`brand-50` / `brand-50` / `brand-700`', '`brand-100` / `brand-100` / `brand-700`', '`brand-50` / `brand-50` / `brand-300`', '4 px `focus-ring` ring'],
               ['Tertiary color', 'none / none / `brand-700`', '`brand-50` fill', 'text `gray-300`', '4 px `focus-ring` ring'],
               ['Tertiary gray', 'none / none / `gray-500`', '`gray-50` fill, text `gray-600`', 'text `gray-300`', '4 px `focus-ring` ring'],
@@ -366,7 +368,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
             type: 'table',
             head: ['Hierarchy', 'Default', 'Hover', 'Disabled', 'Focused'],
             rows: [
-              ['Primary', '`error-600` / `error-600` / `white`', '`error-700`', '`error-200`', '4 px `error-100` ring'],
+              ['Primary', '`error-600` + `raised-sheen` / `error-700` / `white`', '`error-700`, border `error-800`', '`error-200`', '4 px `error-100` ring'],
               ['Secondary gray', '`white` / `error-300` / `error-700`', '`error-50` fill, text `error-800`', 'border `error-200`, text `error-300`', '4 px `error-100` ring'],
               ['Secondary color', '`error-50` / `error-50` / `error-700`', '`error-100`', '`error-50`, text `error-300`', '4 px `error-100` ring'],
               ['Tertiary color, Tertiary gray', 'text `error-700`', '`error-50` fill (gray: text `error-800`)', 'text `error-300`', '4 px `error-100` ring'],
@@ -442,7 +444,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
           },
           { type: 'example', html: tooltipDemo, code: false, caption: 'Icon-only button with its tooltip. Tooltip spec: DESIGN.md, Tooltip and help icon.' },
           { type: 'h3', id: 'contrast', text: 'Contrast' },
-          { type: 'p', text: 'Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for button text. Disabled states are exempt.' },
+          { type: 'p', text: 'Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for button text. Disabled states are exempt. On raised buttons the text sits in the middle, where the sheen is transparent, so the ratio is the plain fill.' },
           {
             type: 'table',
             head: ['Variant', 'Text on fill', 'Ratio', 'AA'],

@@ -373,6 +373,9 @@ p.f-font-glyphs { margin: 0; font: 400 var(--text-lg) var(--font); color: var(--
 .f-grid-frame figcaption { margin-top: 8px; }
 .f-radius { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; }
 .f-radius-tile { display: grid; justify-items: center; gap: 8px; margin: 0; text-align: center; }
+.f-raised { display: flex; flex-wrap: wrap; gap: 16px; }
+.ex-preview:has(> .f-raised) { min-height: 0; padding: 32px; }
+.f-raised-tile { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid var(--gray-300); border-radius: var(--radius-md); font: 600 var(--text-sm) var(--font); color: var(--gray-700); }
 .f-radius-tile span { width: 64px; height: 64px; border: 2px solid var(--brand-600); background: var(--brand-50); }
 .f-dd-stack { display: grid; width: 160px; }
 .f-dd-stack span { height: 24px; border-radius: 4px; background: var(--brand-100); }

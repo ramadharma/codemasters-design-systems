@@ -68,6 +68,21 @@ A background blur also lifts an element: it blurs what is behind a translucent s
 .scrim { background: rgba(255,255,255,.6); backdrop-filter: var(--blur-md); }
 ```
 
+## Raised controls
+
+Pressable controls get a little depth, so they read as buttons: a sheen over the fill (lighter top, darker bottom) and, on solid fills, a 1 px light line inside the top edge. The sheen is translucent, so one token works over any fill: brand, error or another company's blue.
+
+| Token | Use on | CSS value |
+| --- | --- | --- |
+| `--raised-sheen` | Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme | `linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))` |
+| `--raised-sheen-light` | White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons | `linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))` |
+| `--raised-highlight` | With `--raised-sheen`, first in `box-shadow` | `inset 0 1px 0 rgb(255 255 255 / .28)` |
+
+- Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.
+- A solid raised control takes a border one step darker than its fill (`brand-600` fill, `brand-700` border).
+- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (they read as pressed in) and every Disabled state.
+- Never on cards, panels or large surfaces. It is for controls only.
+
 ## Do and don't
 
 **Do:** A menu on `shadow-lg`, the token for floating panels.
@@ -96,6 +111,11 @@ A background blur also lifts an element: it blurs what is behind a translucent s
   --shadow-xl: 0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03);
   --shadow-2xl: 0 24px 48px -12px rgba(16,24,40,.18);
   --shadow-3xl: 0 32px 64px -12px rgba(16,24,40,.14);
+
+  /* Raised controls: background-image and box-shadow on solid and white controls (Button, Tabs, Button group) */
+  --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
+  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
+  --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
 
   /* Background blur: use as backdrop-filter: var(--blur-md) */
   --blur-sm: blur(4px);

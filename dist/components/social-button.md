@@ -190,7 +190,7 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
   display: inline-flex; align-items: center; justify-content: center; gap: 12px;
   height: 44px; padding: 0 16px;
   font: 600 var(--text-md) var(--font); white-space: nowrap; text-decoration: none;
-  color: var(--sc-fg); background: var(--sc-bg);
+  color: var(--sc-fg); background: var(--sc-sheen, var(--raised-sheen-light)) var(--sc-bg);
   border: 1px solid var(--sc-border); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   cursor: pointer;
@@ -211,13 +211,14 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 .sb-social[data-theme="brand"]:not([data-social="google"]) {
   --sc-bg: var(--sc-brand); --sc-border: var(--sc-brand); --sc-fg: var(--white); --sc-logo: var(--white);
   --sc-bg-hover: var(--sc-brand-hover); --sc-border-hover: var(--sc-brand-hover);
+  --sc-sheen: var(--raised-sheen); box-shadow: var(--raised-highlight), var(--shadow-xs);
 }
 /* Color with brand (default): white, colour logo. Color: white, gray logo. */
 .sb-social[data-theme="color"] { --sc-logo: var(--gray-400); }
 .sb-social[data-theme="color"] > svg * { fill: currentColor; }
 
 /* States */
-.sb-social:hover, .sb-social[data-state="hover"] { background: var(--sc-bg-hover); border-color: var(--sc-border-hover); }
+.sb-social:hover, .sb-social[data-state="hover"] { background-color: var(--sc-bg-hover); border-color: var(--sc-border-hover); }
 .sb-social:focus-visible, .sb-social[data-state="focus"] { outline: none; box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
 .sb-social:active { scale: .96; }
 
@@ -267,6 +268,9 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
   --gray-700: #344054;
   --radius-md: 8px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
+  --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
+  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
+  --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;

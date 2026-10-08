@@ -14,7 +14,7 @@
   };
 
   DS.principles = [
-    '**Data first, chrome second.** White cards on a near-white page; colour is reserved for status, series and the one primary action. No decorative gradients or illustrations.',
+    '**Data first, chrome second.** White cards on a near-white page; colour is reserved for status, series and the one primary action. No decorative gradients or illustrations; the only gradient is the raised sheen on controls.',
     '**One primary action per view.** The blue button is the next step of the flow (Mulai Analisis, Kirim ke Advisor, Keputusan). Everything else is secondary (white, gray border) or orange for Pending.',
     '**Status is always a coloured pill.** Every claim status has one fixed colour pair, used in tables, headers, summary cards and filters alike.',
     '**Never empty.** Every cell, field and card shows a value. Placeholder data is deterministic (same record, same value).',
@@ -58,6 +58,11 @@
       '--shadow-xl': '0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03)',
       '--shadow-2xl': '0 24px 48px -12px rgba(16,24,40,.18)',
       '--shadow-3xl': '0 32px 64px -12px rgba(16,24,40,.14)',
+    }],
+    ['Raised controls: background-image and box-shadow on solid and white controls (Button, Tabs, Button group)', {
+      '--raised-sheen': 'linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))',
+      '--raised-sheen-light': 'linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))',
+      '--raised-highlight': 'inset 0 1px 0 rgb(255 255 255 / .28)',
     }],
     ['Background blur: use as backdrop-filter: var(--blur-md)', { '--blur-sm': 'blur(4px)', '--blur-md': 'blur(8px)', '--blur-lg': 'blur(12px)', '--blur-xl': 'blur(20px)' }],
     ['Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible', { '--focus-ring': 'color-mix(in srgb, var(--brand-600) 20%, transparent)' }],

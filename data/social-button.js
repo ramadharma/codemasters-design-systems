@@ -23,7 +23,7 @@
   display: inline-flex; align-items: center; justify-content: center; gap: 12px;
   height: 44px; padding: 0 16px;
   font: 600 var(--text-md) var(--font); white-space: nowrap; text-decoration: none;
-  color: var(--sc-fg); background: var(--sc-bg);
+  color: var(--sc-fg); background: var(--sc-sheen, var(--raised-sheen-light)) var(--sc-bg);
   border: 1px solid var(--sc-border); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   cursor: pointer;
@@ -44,13 +44,14 @@
 .sb-social[data-theme="brand"]:not([data-social="google"]) {
   --sc-bg: var(--sc-brand); --sc-border: var(--sc-brand); --sc-fg: var(--white); --sc-logo: var(--white);
   --sc-bg-hover: var(--sc-brand-hover); --sc-border-hover: var(--sc-brand-hover);
+  --sc-sheen: var(--raised-sheen); box-shadow: var(--raised-highlight), var(--shadow-xs);
 }
 /* Color with brand (default): white, colour logo. Color: white, gray logo. */
 .sb-social[data-theme="color"] { --sc-logo: var(--gray-400); }
 .sb-social[data-theme="color"] > svg * { fill: currentColor; }
 
 /* States */
-.sb-social:hover, .sb-social[data-state="hover"] { background: var(--sc-bg-hover); border-color: var(--sc-border-hover); }
+.sb-social:hover, .sb-social[data-state="hover"] { background-color: var(--sc-bg-hover); border-color: var(--sc-border-hover); }
 .sb-social:focus-visible, .sb-social[data-state="focus"] { outline: none; box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
 .sb-social:active { scale: .96; }
 
