@@ -227,7 +227,7 @@ Load `tokens.css`, `badge.css` and `checkbox.css` for the parts inside, then `ta
 
 /* Sortable header: the whole label is the button. Idle shows the two-way arrow in gray-400; sorted shows the direction in brand-600. */
 .sb-table-sort {
-  display: inline-flex; align-items: center; gap: 4px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-sm);
+  display: inline-flex; align-items: center; vertical-align: middle; gap: 4px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-sm);
   background: none; font: inherit; color: inherit; cursor: pointer;
 }
 [data-num] > .sb-table-sort { flex-direction: row-reverse; }
@@ -241,7 +241,11 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 
 /* Sticky first column, for wide tables. The cell keeps its row's background so nothing shows through. */
 .sb-table[data-sticky] :is(th, td):first-child { position: sticky; left: 0; z-index: 1; }
-.sb-table[data-sticky] tbody td:first-child { box-shadow: inset -1px 0 var(--gray-200); }
+/* With row selection the checkbox and the ID column stick together; the ID column starts after the 16 px box. */
+.sb-table[data-sticky] :is(th, td):has(> .sb-check) + :is(th, td) { position: sticky; left: calc(var(--cell-px) + 16px); z-index: 1; }
+/* The edge sits on the last sticky column. */
+.sb-table[data-sticky] tbody td:first-child:not(:has(> .sb-check)),
+.sb-table[data-sticky] tbody td:has(> .sb-check) + td { box-shadow: inset -1px 0 var(--gray-200); }
 
 /* Grouped table: group row (chevron, number, name, total), item rows indented on gray-50, gray-100 total row. */
 .sb-table tbody tr[data-group] td { font-weight: 600; color: var(--gray-900); }
