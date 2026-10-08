@@ -171,14 +171,16 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
 
 | Series | Solid (approved / main) | Light (rejected / secondary) |
 | --- | --- | --- |
-| Sembuh AI | `brand-500` | `brand-300` |
-| TPA | `orange-500` | `orange-300` |
-| Extra series, in order | `500` of `blue-light`, `purple`, `pink`, `indigo`, `blue-gray` | `300` of the same family |
+| 1 · Sembuh AI (`--chart-1`) | `brand-500` | `brand-300` |
+| 2 · TPA (`--chart-2`) | `orange-600` | `orange-300` |
+| 3–6 (`--chart-3` to `--chart-6`) | `blue-light-600`, `purple-600`, `pink-600`, `indigo-500`, in this order | `300` of the same family |
+| More than 6 | Fold the rest into "Lainnya" (`--chart-other`, `gray-400`) or split into small charts | — |
 
 - Approved = solid; rejected = light fill (bars, sankey) or a **dashed** line (`6 4`) in line charts.
 - Line charts: one point per x label, centred on it; lines only, a dot appears on hover.
 - Unfocused series fade to 15–25 % opacity on hover or legend focus.
 - Up = bad (more cost) is `error-600`; down = good is `success-600`.
+- The order and steps pass the colour-blind checks (worst neighbours ΔE 10.9, normal vision 19.4). Full rules on the Chart page.
 
 ## Do and don't
 

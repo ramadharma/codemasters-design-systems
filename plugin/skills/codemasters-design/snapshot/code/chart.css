@@ -1,0 +1,72 @@
+/* Chart, Codemasters Design System
+   Needs tokens.css (series colours --chart-1 … --chart-6, --chart-other, --chart-grid, --chart-axis); chart.js for the tooltip.
+   Plain SVG, no library. Usually sits in a Card (Framed for dashboards).
+
+   <figure class="sb-chart">
+     <ul class="sb-legend">…</ul>
+     <svg class="sb-chart-plot" viewBox="0 0 560 240" role="img" aria-label="…">…</svg>
+     <div class="sb-chart-tip" role="status" hidden></div>
+     <details class="sb-chart-table"><summary>Lihat sebagai tabel</summary><table>…</table></details>
+   </figure>
+
+   Marks: bars ≤ 24 thick with a 4 px rounded data end, 2 px gap between touching marks; lines 2 px, rejected dashed 6 4;
+   dots 8 with a 2 px white ring, shown on hover. Grid and axes are solid hairlines. Text never takes a series colour. */
+
+.sb-chart { position: relative; display: grid; gap: 16px; margin: 0; min-width: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-chart-plot { display: block; width: 100%; height: auto; overflow: visible; }
+.sb-chart-plot text { font: 400 12px var(--font); fill: var(--gray-500); font-variant-numeric: tabular-nums; }
+.sb-chart-plot .sb-chart-total { font: 600 var(--text-md) var(--font); fill: var(--gray-900); }
+.sb-chart[data-layout="donut"] { grid-template-columns: 240px minmax(0, 1fr); align-items: center; gap: 16px 32px; }
+.sb-chart[data-layout="donut"] .sb-legend { flex-direction: column; align-items: flex-start; }
+.sb-chart[data-layout="donut"] > .sb-chart-table { grid-column: 1 / -1; }
+@media (max-width: 560px) { .sb-chart[data-layout="donut"] { grid-template-columns: minmax(0, 1fr); justify-items: center; } }
+.sb-chart-grid { stroke: var(--chart-grid); stroke-width: 1; shape-rendering: crispEdges; }
+.sb-chart-base { stroke: var(--chart-axis); stroke-width: 1; shape-rendering: crispEdges; }
+.sb-chart-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.sb-chart-line[data-dashed] { stroke-dasharray: 6 4; }
+.sb-chart-area { opacity: .1; }
+.sb-chart-dot { stroke: var(--white); stroke-width: 2; opacity: 0; } /* the white ring keeps it legible on the line */
+.sb-chart-dot.is-on { opacity: 1; }
+.sb-chart-cross { stroke: var(--gray-300); stroke-width: 1; opacity: 0; shape-rendering: crispEdges; }
+.sb-chart[data-hover] .sb-chart-cross { opacity: 1; }
+.sb-chart-hit { fill: transparent; outline: none; cursor: default; }
+.sb-chart-mark { transition: opacity 150ms var(--ease); }
+.sb-chart[data-hover] .sb-chart-mark:not(.is-on) { opacity: .25; } /* the hovered mark stays, the rest step back */
+.sb-chart [data-tip]:focus-visible { stroke: var(--brand-600); stroke-width: 2; }
+.sb-chart[aria-busy="true"] .sb-chart-plot { opacity: .5; } /* refetch keeps the last render, faded; no skeleton */
+
+/* Legend: always for 2+ series. Key mirrors the mark: square for bars and segments, line for lines (dashed = rejected). */
+.sb-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0; padding: 0; list-style: none; }
+.sb-legend > li { display: inline-flex; align-items: center; gap: 8px; font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-legend-key { --key: var(--chart-1); width: 12px; height: 12px; flex: none; border-radius: var(--radius-sm); background: var(--key); }
+.sb-legend-key[data-line] { height: 2px; width: 16px; border-radius: 0; }
+.sb-legend-key[data-line="dashed"] { background: repeating-linear-gradient(90deg, var(--key) 0 6px, transparent 6px 10px); }
+.sb-legend-value { color: var(--gray-900); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Tooltip: white, gray-200 border, radius 8, shadow-lg as a filter. Value first, then the series name. */
+.sb-chart-tip {
+  position: absolute; z-index: 20; translate: -50% calc(-100% - 8px); pointer-events: none;
+  display: grid; gap: 4px; min-width: 140px; padding: 8px 12px;
+  background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md);
+  filter: drop-shadow(0 12px 8px rgba(16,24,40,.08)) drop-shadow(0 4px 3px rgba(16,24,40,.03));
+  font: 400 var(--text-xs) var(--font); color: var(--gray-500); white-space: nowrap;
+}
+.sb-chart-tip[hidden] { display: none; }
+.sb-chart-tip[data-side] { translate: 0 0; } /* line charts: beside the crosshair */
+.sb-chart-tip p { margin: 0; }
+.sb-chart-tip-title { font-weight: 500; color: var(--gray-700); }
+.sb-chart-tip-row { --key: var(--chart-1); display: flex; align-items: center; gap: 8px; }
+.sb-chart-tip-row::before { content: ''; width: 12px; height: 2px; flex: none; background: var(--key); } /* line key, not a box */
+.sb-chart-tip-row > strong { font: 600 var(--text-sm) var(--font); color: var(--gray-900); font-variant-numeric: tabular-nums; }
+
+/* Table view: the accessible twin of every chart. */
+.sb-chart-table > summary { width: fit-content; font: 500 var(--text-sm) var(--font); color: var(--gray-500); cursor: pointer; }
+.sb-chart-table > summary:hover { color: var(--gray-700); }
+.sb-chart-table table { width: 100%; margin-top: 12px; border-collapse: collapse; font: 400 var(--text-sm) var(--font); }
+.sb-chart-table :is(th, td) { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); text-align: end; font-variant-numeric: tabular-nums; }
+.sb-chart-table :is(th, td):first-child { text-align: start; }
+.sb-chart-table th { font: 500 var(--text-xs) var(--font); color: var(--gray-500); background: var(--gray-50); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-chart-mark { transition: none; }
+}

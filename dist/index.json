@@ -109,6 +109,15 @@
       "path": "components/card.md"
     },
     {
+      "slug": "chart",
+      "name": "Chart",
+      "category": "Components",
+      "status": "Ready",
+      "updated": "2026-10-08",
+      "description": "Bar, line, stacked bar and donut charts in plain SVG: a validated series order, thin marks, legend, tooltip and a table view. For one number, use the Card metric instead.",
+      "path": "components/chart.md"
+    },
+    {
       "slug": "checkbox",
       "name": "Checkbox and radio",
       "category": "Components",
@@ -255,6 +264,8 @@
     "code/button-group-switch.js",
     "code/card.css",
     "code/card.js",
+    "code/chart.css",
+    "code/chart.js",
     "code/checkbox.css",
     "code/checkbox-select-all.js",
     "code/checkbox-group.css",

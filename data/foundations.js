@@ -65,6 +65,11 @@
       '--raised-highlight': 'inset 0 1px 0 rgb(255 255 255 / .28)',
       '--pressed-inset': 'inset 0 1px 2px rgb(16 24 40 / .1)',
     }],
+    ['Chart series: fixed order, validated for colour-blind separation. Light step (300) of the same family for rejected or secondary', {
+      '--chart-1': 'var(--brand-500)', '--chart-2': 'var(--orange-600)', '--chart-3': 'var(--blue-light-600)',
+      '--chart-4': 'var(--purple-600)', '--chart-5': 'var(--pink-600)', '--chart-6': 'var(--indigo-500)', '--chart-other': 'var(--gray-400)',
+      '--chart-grid': 'var(--gray-100)', '--chart-axis': 'var(--gray-300)',
+    }],
     ['Background blur: use as backdrop-filter: var(--blur-md)', { '--blur-sm': 'blur(4px)', '--blur-md': 'blur(8px)', '--blur-lg': 'blur(12px)', '--blur-xl': 'blur(20px)' }],
     ['Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible', { '--focus-ring': 'color-mix(in srgb, var(--brand-600) 20%, transparent)' }],
     ['Motion', { '--ease': 'cubic-bezier(.22,.61,.36,1)' }],
@@ -166,7 +171,7 @@
   // Preview HTML to copyable snippet: icon bodies collapse to a named placeholder, docs-only attributes go.
   DS.snippet = html =>
     html
-      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
+      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
       .replace(/<svg data-i="([\w-]+)"[\s\S]*?<\/svg>/g, '<svg aria-hidden="true"><!-- $1 --></svg>')
       .replace(/ data-(state|demo)(="[^"]*")?/g, '')
       .replace(/src="data:image\/[^"]*"/g, 'src="…"'); // inline demo images

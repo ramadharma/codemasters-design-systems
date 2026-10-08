@@ -47,9 +47,9 @@ ${[['success', 'Success', 'check', 'Klaim disetujui.'], ['warning', 'Warning', '
   const PILLS = [['gray', 'Baru'], ['indigo', 'Siap diekstrak'], ['blue', 'Sedang Ditinjau'], ['purple', 'Siap Ditinjau'], ['warning', 'Memeriksa Eligibility'], ['orange', 'Perlu Revisi'], ['success', 'Disetujui: Sembuh'], ['error', 'Ditolak'], ['blue-gray', 'Multiple']];
   const pillsDemo = `<div class="f-pills">\n${PILLS.map(([f, t]) => `<span class="sb-badge" data-size="sm" data-color="${f}">${t}</span>`).join('\n')}\n</div>`;
 
-  const SERIES = [['Sembuh AI', 'brand'], ['TPA', 'orange'], ['Seri 3', 'blue-light'], ['Seri 4', 'purple'], ['Seri 5', 'pink'], ['Seri 6', 'indigo'], ['Seri 7', 'blue-gray']];
+  const SERIES = [['Sembuh AI', 'brand', 500], ['TPA', 'orange', 600], ['Seri 3', 'blue-light', 600], ['Seri 4', 'purple', 600], ['Seri 5', 'pink', 600], ['Seri 6', 'indigo', 500]];
   const dataviz = `<div class="f-viz">
-${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n}</span><span class="f-viz-bar" style="width: ${92 - i * 10}%; background: var(--${f}-500)"></span><span class="f-viz-bar is-light" style="width: ${40 - i * 4}%; background: var(--${f}-300)"></span></div>`).join('\n')}
+${SERIES.map(([n, f, s], i) => `<div class="f-viz-row"><span class="f-viz-name">${n}</span><span class="f-viz-bar" style="width: ${92 - i * 10}%; background: var(--${f}-${s})"></span><span class="f-viz-bar is-light" style="width: ${40 - i * 4}%; background: var(--${f}-300)"></span></div>`).join('\n')}
 </div>`;
 
   DS.foundations.push({
@@ -213,9 +213,10 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
             type: 'table',
             head: ['Series', 'Solid (approved / main)', 'Light (rejected / secondary)'],
             rows: [
-              ['Sembuh AI', '`brand-500`', '`brand-300`'],
-              ['TPA', '`orange-500`', '`orange-300`'],
-              ['Extra series, in order', '`500` of `blue-light`, `purple`, `pink`, `indigo`, `blue-gray`', '`300` of the same family'],
+              ['1 · Sembuh AI (`--chart-1`)', '`brand-500`', '`brand-300`'],
+              ['2 · TPA (`--chart-2`)', '`orange-600`', '`orange-300`'],
+              ['3–6 (`--chart-3` to `--chart-6`)', '`blue-light-600`, `purple-600`, `pink-600`, `indigo-500`, in this order', '`300` of the same family'],
+              ['More than 6', 'Fold the rest into "Lainnya" (`--chart-other`, `gray-400`) or split into small charts', '—'],
             ],
           },
           {
@@ -225,6 +226,7 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
               'Line charts: one point per x label, centred on it; lines only, a dot appears on hover.',
               'Unfocused series fade to 15–25 % opacity on hover or legend focus.',
               'Up = bad (more cost) is `error-600`; down = good is `success-600`.',
+              'The order and steps pass the colour-blind checks (worst neighbours ΔE 10.9, normal vision 19.4). Full rules on the Chart page.',
             ],
           },
         ],

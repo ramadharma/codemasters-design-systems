@@ -247,6 +247,18 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 /* ---- Foundations pages. Previews are reference sheets, so they start at the left and use the full width. */
 .ex-preview:has(> .f-swatches, > .f-type, > .f-icons, > .f-space, > .f-grids, > .f-containers) { justify-content: flex-start; min-height: 0; padding: 32px; }
 /* Slide mockups: children are placed in canvas px converted to % and cqw, so the frame can be any width. */
+/* Chart page */
+.chart-stage { width: 100%; max-width: 640px; min-width: 0; }
+.ex-preview:has(> .chart-stage) { min-height: 0; padding: 32px; }
+.dd-preview .chart-stage { max-width: none; }
+.chart-swatches { display: flex; flex-wrap: wrap; gap: 16px 24px; }
+.chart-swatches > span { display: grid; grid-template-columns: 24px auto; column-gap: 8px; align-items: center; font: 500 var(--text-sm) var(--font-mono, monospace); color: var(--gray-700); }
+.chart-swatches i { grid-row: span 2; width: 24px; height: 24px; border-radius: var(--radius-sm); }
+.chart-swatches small { font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
+.chart-note { margin: 0; padding: 48px 16px; text-align: center; color: var(--gray-500); }
+.anat > .sb-chart .sb-legend { width: fit-content; }
+@media (max-width: 860px) { .ex-preview:has(> .chart-stage) { padding: 16px; } }
+
 /* Card page: readable card widths, grids like the app (gap 24). */
 .card-stage { width: 100%; max-width: 640px; min-width: 0; }
 .card-stage.is-narrow { max-width: 400px; }
