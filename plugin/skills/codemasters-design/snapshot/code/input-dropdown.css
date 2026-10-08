@@ -85,7 +85,7 @@
 .sb-dd-opt[aria-selected="true"] .sb-dd-check { visibility: visible; }
 .sb-dd-opt[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
 .sb-dd-opt[aria-disabled="true"] .sb-dd-sup, .sb-dd-opt[aria-disabled="true"] .sb-dd-main > svg, .sb-dd-opt[aria-disabled="true"] .sb-dd-check { color: var(--gray-200); }
-.sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--gray-25); }
+.sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--gray-50); }
 .sb-dd-opt[aria-disabled="true"] .sb-dd-avatar { opacity: .5; }
 .sb-dd-empty { margin: 0; padding: 12px 14px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-dd-empty[hidden] { display: none; }

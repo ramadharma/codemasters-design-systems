@@ -69,7 +69,7 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
             type: 'list',
             items: [
               '**Define before you design.** Never pick a colour with the colour picker. Pick a colour token. Free-picked colours give inconsistent screens and developers cannot tell which colour to use.',
-              '**Full scales from the start.** Every family has 11 steps (25–900), also when a screen needs only two of them.',
+              '**Full scales from the start.** Every family has 11 steps (50–950), the same steps as Tailwind CSS, also when a screen needs only two of them.',
               '**Data first, chrome second.** Colour is reserved for status, data series and the one primary action.',
             ],
           },
@@ -115,8 +115,8 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
           {
             type: 'list',
             items: [
-              '**Fill / border / text pattern** for any tinted element: `50` fill, `200` border, `700` text, `500` icon. Use `25` for very quiet row tints (flagged or review rows).',
-              '**Text on white:** `700`–`900` for text; `500` and up only for icons or large text. Steps `25`–`400` never carry text on white.',
+              '**Fill / border / text pattern** for any tinted element: `50` fill, `200` border, `700` text, `500` icon.',
+              '**Text on white:** `700`–`900` for text; `500` and up only for icons or large text. Steps `50`–`400` never carry text on white.',
               '**Solid fills with white text** (buttons): `500`–`900`.',
               '**Grays: few, used the same way every time.** Give each gray one job and keep it in every component: `gray-300` is always the input border, `gray-200` always the divider.',
             ],
@@ -126,8 +126,7 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
             type: 'table',
             head: ['Token', 'Use in the app'],
             rows: [
-              ['`gray-25`', 'Page background, subtle card fill, inner boxes'],
-              ['`gray-50`', 'Table header, hover row, secondary hover'],
+              ['`gray-50`', 'Page background, subtle card fill, inner boxes, table header, hover row, secondary hover'],
               ['`gray-100`', 'Chips, menu borders, dividers in menus, skeletons'],
               ['`gray-200`', 'Row dividers, inner card borders'],
               ['`gray-300`', 'Card, input and tab borders'],
@@ -144,8 +143,7 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
             type: 'table',
             head: ['Token', 'Use in the app'],
             rows: [
-              ['`brand-25`', 'Inactive tab, AI summary fill'],
-              ['`brand-50`', 'Selected range, Secondary color button'],
+              ['`brand-50`', 'Inactive tab, AI summary fill, selected range, Secondary color button'],
               ['`brand-100`', 'Secondary color button hover'],
               ['`brand-200`', 'Disabled primary button, AI summary border'],
               ['`brand-300`', 'Input focus border, disabled Secondary color text, light Sembuh AI series'],
@@ -167,8 +165,8 @@ ${SERIES.map(([n, f], i) => `<div class="f-viz-row"><span class="f-viz-name">${n
             head: ['Role', 'Fill', 'Border', 'Text', 'Icon / strong'],
             rows: [
               ['Success', '`success-50`', '`success-200`', '`success-700`', 'icon `success-500`'],
-              ['Warning', '`warning-50` (row tint `warning-25`)', '`warning-200` / `warning-300`', '`warning-700`', 'icon `warning-500`, strong `warning-800`'],
-              ['Error', '`error-50` (row tint `error-25`)', '`error-200`', '`error-700`', 'icon `error-500`, strong `error-600`'],
+              ['Warning', '`warning-50`', '`warning-200` / `warning-300`', '`warning-700`', 'icon `warning-500`, strong `warning-800`'],
+              ['Error', '`error-50`', '`error-200`', '`error-700`', 'icon `error-500`, strong `error-600`'],
               ['Info', '`blue-50`', '`blue-200`', '`blue-700`', 'icon `blue-500`'],
               ['Pending (button)', '`warning-500`, hover `warning-600`', '`warning-500`', '`white`', '—'],
             ],

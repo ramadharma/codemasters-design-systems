@@ -25,7 +25,7 @@ Switch between panels of content in one place: the sections of a claim, the view
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Tab list | One row, gap 8, on a 1 px `gray-300` baseline. Scrolls sideways when the tabs do not fit. |
-| 2 | Tab | 52 high (sm 44), padding `0 24` (sm `0 16`), radius `8 8 0 0`, 1 px `gray-300` border, `brand-25` fill, `brand-700` text. Hover: `brand-50` fill. |
+| 2 | Tab | 52 high (sm 44), padding `0 24` (sm `0 16`), radius `8 8 0 0`, 1 px `gray-300` border, `brand-50` fill, `brand-700` text. Hover: `brand-100` fill. |
 | 3 | Selected tab | `brand-500` fill and border, `white` text and icon. Its bottom edge covers the baseline. |
 | 4 | Icon | Optional. 20 px, gap 8, the text colour. Every tab in a row has one, or none has. |
 | 5 | Label | Text sm / Medium, Title Case, never wraps. |
@@ -215,7 +215,7 @@ md for the main level, sm for sub-levels and dense cards. The text stays Text sm
 
 | Type | Default (fill / text) | Hover | Selected | Disabled |
 | --- | --- | --- | --- | --- |
-| Folder | `brand-25` / `brand-700`, `gray-300` border | `brand-50` fill | `brand-500` / `white`, `brand-500` border | `gray-25` / `gray-300`, `gray-200` border |
+| Folder | `brand-50` / `brand-700`, `gray-300` border | `brand-100` fill | `brand-500` / `white`, `brand-500` border | `gray-50` / `gray-300`, `gray-200` border |
 | Underline | none / `gray-500` | `gray-700`, 2 px `gray-300` line | `brand-700`, 2 px `brand-500` line | `gray-300` |
 | Segmented | none / `gray-500` | `gray-700` | `white` / `gray-800`, `gray-200` border, `shadow-xs` | `gray-300` |
 | Vertical | none / `gray-700`, icon `gray-500` | `gray-50` / `gray-800` | `brand-50` / `brand-700` | `gray-300` |
@@ -419,7 +419,7 @@ When the tabs do not fit, the row scrolls sideways. Arrow keys move focus and sc
 
 | Tab | Text on fill | Ratio | AA |
 | --- | --- | --- | --- |
-| Folder, default | `brand-700` on `brand-25` | 6.44:1 | Passes |
+| Folder, default | `brand-700` on `brand-50` | 6.09:1 | Passes |
 | Folder, selected | `white` on `brand-500` | 3.62:1 | Fails for 14 px text. Same open decision as the Primary button |
 | Underline, default | `gray-500` on `white` | 4.97:1 | Passes |
 | Underline, selected | `brand-700` on `white` | 6.61:1 | Passes; the `brand-500` line is 3.62:1 (3:1 needed) |
@@ -477,14 +477,14 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tabs[data-type="folder"] { --tab-h: 52px; --tab-px: 24px; box-shadow: inset 0 -1px var(--gray-300); }
 .sb-tabs[data-type="folder"][data-size="sm"] { --tab-h: 44px; --tab-px: 16px; }
 .sb-tabs[data-type="folder"] > .sb-tab {
-  color: var(--brand-700); background: var(--brand-25);
+  color: var(--brand-700); background: var(--brand-50);
   border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
-.sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-50); }
+.sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-100); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-500); border-color: var(--brand-500); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
-.sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-25); border-color: var(--gray-200); }
+.sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-50); border-color: var(--gray-200); }
 
 /* Underline: sections inside a card or below folder tabs. A 2 px line marks the selected tab. */
 .sb-tabs[data-type="underline"] { gap: 16px; box-shadow: inset 0 -1px var(--gray-200); }
@@ -559,15 +559,14 @@ document.addEventListener('keydown', tabsKeydown);
 ```css
 :root {
   --white: #ffffff;
-  --gray-25: #fcfcfd;
   --gray-50: #f9fafb;
   --gray-200: #eaecf0;
   --gray-300: #d0d5dd;
   --gray-500: #667085;
   --gray-700: #344054;
   --gray-800: #1d2939;
-  --brand-25: #fafcff;
   --brand-50: #f0f6fe;
+  --brand-100: #dfeafb;
   --brand-500: #5183eb;
   --brand-700: #2e51cd;
   --radius-sm: 4px;

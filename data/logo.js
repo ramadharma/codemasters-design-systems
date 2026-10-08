@@ -57,7 +57,7 @@ ${tile('<span class="f-logo-missing">Flipmaster logo<br><small>file not supplied
         id: 'architecture',
         title: 'Brand architecture',
         blocks: [
-          { type: 'p', text: 'An endorsed brand family: the companies keep their own names and logos, and all three use this design system. Only the blue scale (`--brand-25` to `--brand-900`) differs per company.' },
+          { type: 'p', text: 'An endorsed brand family: the companies keep their own names and logos, and all three use this design system. Only the blue scale (`--brand-50` to `--brand-950`) differs per company.' },
           {
             type: 'table',
             head: ['Brand', 'Role', 'Logo', 'Blue scale'],
@@ -129,11 +129,11 @@ ${tile('<span class="f-logo-missing">Flipmaster logo<br><small>file not supplied
         id: 'backgrounds',
         title: 'Backgrounds',
         blocks: [
-          { type: 'example', html: `<div class="f-logos">\n${tile(img(SRC.sembuh, 'Sembuh AI', 32), 'white', 'white')}\n${tile(img(SRC.sembuh, 'Sembuh AI', 32), 'gray', 'gray-25')}\n${tile(img(SRC.sembuh, 'Sembuh AI', 32), 'brand', 'brand-50')}\n${tile(img(SRC.sembuhWhite, 'Sembuh AI', 32), 'dark', 'gray-900')}\n${tile(img(SRC.sembuhWhite, 'Sembuh AI', 32), 'blue', 'brand-700')}\n</div>`, code: false },
+          { type: 'example', html: `<div class="f-logos">\n${tile(img(SRC.sembuh, 'Sembuh AI', 32), 'white', 'white')}\n${tile(img(SRC.sembuh, 'Sembuh AI', 32), 'gray', 'gray-50')}\n${tile(img(SRC.sembuh, 'Sembuh AI', 32), 'brand', 'brand-50')}\n${tile(img(SRC.sembuhWhite, 'Sembuh AI', 32), 'dark', 'gray-900')}\n${tile(img(SRC.sembuhWhite, 'Sembuh AI', 32), 'blue', 'brand-700')}\n</div>`, code: false },
           {
             type: 'list',
             items: [
-              'Colour logo on `white`, `gray-25` and `brand-50`.',
+              'Colour logo on `white`, `gray-50` and `brand-50`.',
               'White logo on `gray-900`, `brand-600` and darker, and on photos (with enough contrast behind the logo).',
               'Never on a mid-tone such as `brand-300` to `brand-500`, where neither version reads.',
             ],

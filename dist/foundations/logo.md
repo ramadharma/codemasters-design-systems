@@ -14,7 +14,7 @@ One system, three companies. Codemasters is the parent of Sembuh AI and Flipmast
 
 ## Brand architecture
 
-An endorsed brand family: the companies keep their own names and logos, and all three use this design system. Only the blue scale (`--brand-25` to `--brand-900`) differs per company.
+An endorsed brand family: the companies keep their own names and logos, and all three use this design system. Only the blue scale (`--brand-50` to `--brand-950`) differs per company.
 
 | Brand | Role | Logo | Blue scale |
 | --- | --- | --- | --- |
@@ -69,7 +69,7 @@ Sembuh AI and Flipmaster materials (slide covers and back covers, document heade
 
 ## Backgrounds
 
-- Colour logo on `white`, `gray-25` and `brand-50`.
+- Colour logo on `white`, `gray-50` and `brand-50`.
 - White logo on `gray-900`, `brand-600` and darker, and on photos (with enough contrast behind the logo).
 - Never on a mid-tone such as `brand-300` to `brand-500`, where neither version reads.
 

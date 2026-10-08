@@ -122,7 +122,7 @@ ${GRIDS.map(([n, frame, pad, cols, gut]) => `<figure class="f-grid-frame" style=
               '**Sidebar:** fixed, `gray-900`; collapsed 72 (icons + tooltips), open 280. Item 44 tall, radius 8; active and hover `gray-800`.',
               '**Header bar:** sticky, white, 80 tall, padding `24 32`, bottom border `gray-200`. Title left (Display xs), actions right (gap 8).',
               '**Body:** padding 32, vertical stack with gap 24, on the 12-column grid.',
-              '**Detail page:** header bar, then fact card (7-column grid, `gray-25` fill), then sticky tab row, then tab panels.',
+              '**Detail page:** header bar, then fact card (7-column grid, `gray-50` fill), then sticky tab row, then tab panels.',
             ],
           },
         ],

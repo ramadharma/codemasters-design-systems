@@ -247,7 +247,7 @@ A select field: pick one value for a form field or a filter. For running an acti
 | Label, Text md / Medium | `gray-900` | `gray-900` | `gray-200` |
 | Supporting text, Text md / Regular | `gray-500` | `gray-500` | `gray-200` |
 | Leading icon 20 px | `gray-500` | `gray-700` | `gray-200` |
-| Check (selected) | 20 px `brand-600`, row fill `gray-50` | same | check `gray-200`, fill `gray-25` |
+| Check (selected) | 20 px `brand-600`, row fill `gray-50` | same | check `gray-200`, fill `gray-50` |
 
 Keyboard focus (arrow keys) looks like Hover. Avatars in a disabled row get `opacity: .5`. The scroll bar (16 wide, 8 px `gray-200` thumb, no track) shows only when the list scrolls.
 
@@ -461,7 +461,7 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-opt[aria-selected="true"] .sb-dd-check { visibility: visible; }
 .sb-dd-opt[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
 .sb-dd-opt[aria-disabled="true"] .sb-dd-sup, .sb-dd-opt[aria-disabled="true"] .sb-dd-main > svg, .sb-dd-opt[aria-disabled="true"] .sb-dd-check { color: var(--gray-200); }
-.sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--gray-25); }
+.sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--gray-50); }
 .sb-dd-opt[aria-disabled="true"] .sb-dd-avatar { opacity: .5; }
 .sb-dd-empty { margin: 0; padding: 12px 14px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
 .sb-dd-empty[hidden] { display: none; }
@@ -563,7 +563,6 @@ document.addEventListener('input', ddFilter);
 ```css
 :root {
   --white: #ffffff;
-  --gray-25: #fcfcfd;
   --gray-50: #f9fafb;
   --gray-100: #f2f4f7;
   --gray-200: #eaecf0;

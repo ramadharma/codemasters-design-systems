@@ -17,7 +17,7 @@ Thirteen colour families of 11 steps each. Every colour on screen is one of thes
 Every colour is a step on one of the scales below. Token name = `--{family}-{step}` (`Rosé` is `rose`, `Blue gray` is `blue-gray`, `Blue light` is `blue-light`). Click a swatch to copy its token.
 
 - **Define before you design.** Never pick a colour with the colour picker. Pick a colour token. Free-picked colours give inconsistent screens and developers cannot tell which colour to use.
-- **Full scales from the start.** Every family has 11 steps (25–900), also when a screen needs only two of them.
+- **Full scales from the start.** Every family has 11 steps (50–950), the same steps as Tailwind CSS, also when a screen needs only two of them.
 - **Data first, chrome second.** Colour is reserved for status, data series and the one primary action.
 
 | Group | Families | Role |
@@ -53,7 +53,6 @@ Positive actions, positive trends, successful confirmations.
 
 | Step | Gray | Brand | Error | Warning | Success |
 | --- | --- | --- | --- | --- | --- |
-| 25 | `#FCFCFD` | `#FAFCFF` | `#FFFBFA` | `#FFFCF5` | `#F6FEF9` |
 | 50 | `#F9FAFB` | `#F0F6FE` | `#FEF3F2` | `#FFFAEB` | `#ECFDF3` |
 | 100 | `#F2F4F7` | `#DFEAFB` | `#FEE4E2` | `#FEF0C7` | `#D1FADF` |
 | 200 | `#EAECF0` | `#C5DBFA` | `#FECDCA` | `#FEDF89` | `#A6F4C5` |
@@ -64,6 +63,7 @@ Positive actions, positive trends, successful confirmations.
 | 700 | `#344054` | `#2E51CD` | `#B42318` | `#B54708` | `#027A48` |
 | 800 | `#1D2939` | `#2942A7` | `#912018` | `#93370D` | `#05603A` |
 | 900 | `#101828` | `#273B83` | `#7A271A` | `#7A2E0E` | `#054F31` |
+| 950 | `#060C17` | `#142258` | `#511209` | `#501800` | `#00311B` |
 
 Plus `--white: #FFFFFF`.
 
@@ -89,7 +89,6 @@ For pills, tags, alerts, labels and chart series. Use them sparingly, as accents
 
 | Step | Blue gray | Blue light | Blue | Indigo | Purple | Pink | Rosé | Orange |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 25 | `#FCFCFD` | `#F5FBFF` | `#F5FAFF` | `#F5F8FF` | `#FAFAFF` | `#FEF6FB` | `#FFF5F6` | `#FFFAF5` |
 | 50 | `#F8F9FC` | `#F0F9FF` | `#EFF8FF` | `#EEF4FF` | `#F4F3FF` | `#FDF2FA` | `#FFF1F3` | `#FFF6ED` |
 | 100 | `#EAECF5` | `#E0F2FE` | `#D1E9FF` | `#E0EAFF` | `#EBE9FE` | `#FCE7F6` | `#FFE4E8` | `#FFEAD5` |
 | 200 | `#D5D9EB` | `#B9E6FE` | `#B2DDFF` | `#C7D7FE` | `#D9D6FE` | `#FCCEEE` | `#FECDD6` | `#FDDCAB` |
@@ -100,11 +99,12 @@ For pills, tags, alerts, labels and chart series. Use them sparingly, as accents
 | 700 | `#363F72` | `#026AA2` | `#175CD3` | `#3538CD` | `#5925DC` | `#C11574` | `#C01048` | `#C4320A` |
 | 800 | `#293056` | `#065986` | `#1849A9` | `#2D31A6` | `#4A1FB8` | `#9E165F` | `#A11043` | `#9C2A10` |
 | 900 | `#101323` | `#0B4A6F` | `#194185` | `#2D3282` | `#3E1C96` | `#851651` | `#89123E` | `#7E2410` |
+| 950 | `#060814` | `#002D49` | `#082659` | `#191B57` | `#260766` | `#580232` | `#5B0024` | `#530F02` |
 
 ## How the scales are used
 
-- **Fill / border / text pattern** for any tinted element: `50` fill, `200` border, `700` text, `500` icon. Use `25` for very quiet row tints (flagged or review rows).
-- **Text on white:** `700`–`900` for text; `500` and up only for icons or large text. Steps `25`–`400` never carry text on white.
+- **Fill / border / text pattern** for any tinted element: `50` fill, `200` border, `700` text, `500` icon.
+- **Text on white:** `700`–`900` for text; `500` and up only for icons or large text. Steps `50`–`400` never carry text on white.
 - **Solid fills with white text** (buttons): `500`–`900`.
 - **Grays: few, used the same way every time.** Give each gray one job and keep it in every component: `gray-300` is always the input border, `gray-200` always the divider.
 
@@ -112,8 +112,7 @@ For pills, tags, alerts, labels and chart series. Use them sparingly, as accents
 
 | Token | Use in the app |
 | --- | --- |
-| `gray-25` | Page background, subtle card fill, inner boxes |
-| `gray-50` | Table header, hover row, secondary hover |
+| `gray-50` | Page background, subtle card fill, inner boxes, table header, hover row, secondary hover |
 | `gray-100` | Chips, menu borders, dividers in menus, skeletons |
 | `gray-200` | Row dividers, inner card borders |
 | `gray-300` | Card, input and tab borders |
@@ -128,8 +127,7 @@ For pills, tags, alerts, labels and chart series. Use them sparingly, as accents
 
 | Token | Use in the app |
 | --- | --- |
-| `brand-25` | Inactive tab, AI summary fill |
-| `brand-50` | Selected range, Secondary color button |
+| `brand-50` | Inactive tab, AI summary fill, selected range, Secondary color button |
 | `brand-100` | Secondary color button hover |
 | `brand-200` | Disabled primary button, AI summary border |
 | `brand-300` | Input focus border, disabled Secondary color text, light Sembuh AI series |
@@ -143,8 +141,8 @@ For pills, tags, alerts, labels and chart series. Use them sparingly, as accents
 | Role | Fill | Border | Text | Icon / strong |
 | --- | --- | --- | --- | --- |
 | Success | `success-50` | `success-200` | `success-700` | icon `success-500` |
-| Warning | `warning-50` (row tint `warning-25`) | `warning-200` / `warning-300` | `warning-700` | icon `warning-500`, strong `warning-800` |
-| Error | `error-50` (row tint `error-25`) | `error-200` | `error-700` | icon `error-500`, strong `error-600` |
+| Warning | `warning-50` | `warning-200` / `warning-300` | `warning-700` | icon `warning-500`, strong `warning-800` |
+| Error | `error-50` | `error-200` | `error-700` | icon `error-500`, strong `error-600` |
 | Info | `blue-50` | `blue-200` | `blue-700` | icon `blue-500` |
 | Pending (button) | `warning-500`, hover `warning-600` | `warning-500` | `white` | — |
 
@@ -204,7 +202,6 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
 :root {
   /* Colour */
   --white: #ffffff;
-  --gray-25: #fcfcfd;
   --gray-50: #f9fafb;
   --gray-100: #f2f4f7;
   --gray-200: #eaecf0;
@@ -215,7 +212,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --gray-700: #344054;
   --gray-800: #1d2939;
   --gray-900: #101828;
-  --brand-25: #fafcff;
+  --gray-950: #060c17;
   --brand-50: #f0f6fe;
   --brand-100: #dfeafb;
   --brand-200: #c5dbfa;
@@ -226,7 +223,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --brand-700: #2e51cd;
   --brand-800: #2942a7;
   --brand-900: #273b83;
-  --error-25: #fffbfa;
+  --brand-950: #142258;
   --error-50: #fef3f2;
   --error-100: #fee4e2;
   --error-200: #fecdca;
@@ -237,7 +234,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --error-700: #b42318;
   --error-800: #912018;
   --error-900: #7a271a;
-  --warning-25: #fffcf5;
+  --error-950: #511209;
   --warning-50: #fffaeb;
   --warning-100: #fef0c7;
   --warning-200: #fedf89;
@@ -248,7 +245,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --warning-700: #b54708;
   --warning-800: #93370d;
   --warning-900: #7a2e0e;
-  --success-25: #f6fef9;
+  --warning-950: #501800;
   --success-50: #ecfdf3;
   --success-100: #d1fadf;
   --success-200: #a6f4c5;
@@ -259,7 +256,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --success-700: #027a48;
   --success-800: #05603a;
   --success-900: #054f31;
-  --blue-gray-25: #fcfcfd;
+  --success-950: #00311b;
   --blue-gray-50: #f8f9fc;
   --blue-gray-100: #eaecf5;
   --blue-gray-200: #d5d9eb;
@@ -270,7 +267,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --blue-gray-700: #363f72;
   --blue-gray-800: #293056;
   --blue-gray-900: #101323;
-  --blue-light-25: #f5fbff;
+  --blue-gray-950: #060814;
   --blue-light-50: #f0f9ff;
   --blue-light-100: #e0f2fe;
   --blue-light-200: #b9e6fe;
@@ -281,7 +278,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --blue-light-700: #026aa2;
   --blue-light-800: #065986;
   --blue-light-900: #0b4a6f;
-  --blue-25: #f5faff;
+  --blue-light-950: #002d49;
   --blue-50: #eff8ff;
   --blue-100: #d1e9ff;
   --blue-200: #b2ddff;
@@ -292,7 +289,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --blue-700: #175cd3;
   --blue-800: #1849a9;
   --blue-900: #194185;
-  --indigo-25: #f5f8ff;
+  --blue-950: #082659;
   --indigo-50: #eef4ff;
   --indigo-100: #e0eaff;
   --indigo-200: #c7d7fe;
@@ -303,7 +300,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --indigo-700: #3538cd;
   --indigo-800: #2d31a6;
   --indigo-900: #2d3282;
-  --purple-25: #fafaff;
+  --indigo-950: #191b57;
   --purple-50: #f4f3ff;
   --purple-100: #ebe9fe;
   --purple-200: #d9d6fe;
@@ -314,7 +311,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --purple-700: #5925dc;
   --purple-800: #4a1fb8;
   --purple-900: #3e1c96;
-  --pink-25: #fef6fb;
+  --purple-950: #260766;
   --pink-50: #fdf2fa;
   --pink-100: #fce7f6;
   --pink-200: #fcceee;
@@ -325,7 +322,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --pink-700: #c11574;
   --pink-800: #9e165f;
   --pink-900: #851651;
-  --rose-25: #fff5f6;
+  --pink-950: #580232;
   --rose-50: #fff1f3;
   --rose-100: #ffe4e8;
   --rose-200: #fecdd6;
@@ -336,7 +333,7 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --rose-700: #c01048;
   --rose-800: #a11043;
   --rose-900: #89123e;
-  --orange-25: #fffaf5;
+  --rose-950: #5b0024;
   --orange-50: #fff6ed;
   --orange-100: #ffead5;
   --orange-200: #fddcab;
@@ -347,5 +344,6 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
   --orange-700: #c4320a;
   --orange-800: #9c2a10;
   --orange-900: #7e2410;
+  --orange-950: #530f02;
 }
 ```

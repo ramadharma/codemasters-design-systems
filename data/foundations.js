@@ -23,21 +23,21 @@
   ];
 
   // ---- Tokens (DESIGN.md §9). Edit here; the page, tokens.css and every export follow.
-  const STEPS = [25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+  const STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]; // Tailwind's steps
   const SCALES = {
-    gray: 'fcfcfd f9fafb f2f4f7 eaecf0 d0d5dd 98a2b3 667085 475467 344054 1d2939 101828',
-    brand: 'fafcff f0f6fe dfeafb c5dbfa 9fc5f6 6ca1f0 5183eb 3966e0 2e51cd 2942a7 273b83',
-    error: 'fffbfa fef3f2 fee4e2 fecdca fda29b f97066 f04438 d92d20 b42318 912018 7a271a',
-    warning: 'fffcf5 fffaeb fef0c7 fedf89 fec84b fdb022 f79009 dc6803 b54708 93370d 7a2e0e',
-    success: 'f6fef9 ecfdf3 d1fadf a6f4c5 6ce9a6 32d583 12b76a 039855 027a48 05603a 054f31',
-    'blue-gray': 'fcfcfd f8f9fc eaecf5 d5d9eb afb5d9 717bbc 4e5ba6 3e4784 363f72 293056 101323',
-    'blue-light': 'f5fbff f0f9ff e0f2fe b9e6fe 7cd4fd 36bffa 0ba5ec 0086c9 026aa2 065986 0b4a6f',
-    blue: 'f5faff eff8ff d1e9ff b2ddff 84caff 53b1fd 2e90fa 1570ef 175cd3 1849a9 194185',
-    indigo: 'f5f8ff eef4ff e0eaff c7d7fe a4bcfd 8098f9 6172f3 444ce7 3538cd 2d31a6 2d3282',
-    purple: 'fafaff f4f3ff ebe9fe d9d6fe bdb4fe 9b8afb 7a5af8 6938ef 5925dc 4a1fb8 3e1c96',
-    pink: 'fef6fb fdf2fa fce7f6 fcceee faa7e0 f670c7 ee46bc dd2590 c11574 9e165f 851651',
-    rose: 'fff5f6 fff1f3 ffe4e8 fecdd6 fea3b4 fd6f8e f63d68 e31b54 c01048 a11043 89123e',
-    orange: 'fffaf5 fff6ed ffead5 fddcab feb273 fd853a fb6514 ec4a0a c4320a 9c2a10 7e2410',
+    gray: 'f9fafb f2f4f7 eaecf0 d0d5dd 98a2b3 667085 475467 344054 1d2939 101828 060c17',
+    brand: 'f0f6fe dfeafb c5dbfa 9fc5f6 6ca1f0 5183eb 3966e0 2e51cd 2942a7 273b83 142258',
+    error: 'fef3f2 fee4e2 fecdca fda29b f97066 f04438 d92d20 b42318 912018 7a271a 511209',
+    warning: 'fffaeb fef0c7 fedf89 fec84b fdb022 f79009 dc6803 b54708 93370d 7a2e0e 501800',
+    success: 'ecfdf3 d1fadf a6f4c5 6ce9a6 32d583 12b76a 039855 027a48 05603a 054f31 00311b',
+    'blue-gray': 'f8f9fc eaecf5 d5d9eb afb5d9 717bbc 4e5ba6 3e4784 363f72 293056 101323 060814',
+    'blue-light': 'f0f9ff e0f2fe b9e6fe 7cd4fd 36bffa 0ba5ec 0086c9 026aa2 065986 0b4a6f 002d49',
+    blue: 'eff8ff d1e9ff b2ddff 84caff 53b1fd 2e90fa 1570ef 175cd3 1849a9 194185 082659',
+    indigo: 'eef4ff e0eaff c7d7fe a4bcfd 8098f9 6172f3 444ce7 3538cd 2d31a6 2d3282 191b57',
+    purple: 'f4f3ff ebe9fe d9d6fe bdb4fe 9b8afb 7a5af8 6938ef 5925dc 4a1fb8 3e1c96 260766',
+    pink: 'fdf2fa fce7f6 fcceee faa7e0 f670c7 ee46bc dd2590 c11574 9e165f 851651 580232',
+    rose: 'fff1f3 ffe4e8 fecdd6 fea3b4 fd6f8e f63d68 e31b54 c01048 a11043 89123e 5b0024',
+    orange: 'fff6ed ffead5 fddcab feb273 fd853a fb6514 ec4a0a c4320a 9c2a10 7e2410 530f02',
   };
 
   const colour = { '--white': '#ffffff' };
@@ -194,7 +194,7 @@
         id: 'tokens',
         title: 'Tokens',
         blocks: [
-          { type: 'p', text: 'Every colour is a step on an 11-step scale (25 to 900). Never write a hex that is not on a scale; reference the token.' },
+          { type: 'p', text: 'Every colour is a step on an 11-step scale (50 to 950). Never write a hex that is not on a scale; reference the token.' },
           { type: 'code', lang: 'css', filename: 'tokens.css', code: `${DS.fontImport}\n\n${DS.tokensCss}` },
         ],
       },

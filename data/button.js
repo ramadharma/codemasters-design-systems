@@ -51,7 +51,7 @@
 .sb-btn[data-hierarchy="secondary-color"] {
   --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700);
   --btn-bg-hover: var(--brand-100); --btn-border-hover: var(--brand-100); --btn-fg-hover: var(--brand-700);
-  --btn-bg-disabled: var(--brand-25); --btn-border-disabled: var(--brand-25); --btn-fg-disabled: var(--brand-300);
+  --btn-bg-disabled: var(--brand-50); --btn-border-disabled: var(--brand-50); --btn-fg-disabled: var(--brand-300);
 }
 .sb-btn[data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent;
@@ -88,7 +88,7 @@
 .sb-btn[data-destructive][data-hierarchy="secondary-color"] {
   --btn-bg: var(--error-50); --btn-border: var(--error-50); --btn-fg: var(--error-700);
   --btn-bg-hover: var(--error-100); --btn-border-hover: var(--error-100); --btn-fg-hover: var(--error-700);
-  --btn-bg-disabled: var(--error-25); --btn-border-disabled: var(--error-25); --btn-fg-disabled: var(--error-300);
+  --btn-bg-disabled: var(--error-50); --btn-border-disabled: var(--error-50); --btn-fg-disabled: var(--error-300);
 }
 .sb-btn[data-destructive][data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
@@ -277,7 +277,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
             rows: [
               ['Primary', '`brand-500` / `brand-500` / `white`', '`brand-600` / `brand-600` / `white`', '`brand-200` / `brand-200` / `white`', '4 px `focus-ring` ring'],
               ['Secondary gray', '`white` / `gray-300` / `gray-700`', '`gray-50` / `gray-300` / `gray-800`', '`white` / `gray-200` / `gray-300`', '4 px `focus-ring` ring'],
-              ['Secondary color', '`brand-50` / `brand-50` / `brand-700`', '`brand-100` / `brand-100` / `brand-700`', '`brand-25` / `brand-25` / `brand-300`', '4 px `focus-ring` ring'],
+              ['Secondary color', '`brand-50` / `brand-50` / `brand-700`', '`brand-100` / `brand-100` / `brand-700`', '`brand-50` / `brand-50` / `brand-300`', '4 px `focus-ring` ring'],
               ['Tertiary color', 'none / none / `brand-700`', '`brand-50` fill', 'text `gray-300`', '4 px `focus-ring` ring'],
               ['Tertiary gray', 'none / none / `gray-500`', '`gray-50` fill, text `gray-600`', 'text `gray-300`', '4 px `focus-ring` ring'],
               ['Link color', 'text `brand-600`, no padding', 'text `brand-700`', 'text `gray-300`', '2 px `brand-500` outline'],
@@ -368,7 +368,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
             rows: [
               ['Primary', '`error-600` / `error-600` / `white`', '`error-700`', '`error-200`', '4 px `error-100` ring'],
               ['Secondary gray', '`white` / `error-300` / `error-700`', '`error-50` fill, text `error-800`', 'border `error-200`, text `error-300`', '4 px `error-100` ring'],
-              ['Secondary color', '`error-50` / `error-50` / `error-700`', '`error-100`', '`error-25`, text `error-300`', '4 px `error-100` ring'],
+              ['Secondary color', '`error-50` / `error-50` / `error-700`', '`error-100`', '`error-50`, text `error-300`', '4 px `error-100` ring'],
               ['Tertiary color, Tertiary gray', 'text `error-700`', '`error-50` fill (gray: text `error-800`)', 'text `error-300`', '4 px `error-100` ring'],
               ['Link color, Link gray', 'text `error-700`', 'text `error-800`', 'text `error-300`', '2 px `brand-500` outline'],
             ],

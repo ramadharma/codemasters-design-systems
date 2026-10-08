@@ -47,7 +47,7 @@
 .sb-btn[data-hierarchy="secondary-color"] {
   --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700);
   --btn-bg-hover: var(--brand-100); --btn-border-hover: var(--brand-100); --btn-fg-hover: var(--brand-700);
-  --btn-bg-disabled: var(--brand-25); --btn-border-disabled: var(--brand-25); --btn-fg-disabled: var(--brand-300);
+  --btn-bg-disabled: var(--brand-50); --btn-border-disabled: var(--brand-50); --btn-fg-disabled: var(--brand-300);
 }
 .sb-btn[data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent;
@@ -84,7 +84,7 @@
 .sb-btn[data-destructive][data-hierarchy="secondary-color"] {
   --btn-bg: var(--error-50); --btn-border: var(--error-50); --btn-fg: var(--error-700);
   --btn-bg-hover: var(--error-100); --btn-border-hover: var(--error-100); --btn-fg-hover: var(--error-700);
-  --btn-bg-disabled: var(--error-25); --btn-border-disabled: var(--error-25); --btn-fg-disabled: var(--error-300);
+  --btn-bg-disabled: var(--error-50); --btn-border-disabled: var(--error-50); --btn-fg-disabled: var(--error-300);
 }
 .sb-btn[data-destructive][data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
