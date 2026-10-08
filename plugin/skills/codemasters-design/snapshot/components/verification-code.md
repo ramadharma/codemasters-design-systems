@@ -324,7 +324,7 @@ document.addEventListener('paste', codePaste);
   --error-600: #d92d20;
   --radius-md: 8px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;
   --display-xl: 60px/72px;

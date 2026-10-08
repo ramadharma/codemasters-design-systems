@@ -46,7 +46,7 @@
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-btn { width: 28px; height: 28px; }
 .sb-wys-btn:hover { background: var(--gray-50); color: var(--gray-600); }
 .sb-wys-btn[aria-pressed="true"] { background: var(--brand-100); color: var(--brand-700); }
-.sb-wys-btn:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 0; }
+.sb-wys-btn:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
 
 /* Tooltip on each icon: name and shortcut, Dark tooltip spec. */
 .sb-wys-btn[data-tip]::after {

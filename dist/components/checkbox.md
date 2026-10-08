@@ -380,7 +380,7 @@ document.addEventListener('change', selectAll);
   --brand-600: #3966e0;
   --radius-sm: 4px;
   --radius-full: 9999px;
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;
   --text-sm: 14px/20px;

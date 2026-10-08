@@ -255,14 +255,14 @@ Icon card titles are Text md in both sizes; `md` raises the price from Display s
 | State | Unselected | Selected |
 | --- | --- | --- |
 | Default | `white`, `gray-200` border | `brand-50` fill, `brand-300` border |
-| Hover | `white`, `brand-300` border | `brand-50` fill, `brand-500` border |
+| Hover | `white`, `brand-300` border | `brand-50` fill, `brand-600` border |
 | Focused | `white`, `brand-300` border + 4 px `focus-ring` ring | `brand-50`, `brand-300` border + 4 px `focus-ring` ring |
 | Disabled | `gray-50` fill, `gray-200` border | `gray-50` fill, `gray-200` border |
 
 - Only the card shows the focus ring; the control inside keeps its Default or checked look.
 - Selected text: title `brand-800`, subtitle and description `brand-600`. Disabled text stays `gray-700` / `gray-500`, selected or not.
 - Icon card: the header takes the fill and border, the body stays white with a `gray-200` border.
-- Payment icon, selected: "Set as default" (Link gray) turns `brand-500`.
+- Payment icon, selected: "Set as default" (Link gray) turns `brand-600`.
 
 ## Do and don't
 
@@ -323,9 +323,7 @@ Icon card titles are Text md in both sizes; `md` raises the price from Display s
 | Selected title `brand-800` on `brand-50` | 7.94:1 | 4.5:1 | Passes |
 | Selected subtitle, description `brand-600` on `brand-50` | 4.65:1 | 4.5:1 | Passes |
 | Unselected title `gray-700`, description `gray-500` on `white` | 10.46:1, 4.97:1 | 4.5:1 | Passes |
-| Selected "Set as default" `brand-500` on `brand-50` | 3.33:1 | 4.5:1 | **Fails** |
-
-> **Warning:** Selected Payment icon cards turn "Set as default" `brand-500`, which is 3.33:1 on `brand-50`. `brand-600` (4.65:1) passes and already matches the Edit link. Decision for the design team.
+| Selected "Set as default" `brand-600` on `brand-50` | 4.65:1 | 4.5:1 | Passes |
 
 ## Code
 
@@ -369,7 +367,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 /* States. Disabled comes last so it wins over Selected. */
 .sb-cg-item:has(.sb-check-input:checked) { --cg-bg: var(--brand-50); --cg-bd: var(--brand-300); --cg-title: var(--brand-800); --cg-text: var(--brand-600); }
 .sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-300); }
-.sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-500); }
+.sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-600); }
 .sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--brand-300); box-shadow: 0 0 0 4px var(--focus-ring); }
 .sb-cg-item:has(.sb-check-input:disabled) { --cg-bg: var(--gray-50); --cg-bd: var(--gray-200); --cg-title: var(--gray-700); --cg-text: var(--gray-500); cursor: not-allowed; }
 
@@ -398,7 +396,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 
 /* Payment icon: text links sit above the stretched label, so they never toggle the card. */
 .sb-cg-actions { position: relative; z-index: 2; display: flex; gap: 12px; margin-top: 8px; }
-.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--brand-500); --btn-fg-hover: var(--brand-600); }
+.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--brand-600); --btn-fg-hover: var(--brand-700); }
 
 /* Icon card: the header carries the selection colours, the body stays white. */
 .sb-cg-item[data-type="card"] { flex-direction: column; align-items: stretch; gap: 0; padding: 0; background: var(--white); border-color: var(--gray-200); }
@@ -431,13 +429,13 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
   --brand-50: #f0f6fe;
   --brand-100: #dfeafb;
   --brand-300: #9fc5f6;
-  --brand-500: #5183eb;
   --brand-600: #3966e0;
+  --brand-700: #2e51cd;
   --brand-800: #2942a7;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-full: 9999px;
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;
   --display-md: 36px/44px;

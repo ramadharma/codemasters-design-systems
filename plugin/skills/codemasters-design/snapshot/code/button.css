@@ -12,8 +12,8 @@
 
 .sb-btn {
   --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
-  --btn-bg: var(--brand-500); --btn-border: var(--brand-500); --btn-fg: var(--white);
-  --btn-bg-hover: var(--brand-600); --btn-border-hover: var(--brand-600); --btn-fg-hover: var(--white);
+  --btn-bg: var(--brand-600); --btn-border: var(--brand-600); --btn-fg: var(--white);
+  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-700); --btn-fg-hover: var(--white);
   --btn-bg-disabled: var(--brand-200); --btn-border-disabled: var(--brand-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--focus-ring); --btn-shadow: var(--shadow-xs);
   box-sizing: border-box;
@@ -106,7 +106,7 @@
   outline: none; box-shadow: var(--btn-shadow), 0 0 0 4px var(--btn-ring);
 }
 .sb-btn[data-hierarchy^="link"]:focus-visible, .sb-btn[data-hierarchy^="link"][data-state="focus"] {
-  box-shadow: none; outline: 2px solid var(--brand-500); outline-offset: 2px;
+  box-shadow: none; outline: 2px solid var(--brand-600); outline-offset: 2px;
 }
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] {
   color: var(--btn-fg-disabled); background: var(--btn-bg-disabled); border-color: var(--btn-border-disabled);

@@ -60,7 +60,7 @@
       '--shadow-3xl': '0 32px 64px -12px rgba(16,24,40,.14)',
     }],
     ['Background blur: use as backdrop-filter: var(--blur-md)', { '--blur-sm': 'blur(4px)', '--blur-md': 'blur(8px)', '--blur-lg': 'blur(12px)', '--blur-xl': 'blur(20px)' }],
-    ['Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible', { '--focus-ring': 'color-mix(in srgb, var(--brand-500) 20%, transparent)' }],
+    ['Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible', { '--focus-ring': 'color-mix(in srgb, var(--brand-600) 20%, transparent)' }],
     ['Motion', { '--ease': 'cubic-bezier(.22,.61,.36,1)' }],
     ['Typography: font: 600 var(--text-sm) var(--font). Display md and larger add letter-spacing: var(--tracking-display)', {
       '--font': "'Inter', sans-serif",

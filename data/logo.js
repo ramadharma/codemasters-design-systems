@@ -63,7 +63,7 @@ ${tile('<span class="f-logo-missing">Flipmaster logo<br><small>file not supplied
             head: ['Brand', 'Role', 'Logo', 'Blue scale'],
             rows: [
               ['Codemasters', 'Parent company', 'Symbol + wordmark', 'To be confirmed'],
-              ['Sembuh AI', 'Company (claims analysis)', 'Wordmark, "AI" in brand blue', 'Current `brand` scale (`brand-500` `#5183EB`)'],
+              ['Sembuh AI', 'Company (claims analysis)', 'Wordmark, "AI" in brand blue', 'Current `brand` scale (primary `brand-600` `#3966E0`)'],
               ['Flipmaster', 'Company', 'To be supplied', 'To be confirmed'],
             ],
           },

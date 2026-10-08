@@ -44,7 +44,7 @@
 }
 .sb-btn-group > button:focus-visible, .sb-btn-group > button[data-state="focus"] {
   --seg-icon: var(--gray-700); color: var(--gray-700); background: var(--gray-50);
-  outline: 2px solid var(--brand-500); outline-offset: -2px; /* inside, because the group clips */
+  outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
   --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50);

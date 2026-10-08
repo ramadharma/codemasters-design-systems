@@ -262,7 +262,7 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-btn { width: 28px; height: 28px; }
 .sb-wys-btn:hover { background: var(--gray-50); color: var(--gray-600); }
 .sb-wys-btn[aria-pressed="true"] { background: var(--brand-100); color: var(--brand-700); }
-.sb-wys-btn:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 0; }
+.sb-wys-btn:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
 
 /* Tooltip on each icon: name and shortcut, Dark tooltip spec. */
 .sb-wys-btn[data-tip]::after {
@@ -406,14 +406,14 @@ document.addEventListener('selectionchange', wysSelection);
   --gray-900: #101828;
   --brand-100: #dfeafb;
   --brand-300: #9fc5f6;
-  --brand-500: #5183eb;
+  --brand-600: #3966e0;
   --brand-700: #2e51cd;
   --error-100: #fee4e2;
   --error-300: #fda29b;
   --radius-md: 8px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;
   --text-lg: 18px/28px;

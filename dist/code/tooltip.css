@@ -58,7 +58,7 @@
 .sb-help { display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full); background: none; color: var(--gray-400); cursor: help; }
 .sb-help > svg { width: 16px; height: 16px; }
 .sb-help:hover, .sb-help:focus-visible, .sb-tooltip-wrap[data-state="open"] > .sb-help { color: var(--gray-500); }
-.sb-help:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.sb-help:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 /* After a label: label + help icon on one line, 4 apart. */
 .sb-help-row { display: inline-flex; align-items: center; gap: 4px; }
 

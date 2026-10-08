@@ -243,7 +243,7 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
   --blur-xl: blur(20px);
 
   /* Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible */
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
 
   /* Motion */
   --ease: cubic-bezier(.22,.61,.36,1);
@@ -276,7 +276,7 @@ An endorsed brand family: the companies keep their own names and logos, and all 
 | Brand | Role | Logo | Blue scale |
 | --- | --- | --- | --- |
 | Codemasters | Parent company | Symbol + wordmark | To be confirmed |
-| Sembuh AI | Company (claims analysis) | Wordmark, "AI" in brand blue | Current `brand` scale (`brand-500` `#5183EB`) |
+| Sembuh AI | Company (claims analysis) | Wordmark, "AI" in brand blue | Current `brand` scale (primary `brand-600` `#3966E0`) |
 | Flipmaster | Company | To be supplied | To be confirmed |
 
 > **Note:** The Codemasters and Flipmaster blue scales are not defined yet. Until they are, every page and export uses the Sembuh AI scale.
@@ -505,9 +505,9 @@ For pills, tags, alerts, labels and chart series. Use them sparingly, as accents
 | `brand-100` | Secondary color button hover |
 | `brand-200` | Disabled primary button, AI summary border |
 | `brand-300` | Input focus border, disabled Secondary color text, light Sembuh AI series |
-| `brand-500` | **Primary**: buttons, active tab, Sembuh AI series; at 20 % it is the focus ring (`--focus-ring`) |
-| `brand-600` | Primary button hover, Link color text |
-| `brand-700` | Secondary color / Tertiary color button text, Link color hover, table ID links, tab text |
+| `brand-600` | Sembuh AI chart series |
+| `brand-600` | **Primary**: buttons, active tab, links, checked controls, focus outline; at 20 % it is the focus ring (`--focus-ring`) |
+| `brand-700` | Primary button hover, Secondary color / Tertiary color button text, Link color hover, table ID links, tab text |
 | `brand-800` | Deep accent |
 
 ### Semantic roles
@@ -1827,7 +1827,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 }
 .sb-badge-x > svg { width: 12px; height: 12px; }
 .sb-badge-x:hover { color: var(--bdg-fg); }
-.sb-badge-x:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 0; }
+.sb-badge-x:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
 
 /* Sizes. Height comes from the text line plus the vertical padding (sm 2, md 2, lg 4). */
 .sb-badge[data-size="md"] { --bdg-h: 24px; --bdg-px: 10px; --bdg-type: var(--text-sm); }
@@ -1884,7 +1884,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 .sb-badge-group[data-color="error"] { --g50: var(--error-50); --g100: var(--error-100); --g500: var(--error-500); --g600: var(--error-600); --g700: var(--error-700); }
 .sb-badge-group[data-color="warning"] { --g50: var(--warning-50); --g100: var(--warning-100); --g500: var(--warning-500); --g600: var(--warning-600); --g700: var(--warning-700); }
 .sb-badge-group[data-color="success"] { --g50: var(--success-50); --g100: var(--success-100); --g500: var(--success-500); --g600: var(--success-600); --g700: var(--success-700); }
-a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 ```
 
 ## Button
@@ -1941,13 +1941,13 @@ Seven levels, from the one next step (Primary) to links inside text. Primary, Se
 
 | Hierarchy | Default (fill / border / text) | Hover | Disabled | Focused |
 | --- | --- | --- | --- | --- |
-| Primary | `brand-500` / `brand-500` / `white` | `brand-600` / `brand-600` / `white` | `brand-200` / `brand-200` / `white` | 4 px `focus-ring` ring |
+| Primary | `brand-600` / `brand-600` / `white` | `brand-700` / `brand-700` / `white` | `brand-200` / `brand-200` / `white` | 4 px `focus-ring` ring |
 | Secondary gray | `white` / `gray-300` / `gray-700` | `gray-50` / `gray-300` / `gray-800` | `white` / `gray-200` / `gray-300` | 4 px `focus-ring` ring |
 | Secondary color | `brand-50` / `brand-50` / `brand-700` | `brand-100` / `brand-100` / `brand-700` | `brand-50` / `brand-50` / `brand-300` | 4 px `focus-ring` ring |
 | Tertiary color | none / none / `brand-700` | `brand-50` fill | text `gray-300` | 4 px `focus-ring` ring |
 | Tertiary gray | none / none / `gray-500` | `gray-50` fill, text `gray-600` | text `gray-300` | 4 px `focus-ring` ring |
-| Link color | text `brand-600`, no padding | text `brand-700` | text `gray-300` | 2 px `brand-500` outline |
-| Link gray | text `gray-500`, no padding | text `gray-600` | text `gray-300` | 2 px `brand-500` outline |
+| Link color | text `brand-600`, no padding | text `brand-700` | text `gray-300` | 2 px `brand-600` outline |
+| Link gray | text `gray-500`, no padding | text `gray-600` | text `gray-300` | 2 px `brand-600` outline |
 
 ### Sizes
 
@@ -2044,7 +2044,7 @@ Hover moves one step darker, Focused adds a ring for keyboard users, Disabled fa
 
 - Colour changes take 150 ms with `--ease`. Press is `scale(.96)`.
 - Focused shows only on `:focus-visible`, so a mouse click leaves no ring.
-- The ring is `0 0 0 4px var(--focus-ring)` (`brand-500` at 20 %) in every hierarchy, on top of `shadow-xs` where the variant has one. Link hierarchies have no box, so they use the global 2 px `brand-500` outline with 2 px offset.
+- The ring is `0 0 0 4px var(--focus-ring)` (`brand-600` at 20 %) in every hierarchy, on top of `shadow-xs` where the variant has one. Link hierarchies have no box, so they use the global 2 px `brand-600` outline with 2 px offset.
 - Disabled has no hover and no press, and shows `cursor: not-allowed`.
 
 ### Destructive
@@ -2067,7 +2067,7 @@ Destructive=True swaps Brand and Gray for Error. Use it only when the destructiv
 | Secondary gray | `white` / `error-300` / `error-700` | `error-50` fill, text `error-800` | border `error-200`, text `error-300` | 4 px `error-100` ring |
 | Secondary color | `error-50` / `error-50` / `error-700` | `error-100` | `error-50`, text `error-300` | 4 px `error-100` ring |
 | Tertiary color, Tertiary gray | text `error-700` | `error-50` fill (gray: text `error-800`) | text `error-300` | 4 px `error-100` ring |
-| Link color, Link gray | text `error-700` | text `error-800` | text `error-300` | 2 px `brand-500` outline |
+| Link color, Link gray | text `error-700` | text `error-800` | text `error-300` | 2 px `brand-600` outline |
 
 ### Button row
 
@@ -2154,8 +2154,8 @@ Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for bu
 
 | Variant | Text on fill | Ratio | AA |
 | --- | --- | --- | --- |
-| Primary | `white` on `brand-500` | 3.62:1 | **Fails** |
-| Primary, hover | `white` on `brand-600` | 5.06:1 | Passes |
+| Primary | `white` on `brand-600` | 5.06:1 | Passes |
+| Primary, hover | `white` on `brand-700` | 6.61:1 | Passes |
 | Secondary gray | `gray-700` on `white` | 10.46:1 | Passes |
 | Secondary color | `brand-700` on `brand-50` | 6.09:1 | Passes |
 | Tertiary color | `brand-700` on `white` | 6.61:1 | Passes |
@@ -2164,8 +2164,6 @@ Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for bu
 | Destructive Primary | `white` on `error-600` | 4.83:1 | Passes |
 | Destructive Secondary gray, Tertiary, Link | `error-700` on `white` | 6.57:1 | Passes |
 | Destructive Secondary color | `error-700` on `error-50` | 6.05:1 | Passes |
-
-> **Warning:** **Open decision.** Primary Default (`white` on `brand-500`) is 3.62:1, below the 4.5:1 that DESIGN.md §8 requires for button text. Options: move Primary Default to `brand-600` (5.06:1) and Hover to `brand-700`, or record an exception. This page documents the current spec until the design team decides.
 
 ### Code
 
@@ -2188,8 +2186,8 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 .sb-btn {
   --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
-  --btn-bg: var(--brand-500); --btn-border: var(--brand-500); --btn-fg: var(--white);
-  --btn-bg-hover: var(--brand-600); --btn-border-hover: var(--brand-600); --btn-fg-hover: var(--white);
+  --btn-bg: var(--brand-600); --btn-border: var(--brand-600); --btn-fg: var(--white);
+  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-700); --btn-fg-hover: var(--white);
   --btn-bg-disabled: var(--brand-200); --btn-border-disabled: var(--brand-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--focus-ring); --btn-shadow: var(--shadow-xs);
   box-sizing: border-box;
@@ -2282,7 +2280,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
   outline: none; box-shadow: var(--btn-shadow), 0 0 0 4px var(--btn-ring);
 }
 .sb-btn[data-hierarchy^="link"]:focus-visible, .sb-btn[data-hierarchy^="link"][data-state="focus"] {
-  box-shadow: none; outline: 2px solid var(--brand-500); outline-offset: 2px;
+  box-shadow: none; outline: 2px solid var(--brand-600); outline-offset: 2px;
 }
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] {
   color: var(--btn-fg-disabled); background: var(--btn-bg-disabled); border-color: var(--btn-border-disabled);
@@ -2408,7 +2406,7 @@ For status filters. The dot stays `success-500` in every state except Disabled (
 | Focused | `gray-50` / `gray-700` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
 | Disabled | `white` / `gray-300` / `gray-300` | `gray-50` / `gray-300` / `gray-300` |
 
-> **Note:** Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-500` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
+> **Note:** Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-600` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
 
 ### Switch, toggle or actions
 
@@ -2521,7 +2519,7 @@ Tab reaches the group once, on the checked segment. ← → move and select.
 - Give the group an `aria-label` that names the choice ("Rentang waktu").
 - A switch uses roving `tabindex`: the checked segment has `tabindex="0"`, the others `-1`, and ← → move the choice.
 - Icon-only segments need an `aria-label` and a tooltip with the same text.
-- Focus shows a 2 px `brand-500` outline inside the segment on `:focus-visible`.
+- Focus shows a 2 px `brand-600` outline inside the segment on `:focus-visible`.
 
 | Segment | Text on fill | Ratio | AA |
 | --- | --- | --- | --- |
@@ -2583,7 +2581,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 }
 .sb-btn-group > button:focus-visible, .sb-btn-group > button[data-state="focus"] {
   --seg-icon: var(--gray-700); color: var(--gray-700); background: var(--gray-50);
-  outline: 2px solid var(--brand-500); outline-offset: -2px; /* inside, because the group clips */
+  outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
   --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50);
@@ -3228,14 +3226,14 @@ Icon card titles are Text md in both sizes; `md` raises the price from Display s
 | State | Unselected | Selected |
 | --- | --- | --- |
 | Default | `white`, `gray-200` border | `brand-50` fill, `brand-300` border |
-| Hover | `white`, `brand-300` border | `brand-50` fill, `brand-500` border |
+| Hover | `white`, `brand-300` border | `brand-50` fill, `brand-600` border |
 | Focused | `white`, `brand-300` border + 4 px `focus-ring` ring | `brand-50`, `brand-300` border + 4 px `focus-ring` ring |
 | Disabled | `gray-50` fill, `gray-200` border | `gray-50` fill, `gray-200` border |
 
 - Only the card shows the focus ring; the control inside keeps its Default or checked look.
 - Selected text: title `brand-800`, subtitle and description `brand-600`. Disabled text stays `gray-700` / `gray-500`, selected or not.
 - Icon card: the header takes the fill and border, the body stays white with a `gray-200` border.
-- Payment icon, selected: "Set as default" (Link gray) turns `brand-500`.
+- Payment icon, selected: "Set as default" (Link gray) turns `brand-600`.
 
 ### Do and don't
 
@@ -3296,9 +3294,7 @@ Icon card titles are Text md in both sizes; `md` raises the price from Display s
 | Selected title `brand-800` on `brand-50` | 7.94:1 | 4.5:1 | Passes |
 | Selected subtitle, description `brand-600` on `brand-50` | 4.65:1 | 4.5:1 | Passes |
 | Unselected title `gray-700`, description `gray-500` on `white` | 10.46:1, 4.97:1 | 4.5:1 | Passes |
-| Selected "Set as default" `brand-500` on `brand-50` | 3.33:1 | 4.5:1 | **Fails** |
-
-> **Warning:** Selected Payment icon cards turn "Set as default" `brand-500`, which is 3.33:1 on `brand-50`. `brand-600` (4.65:1) passes and already matches the Edit link. Decision for the design team.
+| Selected "Set as default" `brand-600` on `brand-50` | 4.65:1 | 4.5:1 | Passes |
 
 ### Code
 
@@ -3342,7 +3338,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 /* States. Disabled comes last so it wins over Selected. */
 .sb-cg-item:has(.sb-check-input:checked) { --cg-bg: var(--brand-50); --cg-bd: var(--brand-300); --cg-title: var(--brand-800); --cg-text: var(--brand-600); }
 .sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-300); }
-.sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-500); }
+.sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-600); }
 .sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--brand-300); box-shadow: 0 0 0 4px var(--focus-ring); }
 .sb-cg-item:has(.sb-check-input:disabled) { --cg-bg: var(--gray-50); --cg-bd: var(--gray-200); --cg-title: var(--gray-700); --cg-text: var(--gray-500); cursor: not-allowed; }
 
@@ -3371,7 +3367,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 
 /* Payment icon: text links sit above the stretched label, so they never toggle the card. */
 .sb-cg-actions { position: relative; z-index: 2; display: flex; gap: 12px; margin-top: 8px; }
-.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--brand-500); --btn-fg-hover: var(--brand-600); }
+.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--brand-600); --btn-fg-hover: var(--brand-700); }
 
 /* Icon card: the header carries the selection colours, the body stays white. */
 .sb-cg-item[data-type="card"] { flex-direction: column; align-items: stretch; gap: 0; padding: 0; background: var(--white); border-color: var(--gray-200); }
@@ -3607,7 +3603,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 }
 .sb-menu-icon > svg { width: 20px; height: 20px; }
 .sb-menu-icon:hover, .sb-menu-icon[aria-expanded="true"] { background: var(--gray-50); color: var(--gray-700); }
-.sb-menu-icon:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.sb-menu-icon:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-menu-avatar {
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full);
@@ -3644,7 +3640,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 }
 .sb-menu-item > svg { width: 16px; height: 16px; flex: none; }
 .sb-menu-item:hover, .sb-menu-item:focus { outline: none; background: var(--gray-50); }
-.sb-menu-item:focus-visible { box-shadow: inset 0 0 0 2px var(--brand-500); }
+.sb-menu-item:focus-visible { box-shadow: inset 0 0 0 2px var(--brand-600); }
 .sb-menu-label { flex: 1; }
 .sb-menu-kbd { margin-inline-start: 16px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
 .sb-menu-item[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
@@ -4557,7 +4553,7 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 }
 .sb-input-help > svg { width: 16px; height: 16px; }
 .sb-input-help:hover, .sb-input-help:focus-visible { color: var(--gray-500); }
-.sb-input-help:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.sb-input-help:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-input:has([aria-invalid="true"]) .sb-input-help { color: var(--error-500); }
 .sb-input-tip {
   position: absolute; z-index: 10; bottom: calc(100% + 8px); inset-inline-end: 4px;
@@ -4574,7 +4570,7 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
   font: 400 var(--text-md) var(--font); color: var(--gray-900);
   background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center / 20px;
 }
-.sb-input-select:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; border-radius: var(--radius-sm); }
+.sb-input-select:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 .sb-input[data-type="leading-dropdown"] .sb-input-select { margin-inline-end: 4px; } /* dropdown padding 10 12 10 14 */
 .sb-input-prefix { flex: none; font: 400 var(--text-md) var(--font); color: var(--gray-500); }
 .sb-input[data-type="leading-text"] { padding-inline-start: 0; gap: 0; }
@@ -5415,7 +5411,7 @@ Switch between panels of content in one place: the sections of a claim, the view
 | --- | --- | --- |
 | 1 | Tab list | One row, gap 8, on a 1 px `gray-300` baseline. Scrolls sideways when the tabs do not fit. |
 | 2 | Tab | 52 high (sm 44), padding `0 24` (sm `0 16`), radius `8 8 0 0`, 1 px `gray-300` border, `brand-50` fill, `brand-700` text. Hover: `brand-100` fill. |
-| 3 | Selected tab | `brand-500` fill and border, `white` text and icon. Its bottom edge covers the baseline. |
+| 3 | Selected tab | `brand-600` fill and border, `white` text and icon. Its bottom edge covers the baseline. |
 | 4 | Icon | Optional. 20 px, gap 8, the text colour. Every tab in a row has one, or none has. |
 | 5 | Label | Text sm / Medium, Title Case, never wraps. |
 | 6 | Badge | Optional count, Badge sm. Error for counts that need action (FWA findings), Gray for plain totals. `white` fill on the selected Folder tab. |
@@ -5480,7 +5476,7 @@ Switch between panels of content in one place: the sections of a claim, the view
 
 #### Underline
 
-Text `gray-500`, hover `gray-700` with a `gray-300` line, selected `brand-700` with a 2 px `brand-500` line on a `gray-200` baseline. Padding `0 4`, gap 16.
+Text `gray-500`, hover `gray-700` with a `gray-300` line, selected `brand-700` with a 2 px `brand-600` line on a `gray-200` baseline. Padding `0 4`, gap 16.
 
 ```html
 <div class="sb-tabs" data-type="underline" role="tablist" aria-label="Status klaim">
@@ -5604,12 +5600,12 @@ md for the main level, sm for sub-levels and dense cards. The text stays Text sm
 
 | Type | Default (fill / text) | Hover | Selected | Disabled |
 | --- | --- | --- | --- | --- |
-| Folder | `brand-50` / `brand-700`, `gray-300` border | `brand-100` fill | `brand-500` / `white`, `brand-500` border | `gray-50` / `gray-300`, `gray-200` border |
-| Underline | none / `gray-500` | `gray-700`, 2 px `gray-300` line | `brand-700`, 2 px `brand-500` line | `gray-300` |
+| Folder | `brand-50` / `brand-700`, `gray-300` border | `brand-100` fill | `brand-600` / `white`, `brand-600` border | `gray-50` / `gray-300`, `gray-200` border |
+| Underline | none / `gray-500` | `gray-700`, 2 px `gray-300` line | `brand-700`, 2 px `brand-600` line | `gray-300` |
 | Segmented | none / `gray-500` | `gray-700` | `white` / `gray-800`, `gray-200` border, `shadow-xs` | `gray-300` |
 | Vertical | none / `gray-700`, icon `gray-500` | `gray-50` / `gray-800` | `brand-50` / `brand-700` | `gray-300` |
 
-> **Note:** Focus is a 2 px `brand-500` outline inside the tab, as in Button group, because the scrolling row clips anything drawn outside. On the selected Folder tab the outline is `white`, 4 px in.
+> **Note:** Focus is a 2 px `brand-600` outline inside the tab, as in Button group, because the scrolling row clips anything drawn outside. On the selected Folder tab the outline is `white`, 4 px in.
 
 ### Overflow
 
@@ -5809,9 +5805,9 @@ When the tabs do not fit, the row scrolls sideways. Arrow keys move focus and sc
 | Tab | Text on fill | Ratio | AA |
 | --- | --- | --- | --- |
 | Folder, default | `brand-700` on `brand-50` | 6.09:1 | Passes |
-| Folder, selected | `white` on `brand-500` | 3.62:1 | Fails for 14 px text. Same open decision as the Primary button |
+| Folder, selected | `white` on `brand-600` | 5.06:1 | Passes |
 | Underline, default | `gray-500` on `white` | 4.97:1 | Passes |
-| Underline, selected | `brand-700` on `white` | 6.61:1 | Passes; the `brand-500` line is 3.62:1 (3:1 needed) |
+| Underline, selected | `brand-700` on `white` | 6.61:1 | Passes; the `brand-600` line is 5.06:1 (3:1 needed) |
 | Segmented, default | `gray-500` on `gray-50` | 4.76:1 | Passes |
 | Segmented, selected | `gray-800` on `white` | 14.70:1 | Passes |
 | Vertical, selected | `brand-700` on `brand-50` | 6.09:1 | Passes |
@@ -5858,11 +5854,11 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 }
 .sb-tab > svg { width: 20px; height: 20px; flex: none; color: var(--tab-icon); }
 /* Inside the tab, like Button group: the scrolling row clips anything drawn outside. */
-.sb-tab:is(:focus-visible, [data-state="focus"]) { outline: 2px solid var(--brand-500); outline-offset: -2px; }
+.sb-tab:is(:focus-visible, [data-state="focus"]) { outline: 2px solid var(--brand-600); outline-offset: -2px; }
 .sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
-.sb-tab-panel:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; border-radius: var(--radius-sm); }
+.sb-tab-panel:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 
-/* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-500. */
+/* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-600. */
 .sb-tabs[data-type="folder"] { --tab-h: 52px; --tab-px: 24px; box-shadow: inset 0 -1px var(--gray-300); }
 .sb-tabs[data-type="folder"][data-size="sm"] { --tab-h: 44px; --tab-px: 16px; }
 .sb-tabs[data-type="folder"] > .sb-tab {
@@ -5870,7 +5866,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
   border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-100); }
-.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-500); border-color: var(--brand-500); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-600); border-color: var(--brand-600); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
 .sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-50); border-color: var(--gray-200); }
@@ -5880,7 +5876,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tabs[data-type="underline"][data-size="sm"] { --tab-h: 36px; }
 .sb-tabs[data-type="underline"] > .sb-tab { box-shadow: inset 0 -2px transparent; }
 .sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); box-shadow: inset 0 -2px var(--gray-300); }
-.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--brand-700); box-shadow: inset 0 -2px var(--brand-500); }
+.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--brand-700); box-shadow: inset 0 -2px var(--brand-600); }
 
 /* Segmented: 2 to 4 short views of one card. 40 high in all, like Button md; radius 8 = 4 inner + 4 padding. */
 .sb-tabs[data-type="segmented"] {
@@ -6569,7 +6565,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 .sb-help { display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full); background: none; color: var(--gray-400); cursor: help; }
 .sb-help > svg { width: 16px; height: 16px; }
 .sb-help:hover, .sb-help:focus-visible, .sb-tooltip-wrap[data-state="open"] > .sb-help { color: var(--gray-500); }
-.sb-help:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.sb-help:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 /* After a label: label + help icon on one line, 4 apart. */
 .sb-help-row { display: inline-flex; align-items: center; gap: 4px; }
 
@@ -7149,7 +7145,7 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-btn { width: 28px; height: 28px; }
 .sb-wys-btn:hover { background: var(--gray-50); color: var(--gray-600); }
 .sb-wys-btn[aria-pressed="true"] { background: var(--brand-100); color: var(--brand-700); }
-.sb-wys-btn:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 0; }
+.sb-wys-btn:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
 
 /* Tooltip on each icon: name and shortcut, Dark tooltip spec. */
 .sb-wys-btn[data-tip]::after {

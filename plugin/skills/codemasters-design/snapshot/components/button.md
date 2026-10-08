@@ -62,13 +62,13 @@ Seven levels, from the one next step (Primary) to links inside text. Primary, Se
 
 | Hierarchy | Default (fill / border / text) | Hover | Disabled | Focused |
 | --- | --- | --- | --- | --- |
-| Primary | `brand-500` / `brand-500` / `white` | `brand-600` / `brand-600` / `white` | `brand-200` / `brand-200` / `white` | 4 px `focus-ring` ring |
+| Primary | `brand-600` / `brand-600` / `white` | `brand-700` / `brand-700` / `white` | `brand-200` / `brand-200` / `white` | 4 px `focus-ring` ring |
 | Secondary gray | `white` / `gray-300` / `gray-700` | `gray-50` / `gray-300` / `gray-800` | `white` / `gray-200` / `gray-300` | 4 px `focus-ring` ring |
 | Secondary color | `brand-50` / `brand-50` / `brand-700` | `brand-100` / `brand-100` / `brand-700` | `brand-50` / `brand-50` / `brand-300` | 4 px `focus-ring` ring |
 | Tertiary color | none / none / `brand-700` | `brand-50` fill | text `gray-300` | 4 px `focus-ring` ring |
 | Tertiary gray | none / none / `gray-500` | `gray-50` fill, text `gray-600` | text `gray-300` | 4 px `focus-ring` ring |
-| Link color | text `brand-600`, no padding | text `brand-700` | text `gray-300` | 2 px `brand-500` outline |
-| Link gray | text `gray-500`, no padding | text `gray-600` | text `gray-300` | 2 px `brand-500` outline |
+| Link color | text `brand-600`, no padding | text `brand-700` | text `gray-300` | 2 px `brand-600` outline |
+| Link gray | text `gray-500`, no padding | text `gray-600` | text `gray-300` | 2 px `brand-600` outline |
 
 ## Sizes
 
@@ -165,7 +165,7 @@ Hover moves one step darker, Focused adds a ring for keyboard users, Disabled fa
 
 - Colour changes take 150 ms with `--ease`. Press is `scale(.96)`.
 - Focused shows only on `:focus-visible`, so a mouse click leaves no ring.
-- The ring is `0 0 0 4px var(--focus-ring)` (`brand-500` at 20 %) in every hierarchy, on top of `shadow-xs` where the variant has one. Link hierarchies have no box, so they use the global 2 px `brand-500` outline with 2 px offset.
+- The ring is `0 0 0 4px var(--focus-ring)` (`brand-600` at 20 %) in every hierarchy, on top of `shadow-xs` where the variant has one. Link hierarchies have no box, so they use the global 2 px `brand-600` outline with 2 px offset.
 - Disabled has no hover and no press, and shows `cursor: not-allowed`.
 
 ## Destructive
@@ -188,7 +188,7 @@ Destructive=True swaps Brand and Gray for Error. Use it only when the destructiv
 | Secondary gray | `white` / `error-300` / `error-700` | `error-50` fill, text `error-800` | border `error-200`, text `error-300` | 4 px `error-100` ring |
 | Secondary color | `error-50` / `error-50` / `error-700` | `error-100` | `error-50`, text `error-300` | 4 px `error-100` ring |
 | Tertiary color, Tertiary gray | text `error-700` | `error-50` fill (gray: text `error-800`) | text `error-300` | 4 px `error-100` ring |
-| Link color, Link gray | text `error-700` | text `error-800` | text `error-300` | 2 px `brand-500` outline |
+| Link color, Link gray | text `error-700` | text `error-800` | text `error-300` | 2 px `brand-600` outline |
 
 ## Button row
 
@@ -275,8 +275,8 @@ Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for bu
 
 | Variant | Text on fill | Ratio | AA |
 | --- | --- | --- | --- |
-| Primary | `white` on `brand-500` | 3.62:1 | **Fails** |
-| Primary, hover | `white` on `brand-600` | 5.06:1 | Passes |
+| Primary | `white` on `brand-600` | 5.06:1 | Passes |
+| Primary, hover | `white` on `brand-700` | 6.61:1 | Passes |
 | Secondary gray | `gray-700` on `white` | 10.46:1 | Passes |
 | Secondary color | `brand-700` on `brand-50` | 6.09:1 | Passes |
 | Tertiary color | `brand-700` on `white` | 6.61:1 | Passes |
@@ -285,8 +285,6 @@ Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for bu
 | Destructive Primary | `white` on `error-600` | 4.83:1 | Passes |
 | Destructive Secondary gray, Tertiary, Link | `error-700` on `white` | 6.57:1 | Passes |
 | Destructive Secondary color | `error-700` on `error-50` | 6.05:1 | Passes |
-
-> **Warning:** **Open decision.** Primary Default (`white` on `brand-500`) is 3.62:1, below the 4.5:1 that DESIGN.md §8 requires for button text. Options: move Primary Default to `brand-600` (5.06:1) and Hover to `brand-700`, or record an exception. This page documents the current spec until the design team decides.
 
 ## Code
 
@@ -309,8 +307,8 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 .sb-btn {
   --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
-  --btn-bg: var(--brand-500); --btn-border: var(--brand-500); --btn-fg: var(--white);
-  --btn-bg-hover: var(--brand-600); --btn-border-hover: var(--brand-600); --btn-fg-hover: var(--white);
+  --btn-bg: var(--brand-600); --btn-border: var(--brand-600); --btn-fg: var(--white);
+  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-700); --btn-fg-hover: var(--white);
   --btn-bg-disabled: var(--brand-200); --btn-border-disabled: var(--brand-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--focus-ring); --btn-shadow: var(--shadow-xs);
   box-sizing: border-box;
@@ -403,7 +401,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
   outline: none; box-shadow: var(--btn-shadow), 0 0 0 4px var(--btn-ring);
 }
 .sb-btn[data-hierarchy^="link"]:focus-visible, .sb-btn[data-hierarchy^="link"][data-state="focus"] {
-  box-shadow: none; outline: 2px solid var(--brand-500); outline-offset: 2px;
+  box-shadow: none; outline: 2px solid var(--brand-600); outline-offset: 2px;
 }
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] {
   color: var(--btn-fg-disabled); background: var(--btn-bg-disabled); border-color: var(--btn-border-disabled);
@@ -440,7 +438,6 @@ The tokens `button.css` reads, with their values. Generated from the stylesheet.
   --brand-100: #dfeafb;
   --brand-200: #c5dbfa;
   --brand-300: #9fc5f6;
-  --brand-500: #5183eb;
   --brand-600: #3966e0;
   --brand-700: #2e51cd;
   --error-50: #fef3f2;
@@ -454,7 +451,7 @@ The tokens `button.css` reads, with their values. Generated from the stylesheet.
   --radius-md: 8px;
   --radius-full: 9999px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;
   --text-lg: 18px/28px;

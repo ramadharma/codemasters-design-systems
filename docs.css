@@ -5,7 +5,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; }
 body { margin: 0; font: 400 var(--text-md) var(--font); color: var(--gray-900); background: var(--white); -webkit-font-smoothing: antialiased; }
-:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 h1, h2, h3, p, figure, pre, ul, ol { margin: 0; }
 button, input, select { font: inherit; color: inherit; }
 code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
@@ -299,7 +299,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .f-swatch { display: grid; gap: 4px; margin: 0; padding: 0; border: 0; background: none; text-align: start; font: inherit; }
 .f-chip { display: flex; align-items: flex-end; justify-content: space-between; height: 56px; padding: 8px; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(16,24,40,.06); font: 600 var(--text-sm) var(--font); }
 .f-chip small { font: 500 10px/1 var(--font); opacity: .85; } /* docs-only caption */
-.f-swatch:is(:hover, :focus-visible) .f-chip { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.f-swatch:is(:hover, :focus-visible) .f-chip { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .f-swatch:focus-visible { outline: none; }
 .f-step { font: 600 var(--text-xs) var(--font); color: var(--gray-900); }
 .f-hex { font: 400 var(--text-xs) var(--font); color: var(--gray-500); font-variant-numeric: tabular-nums; }
@@ -343,7 +343,7 @@ p.f-font-glyphs { margin: 0; font: 400 var(--text-lg) var(--font); color: var(--
 .f-shadows { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 32px; width: 100%; padding: 8px; }
 .f-shadow { display: grid; align-content: end; gap: 4px; height: 120px; margin: 0; padding: 16px; border: 0; border-radius: 12px; background: var(--white); text-align: start; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
 .f-shadow strong { font: 600 var(--text-sm) var(--font); color: var(--gray-900); }
-.f-shadow:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.f-shadow:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .ex-preview:has(> .f-shadows, > .f-layers) { background: var(--gray-50); }
 .f-layers { width: 100%; max-width: 480px; }
 .f-layer { position: relative; border-radius: 12px; }
@@ -373,7 +373,7 @@ p.f-font-glyphs { margin: 0; font: 400 var(--text-lg) var(--font); color: var(--
 .f-grid-frame figcaption { margin-top: 8px; }
 .f-radius { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; }
 .f-radius-tile { display: grid; justify-items: center; gap: 8px; margin: 0; text-align: center; }
-.f-radius-tile span { width: 64px; height: 64px; border: 2px solid var(--brand-500); background: var(--brand-50); }
+.f-radius-tile span { width: 64px; height: 64px; border: 2px solid var(--brand-600); background: var(--brand-50); }
 .f-dd-stack { display: grid; width: 160px; }
 .f-dd-stack span { height: 24px; border-radius: 4px; background: var(--brand-100); }
 @media (max-width: 860px) {

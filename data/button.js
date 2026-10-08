@@ -16,8 +16,8 @@
 
 .sb-btn {
   --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
-  --btn-bg: var(--brand-500); --btn-border: var(--brand-500); --btn-fg: var(--white);
-  --btn-bg-hover: var(--brand-600); --btn-border-hover: var(--brand-600); --btn-fg-hover: var(--white);
+  --btn-bg: var(--brand-600); --btn-border: var(--brand-600); --btn-fg: var(--white);
+  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-700); --btn-fg-hover: var(--white);
   --btn-bg-disabled: var(--brand-200); --btn-border-disabled: var(--brand-200); --btn-fg-disabled: var(--white);
   --btn-ring: var(--focus-ring); --btn-shadow: var(--shadow-xs);
   box-sizing: border-box;
@@ -110,7 +110,7 @@
   outline: none; box-shadow: var(--btn-shadow), 0 0 0 4px var(--btn-ring);
 }
 .sb-btn[data-hierarchy^="link"]:focus-visible, .sb-btn[data-hierarchy^="link"][data-state="focus"] {
-  box-shadow: none; outline: 2px solid var(--brand-500); outline-offset: 2px;
+  box-shadow: none; outline: 2px solid var(--brand-600); outline-offset: 2px;
 }
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] {
   color: var(--btn-fg-disabled); background: var(--btn-bg-disabled); border-color: var(--btn-border-disabled);
@@ -275,13 +275,13 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
             type: 'table',
             head: ['Hierarchy', 'Default (fill / border / text)', 'Hover', 'Disabled', 'Focused'],
             rows: [
-              ['Primary', '`brand-500` / `brand-500` / `white`', '`brand-600` / `brand-600` / `white`', '`brand-200` / `brand-200` / `white`', '4 px `focus-ring` ring'],
+              ['Primary', '`brand-600` / `brand-600` / `white`', '`brand-700` / `brand-700` / `white`', '`brand-200` / `brand-200` / `white`', '4 px `focus-ring` ring'],
               ['Secondary gray', '`white` / `gray-300` / `gray-700`', '`gray-50` / `gray-300` / `gray-800`', '`white` / `gray-200` / `gray-300`', '4 px `focus-ring` ring'],
               ['Secondary color', '`brand-50` / `brand-50` / `brand-700`', '`brand-100` / `brand-100` / `brand-700`', '`brand-50` / `brand-50` / `brand-300`', '4 px `focus-ring` ring'],
               ['Tertiary color', 'none / none / `brand-700`', '`brand-50` fill', 'text `gray-300`', '4 px `focus-ring` ring'],
               ['Tertiary gray', 'none / none / `gray-500`', '`gray-50` fill, text `gray-600`', 'text `gray-300`', '4 px `focus-ring` ring'],
-              ['Link color', 'text `brand-600`, no padding', 'text `brand-700`', 'text `gray-300`', '2 px `brand-500` outline'],
-              ['Link gray', 'text `gray-500`, no padding', 'text `gray-600`', 'text `gray-300`', '2 px `brand-500` outline'],
+              ['Link color', 'text `brand-600`, no padding', 'text `brand-700`', 'text `gray-300`', '2 px `brand-600` outline'],
+              ['Link gray', 'text `gray-500`, no padding', 'text `gray-600`', 'text `gray-300`', '2 px `brand-600` outline'],
             ],
           },
         ],
@@ -349,7 +349,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
             items: [
               'Colour changes take 150 ms with `--ease`. Press is `scale(.96)`.',
               'Focused shows only on `:focus-visible`, so a mouse click leaves no ring.',
-              'The ring is `0 0 0 4px var(--focus-ring)` (`brand-500` at 20 %) in every hierarchy, on top of `shadow-xs` where the variant has one. Link hierarchies have no box, so they use the global 2 px `brand-500` outline with 2 px offset.',
+              'The ring is `0 0 0 4px var(--focus-ring)` (`brand-600` at 20 %) in every hierarchy, on top of `shadow-xs` where the variant has one. Link hierarchies have no box, so they use the global 2 px `brand-600` outline with 2 px offset.',
               'Disabled has no hover and no press, and shows `cursor: not-allowed`.',
             ],
           },
@@ -370,7 +370,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
               ['Secondary gray', '`white` / `error-300` / `error-700`', '`error-50` fill, text `error-800`', 'border `error-200`, text `error-300`', '4 px `error-100` ring'],
               ['Secondary color', '`error-50` / `error-50` / `error-700`', '`error-100`', '`error-50`, text `error-300`', '4 px `error-100` ring'],
               ['Tertiary color, Tertiary gray', 'text `error-700`', '`error-50` fill (gray: text `error-800`)', 'text `error-300`', '4 px `error-100` ring'],
-              ['Link color, Link gray', 'text `error-700`', 'text `error-800`', 'text `error-300`', '2 px `brand-500` outline'],
+              ['Link color, Link gray', 'text `error-700`', 'text `error-800`', 'text `error-300`', '2 px `brand-600` outline'],
             ],
           },
         ],
@@ -447,8 +447,8 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
             type: 'table',
             head: ['Variant', 'Text on fill', 'Ratio', 'AA'],
             rows: [
-              ['Primary', '`white` on `brand-500`', '3.62:1', '**Fails**'],
-              ['Primary, hover', '`white` on `brand-600`', '5.06:1', 'Passes'],
+              ['Primary', '`white` on `brand-600`', '5.06:1', 'Passes'],
+              ['Primary, hover', '`white` on `brand-700`', '6.61:1', 'Passes'],
               ['Secondary gray', '`gray-700` on `white`', '10.46:1', 'Passes'],
               ['Secondary color', '`brand-700` on `brand-50`', '6.09:1', 'Passes'],
               ['Tertiary color', '`brand-700` on `white`', '6.61:1', 'Passes'],
@@ -458,11 +458,6 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
               ['Destructive Secondary gray, Tertiary, Link', '`error-700` on `white`', '6.57:1', 'Passes'],
               ['Destructive Secondary color', '`error-700` on `error-50`', '6.05:1', 'Passes'],
             ],
-          },
-          {
-            type: 'note',
-            tone: 'warning',
-            text: '**Open decision.** Primary Default (`white` on `brand-500`) is 3.62:1, below the 4.5:1 that DESIGN.md §8 requires for button text. Options: move Primary Default to `brand-600` (5.06:1) and Hover to `brand-700`, or record an exception. This page documents the current spec until the design team decides.',
           },
         ],
       },

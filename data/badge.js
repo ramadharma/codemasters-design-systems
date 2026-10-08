@@ -47,7 +47,7 @@
 }
 .sb-badge-x > svg { width: 12px; height: 12px; }
 .sb-badge-x:hover { color: var(--bdg-fg); }
-.sb-badge-x:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 0; }
+.sb-badge-x:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
 
 /* Sizes. Height comes from the text line plus the vertical padding (sm 2, md 2, lg 4). */
 .sb-badge[data-size="md"] { --bdg-h: 24px; --bdg-px: 10px; --bdg-type: var(--text-sm); }
@@ -93,7 +93,7 @@ ${GROUP_COLORS.slice(1).map(c => {
     const f = family(c);
     return `.sb-badge-group[data-color="${c}"] { --g50: var(--${f}-50); --g100: var(--${f}-100); --g500: var(--${f}-500); --g600: var(--${f === 'gray' ? 'gray-700' : `${f}-600`}); --g700: var(--${f}-700); }`;
   }).join('\n')}
-a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 `;
 
   // Round Indonesian flag and a placeholder avatar (DESIGN.md: never invent a person's photo).

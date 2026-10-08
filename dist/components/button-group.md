@@ -115,7 +115,7 @@ For status filters. The dot stays `success-500` in every state except Disabled (
 | Focused | `gray-50` / `gray-700` / `gray-700` | `gray-50` / `gray-800` / `gray-800` |
 | Disabled | `white` / `gray-300` / `gray-300` | `gray-50` / `gray-300` / `gray-300` |
 
-> **Note:** Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-500` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
+> **Note:** Focused has the same `gray-50` fill as Hover, plus the 2 px `brand-600` focus outline on `:focus-visible`, drawn inside the segment because the group clips its children.
 
 ## Switch, toggle or actions
 
@@ -228,7 +228,7 @@ Tab reaches the group once, on the checked segment. ← → move and select.
 - Give the group an `aria-label` that names the choice ("Rentang waktu").
 - A switch uses roving `tabindex`: the checked segment has `tabindex="0"`, the others `-1`, and ← → move the choice.
 - Icon-only segments need an `aria-label` and a tooltip with the same text.
-- Focus shows a 2 px `brand-500` outline inside the segment on `:focus-visible`.
+- Focus shows a 2 px `brand-600` outline inside the segment on `:focus-visible`.
 
 | Segment | Text on fill | Ratio | AA |
 | --- | --- | --- | --- |
@@ -290,7 +290,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 }
 .sb-btn-group > button:focus-visible, .sb-btn-group > button[data-state="focus"] {
   --seg-icon: var(--gray-700); color: var(--gray-700); background: var(--gray-50);
-  outline: 2px solid var(--brand-500); outline-offset: -2px; /* inside, because the group clips */
+  outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
   --seg-icon: var(--gray-800); color: var(--gray-800); background: var(--gray-50);
@@ -341,7 +341,7 @@ function select(seg) {
   --gray-500: #667085;
   --gray-700: #344054;
   --gray-800: #1d2939;
-  --brand-500: #5183eb;
+  --brand-600: #3966e0;
   --success-500: #12b76a;
   --radius-md: 8px;
   --radius-full: 9999px;

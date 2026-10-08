@@ -19,7 +19,7 @@ An endorsed brand family: the companies keep their own names and logos, and all 
 | Brand | Role | Logo | Blue scale |
 | --- | --- | --- | --- |
 | Codemasters | Parent company | Symbol + wordmark | To be confirmed |
-| Sembuh AI | Company (claims analysis) | Wordmark, "AI" in brand blue | Current `brand` scale (`brand-500` `#5183EB`) |
+| Sembuh AI | Company (claims analysis) | Wordmark, "AI" in brand blue | Current `brand` scale (primary `brand-600` `#3966E0`) |
 | Flipmaster | Company | To be supplied | To be confirmed |
 
 > **Note:** The Codemasters and Flipmaster blue scales are not defined yet. Until they are, every page and export uses the Sembuh AI scale.

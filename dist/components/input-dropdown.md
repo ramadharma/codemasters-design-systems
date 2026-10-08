@@ -579,7 +579,7 @@ document.addEventListener('input', ddFilter);
   --radius-full: 9999px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;
   --text-md: 16px/24px;

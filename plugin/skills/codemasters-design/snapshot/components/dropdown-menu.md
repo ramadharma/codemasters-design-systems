@@ -225,7 +225,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 }
 .sb-menu-icon > svg { width: 20px; height: 20px; }
 .sb-menu-icon:hover, .sb-menu-icon[aria-expanded="true"] { background: var(--gray-50); color: var(--gray-700); }
-.sb-menu-icon:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.sb-menu-icon:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-menu-avatar {
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full);
@@ -262,7 +262,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 }
 .sb-menu-item > svg { width: 16px; height: 16px; flex: none; }
 .sb-menu-item:hover, .sb-menu-item:focus { outline: none; background: var(--gray-50); }
-.sb-menu-item:focus-visible { box-shadow: inset 0 0 0 2px var(--brand-500); }
+.sb-menu-item:focus-visible { box-shadow: inset 0 0 0 2px var(--brand-600); }
 .sb-menu-label { flex: 1; }
 .sb-menu-kbd { margin-inline-start: 16px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
 .sb-menu-item[aria-disabled="true"] { background: none; color: var(--gray-200); cursor: not-allowed; }
@@ -362,7 +362,6 @@ document.addEventListener('keydown', menuKeydown);
   --gray-500: #667085;
   --gray-700: #344054;
   --brand-50: #f0f6fe;
-  --brand-500: #5183eb;
   --brand-600: #3966e0;
   --success-500: #12b76a;
   --radius-sm: 4px;
@@ -370,7 +369,7 @@ document.addEventListener('keydown', menuKeydown);
   --radius-full: 9999px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;
   --text-md: 16px/24px;

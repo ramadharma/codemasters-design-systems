@@ -60,7 +60,7 @@
 }
 .sb-input-help > svg { width: 16px; height: 16px; }
 .sb-input-help:hover, .sb-input-help:focus-visible { color: var(--gray-500); }
-.sb-input-help:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.sb-input-help:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-input:has([aria-invalid="true"]) .sb-input-help { color: var(--error-500); }
 .sb-input-tip {
   position: absolute; z-index: 10; bottom: calc(100% + 8px); inset-inline-end: 4px;
@@ -77,7 +77,7 @@
   font: 400 var(--text-md) var(--font); color: var(--gray-900);
   background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center / 20px;
 }
-.sb-input-select:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; border-radius: var(--radius-sm); }
+.sb-input-select:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 .sb-input[data-type="leading-dropdown"] .sb-input-select { margin-inline-end: 4px; } /* dropdown padding 10 12 10 14 */
 .sb-input-prefix { flex: none; font: 400 var(--text-md) var(--font); color: var(--gray-500); }
 .sb-input[data-type="leading-text"] { padding-inline-start: 0; gap: 0; }

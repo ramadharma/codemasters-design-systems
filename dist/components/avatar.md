@@ -394,7 +394,7 @@ function initials(name) {
   --brand-600: #3966e0;
   --success-500: #12b76a;
   --radius-full: 9999px;
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Inter', sans-serif;
   --display-xs: 24px/32px;

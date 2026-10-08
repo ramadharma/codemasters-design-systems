@@ -32,7 +32,7 @@
 }
 .sb-badge-x > svg { width: 12px; height: 12px; }
 .sb-badge-x:hover { color: var(--bdg-fg); }
-.sb-badge-x:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 0; }
+.sb-badge-x:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
 
 /* Sizes. Height comes from the text line plus the vertical padding (sm 2, md 2, lg 4). */
 .sb-badge[data-size="md"] { --bdg-h: 24px; --bdg-px: 10px; --bdg-type: var(--text-sm); }
@@ -89,4 +89,4 @@
 .sb-badge-group[data-color="error"] { --g50: var(--error-50); --g100: var(--error-100); --g500: var(--error-500); --g600: var(--error-600); --g700: var(--error-700); }
 .sb-badge-group[data-color="warning"] { --g50: var(--warning-50); --g100: var(--warning-100); --g500: var(--warning-500); --g600: var(--warning-600); --g700: var(--warning-700); }
 .sb-badge-group[data-color="success"] { --g50: var(--success-50); --g100: var(--success-100); --g500: var(--success-500); --g600: var(--success-600); --g700: var(--success-700); }
-a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }

@@ -195,7 +195,7 @@
   --blur-xl: blur(20px);
 
   /* Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible */
-  --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
+  --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
 
   /* Motion */
   --ease: cubic-bezier(.22,.61,.36,1);

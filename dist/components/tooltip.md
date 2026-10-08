@@ -212,7 +212,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 .sb-help { display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full); background: none; color: var(--gray-400); cursor: help; }
 .sb-help > svg { width: 16px; height: 16px; }
 .sb-help:hover, .sb-help:focus-visible, .sb-tooltip-wrap[data-state="open"] > .sb-help { color: var(--gray-500); }
-.sb-help:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.sb-help:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 /* After a label: label + help icon on one line, 4 apart. */
 .sb-help-row { display: inline-flex; align-items: center; gap: 4px; }
 
@@ -249,7 +249,7 @@ document.addEventListener('focusout', tooltipReset);
   --gray-500: #667085;
   --gray-700: #344054;
   --gray-900: #101828;
-  --brand-500: #5183eb;
+  --brand-600: #3966e0;
   --radius-md: 8px;
   --radius-full: 9999px;
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);

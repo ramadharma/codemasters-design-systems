@@ -71,11 +71,11 @@ document.addEventListener('keydown', tabsKeydown);`;
 }
 .sb-tab > svg { width: 20px; height: 20px; flex: none; color: var(--tab-icon); }
 /* Inside the tab, like Button group: the scrolling row clips anything drawn outside. */
-.sb-tab:is(:focus-visible, [data-state="focus"]) { outline: 2px solid var(--brand-500); outline-offset: -2px; }
+.sb-tab:is(:focus-visible, [data-state="focus"]) { outline: 2px solid var(--brand-600); outline-offset: -2px; }
 .sb-tab:disabled { --tab-icon: var(--gray-300); color: var(--gray-300); cursor: not-allowed; }
-.sb-tab-panel:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; border-radius: var(--radius-sm); }
+.sb-tab-panel:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 
-/* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-500. */
+/* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-600. */
 .sb-tabs[data-type="folder"] { --tab-h: 52px; --tab-px: 24px; box-shadow: inset 0 -1px var(--gray-300); }
 .sb-tabs[data-type="folder"][data-size="sm"] { --tab-h: 44px; --tab-px: 16px; }
 .sb-tabs[data-type="folder"] > .sb-tab {
@@ -83,7 +83,7 @@ document.addEventListener('keydown', tabsKeydown);`;
   border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-100); }
-.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-500); border-color: var(--brand-500); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-600); border-color: var(--brand-600); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
 .sb-tabs[data-type="folder"] > .sb-tab:disabled { color: var(--gray-300); background: var(--gray-50); border-color: var(--gray-200); }
@@ -93,7 +93,7 @@ document.addEventListener('keydown', tabsKeydown);`;
 .sb-tabs[data-type="underline"][data-size="sm"] { --tab-h: 36px; }
 .sb-tabs[data-type="underline"] > .sb-tab { box-shadow: inset 0 -2px transparent; }
 .sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); box-shadow: inset 0 -2px var(--gray-300); }
-.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--brand-700); box-shadow: inset 0 -2px var(--brand-500); }
+.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--brand-700); box-shadow: inset 0 -2px var(--brand-600); }
 
 /* Segmented: 2 to 4 short views of one card. 40 high in all, like Button md; radius 8 = 4 inner + 4 padding. */
 .sb-tabs[data-type="segmented"] {
@@ -245,7 +245,7 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
             rows: [
               ['1', 'Tab list', 'One row, gap 8, on a 1 px `gray-300` baseline. Scrolls sideways when the tabs do not fit.'],
               ['2', 'Tab', '52 high (sm 44), padding `0 24` (sm `0 16`), radius `8 8 0 0`, 1 px `gray-300` border, `brand-50` fill, `brand-700` text. Hover: `brand-100` fill.'],
-              ['3', 'Selected tab', '`brand-500` fill and border, `white` text and icon. Its bottom edge covers the baseline.'],
+              ['3', 'Selected tab', '`brand-600` fill and border, `white` text and icon. Its bottom edge covers the baseline.'],
               ['4', 'Icon', 'Optional. 20 px, gap 8, the text colour. Every tab in a row has one, or none has.'],
               ['5', 'Label', 'Text sm / Medium, Title Case, never wraps.'],
               ['6', 'Badge', 'Optional count, Badge sm. Error for counts that need action (FWA findings), Gray for plain totals. `white` fill on the selected Folder tab.'],
@@ -288,7 +288,7 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
           { type: 'h3', id: 'type-folder', text: 'Folder' },
           { type: 'example', html: example({ type: 'folder' }) },
           { type: 'h3', id: 'type-underline', text: 'Underline' },
-          { type: 'p', text: 'Text `gray-500`, hover `gray-700` with a `gray-300` line, selected `brand-700` with a 2 px `brand-500` line on a `gray-200` baseline. Padding `0 4`, gap 16.' },
+          { type: 'p', text: 'Text `gray-500`, hover `gray-700` with a `gray-300` line, selected `brand-700` with a 2 px `brand-600` line on a `gray-200` baseline. Padding `0 4`, gap 16.' },
           { type: 'example', html: example({ type: 'underline' }) },
           { type: 'h3', id: 'type-segmented', text: 'Segmented' },
           {
@@ -322,15 +322,15 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
             type: 'table',
             head: ['Type', 'Default (fill / text)', 'Hover', 'Selected', 'Disabled'],
             rows: [
-              ['Folder', '`brand-50` / `brand-700`, `gray-300` border', '`brand-100` fill', '`brand-500` / `white`, `brand-500` border', '`gray-50` / `gray-300`, `gray-200` border'],
-              ['Underline', 'none / `gray-500`', '`gray-700`, 2 px `gray-300` line', '`brand-700`, 2 px `brand-500` line', '`gray-300`'],
+              ['Folder', '`brand-50` / `brand-700`, `gray-300` border', '`brand-100` fill', '`brand-600` / `white`, `brand-600` border', '`gray-50` / `gray-300`, `gray-200` border'],
+              ['Underline', 'none / `gray-500`', '`gray-700`, 2 px `gray-300` line', '`brand-700`, 2 px `brand-600` line', '`gray-300`'],
               ['Segmented', 'none / `gray-500`', '`gray-700`', '`white` / `gray-800`, `gray-200` border, `shadow-xs`', '`gray-300`'],
               ['Vertical', 'none / `gray-700`, icon `gray-500`', '`gray-50` / `gray-800`', '`brand-50` / `brand-700`', '`gray-300`'],
             ],
           },
           {
             type: 'note',
-            text: 'Focus is a 2 px `brand-500` outline inside the tab, as in Button group, because the scrolling row clips anything drawn outside. On the selected Folder tab the outline is `white`, 4 px in.',
+            text: 'Focus is a 2 px `brand-600` outline inside the tab, as in Button group, because the scrolling row clips anything drawn outside. On the selected Folder tab the outline is `white`, 4 px in.',
           },
         ],
       },
@@ -388,9 +388,9 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
             head: ['Tab', 'Text on fill', 'Ratio', 'AA'],
             rows: [
               ['Folder, default', '`brand-700` on `brand-50`', '6.09:1', 'Passes'],
-              ['Folder, selected', '`white` on `brand-500`', '3.62:1', 'Fails for 14 px text. Same open decision as the Primary button'],
+              ['Folder, selected', '`white` on `brand-600`', '5.06:1', 'Passes'],
               ['Underline, default', '`gray-500` on `white`', '4.97:1', 'Passes'],
-              ['Underline, selected', '`brand-700` on `white`', '6.61:1', 'Passes; the `brand-500` line is 3.62:1 (3:1 needed)'],
+              ['Underline, selected', '`brand-700` on `white`', '6.61:1', 'Passes; the `brand-600` line is 5.06:1 (3:1 needed)'],
               ['Segmented, default', '`gray-500` on `gray-50`', '4.76:1', 'Passes'],
               ['Segmented, selected', '`gray-800` on `white`', '14.70:1', 'Passes'],
               ['Vertical, selected', '`brand-700` on `brand-50`', '6.09:1', 'Passes'],
