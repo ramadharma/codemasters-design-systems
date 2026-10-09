@@ -1,6 +1,6 @@
 // Applications: Slides. Source: the Sembuh pitch deck kit (create-sembuh-pitchdeck skill: references/*.md and the
 // layout constants in scripts/sembuh_deck.py, measured from "Sembuh AI Deck Guides.pdf"). The skill itself is not
-// changed; this page is the design-system record. Differences from the kit: Inter instead of Google Sans, colours named
+// changed; this page is the design-system record. Differences from the kit: Inter instead of Google Sans (decks keep Inter; the web uses Timeless Grotesk), colours named
 // as tokens, and the "Powered by Codemasters" endorsement.
 (() => {
   // ---- Slide mockups are drawn in canvas px (1920 x 1080) and scale with their frame: % for position, cqw for type.
@@ -9,7 +9,7 @@
   const F = v => `${(v / 19.2).toFixed(3)}cqw`;
   const box = (x, y, w, h, style = '', html = '') =>
     `<div class="f-sl" style="left: ${X(x)}; top: ${Y(y)}; width: ${X(w)};${h ? ` height: ${Y(h)};` : ''} ${style}">${html}</div>`;
-  const text = (size, weight, colour, lh = 1.4) => `font: ${weight} ${F(size)}/${lh} var(--font); color: var(--${colour});`;
+  const text = (size, weight, colour, lh = 1.4) => `font: ${weight} ${F(size)}/${lh} 'Inter', sans-serif; color: var(--${colour});`;
   const LOGO = 'assets/brand/sembuh-logo.png';
   const LOGO_W = 'assets/brand/sembuh-logo-white.png';
   const CM = 'assets/brand/codemasters-logo.png';
@@ -78,7 +78,7 @@ ${ANCHORS.map(([y, l]) => box(0, y, 1920, 0, `border-top: ${F(2)} solid var(--br
     ['footer', 16, '1.4', 'Regular', 'gray-500 (legal notice `brand-800`)', 'Source, legal notice'],
   ];
   const typeSpecimen = `<div class="f-type">
-${TYPE.map(([t, px, lh, w]) => `<div class="f-type-row"><div class="f-type-meta" style="cursor: default"><strong>${t}</strong><span>${px} px · ${px / 2} pt · ${w.split(' ')[0]}</span></div><p class="f-type-sample" style="font: ${w.startsWith('Medium') ? 500 : 400} ${Math.round(px / 2)}px/${lh} var(--font)">Klaim lebih cepat</p></div>`).join('\n')}
+${TYPE.map(([t, px, lh, w]) => `<div class="f-type-row"><div class="f-type-meta" style="cursor: default"><strong>${t}</strong><span>${px} px · ${px / 2} pt · ${w.split(' ')[0]}</span></div><p class="f-type-sample" style="font: ${w.startsWith('Medium') ? 500 : 400} ${Math.round(px / 2)}px/${lh} 'Inter', sans-serif">Klaim lebih cepat</p></div>`).join('\n')}
 </div>`;
 
   const COLOURS = [

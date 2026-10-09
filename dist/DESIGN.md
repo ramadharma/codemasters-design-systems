@@ -51,7 +51,12 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
 ## Tokens
 
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'Timeless Sans';
+  src: url('https://codemasters-design-systems.pages.dev/assets/fonts/TimelessSansVF.woff2') format('woff2');
+  font-weight: 300 800;
+  font-display: swap;
+}
 
 :root {
   /* Colour */
@@ -274,7 +279,7 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
   --ease: cubic-bezier(.22,.61,.36,1);
 
   /* Typography: font: 600 var(--text-sm) var(--font). Display md and larger add letter-spacing: var(--tracking-display) */
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --display-2xl: 72px/90px;
   --display-xl: 60px/72px;
   --display-lg: 48px/60px;
@@ -751,16 +756,25 @@ One colour pair per claim status: `50` fill and `700` text of one family (Gray: 
 
 ## Typography
 
-One typeface, Inter, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.
+One typeface, Timeless Grotesk, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.
 
 ### Typeface
 
-**Inter** (Google Fonts), fallback `sans-serif`. One typeface for display and text.
+**Timeless Grotesk**, self-hosted, fallback `sans-serif`. One typeface for display and text. It ships as one variable file, `TimelessSansVF.woff2` (weights 300 to 800); Grotesk is its default style (`STYL` axis 0), so no `font-variation-settings` is needed. Decided 2026-10-09; replaced Inter.
+
+- Text xs (12 px) is the smallest size. Status, amounts and other text that must be read at 12 px use Medium 500: Timeless has a smaller x-height than Inter.
+- IDs, claim and policy numbers use the monospace stack (`ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`): capital I and lowercase l look the same in Timeless.
+- Preload the file on pages that use it: `<link rel="preload" href="…/TimelessSansVF.woff2" as="font" type="font/woff2" crossorigin>`.
 
 `Load the font`
 
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'Timeless Sans';
+  src: url('https://codemasters-design-systems.pages.dev/assets/fonts/TimelessSansVF.woff2') format('woff2');
+  font-weight: 300 800;
+  font-display: swap;
+}
 ```
 
 ### Type scale
@@ -825,7 +839,7 @@ Colour pairing: titles and values `gray-900`, labels `gray-500`, form labels `gr
 
 ### Slides and documents
 
-- Titles Inter Semibold 600 (Bold 700 allowed for display headings), body Inter Regular or Medium.
+- Use Inter, not Timeless: Google Slides and Docs offer Inter from More fonts, Timeless has to be installed. Titles Inter Semibold 600 (Bold 700 allowed for display headings), body Inter Regular or Medium.
 - Keep the ratios of the scale, for example 40 / 24 / 16 on a 16:9 slide.
 
 ### Do and don't
@@ -849,7 +863,7 @@ Colour pairing: titles and values `gray-900`, labels `gray-500`, form labels `gr
 ```css
 :root {
   /* Typography: font: 600 var(--text-sm) var(--font). Display md and larger add letter-spacing: var(--tracking-display) */
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --display-2xl: 72px/90px;
   --display-xl: 60px/72px;
   --display-lg: 48px/60px;

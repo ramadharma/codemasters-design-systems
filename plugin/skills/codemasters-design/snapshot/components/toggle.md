@@ -236,7 +236,7 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
   --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-sm: 14px/20px;
 }
 ```

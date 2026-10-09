@@ -323,7 +323,7 @@ document.addEventListener('paste', codePaste);
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --display-xl: 60px/72px;
   --display-lg: 48px/60px;
   --text-sm: 14px/20px;

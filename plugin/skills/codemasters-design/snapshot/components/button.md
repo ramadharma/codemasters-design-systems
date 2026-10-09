@@ -443,7 +443,7 @@ The tokens `button.css` reads, with their values. Generated from the stylesheet.
   --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-lg: 18px/28px;
   --text-md: 16px/24px;
   --text-sm: 14px/20px;

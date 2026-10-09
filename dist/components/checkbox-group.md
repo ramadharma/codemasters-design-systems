@@ -436,7 +436,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
   --radius-full: 9999px;
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --display-md: 36px/44px;
   --display-sm: 30px/38px;
   --text-md: 16px/24px;

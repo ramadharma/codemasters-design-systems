@@ -192,7 +192,7 @@ Source of truth: Figma **Foundations → Typography**
 Usage notes: **Typography → Notes and documentation**
 ([node 1518-346785](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1518-346785)).
 
-Font: **Inter** (Google Fonts), fallback `sans-serif` (decided 2026-10-07; replaced Manrope). One typeface for display and text. Numbers use
+Font: **Timeless Grotesk** (self-hosted variable font `assets/fonts/TimelessSansVF.woff2`, `STYL` 0), fallback `sans-serif` (decided 2026-10-09; replaced Inter, which replaced Manrope). Slides and documents keep Inter. One typeface for display and text. Numbers use
 `font-variant-numeric: tabular-nums` in tables, KPIs and amounts. Every text uses a style from the scale below; do not
 set a size, line height or tracking by hand.
 
@@ -1276,7 +1276,12 @@ Inactive sidebar icons are `gray-400` and turn white when active.
 ## 9. Tokens to copy
 
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'Timeless Sans';
+  src: url('https://codemasters-design-systems.pages.dev/assets/fonts/TimelessSansVF.woff2') format('woff2');
+  font-weight: 300 800;
+  font-display: swap;
+}
 
 :root {
   --white: #ffffff;
@@ -1321,7 +1326,7 @@ Inactive sidebar icons are `gray-400` and turn white when active.
   --blur-sm: blur(4px); --blur-md: blur(8px); --blur-lg: blur(12px); --blur-xl: blur(20px); /* use: backdrop-filter: var(--blur-md) */
   --focus-ring: color-mix(in srgb, var(--brand-500) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   /* type scale, size/line-height. Use: font: 600 var(--text-sm) var(--font); display md+ add letter-spacing: var(--tracking-display) */
   --display-2xl: 72px/90px;
   --display-xl: 60px/72px;

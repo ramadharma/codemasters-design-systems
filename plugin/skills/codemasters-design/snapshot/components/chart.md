@@ -555,7 +555,7 @@ for (const type of ['pointerover', 'pointerout', 'pointermove', 'focusin', 'focu
   --chart-grid: var(--gray-100);
   --chart-axis: var(--gray-300);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-md: 16px/24px;
   --text-sm: 14px/20px;
   --text-xs: 12px/18px;

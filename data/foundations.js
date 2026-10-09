@@ -75,7 +75,7 @@
     ['Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible', { '--focus-ring': 'color-mix(in srgb, var(--brand-600) 20%, transparent)' }],
     ['Motion', { '--ease': 'cubic-bezier(.22,.61,.36,1)' }],
     ['Typography: font: 600 var(--text-sm) var(--font). Display md and larger add letter-spacing: var(--tracking-display)', {
-      '--font': "'Inter', sans-serif",
+      '--font': "'Timeless Sans', sans-serif",
       '--display-2xl': '72px/90px', '--display-xl': '60px/72px', '--display-lg': '48px/60px', '--display-md': '36px/44px',
       '--display-sm': '30px/38px', '--display-xs': '24px/32px',
       '--text-xl': '20px/30px', '--text-lg': '18px/28px', '--text-md': '16px/24px', '--text-sm': '14px/20px', '--text-xs': '12px/18px',
@@ -94,7 +94,9 @@
       .map(([title, t]) => `  /* ${title} */\n` + Object.entries(t).map(([k, v]) => `  ${k}: ${v};`).join('\n'))
       .join('\n\n') +
     '\n}';
-  DS.fontImport = "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');";
+  // Timeless is self-hosted (not on Google Fonts). One variable file: wght 300-800, STYL 0 = Grotesk (the default we use).
+  // docs.css declares the same face with a relative URL for this site.
+  DS.fontImport = "@font-face {\n  font-family: 'Timeless Sans';\n  src: url('https://codemasters-design-systems.pages.dev/assets/fonts/TimelessSansVF.woff2') format('woff2');\n  font-weight: 300 800;\n  font-display: swap;\n}";
   DS.tokensCss =
     ':root {\n' +
     GROUPS.map(([title, t]) => `  /* ${title} */\n` + Object.entries(t).map(([k, v]) => `  ${k}: ${v};`).join('\n')).join('\n\n') +

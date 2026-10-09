@@ -32,8 +32,8 @@
       "name": "Typography",
       "category": "Foundations",
       "status": "Ready",
-      "updated": "2026-10-07",
-      "description": "One typeface, Inter, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.",
+      "updated": "2026-10-09",
+      "description": "One typeface, Timeless Grotesk, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.",
       "path": "foundations/typography.md"
     },
     {

@@ -574,7 +574,7 @@ document.addEventListener('keydown', tabsKeydown);
   --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-sm: 14px/20px;
 }
 ```

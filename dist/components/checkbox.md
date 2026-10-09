@@ -381,7 +381,7 @@ document.addEventListener('change', selectAll);
   --radius-full: 9999px;
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-sm: 14px/20px;
 }
 ```

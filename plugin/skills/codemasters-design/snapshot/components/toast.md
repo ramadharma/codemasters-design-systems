@@ -376,7 +376,7 @@ window.toast = (function installToast(ICONS) {
   --radius-full: 9999px;
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-sm: 14px/20px;
 }
 ```

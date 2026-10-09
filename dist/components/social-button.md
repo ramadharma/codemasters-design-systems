@@ -273,7 +273,7 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
   --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-md: 16px/24px;
 }
 ```

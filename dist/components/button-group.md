@@ -351,7 +351,7 @@ function select(seg) {
   --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --pressed-inset: inset 0 1px 2px rgb(16 24 40 / .1);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-sm: 14px/20px;
 }
 ```

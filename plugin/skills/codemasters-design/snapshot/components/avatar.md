@@ -397,7 +397,7 @@ function initials(name) {
   --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --display-xs: 24px/32px;
   --text-xl: 20px/30px;
   --text-lg: 18px/28px;

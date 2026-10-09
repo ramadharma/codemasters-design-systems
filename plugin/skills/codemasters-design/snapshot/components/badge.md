@@ -421,7 +421,7 @@ a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-600); outline-of
   --radius-xl: 16px;
   --radius-full: 9999px;
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-sm: 14px/20px;
   --text-xs: 12px/18px;
 }

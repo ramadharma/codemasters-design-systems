@@ -328,7 +328,7 @@ document.addEventListener('scroll', tableScroll, true); // scroll does not bubbl
   --radius-sm: 4px;
   --radius-md: 8px;
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-sm: 14px/20px;
   --text-xs: 12px/18px;
 }

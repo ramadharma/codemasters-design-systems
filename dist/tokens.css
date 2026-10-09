@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'Timeless Sans';
+  src: url('https://codemasters-design-systems.pages.dev/assets/fonts/TimelessSansVF.woff2') format('woff2');
+  font-weight: 300 800;
+  font-display: swap;
+}
 
 :root {
   /* Colour */
@@ -221,7 +226,7 @@
   --ease: cubic-bezier(.22,.61,.36,1);
 
   /* Typography: font: 600 var(--text-sm) var(--font). Display md and larger add letter-spacing: var(--tracking-display) */
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --display-2xl: 72px/90px;
   --display-xl: 60px/72px;
   --display-lg: 48px/60px;

@@ -240,7 +240,7 @@ document.addEventListener('input', updateCounter);
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
-  --font: 'Inter', sans-serif;
+  --font: 'Timeless Sans', sans-serif;
   --text-md: 16px/24px;
   --text-sm: 14px/20px;
   --text-xs: 12px/18px;

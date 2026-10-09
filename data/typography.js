@@ -30,7 +30,7 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
 </div>`;
 
   const font = `<div class="f-font">
-  <p class="f-font-name">Inter</p>
+  <p class="f-font-name">Timeless Grotesk</p>
   <p class="f-font-glyphs">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 Rp % . , : ; ( ) ! ?</p>
 </div>`;
 
@@ -44,14 +44,19 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
     name: 'Typography',
     category: 'Foundations',
     status: 'Ready',
-    updated: '2026-10-07',
-    description: 'One typeface, Inter, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.',
+    updated: '2026-10-09',
+    description: 'One typeface, Timeless Grotesk, on an 11-step scale from Display 2xl to Text xs. Every text uses a style from the scale; never set a size or line height by hand.',
     sections: [
       {
         id: 'typeface',
         title: 'Typeface',
         blocks: [
-          { type: 'p', text: '**Inter** (Google Fonts), fallback `sans-serif`. One typeface for display and text.' },
+          { type: 'p', text: '**Timeless Grotesk**, self-hosted, fallback `sans-serif`. One typeface for display and text. It ships as one variable file, `TimelessSansVF.woff2` (weights 300 to 800); Grotesk is its default style (`STYL` axis 0), so no `font-variation-settings` is needed. Decided 2026-10-09; replaced Inter.' },
+          { type: 'list', items: [
+            'Text xs (12 px) is the smallest size. Status, amounts and other text that must be read at 12 px use Medium 500: Timeless has a smaller x-height than Inter.',
+            'IDs, claim and policy numbers use the monospace stack (`ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`): capital I and lowercase l look the same in Timeless.',
+            'Preload the file on pages that use it: `<link rel="preload" href="…/TimelessSansVF.woff2" as="font" type="font/woff2" crossorigin>`.',
+          ] },
           { type: 'example', html: font, code: false },
           { type: 'code', lang: 'css', filename: 'Load the font', code: DS.fontImport },
         ],
@@ -136,7 +141,7 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
           {
             type: 'list',
             items: [
-              'Titles Inter Semibold 600 (Bold 700 allowed for display headings), body Inter Regular or Medium.',
+              'Use Inter, not Timeless: Google Slides and Docs offer Inter from More fonts, Timeless has to be installed. Titles Inter Semibold 600 (Bold 700 allowed for display headings), body Inter Regular or Medium.',
               'Keep the ratios of the scale, for example 40 / 24 / 16 on a 16:9 slide.',
             ],
           },

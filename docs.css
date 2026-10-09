@@ -1,3 +1,4 @@
+@font-face { font-family: 'Timeless Sans'; src: url('assets/fonts/TimelessSansVF.woff2') format('woff2'); font-weight: 300 800; font-display: swap; } /* same face as DS.fontImport, relative URL */
 /* Dashboard chrome only. Tokens and component CSS come from data/*.js and are injected before this file.
    Spacing follows DESIGN.md §4.1: only 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96 (no 2, 6, 10, 14, 56).
    Off-scale values below are component specs (control heights, badge, banner) and say so. */
