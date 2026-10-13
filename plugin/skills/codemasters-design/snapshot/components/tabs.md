@@ -149,7 +149,7 @@ A `gray-50` track with a `gray-200` border, radius 8, padding 4. The selected ta
 
 ### Vertical
 
-Same look as the sidebar: radius 8, padding `0 12`, text `gray-700` with a `gray-500` icon; hover `gray-50`; selected `brand-50` fill with `brand-700` text and icon. A badge sits at the end.
+The sidebar item's shape on a light surface: radius 8, padding `0 12`, text `gray-700` with a `gray-500` icon; hover `gray-50`; selected `brand-50` fill with `brand-700` text and icon. A badge sits at the end.
 
 ```html
 <div class="sb-tabs" data-type="vertical" role="tablist" aria-label="Pengaturan akun" aria-orientation="vertical">
@@ -503,7 +503,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
 .sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--raised-sheen-light) var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
 
-/* Vertical: settings pages and long section lists. Same look as the sidebar navigation. */
+/* Vertical: settings pages and long section lists. The sidebar item's shape (radius 8) on a light surface. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
 .sb-tabs[data-type="vertical"][data-size="sm"] { --tab-h: 36px; }
 .sb-tabs[data-type="vertical"] > .sb-tab { --tab-icon: var(--gray-500); justify-content: flex-start; color: var(--gray-700); border-radius: var(--radius-md); }

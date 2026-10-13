@@ -105,7 +105,7 @@ document.addEventListener('keydown', tabsKeydown);`;
 .sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
 .sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--raised-sheen-light) var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
 
-/* Vertical: settings pages and long section lists. Same look as the sidebar navigation. */
+/* Vertical: settings pages and long section lists. The sidebar item's shape (radius 8) on a light surface. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
 .sb-tabs[data-type="vertical"][data-size="sm"] { --tab-h: 36px; }
 .sb-tabs[data-type="vertical"] > .sb-tab { --tab-icon: var(--gray-500); justify-content: flex-start; color: var(--gray-700); border-radius: var(--radius-md); }
@@ -299,7 +299,7 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
             text: 'Segmented tabs look close to a Button group but switch panels, not the data in one panel. Grafik and Tabel are two panels: tabs. Hari, Minggu, Bulan filter one chart: Button group.',
           },
           { type: 'h3', id: 'type-vertical', text: 'Vertical' },
-          { type: 'p', text: 'Same look as the sidebar: radius 8, padding `0 12`, text `gray-700` with a `gray-500` icon; hover `gray-50`; selected `brand-50` fill with `brand-700` text and icon. A badge sits at the end.' },
+          { type: 'p', text: 'The sidebar item\'s shape on a light surface: radius 8, padding `0 12`, text `gray-700` with a `gray-500` icon; hover `gray-50`; selected `brand-50` fill with `brand-700` text and icon. A badge sits at the end.' },
           { type: 'example', html: example({ type: 'vertical' }) },
         ],
       },

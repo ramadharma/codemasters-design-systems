@@ -181,6 +181,15 @@
       "path": "components/progress.md"
     },
     {
+      "slug": "sidebar",
+      "name": "Sidebar",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-13",
+      "description": "The app's main navigation: a fixed gray-900 column on the left with grouped menu items, count badges, sub-menus and the account menu. Collapses from 280 to 72 with icons and tooltips.",
+      "path": "components/sidebar.md"
+    },
+    {
       "slug": "slider",
       "name": "Slider",
       "category": "Components",
@@ -305,6 +314,8 @@
     "code/modal.js",
     "code/progress.js",
     "code/progress.css",
+    "code/sidebar.css",
+    "code/sidebar.js",
     "code/slider.css",
     "code/slider.js",
     "code/social-button.css",

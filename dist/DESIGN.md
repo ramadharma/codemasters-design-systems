@@ -27,6 +27,7 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
 - Input field
 - Modal
 - Progress bar and circle
+- Sidebar
 - Slider
 - Social button
 - Table
@@ -909,7 +910,7 @@ Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour o
 
 ### Library
 
-The 50 icons used in this documentation. Click one to copy its name.
+The 51 icons used in this documentation. Click one to copy its name.
 
 ### Code
 
@@ -6296,6 +6297,332 @@ Load `tokens.css` and `progress.css`. Add `progress.js` to update the value from
 }
 ```
 
+## Sidebar
+
+The app's main navigation: a fixed gray-900 column on the left with grouped menu items, count badges, sub-menus and the account menu. Collapses from 280 to 72 with icons and tooltips.
+
+### Usage
+
+- One sidebar per app, fixed on the left and as tall as the screen. Pages scroll on its right; the sidebar never scrolls with them.
+- Items go to pages. Actions (Buat klaim, Unduh) belong in the page header, not in the sidebar.
+- Group items under short titles ("Menu", "Manajemen"). Put the daily work first and the admin pages last.
+- Every top-level item has an icon, so the collapsed sidebar still works. Labels are one to three words in sentence case.
+- A count badge shows work waiting: Error for counts that need action (FWA findings), Gray for plain totals. Never show 0; hide the badge instead.
+- Use a sub-menu only for sections with several pages of the same kind (Rawat inap, Rawat jalan). One level only; deeper structure belongs on the page as tabs.
+- Remember the collapsed or open choice per person, so the sidebar opens the way they left it.
+
+### Anatomy
+
+| # | Part | Spec |
+| --- | --- | --- |
+| 1 | Head | 80 high, like the page header bar. White logo 20 high on the left, 32 × 32 collapse button on the right: `gray-400` chevron, hover `gray-800` fill and `white` chevron. |
+| 2 | Group title | Text xs / Semibold `gray-400`, padding `0 10`, 8 above its items. Groups sit 24 apart. |
+| 3 | Item (current page) | 44 high, radius 8, padding `0 10`, gap 12. 20 px icon and Text md / Medium label, both `gray-400`. Current page: `gray-800` fill, `white` label (Semibold) and icon. |
+| 4 | Parent item | An item with a count badge (Badge sm) and a 20 px chevron that turns up when the sub-menu is open. |
+| 5 | Sub-item | 40 high, Text sm, no icon; the label lines up with the parent's label (padding-start 42). |
+| 6 | Profile | Avatar label group md: `white` name, `gray-400` email, `selector` icon. Opens the account menu above it. 16 above, a 1 px `gray-800` divider. |
+
+### Properties
+
+| Property | Values | Code |
+| --- | --- | --- |
+| Collapsed | False (280), True (72) | `data-collapsed` on `.sb-sidebar`; the collapse button has `aria-expanded` |
+| Current page | True, False | `aria-current="page"` on the item |
+| Count badge | True, False | `<span class="sb-badge" data-size="sm">` after the label |
+| Sub-menu | Open, Folded | The parent is a `<button>` with `aria-expanded` and `aria-controls`; the `ul.sb-side-sub` is `hidden` when folded |
+| State | Default, Hover, Focused | `:hover`, `:focus-visible`. Static mockups only: `data-state="hover"` or `"focus"` |
+
+### Types
+
+#### Open
+
+280 wide. The default on screens of 1440 and up.
+
+#### Collapsed
+
+72 wide: icons only, centred, with a light Tooltip on the right on hover and focus. Group titles turn into a 1 px `gray-800` divider, counts and the name stay for screen readers. A parent holding the current page takes the `gray-800` fill. Clicking a parent opens the sidebar with its sub-menu.
+
+### States
+
+| State | Fill | Label | Icon |
+| --- | --- | --- | --- |
+| Default | none | `gray-400`, Medium | `gray-400` |
+| Hover | `gray-800` | `gray-300` | `gray-300` |
+| Focused | none, 2 px `brand-400` outline inside | `gray-400` | `gray-400` |
+| Current page | `gray-800` | `white`, Semibold | `white` |
+| Folded parent of the current page | none (collapsed: `gray-800`) | `white` | `white` |
+
+> **Note:** The focus outline is `brand-400`, not the usual `brand-600`: `brand-600` reaches only 3.51:1 on `gray-900`, `brand-400` 6.76:1.
+
+### Account menu
+
+The profile is a Dropdown menu trigger. The menu opens above the profile, left-aligned (to the right when collapsed). The last group is Keluar, after a divider.
+
+### Do and don't
+
+**Do:** The current page as a filled item with a white label.
+
+```html
+<div class="side-tile"><ul class="sb-side-list"><li><a class="sb-side-item" href="#/sidebar" aria-current="page"><svg aria-hidden="true"><!-- file-text --></svg><span class="sb-side-label">Klaim</span></a></li></ul></div>
+```
+
+**Don't:** Brand-coloured text only. It reads as a link and the item has no shape.
+
+```html
+<div class="side-tile"><ul class="sb-side-list"><li><a class="sb-side-item" href="#/sidebar" aria-current="page" style="background: none; color: var(--brand-400)"><svg aria-hidden="true"><!-- file-text --></svg><span class="sb-side-label">Klaim</span></a></li></ul></div>
+```
+
+**Do:** A count only where work is waiting.
+
+```html
+<div class="side-tile"><ul class="sb-side-list"><li><a class="sb-side-item" href="#/sidebar"><svg aria-hidden="true"><!-- signal --></svg><span class="sb-side-label">Analisis FWA</span><span class="sb-badge" data-size="sm" data-color="error">6</span></a></li></ul></div>
+```
+
+**Don't:** A badge with 0. Hide it instead.
+
+```html
+<div class="side-tile"><ul class="sb-side-list"><li><a class="sb-side-item" href="#/sidebar"><svg aria-hidden="true"><!-- signal --></svg><span class="sb-side-label">Analisis FWA</span><span class="sb-badge" data-size="sm" data-color="gray">0</span></a></li></ul></div>
+```
+
+### Accessibility
+
+- The sidebar is a `<nav aria-label="Menu utama">`. Each group is a `<ul>` labelled by its title (`aria-labelledby`).
+- Items are links (`<a href>`); the current page has `aria-current="page"`. Parents with a sub-menu are `<button>`s with `aria-expanded` and `aria-controls`.
+- The collapse button keeps one label ("Sidebar") and reports its state with `aria-expanded`.
+- Collapsed, the labels, group titles and counts are visually hidden but still read. The tooltips repeat the label, so they are `aria-hidden`.
+- The profile opens a WAI-ARIA menu: Enter, Space or ↓ opens it, Esc closes it back to the profile.
+
+| Text | On | Ratio | AA |
+| --- | --- | --- | --- |
+| Label `gray-400` | `gray-900` | 6.89:1 | Passes |
+| Hover label `gray-300` | `gray-800` | 9.97:1 | Passes |
+| Current label `white` | `gray-800` | 14.70:1 | Passes |
+| Group title `gray-400` | `gray-900` | 6.89:1 | Passes |
+| Focus outline `brand-400` | `gray-900` | 6.76:1 | Passes (3:1 needed) |
+
+### Code
+
+Load `tokens.css`, `badge.css`, `tooltip.css`, `avatar.css` and `dropdown-menu.css`, then `sidebar.css`. Add `sidebar.js`, `dropdown-menu.js` and `tooltip.js`.
+
+```html
+<nav class="sb-sidebar" aria-label="Menu utama">
+  <div class="sb-side-head">
+    <img class="sb-side-logo" src="assets/brand/sembuh-logo-white.png" alt="Sembuh AI">
+    <button class="sb-side-toggle" type="button" aria-label="Sidebar" aria-expanded="true"><svg aria-hidden="true"><!-- chevron-left --></svg></button>
+  </div>
+  <div class="sb-side-body">
+    <div class="sb-side-group">
+      <p class="sb-side-title" id="side-5-g0">Menu</p>
+      <ul class="sb-side-list" aria-labelledby="side-5-g0">
+        <li class="sb-tooltip-wrap">
+          <a class="sb-side-item" href="#/sidebar" aria-current="page"><svg aria-hidden="true"><!-- grid --></svg><span class="sb-side-label">Dashboard</span></a>
+          <span class="sb-tooltip" data-theme="light" data-arrow="left" aria-hidden="true"><span class="sb-tooltip-title">Dashboard</span></span>
+        </li>
+        <li class="sb-tooltip-wrap">
+          <a class="sb-side-item" href="#/sidebar"><svg aria-hidden="true"><!-- file-text --></svg><span class="sb-side-label">Klaim</span><span class="sb-badge" data-size="sm" data-color="gray">12</span></a>
+          <span class="sb-tooltip" data-theme="light" data-arrow="left" aria-hidden="true"><span class="sb-tooltip-title">Klaim (12)</span></span>
+        </li>
+        <li class="sb-tooltip-wrap">
+          <a class="sb-side-item" href="#/sidebar"><svg aria-hidden="true"><!-- signal --></svg><span class="sb-side-label">Analisis FWA</span><span class="sb-badge" data-size="sm" data-color="error">6</span></a>
+          <span class="sb-tooltip" data-theme="light" data-arrow="left" aria-hidden="true"><span class="sb-tooltip-title">Analisis FWA (6)</span></span>
+        </li>
+        <li class="sb-tooltip-wrap">
+          <a class="sb-side-item" href="#/sidebar"><svg aria-hidden="true"><!-- activity --></svg><span class="sb-side-label">Laporan</span></a>
+          <span class="sb-tooltip" data-theme="light" data-arrow="left" aria-hidden="true"><span class="sb-tooltip-title">Laporan</span></span>
+        </li>
+      </ul>
+    </div>
+    <div class="sb-side-group">
+      <p class="sb-side-title" id="side-5-g1">Manajemen</p>
+      <ul class="sb-side-list" aria-labelledby="side-5-g1">
+        <li class="sb-tooltip-wrap">
+          <a class="sb-side-item" href="#/sidebar"><svg aria-hidden="true"><!-- user --></svg><span class="sb-side-label">Pengguna</span></a>
+          <span class="sb-tooltip" data-theme="light" data-arrow="left" aria-hidden="true"><span class="sb-tooltip-title">Pengguna</span></span>
+        </li>
+        <li class="sb-tooltip-wrap">
+          <a class="sb-side-item" href="#/sidebar"><svg aria-hidden="true"><!-- building --></svg><span class="sb-side-label">Rumah Sakit</span></a>
+          <span class="sb-tooltip" data-theme="light" data-arrow="left" aria-hidden="true"><span class="sb-tooltip-title">Rumah Sakit</span></span>
+        </li>
+        <li class="sb-tooltip-wrap">
+          <a class="sb-side-item" href="#/sidebar"><svg aria-hidden="true"><!-- settings --></svg><span class="sb-side-label">Pengaturan</span></a>
+          <span class="sb-tooltip" data-theme="light" data-arrow="left" aria-hidden="true"><span class="sb-tooltip-title">Pengaturan</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="sb-side-foot">
+    <div class="sb-menu-wrap">
+      <button class="sb-avatar-label sb-side-profile" type="button" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="side-5-akun">
+        <span class="sb-avatar" data-size="md" aria-hidden="true">AD</span>
+        <span class="sb-avatar-label-text"><span class="sb-avatar-name">Analis D</span><span class="sb-avatar-sub">analis.d@sembuh.ai</span></span>
+        <svg aria-hidden="true"><!-- selector --></svg>
+      </button>
+      <div class="sb-menu" id="side-5-akun" role="menu" aria-label="Akun" hidden>
+        <div class="sb-menu-group" role="group">
+          <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1"><svg aria-hidden="true"><!-- user --></svg><span class="sb-menu-label">Lihat profil</span></button>
+          <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1"><svg aria-hidden="true"><!-- settings --></svg><span class="sb-menu-label">Pengaturan akun</span></button>
+        </div>
+        <div class="sb-menu-sep" role="separator"></div>
+        <div class="sb-menu-group" role="group">
+          <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1"><svg aria-hidden="true"><!-- log-out --></svg><span class="sb-menu-label">Keluar</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+```
+
+`sidebar.css`
+
+```css
+/* Sidebar, Codemasters Design System
+   Needs tokens.css, badge.css, tooltip.css, avatar.css and dropdown-menu.css for the parts inside;
+   sidebar.js for collapsing and sub-menus, dropdown-menu.js for the account menu.
+
+   <nav class="sb-sidebar" aria-label="Menu utama">
+     <div class="sb-side-head">
+       <img class="sb-side-logo" src="sembuh-logo-white.png" alt="Sembuh AI">
+       <button class="sb-side-toggle" type="button" aria-label="Sidebar" aria-expanded="true">…chevron-left…</button>
+     </div>
+     <div class="sb-side-body">
+       <div class="sb-side-group">
+         <p class="sb-side-title" id="nav-menu">Menu</p>
+         <ul class="sb-side-list" aria-labelledby="nav-menu">
+           <li class="sb-tooltip-wrap">
+             <a class="sb-side-item" href="/dashboard" aria-current="page">…icon…<span class="sb-side-label">Dashboard</span></a>
+             <span class="sb-tooltip" data-theme="light" data-arrow="left" aria-hidden="true"><span class="sb-tooltip-title">Dashboard</span></span>
+           </li>
+           <li class="sb-tooltip-wrap">
+             <button class="sb-side-item" type="button" aria-expanded="true" aria-controls="nav-klaim">…icon…<span class="sb-side-label">Klaim</span>
+               <span class="sb-badge" data-size="sm" data-color="gray">12</span>…chevron-down…</button>
+             <span class="sb-tooltip" …>…</span>
+             <ul class="sb-side-sub" id="nav-klaim"><li><a class="sb-side-item" href="…"><span class="sb-side-label">Rawat inap</span></a></li>…</ul>
+           </li>
+         </ul>
+       </div>
+     </div>
+     <div class="sb-side-foot">…Avatar label group as a Dropdown menu trigger…</div>
+   </nav>
+
+   data-collapsed   on .sb-sidebar: 72 wide, icons only; labels stay for screen readers and show as tooltips
+   aria-current     "page" on the item of the current page
+   aria-expanded    on the collapse button and on every parent item; folded sub-menus are hidden
+   data-state       hover | focus on an item. Static mockups and docs only. */
+
+.sb-sidebar {
+  box-sizing: border-box; display: flex; flex-direction: column; flex: none;
+  width: 280px; height: 100%; padding: 0 16px 16px;
+  background: var(--gray-900); font-family: var(--font);
+  transition: width 200ms var(--ease);
+}
+.sb-sidebar[data-collapsed] { width: 72px; }
+
+/* Head: 80 high, the height of the page header bar, so both bottoms line up. */
+.sb-side-head { display: flex; flex: none; align-items: center; justify-content: space-between; gap: 8px; height: 80px; padding-inline-start: 10px; }
+.sb-side-logo { display: block; width: auto; height: 20px; }
+.sb-side-toggle {
+  display: inline-grid; place-items: center; flex: none; width: 32px; height: 32px; margin: 0; padding: 0;
+  border: 0; border-radius: var(--radius-md); background: none; color: var(--gray-400); cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-side-toggle > svg { width: 20px; height: 20px; transition: rotate 200ms var(--ease); }
+.sb-side-toggle:hover { background: var(--gray-800); color: var(--white); }
+.sb-side-toggle:focus-visible { outline: 2px solid var(--brand-400); outline-offset: 0; }
+
+/* Body: groups 24 apart; scrolls when the menu is taller than the screen. */
+.sb-side-body { display: grid; flex: 1; align-content: start; gap: 24px; min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--gray-700) transparent; }
+.sb-side-title { margin: 0 0 8px; padding-inline: 10px; font: 600 var(--text-xs) var(--font); color: var(--gray-400); }
+.sb-side-list, .sb-side-sub { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.sb-side-list > li { display: block; } /* each li is a .sb-tooltip-wrap, for the collapsed tooltip */
+.sb-side-sub { padding-top: 4px; }
+.sb-side-sub[hidden] { display: none; }
+
+/* Item: 44 high, radius 8. Icon and label share one colour in every state. Padding 10 puts the 20 px icon in the middle of the 72 px collapsed sidebar, so it never moves. */
+.sb-side-item {
+  box-sizing: border-box; display: flex; align-items: center; gap: 12px;
+  width: 100%; height: 44px; margin: 0; padding: 0 10px; border: 0; border-radius: var(--radius-md);
+  background: none; font: 500 var(--text-md) var(--font); color: var(--gray-400); text-align: start; text-decoration: none; white-space: nowrap;
+  cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-side-item > svg { width: 20px; height: 20px; flex: none; }
+.sb-side-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.sb-side-item > .sb-badge { flex: none; }
+.sb-side-item > .sb-side-chevron { transition: rotate 150ms var(--ease); }
+.sb-side-item[aria-expanded="true"] > .sb-side-chevron { rotate: 180deg; }
+.sb-side-item:is(:hover, [data-state="hover"]) { background: var(--gray-800); color: var(--gray-300); }
+.sb-side-item:is(:focus-visible, [data-state="focus"]) { outline: 2px solid var(--brand-400); outline-offset: -2px; }
+/* Current page: gray-800 fill, white label and icon, Semibold. */
+.sb-side-item[aria-current="page"] { background: var(--gray-800); color: var(--white); font-weight: 600; }
+/* A parent whose sub-menu holds the current page keeps a white label and icon while folded. */
+.sb-side-item[aria-expanded="false"]:has(+ .sb-tooltip + .sb-side-sub [aria-current="page"]) { color: var(--white); }
+/* Sub-item: 40 high, Text sm, label in line with the parent's label (10 + 20 icon + 12 gap). */
+.sb-side-sub .sb-side-item { height: 40px; padding-inline-start: 42px; font-size: var(--text-sm); }
+
+/* Foot: the signed-in person, above a gray-800 divider. Opens the account menu upwards. */
+.sb-side-foot { flex: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--gray-800); }
+.sb-side-foot > .sb-menu-wrap { display: flex; }
+.sb-side-profile { display: flex; width: 100%; }
+.sb-side-profile > .sb-avatar-label-text { flex: 1; }
+.sb-side-profile > svg { width: 20px; height: 20px; flex: none; color: var(--gray-400); }
+.sb-side-foot .sb-side-profile .sb-avatar-name, .sb-side-foot .sb-side-profile:is(:hover, :focus-visible, [data-state]) .sb-avatar-name { color: var(--white); }
+.sb-side-foot .sb-side-profile .sb-avatar-sub { color: var(--gray-400); }
+/* On gray-900 the avatar rings are gray-700 (hover, open) and brand-400 (focus) instead of gray-100 and focus-ring. */
+.sb-side-foot .sb-side-profile:is(:hover, [data-state="hover"], [aria-expanded="true"]) .sb-avatar { box-shadow: 0 0 0 4px var(--gray-700); }
+.sb-side-foot .sb-side-profile:is(:focus-visible, [data-state="focus"]) .sb-avatar { box-shadow: 0 0 0 2px var(--gray-900), 0 0 0 4px var(--brand-400); }
+.sb-side-foot .sb-menu { top: auto; bottom: calc(100% + 8px); inset-inline: 0 auto; }
+
+/* Tooltips show only while collapsed, 10 px outside the sidebar's edge (16 padding + 10). */
+.sb-sidebar .sb-tooltip { --tip-gap: 26px; }
+.sb-sidebar:not([data-collapsed]) .sb-tooltip { display: none; }
+
+/* Collapsed: 72 wide. Labels, group titles, counts and the name stay for screen readers; a divider replaces each later title. */
+.sb-sidebar[data-collapsed] .sb-side-head { justify-content: center; padding: 0; }
+.sb-sidebar[data-collapsed] .sb-side-logo,
+.sb-sidebar[data-collapsed] .sb-side-chevron,
+.sb-sidebar[data-collapsed] .sb-side-profile > svg,
+.sb-sidebar[data-collapsed] .sb-side-sub { display: none; }
+.sb-sidebar[data-collapsed] .sb-side-toggle > svg { rotate: 180deg; }
+.sb-sidebar[data-collapsed] :is(.sb-side-label, .sb-side-title, .sb-side-item > .sb-badge, .sb-avatar-label-text) {
+  position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.sb-sidebar[data-collapsed] .sb-side-body { gap: 16px; overflow: visible; } /* tooltips reach out to the right */
+.sb-sidebar[data-collapsed] .sb-side-group + .sb-side-group { padding-top: 16px; border-top: 1px solid var(--gray-800); }
+.sb-sidebar[data-collapsed] .sb-side-item:has(+ .sb-tooltip + .sb-side-sub [aria-current="page"]) { background: var(--gray-800); }
+.sb-sidebar[data-collapsed] .sb-side-foot .sb-menu { bottom: 0; inset-inline-start: calc(100% + 8px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-sidebar, .sb-side-toggle, .sb-side-toggle > svg, .sb-side-item, .sb-side-item > .sb-side-chevron { transition: none; }
+}
+```
+
+#### Script
+
+`sidebar.js`
+
+```js
+// Sidebar: the collapse button and sub-menus. The account menu uses dropdown-menu.js, tooltips use tooltip.js.
+function sidebarClick(e) {
+  const btn = e.target.closest?.('.sb-side-toggle, .sb-side-item[aria-expanded]');
+  if (!btn) return;
+  const side = btn.closest('.sb-sidebar'), toggle = side.querySelector('.sb-side-toggle');
+  const collapsed = side.hasAttribute('data-collapsed');
+  if (btn === toggle) {
+    side.toggleAttribute('data-collapsed', !collapsed);
+    toggle.setAttribute('aria-expanded', String(collapsed));
+    return;
+  }
+  const open = collapsed || btn.getAttribute('aria-expanded') !== 'true';
+  if (collapsed) {
+    side.removeAttribute('data-collapsed');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+  btn.setAttribute('aria-expanded', String(open));
+  document.getElementById(btn.getAttribute('aria-controls')).hidden = !open;
+}
+document.addEventListener('click', sidebarClick);
+```
+
 ## Slider
 
 Picks a value or a range by dragging, when the position matters more than the exact number: a confidence threshold, an amount range.
@@ -7265,7 +7592,7 @@ A `gray-50` track with a `gray-200` border, radius 8, padding 4. The selected ta
 
 #### Vertical
 
-Same look as the sidebar: radius 8, padding `0 12`, text `gray-700` with a `gray-500` icon; hover `gray-50`; selected `brand-50` fill with `brand-700` text and icon. A badge sits at the end.
+The sidebar item's shape on a light surface: radius 8, padding `0 12`, text `gray-700` with a `gray-500` icon; hover `gray-50`; selected `brand-50` fill with `brand-700` text and icon. A badge sits at the end.
 
 ```html
 <div class="sb-tabs" data-type="vertical" role="tablist" aria-label="Pengaturan akun" aria-orientation="vertical">
@@ -7619,7 +7946,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
 .sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--raised-sheen-light) var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
 
-/* Vertical: settings pages and long section lists. Same look as the sidebar navigation. */
+/* Vertical: settings pages and long section lists. The sidebar item's shape (radius 8) on a light surface. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
 .sb-tabs[data-type="vertical"][data-size="sm"] { --tab-h: 36px; }
 .sb-tabs[data-type="vertical"] > .sb-tab { --tab-icon: var(--gray-500); justify-content: flex-start; color: var(--gray-700); border-radius: var(--radius-md); }

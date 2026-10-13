@@ -71,7 +71,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .page > section > ul, .page > section > ol { display: grid; gap: 8px; max-width: 70ch; padding-inline-start: 20px; color: var(--gray-600); }
 .page li::marker { color: var(--gray-400); }
 .page strong { font-weight: 600; color: var(--gray-900); }
-.page p a, .page li a { color: var(--brand-700); text-underline-offset: 4px; }
+.page :is(p, li) a:not([class]) { color: var(--brand-700); text-underline-offset: 4px; }
 .page :not(pre) > code { padding: 0 4px; border-radius: 4px; background: var(--gray-100); font-size: .875em; color: var(--gray-800); white-space: nowrap; }
 .sw { display: inline-block; width: 10px; height: 10px; margin-inline-end: 4px; border-radius: 4px; box-shadow: inset 0 0 0 1px rgba(16, 24, 40, .12); }
 
@@ -267,6 +267,17 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .anat .modal-stage { padding: 48px 72px; }
 
 /* Table page */
+/* Sidebar page: a 720 px app window, the gray-50 page area right of the sidebar. No clip, so tooltips and pins show. */
+.side-stage { display: flex; width: 100%; max-width: 720px; height: 720px; border: 1px solid var(--gray-200); border-radius: 12px; background: var(--gray-50); }
+.side-stage > .sb-sidebar { border-radius: 11px 0 0 11px; }
+.ex-preview:has(> .side-stage) { min-height: 0; padding: 32px; }
+.anat .sb-sidebar [data-pin] { outline: 1px dashed var(--gray-500); outline-offset: 2px; }
+.anat .sb-side-body { overflow: visible; } /* the scroll clip would hide the pins */
+.side-tile { display: grid; grid-template-columns: max-content 248px; align-items: center; gap: 12px 24px; padding: 24px; border-radius: 12px; background: var(--gray-900); }
+.side-tile > .mx { color: var(--gray-400); }
+.side-tile:not(:has(> .mx)) { grid-template-columns: 248px; }
+@media (max-width: 860px) { .ex-preview:has(> .side-stage) { padding: 16px; } }
+
 .table-stage { width: 100%; min-width: 0; }
 .table-stage.is-narrow { max-width: 420px; }
 .ex-preview:has(> .table-stage) { min-height: 0; padding: 32px; justify-content: flex-start; }
