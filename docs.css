@@ -103,6 +103,11 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .ex > :first-child, .pg > :first-child { border-radius: 11px 11px 0 0; }
 .ex > :last-child, .pg > :last-child { border-radius: 0 0 11px 11px; }
 .ex > :only-child { border-radius: 11px; }
+/* Code section: HTML | CSS | Script tabs in the head, Download on the right for the open tab. */
+.code-tabs { border: 1px solid var(--gray-200); border-radius: 12px; }
+.code-tabs-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-inline: 16px 8px; border-radius: 11px 11px 0 0; background: var(--white); box-shadow: inset 0 -1px var(--gray-200); }
+.code-tabs-head > .sb-tabs[data-type] { --tab-h: 48px; box-shadow: none; }
+.code-tabs .code { border: 0; border-radius: 0 0 11px 11px; }
 .code-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 48px; padding-inline: 16px 8px; border-bottom: 1px solid var(--gray-200); background: var(--white); font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
 .code-body { position: relative; }
 .code pre { max-height: 448px; overflow: auto; padding: 16px 64px 16px 20px; font-size: 13px; line-height: 24px; color: var(--gray-800); tab-size: 2; }

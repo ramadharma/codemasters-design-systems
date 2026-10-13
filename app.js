@@ -120,6 +120,45 @@
       .join('')}</div>`,
   };
 
+  // ---- Code section of a component page: one panel with HTML | CSS | Script tabs (the Tabs component, Underline).
+  // HTML is the playground's default markup (or the first example's); CSS and scripts are the section's code blocks,
+  // named by language, else by the h3 above them. Other blocks (the "load these files" line) stay above the panel.
+  const defaultHtml = p => {
+    const blocks = p.sections.flatMap(s => s.blocks);
+    const pg = blocks.find(b => b.type === 'playground');
+    if (pg) return pg.code ? pg.code(pg.initial) : snippet(pg.render(pg.initial));
+    const ex = blocks.find(b => b.type === 'example' && b.code !== false);
+    return ex && (ex.code || snippet(ex.html));
+  };
+  let codeTabsUid = 0;
+  const codeTabs = (s, p) => {
+    const html = defaultHtml(p);
+    const files = html ? [['HTML', html, 'html', `${p.slug}.html`]] : [];
+    const rest = [];
+    let label;
+    for (const b of s.blocks) {
+      if (b.type === 'h3') label = b.text;
+      else if (b.type === 'code') {
+        files.push([b.lang === 'css' ? 'CSS' : b.lang === 'js' ? 'Script' : label || b.filename, b.code, b.lang, b.filename]);
+        label = null;
+      } else rest.push(HTML[b.type](b, p));
+    }
+    const id = `code-tabs-${++codeTabsUid}`;
+    return `${rest.join('')}<div class="code-tabs">
+      <div class="code-tabs-head">
+        <div class="sb-tabs" data-type="underline" role="tablist" aria-label="Code">${files
+          .map(([name], i) => `<button class="sb-tab" type="button" role="tab" id="${id}-t${i}" aria-selected="${i === 0}" aria-controls="${id}-p${i}" tabindex="${i === 0 ? 0 : -1}">${name}</button>`)
+          .join('')}</div>
+        <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-download-tab>${icon('download')}Download</button>
+      </div>
+      ${files
+        .map(([, code, lang, file], i) => `<div class="sb-tab-panel" role="tabpanel" id="${id}-p${i}" aria-labelledby="${id}-t${i}" data-file="${file}"${i === 0 ? '' : ' hidden'}>${codeBox(code, lang)}</div>`)
+        .join('')}
+    </div>`;
+  };
+  const sectionBody = (s, p) =>
+    s.id === 'code' && p.category === 'Components' ? codeTabs(s, p) : s.blocks.map(b => HTML[b.type](b, p, `${s.id}:${s.blocks.indexOf(b)}`)).join('');
+
   const pageMd = p => (p === overview ? systemMd(new Date()) : componentMd(p));
   const pageFile = p => (p === overview ? 'DESIGN.md' : `${p.slug}.md`);
 
@@ -191,7 +230,7 @@
         </div>
       </header>
       ${p.status ? `<div class="meta">${statusBadge(p.status)}<span>Updated ${fmtDate(p.updated)}</span></div>` : ''}
-      ${p.sections.map(s => `<section><h2 id="${s.id}">${s.title}</h2>${s.blocks.map(b => HTML[b.type](b, p, `${s.id}:${s.blocks.indexOf(b)}`)).join('')}</section>`).join('')}
+      ${p.sections.map(s => `<section><h2 id="${s.id}">${s.title}</h2>${sectionBody(s, p)}</section>`).join('')}
       <nav class="pager" aria-label="Pages">
         ${prev ? `<a class="sb-btn" data-hierarchy="secondary-gray" data-size="sm" href="#/${prev.slug}">${icon('arrow-left')}${prev.name}</a>` : '<span></span>'}
         ${next ? `<a class="sb-btn" data-hierarchy="secondary-gray" data-size="sm" href="#/${next.slug}">${next.name}${icon('arrow-right')}</a>` : ''}
@@ -276,6 +315,9 @@
       box.classList.remove('is-collapsed');
       t.remove();
       $('pre', box).focus({ preventScroll: true }); // keep keyboard focus in the block that just opened
+    } else if (t.matches('[data-download-tab]')) {
+      const panel = $$('.sb-tab-panel', t.closest('.code-tabs')).find(el => !el.hidden);
+      download(panel.dataset.file, $('pre', panel).textContent);
     } else if (t.matches('[data-download]')) {
       download(t.dataset.download, $('pre', t.closest('.code')).textContent);
     } else if (t.matches('[data-md]')) {

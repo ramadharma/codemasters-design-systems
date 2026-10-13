@@ -408,7 +408,6 @@ ${STATES.map(s => `<span class="mx">${s[0]}</span>\n${stateItem(s)}`).join('\n')
         title: 'Code',
         blocks: [
           { type: 'p', text: 'Load `tokens.css`, `badge.css`, `tooltip.css`, `avatar.css` and `dropdown-menu.css`, then `sidebar.css`. Add `sidebar.js`, `dropdown-menu.js` and `tooltip.js`.' },
-          { type: 'example', html: stage(sidebar({ sub: false })), caption: 'Without a sub-menu.' },
           { type: 'code', lang: 'css', filename: 'sidebar.css', code: CSS },
           { type: 'h3', id: 'sidebar-script', text: 'Script' },
           { type: 'code', lang: 'js', filename: 'sidebar.js', code: SCRIPT },
