@@ -223,6 +223,8 @@ ${groups.join('\n')}
   </div>
 </nav>`;
   }
+  DS.sidebar = sidebar; // the Header bar page reuses it for the app shell example
+
   // Docs-only frame: a 720 px app window, gray-50 page area right of the sidebar. DS.snippet strips it from the code.
   const stage = (html, cls = '') => `<div class="side-stage${cls ? ` ${cls}` : ''}">\n${html}\n</div>`;
 

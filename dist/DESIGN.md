@@ -23,6 +23,7 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
 - Checkbox and radio
 - Checkbox group
 - Dropdown menu
+- Header bar
 - Input dropdown
 - Input field
 - Modal
@@ -910,7 +911,7 @@ Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour o
 
 ### Library
 
-The 51 icons used in this documentation. Click one to copy its name.
+The 52 icons used in this documentation. Click one to copy its name.
 
 ### Code
 
@@ -1973,7 +1974,7 @@ Use a button for an action on the current page. Link hierarchies exist for links
 | 1 | Container | Radius 8, 1 px border, `shadow-xs` on Primary and Secondary. Height and horizontal padding come from the size; heights include the border (`box-sizing: border-box`). |
 | 2 | Leading icon | Optional. 20 px (16 at `xs`, 24 at `2xl`), gap 8 (4 at `xs`, 12 at `2xl`), `currentColor`. |
 | 3 | Label | Semibold. Text sm at `xs`, `sm` and `md`, Text md at `lg` and `xl`, Text lg at `2xl`. A verb in Title Case. |
-| 4 | Trailing icon | Optional. Same size and gap as the leading icon. A menu trigger uses chevron-down, which turns 180° when the menu is open. |
+| 4 | Trailing icon | Optional. Same size and gap as the leading icon. A menu trigger uses chevron-down with `class="sb-btn-chevron"`, which turns 180° when the menu is open. |
 
 ### Properties
 
@@ -2095,12 +2096,12 @@ Primary and Secondary gray are **raised**: a sheen over the fill (lighter top, d
 
 #### Menu trigger
 
-A button that opens a menu carries a trailing chevron-down. Set `aria-expanded`; the chevron turns 180° in 200 ms when it is `true`.
+A button that opens a menu carries a trailing chevron-down. Set `aria-expanded` and give the chevron `class="sb-btn-chevron"`; it turns 180° in 200 ms when the menu is open. Icon-only triggers such as ⋮ do not turn.
 
 ```html
 <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false">
   Ekspor
-  <svg aria-hidden="true"><!-- chevron-down --></svg>
+  <svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg>
 </button>
 ```
 
@@ -2343,9 +2344,9 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
 .sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
 
-/* A button that opens a menu: the trailing chevron turns when open. */
-.sb-btn[aria-expanded] > svg:last-child { transition: rotate 200ms var(--ease); }
-.sb-btn[aria-expanded="true"] > svg:last-child { rotate: 180deg; }
+/* A button that opens a menu: its chevron (class sb-btn-chevron) turns when open. Other icons, such as ⋮, stay put. */
+.sb-btn[aria-expanded] > .sb-btn-chevron { transition: rotate 200ms var(--ease); }
+.sb-btn[aria-expanded="true"] > .sb-btn-chevron { rotate: 180deg; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-btn, .sb-btn > svg { transition: none; }
@@ -4560,7 +4561,7 @@ Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up an
 
 ```html
 <div class="sb-menu-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="tr-button">Aksi klaim<svg aria-hidden="true"><!-- chevron-down --></svg></button>
+  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="tr-button">Aksi klaim<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
   <div class="sb-menu" id="tr-button" role="menu" aria-label="Aksi klaim" hidden>
     <div class="sb-menu-group" role="group">
       <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1"><svg aria-hidden="true"><!-- eye --></svg><span class="sb-menu-label">Lihat detail</span></button>
@@ -4637,7 +4638,7 @@ For multi-select filters inside a menu. Toggling an item keeps the menu open; Es
 
 ```html
 <div class="sb-menu-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="cb-menu">Tampilkan kolom<svg aria-hidden="true"><!-- chevron-down --></svg></button>
+  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="cb-menu">Tampilkan kolom<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
   <div class="sb-menu" id="cb-menu" role="menu" aria-label="Tampilkan kolom" hidden>
     <div class="sb-menu-group" role="group">
       <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="true" aria-disabled="true"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">No. klaim</span></button>
@@ -4706,7 +4707,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 
    <div class="sb-menu-wrap">
      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md"
-             aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg aria-hidden="true">…chevron…</svg></button>
+             aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg class="sb-btn-chevron" aria-hidden="true">…chevron-down…</svg></button>
      <div class="sb-menu" id="aksi" role="menu" aria-label="Aksi" hidden>
        <div class="sb-menu-group" role="group">
          <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1">
@@ -4857,6 +4858,218 @@ document.addEventListener('click', menuClick);
 document.addEventListener('keydown', menuKeydown);
 ```
 
+## Header bar
+
+The top of every app page: the page title, or a breadcrumb on detail pages, on the left and the page actions on the right. Sticky, white, 80 high. Optional search and notifications.
+
+### Usage
+
+- Every app page starts with one header bar. It sits at the top of the page column, right of the Sidebar, and stays there while the page scrolls.
+- The title is the page's one `<h1>`: the page name on list pages ("Klaim"), the record ID on detail pages ("KLM-0241").
+- Detail pages add a back button and a breadcrumb. Show the parent level; fold the levels above it into "…", which opens a menu of them.
+- Actions act on the whole page. One primary action at most, always last (rightmost). Secondary actions go before it; rarely used and destructive ones go into the ⋮ menu.
+- Search in the header searches the whole app. A search that filters one table belongs above that table.
+- The notification button shows a dot while something is unread, and says how many in its label.
+
+### Anatomy
+
+| # | Part | Spec |
+| --- | --- | --- |
+| 1 | Bar | Sticky, `white`, 80 high, padding `0 32`, 1 px `gray-200` bottom border. Parts 24 apart, centred vertically. |
+| 2 | Back button | Button secondary gray sm, icon only (`arrow-left`). Goes to the parent level. 16 to the breadcrumb. |
+| 3 | Breadcrumb | Display xs / Medium `gray-500`, hover `gray-700`; "/" in `gray-300`, 12 apart. Levels above the parent fold into "…" (opens a Dropdown menu). |
+| 4 | Title | Display xs / Semibold `gray-900`, one line; a long title truncates with an ellipsis. A record ID never truncates: the breadcrumb shrinks first. |
+| 5 | Status | Optional Badge md in the status colour, 12 after the title. |
+| 6 | Notifications | Button secondary gray lg, icon only (`bell`). Unread: an 8 px `error-500` dot with a 2 px `white` ring. |
+| 7 | Actions | Buttons lg, gap 8, primary last. Extra actions in a ⋮ Dropdown menu. |
+
+### Properties
+
+| Property | Values | Code |
+| --- | --- | --- |
+| Type | List page, Detail page | List: `<h1 class="sb-header-heading">` alone. Detail: back button, `<nav aria-label="Breadcrumb">` with `ol.sb-crumbs`, then the `h1` |
+| Status | True, False | A Badge md after the `h1` |
+| Search | True, False | `<div class="sb-header-search" role="search">` with an Input field, between the title and the actions |
+| Notifications | True, False | `.sb-header-bell` button; `.sb-header-dot` inside while something is unread |
+| Actions | 0 to 3 buttons + ⋮ menu | `.sb-header-actions` with Buttons lg |
+
+### Types
+
+#### List page
+
+The page name and the page actions.
+
+#### Detail page
+
+Back button, breadcrumb, the record ID as the title and its status. The "…" opens the levels above the parent.
+
+#### With search
+
+An Input field with a search icon, 320 wide. It shrinks to 200 when space runs out; after that the title truncates.
+
+#### With notifications
+
+The bell sits first in the actions. The dot shows only while something is unread.
+
+### In the app
+
+The header bar and the Sidebar head are both 80 high, so their bottom lines meet. Scroll the page: the header bar stays at the top.
+
+### Do and don't
+
+**Do:** One primary action, last.
+
+```html
+<header class="sb-header">
+  <div class="sb-header-title">
+    <h1 class="sb-header-heading">Klaim</h1>
+  </div>
+  <div class="sb-header-actions">
+    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+  </div>
+</header>
+```
+
+**Don't:** Two primary actions. Neither stands out.
+
+```html
+<header class="sb-header">
+  <div class="sb-header-title">
+    <h1 class="sb-header-heading">Klaim</h1>
+  </div>
+  <div class="sb-header-actions">
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+  </div>
+</header>
+```
+
+**Do:** Secondary actions before the primary one.
+
+```html
+<header class="sb-header">
+  <div class="sb-header-title">
+    <h1 class="sb-header-heading">Klaim</h1>
+  </div>
+  <div class="sb-header-actions">
+    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+  </div>
+</header>
+```
+
+**Don't:** The primary action first. People look for it at the end.
+
+```html
+<header class="sb-header">
+  <div class="sb-header-title">
+    <h1 class="sb-header-heading">Klaim</h1>
+  </div>
+  <div class="sb-header-actions">
+    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+  </div>
+</header>
+```
+
+### Accessibility
+
+- The title is the page's only `<h1>`, so screen reader users can jump to it.
+- The breadcrumb is a `<nav aria-label="Breadcrumb">` with an ordered list. The "/" separators come from CSS with empty alt text (`content: '/' / ''`), so they are not read.
+- The back button is a link with a label that names where it goes ("Kembali ke Rawat inap").
+- The "…" and ⋮ buttons are WAI-ARIA menu buttons (see Dropdown menu) with labels ("Level lain", "Aksi lain").
+- Search sits in a `role="search"` landmark; the input has an `aria-label` because the placeholder is not a label.
+- The notification button says the count in its label ("Notifikasi, 3 baru"); the dot is decoration.
+
+| Text | On | Ratio | AA |
+| --- | --- | --- | --- |
+| Title `gray-900` | `white` | 17.75:1 | Passes |
+| Breadcrumb `gray-500` | `white` | 4.97:1 | Passes |
+| Breadcrumb hover `gray-700` | `white` / `gray-50` | 10.46:1 / 10.01:1 | Passes |
+
+### Code
+
+Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-menu.css`, then `header-bar.css`. Add `dropdown-menu.js` for the "…" and ⋮ menus.
+
+`header-bar.css`
+
+```css
+/* Header bar, Codemasters Design System
+   Needs tokens.css, button.css and badge.css; input-field.css for search;
+   dropdown-menu.css and dropdown-menu.js for the "…" breadcrumb and action menus. No script of its own.
+
+   <header class="sb-header">
+     <div class="sb-header-title">
+       <a class="sb-btn" href="/klaim/rawat-inap" data-hierarchy="secondary-gray" data-size="sm" data-icon="only" aria-label="Kembali ke Rawat inap">…arrow-left…</a>
+       <nav aria-label="Breadcrumb">
+         <ol class="sb-crumbs">
+           <li><div class="sb-menu-wrap"><button class="sb-crumb-more" type="button" aria-label="Level lain" aria-haspopup="menu" aria-expanded="false" aria-controls="crumbs-more">…</button>
+             <div class="sb-menu" id="crumbs-more" role="menu" aria-label="Level lain" hidden>…<a class="sb-menu-item" role="menuitem" href="/klaim">…</a></div></div></li>
+           <li><a class="sb-crumb" href="/klaim/rawat-inap">Rawat inap</a></li>
+         </ol>
+       </nav>
+       <h1 class="sb-header-heading">KLM-0241</h1>
+       <span class="sb-badge" data-size="md" data-color="blue">Sedang Ditinjau</span>
+     </div>
+     <div class="sb-header-search" role="search">…Input field with a search icon…</div>
+     <div class="sb-header-actions">…buttons lg, primary last…</div>
+   </header>
+
+   List page    the title alone: <h1 class="sb-header-heading">Klaim</h1>
+   Detail page  back button + breadcrumb (… for middle levels) + ID as the title + status badge
+   Search       .sb-header-search between the title and the actions, 320 wide, shrinks to 200
+   Bell         <button class="sb-btn sb-header-bell" … data-icon="only" aria-label="Notifikasi, 3 baru">…bell…<span class="sb-header-dot"></span></button> */
+
+/* Bar: sticky at the top of the page column, 80 high (the sidebar head's height), padding 0 32 (the page padding). */
+.sb-header {
+  position: sticky; top: 0; z-index: 10;
+  box-sizing: border-box; display: flex; align-items: center; gap: 24px;
+  height: 80px; padding: 0 32px;
+  background: var(--white); border-bottom: 1px solid var(--gray-200);
+  font-family: var(--font);
+}
+
+/* Title: Display xs / Semibold gray-900, one line; a long title truncates.
+   On detail pages the ID never truncates: the breadcrumb levels shrink first. */
+.sb-header-title { display: flex; flex: 1; align-items: center; gap: 12px; min-width: 0; }
+.sb-header-title > :not(.sb-header-heading, nav) { flex: none; }
+.sb-header-title > nav { min-width: 0; }
+.sb-header-title > nav + .sb-header-heading { flex: none; }
+.sb-header-heading { min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 var(--display-xs) var(--font); color: var(--gray-900); }
+.sb-header-title > .sb-btn { margin-inline-end: 4px; } /* back button: 16 to the breadcrumb */
+
+/* Breadcrumb: the levels above the page in Display xs / Medium gray-500, "/" in gray-300 between them. */
+.sb-crumbs { display: flex; align-items: center; gap: 12px; margin: 0; padding: 0; list-style: none; font: 500 var(--display-xs) var(--font); color: var(--gray-500); white-space: nowrap; }
+.sb-crumbs > li { display: flex; align-items: center; min-width: 0; }
+.sb-crumbs > li:has(.sb-menu-wrap) { flex: none; }
+.sb-crumbs > li::after { content: '/' / ''; margin-inline-start: 12px; color: var(--gray-300); }
+.sb-crumb { overflow: hidden; text-overflow: ellipsis; border-radius: var(--radius-sm); color: inherit; text-decoration: none; transition: color 150ms var(--ease); }
+.sb-crumb:hover { color: var(--gray-700); }
+.sb-crumb:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.sb-crumb-more {
+  height: 32px; margin: 0; padding: 0 6px; border: 0; border-radius: var(--radius-md);
+  background: none; font: inherit; color: inherit; cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-crumb-more:is(:hover, [aria-expanded="true"]) { background: var(--gray-50); color: var(--gray-700); }
+.sb-crumb-more:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.sb-crumbs .sb-menu { inset-inline: 0 auto; } /* opens under the "…", left-aligned */
+.sb-crumbs a.sb-menu-item { text-decoration: none; }
+
+/* Search: an Input field, 320 wide, shrinking to 200 before the title truncates further. */
+.sb-header-search { flex: 0 1 320px; min-width: 200px; margin: 0; }
+
+/* Actions: Buttons lg, gap 8, the primary action last. */
+.sb-header-actions { display: flex; flex: none; align-items: center; gap: 8px; }
+.sb-header-bell { position: relative; }
+.sb-header-dot { position: absolute; top: 10px; right: 11px; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--error-500); box-shadow: 0 0 0 2px var(--white); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-crumb, .sb-crumb-more { transition: none; }
+}
+```
+
 ## Input dropdown
 
 A select field: pick one value for a form field or a filter. For running an action from a button, use Dropdown menu.
@@ -4901,28 +5114,28 @@ A select field: pick one value for a form field or a filter. For running an acti
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ty-default-list" aria-labelledby="ty-default-label ty-default-value">
       <span class="sb-dd-value" id="ty-default-value"><span class="sb-dd-label">Inpatient</span><span class="sb-dd-sup">Rawat inap</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="ty-default-list" role="listbox" aria-labelledby="ty-default-label" hidden>
       <div class="sb-dd-opt" id="ty-default-0" role="option" aria-selected="true">
         <span class="sb-dd-main"><span class="sb-dd-label">Inpatient</span><span class="sb-dd-sup">Rawat inap</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-default-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Outpatient</span><span class="sb-dd-sup">Rawat jalan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-default-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Maternity</span><span class="sb-dd-sup">Persalinan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-default-3" role="option" aria-selected="false" aria-disabled="true">
         <span class="sb-dd-main"><span class="sb-dd-label">Optical</span><span class="sb-dd-sup">Kacamata</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-default-4" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Dental</span><span class="sb-dd-sup">Gigi</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>
@@ -4937,24 +5150,24 @@ A select field: pick one value for a form field or a filter. For running an acti
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ty-icon-list" aria-labelledby="ty-icon-label ty-icon-value">
       <span class="sb-dd-value" id="ty-icon-value"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Admin</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="ty-icon-list" role="listbox" aria-labelledby="ty-icon-label" hidden>
       <div class="sb-dd-opt" id="ty-icon-0" role="option" aria-selected="true">
         <span class="sb-dd-main"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Admin</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-icon-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Advisor</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-icon-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Reviewer</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-icon-3" role="option" aria-selected="false">
         <span class="sb-dd-main"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Viewer</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>
@@ -4969,24 +5182,24 @@ A select field: pick one value for a form field or a filter. For running an acti
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ty-avatar-list" aria-labelledby="ty-avatar-label ty-avatar-value">
       <span class="sb-dd-value" id="ty-avatar-value"><span class="sb-dd-avatar" aria-hidden="true">AA</span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">@advisor-a</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="ty-avatar-list" role="listbox" aria-labelledby="ty-avatar-label" hidden>
       <div class="sb-dd-opt" id="ty-avatar-0" role="option" aria-selected="true">
         <span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AA</span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">@advisor-a</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-avatar-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AB</span><span class="sb-dd-label">Advisor B</span><span class="sb-dd-sup">@advisor-b</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-avatar-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AC</span><span class="sb-dd-label">Advisor C</span><span class="sb-dd-sup">@advisor-c</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-avatar-3" role="option" aria-selected="false" aria-disabled="true">
         <span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AD</span><span class="sb-dd-label">Advisor D</span><span class="sb-dd-sup">@advisor-d</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>
@@ -5001,20 +5214,20 @@ A select field: pick one value for a form field or a filter. For running an acti
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ty-dot-list" aria-labelledby="ty-dot-label ty-dot-value">
       <span class="sb-dd-value" id="ty-dot-value"><span class="sb-dd-dot" aria-hidden="true"></span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">@advisor-a</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="ty-dot-list" role="listbox" aria-labelledby="ty-dot-label" hidden>
       <div class="sb-dd-opt" id="ty-dot-0" role="option" aria-selected="true">
         <span class="sb-dd-main"><span class="sb-dd-dot" aria-hidden="true"></span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">@advisor-a</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-dot-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-dot" aria-hidden="true"></span><span class="sb-dd-label">Advisor B</span><span class="sb-dd-sup">@advisor-b</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-dot-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-dot" aria-hidden="true"></span><span class="sb-dd-label">Advisor C</span><span class="sb-dd-sup">@advisor-c</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>
@@ -5034,51 +5247,51 @@ A select field: pick one value for a form field or a filter. For running an acti
     <div class="sb-dd-menu" id="ty-search-list" role="listbox" aria-labelledby="ty-search-label" hidden>
       <div class="sb-dd-opt" id="ty-search-0" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Jakarta</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Bandung</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Surabaya</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-3" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Medan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-4" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Semarang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-5" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Makassar</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-6" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Palembang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-7" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Denpasar</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-8" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Yogyakarta</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-9" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Malang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-10" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Balikpapan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-11" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Pontianak</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <p class="sb-dd-empty" hidden>Tidak ada kota yang cocok.</p>
     </div>
@@ -5115,51 +5328,51 @@ Keyboard focus (arrow keys) looks like Hover. The scroll bar (16 wide, 8 px `gra
     <div class="sb-dd-menu" id="dd-dd-search-list" role="listbox" aria-labelledby="dd-dd-search-label" hidden>
       <div class="sb-dd-opt" id="dd-dd-search-0" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Jakarta</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Bandung</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Surabaya</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-3" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Medan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-4" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Semarang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-5" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Makassar</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-6" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Palembang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-7" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Denpasar</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-8" role="option" aria-selected="true">
         <span class="sb-dd-main"><span class="sb-dd-label">Yogyakarta</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-9" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Malang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-10" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Balikpapan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-11" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Pontianak</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <p class="sb-dd-empty" hidden>Tidak ada kota yang cocok.</p>
     </div>
@@ -5175,28 +5388,28 @@ Keyboard focus (arrow keys) looks like Hover. The scroll bar (16 wide, 8 px `gra
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="dd-dd-actions-list" aria-labelledby="dd-dd-actions-label dd-dd-actions-value">
       <span class="sb-dd-value" id="dd-dd-actions-value"><span class="sb-dd-placeholder">Pilih aksi</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="dd-dd-actions-list" role="listbox" aria-labelledby="dd-dd-actions-label" hidden>
       <div class="sb-dd-opt" id="dd-dd-actions-0" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Unduh PDF</span><span class="sb-dd-sup">Rawat inap</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-actions-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Hapus klaim</span><span class="sb-dd-sup">Rawat jalan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-actions-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Maternity</span><span class="sb-dd-sup">Persalinan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-actions-3" role="option" aria-selected="false" aria-disabled="true">
         <span class="sb-dd-main"><span class="sb-dd-label">Optical</span><span class="sb-dd-sup">Kacamata</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-actions-4" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Dental</span><span class="sb-dd-sup">Gigi</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>
@@ -7103,7 +7316,7 @@ Rows of records: claims, invoice items, members. A gray-50 header band, gray-200
 ```html
 <div class="sb-table-wrap">
   <table class="sb-table">
-    <thead><tr><th scope="col"><button class="sb-table-sort" type="button">ID Klaim<svg class="is-idle" data-i="selector" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"/></svg><svg class="is-dir" data-i="arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th><th scope="col"><button class="sb-table-sort" type="button">Peserta<svg class="is-idle" data-i="selector" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"/></svg><svg class="is-dir" data-i="arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th><th scope="col">Rumah Sakit</th><th scope="col" data-num aria-sort="descending"><button class="sb-table-sort" type="button">Tanggal<svg class="is-idle" data-i="selector" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"/></svg><svg class="is-dir" data-i="arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th><th scope="col" data-num><button class="sb-table-sort" type="button">Tagihan<svg class="is-idle" data-i="selector" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"/></svg><svg class="is-dir" data-i="arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button></th><th scope="col">Status</th></tr></thead>
+    <thead><tr><th scope="col"><button class="sb-table-sort" type="button">ID Klaim<svg class="is-idle" aria-hidden="true"><!-- selector --></svg><svg class="is-dir" aria-hidden="true"><!-- arrow-down --></svg></button></th><th scope="col"><button class="sb-table-sort" type="button">Peserta<svg class="is-idle" aria-hidden="true"><!-- selector --></svg><svg class="is-dir" aria-hidden="true"><!-- arrow-down --></svg></button></th><th scope="col">Rumah Sakit</th><th scope="col" data-num aria-sort="descending"><button class="sb-table-sort" type="button">Tanggal<svg class="is-idle" aria-hidden="true"><!-- selector --></svg><svg class="is-dir" aria-hidden="true"><!-- arrow-down --></svg></button></th><th scope="col" data-num><button class="sb-table-sort" type="button">Tagihan<svg class="is-idle" aria-hidden="true"><!-- selector --></svg><svg class="is-dir" aria-hidden="true"><!-- arrow-down --></svg></button></th><th scope="col">Status</th></tr></thead>
     <tbody>
       <tr><td><a class="sb-table-link" href="#/table">KLM-0241</a></td><td>Budi Santoso</td><td>RS Medika Utama</td><td data-num data-value="20261002">2 Okt 2026</td><td data-num data-value="12450000">Rp 12.450.000</td><td><span class="sb-badge" data-size="sm" data-color="success">Disetujui: Sembuh</span></td></tr>
       <tr><td><a class="sb-table-link" href="#/table">KLM-0238</a></td><td>Siti Rahma</td><td>RS Harapan Kita</td><td data-num data-value="20261001">1 Okt 2026</td><td data-num data-value="3275000">Rp 3.275.000</td><td><span class="sb-badge" data-size="sm" data-color="blue">Sedang Ditinjau</span></td></tr>

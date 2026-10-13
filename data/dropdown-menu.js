@@ -74,7 +74,7 @@ document.addEventListener('keydown', menuKeydown);`;
 
    <div class="sb-menu-wrap">
      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md"
-             aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg aria-hidden="true">…chevron…</svg></button>
+             aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg class="sb-btn-chevron" aria-hidden="true">…chevron-down…</svg></button>
      <div class="sb-menu" id="aksi" role="menu" aria-label="Aksi" hidden>
        <div class="sb-menu-group" role="group">
          <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1">
@@ -182,7 +182,7 @@ document.addEventListener('keydown', menuKeydown);`;
     const name = label || (checkbox ? 'Tampilkan kolom' : trigger === 'avatar' ? 'Menu akun' : 'Aksi');
     const tAttrs = `aria-haspopup="menu" aria-expanded="${open}" aria-controls="${key}"`;
     const triggerHtml = {
-      button: `<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" ${tAttrs}>${esc(name)}${icon('chevron-down')}</button>`,
+      button: `<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" ${tAttrs}>${esc(name)}${icon('chevron-down', 'sb-btn-chevron')}</button>`,
       icon: `<button class="sb-menu-icon" type="button" aria-label="${esc(name)}" ${tAttrs}>${icon('more-vertical')}</button>`,
       avatar: `<button class="sb-menu-avatar" type="button" aria-label="${esc(name)}" ${tAttrs}>NP</button>`,
     }[trigger];

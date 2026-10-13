@@ -103,9 +103,9 @@
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
 .sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
 
-/* A button that opens a menu: the trailing chevron turns when open. */
-.sb-btn[aria-expanded] > svg:last-child { transition: rotate 200ms var(--ease); }
-.sb-btn[aria-expanded="true"] > svg:last-child { rotate: 180deg; }
+/* A button that opens a menu: its chevron (class sb-btn-chevron) turns when open. Other icons, such as ⋮, stay put. */
+.sb-btn[aria-expanded] > .sb-btn-chevron { transition: rotate 200ms var(--ease); }
+.sb-btn[aria-expanded="true"] > .sb-btn-chevron { rotate: 180deg; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-btn, .sb-btn > svg { transition: none; }

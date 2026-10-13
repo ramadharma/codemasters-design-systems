@@ -51,7 +51,7 @@ Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up an
 
 ```html
 <div class="sb-menu-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="tr-button">Aksi klaim<svg aria-hidden="true"><!-- chevron-down --></svg></button>
+  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="tr-button">Aksi klaim<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
   <div class="sb-menu" id="tr-button" role="menu" aria-label="Aksi klaim" hidden>
     <div class="sb-menu-group" role="group">
       <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1"><svg aria-hidden="true"><!-- eye --></svg><span class="sb-menu-label">Lihat detail</span></button>
@@ -128,7 +128,7 @@ For multi-select filters inside a menu. Toggling an item keeps the menu open; Es
 
 ```html
 <div class="sb-menu-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="cb-menu">Tampilkan kolom<svg aria-hidden="true"><!-- chevron-down --></svg></button>
+  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="cb-menu">Tampilkan kolom<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
   <div class="sb-menu" id="cb-menu" role="menu" aria-label="Tampilkan kolom" hidden>
     <div class="sb-menu-group" role="group">
       <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="true" aria-disabled="true"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">No. klaim</span></button>
@@ -197,7 +197,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 
    <div class="sb-menu-wrap">
      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md"
-             aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg aria-hidden="true">…chevron…</svg></button>
+             aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg class="sb-btn-chevron" aria-hidden="true">…chevron-down…</svg></button>
      <div class="sb-menu" id="aksi" role="menu" aria-label="Aksi" hidden>
        <div class="sb-menu-group" role="group">
          <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1">

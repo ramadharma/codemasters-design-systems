@@ -107,9 +107,9 @@
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
 .sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
 
-/* A button that opens a menu: the trailing chevron turns when open. */
-.sb-btn[aria-expanded] > svg:last-child { transition: rotate 200ms var(--ease); }
-.sb-btn[aria-expanded="true"] > svg:last-child { rotate: 180deg; }
+/* A button that opens a menu: its chevron (class sb-btn-chevron) turns when open. Other icons, such as ⋮, stay put. */
+.sb-btn[aria-expanded] > .sb-btn-chevron { transition: rotate 200ms var(--ease); }
+.sb-btn[aria-expanded="true"] > .sb-btn-chevron { rotate: 180deg; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-btn, .sb-btn > svg { transition: none; }
@@ -141,7 +141,7 @@
     const parts = {
       none: [text],
       leading: [icon(glyph || 'plus'), text],
-      trailing: [text, icon(glyph || 'arrow-right')],
+      trailing: [text, glyph === 'chevron-down' ? icon(glyph, 'sb-btn-chevron') : icon(glyph || 'arrow-right')],
       dot: ['<span class="sb-btn-dot" aria-hidden="true"></span>', text],
       only: [icon(glyph || 'plus')],
     }[mode];
@@ -229,7 +229,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
               ['1', 'Container', 'Radius 8, 1 px border, `shadow-xs` on Primary and Secondary. Height and horizontal padding come from the size; heights include the border (`box-sizing: border-box`).'],
               ['2', 'Leading icon', 'Optional. 20 px (16 at `xs`, 24 at `2xl`), gap 8 (4 at `xs`, 12 at `2xl`), `currentColor`.'],
               ['3', 'Label', 'Semibold. Text sm at `xs`, `sm` and `md`, Text md at `lg` and `xl`, Text lg at `2xl`. A verb in Title Case.'],
-              ['4', 'Trailing icon', 'Optional. Same size and gap as the leading icon. A menu trigger uses chevron-down, which turns 180° when the menu is open.'],
+              ['4', 'Trailing icon', 'Optional. Same size and gap as the leading icon. A menu trigger uses chevron-down with `class="sb-btn-chevron"`, which turns 180° when the menu is open.'],
             ],
           },
         ],
@@ -323,7 +323,7 @@ ${HIERARCHIES.map(([h, l]) => `<span class="mx">${l}</span>` + STATES.map(([s]) 
             ],
           },
           { type: 'h3', id: 'menu-trigger', text: 'Menu trigger' },
-          { type: 'p', text: 'A button that opens a menu carries a trailing chevron-down. Set `aria-expanded`; the chevron turns 180° in 200 ms when it is `true`.' },
+          { type: 'p', text: 'A button that opens a menu carries a trailing chevron-down. Set `aria-expanded` and give the chevron `class="sb-btn-chevron"`; it turns 180° in 200 ms when the menu is open. Icon-only triggers such as ⋮ do not turn.' },
           { type: 'example', html: btn({ h: 'secondary-gray', icon: 'trailing', glyph: 'chevron-down', label: 'Ekspor', extra: 'aria-haspopup="menu" aria-expanded="false" data-demo' }), caption: 'Click the button to flip `aria-expanded`.' },
         ],
       },

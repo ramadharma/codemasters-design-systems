@@ -52,28 +52,28 @@ A select field: pick one value for a form field or a filter. For running an acti
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ty-default-list" aria-labelledby="ty-default-label ty-default-value">
       <span class="sb-dd-value" id="ty-default-value"><span class="sb-dd-label">Inpatient</span><span class="sb-dd-sup">Rawat inap</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="ty-default-list" role="listbox" aria-labelledby="ty-default-label" hidden>
       <div class="sb-dd-opt" id="ty-default-0" role="option" aria-selected="true">
         <span class="sb-dd-main"><span class="sb-dd-label">Inpatient</span><span class="sb-dd-sup">Rawat inap</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-default-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Outpatient</span><span class="sb-dd-sup">Rawat jalan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-default-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Maternity</span><span class="sb-dd-sup">Persalinan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-default-3" role="option" aria-selected="false" aria-disabled="true">
         <span class="sb-dd-main"><span class="sb-dd-label">Optical</span><span class="sb-dd-sup">Kacamata</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-default-4" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Dental</span><span class="sb-dd-sup">Gigi</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>
@@ -88,24 +88,24 @@ A select field: pick one value for a form field or a filter. For running an acti
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ty-icon-list" aria-labelledby="ty-icon-label ty-icon-value">
       <span class="sb-dd-value" id="ty-icon-value"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Admin</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="ty-icon-list" role="listbox" aria-labelledby="ty-icon-label" hidden>
       <div class="sb-dd-opt" id="ty-icon-0" role="option" aria-selected="true">
         <span class="sb-dd-main"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Admin</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-icon-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Advisor</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-icon-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Reviewer</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-icon-3" role="option" aria-selected="false">
         <span class="sb-dd-main"><svg aria-hidden="true"><!-- user --></svg><span class="sb-dd-label">Viewer</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>
@@ -120,24 +120,24 @@ A select field: pick one value for a form field or a filter. For running an acti
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ty-avatar-list" aria-labelledby="ty-avatar-label ty-avatar-value">
       <span class="sb-dd-value" id="ty-avatar-value"><span class="sb-dd-avatar" aria-hidden="true">AA</span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">@advisor-a</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="ty-avatar-list" role="listbox" aria-labelledby="ty-avatar-label" hidden>
       <div class="sb-dd-opt" id="ty-avatar-0" role="option" aria-selected="true">
         <span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AA</span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">@advisor-a</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-avatar-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AB</span><span class="sb-dd-label">Advisor B</span><span class="sb-dd-sup">@advisor-b</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-avatar-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AC</span><span class="sb-dd-label">Advisor C</span><span class="sb-dd-sup">@advisor-c</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-avatar-3" role="option" aria-selected="false" aria-disabled="true">
         <span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AD</span><span class="sb-dd-label">Advisor D</span><span class="sb-dd-sup">@advisor-d</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>
@@ -152,20 +152,20 @@ A select field: pick one value for a form field or a filter. For running an acti
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="ty-dot-list" aria-labelledby="ty-dot-label ty-dot-value">
       <span class="sb-dd-value" id="ty-dot-value"><span class="sb-dd-dot" aria-hidden="true"></span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">@advisor-a</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="ty-dot-list" role="listbox" aria-labelledby="ty-dot-label" hidden>
       <div class="sb-dd-opt" id="ty-dot-0" role="option" aria-selected="true">
         <span class="sb-dd-main"><span class="sb-dd-dot" aria-hidden="true"></span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">@advisor-a</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-dot-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-dot" aria-hidden="true"></span><span class="sb-dd-label">Advisor B</span><span class="sb-dd-sup">@advisor-b</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-dot-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-dot" aria-hidden="true"></span><span class="sb-dd-label">Advisor C</span><span class="sb-dd-sup">@advisor-c</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>
@@ -185,51 +185,51 @@ A select field: pick one value for a form field or a filter. For running an acti
     <div class="sb-dd-menu" id="ty-search-list" role="listbox" aria-labelledby="ty-search-label" hidden>
       <div class="sb-dd-opt" id="ty-search-0" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Jakarta</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Bandung</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Surabaya</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-3" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Medan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-4" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Semarang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-5" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Makassar</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-6" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Palembang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-7" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Denpasar</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-8" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Yogyakarta</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-9" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Malang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-10" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Balikpapan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="ty-search-11" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Pontianak</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <p class="sb-dd-empty" hidden>Tidak ada kota yang cocok.</p>
     </div>
@@ -266,51 +266,51 @@ Keyboard focus (arrow keys) looks like Hover. The scroll bar (16 wide, 8 px `gra
     <div class="sb-dd-menu" id="dd-dd-search-list" role="listbox" aria-labelledby="dd-dd-search-label" hidden>
       <div class="sb-dd-opt" id="dd-dd-search-0" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Jakarta</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Bandung</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Surabaya</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-3" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Medan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-4" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Semarang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-5" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Makassar</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-6" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Palembang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-7" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Denpasar</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-8" role="option" aria-selected="true">
         <span class="sb-dd-main"><span class="sb-dd-label">Yogyakarta</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-9" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Malang</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-10" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Balikpapan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-search-11" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Pontianak</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <p class="sb-dd-empty" hidden>Tidak ada kota yang cocok.</p>
     </div>
@@ -326,28 +326,28 @@ Keyboard focus (arrow keys) looks like Hover. The scroll bar (16 wide, 8 px `gra
   <div class="sb-dd">
     <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="dd-dd-actions-list" aria-labelledby="dd-dd-actions-label dd-dd-actions-value">
       <span class="sb-dd-value" id="dd-dd-actions-value"><span class="sb-dd-placeholder">Pilih aksi</span></span>
-      <svg class="sb-dd-chevron" data-i="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="sb-dd-chevron" aria-hidden="true"><!-- chevron-down --></svg>
     </button>
     <div class="sb-dd-menu" id="dd-dd-actions-list" role="listbox" aria-labelledby="dd-dd-actions-label" hidden>
       <div class="sb-dd-opt" id="dd-dd-actions-0" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Unduh PDF</span><span class="sb-dd-sup">Rawat inap</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-actions-1" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Hapus klaim</span><span class="sb-dd-sup">Rawat jalan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-actions-2" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Maternity</span><span class="sb-dd-sup">Persalinan</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-actions-3" role="option" aria-selected="false" aria-disabled="true">
         <span class="sb-dd-main"><span class="sb-dd-label">Optical</span><span class="sb-dd-sup">Kacamata</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
       <div class="sb-dd-opt" id="dd-dd-actions-4" role="option" aria-selected="false">
         <span class="sb-dd-main"><span class="sb-dd-label">Dental</span><span class="sb-dd-sup">Gigi</span></span>
-        <svg class="sb-dd-check" data-i="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <svg class="sb-dd-check" aria-hidden="true"><!-- check --></svg>
       </div>
     </div>
   </div>

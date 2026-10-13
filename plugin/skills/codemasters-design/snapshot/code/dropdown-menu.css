@@ -4,7 +4,7 @@
 
    <div class="sb-menu-wrap">
      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md"
-             aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg aria-hidden="true">…chevron…</svg></button>
+             aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg class="sb-btn-chevron" aria-hidden="true">…chevron-down…</svg></button>
      <div class="sb-menu" id="aksi" role="menu" aria-label="Aksi" hidden>
        <div class="sb-menu-group" role="group">
          <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1">

@@ -220,7 +220,7 @@
         </div>
         <div class="split sb-menu-wrap">
           <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="xs" data-md="copy">${icon('copy')}Copy Markdown</button>
-          <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="xs" data-icon="only" aria-label="More export options" aria-haspopup="menu" aria-expanded="false" aria-controls="export-menu">${icon('chevron-down')}</button>
+          <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="xs" data-icon="only" aria-label="More export options" aria-haspopup="menu" aria-expanded="false" aria-controls="export-menu">${icon('chevron-down', 'sb-btn-chevron')}</button>
           <div class="sb-menu" id="export-menu" role="menu" aria-label="Export" hidden>
             <div class="sb-menu-group" role="group">
               <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1" data-md="download">${icon('download')}<span class="sb-menu-label">Download ${file}</span></button>

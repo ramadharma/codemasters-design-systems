@@ -145,6 +145,15 @@
       "path": "components/dropdown-menu.md"
     },
     {
+      "slug": "header-bar",
+      "name": "Header bar",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-13",
+      "description": "The top of every app page: the page title, or a breadcrumb on detail pages, on the left and the page actions on the right. Sticky, white, 80 high. Optional search and notifications.",
+      "path": "components/header-bar.md"
+    },
+    {
       "slug": "input-dropdown",
       "name": "Input dropdown",
       "category": "Components",
@@ -307,6 +316,7 @@
     "code/checkbox-group.css",
     "code/dropdown-menu.css",
     "code/dropdown-menu.js",
+    "code/header-bar.css",
     "code/input-dropdown.css",
     "code/input-dropdown.js",
     "code/input-field.css",

@@ -30,7 +30,7 @@ Use a button for an action on the current page. Link hierarchies exist for links
 | 1 | Container | Radius 8, 1 px border, `shadow-xs` on Primary and Secondary. Height and horizontal padding come from the size; heights include the border (`box-sizing: border-box`). |
 | 2 | Leading icon | Optional. 20 px (16 at `xs`, 24 at `2xl`), gap 8 (4 at `xs`, 12 at `2xl`), `currentColor`. |
 | 3 | Label | Semibold. Text sm at `xs`, `sm` and `md`, Text md at `lg` and `xl`, Text lg at `2xl`. A verb in Title Case. |
-| 4 | Trailing icon | Optional. Same size and gap as the leading icon. A menu trigger uses chevron-down, which turns 180° when the menu is open. |
+| 4 | Trailing icon | Optional. Same size and gap as the leading icon. A menu trigger uses chevron-down with `class="sb-btn-chevron"`, which turns 180° when the menu is open. |
 
 ## Properties
 
@@ -152,12 +152,12 @@ Primary and Secondary gray are **raised**: a sheen over the fill (lighter top, d
 
 ### Menu trigger
 
-A button that opens a menu carries a trailing chevron-down. Set `aria-expanded`; the chevron turns 180° in 200 ms when it is `true`.
+A button that opens a menu carries a trailing chevron-down. Set `aria-expanded` and give the chevron `class="sb-btn-chevron"`; it turns 180° in 200 ms when the menu is open. Icon-only triggers such as ⋮ do not turn.
 
 ```html
 <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false">
   Ekspor
-  <svg aria-hidden="true"><!-- chevron-down --></svg>
+  <svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg>
 </button>
 ```
 
@@ -400,9 +400,9 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
 .sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
 
-/* A button that opens a menu: the trailing chevron turns when open. */
-.sb-btn[aria-expanded] > svg:last-child { transition: rotate 200ms var(--ease); }
-.sb-btn[aria-expanded="true"] > svg:last-child { rotate: 180deg; }
+/* A button that opens a menu: its chevron (class sb-btn-chevron) turns when open. Other icons, such as ⋮, stay put. */
+.sb-btn[aria-expanded] > .sb-btn-chevron { transition: rotate 200ms var(--ease); }
+.sb-btn[aria-expanded="true"] > .sb-btn-chevron { rotate: 180deg; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-btn, .sb-btn > svg { transition: none; }

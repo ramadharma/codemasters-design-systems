@@ -283,6 +283,27 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .side-tile:not(:has(> .mx)) { grid-template-columns: 248px; }
 @media (max-width: 860px) { .ex-preview:has(> .side-stage) { padding: 16px; } }
 
+/* Header bar page: the bar at app width (1280 minus the sidebar = 1000) scaled to fit the column, on top of a gray-50 page.
+   Tall stages leave room for an open menu. */
+.header-stage { flex: none; width: 1000px; zoom: .72; padding-bottom: 48px; border: 1px solid var(--gray-200); border-radius: 12px; background: var(--gray-50); }
+.header-stage > .sb-header { position: relative; border-radius: 11px 11px 0 0; }
+.header-stage.is-tall { padding-bottom: 176px; }
+.header-stage.is-mini { width: auto; padding-bottom: 16px; zoom: .6; }
+.header-stage.is-mini .sb-header { padding-inline: 24px; }
+.ex-preview:has(> .header-stage), .pg-stage:has(> .header-stage) { min-height: 0; padding: 32px; justify-content: flex-start; overflow-x: auto; }
+.anat > .header-stage { padding-bottom: 96px; }
+.anat > .header-stage [data-pin]::after { zoom: calc(1 / .72); } /* pins keep their size in the scaled stage */
+.anat .sb-header-heading { overflow: visible; } /* the truncation clip would hide the pin */
+.anat .sb-header [data-pin]:not(.sb-header) { outline: 1px dashed var(--gray-400); outline-offset: 4px; }
+/* App shell: collapsed Sidebar + header bar + a scrolling body, so the sticky bar shows. */
+.shell-stage { display: flex; flex: none; width: 1000px; height: 720px; zoom: .72; border: 1px solid var(--gray-200); border-radius: 12px; background: var(--gray-50); }
+.shell-stage > .sb-sidebar { border-radius: 11px 0 0 11px; }
+.shell-main { flex: 1; min-width: 0; overflow-y: auto; border-radius: 0 11px 11px 0; }
+.shell-body { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 32px; }
+.shell-card { height: 200px; border: 1px solid var(--gray-200); border-radius: 12px; background: var(--white); }
+.shell-card:first-child { grid-column: 1 / -1; height: 120px; }
+.ex-preview:has(> .shell-stage) { min-height: 0; padding: 32px; justify-content: flex-start; }
+
 .table-stage { width: 100%; min-width: 0; }
 .table-stage.is-narrow { max-width: 420px; }
 .ex-preview:has(> .table-stage) { min-height: 0; padding: 32px; justify-content: flex-start; }
