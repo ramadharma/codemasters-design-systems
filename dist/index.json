@@ -203,8 +203,8 @@
       "name": "Table",
       "category": "Components",
       "status": "Ready",
-      "updated": "2026-10-08",
-      "description": "Rows of records: claims, invoice items, members. A gray-50 header band, gray-200 row dividers, right-aligned tabular numbers, status pills, sortable columns, row selection and grouped rows.",
+      "updated": "2026-10-13",
+      "description": "Rows of records: claims, invoice items, members. A gray-50 header band, gray-200 row dividers, right-aligned tabular numbers, status pills, sortable columns, row selection, grouped rows and nested rows that fold.",
       "path": "components/table.md"
     },
     {

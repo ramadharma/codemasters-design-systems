@@ -19,7 +19,18 @@ function tableGroup(e) {
   if (!btn) return;
   const open = btn.getAttribute('aria-expanded') !== 'true';
   btn.setAttribute('aria-expanded', String(open));
-  for (const row of btn.closest('tbody').querySelectorAll('tr[data-child]')) row.hidden = !open;
+  const row = btn.closest('tr'), level = +row.dataset.level;
+  if (!level) {
+    for (const r of row.closest('tbody').querySelectorAll('tr[data-child]')) r.hidden = !open;
+    return;
+  }
+  let shut = Infinity; // level of the nearest folded row inside this branch
+  for (let r = row.nextElementSibling; r && +r.dataset.level > level; r = r.nextElementSibling) {
+    const l = +r.dataset.level;
+    if (l <= shut) shut = Infinity;
+    r.hidden = !open || l > shut;
+    if (shut === Infinity && r.querySelector('.sb-table-fold[aria-expanded="false"]')) shut = l;
+  }
 }
 function tableScroll(e) {
   const wrap = e.target.closest?.('.sb-table-wrap');

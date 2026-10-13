@@ -20,13 +20,26 @@
     });
     body.append(...rows);
   }
-  // ---- Grouped table: the chevron folds a group's item rows.
+  // ---- Grouped and nested tables: the chevron folds the rows under it.
+  // Grouped: the group's data-child rows. Nested: the following rows with a deeper data-level; a row shows only
+  // while every chevron above it is open, so a folded branch stays folded when its parent reopens.
   function tableGroup(e) {
     const btn = e.target.closest?.('.sb-table-fold');
     if (!btn) return;
     const open = btn.getAttribute('aria-expanded') !== 'true';
     btn.setAttribute('aria-expanded', String(open));
-    for (const row of btn.closest('tbody').querySelectorAll('tr[data-child]')) row.hidden = !open;
+    const row = btn.closest('tr'), level = +row.dataset.level;
+    if (!level) {
+      for (const r of row.closest('tbody').querySelectorAll('tr[data-child]')) r.hidden = !open;
+      return;
+    }
+    let shut = Infinity; // level of the nearest folded row inside this branch
+    for (let r = row.nextElementSibling; r && +r.dataset.level > level; r = r.nextElementSibling) {
+      const l = +r.dataset.level;
+      if (l <= shut) shut = Infinity;
+      r.hidden = !open || l > shut;
+      if (shut === Infinity && r.querySelector('.sb-table-fold[aria-expanded="false"]')) shut = l;
+    }
   }
   // ---- Sticky column edge: shows only once the table has scrolled sideways.
   function tableScroll(e) {
@@ -56,7 +69,8 @@ document.addEventListener('scroll', tableScroll, true); // scroll does not bubbl
    data-num      on th and td: right-aligned, tabular figures (amounts, counts, dates)
    aria-sort     on a sortable th: ascending | descending (one column at a time)
    data-tone     on a body row: error (flagged) | warning (needs review)
-   data-group / data-child / tfoot   grouped table rows */
+   data-group / data-child / tfoot   grouped table rows
+   data-level    on every body row of a nested table: 1–3; a row with children starts with an .sb-table-fold button */
 
 .sb-table-wrap { overflow-x: auto; max-width: 100%; }
 .sb-table {
@@ -119,7 +133,7 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 /* Grouped table: group row (chevron, number, name, total), item rows indented on gray-50, gray-100 total row. */
 .sb-table tbody tr[data-group] td { font-weight: 600; color: var(--gray-900); }
 .sb-table tbody tr[data-child] td:first-child { padding-inline-start: calc(var(--cell-px) + 32px); }
-.sb-table tbody tr[data-child][hidden] { display: none; }
+.sb-table tbody tr[hidden] { display: none; }
 .sb-table-fold { display: inline-grid; place-items: center; width: 24px; height: 24px; margin: -4px 8px -4px -4px; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--gray-500); cursor: pointer; vertical-align: middle; }
 .sb-table-fold:hover { background: var(--gray-100); color: var(--gray-700); }
 .sb-table-fold:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
@@ -128,6 +142,14 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 .sb-table tfoot td { --row-bg: var(--gray-100); font-weight: 600; color: var(--gray-900); }
 .sb-table tfoot td:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
 .sb-table tfoot td:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+
+/* Nested table: each level indents 28 (the chevron's width), so a child's chevron sits under its parent's label.
+   Rows without children add 28 more so their labels line up with siblings that have a chevron. */
+.sb-table tbody tr[data-level="2"] { --indent: 28px; }
+.sb-table tbody tr[data-level="3"] { --indent: 56px; }
+.sb-table tbody tr[data-level] td:first-child { padding-inline-start: calc(var(--cell-px) + var(--indent, 0px)); }
+.sb-table tbody tr[data-level]:not(:has(.sb-table-fold)) td:first-child { padding-inline-start: calc(var(--cell-px) + var(--indent, 0px) + 28px); }
+.sb-table tbody tr[data-level]:has(.sb-table-fold) td:first-child { font-weight: 500; }
 
 /* Footer: count on the left, page buttons on the right. */
 .sb-table-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
@@ -211,6 +233,42 @@ ${items.map(([label, v, t]) => `      <tr data-child${t ? ` data-tone="${t}"` : 
   </table>
 </div>`;
 
+  // Nested: claim > category > item. A parent row's amounts are the sum of its items; a rejected item is flagged.
+  // Leaf: [label, billed, approved]. Parent: [label, children, open].
+  const CLAIM_TREE = [
+    ['KLM-0238', [
+      ['Obat', [['Paracetamol infus 1 g', 420000, 420000], ['Ondansetron 4 mg', 270000, 270000]], true],
+      ['Tindakan', [['Pemeriksaan dokter spesialis', 750000, 750000], ['Tes darah lengkap', 585000, 585000], ['CT scan tanpa indikasi', 1250000, 0]]],
+    ], true],
+    ['KLM-0236', [
+      ['Konsultasi', [['Dokter umum', 275000, 275000]]],
+      ['Obat', [['Amoxicillin 500 mg', 600000, 600000]]],
+    ]],
+    ['KLM-0241', [
+      ['Kamar', [['Kamar VIP, 3 malam', 4500000, 3000000]]],
+      ['Tindakan', [['Operasi apendektomi', 7950000, 7950000]]],
+    ]],
+  ];
+  const sum = (node, i) => Array.isArray(node[1]) ? node[1].reduce((a, c) => a + sum(c, i), 0) : node[i];
+  const treeRows = (nodes, level = 1, hidden = false) => nodes.flatMap(node => {
+    const [label, kids, open] = node, parent = Array.isArray(kids), approved = sum(node, 2);
+    const attrs = [`data-level="${level}"`];
+    if (!parent && approved === 0) attrs.push('data-tone="error"');
+    if (hidden) attrs.push('hidden');
+    const fold = parent ? `<button class="sb-table-fold" type="button" aria-expanded="${!!open}" aria-label="Rincian ${esc(label)}">${icon('chevron-right')}</button>` : '';
+    const name = level === 1 ? `<a class="sb-table-link" href="#/table">${esc(label)}</a>` : esc(label);
+    const row = `      <tr ${attrs.join(' ')}><td>${fold}${name}</td><td data-num>${rp(sum(node, 1))}</td><td data-num>${rp(approved)}</td></tr>`;
+    return parent ? [row, ...treeRows(kids, level + 1, hidden || !open)] : [row];
+  });
+  const nested = `<div class="sb-table-wrap">
+  <table class="sb-table">
+    <thead><tr><th scope="col">Klaim / Item</th><th scope="col" data-num>Tagihan</th><th scope="col" data-num>Disetujui</th></tr></thead>
+    <tbody>
+${treeRows(CLAIM_TREE).join('\n')}
+    </tbody>
+  </table>
+</div>`;
+
   const amount = `<div class="sb-table-wrap">
   <table class="sb-table">
     <thead><tr><th scope="col">Item</th><th scope="col" data-num>Tagihan</th></tr></thead>
@@ -246,8 +304,8 @@ ${items.map(([label, v, t]) => `      <tr data-child${t ? ` data-tone="${t}"` : 
     name: 'Table',
     category: 'Components',
     status: 'Ready',
-    updated: '2026-10-08',
-    description: 'Rows of records: claims, invoice items, members. A gray-50 header band, gray-200 row dividers, right-aligned tabular numbers, status pills, sortable columns, row selection and grouped rows.',
+    updated: '2026-10-13',
+    description: 'Rows of records: claims, invoice items, members. A gray-50 header band, gray-200 row dividers, right-aligned tabular numbers, status pills, sortable columns, row selection, grouped rows and nested rows that fold.',
     css: CSS,
     cssFile: 'table.css',
     sections: [
@@ -319,6 +377,7 @@ ${items.map(([label, v, t]) => `      <tr data-child${t ? ` data-tone="${t}"` : 
               ['Selection', 'True, False', 'A first column of Checkboxes with `data-select-all` / `data-select-item`'],
               ['Tone', 'Error, Warning', '`data-tone` on a body row'],
               ['Sticky first column', 'True, False', '`data-sticky` on the table'],
+              ['Nested rows', '1, 2, 3', '`data-level` on every body row; a row with children starts with a `<button class="sb-table-fold">`; folded rows are `hidden`'],
             ],
           },
         ],
@@ -335,6 +394,9 @@ ${items.map(([label, v, t]) => `      <tr data-child${t ? ` data-tone="${t}"` : 
           { type: 'h3', id: 'type-grouped', text: 'Grouped' },
           { type: 'p', text: 'For invoices, FWA findings and benefits. A group row (chevron, number, name, total) folds its item rows; items are indented 32 on `gray-50`; the total row is `gray-100` with radius 8. Flagged items are `error-50` with `error-700` text, items to review `warning-50`.' },
           { type: 'example', html: stage(grouped), code: false },
+          { type: 'h3', id: 'type-nested', text: 'Nested' },
+          { type: 'p', text: 'For records that break down more than one level, such as claim, category and item. Every row has the same columns, and a parent row shows the sum of its children. Each level indents 28, so a child\'s chevron sits under its parent\'s label, up to 3 levels. A folded branch stays folded when its parent reopens. Use Grouped when there is only one level and a total row.' },
+          { type: 'example', html: stage(nested), code: false },
           { type: 'h3', id: 'type-amount', text: 'Amount and missing values' },
           { type: 'p', text: 'Converted currencies sit under the Rupiah amount in Text xs `gray-500`, separated by " | ". A value that does not exist yet is a `gray-400` "—" with an `aria-label`.' },
           { type: 'example', html: stage(amount, 'is-narrow') },
@@ -403,7 +465,7 @@ ${items.map(([label, v, t]) => `      <tr data-child${t ? ` data-tone="${t}"` : 
               'Sortable headers are `<button>`s inside the `th`; the `th` carries `aria-sort="ascending"` or `"descending"`, so screen readers announce the order.',
               'Selection checkboxes each have an `aria-label` naming the row ("Pilih KLM-0241"); the header box says "Pilih semua klaim".',
               'Flagged rows also say why in the row (a pill or the text), not only with the tint.',
-              'The group chevron is a `<button>` with `aria-expanded` and a label ("Rincian Obat").',
+              'The group and nested chevrons are `<button>`s with `aria-expanded` and a label ("Rincian Obat"). Folded rows are `hidden`, so screen readers skip them too.',
             ],
           },
           {
@@ -422,7 +484,7 @@ ${items.map(([label, v, t]) => `      <tr data-child${t ? ` data-tone="${t}"` : 
         id: 'code',
         title: 'Code',
         blocks: [
-          { type: 'p', text: 'Load `tokens.css`, `badge.css` and `checkbox.css` for the parts inside, then `table.css`. Add `table.js` for sorting and groups, and `checkbox-select-all.js` for selection.' },
+          { type: 'p', text: 'Load `tokens.css`, `badge.css` and `checkbox.css` for the parts inside, then `table.css`. Add `table.js` for sorting, groups and nested rows, and `checkbox-select-all.js` for selection.' },
           { type: 'code', lang: 'css', filename: 'table.css', code: CSS },
           { type: 'h3', id: 'table-script', text: 'Sort and group script' },
           { type: 'code', lang: 'js', filename: 'table.js', code: SCRIPT },

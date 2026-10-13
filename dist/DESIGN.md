@@ -6803,7 +6803,7 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 
 ## Table
 
-Rows of records: claims, invoice items, members. A gray-50 header band, gray-200 row dividers, right-aligned tabular numbers, status pills, sortable columns, row selection and grouped rows.
+Rows of records: claims, invoice items, members. A gray-50 header band, gray-200 row dividers, right-aligned tabular numbers, status pills, sortable columns, row selection, grouped rows and nested rows that fold.
 
 ### Usage
 
@@ -6835,6 +6835,7 @@ Rows of records: claims, invoice items, members. A gray-50 header band, gray-200
 | Selection | True, False | A first column of Checkboxes with `data-select-all` / `data-select-item` |
 | Tone | Error, Warning | `data-tone` on a body row |
 | Sticky first column | True, False | `data-sticky` on the table |
+| Nested rows | 1, 2, 3 | `data-level` on every body row; a row with children starts with a `<button class="sb-table-fold">`; folded rows are `hidden` |
 
 ### Types
 
@@ -6869,6 +6870,10 @@ A first column of Checkboxes sm. The header box selects all and turns indetermin
 #### Grouped
 
 For invoices, FWA findings and benefits. A group row (chevron, number, name, total) folds its item rows; items are indented 32 on `gray-50`; the total row is `gray-100` with radius 8. Flagged items are `error-50` with `error-700` text, items to review `warning-50`.
+
+#### Nested
+
+For records that break down more than one level, such as claim, category and item. Every row has the same columns, and a parent row shows the sum of its children. Each level indents 28, so a child's chevron sits under its parent's label, up to 3 levels. A folded branch stays folded when its parent reopens. Use Grouped when there is only one level and a total row.
 
 #### Amount and missing values
 
@@ -6950,7 +6955,7 @@ The table scrolls sideways inside its card. With `data-sticky` the first column 
 - Sortable headers are `<button>`s inside the `th`; the `th` carries `aria-sort="ascending"` or `"descending"`, so screen readers announce the order.
 - Selection checkboxes each have an `aria-label` naming the row ("Pilih KLM-0241"); the header box says "Pilih semua klaim".
 - Flagged rows also say why in the row (a pill or the text), not only with the tint.
-- The group chevron is a `<button>` with `aria-expanded` and a label ("Rincian Obat").
+- The group and nested chevrons are `<button>`s with `aria-expanded` and a label ("Rincian Obat"). Folded rows are `hidden`, so screen readers skip them too.
 
 | Text | On | Ratio | AA |
 | --- | --- | --- | --- |
@@ -6961,7 +6966,7 @@ The table scrolls sideways inside its card. With `data-sticky` the first column 
 
 ### Code
 
-Load `tokens.css`, `badge.css` and `checkbox.css` for the parts inside, then `table.css`. Add `table.js` for sorting and groups, and `checkbox-select-all.js` for selection.
+Load `tokens.css`, `badge.css` and `checkbox.css` for the parts inside, then `table.css`. Add `table.js` for sorting, groups and nested rows, and `checkbox-select-all.js` for selection.
 
 `table.css`
 
@@ -6981,7 +6986,8 @@ Load `tokens.css`, `badge.css` and `checkbox.css` for the parts inside, then `ta
    data-num      on th and td: right-aligned, tabular figures (amounts, counts, dates)
    aria-sort     on a sortable th: ascending | descending (one column at a time)
    data-tone     on a body row: error (flagged) | warning (needs review)
-   data-group / data-child / tfoot   grouped table rows */
+   data-group / data-child / tfoot   grouped table rows
+   data-level    on every body row of a nested table: 1–3; a row with children starts with an .sb-table-fold button */
 
 .sb-table-wrap { overflow-x: auto; max-width: 100%; }
 .sb-table {
@@ -7044,7 +7050,7 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 /* Grouped table: group row (chevron, number, name, total), item rows indented on gray-50, gray-100 total row. */
 .sb-table tbody tr[data-group] td { font-weight: 600; color: var(--gray-900); }
 .sb-table tbody tr[data-child] td:first-child { padding-inline-start: calc(var(--cell-px) + 32px); }
-.sb-table tbody tr[data-child][hidden] { display: none; }
+.sb-table tbody tr[hidden] { display: none; }
 .sb-table-fold { display: inline-grid; place-items: center; width: 24px; height: 24px; margin: -4px 8px -4px -4px; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--gray-500); cursor: pointer; vertical-align: middle; }
 .sb-table-fold:hover { background: var(--gray-100); color: var(--gray-700); }
 .sb-table-fold:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
@@ -7053,6 +7059,14 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 .sb-table tfoot td { --row-bg: var(--gray-100); font-weight: 600; color: var(--gray-900); }
 .sb-table tfoot td:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
 .sb-table tfoot td:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+
+/* Nested table: each level indents 28 (the chevron's width), so a child's chevron sits under its parent's label.
+   Rows without children add 28 more so their labels line up with siblings that have a chevron. */
+.sb-table tbody tr[data-level="2"] { --indent: 28px; }
+.sb-table tbody tr[data-level="3"] { --indent: 56px; }
+.sb-table tbody tr[data-level] td:first-child { padding-inline-start: calc(var(--cell-px) + var(--indent, 0px)); }
+.sb-table tbody tr[data-level]:not(:has(.sb-table-fold)) td:first-child { padding-inline-start: calc(var(--cell-px) + var(--indent, 0px) + 28px); }
+.sb-table tbody tr[data-level]:has(.sb-table-fold) td:first-child { font-weight: 500; }
 
 /* Footer: count on the left, page buttons on the right. */
 .sb-table-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
@@ -7088,7 +7102,18 @@ function tableGroup(e) {
   if (!btn) return;
   const open = btn.getAttribute('aria-expanded') !== 'true';
   btn.setAttribute('aria-expanded', String(open));
-  for (const row of btn.closest('tbody').querySelectorAll('tr[data-child]')) row.hidden = !open;
+  const row = btn.closest('tr'), level = +row.dataset.level;
+  if (!level) {
+    for (const r of row.closest('tbody').querySelectorAll('tr[data-child]')) r.hidden = !open;
+    return;
+  }
+  let shut = Infinity; // level of the nearest folded row inside this branch
+  for (let r = row.nextElementSibling; r && +r.dataset.level > level; r = r.nextElementSibling) {
+    const l = +r.dataset.level;
+    if (l <= shut) shut = Infinity;
+    r.hidden = !open || l > shut;
+    if (shut === Infinity && r.querySelector('.sb-table-fold[aria-expanded="false"]')) shut = l;
+  }
 }
 function tableScroll(e) {
   const wrap = e.target.closest?.('.sb-table-wrap');
