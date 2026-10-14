@@ -1,0 +1,19 @@
+/* Pagination, Codemasters Design System
+   Needs tokens.css, button.css and input-dropdown.css (+ input-dropdown.js); pagination.js draws and updates it.
+
+   <nav class="sb-pagination" id="klaim-pages" aria-label="Halaman daftar klaim"
+        data-page="1" data-total="1542" data-size="5" data-sizes="5,10,25,50" data-noun="klaim"></nav>
+
+   data-page, data-total, data-size   the current page, the number of rows, rows per page
+   data-sizes   the page-size options (default 5, 10, 25, 50)
+   data-noun    what the rows are: "1–5 dari 1.542 klaim" (default "data")
+   One row, right-aligned: Baris per halaman [5 ⌄]   1–5 dari 1.542 klaim   [‹] [›] */
+
+.sb-pagination {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 12px;
+  font: 400 var(--text-md) var(--font); color: var(--text-quaternary);
+}
+.sb-pagination-label { white-space: nowrap; }
+.sb-pagination-size { width: 88px; }
+.sb-pagination-count { margin: 0 0 0 12px; white-space: nowrap; font-variant-numeric: tabular-nums; } /* 24 from the list */
+.sb-pagination-steps { display: flex; gap: 12px; margin-inline-start: 12px; } /* 24 from the range, 12 between the arrows */

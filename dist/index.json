@@ -217,6 +217,15 @@
       "path": "components/modal.md"
     },
     {
+      "slug": "pagination",
+      "name": "Pagination",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-14",
+      "description": "The footer of a long list: how many rows per page, which rows are shown out of how many, and two arrows to the previous and next page. One row, right-aligned under the table.",
+      "path": "components/pagination.md"
+    },
+    {
       "slug": "progress",
       "name": "Progress bar and circle",
       "category": "Components",
@@ -364,6 +373,8 @@
     "code/loading.css",
     "code/modal.css",
     "code/modal.js",
+    "code/pagination.css",
+    "code/pagination.js",
     "code/progress.js",
     "code/progress.css",
     "code/sidebar.css",

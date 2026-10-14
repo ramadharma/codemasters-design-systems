@@ -151,8 +151,8 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 .sb-table tbody tr[data-level]:not(:has(.sb-table-fold)) td:first-child { padding-inline-start: calc(var(--cell-px) + var(--indent, 0px) + 28px); }
 .sb-table tbody tr[data-level]:has(.sb-table-fold) td:first-child { font-weight: 500; }
 
-/* Footer: count on the left, page buttons on the right. */
-.sb-table-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
+/* Footer: the Pagination component, 16 under the table. */
+.sb-table-foot { padding-top: 16px; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-table tbody tr, .sb-table-fold > svg { transition: none; }
@@ -208,13 +208,7 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
     if (sticky) a.push('data-sticky');
     return `<div class="sb-table-wrap">\n  <table ${a.join(' ')}>\n    <thead><tr>${head}</tr></thead>\n    <tbody>\n${body}\n    </tbody>\n  </table>\n</div>`;
   }
-  const pager = `<div class="sb-table-foot">
-  <span>Menampilkan 1–5 dari 128 klaim</span>
-  <div class="sb-btn-group" role="group" aria-label="Navigasi halaman" data-icon="only">
-    <button type="button" aria-label="Halaman sebelumnya" disabled>${icon('chevron-left')}</button>
-    <button type="button" aria-label="Halaman berikutnya">${icon('chevron-right')}</button>
-  </div>
-</div>`;
+  const pager = () => `<div class="sb-table-foot">${DS.pagination({ page: 1, total: 128, size: 5, label: 'Halaman daftar klaim' })}</div>`; // the Pagination component
 
   // Grouped: an invoice by category.
   const INVOICE = [
@@ -323,7 +317,7 @@ ${treeRows(CLAIM_TREE).join('\n')}
               { key: 'tone', label: 'Flagged rows', type: 'toggle' },
               { key: 'sticky', label: 'Sticky first column', type: 'toggle' },
             ],
-            render: s => stage(`${table(s)}\n${pager}`),
+            render: s => stage(`${table(s)}\n${pager()}`),
           },
         ],
       },
@@ -335,7 +329,7 @@ ${treeRows(CLAIM_TREE).join('\n')}
             type: 'list',
             items: [
               'Use a table when people compare or scan many records with the same fields. For one record, use a Card with summary rows.',
-              'A table sits in a Card. Its count and page buttons sit under it; filters and search sit above, outside the table.',
+              'A table sits in a Card. Pagination (count and pages) sits under it; filters and search sit above, outside the table.',
               'Numbers, amounts and dates align right with tabular figures, so digits line up. Text aligns left.',
               'Money is in full Rupiah. Status is a Badge sm, never coloured text.',
               'Every cell shows a value. A missing value is a `gray-400` "—", never a blank cell.',
@@ -387,7 +381,7 @@ ${treeRows(CLAIM_TREE).join('\n')}
         title: 'Types',
         blocks: [
           { type: 'h3', id: 'type-default', text: 'Default' },
-          { type: 'example', html: stage(`${table()}\n${pager}`) },
+          { type: 'example', html: stage(`${table()}\n${pager()}`) },
           { type: 'h3', id: 'type-select', text: 'With selection' },
           { type: 'p', text: 'A first column of Checkboxes sm. The header box selects all and turns indeterminate when only some rows are chosen. Selected rows are `brand-50`. Bulk actions appear above the table when something is selected.' },
           { type: 'example', html: stage(table({ select: true })), code: false },

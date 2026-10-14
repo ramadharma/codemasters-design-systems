@@ -332,6 +332,16 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .sp-cell { display: grid; justify-items: center; gap: 12px; margin: 0; }
 .ex-preview:has(> .loading-stage) { min-height: 0; padding: 48px 32px; }
 
+/* Pagination page: full width, right-aligned like under a table; the page-size list opens over the frame. */
+.pager-stage { width: 100%; }
+.pager-stage.is-stack { display: grid; gap: 24px; }
+.pager-state { display: grid; gap: 8px; margin: 0; }
+.pager-copy { margin: 0; font: 400 var(--text-md) var(--font); color: var(--text-quaternary); }
+.ex-preview:has(> .pager-stage), .pg-stage:has(> .pager-stage) { position: relative; z-index: 2; min-height: 0; padding: 48px 32px; overflow: visible; }
+.anat .pager-stage [data-pin] { outline: 1px dashed var(--fg-quaternary); outline-offset: 2px; }
+.ex-preview.anat:has(> .pager-stage) { padding-block: 80px; } /* room for the pins above and below */
+.anat .pager-stage .sb-pagination { justify-content: center; }
+
 /* Banner page: content width; the page specimen shows a header strip, the page banner and the page body. */
 .banner-stage { width: 100%; max-width: 560px; }
 .banner-stage.is-stack { display: grid; gap: 12px; }

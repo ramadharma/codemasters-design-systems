@@ -15,7 +15,7 @@ Rows of records: claims, invoice items, members. A gray-50 header band, gray-200
 ## Usage
 
 - Use a table when people compare or scan many records with the same fields. For one record, use a Card with summary rows.
-- A table sits in a Card. Its count and page buttons sit under it; filters and search sit above, outside the table.
+- A table sits in a Card. Pagination (count and pages) sits under it; filters and search sit above, outside the table.
 - Numbers, amounts and dates align right with tabular figures, so digits line up. Text aligns left.
 - Money is in full Rupiah. Status is a Badge sm, never coloured text.
 - Every cell shows a value. A missing value is a `gray-400` "—", never a blank cell.
@@ -61,13 +61,15 @@ Rows of records: claims, invoice items, members. A gray-50 header band, gray-200
     </tbody>
   </table>
 </div>
-<div class="sb-table-foot">
-  <span>Menampilkan 1–5 dari 128 klaim</span>
-  <div class="sb-btn-group" role="group" aria-label="Navigasi halaman" data-icon="only">
-    <button type="button" aria-label="Halaman sebelumnya" disabled><svg aria-hidden="true"><!-- chevron-left --></svg></button>
-    <button type="button" aria-label="Halaman berikutnya"><svg aria-hidden="true"><!-- chevron-right --></svg></button>
-  </div>
+<div class="sb-table-foot"><nav class="sb-pagination" id="pg-6" aria-label="Halaman daftar klaim" data-page="1" data-total="128" data-size="5" data-noun="klaim">
+<span class="sb-pagination-label" id="pg-6-l">Baris per halaman</span>
+<div class="sb-dd sb-pagination-size">
+  <button class="sb-dd-trigger" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="pg-6-list" aria-labelledby="pg-6-l pg-6-v"><span class="sb-dd-value" id="pg-6-v"><span class="sb-dd-label">5</span></span><svg class="sb-dd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+  <div class="sb-dd-menu" id="pg-6-list" role="listbox" aria-labelledby="pg-6-l" hidden><div class="sb-dd-opt" id="pg-6-o0" role="option" aria-selected="true" data-value="5"><span class="sb-dd-main"><span class="sb-dd-label">5</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" id="pg-6-o1" role="option" aria-selected="false" data-value="10"><span class="sb-dd-main"><span class="sb-dd-label">10</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" id="pg-6-o2" role="option" aria-selected="false" data-value="25"><span class="sb-dd-main"><span class="sb-dd-label">25</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" id="pg-6-o3" role="option" aria-selected="false" data-value="50"><span class="sb-dd-main"><span class="sb-dd-label">50</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div></div>
 </div>
+<p class="sb-pagination-count" aria-live="polite">1–5 dari 128 klaim</p>
+<div class="sb-pagination-steps"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="Halaman sebelumnya" data-go="0" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="Halaman berikutnya" data-go="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div>
+</nav></div>
 ```
 
 ### With selection
@@ -275,8 +277,8 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 .sb-table tbody tr[data-level]:not(:has(.sb-table-fold)) td:first-child { padding-inline-start: calc(var(--cell-px) + var(--indent, 0px) + 28px); }
 .sb-table tbody tr[data-level]:has(.sb-table-fold) td:first-child { font-weight: 500; }
 
-/* Footer: count on the left, page buttons on the right. */
-.sb-table-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
+/* Footer: the Pagination component, 16 under the table. */
+.sb-table-foot { padding-top: 16px; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-table tbody tr, .sb-table-fold > svg { transition: none; }

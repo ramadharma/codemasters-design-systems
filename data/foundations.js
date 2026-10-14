@@ -231,7 +231,7 @@
   // Preview HTML to copyable snippet: icon bodies collapse to a named placeholder, docs-only attributes go.
   DS.snippet = html =>
     html
-      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart|table|modal|side|header|banner|dp|cb|loading)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
+      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart|table|modal|side|header|banner|dp|cb|loading|pager)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
       .replace(/<svg( class="[^"]*")? data-i="([\w-]+)"[\s\S]*?<\/svg>/g, '<svg$1 aria-hidden="true"><!-- $2 --></svg>')
       .replace(/ data-(state|demo)(="[^"]*")?/g, '')
       .replace(/src="data:image\/[^"]*"/g, 'src="…"'); // inline demo images

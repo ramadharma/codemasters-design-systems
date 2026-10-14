@@ -95,8 +95,8 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 .sb-table tbody tr[data-level]:not(:has(.sb-table-fold)) td:first-child { padding-inline-start: calc(var(--cell-px) + var(--indent, 0px) + 28px); }
 .sb-table tbody tr[data-level]:has(.sb-table-fold) td:first-child { font-weight: 500; }
 
-/* Footer: count on the left, page buttons on the right. */
-.sb-table-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
+/* Footer: the Pagination component, 16 under the table. */
+.sb-table-foot { padding-top: 16px; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-table tbody tr, .sb-table-fold > svg { transition: none; }

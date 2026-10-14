@@ -31,6 +31,8 @@
     else p.dd.querySelector('.sb-dd-value').innerHTML = opt.querySelector('.sb-dd-main').innerHTML;
     ddSetOpen(p, false);
     p.trigger.focus();
+    const label = opt.querySelector('.sb-dd-label').textContent;
+    p.dd.dispatchEvent(new CustomEvent('sb-dd-change', { bubbles: true, detail: { value: opt.dataset.value ?? label, label } }));
   }
   function ddClick(e) {
     const opt = e.target.closest?.('.sb-dd [role="option"]');
@@ -84,6 +86,7 @@
   const strip = f => f.toString().replace(/^  /gm, '');
   const SCRIPT = `// Input dropdown behaviour: click or Enter / Space / ↓ opens, ↑ ↓ Home End move, Enter selects,
 // Esc closes, Tab closes. The Search type filters as you type. Focus stays on the field (aria-activedescendant).
+// A pick fires "sb-dd-change" on .sb-dd with { value, label } (value = the option's data-value, else its label).
 ${[ddParts, ddOptions, ddActivate, ddSetOpen, ddChoose, ddClick, ddKeydown, ddFilter].map(strip).join('\n')}
 document.addEventListener('click', ddClick);
 document.addEventListener('keydown', ddKeydown);
