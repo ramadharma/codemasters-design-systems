@@ -38,7 +38,7 @@ Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour o
 
 ## Library
 
-The 54 icons used in this documentation. Click one to copy its name.
+The 55 icons used in this documentation. Click one to copy its name.
 
 ## Code
 

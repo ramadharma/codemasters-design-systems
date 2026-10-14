@@ -1,0 +1,101 @@
+/* File upload, Codemasters Design System
+   Needs tokens.css, progress.css (bars), button.css ("Coba lagi"), badge.css (checklist) and file-upload.js.
+
+   <div class="sb-upload" data-multiple data-max-size="10">
+     <label class="sb-dropzone">
+       <input class="sb-dropzone-input" type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
+       <span class="sb-dropzone-icon"><svg aria-hidden="true">…upload-cloud…</svg></span>
+       <span class="sb-dropzone-text"><strong>Klik untuk unggah</strong> atau seret ke sini</span>
+       <span class="sb-dropzone-hint">PDF, JPG atau PNG, maks. 10 MB</span>
+     </label>
+     <ul class="sb-upload-list" aria-label="File terunggah">…file rows (file-upload.js adds them)…</ul>
+   </div>
+
+   data-multiple      many files; without it one file, and the zone hides while it is there
+   data-max-size      the largest file in MB; accept on the input sets the types
+   data-variant       slot: a small "Unggah" button-zone for one document in a checklist
+   .sb-file data-state   uploading | done | error (upload failed: Coba lagi) | invalid (wrong type or too big) */
+
+.sb-upload { display: grid; gap: 12px; min-width: 0; } /* long file names truncate instead of widening the row */
+
+/* Drop zone: dashed gray-300, radius 12, the whole area is the label of the file input. */
+.sb-dropzone {
+  position: relative; display: grid; justify-items: center; gap: 4px; padding: 16px 24px;
+  border: 1px dashed var(--border-primary); border-radius: var(--radius-lg); background: var(--bg-primary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-tertiary); text-align: center; cursor: pointer;
+  transition-property: border-color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-dropzone-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; } /* kept for focus, keyboard and screen readers */
+.sb-dropzone:hover { background: var(--bg-secondary); }
+.sb-dropzone[data-drag] { border-style: solid; border-color: var(--fg-brand); background: var(--bg-brand-subtle); }
+.sb-dropzone:has(input:focus-visible) { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.sb-dropzone:has(input:disabled) { opacity: .5; cursor: not-allowed; background: none; }
+.sb-dropzone-icon {
+  display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 8px;
+  border: 1px solid var(--border-secondary); border-radius: var(--radius-md); background: var(--bg-primary); box-shadow: var(--shadow-xs); color: var(--text-secondary);
+}
+.sb-dropzone-icon > svg { width: 20px; height: 20px; }
+.sb-dropzone-text strong { font-weight: 600; color: var(--text-brand); }
+.sb-dropzone-hint { font-size: 12px; line-height: 18px; color: var(--text-quaternary); }
+.sb-upload:not([data-multiple]):has(.sb-file) > .sb-dropzone { display: none; } /* single: the file takes the zone's place */
+
+/* File row: radius 12, padding 16; the type tag or thumbnail, name and size, the bar, one action. */
+.sb-upload-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.sb-upload-list:empty { display: none; }
+.sb-file {
+  display: flex; align-items: flex-start; gap: 12px; min-width: 0; padding: 16px;
+  border: 1px solid var(--border-secondary); border-radius: var(--radius-lg); background: var(--bg-primary);
+  font: 400 var(--text-sm) var(--font);
+}
+.sb-file-type, .sb-file-thumb { flex: none; width: 40px; height: 40px; border-radius: var(--radius-md); }
+.sb-file-type { display: grid; place-items: center; border: 1px solid var(--border-secondary); font: 600 10px/1 var(--font); color: var(--text-tertiary); letter-spacing: .02em; }
+.sb-file-thumb { object-fit: cover; outline: 1px solid rgb(0 0 0 / .1); outline-offset: -1px; } /* image outline: the edge reads on any photo */
+:root[data-theme="dark"] .sb-file-thumb { outline-color: rgb(255 255 255 / .1); }
+.sb-file-body { display: grid; grid-template-columns: minmax(0, 1fr); flex: 1; gap: 4px; min-width: 0; } /* the name column may shrink */
+.sb-file-name { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 500; color: var(--text-secondary); }
+.sb-file-name > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sb-file-done { width: 16px; height: 16px; flex: none; color: var(--success-600); }
+.sb-file-meta { display: flex; flex-wrap: wrap; gap: 0 8px; margin: 0; color: var(--text-quaternary); font-variant-numeric: tabular-nums; }
+.sb-file-error { color: var(--text-error); }
+.sb-file-error:empty { display: none; }
+.sb-file .sb-progress { margin-top: 4px; }
+.sb-file-retry { justify-self: start; }
+.sb-file-action {
+  display: grid; place-items: center; flex: none; width: 32px; height: 32px; margin: -6px -6px 0 0; padding: 0;
+  border: 0; border-radius: var(--radius-md); background: none; color: var(--text-quaternary); cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-file-action > svg { width: 20px; height: 20px; }
+.sb-file-action:hover { background: var(--bg-secondary); color: var(--text-secondary); }
+.sb-file-action:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
+
+/* States: only the parts that apply. */
+.sb-file:not([data-state="done"]) .sb-file-done,
+.sb-file:not([data-state="uploading"]) .sb-progress,
+.sb-file:not([data-state="error"]) .sb-file-retry,
+.sb-file[data-state="uploading"] .sb-file-trash,
+.sb-file:not([data-state="uploading"]) .sb-file-x { display: none; }
+.sb-file:is([data-state="error"], [data-state="invalid"]) { border-color: var(--border-error); background: var(--bg-error-subtle); }
+.sb-file:is([data-state="error"], [data-state="invalid"]) .sb-file-name { color: var(--text-error); }
+.sb-file:is([data-state="error"], [data-state="invalid"]) .sb-file-type { border-color: var(--border-error); color: var(--text-error); }
+
+/* Slot: one document in a checklist. The zone is a small button that still takes a drop; the file row drops its frame. */
+.sb-upload[data-variant="slot"] .sb-dropzone {
+  display: inline-flex; flex-direction: row; align-items: center; gap: 8px; justify-self: end; height: 36px; padding: 0 14px;
+  border-style: solid; border-radius: var(--radius-md); box-shadow: var(--shadow-xs); font-weight: 600; color: var(--text-secondary);
+}
+.sb-upload[data-variant="slot"] .sb-dropzone > svg { width: 20px; height: 20px; color: var(--text-quaternary); }
+.sb-upload[data-variant="slot"] .sb-file { padding: 8px 12px; border-radius: var(--radius-md); }
+.sb-upload[data-variant="slot"] .sb-file-type, .sb-upload[data-variant="slot"] .sb-file-thumb { width: 32px; height: 32px; }
+
+/* Checklist: one row per required document, its name and status on the left, its slot on the right. */
+.sb-doclist { margin: 0; padding: 0; list-style: none; border: 1px solid var(--border-secondary); border-radius: var(--radius-lg); }
+.sb-doc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 280px); align-items: center; gap: 16px; padding: 16px; }
+.sb-doc + .sb-doc { border-top: 1px solid var(--border-secondary); }
+.sb-doc-head { display: grid; gap: 4px; min-width: 0; }
+.sb-doc-name { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; font: 500 var(--text-sm) var(--font); color: var(--text-primary); }
+.sb-doc-hint { margin: 0; font: 400 var(--text-xs) var(--font); color: var(--text-quaternary); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-dropzone, .sb-file-action { transition: none; }
+}

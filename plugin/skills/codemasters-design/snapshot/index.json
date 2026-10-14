@@ -172,6 +172,15 @@
       "path": "components/dropdown-menu.md"
     },
     {
+      "slug": "file-upload",
+      "name": "File upload",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-14",
+      "description": "Adds documents to a claim: a drop zone people click or drag files onto, and a row per file with its progress, then done, failed or refused. One file or many, image thumbnails, and a checklist of the documents a claim needs.",
+      "path": "components/file-upload.md"
+    },
+    {
       "slug": "header-bar",
       "name": "Header bar",
       "category": "Components",
@@ -366,6 +375,8 @@
     "code/date-picker.js",
     "code/dropdown-menu.css",
     "code/dropdown-menu.js",
+    "code/file-upload.css",
+    "code/file-upload.js",
     "code/header-bar.css",
     "code/input-dropdown.css",
     "code/input-dropdown.js",
