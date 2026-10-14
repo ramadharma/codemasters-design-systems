@@ -126,16 +126,26 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 /* Collapsed: first 3 lines (16 + 3 × 24 + 16 = 104), fading out, with View Code centred over the fade. */
 .code.is-collapsed pre { max-height: 104px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 95%); mask-image: linear-gradient(to bottom, #000 30%, transparent 95%); }
 .code-expand { position: absolute; top: 50%; left: 50%; translate: -50% -50%; }
-.code b, .code i { font: inherit; }
+:is(.code, .md-dialog) :is(b, i) { font: inherit; }
 /* Row numbers: a counter on each line span, outside the copied text. Gutter width = digits of the last line. */
-.code pre code { counter-reset: ln; }
-.code .ln::before { content: counter(ln); counter-increment: ln; display: inline-block; width: var(--ln-w, 1ch); margin-inline-end: 24px; color: var(--fg-quaternary); text-align: end; user-select: none; }
-.code .t { color: var(--text-brand); }
-.code .a { color: var(--purple-700); }
-.code .s { color: var(--success-700); }
-.code .c { color: var(--text-quaternary); }
-:root[data-theme="dark"] .code .a { color: var(--purple-300); }
-:root[data-theme="dark"] .code .s { color: var(--success-300); }
+:is(.code, .md-dialog) pre code { counter-reset: ln; }
+:is(.code, .md-dialog) .ln::before { content: counter(ln); counter-increment: ln; display: inline-block; width: var(--ln-w, 1ch); margin-inline-end: 24px; color: var(--fg-quaternary); text-align: end; user-select: none; }
+:is(.code, .md-dialog) .t { color: var(--text-brand); }
+:is(.code, .md-dialog) .a { color: var(--purple-700); }
+:is(.code, .md-dialog) .s { color: var(--success-700); }
+:is(.code, .md-dialog) .c { color: var(--text-quaternary); }
+:root[data-theme="dark"] :is(.code, .md-dialog) .a { color: var(--purple-300); }
+:root[data-theme="dark"] :is(.code, .md-dialog) .s { color: var(--success-300); }
+/* Markdown: headings bold in brand, bold text bold, list / quote markers in orange. */
+.md-dialog .h { font-weight: 600; color: var(--text-brand); }
+.md-dialog .w { font-weight: 600; }
+.md-dialog .k { color: var(--warning-600); }
+:root[data-theme="dark"] .md-dialog .k { color: var(--warning-400); }
+/* Wrapped lines hang under the text, clear of the line numbers. */
+.md-dialog pre code { white-space: normal; } /* the \n between line blocks would add blank rows; copy still keeps them */
+.md-dialog .ln { display: block; position: relative; min-height: 24px; padding-inline-start: calc(var(--ln-w, 1ch) + 24px); white-space: pre-wrap; }
+.md-dialog .ln::before { position: absolute; inset-inline-start: 0; }
+.md-dialog .r { white-space: pre; } /* table rows stay one line, so the columns line up; the view scrolls sideways */
 .code .copy { position: absolute; top: 8px; inset-inline-end: 8px; --btn-bg: var(--bg-secondary); }
 /* Copy icon cross-fades to a check (better-ui contextual icon values). */
 .copy > svg { position: absolute; inset: 0; margin: auto; transition-property: opacity, scale, filter; transition-duration: 200ms; transition-timing-function: cubic-bezier(.2, 0, 0, 1); }
@@ -591,7 +601,7 @@ p.f-font-glyphs { margin: 0; font: 400 var(--text-lg) var(--font); color: var(--
 .md-dialog[open] { display: flex; flex-direction: column; animation: pop 150ms cubic-bezier(.2, 0, 0, 1); }
 .md-dialog header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; padding-inline: 24px 16px; border-bottom: 1px solid var(--border-secondary); }
 .md-dialog h2 { font: 600 var(--text-lg) var(--font); }
-.md-dialog pre { flex: 1; min-height: 0; overflow: auto; padding: 24px; background: var(--bg-secondary); font-size: 13px; line-height: 24px; color: var(--text-primary); white-space: pre-wrap; }
+.md-dialog pre { flex: 1; min-height: 0; overflow: auto; padding: 16px 24px 16px 20px; background: var(--bg-secondary); font-size: 13px; line-height: 24px; color: var(--text-primary); white-space: pre-wrap; tab-size: 2; }
 .md-dialog footer { display: flex; justify-content: flex-end; gap: 12px; padding: 16px 24px; border-top: 1px solid var(--border-secondary); }
 
 /* ---- Toast (DESIGN.md: bottom centre, gray-900, rise 300 ms) */

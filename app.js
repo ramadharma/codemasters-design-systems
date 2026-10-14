@@ -30,7 +30,67 @@
     if (lang === 'css')
       return s.replace(/(\/\*[\s\S]*?\*\/)|(&quot;[^&]*?&quot;)|(--?[\w-]+|[a-z-]+)(?=:\s)/g, (m, c, str, prop) =>
         c ? `<i class="c">${c}</i>` : str ? `<b class="s">${str}</b>` : `<b class="a">${prop}</b>`);
+    if (lang === 'md') return highlightMd(code);
     return s;
+  };
+  // Markdown, the way an editor shows it: front matter, headings, list and quote markers, table pipes, inline code,
+  // bold and links. Fenced blocks are handed to highlight() in their own language.
+  const mdInline = s => s.replace(/(`[^`]+`)|(\*\*[^*]+\*\*)|\[([^\]]+)\]\(([^)]+)\)|(\|)/g, (m, code, bold, text, url, pipe) =>
+    code ? `<b class="s">${code}</b>` : bold ? `<b class="w">${bold}</b>` : pipe ? `<i class="c">|</i>` : `[<b class="t">${text}</b>](<i class="c">${url}</i>)`);
+  // Table cells split on pipes outside `code`; columns padded to one width, like an editor's "format table".
+  const mdCells = row => {
+    const cells = [];
+    let cell = '', tick = false;
+    for (const ch of row.trim().slice(1, -1)) {
+      if (ch === '`') tick = !tick;
+      if (ch === '|' && !tick) { cells.push(cell.trim()); cell = ''; } else cell += ch;
+    }
+    return [...cells, cell.trim()];
+  };
+  const mdTables = lines => {
+    const out = [];
+    for (let i = 0; i < lines.length; ) {
+      if (!/^\|.*\|$/.test(lines[i])) { out.push(lines[i++]); continue; }
+      const rows = [];
+      while (i < lines.length && /^\|.*\|$/.test(lines[i])) rows.push(mdCells(lines[i++]));
+      const w = rows[0].map((_, c) => Math.max(3, ...rows.map(r => (r[c] || '').length)));
+      const rule = cell => /^:?-+:?$/.test(cell);
+      for (const r of rows) out.push(`| ${w.map((n, c) => (rule(r[c] || '') ? '-'.repeat(n) : (r[c] || '').padEnd(n))).join(' | ')} |`);
+    }
+    return out;
+  };
+  const highlightMd = code => {
+    const out = [];
+    const lines = [], chunk = []; // tables are formatted outside fenced blocks only
+    let inFence = false;
+    for (const l of code.split('\n')) {
+      if (/^```/.test(l)) { lines.push(...mdTables(chunk.splice(0)), l); inFence = !inFence; }
+      else (inFence ? lines : chunk).push(l);
+    }
+    lines.push(...mdTables(chunk));
+    let fence = null, front = lines[0] === '---';
+    lines.forEach((raw, i) => {
+      const line = esc(raw);
+      if (fence) {
+        if (/^```\s*$/.test(raw)) { out.push(highlight(fence.body.join('\n'), fence.lang), `<i class="c">${line}</i>`); fence = null; }
+        else fence.body.push(raw);
+        return;
+      }
+      if (front) {
+        if (i && raw === '---') front = false;
+        out.push(raw === '---' ? `<i class="c">${line}</i>` : line.replace(/^([\w-]+)(:)(.*)$/, '<b class="a">$1</b>$2<b class="s">$3</b>'));
+        return;
+      }
+      const open = raw.match(/^```(\w*)/);
+      if (open) { fence = { lang: open[1], body: [] }; out.push(`<i class="c">\`\`\`</i><b class="t">${open[1]}</b>`); return; }
+      if (/^#{1,6} /.test(raw)) return out.push(`<b class="h">${line}</b>`);
+      if (/^\|[\s|:-]+\|$/.test(raw)) return out.push(`<span class="r"><i class="c">${line}</i></span>`); // table rule
+      if (/^\|.*\|$/.test(raw)) return out.push(`<span class="r">${mdInline(line)}</span>`); // table row: no wrapping
+      const lead = line.match(/^(\s*)(&gt;|[-*]|\d+\.)(\s)(.*)$/);
+      out.push(lead ? `${lead[1]}<b class="k">${lead[2]}</b>${lead[3]}${mdInline(lead[4])}` : mdInline(line));
+    });
+    if (fence) out.push(highlight(fence.body.join('\n'), fence.lang));
+    return out.join('\n');
   };
 
   // One span per line so CSS can number rows. A highlight token that runs across lines (a multi-line comment)
@@ -343,13 +403,14 @@
       if (action === 'download') download(pageFile(current), md);
       if (action === 'preview') {
         $('#md-title').textContent = pageFile(current);
-        $('pre', dialog).textContent = md;
+        $('pre', dialog).innerHTML = `<code style="${gutter(md)}">${numbered(md, 'md')}</code>`;
+        dialog.dataset.md = md; // copy and download take the file itself; the view pads its tables
         dialog.showModal();
       }
     } else if (t.matches('[data-dialog="copy"]')) {
-      copyText($('pre', dialog).textContent, 'Markdown copied');
+      copyText(dialog.dataset.md, 'Markdown copied');
     } else if (t.matches('[data-dialog="download"]')) {
-      download($('#md-title').textContent, $('pre', dialog).textContent);
+      download($('#md-title').textContent, dialog.dataset.md);
     } else if (t.matches('[data-dialog="close"]')) {
       dialog.close();
     } else if (t.matches('[data-theme-toggle]')) {
