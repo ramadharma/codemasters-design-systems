@@ -4,7 +4,7 @@
     "name": "Rama Dharma"
   },
   "metadata": {
-    "description": "The Codemasters design system (Codemasters, Sembuh AI, Flipmaster) as Claude skills."
+    "description": "The Codemasters design system (Codemasters, Sembuh AI) as Claude skills."
   },
   "plugins": [
     {

@@ -10,16 +10,14 @@
   const box = (x, y, w, h, style = '', html = '') =>
     `<div class="f-sl" style="left: ${X(x)}; top: ${Y(y)}; width: ${X(w)};${h ? ` height: ${Y(h)};` : ''} ${style}">${html}</div>`;
   const text = (size, weight, colour, lh = 1.4) => `font: ${weight} ${F(size)}/${lh} 'Inter', sans-serif; color: var(--${colour});`;
-  const LOGO = 'assets/brand/sembuh-logo.png';
-  const LOGO_W = 'assets/brand/sembuh-logo-white.png';
-  const CM = 'assets/brand/codemasters-logo.png';
+  const LOGO = 'assets/brand/sembuh-logo.svg';
+  const LOGO_W = 'assets/brand/sembuh-logo-white.svg';
+  const LOCKUP = 'assets/brand/sembuh-powered.svg';
+  const LOCKUP_W = 'assets/brand/sembuh-powered-white.svg';
 
-  // Logo with "Powered by Codemasters": endorsement 40 % of the logo height, 20 % gap (Logo page).
-  const lockup = (x, y, w, white = false) => {
-    const h = w / 6.84;
-    return box(x, y, w, 0, '', `<img src="${white ? LOGO_W : LOGO}" alt="Sembuh AI" style="display: block; width: 100%">
-<p style="display: flex; align-items: center; gap: ${F(8)}; margin: ${F(h * 0.2)} 0 0; ${text(h * 0.32, 500, white ? 'white' : 'gray-500', 1)}">Powered by <img src="${CM}" alt="Codemasters" style="height: ${F(h * 0.4)}"></p>`);
-  };
+  // Logo with "Powered by Codemasters": the official lockup file, w wide (Logo page).
+  const lockup = (x, y, w, white = false) =>
+    box(x, y, w, 0, '', `<img src="${white ? LOCKUP_W : LOCKUP}" alt="Sembuh AI, powered by Codemasters" style="display: block; width: 100%">`);
   const footer = (light = true) =>
     (light ? box(80, 1000, 1760, 1, 'background: var(--gray-300);') + box(80, 1027, 860, 0, text(16, 400, 'gray-500'), 'Sumber: data internal Sembuh AI, Q3 2026') : '') +
     box(1130, 1017, 710, 0, `text-align: right; ${text(16, 400, light ? 'brand-800' : 'white')}`, 'Internal documentation shared for limited client review only.<br>Unauthorized use, copy, or distribution is prohibited');
@@ -113,7 +111,7 @@ ${TYPE.map(([t, px, lh, w]) => `<div class="f-type-row"><div class="f-type-meta"
     category: 'Applications',
     status: 'In progress',
     updated: '2026-10-07',
-    description: 'Pitch decks and presentations for Codemasters, Sembuh AI and Flipmaster: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.',
+    description: 'Pitch decks and presentations for Codemasters and Sembuh AI: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.',
     sections: [
       {
         id: 'overview',
@@ -125,7 +123,7 @@ ${TYPE.map(([t, px, lh, w]) => `<div class="f-type-row"><div class="f-type-meta"
             items: [
               '**Flexible content, consistent design.** The author owns topic, story, data and slide count. The system owns type, colour, grid, spacing, components and logo use.',
               '**Inter** in every deck. It is a Google Font, so Google Slides and Docs can add it from **More fonts** without installing anything. (The kit specifies Google Sans, which Google Slides does not offer.)',
-              'Colours are the web tokens. Each company swaps only its blue scale (see Logo).',
+              'Colours are the web tokens. Each brand swaps only its blue scale (see Logo).',
             ],
           },
           { type: 'example', html: `<div class="f-slides">\n${cover}\n${content}\n${toc}\n${back}\n</div>`, code: false },
@@ -342,7 +340,7 @@ ${TYPE.map(([t, px, lh, w]) => `<div class="f-type-row"><div class="f-type-meta"
               'No animations or effects.',
             ],
           },
-          { type: 'note', tone: 'info', text: 'A shared Google Slides template (master layouts for the four slide types per company) is the next step. Until it exists, start from a deck generated with the pitch deck kit.' },
+          { type: 'note', tone: 'info', text: 'A shared Google Slides template (master layouts for the four slide types per brand) is the next step. Until it exists, start from a deck generated with the pitch deck kit.' },
         ],
       },
       {

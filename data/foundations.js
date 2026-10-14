@@ -8,7 +8,7 @@
     version: '1.0.0',
     updated: '2026-10-06',
     intro:
-      'The shared visual language of Codemasters and its companies, Sembuh AI and Flipmaster: web apps, websites, mobile, slides, documents and posters. ' +
+      'The shared visual language of Codemasters and its company Sembuh AI: web apps, websites, mobile, slides, documents and posters. ' +
       'Every value is a token and every component documents its variants, states and rules, so each surface ' +
       'built from it looks and behaves the same.',
   };

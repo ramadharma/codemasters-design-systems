@@ -2,7 +2,7 @@
 
 > Exported from the design system dashboard. Version 1.0.0.
 
-The shared visual language of Codemasters and its companies, Sembuh AI and Flipmaster: web apps, websites, mobile, slides, documents and posters. Every value is a token and every component documents its variants, states and rules, so each surface built from it looks and behaves the same.
+The shared visual language of Codemasters and its company Sembuh AI: web apps, websites, mobile, slides, documents and posters. Every value is a token and every component documents its variants, states and rules, so each surface built from it looks and behaves the same.
 
 ## Contents
 
@@ -338,51 +338,45 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
 
 ## Logo
 
-One system, three companies. Codemasters is the parent of Sembuh AI and Flipmaster; company materials carry their own logo with "Powered by Codemasters" underneath.
+One system, two brands. Codemasters is the parent of Sembuh AI; Sembuh AI materials carry its logo with "Powered by Codemasters" underneath.
 
 ### Brand architecture
 
-An endorsed brand family: the companies keep their own names and logos, and all three use this design system. Only the blue scale (`--brand-50` to `--brand-950`) differs per company.
+An endorsed brand: Sembuh AI keeps its own name and logo, and both brands use this design system. Only the blue scale (`--brand-50` to `--brand-950`) differs.
 
 | Brand | Role | Logo | Blue scale |
 | --- | --- | --- | --- |
 | Codemasters | Parent company | Symbol + wordmark | To be confirmed |
-| Sembuh AI | Company (claims analysis) | Wordmark, "AI" in brand blue | Current `brand` scale (primary `brand-600` `#3966E0`) |
-| Flipmaster | Company | To be supplied | To be confirmed |
+| Sembuh AI | Company (claims analysis) | Wordmark: "Sembuh" in `gray-900`, "AI" in `brand-400` `#6CA1F0` | Current `brand` scale (primary `brand-600` `#3966E0`) |
 
-> **Note:** The Codemasters and Flipmaster blue scales are not defined yet. Until they are, every page and export uses the Sembuh AI scale.
+> **Note:** The Codemasters blue scale is not defined yet. Until it is, every page and export uses the Sembuh AI scale.
 
 ### Logos
 
 | File | Use | Status |
 | --- | --- | --- |
-| `assets/brand/codemasters-logo.png` | Codemasters, colour, light backgrounds | PNG from a screenshot (506 × 88). **Need SVG** and a white version |
-| `assets/brand/sembuh-logo.png` | Sembuh AI, colour, light backgrounds | PNG 2052 × 300 (from the pitch deck kit). SVG preferred |
-| `assets/brand/sembuh-logo-white.png` | Sembuh AI on dark or image backgrounds | PNG 2052 × 300 |
-| — | Flipmaster | **Not supplied** |
+| `assets/brand/codemasters-logo.svg` | Codemasters, colour, light backgrounds | SVG (951.5 × 132.5). Symbol in gradients, wordmark `#051641` |
+| `assets/brand/codemasters-logo-white.svg` | Codemasters on dark or image backgrounds | SVG, the colour file with a white wordmark; the symbol keeps its gradients |
+| `assets/brand/sembuh-logo.svg` | Sembuh AI, colour, light backgrounds | SVG (657 × 96), the wordmark cut from the official lockup |
+| `assets/brand/sembuh-logo-white.svg` | Sembuh AI on dark or image backgrounds | SVG, the colour file all white |
+| `assets/brand/sembuh-powered.svg` | Sembuh AI with "Powered by Codemasters", light backgrounds | SVG (657 × 177), the official lockup |
+| `assets/brand/sembuh-powered-white.svg` | The lockup on dark or image backgrounds | SVG, the colour file in white, "Powered by" in `gray-300` |
+| `assets/brand/codemasters-symbol.svg` | Codemasters symbol alone: favicon, app icon, avatar | SVG, square, cut from the colour logo |
 
 Use the files as they are. Never redraw a logo, retype the wordmark in another font, or rebuild the Codemasters symbol in CSS.
 
 ### Powered by Codemasters
 
-Sembuh AI and Flipmaster materials (slide covers and back covers, document headers, posters, the website footer) carry the endorsement under the company logo.
-
-```html
-<div class="sb-lockup">
-  <img class="sb-lockup-main" src="sembuh-logo.svg" alt="Sembuh AI">
-  <p class="sb-lockup-endorse">Powered by <img src="codemasters-logo.svg" alt="Codemasters"></p>
-</div>
-```
+Sembuh AI materials (slide covers and back covers, document headers, posters, the website footer) carry the endorsement under the logo. It is one file: use it as it is, never rebuild it from the two logos and text.
 
 | Part | Spec |
 | --- | --- |
-| Company logo | Height `--lockup-h` (40 by default) |
-| Gap | 20 % of the logo height (8 at 40) |
-| "Powered by" | Text xs / Medium `gray-500`, sentence case, never translated or abbreviated |
-| Codemasters logo | 40 % of the company logo height (16 at 40), 8 after "Powered by" |
-| Alignment | Left edge of the company logo |
-
-> **Warning:** Proportions are a proposal from the docs team. Confirm them with the brand owner. A white endorsement for dark backgrounds needs the white Codemasters logo first.
+| Sembuh AI logo | The top 54 % of the lockup |
+| Gap | 30 % of the Sembuh AI logo height |
+| "Powered by" | `gray-500` (`gray-300` in the white file), sentence case, never translated or abbreviated |
+| Codemasters logo | 42 % of the Sembuh AI logo height, 21 % after "Powered by" |
+| Alignment | Left edge of the Sembuh AI logo |
+| Size | Scale the whole file by height; at 44 px tall the Codemasters logo is about 10 px |
 
 ### Clear space and minimum size
 
@@ -391,66 +385,122 @@ Sembuh AI and Flipmaster materials (slide covers and back covers, document heade
 | Clear space on every side | Half the symbol height | The height of the "S" |
 | Minimum height, screen | 24 px | 16 px |
 | Minimum height, print | 8 mm | 5 mm |
-| "Powered by" lockup | Company logo at least 32 px, so the Codemasters logo stays at least 13 px | — |
+| "Powered by" lockup | — | Lockup at least 44 px tall (logo 24 px), so the Codemasters logo stays at least 10 px |
 
 > **Warning:** Proposed values; confirm with the brand owner before they go into templates.
 
+### Symbol
+
+- The symbol stands alone only where the full logo cannot fit: the favicon, an app icon, a social avatar and the Company badge on an Avatar.
+- Anywhere the full logo fits, use the full logo. Never put the symbol next to a typed "Codemasters".
+- At least 16 px. The symbol keeps its gradients on white and on `gray-900`; it has no white version.
+- Sembuh AI has no symbol: its logo is a wordmark only. A square mark for Sembuh AI (favicon, app icon) needs one from the brand owner.
+
 ### Backgrounds
+
+#### Sembuh AI
 
 - Colour logo on `white`, `gray-50` and `brand-50`.
 - White logo on `gray-900`, `brand-600` and darker, and on photos (with enough contrast behind the logo).
 - Never on a mid-tone such as `brand-300` to `brand-500`, where neither version reads.
+
+#### Codemasters
+
+- Colour logo on `white`, `gray-50` and `brand-50`.
+- White logo on `gray-900` and other near-black backgrounds only. Its symbol stays blue, so it disappears on blue: never on `brand-600` or darker blues, and never on a blue photo.
+- A Codemasters logo for blue backgrounds needs a one-colour white file from the brand owner.
 
 ### Do and don't
 
 **Do:** The supplied file, at its own proportions, on a light background.
 
 ```html
-<img src="assets/brand/codemasters-logo.png" alt="Codemasters" style="height: 40px">
+<img src="assets/brand/codemasters-logo.svg" alt="Codemasters" style="height: 40px">
 ```
 
 **Don't:** Stretched or squashed. Scale by height only.
 
 ```html
-<img src="assets/brand/codemasters-logo.png" alt="Codemasters, stretched" style="width: 260px; height: 32px">
+<img src="assets/brand/codemasters-logo.svg" alt="Codemasters, squashed" style="height: 40px; transform: scaleY(.55)">
 ```
 
-**Do:** Company logo first, endorsement underneath.
+**Do:** The lockup file, with the endorsement under the Sembuh AI logo.
 
 ```html
-<div class="sb-lockup" style="--lockup-h: 40px">
-  <img class="sb-lockup-main" src="assets/brand/sembuh-logo.png" alt="Sembuh AI">
-  <p class="sb-lockup-endorse">Powered by <img src="assets/brand/codemasters-logo.png" alt="Codemasters"></p>
-</div>
+<img src="assets/brand/sembuh-powered.svg" alt="Sembuh AI, powered by Codemasters" style="height: 64px">
 ```
 
 **Don't:** Recoloured, or with a shadow or other effect.
 
 ```html
-<img src="assets/brand/codemasters-logo.png" alt="Codemasters, recoloured" style="height: 40px; filter: hue-rotate(140deg) drop-shadow(0 4px 6px rgba(16,24,40,.3))">
+<img src="assets/brand/codemasters-logo.svg" alt="Codemasters, recoloured" style="height: 40px; filter: hue-rotate(140deg) drop-shadow(0 4px 6px rgba(16,24,40,.3))">
 ```
+
+**Do:** Level, on the baseline of the layout.
+
+```html
+<img src="assets/brand/sembuh-logo.svg" alt="Sembuh AI" style="height: 36px">
+```
+
+**Don't:** Rotated or set on an angle.
+
+```html
+<img src="assets/brand/sembuh-logo.svg" alt="Sembuh AI, rotated" style="height: 36px; transform: rotate(-12deg)">
+```
+
+**Do:** Colour logo on a light tint.
+
+```html
+<div style="display: grid; place-items: center; padding: 24px 32px; border-radius: 8px; background: var(--brand-50)"><img src="assets/brand/sembuh-logo.svg" alt="Sembuh AI" style="height: 32px"></div>
+```
+
+**Don't:** On a mid-tone: "AI" vanishes and "Sembuh" loses contrast.
+
+```html
+<div style="display: grid; place-items: center; padding: 24px 32px; border-radius: 8px; background: var(--brand-400)"><img src="assets/brand/sembuh-logo.svg" alt="Sembuh AI on a mid-tone" style="height: 32px"></div>
+```
+
+**Do:** White Codemasters logo on near-black.
+
+```html
+<div style="display: grid; place-items: center; padding: 24px 32px; border-radius: 8px; background: var(--gray-900)"><img src="assets/brand/codemasters-logo-white.svg" alt="Codemasters" style="height: 28px"></div>
+```
+
+**Don't:** White Codemasters logo on blue: the symbol disappears.
+
+```html
+<div style="display: grid; place-items: center; padding: 24px 32px; border-radius: 8px; background: var(--brand-700)"><img src="assets/brand/codemasters-logo-white.svg" alt="Codemasters on blue" style="height: 28px"></div>
+```
+
+- Never outline the logo, crop it, or let an edge of the frame cut through it.
+- Never move the symbol away from the wordmark, change their spacing or swap their order.
+- Never set the logo on a busy photo. Put it on a calm area, or on a solid panel in an allowed colour.
+- Never animate parts of the logo separately.
+
+### Name in text
+
+| Write | Never |
+| --- | --- |
+| Sembuh AI | Sembuh.AI, SembuhAI, Sembuh Ai, SEMBUH AI |
+| Codemasters | CodeMasters, Code Masters, CODEMASTERS |
+
+- Write the names as the logos spell them, in the font of the surrounding text. Never imitate the logo with styled text.
+- The domain is only for addresses: sembuh.ai in URLs and emails, never as the name in a sentence.
+- Keep a name on one line: a non-breaking space in "Sembuh AI" (`Sembuh&nbsp;AI`).
+- Names are never translated: "Powered by Codemasters" stays in English in Indonesian materials.
 
 ### Code
 
-Load `tokens.css` and `logo.css`. Swap the PNG paths for SVG files when they arrive.
+Logos are images: no CSS needed. Set the height and let the width follow.
 
-`logo.css`
+`logo.html`
 
-```css
-/* Logo lockup, Codemasters Design System. Needs tokens.css.
-   A company logo with the "Powered by Codemasters" endorsement underneath.
+```html
+<img src="assets/brand/codemasters-logo.svg" alt="Codemasters" height="32">
+<img src="assets/brand/sembuh-powered.svg" alt="Sembuh AI, powered by Codemasters" height="56">
 
-   <div class="sb-lockup">
-     <img class="sb-lockup-main" src="sembuh-logo.svg" alt="Sembuh AI">
-     <p class="sb-lockup-endorse">Powered by <img src="codemasters-logo.svg" alt="Codemasters"></p>
-   </div>
-
-   --lockup-h   height of the company logo (default 40px). The Codemasters logo is 40 % of it. */
-
-.sb-lockup { --lockup-h: 40px; display: inline-grid; justify-items: start; gap: calc(var(--lockup-h) * .2); }
-.sb-lockup-main { display: block; width: auto; max-width: 100%; height: var(--lockup-h); object-fit: contain; object-position: left; }
-.sb-lockup-endorse { display: inline-flex; align-items: center; gap: 8px; margin: 0; font: 500 var(--text-xs) var(--font); color: var(--text-quaternary); white-space: nowrap; }
-.sb-lockup-endorse img { display: block; width: auto; height: calc(var(--lockup-h) * .4); }
+<!-- favicon -->
+<link rel="icon" href="assets/brand/codemasters-symbol.svg" type="image/svg+xml">
 ```
 
 ## Colors
@@ -8962,7 +9012,7 @@ Load `tokens.css`, `badge.css`, `tooltip.css`, `avatar.css` and `dropdown-menu.c
 
    <nav class="sb-sidebar" aria-label="Menu utama">
      <div class="sb-side-head">
-       <img class="sb-side-logo" src="sembuh-logo-white.png" alt="Sembuh AI">
+       <img class="sb-side-logo" src="sembuh-logo-white.svg" alt="Sembuh AI">
        <button class="sb-side-toggle" type="button" aria-label="Sidebar" aria-expanded="true">…chevron-left…</button>
      </div>
      <div class="sb-side-body">
@@ -12162,7 +12212,7 @@ document.addEventListener('selectionchange', wysSelection);
 
 ## Slides
 
-Pitch decks and presentations for Codemasters, Sembuh AI and Flipmaster: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.
+Pitch decks and presentations for Codemasters and Sembuh AI: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.
 
 ### Overview
 
@@ -12170,7 +12220,7 @@ This page records the slide system from the Sembuh pitch deck kit. The team buil
 
 - **Flexible content, consistent design.** The author owns topic, story, data and slide count. The system owns type, colour, grid, spacing, components and logo use.
 - **Inter** in every deck. It is a Google Font, so Google Slides and Docs can add it from **More fonts** without installing anything. (The kit specifies Google Sans, which Google Slides does not offer.)
-- Colours are the web tokens. Each company swaps only its blue scale (see Logo).
+- Colours are the web tokens. Each brand swaps only its blue scale (see Logo).
 
 ### Canvas and grid
 
@@ -12327,7 +12377,7 @@ Pick the pattern from the information, never the other way round: content → on
 - Draw charts as shapes (or paste them as shapes). Turn off autofit; set text box insets to 0 so text sits on the anchors.
 - No animations or effects.
 
-> **Note:** A shared Google Slides template (master layouts for the four slide types per company) is the next step. Until it exists, start from a deck generated with the pitch deck kit.
+> **Note:** A shared Google Slides template (master layouts for the four slide types per brand) is the next step. Until it exists, start from a deck generated with the pitch deck kit.
 
 ### Decisions and open points
 

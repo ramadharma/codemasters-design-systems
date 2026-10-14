@@ -14,8 +14,8 @@
       "name": "Logo",
       "category": "Foundations",
       "status": "In progress",
-      "updated": "2026-10-07",
-      "description": "One system, three companies. Codemasters is the parent of Sembuh AI and Flipmaster; company materials carry their own logo with \"Powered by Codemasters\" underneath.",
+      "updated": "2026-10-14",
+      "description": "One system, two brands. Codemasters is the parent of Sembuh AI; Sembuh AI materials carry its logo with \"Powered by Codemasters\" underneath.",
       "path": "foundations/logo.md"
     },
     {
@@ -357,12 +357,11 @@
       "category": "Applications",
       "status": "In progress",
       "updated": "2026-10-07",
-      "description": "Pitch decks and presentations for Codemasters, Sembuh AI and Flipmaster: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.",
+      "description": "Pitch decks and presentations for Codemasters and Sembuh AI: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.",
       "path": "applications/slides.md"
     }
   ],
   "code": [
-    "code/logo.css",
     "code/icon.css",
     "code/avatar.css",
     "code/avatar-initials.js",

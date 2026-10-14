@@ -1,11 +1,11 @@
 ---
 name: codemasters-design
-description: Design or refine anything with the Codemasters design system, the shared system of Codemasters, Sembuh AI and Flipmaster. Use it whenever the user asks for a website, landing page, web or app UI, component, pitch deck, slides, presentation, document, poster or social post for one of these brands, or asks to make existing work match "our design system", Codemasters, Sembuh or Flipmaster styling. It reads the latest published spec before doing anything, so colours, type, components and rules always come from the source, never from memory.
+description: Design or refine anything with the Codemasters design system, the shared system of Codemasters and Sembuh AI. Use it whenever the user asks for a website, landing page, web or app UI, component, pitch deck, slides, presentation, document, poster or social post for one of these brands, or asks to make existing work match "our design system", Codemasters or Sembuh styling. It reads the latest published spec before doing anything, so colours, type, components and rules always come from the source, never from memory.
 ---
 
 # Codemasters design system
 
-One system for three companies: **Codemasters** (the parent) and its companies **Sembuh AI** and **Flipmaster**. They share every rule; only the blue scale (`--brand-25` to `--brand-900`) and the logo differ. Company materials carry "Powered by Codemasters" under the company logo.
+One system for two brands: **Codemasters** (the parent) and its company **Sembuh AI**. They share every rule; only the blue scale (`--brand-25` to `--brand-900`) and the logo differ. Sembuh AI materials carry "Powered by Codemasters" under its logo.
 
 The spec lives at `https://codemasters-design-systems.pages.dev` and changes over time. This skill holds no copy of the values on purpose. Read them first, every time.
 
@@ -27,10 +27,10 @@ Never fill a gap from general knowledge. If a value is not in the spec, say so a
 
 ## 2. Pin the brand
 
-Ask once if the request does not say: Codemasters, Sembuh AI or Flipmaster.
+Ask once if the request does not say: Codemasters or Sembuh AI.
 
 - Read `foundations/logo.md` for the logo files, the "Powered by Codemasters" lockup and the blue scale per brand.
-- Logo files are served from the site: `https://codemasters-design-systems.pages.dev/<path>`, with the paths listed in `logo.md` (for example `assets/brand/sembuh-logo.png`). Download them; never recreate them.
+- Logo files are served from the site: `https://codemasters-design-systems.pages.dev/<path>`, with the paths listed in `logo.md` (for example `assets/brand/sembuh-logo.svg`). Download them; never recreate them.
 - A brand whose blue scale is still "to be confirmed" uses the current `brand` scale. Say so in the result.
 - Example content in the spec (claims, FWA, Rupiah) belongs to Sembuh AI. Use the user's own content for other brands.
 

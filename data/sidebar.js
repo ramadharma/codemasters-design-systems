@@ -32,7 +32,7 @@ document.addEventListener('click', sidebarClick);`;
 
    <nav class="sb-sidebar" aria-label="Menu utama">
      <div class="sb-side-head">
-       <img class="sb-side-logo" src="sembuh-logo-white.png" alt="Sembuh AI">
+       <img class="sb-side-logo" src="sembuh-logo-white.svg" alt="Sembuh AI">
        <button class="sb-side-toggle" type="button" aria-label="Sidebar" aria-expanded="true">…chevron-left…</button>
      </div>
      <div class="sb-side-body">
@@ -157,7 +157,7 @@ document.addEventListener('click', sidebarClick);`;
     ]],
     ['Manajemen', [['Pengguna', 'user'], ['Rumah Sakit', 'building'], ['Pengaturan', 'settings']]],
   ];
-  const LOGO = 'assets/brand/sembuh-logo-white.png';
+  const LOGO = 'assets/brand/sembuh-logo-white.svg';
   const chevron = icon('chevron-down').replace('<svg ', '<svg class="sb-side-chevron" ');
   const tip = text => `<span class="sb-tooltip" data-theme="light" data-arrow="left" aria-hidden="true"><span class="sb-tooltip-title">${esc(text)}</span></span>`;
   const current = (label, cur) => (label === cur ? ' aria-current="page"' : '');

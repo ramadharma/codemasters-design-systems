@@ -1,6 +1,6 @@
 # Codemasters Design System
 
-The shared design system of Codemasters, Sembuh AI and Flipmaster: a static documentation site plus plain-file exports.
+The shared design system of Codemasters and Sembuh AI: a static documentation site plus plain-file exports.
 
 **Live:** https://codemasters-design-systems.pages.dev (Cloudflare Pages, deploys every push to `main`).
 

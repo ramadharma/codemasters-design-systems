@@ -10,7 +10,7 @@ requires: tokens.css
 
 # Slides
 
-Pitch decks and presentations for Codemasters, Sembuh AI and Flipmaster: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.
+Pitch decks and presentations for Codemasters and Sembuh AI: a 1920 × 1080 canvas, a 12-column grid, fixed anchors and the same tokens as the web.
 
 ## Overview
 
@@ -18,7 +18,7 @@ This page records the slide system from the Sembuh pitch deck kit. The team buil
 
 - **Flexible content, consistent design.** The author owns topic, story, data and slide count. The system owns type, colour, grid, spacing, components and logo use.
 - **Inter** in every deck. It is a Google Font, so Google Slides and Docs can add it from **More fonts** without installing anything. (The kit specifies Google Sans, which Google Slides does not offer.)
-- Colours are the web tokens. Each company swaps only its blue scale (see Logo).
+- Colours are the web tokens. Each brand swaps only its blue scale (see Logo).
 
 ## Canvas and grid
 
@@ -175,7 +175,7 @@ Pick the pattern from the information, never the other way round: content → on
 - Draw charts as shapes (or paste them as shapes). Turn off autofit; set text box insets to 0 so text sits on the anchors.
 - No animations or effects.
 
-> **Note:** A shared Google Slides template (master layouts for the four slide types per company) is the next step. Until it exists, start from a deck generated with the pitch deck kit.
+> **Note:** A shared Google Slides template (master layouts for the four slide types per brand) is the next step. Until it exists, start from a deck generated with the pitch deck kit.
 
 ## Decisions and open points
 

@@ -124,7 +124,7 @@ Load `tokens.css`, `badge.css`, `tooltip.css`, `avatar.css` and `dropdown-menu.c
 
    <nav class="sb-sidebar" aria-label="Menu utama">
      <div class="sb-side-head">
-       <img class="sb-side-logo" src="sembuh-logo-white.png" alt="Sembuh AI">
+       <img class="sb-side-logo" src="sembuh-logo-white.svg" alt="Sembuh AI">
        <button class="sb-side-toggle" type="button" aria-label="Sidebar" aria-expanded="true">…chevron-left…</button>
      </div>
      <div class="sb-side-body">

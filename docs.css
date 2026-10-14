@@ -23,7 +23,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .theme-toggle > svg { position: absolute; inset: 0; margin: auto; transition-property: opacity, scale, filter; transition-duration: 200ms; transition-timing-function: cubic-bezier(.2, 0, 0, 1); }
 .theme-toggle[aria-pressed="true"] > [data-i="moon"], .theme-toggle:not([aria-pressed="true"]) > [data-i="sun"] { opacity: 0; scale: .25; filter: blur(4px); }
 /* Dark theme: the Codemasters logo has dark lettering; invert it and turn the hue back so the blue mark stays blue. */
-:root[data-theme="dark"] .brand img { filter: invert(1) hue-rotate(180deg); }
+:root:not([data-theme="dark"]) .brand-dark, :root[data-theme="dark"] .brand-light { display: none; } /* white wordmark in dark mode */
 .top .nav-toggle { display: none; }
 
 /* ---- Layout: sidebar, page, table of contents */
@@ -98,7 +98,8 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 :root[data-theme="dark"] .note > svg { color: var(--blue-400); }
 .note[data-tone="warning"] { border-color: var(--warning-300); background: var(--bg-warning-subtle); color: var(--warning-700); }
 .note[data-tone="warning"] > svg { color: var(--warning-500); }
-:root[data-theme="dark"] .note[data-tone="warning"] { border-color: var(--warning-800); color: var(--warning-300); }
+:root[data-theme="dark"] .note[data-tone="warning"] { border-color: color-mix(in srgb, var(--warning-400) 30%, transparent); background: var(--bg-warning-subtle); color: var(--warning-300); } /* beats the blue dark note above */
+:root[data-theme="dark"] .note[data-tone="warning"] > svg { color: var(--warning-400); }
 .page .note code { background: rgba(255, 255, 255, .7); color: inherit; }
 :root[data-theme="dark"] .page .note code { background: rgba(255, 255, 255, .1); }
 
@@ -457,15 +458,13 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .f-logo-tile[data-bg="gray"] { background: var(--gray-50); }
 .f-logo-tile[data-bg="brand"] { background: var(--brand-50); }
 /* Logo tiles are specimens: each keeps its stated background in both themes (light tiles go white, text dark). */
-.f-logo-tile:not([data-bg="dark"], [data-bg="blue"], [data-bg="empty"]) {
+.f-logo-tile:not([data-bg="dark"], [data-bg="blue"]) {
   color-scheme: light; --text-quaternary: var(--gray-500);
   --bg-primary: var(--white); --bg-secondary: var(--gray-50); --border-primary: var(--gray-300); --text-secondary: var(--gray-700); --text-primary: var(--gray-900); /* the Download button stays light */
 }
 .f-logo-tile[data-bg="dark"] { border-color: var(--gray-900); background: var(--gray-900); }
 .f-logo-tile[data-bg="blue"] { border-color: var(--brand-700); background: var(--brand-700); }
-.f-logo-tile[data-bg="empty"] { border-style: dashed; background: none; }
 .f-logo-tile[data-bg="dark"] .mx, .f-logo-tile[data-bg="blue"] .mx { color: var(--gray-300); }
-.f-logo-missing { font: 500 var(--text-sm) var(--font); color: var(--text-quaternary); text-align: center; }
 .ex-preview:has(> .f-logos) { justify-content: flex-start; min-height: 0; padding: 32px; }
 /* Colour swatches: chip + step + hex. "Aa" in the text colour that passes 4.5:1, with the ratio. */
 .f-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 16px 12px; width: 100%; }
@@ -666,3 +665,4 @@ kbd svg { width: 12px; height: 12px; }
 .anat .fb-stage [data-pin] { outline: 1px dashed var(--fg-quaternary); outline-offset: 2px; }
 .ex-preview.anat:has(> .fb-stage) { padding: 80px 64px; } /* room for the pins on every side */
 .anat .fb-stage :is(.sb-filter, .sb-filter-row) { gap: 48px 12px; } /* exploded: room for the pins between the rows */
+:root[data-theme="dark"] .dd-preview:has(> img[src*="assets/brand/"]) { background: var(--white); } /* colour logo specimens keep their light background */

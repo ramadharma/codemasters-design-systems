@@ -1,6 +1,6 @@
 # Codemasters — Design System
 
-The shared visual language of Codemasters and its companies, Sembuh AI and Flipmaster. It grew out of the Sembuh AI web app
+The shared visual language of Codemasters and its company Sembuh AI. It grew out of the Sembuh AI web app
 (Dashboard Analitik + Insurance Portal) and is written so it can be reused for new
 web pages, documentation sites, slides and other design work. Every value here is taken from the live app
 (`public/css/dashboard.css`); when the two disagree, the CSS wins and this file should be updated.
