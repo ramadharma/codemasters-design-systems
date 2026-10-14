@@ -10,7 +10,7 @@
 
 .sb-badge {
   --bdg-h: 22px; --bdg-px: 8px; --bdg-type: var(--text-xs);
-  --bdg-bg: var(--gray-100); --bdg-fg: var(--gray-700); --bdg-icon: var(--gray-500);
+  --bdg-bg: var(--bg-tertiary); --bdg-fg: var(--text-secondary); --bdg-icon: var(--text-quaternary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; gap: 4px;
   height: var(--bdg-h); padding: 0 var(--bdg-px);
@@ -23,7 +23,7 @@
 .sb-badge-img { display: inline-flex; width: 16px; height: 16px; flex: none; border-radius: var(--radius-full); overflow: hidden; }
 .sb-badge-img > svg { width: 100%; height: 100%; }
 /* Placeholder avatar: user icon in brand-600 on brand-50 (DESIGN.md Avatar). Real screens use the photo or initials. */
-.sb-badge-avatar { align-items: center; justify-content: center; background: var(--brand-50); color: var(--brand-600); }
+.sb-badge-avatar { align-items: center; justify-content: center; background: var(--bg-brand-subtle); color: var(--fg-brand); }
 .sb-badge-avatar > svg { width: 12px; height: 12px; }
 .sb-badge-x {
   display: inline-flex; margin: -2px; padding: 2px; border: 0; border-radius: var(--radius-sm);
@@ -59,6 +59,19 @@
 .sb-badge[data-color="pink"] { --bdg-bg: var(--pink-50); --bdg-fg: var(--pink-700); --bdg-icon: var(--pink-500); }
 .sb-badge[data-color="rose"] { --bdg-bg: var(--rose-50); --bdg-fg: var(--rose-700); --bdg-icon: var(--rose-500); }
 .sb-badge[data-color="orange"] { --bdg-bg: var(--orange-50); --bdg-fg: var(--orange-700); --bdg-icon: var(--orange-500); }
+/* Dark theme: the 950 step as the fill, 300 text, 400 icon. */
+:root[data-theme="dark"] .sb-badge[data-color="primary"] { --bdg-bg: var(--brand-950); --bdg-fg: var(--brand-300); --bdg-icon: var(--brand-400); }
+:root[data-theme="dark"] .sb-badge[data-color="error"] { --bdg-bg: var(--error-950); --bdg-fg: var(--error-300); --bdg-icon: var(--error-400); }
+:root[data-theme="dark"] .sb-badge[data-color="warning"] { --bdg-bg: var(--warning-950); --bdg-fg: var(--warning-300); --bdg-icon: var(--warning-400); }
+:root[data-theme="dark"] .sb-badge[data-color="success"] { --bdg-bg: var(--success-950); --bdg-fg: var(--success-300); --bdg-icon: var(--success-400); }
+:root[data-theme="dark"] .sb-badge[data-color="blue-gray"] { --bdg-bg: var(--blue-gray-950); --bdg-fg: var(--blue-gray-300); --bdg-icon: var(--blue-gray-400); }
+:root[data-theme="dark"] .sb-badge[data-color="blue-light"] { --bdg-bg: var(--blue-light-950); --bdg-fg: var(--blue-light-300); --bdg-icon: var(--blue-light-400); }
+:root[data-theme="dark"] .sb-badge[data-color="blue"] { --bdg-bg: var(--blue-950); --bdg-fg: var(--blue-300); --bdg-icon: var(--blue-400); }
+:root[data-theme="dark"] .sb-badge[data-color="indigo"] { --bdg-bg: var(--indigo-950); --bdg-fg: var(--indigo-300); --bdg-icon: var(--indigo-400); }
+:root[data-theme="dark"] .sb-badge[data-color="purple"] { --bdg-bg: var(--purple-950); --bdg-fg: var(--purple-300); --bdg-icon: var(--purple-400); }
+:root[data-theme="dark"] .sb-badge[data-color="pink"] { --bdg-bg: var(--pink-950); --bdg-fg: var(--pink-300); --bdg-icon: var(--pink-400); }
+:root[data-theme="dark"] .sb-badge[data-color="rose"] { --bdg-bg: var(--rose-950); --bdg-fg: var(--rose-300); --bdg-icon: var(--rose-400); }
+:root[data-theme="dark"] .sb-badge[data-color="orange"] { --bdg-bg: var(--orange-950); --bdg-fg: var(--orange-300); --bdg-icon: var(--orange-400); }
 
 /* Badge group: a badge plus a short message in one pill.
    <a class="sb-badge-group" href="…" data-color="primary" data-theme="light">
@@ -78,7 +91,7 @@
   border-radius: var(--radius-xl);
 }
 .sb-badge-group > svg { width: 12px; height: 12px; flex: none; color: var(--g500); }
-.sb-badge-group > .sb-badge { --bdg-bg: var(--white); --bdg-fg: var(--g700); --bdg-icon: var(--g500); }
+.sb-badge-group > .sb-badge { --bdg-bg: var(--bg-primary); --bdg-fg: var(--g700); --bdg-icon: var(--g500); }
 .sb-badge-group[data-size="lg"] { gap: 12px; padding-inline-end: 14px; font-size: 14px; line-height: 20px; }
 .sb-badge-group[data-badge="trailing"] { padding-inline: 12px 4px; }
 .sb-badge-group[data-badge="trailing"][data-size="lg"] { padding-inline: 14px 4px; }
@@ -89,4 +102,10 @@
 .sb-badge-group[data-color="error"] { --g50: var(--error-50); --g100: var(--error-100); --g500: var(--error-500); --g600: var(--error-600); --g700: var(--error-700); }
 .sb-badge-group[data-color="warning"] { --g50: var(--warning-50); --g100: var(--warning-100); --g500: var(--warning-500); --g600: var(--warning-600); --g700: var(--warning-700); }
 .sb-badge-group[data-color="success"] { --g50: var(--success-50); --g100: var(--success-100); --g500: var(--success-500); --g600: var(--success-600); --g700: var(--success-700); }
+/* Dark theme: the same steps mirrored around 500 (950 fill, 900 medium fill, 300 text, 400 icon). */
+:root[data-theme="dark"] .sb-badge-group { --g50: var(--brand-950); --g100: var(--brand-900); --g500: var(--brand-400); --g700: var(--brand-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="gray"] { --g50: var(--gray-950); --g100: var(--gray-900); --g500: var(--gray-400); --g700: var(--gray-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="error"] { --g50: var(--error-950); --g100: var(--error-900); --g500: var(--error-400); --g700: var(--error-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="warning"] { --g50: var(--warning-950); --g100: var(--warning-900); --g500: var(--warning-400); --g700: var(--warning-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="success"] { --g50: var(--success-950); --g100: var(--success-900); --g500: var(--success-400); --g700: var(--success-300); }
 a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }

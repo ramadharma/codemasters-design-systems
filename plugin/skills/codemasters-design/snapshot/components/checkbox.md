@@ -289,8 +289,8 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
   --ck-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M10 3 4.5 8.5 2 6' fill='none' stroke='black' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   position: relative; flex: none; box-sizing: border-box;
   width: var(--ck); height: var(--ck); margin: 0;
-  background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--ck-r);
-  color: var(--brand-600);
+  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--ck-r);
+  color: var(--fg-brand);
   appearance: none; cursor: pointer;
   transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
@@ -311,10 +311,10 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 .sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate])::before { visibility: visible; }
 
 /* States. Disabled uses [type] so it outranks the checked rule. */
-.sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]) { background: var(--brand-50); border-color: var(--brand-600); }
-.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate], :disabled):is(:hover, [data-state="hover"]) { background: var(--brand-50); border-color: var(--brand-600); }
+.sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]) { background: var(--bg-brand-subtle); border-color: var(--brand-600); }
+.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate], :disabled):is(:hover, [data-state="hover"]) { background: var(--bg-brand-subtle); border-color: var(--brand-600); }
 .sb-check-input:focus-visible, .sb-check-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
-.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]):is(:focus-visible, [data-state="focus"]) { border-color: var(--brand-300); }
+.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]):is(:focus-visible, [data-state="focus"]) { border-color: var(--border-brand); }
 .sb-check-input[type]:disabled { cursor: not-allowed; }
 
 /* Check circle: solid brand-600 with a white check when checked. */
@@ -322,8 +322,8 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 
 /* Text: same layout as Toggle */
 .sb-check-text { display: grid; }
-.sb-check-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); cursor: pointer; }
-.sb-check-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-check-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); cursor: pointer; }
+.sb-check-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-check[data-size="md"] .sb-check-label { font-size: 16px; line-height: 24px; }
 .sb-check[data-size="md"] .sb-check-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
 /* Disabled: the whole control, label included, at 50 % opacity. */
@@ -332,7 +332,7 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 
 /* A list of choices: 12 between rows. A radio group gets one visible label. */
 .sb-choices { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; }
-.sb-choices-label { margin-bottom: 4px; padding: 0; font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-choices-label { margin-bottom: 4px; padding: 0; font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-check-input { transition: none; }
@@ -371,12 +371,14 @@ document.addEventListener('change', selectAll);
 ```css
 :root {
   --white: #ffffff;
-  --gray-300: #d0d5dd;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --brand-50: #f0f6fe;
-  --brand-300: #9fc5f6;
   --brand-600: #3966e0;
+  --bg-primary: var(--white);
+  --bg-brand-subtle: var(--brand-50);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --fg-brand: var(--brand-600);
+  --border-primary: var(--gray-300);
+  --border-brand: var(--brand-300);
   --radius-sm: 4px;
   --radius-full: 9999px;
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);

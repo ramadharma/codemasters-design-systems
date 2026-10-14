@@ -1,0 +1,107 @@
+/* Date picker, Codemasters Design System
+   Needs tokens.css, input-field.css (the field) and button.css (the range footer); date-picker.js renders the calendar.
+
+   <div class="sb-field">
+     <label class="sb-field-label" for="masuk">Tanggal masuk</label>
+     <div class="sb-dp" data-type="single" data-value="2026-10-08" data-max="2026-10-14">
+       <div class="sb-input">
+         <button class="sb-dp-toggle" type="button" aria-label="Pilih tanggal" aria-haspopup="dialog" aria-expanded="false" aria-controls="masuk-cal">…calendar…</button>
+         <input id="masuk" type="text" inputmode="numeric" placeholder="dd/mm/yyyy" value="08/10/2026" autocomplete="off">
+       </div>
+       <div class="sb-dp-panel" id="masuk-cal" role="dialog" aria-label="Pilih tanggal masuk" hidden></div>
+     </div>
+   </div>
+
+   data-type      single (one month, picks and closes) | range (two months, Batal and Terapkan)
+   data-value     single: the date, ISO yyyy-mm-dd. Range: data-start and data-end
+   data-min, data-max   dates outside are shown but cannot be picked
+   data-presets   range only: the quick ranges on the left (Hari ini … Bulan lalu)
+   The field shows dd/mm/yyyy (DESIGN.md §7); typed dates commit on change. */
+
+.sb-dp { position: relative; }
+.sb-dp input { font-variant-numeric: tabular-nums; }
+/* Calendar button: the field's leading icon, a 32 hit area that does not widen the field. */
+.sb-dp-toggle {
+  display: inline-grid; place-items: center; flex: none; width: 32px; height: 32px; margin-inline: -6px; padding: 0;
+  border: 0; border-radius: var(--radius-sm); background: none; color: var(--text-quaternary); cursor: pointer;
+  transition: color 150ms var(--ease);
+}
+.sb-dp-toggle > svg { width: 20px; height: 20px; }
+.sb-dp-toggle:is(:hover, [aria-expanded="true"]) { color: var(--text-secondary); }
+.sb-dp-toggle:focus-visible { outline: 2px solid var(--brand-600); outline-offset: -2px; }
+.sb-dp:has(.sb-dp-toggle[aria-expanded="true"]) .sb-input { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+
+/* Panel: opens 8 below the field, white, radius 12, shadow-lg. Months side by side with a divider. */
+.sb-dp-panel {
+  position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline-start: 0;
+  display: flex; width: max-content; box-sizing: border-box;
+  background: var(--bg-primary); border: 1px solid var(--border-tertiary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  font-family: var(--font);
+}
+.sb-dp-panel[hidden] { display: none; }
+.sb-dp[data-type="single"] .sb-dp-panel { inset-inline-end: 0; width: auto; min-width: max-content; } /* as wide as the field */
+.sb-dp-main { display: grid; }
+.sb-dp-months { display: flex; flex: 1; }
+.sb-dp-month { flex: 1; padding: 16px; } /* months fill the panel; a single month as wide as the field */
+.sb-dp-month + .sb-dp-month { border-inline-start: 1px solid var(--border-secondary); }
+.sb-dp-head { display: grid; grid-template-columns: 32px 1fr 32px; align-items: center; margin-bottom: 8px; }
+.sb-dp-title { margin: 0; text-align: center; font: 500 var(--text-sm) var(--font); color: var(--text-primary); } /* Text sm stops at Medium in app UI */
+.sb-dp-nav {
+  display: inline-grid; place-items: center; width: 32px; height: 32px; margin: 0; padding: 0;
+  border: 0; border-radius: var(--radius-md); background: none; color: var(--text-quaternary); cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-dp-nav > svg { width: 20px; height: 20px; }
+.sb-dp-nav:hover { background: var(--bg-secondary); color: var(--text-secondary); }
+.sb-dp-nav:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
+
+/* Grid: 32 px days, rows 4 apart; columns touch, so a range reads as one band. */
+.sb-dp-grid { width: 100%; border-collapse: separate; border-spacing: 0 4px; margin-block: -4px; } /* columns share a wider panel */
+.sb-dp-grid th { width: 32px; height: 32px; padding: 0; font: 500 var(--text-xs) var(--font); color: var(--text-quaternary); }
+.sb-dp-grid td { padding: 0; }
+.sb-dp-grid td > .sb-dp-day { margin-inline: auto; }
+.sb-dp-day {
+  position: relative; display: grid; place-items: center; width: 32px; height: 32px; margin: 0; padding: 0;
+  border: 0; border-radius: var(--radius-sm); background: none;
+  font: 400 var(--text-sm) var(--font); font-variant-numeric: tabular-nums; color: var(--text-secondary); cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-dp-day:hover { background: var(--bg-secondary); color: var(--text-primary); }
+.sb-dp-day:focus-visible { z-index: 1; outline: 2px solid var(--brand-600); outline-offset: 1px; }
+.sb-dp-day[data-outside], .sb-dp-day[aria-disabled="true"] { color: var(--text-disabled); }
+.sb-dp-day[aria-disabled="true"] { background: none; cursor: not-allowed; }
+/* Today: a 4 px dot under the number. */
+.sb-dp-day[aria-current="date"]::after { content: ''; position: absolute; bottom: 4px; left: 50%; translate: -50% 0; width: 4px; height: 4px; border-radius: var(--radius-full); background: var(--fg-brand); }
+
+/* Range: brand-50 band between the ends; each end fills half its cell, so the band starts at the end's centre. */
+.sb-dp-grid td[data-range="mid"] { background: var(--bg-brand-subtle); }
+.sb-dp-grid td[data-range="start"] { background: linear-gradient(to right, transparent 50%, var(--bg-brand-subtle) 50%); }
+.sb-dp-grid td[data-range="end"] { background: linear-gradient(to left, transparent 50%, var(--bg-brand-subtle) 50%); }
+.sb-dp-grid td[data-range="mid"]:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.sb-dp-grid td[data-range="mid"]:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.sb-dp-grid td[data-range="mid"] > .sb-dp-day { color: var(--text-brand); }
+.sb-dp-grid td[data-range="mid"] > .sb-dp-day:hover { background: var(--bg-brand-subtle-hover); }
+/* Selected day, and both ends of a range: the primary fill. */
+.sb-dp-grid td[aria-selected]:not([data-range="mid"]) > .sb-dp-day { background: var(--brand-600); color: var(--white); font-weight: 500; }
+.sb-dp-grid td[aria-selected]:not([data-range="mid"]) > .sb-dp-day:hover { background: var(--brand-700); }
+.sb-dp-grid td[aria-selected]:not([data-range="mid"]) > .sb-dp-day::after { background: var(--white); }
+
+/* Presets: the quick ranges, left of the months. */
+.sb-dp-presets { display: grid; align-content: start; gap: 4px; width: 160px; padding: 12px; border-inline-end: 1px solid var(--border-secondary); }
+.sb-dp-preset {
+  height: 36px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-md); background: none;
+  font: 500 var(--text-sm) var(--font); color: var(--text-secondary); text-align: start; cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-dp-preset:hover { background: var(--bg-secondary); }
+.sb-dp-preset[aria-pressed="true"] { background: var(--bg-brand-subtle); color: var(--text-brand); } /* the matching range: brand-50 + brand-700, apart from the gray hover */
+.sb-dp-preset:focus-visible { outline: 2px solid var(--brand-600); outline-offset: -2px; }
+
+/* Footer (range): the pick on the left, Batal and Terapkan on the right, gap 12 like any button row. */
+.sb-dp-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; border-top: 1px solid var(--border-secondary); }
+.sb-dp-picked { font: 500 var(--text-sm) var(--font); font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+.sb-dp-actions { display: flex; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-dp-toggle, .sb-dp-nav, .sb-dp-day, .sb-dp-preset { transition: none; }
+}

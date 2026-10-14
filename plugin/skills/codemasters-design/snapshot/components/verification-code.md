@@ -214,8 +214,8 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
    data-state="focus" on a digit forces Focused in static mockups and docs only. */
 
 .sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
-.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
 
 .sb-code { --code-box: 80px; --code-gap: 12px; --code-type: var(--display-lg); display: flex; align-items: center; gap: var(--code-gap); }
@@ -226,23 +226,24 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
   box-sizing: border-box; flex: none;
   width: var(--code-box); height: var(--code-box); margin: 0; padding: 8px;
   font: 500 var(--code-type) var(--font); letter-spacing: var(--tracking-display); text-align: center;
-  color: var(--brand-600); caret-color: var(--brand-600);
-  background: var(--white);
-  border: 1px solid var(--gray-300); border-radius: var(--radius-md);
+  color: var(--fg-brand); caret-color: var(--fg-brand);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-code-digit::placeholder { color: var(--gray-300); opacity: 1; }
-.sb-code-digit:not(:placeholder-shown) { border-color: var(--brand-300); }
+.sb-code-digit::placeholder { color: var(--border-primary); opacity: 1; }
+.sb-code-digit:not(:placeholder-shown) { border-color: var(--border-brand); }
 .sb-code-digit:focus, .sb-code-digit[data-state="focus"] {
-  outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
 }
 .sb-code-digit:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
-.sb-code-digit[aria-invalid="true"] { border-color: var(--error-300); color: var(--error-600); caret-color: var(--error-600); }
-.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--error-100); }
+.sb-code-digit[aria-invalid="true"] { border-color: var(--border-error); color: var(--error-600); caret-color: var(--error-600); }
+.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-error-subtle-hover); }
 
 /* 6 digits split 3 + 3 by a dash in Display xl / Medium. */
-.sb-code-sep { font: 500 var(--display-xl) var(--font); letter-spacing: var(--tracking-display); color: var(--gray-300); }
+.sb-code-sep { font: 500 var(--display-xl) var(--font); letter-spacing: var(--tracking-display); color: var(--border-primary); }
+:root[data-theme="dark"] .sb-code-sep, :root[data-theme="dark"] .sb-code-digit::placeholder { color: var(--gray-600); } /* faint like light's gray-300, still visible on gray-900 */
 
 @media (prefers-reduced-motion: reduce) {
   .sb-code-digit { transition: none; }
@@ -309,16 +310,17 @@ document.addEventListener('paste', codePaste);
 
 ```css
 :root {
-  --white: #ffffff;
-  --gray-300: #d0d5dd;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --brand-300: #9fc5f6;
-  --brand-600: #3966e0;
-  --error-100: #fee4e2;
-  --error-300: #fda29b;
+  --gray-600: #475467;
   --error-500: #f04438;
   --error-600: #d92d20;
+  --bg-primary: var(--white);
+  --bg-error-subtle-hover: var(--error-100);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --fg-brand: var(--brand-600);
+  --border-primary: var(--gray-300);
+  --border-brand: var(--brand-300);
+  --border-error: var(--error-300);
   --radius-md: 8px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);

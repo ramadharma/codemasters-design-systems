@@ -45,8 +45,57 @@
     hexes.split(' ').forEach((hex, i) => (colour[`--${family}-${STEPS[i]}`] = `#${hex}`));
   }
 
+  // Semantic colours: what a colour is for, not which step it is. Components use these; the dark theme remaps them.
+  // [light, dark]. Solid fills (brand-600 buttons, status dots) and the always-dark Sidebar keep scale tokens.
+  const SEMANTIC = {
+    '--bg-page': ['white', 'gray-950'], // the page behind everything
+    '--bg-primary': ['white', 'gray-900'], // cards, inputs, menus, header bar
+    '--bg-secondary': ['gray-50', 'gray-800'], // hover fills, table header band, subtle panels
+    '--bg-tertiary': ['gray-100', 'gray-700'], // pressed fills, totals, hover rings
+    '--bg-quaternary': ['gray-200', 'gray-600'], // tracks, the strongest neutral fill
+    '--bg-inverse': ['gray-900', 'gray-700'], // tooltips and toasts
+    '--bg-brand-subtle': ['brand-50', 'mix:brand-500:16'], // selected rows, Secondary color button
+    '--bg-brand-subtle-hover': ['brand-100', 'mix:brand-500:24'],
+    '--bg-error-subtle': ['error-50', 'mix:error-500:14'],
+    '--bg-error-subtle-hover': ['error-100', 'mix:error-500:22'],
+    '--bg-warning-subtle': ['warning-50', 'mix:warning-500:12'],
+    '--bg-success-subtle': ['success-50', 'mix:success-500:12'],
+    '--text-primary': ['gray-900', 'gray-50'], // headings, values, body
+    '--text-secondary': ['gray-700', 'gray-300'], // labels, secondary buttons
+    '--text-tertiary': ['gray-600', 'gray-400'], // supporting text that needs weight
+    '--text-quaternary': ['gray-500', 'gray-400'], // hints, table headers, icons beside text
+    '--text-disabled': ['gray-400', 'gray-500'],
+    '--text-brand': ['brand-700', 'brand-300'], // links, selected tabs, brand text on subtle fills
+    '--text-brand-strong': ['brand-800', 'brand-200'],
+    '--text-error': ['error-700', 'error-300'],
+    '--text-error-strong': ['error-800', 'error-200'],
+    '--fg-quaternary': ['gray-400', 'gray-400'], // idle icons: chevrons, placeholders, help icons
+    '--fg-brand': ['brand-600', 'brand-400'], // brand icons and strokes on a surface
+    '--border-primary': ['gray-300', 'gray-700'], // inputs, secondary buttons
+    '--border-secondary': ['gray-200', 'gray-800'], // dividers, cards
+    '--border-tertiary': ['gray-100', 'gray-800'], // menus, the lightest lines
+    '--border-strong': ['gray-400', 'gray-600'], // hover on checkboxes and radios
+    '--border-brand': ['brand-300', 'brand-500'], // focused inputs
+    '--border-brand-subtle': ['brand-200', 'brand-800'],
+    '--border-error': ['error-300', 'error-500'],
+  };
+  // "mix:error-500:14" = 14 % of that colour over gray-900: a quiet tint on dark surfaces, where the 950 steps glow.
+  const ref = step => {
+    if (step.startsWith('mix:')) { const [, c, pct] = step.split(':'); return `color-mix(in srgb, var(--${c}) ${pct}%, var(--gray-900))`; }
+    return step === 'white' ? 'var(--white)' : `var(--${step})`;
+  };
+  const semantic = Object.fromEntries(Object.entries(SEMANTIC).map(([k, [light]]) => [k, ref(light)]));
+  // Dark theme: the semantic remap plus the few system tokens that change. Applied with data-theme="dark" on <html>.
+  DS.darkTokens = {
+    ...Object.fromEntries(Object.entries(SEMANTIC).map(([k, [, dark]]) => [k, ref(dark)])),
+    '--chart-grid': 'var(--gray-800)', '--chart-axis': 'var(--gray-700)',
+    '--scrim': 'rgba(0, 0, 0, .6)',
+    '--raised-sheen-light': 'linear-gradient(180deg, rgb(255 255 255 / .04), rgb(0 0 0 / 0))',
+  };
+
   const GROUPS = [
     ['Colour', colour],
+    ['Semantic colour: what a colour is for. Components use these; the dark theme remaps them', semantic],
     ['Spacing: token number x 4 = px', Object.fromEntries([1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 56, 64].map(n => [`--space-${n}`, `${n * 4}px`]))],
     ['Containers', { '--container-sm': '640px', '--container-md': '768px', '--container-lg': '1024px', '--container-xl': '1280px' }],
     ['Radius: 4 small parts, 8 controls, 12 containers, 16 badges, full circles', { '--radius-sm': '4px', '--radius-md': '8px', '--radius-lg': '12px', '--radius-xl': '16px', '--radius-full': '9999px' }],
@@ -102,8 +151,11 @@
     GROUPS.map(([title, t]) => `  /* ${title} */\n` + Object.entries(t).map(([k, v]) => `  ${k}: ${v};`).join('\n')).join('\n\n') +
     '\n}\n';
 
+  DS.darkCss = `:root[data-theme="dark"] {\n  color-scheme: dark;\n${Object.entries(DS.darkTokens).map(([k, v]) => `  ${k}: ${v};`).join('\n')}\n}\n`;
+
   DS.addCss = css => document.head.append(Object.assign(document.createElement('style'), { textContent: css }));
   DS.addCss(DS.tokensCss);
+  DS.addCss(DS.darkCss);
 
   // ---- Helpers shared by data files and app.js
   DS.esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -159,6 +211,8 @@
     database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
     loader: '<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>',
     signal: '<circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
+    moon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
     bell: '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/>',
     building: '<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/>',
     alert: '<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/>',
@@ -177,7 +231,7 @@
   // Preview HTML to copyable snippet: icon bodies collapse to a named placeholder, docs-only attributes go.
   DS.snippet = html =>
     html
-      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart|table|modal|side|header)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
+      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart|table|modal|side|header|banner|dp|cb|loading)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
       .replace(/<svg( class="[^"]*")? data-i="([\w-]+)"[\s\S]*?<\/svg>/g, '<svg$1 aria-hidden="true"><!-- $2 --></svg>')
       .replace(/ data-(state|demo)(="[^"]*")?/g, '')
       .replace(/src="data:image\/[^"]*"/g, 'src="…"'); // inline demo images

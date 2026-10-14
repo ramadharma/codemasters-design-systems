@@ -82,6 +82,15 @@
       "path": "components/badge.md"
     },
     {
+      "slug": "banner",
+      "name": "Banner",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-14",
+      "description": "A message about a page, a card or a form in one of four roles: info, success, warning and error. Inline inside the content, or as a full-width strip under the header bar.",
+      "path": "components/banner.md"
+    },
+    {
       "slug": "button",
       "name": "Button",
       "category": "Components",
@@ -136,6 +145,24 @@
       "path": "components/checkbox-group.md"
     },
     {
+      "slug": "combobox",
+      "name": "Combobox",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-14",
+      "description": "Type to find people or values and pick one or many. Picks show as chips, results can come from the server while you type, and a value that does not exist yet can be added.",
+      "path": "components/combobox.md"
+    },
+    {
+      "slug": "date-picker",
+      "name": "Date picker",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-14",
+      "description": "A date field people can type into or pick from a calendar: one date (one month, picks and closes) or a range (two months, quick ranges, Batal and Terapkan). Monday first, dd/mm/yyyy.",
+      "path": "components/date-picker.md"
+    },
+    {
       "slug": "dropdown-menu",
       "name": "Dropdown menu",
       "category": "Components",
@@ -170,6 +197,15 @@
       "updated": "2026-10-06",
       "description": "A single-line text field with a label above, an optional hint below, and an error state that says what is wrong and how to fix it.",
       "path": "components/input-field.md"
+    },
+    {
+      "slug": "loading",
+      "name": "Loading",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-14",
+      "description": "What people see while data or an action is on its way: skeletons in the shape of the content, a spinner for waits of unknown length, and which to use when (with Button loading, Progress and Toast).",
+      "path": "components/loading.md"
     },
     {
       "slug": "modal",
@@ -304,6 +340,7 @@
     "code/avatar.css",
     "code/avatar-initials.js",
     "code/badge.css",
+    "code/banner.css",
     "code/button.css",
     "code/button-group.css",
     "code/button-group-switch.js",
@@ -314,12 +351,17 @@
     "code/checkbox.css",
     "code/checkbox-select-all.js",
     "code/checkbox-group.css",
+    "code/combobox.css",
+    "code/combobox.js",
+    "code/date-picker.css",
+    "code/date-picker.js",
     "code/dropdown-menu.css",
     "code/dropdown-menu.js",
     "code/header-bar.css",
     "code/input-dropdown.css",
     "code/input-dropdown.js",
     "code/input-field.css",
+    "code/loading.css",
     "code/modal.css",
     "code/modal.js",
     "code/progress.js",

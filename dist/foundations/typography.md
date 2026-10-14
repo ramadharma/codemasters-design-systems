@@ -101,13 +101,13 @@ Colour pairing: titles and values `gray-900`, labels `gray-500`, form labels `gr
 **Do:** A style from the scale: Text xl / Semibold.
 
 ```html
-<p style="margin: 0; font: 600 var(--text-xl) var(--font); color: var(--gray-900)">Ringkasan klaim</p>
+<p style="margin: 0; font: 600 var(--text-xl) var(--font); color: var(--text-primary)">Ringkasan klaim</p>
 ```
 
 **Don't:** 19 / 23 set by hand. Nearly Text xl, but off the scale, so the rhythm breaks.
 
 ```html
-<p style="margin: 0; font: 600 19px/23px var(--font); color: var(--gray-900)">Ringkasan klaim</p>
+<p style="margin: 0; font: 600 19px/23px var(--font); color: var(--text-primary)">Ringkasan klaim</p>
 ```
 
 ## Tokens

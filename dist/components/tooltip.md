@@ -173,7 +173,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 .sb-tooltip-wrap { position: relative; display: inline-flex; }
 
 .sb-tooltip {
-  --tip-bg: var(--gray-900); --tip-title: var(--white); --tip-text: var(--white);
+  --tip-bg: var(--bg-inverse); --tip-title: var(--white); --tip-text: var(--white);
   --tip-gap: 10px; /* 6 px arrow + 4 px to the trigger */
   position: absolute; z-index: 20; bottom: calc(100% + var(--tip-gap)); left: 50%; translate: -50% 0;
   display: grid; gap: 4px; box-sizing: border-box; width: max-content; max-width: min(320px, calc(100vw - 32px));
@@ -181,7 +181,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
   font: 400 var(--text-xs) var(--font); color: var(--tip-text); text-align: start; white-space: normal;
   visibility: hidden; opacity: 0; transition: opacity 150ms var(--ease), visibility 0s linear 150ms;
 }
-.sb-tooltip[data-theme="light"] { --tip-bg: var(--white); --tip-title: var(--gray-700); --tip-text: var(--gray-500); }
+.sb-tooltip[data-theme="light"] { --tip-bg: var(--bg-primary); --tip-title: var(--text-secondary); --tip-text: var(--text-quaternary); }
 .sb-tooltip:has(.sb-tooltip-text) { padding: 12px; }
 .sb-tooltip-title { font-weight: 600; color: var(--tip-title); }
 .sb-tooltip-text { color: var(--tip-text); }
@@ -209,9 +209,9 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 .sb-tooltip[data-arrow="right"]::after { left: 100%; clip-path: polygon(0 0, 100% 50%, 0 100%); }
 
 /* Help icon: 16 px help-circle, gray-400; hover and open gray-500. A real button with the global focus outline. */
-.sb-help { display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full); background: none; color: var(--gray-400); cursor: help; }
+.sb-help { display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full); background: none; color: var(--fg-quaternary); cursor: help; }
 .sb-help > svg { width: 16px; height: 16px; }
-.sb-help:hover, .sb-help:focus-visible, .sb-tooltip-wrap[data-state="open"] > .sb-help { color: var(--gray-500); }
+.sb-help:hover, .sb-help:focus-visible, .sb-tooltip-wrap[data-state="open"] > .sb-help { color: var(--text-quaternary); }
 .sb-help:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 /* After a label: label + help icon on one line, 4 apart. */
 .sb-help-row { display: inline-flex; align-items: center; gap: 4px; }
@@ -245,11 +245,12 @@ document.addEventListener('focusout', tooltipReset);
 ```css
 :root {
   --white: #ffffff;
-  --gray-400: #98a2b3;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --gray-900: #101828;
   --brand-600: #3966e0;
+  --bg-primary: var(--white);
+  --bg-inverse: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --fg-quaternary: var(--gray-400);
   --radius-md: 8px;
   --radius-full: 9999px;
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);

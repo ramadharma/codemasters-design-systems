@@ -21,11 +21,12 @@
 
 .sb-toggle {
   --tg-w: 36px; --tg-h: 20px; --tg-knob: 16px;
-  --tg-off: var(--gray-100); --tg-off-hover: var(--gray-200); --tg-on: var(--brand-600); --tg-on-hover: var(--brand-700);
+  --tg-off: var(--bg-tertiary); --tg-off-hover: var(--bg-quaternary); --tg-on: var(--brand-600); --tg-on-hover: var(--brand-700);
   display: inline-flex; align-items: flex-start; gap: 8px;
 }
 .sb-toggle[data-size="md"] { --tg-w: 44px; --tg-h: 24px; --tg-knob: 20px; gap: 12px; }
-.sb-toggle[data-theme="light"] { --tg-off: var(--brand-50); --tg-off-hover: var(--brand-100); --tg-on: var(--brand-200); --tg-on-hover: var(--brand-200); }
+.sb-toggle[data-theme="light"] { --tg-off: var(--bg-brand-subtle); --tg-off-hover: var(--bg-brand-subtle-hover); --tg-on: var(--brand-200); --tg-on-hover: var(--brand-200); }
+:root[data-theme="dark"] .sb-toggle[data-theme="light"] { --tg-on: var(--brand-800); --tg-on-hover: var(--brand-800); }
 
 /* Track: fully rounded, 2 px padding. Knob: white, shadow-sm, slides 150 ms. */
 .sb-toggle-input {
@@ -38,7 +39,7 @@
 .sb-toggle-input::before {
   content: ''; position: absolute; top: 2px; left: 2px;
   width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
-  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm);
+  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm); /* the knob stays white in both themes */
   transition: translate 150ms var(--ease);
 }
 .sb-toggle-input:checked { background: var(--tg-on); }
@@ -51,8 +52,8 @@
 
 /* Text */
 .sb-toggle-text { display: grid; }
-.sb-toggle-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); cursor: pointer; }
-.sb-toggle-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-toggle-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); cursor: pointer; }
+.sb-toggle-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-toggle[data-size="md"] .sb-toggle-label { font-size: 16px; line-height: 24px; }
 .sb-toggle[data-size="md"] .sb-toggle-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
 /* Disabled: the whole control, label included, at 50 % opacity. */

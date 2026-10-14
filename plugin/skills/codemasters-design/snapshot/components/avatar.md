@@ -299,7 +299,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
   --av: 40px; --av-icon: 24px; --av-dot: 10px; --av-co: 14px;
   position: relative; display: inline-grid; place-items: center; flex: none; box-sizing: border-box;
   width: var(--av); height: var(--av); margin: 0; padding: 0; border: 0; border-radius: var(--radius-full);
-  background: var(--brand-50); color: var(--brand-600); font: 500 var(--text-md) var(--font); text-decoration: none;
+  background: var(--bg-brand-subtle); color: var(--fg-brand); font: 500 var(--text-md) var(--font); text-decoration: none;
 }
 .sb-avatar[data-size="xs"]  { --av: 24px; --av-icon: 16px; --av-dot: 6px;  --av-co: 10px; font: 500 var(--text-xs) var(--font); }
 .sb-avatar[data-size="sm"]  { --av: 32px; --av-icon: 20px; --av-dot: 8px;  --av-co: 12px; font: 500 var(--text-sm) var(--font); }
@@ -310,12 +310,12 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 .sb-avatar > svg { width: var(--av-icon); height: var(--av-icon); }
 
 /* Status, bottom-right, 1.5 px white border. Online: success-500 dot. Company: logo, 2 px outside the circle. */
-.sb-avatar-status { position: absolute; right: 0; bottom: 0; box-sizing: border-box; width: var(--av-dot); height: var(--av-dot); border: 1.5px solid var(--white); border-radius: var(--radius-full); background: var(--success-500); }
-.sb-avatar-company { position: absolute; right: -2px; bottom: -2px; box-sizing: border-box; width: var(--av-co); height: var(--av-co); border: 1.5px solid var(--white); border-radius: var(--radius-full); background: var(--white); object-fit: cover; }
+.sb-avatar-status { position: absolute; right: 0; bottom: 0; box-sizing: border-box; width: var(--av-dot); height: var(--av-dot); border: 1.5px solid var(--bg-primary); border-radius: var(--radius-full); background: var(--success-500); }
+.sb-avatar-company { position: absolute; right: -2px; bottom: -2px; box-sizing: border-box; width: var(--av-co); height: var(--av-co); border: 1.5px solid var(--bg-primary); border-radius: var(--radius-full); background: var(--bg-primary); object-fit: cover; }
 
 /* States: only for an avatar that is a button or link (account menu). A 4 px ring outside the circle. */
 :is(button, a).sb-avatar { cursor: pointer; transition: box-shadow 150ms var(--ease); }
-:is(button, a).sb-avatar:is(:hover, [data-state="hover"]) { box-shadow: 0 0 0 4px var(--gray-100); }
+:is(button, a).sb-avatar:is(:hover, [data-state="hover"]) { box-shadow: 0 0 0 4px var(--bg-tertiary); }
 :is(button, a).sb-avatar:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
 
 /* ---- Avatar group: overlapping avatars with a 1.5 px white ring, then "+N", then the add button 8 apart. */
@@ -324,18 +324,18 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 .sb-avatar-group[data-size="sm"] { --av-overlap: -8px; }
 .sb-avatar-stack { display: flex; align-items: center; }
 .sb-avatar-stack > :is(.sb-avatar, .sb-tooltip-wrap) + * { margin-left: var(--av-overlap); }
-.sb-avatar-stack .sb-avatar { box-shadow: 0 0 0 1.5px var(--white); }
-.sb-avatar-stack button.sb-avatar:is(:focus-visible, [data-state="focus"]) { box-shadow: 0 0 0 1.5px var(--white), 0 0 0 5.5px var(--focus-ring); }
+.sb-avatar-stack .sb-avatar { box-shadow: 0 0 0 1.5px var(--bg-primary); }
+.sb-avatar-stack button.sb-avatar:is(:focus-visible, [data-state="focus"]) { box-shadow: 0 0 0 1.5px var(--bg-primary), 0 0 0 5.5px var(--focus-ring); }
 /* Add: white, dashed gray-300 border, gray-400 plus icon at half the box. */
 .sb-avatar-add {
   display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: var(--av, 40px); height: var(--av, 40px);
-  margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--raised-sheen-light) var(--white); color: var(--gray-400); cursor: pointer;
+  margin: 0; padding: 0; border: 1px dashed var(--border-primary); border-radius: var(--radius-full); background: var(--raised-sheen-light) var(--bg-primary); color: var(--fg-quaternary); cursor: pointer;
   transition-property: color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-avatar-group[data-size="xs"] .sb-avatar-add { --av: 24px; }
 .sb-avatar-group[data-size="sm"] .sb-avatar-add { --av: 32px; }
 .sb-avatar-add > svg { width: calc(var(--av, 40px) / 2); height: calc(var(--av, 40px) / 2); }
-.sb-avatar-add:is(:hover, [data-state="hover"]) { border-color: var(--gray-400); color: var(--gray-500); }
+.sb-avatar-add:is(:hover, [data-state="hover"]) { border-color: var(--border-strong); color: var(--text-quaternary); }
 .sb-avatar-add:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
 
 /* ---- Avatar label group: avatar + name + secondary line. Long text truncates (show it in a tooltip). */
@@ -344,8 +344,8 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 .sb-avatar-label[data-size="xl"] { gap: 16px; }
 .sb-avatar-label-text { display: grid; min-width: 0; }
 .sb-avatar-name, .sb-avatar-sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sb-avatar-name { font: 600 var(--text-sm) var(--font); color: var(--gray-700); transition: color 150ms var(--ease); }
-.sb-avatar-sub { font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-avatar-name { font: 600 var(--text-sm) var(--font); color: var(--text-secondary); transition: color 150ms var(--ease); }
+.sb-avatar-sub { font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-avatar-label[data-size="sm"] .sb-avatar-sub { font: 400 var(--text-xs) var(--font); }
 .sb-avatar-label[data-size="lg"] .sb-avatar-name { font: 600 var(--text-md) var(--font); }
 .sb-avatar-label[data-size="xl"] .sb-avatar-name { font: 600 var(--text-lg) var(--font); }
@@ -353,9 +353,9 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 /* Clickable group (button or link): one hit target; the avatar takes the ring, the name darkens. */
 :is(button, a).sb-avatar-label { cursor: pointer; }
 :is(button, a).sb-avatar-label:focus-visible { outline: none; }
-:is(button, a).sb-avatar-label:is(:hover, [data-state="hover"]) .sb-avatar { box-shadow: 0 0 0 4px var(--gray-100); }
+:is(button, a).sb-avatar-label:is(:hover, [data-state="hover"]) .sb-avatar { box-shadow: 0 0 0 4px var(--bg-tertiary); }
 :is(button, a).sb-avatar-label:is(:focus-visible, [data-state="focus"]) .sb-avatar { box-shadow: 0 0 0 4px var(--focus-ring); }
-:is(button, a).sb-avatar-label:is(:hover, :focus-visible, [data-state]) .sb-avatar-name { color: var(--gray-900); }
+:is(button, a).sb-avatar-label:is(:hover, :focus-visible, [data-state]) .sb-avatar-name { color: var(--text-primary); }
 .sb-avatar-label .sb-avatar { transition: box-shadow 150ms var(--ease); }
 
 @media (prefers-reduced-motion: reduce) {
@@ -383,16 +383,17 @@ function initials(name) {
 
 ```css
 :root {
-  --white: #ffffff;
-  --gray-100: #f2f4f7;
-  --gray-300: #d0d5dd;
-  --gray-400: #98a2b3;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --gray-900: #101828;
-  --brand-50: #f0f6fe;
-  --brand-600: #3966e0;
   --success-500: #12b76a;
+  --bg-primary: var(--white);
+  --bg-tertiary: var(--gray-100);
+  --bg-brand-subtle: var(--brand-50);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --fg-quaternary: var(--gray-400);
+  --fg-brand: var(--brand-600);
+  --border-primary: var(--gray-300);
+  --border-strong: var(--gray-400);
   --radius-full: 9999px;
   --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);

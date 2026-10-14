@@ -154,8 +154,8 @@ ${[[400, 'Regular'], [500, 'Medium'], [600, 'Semibold'], [700, 'Bold']].map(([w,
           {
             type: 'dodont',
             items: [
-              { kind: 'do', html: '<p style="margin: 0; font: 600 var(--text-xl) var(--font); color: var(--gray-900)">Ringkasan klaim</p>', text: 'A style from the scale: Text xl / Semibold.' },
-              { kind: 'dont', html: '<p style="margin: 0; font: 600 19px/23px var(--font); color: var(--gray-900)">Ringkasan klaim</p>', text: '19 / 23 set by hand. Nearly Text xl, but off the scale, so the rhythm breaks.' },
+              { kind: 'do', html: '<p style="margin: 0; font: 600 var(--text-xl) var(--font); color: var(--text-primary)">Ringkasan klaim</p>', text: 'A style from the scale: Text xl / Semibold.' },
+              { kind: 'dont', html: '<p style="margin: 0; font: 600 19px/23px var(--font); color: var(--text-primary)">Ringkasan klaim</p>', text: '19 / 23 set by hand. Nearly Text xl, but off the scale, so the rhythm breaks.' },
             ],
           },
         ],

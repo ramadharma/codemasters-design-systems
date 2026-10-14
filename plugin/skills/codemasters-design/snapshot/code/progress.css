@@ -13,9 +13,9 @@
 
 /* ---- Progress bar: track 8 high, gray-100; fill brand-600, min 8 wide so 0 % still shows a dot. */
 .sb-progress { --value: 0; position: relative; display: flex; align-items: center; gap: 12px; width: 100%; }
-.sb-progress-track { flex: 1; min-width: 0; height: 8px; border-radius: var(--radius-sm); background: var(--gray-100); }
+.sb-progress-track { flex: 1; min-width: 0; height: 8px; border-radius: var(--radius-sm); background: var(--bg-tertiary); }
 .sb-progress-fill { width: max(8px, calc(var(--value) * 1%)); height: 100%; border-radius: inherit; background: var(--brand-600); transition: width 300ms var(--ease); }
-.sb-progress-label { flex: none; font: 500 var(--text-sm) var(--font); color: var(--gray-700); font-variant-numeric: tabular-nums; }
+.sb-progress-label { flex: none; font: 500 var(--text-sm) var(--font); color: var(--text-secondary); font-variant-numeric: tabular-nums; }
 .sb-progress[data-label="bottom"] { flex-direction: column; align-items: stretch; gap: 8px; }
 .sb-progress[data-label="bottom"] .sb-progress-track { flex: none; }
 .sb-progress[data-label="bottom"] .sb-progress-label { align-self: flex-end; }
@@ -23,7 +23,7 @@
    translate slides it from left-aligned at 0 % to right-aligned at 100 %, centred at 50 %, so it never leaves the bar. */
 .sb-progress[data-label$="floating"] .sb-progress-label {
   position: absolute; left: calc(var(--value) * 1%); translate: calc(var(--value) * -1%) 0;
-  padding: 8px 12px; border-radius: var(--radius-md); background: var(--white); box-shadow: var(--shadow-lg);
+  padding: 8px 12px; border-radius: var(--radius-md); background: var(--bg-primary); box-shadow: var(--shadow-lg);
   font: 600 var(--text-xs) var(--font); white-space: nowrap; transition: left 300ms var(--ease);
 }
 .sb-progress[data-label="top-floating"] { padding-top: 42px; }
@@ -37,18 +37,18 @@
 .sb-progress-circle > svg, .sb-pc-text { grid-area: 1 / 1; }
 .sb-progress-circle > svg { display: block; width: var(--pc-box); height: auto; }
 .sb-pc-track, .sb-pc-line { fill: none; stroke-width: 10; }
-.sb-pc-track { stroke: var(--gray-100); }
+.sb-pc-track { stroke: var(--border-tertiary); }
 .sb-pc-line { stroke: var(--brand-600); stroke-linecap: round; stroke-dasharray: var(--value) 100; transition: stroke-dasharray 300ms var(--ease); }
 .sb-progress-circle:not([data-shape="half"]) .sb-pc-line { transform: rotate(-90deg); transform-origin: center; transform-box: fill-box; }
 .sb-progress-circle[data-shape="half"] .sb-pc-text { align-self: end; }
 
 .sb-pc-text { display: grid; justify-items: center; text-align: center; }
-.sb-pc-caption { font: 500 var(--text-xs) var(--font); color: var(--gray-500); }
-.sb-pc-value { font: 500 var(--display-sm) var(--font); color: var(--gray-900); font-variant-numeric: tabular-nums; }
+.sb-pc-caption { font: 500 var(--text-xs) var(--font); color: var(--text-quaternary); }
+.sb-pc-value { font: 500 var(--display-sm) var(--font); color: var(--text-primary); font-variant-numeric: tabular-nums; }
 
 .sb-progress-circle[data-size="xxs"] { --pc-box: 64px; }
 .sb-progress-circle[data-size="xxs"] :is(.sb-pc-track, .sb-pc-line) { stroke-width: 9.375; } /* 6 px at 64 */
-.sb-progress-circle[data-size="xxs"] .sb-pc-value { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-progress-circle[data-size="xxs"] .sb-pc-value { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
 /* xxs: the caption moves below the circle, 4 apart. */
 .sb-progress-circle[data-size="xxs"] .sb-pc-text { display: contents; }
 .sb-progress-circle[data-size="xxs"] .sb-pc-value { grid-area: 1 / 1; }

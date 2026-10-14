@@ -163,8 +163,8 @@ Load `tokens.css` and `toast.css`, then `toast.js` once. Call `toast()` from any
   position: relative; overflow: hidden; box-sizing: border-box; pointer-events: auto;
   display: flex; align-items: flex-start; gap: 12px;
   padding: 16px 12px 16px 16px;
-  background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
-  font: 400 var(--text-sm) var(--font); color: var(--gray-600);
+  background: var(--bg-primary); border: 1px solid var(--border-secondary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  font: 400 var(--text-sm) var(--font); color: var(--text-tertiary);
   transition: opacity 200ms var(--ease), translate 200ms var(--ease), scale 200ms var(--ease);
 }
 .sb-toaster[data-position$="left"] .sb-toast { --enter-x: -16px; }
@@ -178,17 +178,17 @@ Load `tokens.css` and `toast.css`, then `toast.js` once. Call `toast()` from any
 
 .sb-toast-icon { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; color: var(--tone); }
 .sb-toast-icon > svg { width: 20px; height: 20px; }
-.sb-toast-spinner { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--gray-200); border-top-color: var(--brand-600); border-radius: var(--radius-full); animation: sb-toast-spin 700ms linear infinite; }
+.sb-toast-spinner { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--border-secondary); border-top-color: var(--brand-600); border-radius: var(--radius-full); animation: sb-toast-spin 700ms linear infinite; }
 @keyframes sb-toast-spin { to { rotate: 1turn; } }
 
 .sb-toast-text { display: grid; justify-items: start; gap: 4px; flex: 1; min-width: 0; }
 .sb-toast .sb-toast-text p { margin: 0; }
-.sb-toast .sb-toast-msg { font-weight: 600; color: var(--gray-900); text-wrap: pretty; }
-.sb-toast .sb-toast-desc { color: var(--gray-600); text-wrap: pretty; }
-.sb-toast-action { margin: 4px 0 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; font: 600 var(--text-sm) var(--font); color: var(--brand-700); cursor: pointer; }
-.sb-toast-action:hover { color: var(--brand-800); text-decoration: underline; text-underline-offset: 2px; }
-.sb-toast-close { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; margin: -4px 0 -4px auto; padding: 0; border: 0; border-radius: var(--radius-md); background: none; color: var(--gray-400); cursor: pointer; }
-.sb-toast-close:hover { background: var(--gray-50); color: var(--gray-600); }
+.sb-toast .sb-toast-msg { font-weight: 600; color: var(--text-primary); text-wrap: pretty; }
+.sb-toast .sb-toast-desc { color: var(--text-tertiary); text-wrap: pretty; }
+.sb-toast-action { margin: 4px 0 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; font: 600 var(--text-sm) var(--font); color: var(--text-brand); cursor: pointer; }
+.sb-toast-action:hover { color: var(--text-brand-strong); text-decoration: underline; text-underline-offset: 2px; }
+.sb-toast-close { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; margin: -4px 0 -4px auto; padding: 0; border: 0; border-radius: var(--radius-md); background: none; color: var(--fg-quaternary); cursor: pointer; }
+.sb-toast-close:hover { background: var(--bg-secondary); color: var(--text-tertiary); }
 .sb-toast-close > svg { width: 20px; height: 20px; }
 .sb-toast :is(.sb-toast-action, .sb-toast-close):focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 
@@ -355,21 +355,21 @@ window.toast = (function installToast(ICONS) {
 
 ```css
 :root {
-  --white: #ffffff;
-  --gray-50: #f9fafb;
-  --gray-200: #eaecf0;
-  --gray-400: #98a2b3;
-  --gray-600: #475467;
-  --gray-900: #101828;
   --brand-600: #3966e0;
-  --brand-700: #2e51cd;
-  --brand-800: #2942a7;
   --error-500: #f04438;
   --error-600: #d92d20;
   --warning-500: #f79009;
   --warning-600: #dc6803;
   --success-500: #12b76a;
   --success-600: #039855;
+  --bg-primary: var(--white);
+  --bg-secondary: var(--gray-50);
+  --text-primary: var(--gray-900);
+  --text-tertiary: var(--gray-600);
+  --text-brand: var(--brand-700);
+  --text-brand-strong: var(--brand-800);
+  --fg-quaternary: var(--gray-400);
+  --border-secondary: var(--gray-200);
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;

@@ -25,7 +25,7 @@
 
 .sb-badge {
   --bdg-h: 22px; --bdg-px: 8px; --bdg-type: var(--text-xs);
-  --bdg-bg: var(--gray-100); --bdg-fg: var(--gray-700); --bdg-icon: var(--gray-500);
+  --bdg-bg: var(--bg-tertiary); --bdg-fg: var(--text-secondary); --bdg-icon: var(--text-quaternary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; gap: 4px;
   height: var(--bdg-h); padding: 0 var(--bdg-px);
@@ -38,7 +38,7 @@
 .sb-badge-img { display: inline-flex; width: 16px; height: 16px; flex: none; border-radius: var(--radius-full); overflow: hidden; }
 .sb-badge-img > svg { width: 100%; height: 100%; }
 /* Placeholder avatar: user icon in brand-600 on brand-50 (DESIGN.md Avatar). Real screens use the photo or initials. */
-.sb-badge-avatar { align-items: center; justify-content: center; background: var(--brand-50); color: var(--brand-600); }
+.sb-badge-avatar { align-items: center; justify-content: center; background: var(--bg-brand-subtle); color: var(--fg-brand); }
 .sb-badge-avatar > svg { width: 12px; height: 12px; }
 .sb-badge-x {
   display: inline-flex; margin: -2px; padding: 2px; border: 0; border-radius: var(--radius-sm);
@@ -63,6 +63,8 @@
 
 /* Colours */
 ${COLORS.slice(1).map(([c, f]) => `.sb-badge[data-color="${c}"] { --bdg-bg: var(--${f}-50); --bdg-fg: var(--${f}-700); --bdg-icon: var(--${f}-500); }`).join('\n')}
+/* Dark theme: the 950 step as the fill, 300 text, 400 icon. */
+${COLORS.slice(1).map(([c, f]) => `:root[data-theme="dark"] .sb-badge[data-color="${c}"] { --bdg-bg: var(--${f}-950); --bdg-fg: var(--${f}-300); --bdg-icon: var(--${f}-400); }`).join('\n')}
 
 /* Badge group: a badge plus a short message in one pill.
    <a class="sb-badge-group" href="…" data-color="primary" data-theme="light">
@@ -82,7 +84,7 @@ ${COLORS.slice(1).map(([c, f]) => `.sb-badge[data-color="${c}"] { --bdg-bg: var(
   border-radius: var(--radius-xl);
 }
 .sb-badge-group > svg { width: 12px; height: 12px; flex: none; color: var(--g500); }
-.sb-badge-group > .sb-badge { --bdg-bg: var(--white); --bdg-fg: var(--g700); --bdg-icon: var(--g500); }
+.sb-badge-group > .sb-badge { --bdg-bg: var(--bg-primary); --bdg-fg: var(--g700); --bdg-icon: var(--g500); }
 .sb-badge-group[data-size="lg"] { gap: 12px; padding-inline-end: 14px; font-size: 14px; line-height: 20px; }
 .sb-badge-group[data-badge="trailing"] { padding-inline: 12px 4px; }
 .sb-badge-group[data-badge="trailing"][data-size="lg"] { padding-inline: 14px 4px; }
@@ -92,6 +94,11 @@ ${COLORS.slice(1).map(([c, f]) => `.sb-badge[data-color="${c}"] { --bdg-bg: var(
 ${GROUP_COLORS.slice(1).map(c => {
     const f = family(c);
     return `.sb-badge-group[data-color="${c}"] { --g50: var(--${f}-50); --g100: var(--${f}-100); --g500: var(--${f}-500); --g600: var(--${f === 'gray' ? 'gray-700' : `${f}-600`}); --g700: var(--${f}-700); }`;
+  }).join('\n')}
+/* Dark theme: the same steps mirrored around 500 (950 fill, 900 medium fill, 300 text, 400 icon). */
+${GROUP_COLORS.map(c => {
+    const f = family(c);
+    return `:root[data-theme="dark"] .sb-badge-group${c === GROUP_COLORS[0] ? '' : `[data-color="${c}"]`} { --g50: var(--${f}-950); --g100: var(--${f}-900); --g500: var(--${f}-400); --g700: var(--${f}-300); }`;
   }).join('\n')}
 a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 `;

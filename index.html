@@ -8,6 +8,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"> <!-- Inter: slide previews only -->
   <link rel="preload" href="assets/fonts/TimelessSansVF.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    // Theme before the first paint: the saved choice, else the system setting.
+    (() => {
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch {}
+      document.documentElement.dataset.theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    })();
+  </script>
   <!-- Data first: each file injects its CSS (tokens, components) before the page paints.
        Add a component: create data/<name>.js and add one script tag here. -->
   <script src="data/foundations.js"></script>
@@ -23,11 +31,15 @@
   <script src="data/chart.js"></script>
   <script src="data/social-button.js"></script>
   <script src="data/badge.js"></script>
+  <script src="data/banner.js"></script>
+  <script src="data/loading.js"></script>
   <script src="data/input-field.js"></script>
   <script src="data/textarea.js"></script>
   <script src="data/verification-code.js"></script>
   <script src="data/wysiwyg.js"></script>
   <script src="data/input-dropdown.js"></script>
+  <script src="data/date-picker.js"></script>
+  <script src="data/combobox.js"></script>
   <script src="data/dropdown-menu.js"></script>
   <script src="data/toggle.js"></script>
   <script src="data/checkbox.js"></script>
@@ -53,6 +65,7 @@
     <a class="brand" href="#/"><img src="assets/brand/codemasters-logo.png" alt="Codemasters"><span class="brand-name">Design Systems</span><span class="sb-badge brand-version" data-size="sm" data-color="gray"></span></a>
     <div class="top-actions">
       <button class="sb-btn search-trigger" type="button" data-hierarchy="secondary-gray" data-size="sm" aria-haspopup="dialog" aria-label="Search documentation" data-search><svg data-i="search"></svg><span>Search documentation…</span><kbd></kbd></button>
+      <button class="sb-btn theme-toggle" type="button" data-hierarchy="secondary-gray" data-size="sm" data-icon="only" aria-label="Dark mode" aria-pressed="false" data-theme-toggle><svg data-i="moon"></svg><svg data-i="sun"></svg></button>
       <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm" data-export><svg data-i="download"></svg>Export DESIGN.md</button>
     </div>
   </header>

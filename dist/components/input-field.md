@@ -243,51 +243,51 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 
 /* Label, control and hint sit 6 apart. */
 .sb-field { display: grid; gap: 6px; }
-.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
 .sb-input {
-  --inp-border: var(--gray-300); --inp-focus: var(--brand-300); --inp-ring: var(--focus-ring);
+  --inp-border: var(--border-primary); --inp-focus: var(--border-brand); --inp-ring: var(--focus-ring);
   position: relative; box-sizing: border-box;
   display: flex; align-items: center; gap: 8px;
   height: 44px; padding: 0 14px; /* control padding exception: 10 14 lands the height on 44 */
-  background: var(--white);
+  background: var(--bg-primary);
   border: 1px solid var(--inp-border); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-input > svg { width: 20px; height: 20px; flex: none; color: var(--gray-500); }
+.sb-input > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
 .sb-input input {
   flex: 1; min-width: 0; height: 100%; margin: 0; padding: 0;
-  font: 400 var(--text-md) var(--font); color: var(--gray-900);
+  font: 400 var(--text-md) var(--font); color: var(--text-primary);
   background: none; border: 0; outline: 0; /* focus shows on the whole field below */
 }
-.sb-input input::placeholder { color: var(--gray-500); opacity: 1; }
+.sb-input input::placeholder { color: var(--text-quaternary); opacity: 1; }
 
 /* States */
-.sb-input:hover:not(:focus-within, :has(input:disabled, [aria-invalid="true"])) { border-color: var(--gray-400); }
+.sb-input:hover:not(:focus-within, :has(input:disabled, [aria-invalid="true"])) { border-color: var(--border-strong); }
 .sb-input:has(input:focus), .sb-input[data-state="focus"] {
   border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--inp-ring);
 }
 .sb-input:has(input:disabled) { opacity: .5; cursor: not-allowed; } /* disabled: the default look at 50 % opacity */
 .sb-input input:disabled { cursor: not-allowed; }
-.sb-input:has([aria-invalid="true"]) { --inp-border: var(--error-300); --inp-focus: var(--error-300); --inp-ring: var(--error-100); }
+.sb-input:has([aria-invalid="true"]) { --inp-border: var(--border-error); --inp-focus: var(--border-error); --inp-ring: var(--bg-error-subtle-hover); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
 
 /* Help icon: 16 px help-circle at the end, opens a Dark tooltip on hover and focus.
    In error it is an alert-circle in error-500. */
 .sb-input-help {
   display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-sm);
-  background: none; color: var(--gray-400); cursor: help;
+  background: none; color: var(--fg-quaternary); cursor: help;
 }
 .sb-input-help > svg { width: 16px; height: 16px; }
-.sb-input-help:hover, .sb-input-help:focus-visible { color: var(--gray-500); }
+.sb-input-help:hover, .sb-input-help:focus-visible { color: var(--text-quaternary); }
 .sb-input-help:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-input:has([aria-invalid="true"]) .sb-input-help { color: var(--error-500); }
 .sb-input-tip {
   position: absolute; z-index: 10; bottom: calc(100% + 8px); inset-inline-end: 4px;
   max-width: 320px; padding: 8px 12px; border-radius: var(--radius-md);
-  background: var(--gray-900); box-shadow: var(--shadow-lg);
+  background: var(--bg-inverse); box-shadow: var(--shadow-lg);
   font: 600 var(--text-xs) var(--font); color: var(--white); white-space: nowrap;
   visibility: hidden; opacity: 0; transition: opacity 150ms var(--ease), visibility 0s 150ms;
 }
@@ -296,24 +296,24 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 /* Types */
 .sb-input-select {
   flex: none; height: 100%; margin: 0; padding: 0 24px 0 0; border: 0; outline: 0; appearance: none; cursor: pointer;
-  font: 400 var(--text-md) var(--font); color: var(--gray-900);
+  font: 400 var(--text-md) var(--font); color: var(--text-primary);
   background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center / 20px;
 }
 .sb-input-select:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 .sb-input[data-type="leading-dropdown"] .sb-input-select { margin-inline-end: 4px; } /* dropdown padding 10 12 10 14 */
-.sb-input-prefix { flex: none; font: 400 var(--text-md) var(--font); color: var(--gray-500); }
+.sb-input-prefix { flex: none; font: 400 var(--text-md) var(--font); color: var(--text-quaternary); }
 .sb-input[data-type="leading-text"] { padding-inline-start: 0; gap: 0; }
 .sb-input[data-type="leading-text"] input { padding-inline-start: 14px; }
 .sb-input-addon {
   align-self: stretch; display: flex; align-items: center; flex: none;
-  padding: 0 12px 0 14px; border-inline-end: 1px solid var(--gray-300);
-  font: 400 var(--text-md) var(--font); color: var(--gray-500);
+  padding: 0 12px 0 14px; border-inline-end: 1px solid var(--border-primary);
+  font: 400 var(--text-md) var(--font); color: var(--text-quaternary);
 }
 .sb-input[data-type="payment"] { padding-inline-start: 10px; }
 .sb-input-card {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
   width: 34px; height: 24px; box-sizing: border-box;
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-sm);
+  background: var(--bg-primary); border: 1px solid var(--border-tertiary); border-radius: var(--radius-sm);
 }
 .sb-input-card > svg { width: 22px; height: 14px; }
 
@@ -327,17 +327,20 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 ```css
 :root {
   --white: #ffffff;
-  --gray-100: #f2f4f7;
-  --gray-300: #d0d5dd;
-  --gray-400: #98a2b3;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --gray-900: #101828;
-  --brand-300: #9fc5f6;
   --brand-600: #3966e0;
-  --error-100: #fee4e2;
-  --error-300: #fda29b;
   --error-500: #f04438;
+  --bg-primary: var(--white);
+  --bg-inverse: var(--gray-900);
+  --bg-error-subtle-hover: var(--error-100);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --fg-quaternary: var(--gray-400);
+  --border-primary: var(--gray-300);
+  --border-tertiary: var(--gray-100);
+  --border-strong: var(--gray-400);
+  --border-brand: var(--brand-300);
+  --border-error: var(--error-300);
   --radius-sm: 4px;
   --radius-md: 8px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);

@@ -64,7 +64,7 @@ document.addEventListener('keydown', tabsKeydown);`;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: var(--tab-h); margin: 0; padding: 0 var(--tab-px);
   font: 500 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--gray-500); background: none;
+  color: var(--text-quaternary); background: none;
   border: 0; border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
@@ -76,42 +76,42 @@ document.addEventListener('keydown', tabsKeydown);`;
 .sb-tab-panel:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 
 /* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-600. */
-.sb-tabs[data-type="folder"] { --tab-h: 52px; --tab-px: 24px; box-shadow: inset 0 -1px var(--gray-300); }
+.sb-tabs[data-type="folder"] { --tab-h: 52px; --tab-px: 24px; box-shadow: inset 0 -1px var(--border-primary); }
 .sb-tabs[data-type="folder"][data-size="sm"] { --tab-h: 44px; --tab-px: 16px; }
 .sb-tabs[data-type="folder"] > .sb-tab {
-  color: var(--brand-700); background: var(--brand-50);
-  border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
+  color: var(--text-brand); background: var(--bg-brand-subtle);
+  border: 1px solid var(--border-primary); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
-.sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-100); }
+.sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--bg-brand-subtle-hover); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
-.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--bg-primary); }
 
 /* Underline: sections inside a card or below folder tabs. A 2 px line marks the selected tab. */
-.sb-tabs[data-type="underline"] { gap: 16px; box-shadow: inset 0 -1px var(--gray-200); }
+.sb-tabs[data-type="underline"] { gap: 16px; box-shadow: inset 0 -1px var(--border-secondary); }
 .sb-tabs[data-type="underline"][data-size="sm"] { --tab-h: 36px; }
 .sb-tabs[data-type="underline"] > .sb-tab { box-shadow: inset 0 -2px transparent; }
-.sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); box-shadow: inset 0 -2px var(--gray-300); }
-.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--brand-700); box-shadow: inset 0 -2px var(--brand-600); }
+.sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--text-secondary); box-shadow: inset 0 -2px var(--border-primary); }
+.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--text-brand); box-shadow: inset 0 -2px var(--brand-600); }
 
 /* Segmented: 2 to 4 short views of one card. 40 high in all, like Button md; radius 8 = 4 inner + 4 padding. */
 .sb-tabs[data-type="segmented"] {
   --tab-h: 30px; --tab-px: 12px;
   display: inline-flex; max-width: 100%; gap: 4px; padding: 4px;
-  background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md);
+  background: var(--bg-secondary); border: 1px solid var(--border-secondary); border-radius: var(--radius-md);
 }
 .sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 26px; --tab-px: 10px; }
 .sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: var(--radius-sm); }
-.sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
-.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--raised-sheen-light) var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
+.sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--text-secondary); }
+.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--text-primary); background: var(--raised-sheen-light) var(--bg-primary); border-color: var(--border-secondary); box-shadow: var(--shadow-xs); }
 
 /* Vertical: settings pages and long section lists. The sidebar item's shape (radius 8) on a light surface. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
 .sb-tabs[data-type="vertical"][data-size="sm"] { --tab-h: 36px; }
-.sb-tabs[data-type="vertical"] > .sb-tab { --tab-icon: var(--gray-500); justify-content: flex-start; color: var(--gray-700); border-radius: var(--radius-md); }
+.sb-tabs[data-type="vertical"] > .sb-tab { --tab-icon: var(--text-quaternary); justify-content: flex-start; color: var(--text-secondary); border-radius: var(--radius-md); }
 .sb-tabs[data-type="vertical"] > .sb-tab > .sb-badge { margin-inline-start: auto; }
-.sb-tabs[data-type="vertical"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { --tab-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50); }
-.sb-tabs[data-type="vertical"] > .sb-tab[aria-selected="true"] { --tab-icon: var(--brand-700); color: var(--brand-700); background: var(--brand-50); }
+.sb-tabs[data-type="vertical"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { --tab-icon: var(--text-secondary); color: var(--text-primary); background: var(--bg-secondary); }
+.sb-tabs[data-type="vertical"] > .sb-tab[aria-selected="true"] { --tab-icon: var(--text-brand); color: var(--text-brand); background: var(--bg-brand-subtle); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-tab { transition: none; }

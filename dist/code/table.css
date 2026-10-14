@@ -20,34 +20,34 @@
 .sb-table {
   --cell-py: 16px; --cell-px: 16px;
   width: 100%; border-collapse: separate; border-spacing: 0;
-  font: 400 var(--text-sm) var(--font); color: var(--gray-700);
+  font: 400 var(--text-sm) var(--font); color: var(--text-secondary);
 }
 .sb-table[data-size="sm"] { --cell-py: 10px; --cell-px: 12px; }
-.sb-table :is(th, td) { padding: var(--cell-py) var(--cell-px); text-align: start; vertical-align: middle; white-space: nowrap; background: var(--row-bg, var(--white)); }
+.sb-table :is(th, td) { padding: var(--cell-py) var(--cell-px); text-align: start; vertical-align: middle; white-space: nowrap; background: var(--row-bg, var(--bg-primary)); }
 
 /* Header: a gray-50 band with rounded ends; Text sm Regular gray-500. */
-.sb-table thead th { --row-bg: var(--gray-50); padding-block: 12px; font-weight: 400; color: var(--gray-500); }
+.sb-table thead th { --row-bg: var(--bg-secondary); padding-block: 12px; font-weight: 400; color: var(--text-quaternary); }
 .sb-table[data-size="sm"] thead th { padding-block: 8px; }
 .sb-table thead th:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
 .sb-table thead th:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
 
 /* Body: gray-200 row dividers, gray-50 on hover, brand-50 when selected. */
-.sb-table tbody td { border-bottom: 1px solid var(--gray-200); color: var(--gray-900); }
+.sb-table tbody td { border-bottom: 1px solid var(--border-secondary); color: var(--text-primary); }
 .sb-table tbody tr { transition: background-color 150ms var(--ease); }
-.sb-table tbody tr[data-child] { --row-bg: var(--gray-50); } /* grouped items; tones below still win */
-.sb-table tbody tr:is(:hover, [data-state="hover"]) { --row-bg: var(--gray-50); }
-.sb-table tbody tr:has(.sb-check-input:checked) { --row-bg: var(--brand-50); }
-.sb-table tbody tr[data-tone="error"] { --row-bg: var(--error-50); }
-.sb-table tbody tr[data-tone="error"] td { color: var(--error-700); }
-.sb-table tbody tr[data-tone="warning"] { --row-bg: var(--warning-50); }
+.sb-table tbody tr[data-child] { --row-bg: var(--bg-secondary); } /* grouped items; tones below still win */
+.sb-table tbody tr:is(:hover, [data-state="hover"]) { --row-bg: var(--bg-secondary); }
+.sb-table tbody tr:has(.sb-check-input:checked) { --row-bg: var(--bg-brand-subtle); }
+.sb-table tbody tr[data-tone="error"] { --row-bg: var(--bg-error-subtle); }
+.sb-table tbody tr[data-tone="error"] td { color: var(--text-error); }
+.sb-table tbody tr[data-tone="warning"] { --row-bg: var(--bg-warning-subtle); }
 
 /* Cells */
 .sb-table [data-num] { text-align: end; font-variant-numeric: tabular-nums; }
-.sb-table-link { color: var(--brand-700); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: from-font; }
-.sb-table-link:hover { color: var(--brand-800); }
+.sb-table-link { color: var(--text-brand); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: from-font; }
+.sb-table-link:hover { color: var(--text-brand-strong); }
 .sb-table-link:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
-.sb-table-sub { display: block; font-size: var(--text-xs); line-height: 18px; color: var(--gray-500); } /* second line: converted currency, email */
-.sb-table-empty { color: var(--gray-400); } /* "—" when a value is missing; never a blank cell */
+.sb-table-sub { display: block; font-size: var(--text-xs); line-height: 18px; color: var(--text-quaternary); } /* second line: converted currency, email */
+.sb-table-empty { color: var(--fg-quaternary); } /* "—" when a value is missing; never a blank cell */
 .sb-table .sb-check { vertical-align: middle; }
 .sb-table th:has(> .sb-check), .sb-table td:has(> .sb-check) { width: 16px; padding-inline-end: 0; }
 
@@ -57,12 +57,12 @@
   background: none; font: inherit; color: inherit; cursor: pointer;
 }
 [data-num] > .sb-table-sort { flex-direction: row-reverse; }
-.sb-table-sort:hover { color: var(--gray-700); }
+.sb-table-sort:hover { color: var(--text-secondary); }
 .sb-table-sort:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
-.sb-table-sort > svg { width: 16px; height: 16px; flex: none; color: var(--gray-400); }
+.sb-table-sort > svg { width: 16px; height: 16px; flex: none; color: var(--fg-quaternary); }
 th:not([aria-sort]) .sb-table-sort > .is-dir, th[aria-sort] .sb-table-sort > .is-idle { display: none; }
-th[aria-sort] .sb-table-sort { color: var(--gray-700); }
-th[aria-sort] .sb-table-sort > .is-dir { color: var(--brand-600); }
+th[aria-sort] .sb-table-sort { color: var(--text-secondary); }
+th[aria-sort] .sb-table-sort > .is-dir { color: var(--fg-brand); }
 th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 
 /* Sticky first column, for wide tables. The cell keeps its row's background so nothing shows through. */
@@ -72,18 +72,18 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 /* The edge sits on the last sticky column and shows only once the table has scrolled (data-scrolled, set by table.js). */
 .sb-table[data-sticky] tbody td { transition: box-shadow 150ms var(--ease); }
 [data-scrolled] > .sb-table[data-sticky] tbody td:first-child:not(:has(> .sb-check)),
-[data-scrolled] > .sb-table[data-sticky] tbody td:has(> .sb-check) + td { box-shadow: inset -1px 0 var(--gray-200); }
+[data-scrolled] > .sb-table[data-sticky] tbody td:has(> .sb-check) + td { box-shadow: inset -1px 0 var(--border-secondary); }
 
 /* Grouped table: group row (chevron, number, name, total), item rows indented on gray-50, gray-100 total row. */
-.sb-table tbody tr[data-group] td { font-weight: 600; color: var(--gray-900); }
+.sb-table tbody tr[data-group] td { font-weight: 600; color: var(--text-primary); }
 .sb-table tbody tr[data-child] td:first-child { padding-inline-start: calc(var(--cell-px) + 32px); }
 .sb-table tbody tr[hidden] { display: none; }
-.sb-table-fold { display: inline-grid; place-items: center; width: 24px; height: 24px; margin: -4px 8px -4px -4px; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--gray-500); cursor: pointer; vertical-align: middle; }
-.sb-table-fold:hover { background: var(--gray-100); color: var(--gray-700); }
+.sb-table-fold { display: inline-grid; place-items: center; width: 24px; height: 24px; margin: -4px 8px -4px -4px; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--text-quaternary); cursor: pointer; vertical-align: middle; }
+.sb-table-fold:hover { background: var(--bg-tertiary); color: var(--text-secondary); }
 .sb-table-fold:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
 .sb-table-fold > svg { width: 16px; height: 16px; transition: rotate 150ms var(--ease); }
 .sb-table-fold[aria-expanded="true"] > svg { rotate: 90deg; }
-.sb-table tfoot td { --row-bg: var(--gray-100); font-weight: 600; color: var(--gray-900); }
+.sb-table tfoot td { --row-bg: var(--bg-tertiary); font-weight: 600; color: var(--text-primary); }
 .sb-table tfoot td:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
 .sb-table tfoot td:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
 
@@ -96,7 +96,7 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 .sb-table tbody tr[data-level]:has(.sb-table-fold) td:first-child { font-weight: 500; }
 
 /* Footer: count on the left, page buttons on the right. */
-.sb-table-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-table-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-table tbody tr, .sb-table-fold > svg { transition: none; }

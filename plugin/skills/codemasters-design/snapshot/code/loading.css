@@ -1,0 +1,56 @@
+/* Loading: skeleton and spinner, Codemasters Design System
+   Needs tokens.css. No script.
+
+   Skeleton: grey shapes in the layout of the content that is coming. Mark the region busy and say so once.
+   <section aria-busy="true">
+     <span class="sb-sr-only">Memuat klaim…</span>
+     <span class="sb-skeleton" data-shape="circle" style="--sk-size: 40px" aria-hidden="true"></span>
+     <span class="sb-skeleton" data-shape="text" style="width: 60%" aria-hidden="true"></span>
+   </section>
+
+   data-shape   text (a line of Text sm) | heading (Text xl) | circle (avatar; --sk-size) | rect (any block; set width and height)
+   width        on text and heading lines: vary it (100 %, 80 %, 60 %) so the block reads as a paragraph
+
+   Spinner: a ring that turns, in the colour of its text (currentColor), so it is brand on a surface and white on a solid button.
+   <span class="sb-spinner" role="status" aria-label="Memuat"></span>
+   data-size    sm 16 | md 20 (default) | lg 32 | xl 48 */
+
+/* Screen-reader-only text, for "Memuat…" next to skeletons and spinners. */
+.sb-sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+/* Skeleton: gray-100 (DESIGN.md), radius 4 for lines, full for circles. One shimmer sweeps the whole page at once
+   (background-attachment: fixed), so a screen of skeletons moves together instead of flickering block by block. */
+.sb-skeleton {
+  --sk-shine: rgb(255 255 255 / .6);
+  display: block; flex: none; box-sizing: border-box;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, transparent 30%, var(--sk-shine) 50%, transparent 70%) var(--bg-tertiary);
+  background-size: 200vw 100%; background-attachment: fixed; background-repeat: no-repeat;
+  animation: sb-skeleton 1.5s ease-in-out infinite;
+}
+@keyframes sb-skeleton { from { background-position: 100vw 0; } to { background-position: -100vw 0; } }
+.sb-skeleton[data-shape="text"] { height: 12px; margin-block: 4px; } /* 12 + 4 + 4 = the 20 px line of Text sm */
+.sb-skeleton[data-shape="heading"] { height: 20px; margin-block: 5px; } /* the 30 px line of Text xl */
+.sb-skeleton[data-shape="circle"] { width: var(--sk-size, 40px); height: var(--sk-size, 40px); border-radius: var(--radius-full); }
+:root[data-theme="dark"] .sb-skeleton { --sk-shine: rgb(255 255 255 / .06); }
+
+/* Spinner: a 2 px ring at 20 % of the colour, with one quarter at full colour, turning every 700 ms. */
+.sb-spinner {
+  --sp-size: 20px;
+  display: inline-block; flex: none; box-sizing: border-box; width: var(--sp-size); height: var(--sp-size);
+  border: 2px solid color-mix(in srgb, currentColor 20%, transparent); border-top-color: currentColor; border-radius: var(--radius-full);
+  color: var(--fg-brand); vertical-align: middle;
+  animation: sb-spin 700ms linear infinite;
+}
+.sb-spinner[data-size="sm"] { --sp-size: 16px; }
+.sb-spinner[data-size="lg"] { --sp-size: 32px; border-width: 3px; }
+.sb-spinner[data-size="xl"] { --sp-size: 48px; border-width: 4px; }
+@keyframes sb-spin { to { rotate: 1turn; } }
+/* A spinner with words: "Memuat klaim…" in Text sm gray-500, 8 apart. */
+.sb-loading { display: inline-flex; align-items: center; gap: 8px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
+.sb-loading[data-layout="stack"] { flex-direction: column; gap: 12px; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-skeleton { animation: none; } /* the shapes alone say "loading" */
+  .sb-spinner { animation-duration: 2s; } /* slower, but still turning: a still ring reads as stuck */
+}

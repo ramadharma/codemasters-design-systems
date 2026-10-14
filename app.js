@@ -293,6 +293,22 @@
     else window.scrollTo(0, 0);
   }
 
+  // ---- Theme: light or dark, from the saved choice or the system (set in index.html before the first paint).
+  // A switch changes colours on nearly every element at once, so transitions are off for that one frame;
+  // only the toggle's own icon cross-fades.
+  const savedTheme = () => { try { return localStorage.getItem('theme'); } catch { return null; } };
+  const setTheme = (theme, save) => {
+    const root = document.documentElement;
+    const still = document.head.appendChild(Object.assign(document.createElement('style'), { textContent: '*:not(.theme-toggle > svg), *::before, *::after { transition: none !important; }' }));
+    root.dataset.theme = theme;
+    $('[data-theme-toggle]').setAttribute('aria-pressed', String(theme === 'dark'));
+    getComputedStyle(root).color; // apply the new colours before transitions come back
+    requestAnimationFrame(() => still.remove());
+    if (save) try { localStorage.setItem('theme', theme); } catch {}
+  };
+  $('[data-theme-toggle]').setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'dark'));
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => savedTheme() || setTheme(e.matches ? 'dark' : 'light'));
+
   // ---- Events
   const dialog = $('.md-dialog');
 
@@ -336,6 +352,8 @@
       download($('#md-title').textContent, $('pre', dialog).textContent);
     } else if (t.matches('[data-dialog="close"]')) {
       dialog.close();
+    } else if (t.matches('[data-theme-toggle]')) {
+      setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true);
     } else if (t.matches('[data-export]')) {
       download('DESIGN.md', systemMd(new Date()));
     } else if (t.matches('.nav-toggle')) {

@@ -158,38 +158,38 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
    data-state="focus" on .sb-textarea forces Focused in static mockups and docs only. */
 
 .sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
-.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
 
 .sb-textarea { position: relative; display: grid; }
 .sb-textarea textarea {
-  --ta-border: var(--gray-300); --ta-focus: var(--brand-300); --ta-ring: var(--focus-ring);
+  --ta-border: var(--border-primary); --ta-focus: var(--border-brand); --ta-ring: var(--focus-ring);
   box-sizing: border-box; width: 100%; height: 128px; min-height: 128px; margin: 0;
   padding: 10px 14px; /* control padding exception, same as Input field */
   resize: vertical;
-  font: 400 var(--text-md) var(--font); color: var(--gray-900);
-  background: var(--white);
+  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+  background: var(--bg-primary);
   border: 1px solid var(--ta-border); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-textarea textarea::placeholder { color: var(--gray-500); opacity: 1; }
+.sb-textarea textarea::placeholder { color: var(--text-quaternary); opacity: 1; }
 /* Room for the counter so the last line never runs under it: 10 + 18 + 4. */
 .sb-textarea:has(.sb-textarea-count) textarea { padding-bottom: 32px; }
 
 /* States */
-.sb-textarea textarea:hover:not(:focus, :disabled, [aria-invalid="true"]) { border-color: var(--gray-400); }
+.sb-textarea textarea:hover:not(:focus, :disabled, [aria-invalid="true"]) { border-color: var(--border-strong); }
 .sb-textarea textarea:focus, .sb-textarea[data-state="focus"] textarea {
   outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--ta-ring);
 }
 .sb-textarea textarea:disabled { opacity: .5; cursor: not-allowed; resize: none; } /* the default look at 50 % opacity */
-.sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--error-300); --ta-focus: var(--error-300); --ta-ring: var(--error-100); }
+.sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--border-error); --ta-focus: var(--border-error); --ta-ring: var(--bg-error-subtle-hover); }
 
 /* Character counter: bottom-right inside the box. Kept 24 from the edge so it clears the resize grip. */
 .sb-textarea-count {
   position: absolute; bottom: 10px; inset-inline-end: 24px;
-  font: 400 var(--text-xs) var(--font); color: var(--gray-500);
+  font: 400 var(--text-xs) var(--font); color: var(--text-quaternary);
   pointer-events: none; font-variant-numeric: tabular-nums;
 }
 .sb-textarea-count[data-over] { color: var(--error-500); }
@@ -226,16 +226,16 @@ document.addEventListener('input', updateCounter);
 
 ```css
 :root {
-  --white: #ffffff;
-  --gray-300: #d0d5dd;
-  --gray-400: #98a2b3;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --gray-900: #101828;
-  --brand-300: #9fc5f6;
-  --error-100: #fee4e2;
-  --error-300: #fda29b;
   --error-500: #f04438;
+  --bg-primary: var(--white);
+  --bg-error-subtle-hover: var(--error-100);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --border-primary: var(--gray-300);
+  --border-strong: var(--gray-400);
+  --border-brand: var(--brand-300);
+  --border-error: var(--error-300);
   --radius-md: 8px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);

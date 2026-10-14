@@ -16,9 +16,9 @@
    No disabled state. */
 
 .sb-social {
-  --sc-brand: var(--gray-700); --sc-brand-hover: var(--gray-700);
-  --sc-bg: var(--white); --sc-border: var(--gray-300); --sc-fg: var(--gray-700); --sc-logo: var(--sc-brand);
-  --sc-bg-hover: var(--gray-50); --sc-border-hover: var(--gray-300);
+  --sc-brand: var(--text-secondary); --sc-brand-hover: var(--text-secondary);
+  --sc-bg: var(--bg-primary); --sc-border: var(--border-primary); --sc-fg: var(--text-secondary); --sc-logo: var(--sc-brand);
+  --sc-bg-hover: var(--bg-secondary); --sc-border-hover: var(--border-primary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: 12px;
   height: 44px; padding: 0 16px;
@@ -47,7 +47,7 @@
   --sc-sheen: var(--raised-sheen); box-shadow: var(--raised-highlight), var(--shadow-xs);
 }
 /* Color with brand (default): white, colour logo. Color: white, gray logo. */
-.sb-social[data-theme="color"] { --sc-logo: var(--gray-400); }
+.sb-social[data-theme="color"] { --sc-logo: var(--fg-quaternary); }
 .sb-social[data-theme="color"] > svg * { fill: currentColor; }
 
 /* States */

@@ -89,7 +89,7 @@ ${BLURS.map(([b]) => `<div class="f-blur is-${tone}" style="backdrop-filter: var
         title: 'Raised controls',
         blocks: [
           { type: 'p', text: 'Pressable controls get a little depth, so they read as buttons: a sheen over the fill (lighter top, darker bottom) and, on solid fills, a 1 px light line inside the top edge. The sheen is translucent, so one token works over any fill: brand, error or another company\'s blue.' },
-          { type: 'example', html: `<div class="f-raised">\n  <span class="f-raised-tile" style="background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight), var(--shadow-xs); color: var(--white)">raised-sheen</span>\n  <span class="f-raised-tile" style="background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-xs)">raised-sheen-light</span>\n  <span class="f-raised-tile" style="background: var(--brand-600); border-color: var(--brand-600); color: var(--white)">flat</span>\n</div>`, code: false },
+          { type: 'example', html: `<div class="f-raised">\n  <span class="f-raised-tile" style="background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight), var(--shadow-xs); color: var(--white)">raised-sheen</span>\n  <span class="f-raised-tile" style="background: var(--raised-sheen-light) var(--bg-primary); box-shadow: var(--shadow-xs)">raised-sheen-light</span>\n  <span class="f-raised-tile" style="background: var(--brand-600); border-color: var(--brand-600); color: var(--white)">flat</span>\n</div>`, code: false },
           {
             type: 'table',
             head: ['Token', 'Use on', 'CSS value'],

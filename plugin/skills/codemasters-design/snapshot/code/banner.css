@@ -1,0 +1,42 @@
+/* Banner, Codemasters Design System
+   Needs tokens.css. No script.
+
+   <div class="sb-banner" data-tone="warning">
+     <svg aria-hidden="true">…alert…</svg>
+     <div class="sb-banner-text">
+       <p class="sb-banner-title">Klaim perlu ditinjau ulang</p>
+       <p class="sb-banner-desc">3 item melewati batas manfaat rawat inap.</p>
+     </div>
+   </div>
+
+   data-tone       info | success | warning | error (the icon follows the tone: info, check-circle, alert, alert-circle)
+   data-placement  page: a full-width strip under the header bar (omit for inline, inside a card or form)
+   One line        drop .sb-banner-title and keep only .sb-banner-desc
+   role            role="alert" (error, warning) or role="status" (info, success) only when the banner appears after an action */
+
+.sb-banner {
+  --ban-bg: var(--blue-50); --ban-border: var(--blue-200); --ban-fg: var(--blue-700); --ban-icon: var(--blue-500);
+  box-sizing: border-box; display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px; /* control padding exception: 14 + the 20 px line lands one line on 48 */
+  border: 1px solid var(--ban-border); border-radius: var(--radius-md);
+  background: var(--ban-bg); font: 400 var(--text-sm) var(--font); color: var(--ban-fg);
+}
+.sb-banner > svg { width: 20px; height: 20px; flex: none; color: var(--ban-icon); }
+.sb-banner-text { display: grid; flex: 1; gap: 4px; min-width: 0; }
+.sb-banner-title, .sb-banner-desc { margin: 0; }
+.sb-banner-title { font-weight: 600; }
+.sb-banner a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.sb-banner a:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+.sb-banner[data-tone="success"] { --ban-bg: var(--success-50); --ban-border: var(--success-200); --ban-fg: var(--success-700); --ban-icon: var(--success-500); }
+.sb-banner[data-tone="warning"] { --ban-bg: var(--warning-50); --ban-border: var(--warning-200); --ban-fg: var(--warning-700); --ban-icon: var(--warning-500); }
+.sb-banner[data-tone="error"] { --ban-bg: var(--error-50); --ban-border: var(--error-200); --ban-fg: var(--error-700); --ban-icon: var(--error-500); }
+
+/* Page: full width under the header bar. No radius and no side borders, padding 12 32 (the page padding). */
+.sb-banner[data-placement="page"] { padding: 12px 32px; border-width: 0 0 1px; border-radius: 0; }
+
+/* Dark theme: a quiet tint of the 500 step over gray-900, 800 border, 300 text, 400 icon. */
+:root[data-theme="dark"] .sb-banner { --ban-bg: color-mix(in srgb, var(--blue-500) 12%, var(--gray-900)); --ban-border: var(--blue-800); --ban-fg: var(--blue-300); --ban-icon: var(--blue-400); }
+:root[data-theme="dark"] .sb-banner[data-tone="success"] { --ban-bg: color-mix(in srgb, var(--success-500) 12%, var(--gray-900)); --ban-border: var(--success-800); --ban-fg: var(--success-300); --ban-icon: var(--success-400); }
+:root[data-theme="dark"] .sb-banner[data-tone="warning"] { --ban-bg: color-mix(in srgb, var(--warning-500) 12%, var(--gray-900)); --ban-border: var(--warning-800); --ban-fg: var(--warning-300); --ban-icon: var(--warning-400); }
+:root[data-theme="dark"] .sb-banner[data-tone="error"] { --ban-bg: color-mix(in srgb, var(--error-500) 12%, var(--gray-900)); --ban-border: var(--error-800); --ban-fg: var(--error-300); --ban-icon: var(--error-400); }

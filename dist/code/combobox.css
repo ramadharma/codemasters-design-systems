@@ -1,0 +1,71 @@
+/* Combobox, Codemasters Design System
+   Needs tokens.css, input-field.css (label, hint), input-dropdown.css (the list and its options), badge.css (chips)
+   and combobox.js.
+
+   <div class="sb-field">
+     <label class="sb-field-label" for="reviewer">Reviewer</label>
+     <div class="sb-cb" data-multiple>
+       <div class="sb-cb-field">
+         <svg aria-hidden="true">…user…</svg>
+         <div class="sb-cb-values">
+           <ul class="sb-cb-chips" role="list" aria-label="Terpilih">…<li class="sb-cb-chip" data-value="ad">Badge with ×</li>…</ul>
+           <input id="reviewer" type="text" role="combobox" aria-expanded="false" aria-controls="reviewer-list" aria-autocomplete="list" placeholder="Cari nama atau email" autocomplete="off">
+         </div>
+         <svg class="sb-cb-chevron" aria-hidden="true">…chevron-down…</svg>
+       </div>
+       <div class="sb-dd-menu sb-cb-panel" hidden>
+         <div role="listbox" id="reviewer-list" aria-multiselectable="true" aria-label="Reviewer">….sb-dd-opt role="option"…</div>
+         <p class="sb-cb-status" role="status" hidden></p>
+       </div>
+     </div>
+   </div>
+
+   data-multiple    pick many: chips in the field, the list stays open (omit to pick one: the label fills the field)
+   data-async       results come from the page: listen for "sb-cb-search", answer with cbResults(cb, items | null)
+   data-creatable   a last "Tambah …" option adds what was typed: <div class="sb-dd-opt sb-cb-create" role="option" id="…" hidden>
+   Options are Input dropdown options: .sb-dd-avatar (initials), .sb-dd-label (name), .sb-dd-sup (email), .sb-dd-check. */
+
+.sb-cb { position: relative; }
+
+/* Field: Input field's box. It grows a line at a time as chips wrap; 9 + 24 + 9 + borders = 44 for one line. */
+.sb-cb-field {
+  box-sizing: border-box; display: flex; align-items: center; gap: 8px;
+  min-height: 44px; padding: 9px 14px;
+  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  cursor: text;
+  transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-cb-field > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
+.sb-cb-field:hover:not(:focus-within) { border-color: var(--border-strong); }
+.sb-cb-field:focus-within, .sb-cb:has([aria-expanded="true"]) .sb-cb-field { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-cb:has(input:disabled) .sb-cb-field { opacity: .5; cursor: not-allowed; }
+.sb-cb-chevron { transition: rotate 200ms var(--ease); }
+.sb-cb:has([aria-expanded="true"]) .sb-cb-chevron { rotate: 180deg; }
+
+/* Values: chips and the text input share the lines, 4 apart. */
+.sb-cb-values { display: flex; flex: 1; flex-wrap: wrap; align-items: center; gap: 4px; min-width: 0; }
+.sb-cb-chips { display: contents; margin: 0; padding: 0; list-style: none; }
+.sb-cb-chip { display: flex; }
+.sb-cb-values input {
+  flex: 1; width: 0; min-width: 64px; height: 24px; margin: 0; padding: 0; border: 0; outline: 0; background: none; /* 64: room to type beside the chips before wrapping */
+  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+}
+.sb-cb-values input::placeholder { color: var(--text-quaternary); opacity: 1; }
+.sb-cb-chips:not(:empty) + input::placeholder { color: transparent; } /* chips already say what is picked */
+
+/* Panel: the Input dropdown menu, plus a status line. */
+.sb-cb-panel[hidden] { display: none; }
+.sb-cb-panel [role="listbox"][aria-busy="true"] { opacity: .5; } /* old results while new ones load */
+.sb-cb-status { display: flex; align-items: center; gap: 8px; margin: 0; padding: 10px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
+.sb-cb-status[hidden] { display: none; }
+.sb-cb-status > svg { width: 16px; height: 16px; flex: none; }
+.sb-cb-status[data-kind="error"] { color: var(--text-error); }
+.sb-cb-spin { animation: sb-cb-spin 1s linear infinite; }
+@keyframes sb-cb-spin { to { rotate: 360deg; } }
+.sb-cb-create .sb-dd-label { color: var(--text-brand); }
+.sb-cb-create .sb-dd-main > svg { color: var(--fg-brand); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-cb-field, .sb-cb-chevron { transition: none; }
+  .sb-cb-spin { animation: none; }
+}

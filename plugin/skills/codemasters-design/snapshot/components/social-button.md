@@ -183,9 +183,9 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
    No disabled state. */
 
 .sb-social {
-  --sc-brand: var(--gray-700); --sc-brand-hover: var(--gray-700);
-  --sc-bg: var(--white); --sc-border: var(--gray-300); --sc-fg: var(--gray-700); --sc-logo: var(--sc-brand);
-  --sc-bg-hover: var(--gray-50); --sc-border-hover: var(--gray-300);
+  --sc-brand: var(--text-secondary); --sc-brand-hover: var(--text-secondary);
+  --sc-bg: var(--bg-primary); --sc-border: var(--border-primary); --sc-fg: var(--text-secondary); --sc-logo: var(--sc-brand);
+  --sc-bg-hover: var(--bg-secondary); --sc-border-hover: var(--border-primary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: 12px;
   height: 44px; padding: 0 16px;
@@ -214,7 +214,7 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
   --sc-sheen: var(--raised-sheen); box-shadow: var(--raised-highlight), var(--shadow-xs);
 }
 /* Color with brand (default): white, colour logo. Color: white, gray logo. */
-.sb-social[data-theme="color"] { --sc-logo: var(--gray-400); }
+.sb-social[data-theme="color"] { --sc-logo: var(--fg-quaternary); }
 .sb-social[data-theme="color"] > svg * { fill: currentColor; }
 
 /* States */
@@ -262,10 +262,11 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 ```css
 :root {
   --white: #ffffff;
-  --gray-50: #f9fafb;
-  --gray-300: #d0d5dd;
-  --gray-400: #98a2b3;
-  --gray-700: #344054;
+  --bg-primary: var(--white);
+  --bg-secondary: var(--gray-50);
+  --text-secondary: var(--gray-700);
+  --fg-quaternary: var(--gray-400);
+  --border-primary: var(--gray-300);
   --radius-md: 8px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));

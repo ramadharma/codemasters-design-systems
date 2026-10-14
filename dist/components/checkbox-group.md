@@ -353,7 +353,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
    data-state    hover | focus on .sb-cg-item forces a state in static mockups and docs only. */
 
 .sb-cg-item {
-  --cg-bg: var(--white); --cg-bd: var(--gray-200); --cg-title: var(--gray-700); --cg-text: var(--gray-500);
+  --cg-bg: var(--bg-primary); --cg-bd: var(--border-secondary); --cg-title: var(--text-secondary); --cg-text: var(--text-quaternary);
   position: relative; display: flex; width: 100%; box-sizing: border-box; padding: 16px;
   background: var(--cg-bg); border: 1px solid var(--cg-bd); border-radius: var(--radius-md);
   transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
@@ -365,15 +365,15 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 .sb-cg-item > .sb-check-input:first-child { margin-top: 2px; } /* centres on the first line, as in Checkbox */
 
 /* States. Disabled comes last so it wins over Selected. */
-.sb-cg-item:has(.sb-check-input:checked) { --cg-bg: var(--brand-50); --cg-bd: var(--brand-300); --cg-title: var(--brand-800); --cg-text: var(--brand-600); }
-.sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-300); }
+.sb-cg-item:has(.sb-check-input:checked) { --cg-bg: var(--bg-brand-subtle); --cg-bd: var(--border-brand); --cg-title: var(--text-brand-strong); --cg-text: var(--fg-brand); }
+.sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--border-brand); }
 .sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-600); }
-.sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--brand-300); box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--border-brand); box-shadow: 0 0 0 4px var(--focus-ring); }
 .sb-cg-item:has(.sb-check-input:disabled) { cursor: not-allowed; } /* 50 % opacity comes from .sb-check */
 
 /* Only the card shows focus; the control keeps its Default / checked look. */
 .sb-cg-item .sb-check-input:focus-visible { box-shadow: none; }
-.sb-cg-item .sb-check-input:not(:checked, [type="checkbox"]:indeterminate):focus-visible { border-color: var(--gray-300); }
+.sb-cg-item .sb-check-input:not(:checked, [type="checkbox"]:indeterminate):focus-visible { border-color: var(--border-primary); }
 
 /* Text */
 .sb-cg-text { display: grid; flex: 1; min-width: 0; }
@@ -386,28 +386,28 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 .sb-cg-item:has(:disabled) .sb-cg-title { cursor: not-allowed; }
 
 /* Leading visuals. Featured icon: 32 (md 40) brand-100 circle with a 4 px brand-50 ring, overhanging the text line by 2 (md 4). */
-.sb-cg-icon { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 32px; height: 32px; margin-block: -2px; border: 4px solid var(--brand-50); border-radius: var(--radius-full); background: var(--brand-100); color: var(--brand-600); }
+.sb-cg-icon { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 32px; height: 32px; margin-block: -2px; border: 4px solid var(--bg-brand-subtle); border-radius: var(--radius-full); background: var(--bg-brand-subtle-hover); color: var(--fg-brand); }
 .sb-cg-icon svg { width: 16px; height: 16px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon { width: 40px; height: 40px; margin-block: -4px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon svg { width: 20px; height: 20px; }
 /* Card logo tile, 46 x 32. Use the real brand logos. */
-.sb-cg-pay { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 46px; height: 32px; border: 1px solid var(--gray-100); border-radius: var(--radius-sm); background: var(--white); color: var(--gray-700); }
+.sb-cg-pay { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 46px; height: 32px; border: 1px solid var(--border-tertiary); border-radius: var(--radius-sm); background: var(--bg-primary); color: var(--text-secondary); }
 .sb-cg-pay svg { width: 20px; height: 20px; }
 
 /* Payment icon: text links sit above the stretched label, so they never toggle the card. */
 .sb-cg-actions { position: relative; z-index: 2; display: flex; gap: 12px; margin-top: 8px; }
-.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--brand-600); --btn-fg-hover: var(--brand-700); }
+.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
 
 /* Icon card: the header carries the selection colours, the body stays white. */
-.sb-cg-item[data-type="card"] { flex-direction: column; align-items: stretch; gap: 0; padding: 0; background: var(--white); border-color: var(--gray-200); }
+.sb-cg-item[data-type="card"] { flex-direction: column; align-items: stretch; gap: 0; padding: 0; background: var(--bg-primary); border-color: var(--border-secondary); }
 .sb-cg-head { display: flex; align-items: center; gap: 12px; margin: -1px -1px 0; padding: 16px 20px 16px 16px; background: var(--cg-bg); border: 1px solid var(--cg-bd); border-radius: var(--radius-md) var(--radius-md) 0 0; transition: inherit; }
 .sb-cg-head .sb-cg-title, .sb-cg-item[data-size="md"] .sb-cg-head .sb-cg-title { flex: 1; font: 500 var(--text-md) var(--font); }
 .sb-cg-head .sb-cg-icon { margin-block: 0; }
 .sb-cg-body { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px 16px; padding: 16px; }
 .sb-cg-body .sb-cg-text { flex: 1 1 240px; } /* narrow cards: the badge wraps below */
-.sb-cg-price { margin: 0 0 4px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
-.sb-cg-price strong { font: 600 var(--display-sm) var(--font); color: var(--gray-700); }
-.sb-cg-body .sb-cg-desc { color: var(--gray-500); }
+.sb-cg-price { margin: 0 0 4px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
+.sb-cg-price strong { font: 600 var(--display-sm) var(--font); color: var(--text-secondary); }
+.sb-cg-body .sb-cg-desc { color: var(--text-quaternary); }
 .sb-cg-item[data-size="md"] .sb-cg-price strong { font: 600 var(--display-md) var(--font); }
 
 @media (prefers-reduced-motion: reduce) {
@@ -419,18 +419,19 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 
 ```css
 :root {
-  --white: #ffffff;
-  --gray-100: #f2f4f7;
-  --gray-200: #eaecf0;
-  --gray-300: #d0d5dd;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --brand-50: #f0f6fe;
-  --brand-100: #dfeafb;
-  --brand-300: #9fc5f6;
   --brand-600: #3966e0;
-  --brand-700: #2e51cd;
-  --brand-800: #2942a7;
+  --bg-primary: var(--white);
+  --bg-brand-subtle: var(--brand-50);
+  --bg-brand-subtle-hover: var(--brand-100);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --text-brand: var(--brand-700);
+  --text-brand-strong: var(--brand-800);
+  --fg-brand: var(--brand-600);
+  --border-primary: var(--gray-300);
+  --border-secondary: var(--gray-200);
+  --border-tertiary: var(--gray-100);
+  --border-brand: var(--brand-300);
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-full: 9999px;

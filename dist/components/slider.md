@@ -177,12 +177,12 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 /* Rail: 24 high (the handle). Track 8 high, gray-200; selected range brand-600 between the handles. */
 .sb-slider-rail { position: relative; height: 24px; }
 .sb-slider-rail::before, .sb-slider-rail::after { content: ''; position: absolute; top: 8px; height: 8px; border-radius: var(--radius-sm); }
-.sb-slider-rail::before { left: 0; right: 0; background: var(--gray-200); }
+.sb-slider-rail::before { left: 0; right: 0; background: var(--bg-quaternary); }
 .sb-slider-rail::after { left: var(--lo); right: calc(100% - var(--hi)); background: var(--brand-600); }
 
 /* Inputs: 24 px wider than the track so each handle centres on 0 % and 100 %. Only the handle takes the pointer. */
 .sb-slider-input {
-  --th-bg: var(--white); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md); --th-sheen: var(--raised-sheen-light);
+  --th-bg: var(--bg-primary); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md); --th-sheen: var(--raised-sheen-light);
   position: absolute; z-index: 1; top: 0; left: -12px; width: calc(100% + 24px); height: 24px; margin: 0; /* above the rail's ::after, which paints last */
   background: none; appearance: none; -webkit-appearance: none; pointer-events: none;
 }
@@ -201,7 +201,7 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 }
 
 /* Handle states. Focused and dragging share the ring. */
-.sb-slider-input:is(:hover, [data-state="hover"]) { --th-bg: var(--brand-50); }
+.sb-slider-input:is(:hover, [data-state="hover"]) { --th-bg: var(--bg-brand-subtle); }
 .sb-slider-input:is(:focus-visible, :active, [data-state="focus"]) { --th-shadow: var(--shadow-md), 0 0 0 4px var(--focus-ring); }
 .sb-slider-input:active::-webkit-slider-thumb { cursor: grabbing; }
 .sb-slider-input:active::-moz-range-thumb { cursor: grabbing; }
@@ -212,11 +212,11 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 
 /* Labels: centred on each handle. Bottom: Text md / Medium gray-900, 8 below the handle.
    Floating: a Light tooltip (Tooltip, Light theme) with a 16 x 6 arrow pointing at the handle, 4 away. */
-.sb-slider-value { --pos: var(--hi); position: absolute; left: var(--pos); translate: -50% 0; font: 500 var(--text-md) var(--font); color: var(--gray-900); white-space: nowrap; pointer-events: none; }
+.sb-slider-value { --pos: var(--hi); position: absolute; left: var(--pos); translate: -50% 0; font: 500 var(--text-md) var(--font); color: var(--text-primary); white-space: nowrap; pointer-events: none; }
 .sb-slider-value[data-for="lo"] { --pos: var(--lo); }
 .sb-slider[data-label="bottom"] .sb-slider-value { top: 32px; }
-.sb-slider[data-label$="floating"] .sb-slider-value { padding: 8px 12px; border-radius: var(--radius-md); background: var(--white); box-shadow: var(--shadow-lg); font: 600 var(--text-xs) var(--font); color: var(--gray-700); }
-.sb-slider[data-label$="floating"] .sb-slider-value::after { content: ''; position: absolute; left: 50%; translate: -50% 0; width: 16px; height: 6px; background: var(--white); }
+.sb-slider[data-label$="floating"] .sb-slider-value { padding: 8px 12px; border-radius: var(--radius-md); background: var(--bg-primary); box-shadow: var(--shadow-lg); font: 600 var(--text-xs) var(--font); color: var(--text-secondary); }
+.sb-slider[data-label$="floating"] .sb-slider-value::after { content: ''; position: absolute; left: 50%; translate: -50% 0; width: 16px; height: 6px; background: var(--bg-primary); }
 .sb-slider[data-label="top-floating"] .sb-slider-value { bottom: calc(100% + 10px); }
 .sb-slider[data-label="top-floating"] .sb-slider-value::after { top: 100%; clip-path: polygon(0 0, 100% 0, 50% 100%); }
 .sb-slider[data-label="bottom-floating"] .sb-slider-value { top: calc(100% + 10px); }
@@ -268,12 +268,12 @@ document.addEventListener('input', sliderInput);
 
 ```css
 :root {
-  --white: #ffffff;
-  --gray-200: #eaecf0;
-  --gray-700: #344054;
-  --gray-900: #101828;
-  --brand-50: #f0f6fe;
   --brand-600: #3966e0;
+  --bg-primary: var(--white);
+  --bg-quaternary: var(--gray-200);
+  --bg-brand-subtle: var(--brand-50);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-full: 9999px;

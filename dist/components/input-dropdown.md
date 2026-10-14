@@ -400,8 +400,8 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
    data-state="open" on .sb-dd-trigger forces Open/focused in static mockups and docs only. */
 
 .sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
-.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
 .sb-dd { position: relative; }
 
@@ -409,32 +409,32 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-trigger {
   box-sizing: border-box; display: flex; align-items: center; gap: 8px;
   width: 100%; height: 44px; margin: 0; padding: 0 14px;
-  font: 400 var(--text-md) var(--font); color: var(--gray-900); text-align: start;
-  background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  font: 400 var(--text-md) var(--font); color: var(--text-primary); text-align: start;
+  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
   cursor: pointer;
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-dd-trigger:hover:not(:disabled, [aria-expanded="true"], :focus-within) { border-color: var(--gray-400); }
+.sb-dd-trigger:hover:not(:disabled, [aria-expanded="true"], :focus-within) { border-color: var(--border-strong); }
 .sb-dd-trigger:focus-visible, .sb-dd-trigger[aria-expanded="true"], .sb-dd-trigger:has([aria-expanded="true"], input:focus), .sb-dd-trigger[data-state="open"] {
-  outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
 }
 .sb-dd-trigger:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-dd-value, .sb-dd-main { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 .sb-dd-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sb-dd-sup { flex: none; color: var(--gray-500); font-weight: 400; }
-.sb-dd-placeholder { color: var(--gray-500); }
-.sb-dd-trigger > svg, .sb-dd-value > svg, .sb-dd-main > svg { width: 20px; height: 20px; flex: none; color: var(--gray-500); }
+.sb-dd-sup { flex: none; color: var(--text-quaternary); font-weight: 400; }
+.sb-dd-placeholder { color: var(--text-quaternary); }
+.sb-dd-trigger > svg, .sb-dd-value > svg, .sb-dd-main > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
 .sb-dd-chevron { transition: rotate 200ms var(--ease); }
 .sb-dd-trigger[aria-expanded="true"] .sb-dd-chevron, .sb-dd-trigger[data-state="open"] .sb-dd-chevron { rotate: 180deg; }
 .sb-dd-trigger[data-type="search"] { cursor: text; }
 .sb-dd-trigger input { flex: 1; min-width: 0; height: 100%; margin: 0; padding: 0; border: 0; outline: 0; background: none; font: inherit; color: inherit; }
-.sb-dd-trigger input::placeholder { color: var(--gray-500); opacity: 1; }
+.sb-dd-trigger input::placeholder { color: var(--text-quaternary); opacity: 1; }
 
 /* Leading elements */
 .sb-dd-avatar {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
   width: 24px; height: 24px; border-radius: var(--radius-full);
-  background: var(--brand-50); font: 500 var(--text-xs) var(--font); color: var(--brand-600);
+  background: var(--bg-brand-subtle); font: 500 var(--text-xs) var(--font); color: var(--fg-brand);
 }
 .sb-dd-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
 
@@ -442,26 +442,26 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-menu {
   position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline: 0;
   box-sizing: border-box; max-height: 320px; overflow-y: auto; padding: 4px; /* options sit inset, as rounded rows */
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
-  scrollbar-width: thin; scrollbar-color: var(--gray-200) transparent;
+  background: var(--bg-primary); border: 1px solid var(--border-tertiary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  scrollbar-width: thin; scrollbar-color: var(--border-secondary) transparent;
 }
 .sb-dd-menu[hidden] { display: none; }
 /* _Scroll bar: 16 wide with padding 4, thumb 8 wide gray-200 radius 8, no track. Shows only when the list scrolls. */
 .sb-dd-menu::-webkit-scrollbar { width: 16px; }
-.sb-dd-menu::-webkit-scrollbar-thumb { background: var(--gray-200); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
+.sb-dd-menu::-webkit-scrollbar-thumb { background: var(--bg-quaternary); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
 
 /* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 8 (12 panel - 4 padding) */
 .sb-dd-opt {
   display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-md);
-  font: 500 var(--text-md) var(--font); color: var(--gray-900); cursor: pointer;
+  font: 500 var(--text-md) var(--font); color: var(--text-primary); cursor: pointer;
 }
-.sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--gray-50); }
-.sb-dd-opt:hover .sb-dd-main > svg, .sb-dd-opt[data-active] .sb-dd-main > svg { color: var(--gray-700); }
-.sb-dd-check { width: 20px; height: 20px; flex: none; color: var(--brand-600); visibility: hidden; }
+.sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--bg-secondary); }
+.sb-dd-opt:hover .sb-dd-main > svg, .sb-dd-opt[data-active] .sb-dd-main > svg { color: var(--text-secondary); }
+.sb-dd-check { width: 20px; height: 20px; flex: none; color: var(--fg-brand); visibility: hidden; }
 .sb-dd-opt[aria-selected="true"] .sb-dd-check { visibility: visible; }
 .sb-dd-opt[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; }
-.sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--gray-50); }
-.sb-dd-empty { margin: 0; padding: 12px 14px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--bg-secondary); }
+.sb-dd-empty { margin: 0; padding: 12px 14px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-dd-empty[hidden] { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -560,19 +560,20 @@ document.addEventListener('input', ddFilter);
 
 ```css
 :root {
-  --white: #ffffff;
-  --gray-50: #f9fafb;
-  --gray-100: #f2f4f7;
-  --gray-200: #eaecf0;
-  --gray-300: #d0d5dd;
-  --gray-400: #98a2b3;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --gray-900: #101828;
-  --brand-50: #f0f6fe;
-  --brand-300: #9fc5f6;
-  --brand-600: #3966e0;
   --success-500: #12b76a;
+  --bg-primary: var(--white);
+  --bg-secondary: var(--gray-50);
+  --bg-quaternary: var(--gray-200);
+  --bg-brand-subtle: var(--brand-50);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --fg-brand: var(--brand-600);
+  --border-primary: var(--gray-300);
+  --border-secondary: var(--gray-200);
+  --border-tertiary: var(--gray-100);
+  --border-strong: var(--gray-400);
+  --border-brand: var(--brand-300);
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-full: 9999px;

@@ -282,7 +282,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 
 .sb-badge {
   --bdg-h: 22px; --bdg-px: 8px; --bdg-type: var(--text-xs);
-  --bdg-bg: var(--gray-100); --bdg-fg: var(--gray-700); --bdg-icon: var(--gray-500);
+  --bdg-bg: var(--bg-tertiary); --bdg-fg: var(--text-secondary); --bdg-icon: var(--text-quaternary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; gap: 4px;
   height: var(--bdg-h); padding: 0 var(--bdg-px);
@@ -295,7 +295,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 .sb-badge-img { display: inline-flex; width: 16px; height: 16px; flex: none; border-radius: var(--radius-full); overflow: hidden; }
 .sb-badge-img > svg { width: 100%; height: 100%; }
 /* Placeholder avatar: user icon in brand-600 on brand-50 (DESIGN.md Avatar). Real screens use the photo or initials. */
-.sb-badge-avatar { align-items: center; justify-content: center; background: var(--brand-50); color: var(--brand-600); }
+.sb-badge-avatar { align-items: center; justify-content: center; background: var(--bg-brand-subtle); color: var(--fg-brand); }
 .sb-badge-avatar > svg { width: 12px; height: 12px; }
 .sb-badge-x {
   display: inline-flex; margin: -2px; padding: 2px; border: 0; border-radius: var(--radius-sm);
@@ -331,6 +331,19 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 .sb-badge[data-color="pink"] { --bdg-bg: var(--pink-50); --bdg-fg: var(--pink-700); --bdg-icon: var(--pink-500); }
 .sb-badge[data-color="rose"] { --bdg-bg: var(--rose-50); --bdg-fg: var(--rose-700); --bdg-icon: var(--rose-500); }
 .sb-badge[data-color="orange"] { --bdg-bg: var(--orange-50); --bdg-fg: var(--orange-700); --bdg-icon: var(--orange-500); }
+/* Dark theme: the 950 step as the fill, 300 text, 400 icon. */
+:root[data-theme="dark"] .sb-badge[data-color="primary"] { --bdg-bg: var(--brand-950); --bdg-fg: var(--brand-300); --bdg-icon: var(--brand-400); }
+:root[data-theme="dark"] .sb-badge[data-color="error"] { --bdg-bg: var(--error-950); --bdg-fg: var(--error-300); --bdg-icon: var(--error-400); }
+:root[data-theme="dark"] .sb-badge[data-color="warning"] { --bdg-bg: var(--warning-950); --bdg-fg: var(--warning-300); --bdg-icon: var(--warning-400); }
+:root[data-theme="dark"] .sb-badge[data-color="success"] { --bdg-bg: var(--success-950); --bdg-fg: var(--success-300); --bdg-icon: var(--success-400); }
+:root[data-theme="dark"] .sb-badge[data-color="blue-gray"] { --bdg-bg: var(--blue-gray-950); --bdg-fg: var(--blue-gray-300); --bdg-icon: var(--blue-gray-400); }
+:root[data-theme="dark"] .sb-badge[data-color="blue-light"] { --bdg-bg: var(--blue-light-950); --bdg-fg: var(--blue-light-300); --bdg-icon: var(--blue-light-400); }
+:root[data-theme="dark"] .sb-badge[data-color="blue"] { --bdg-bg: var(--blue-950); --bdg-fg: var(--blue-300); --bdg-icon: var(--blue-400); }
+:root[data-theme="dark"] .sb-badge[data-color="indigo"] { --bdg-bg: var(--indigo-950); --bdg-fg: var(--indigo-300); --bdg-icon: var(--indigo-400); }
+:root[data-theme="dark"] .sb-badge[data-color="purple"] { --bdg-bg: var(--purple-950); --bdg-fg: var(--purple-300); --bdg-icon: var(--purple-400); }
+:root[data-theme="dark"] .sb-badge[data-color="pink"] { --bdg-bg: var(--pink-950); --bdg-fg: var(--pink-300); --bdg-icon: var(--pink-400); }
+:root[data-theme="dark"] .sb-badge[data-color="rose"] { --bdg-bg: var(--rose-950); --bdg-fg: var(--rose-300); --bdg-icon: var(--rose-400); }
+:root[data-theme="dark"] .sb-badge[data-color="orange"] { --bdg-bg: var(--orange-950); --bdg-fg: var(--orange-300); --bdg-icon: var(--orange-400); }
 
 /* Badge group: a badge plus a short message in one pill.
    <a class="sb-badge-group" href="…" data-color="primary" data-theme="light">
@@ -350,7 +363,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
   border-radius: var(--radius-xl);
 }
 .sb-badge-group > svg { width: 12px; height: 12px; flex: none; color: var(--g500); }
-.sb-badge-group > .sb-badge { --bdg-bg: var(--white); --bdg-fg: var(--g700); --bdg-icon: var(--g500); }
+.sb-badge-group > .sb-badge { --bdg-bg: var(--bg-primary); --bdg-fg: var(--g700); --bdg-icon: var(--g500); }
 .sb-badge-group[data-size="lg"] { gap: 12px; padding-inline-end: 14px; font-size: 14px; line-height: 20px; }
 .sb-badge-group[data-badge="trailing"] { padding-inline: 12px 4px; }
 .sb-badge-group[data-badge="trailing"][data-size="lg"] { padding-inline: 14px 4px; }
@@ -361,6 +374,12 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 .sb-badge-group[data-color="error"] { --g50: var(--error-50); --g100: var(--error-100); --g500: var(--error-500); --g600: var(--error-600); --g700: var(--error-700); }
 .sb-badge-group[data-color="warning"] { --g50: var(--warning-50); --g100: var(--warning-100); --g500: var(--warning-500); --g600: var(--warning-600); --g700: var(--warning-700); }
 .sb-badge-group[data-color="success"] { --g50: var(--success-50); --g100: var(--success-100); --g500: var(--success-500); --g600: var(--success-600); --g700: var(--success-700); }
+/* Dark theme: the same steps mirrored around 500 (950 fill, 900 medium fill, 300 text, 400 icon). */
+:root[data-theme="dark"] .sb-badge-group { --g50: var(--brand-950); --g100: var(--brand-900); --g500: var(--brand-400); --g700: var(--brand-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="gray"] { --g50: var(--gray-950); --g100: var(--gray-900); --g500: var(--gray-400); --g700: var(--gray-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="error"] { --g50: var(--error-950); --g100: var(--error-900); --g500: var(--error-400); --g700: var(--error-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="warning"] { --g50: var(--warning-950); --g100: var(--warning-900); --g500: var(--warning-400); --g700: var(--warning-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="success"] { --g50: var(--success-950); --g100: var(--success-900); --g500: var(--success-400); --g700: var(--success-300); }
 a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 ```
 
@@ -371,52 +390,102 @@ a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-600); outline-of
   --white: #ffffff;
   --gray-50: #f9fafb;
   --gray-100: #f2f4f7;
+  --gray-300: #d0d5dd;
+  --gray-400: #98a2b3;
   --gray-500: #667085;
   --gray-700: #344054;
+  --gray-900: #101828;
+  --gray-950: #060c17;
   --brand-50: #f0f6fe;
   --brand-100: #dfeafb;
+  --brand-300: #9fc5f6;
+  --brand-400: #6ca1f0;
   --brand-500: #5183eb;
   --brand-600: #3966e0;
   --brand-700: #2e51cd;
+  --brand-900: #273b83;
+  --brand-950: #142258;
   --error-50: #fef3f2;
   --error-100: #fee4e2;
+  --error-300: #fda29b;
+  --error-400: #f97066;
   --error-500: #f04438;
   --error-600: #d92d20;
   --error-700: #b42318;
+  --error-900: #7a271a;
+  --error-950: #511209;
   --warning-50: #fffaeb;
   --warning-100: #fef0c7;
+  --warning-300: #fec84b;
+  --warning-400: #fdb022;
   --warning-500: #f79009;
   --warning-600: #dc6803;
   --warning-700: #b54708;
+  --warning-900: #7a2e0e;
+  --warning-950: #501800;
   --success-50: #ecfdf3;
   --success-100: #d1fadf;
+  --success-300: #6ce9a6;
+  --success-400: #32d583;
   --success-500: #12b76a;
   --success-600: #039855;
   --success-700: #027a48;
+  --success-900: #054f31;
+  --success-950: #00311b;
   --blue-gray-50: #f8f9fc;
+  --blue-gray-300: #afb5d9;
+  --blue-gray-400: #717bbc;
   --blue-gray-500: #4e5ba6;
   --blue-gray-700: #363f72;
+  --blue-gray-950: #060814;
   --blue-light-50: #f0f9ff;
+  --blue-light-300: #7cd4fd;
+  --blue-light-400: #36bffa;
   --blue-light-500: #0ba5ec;
   --blue-light-700: #026aa2;
+  --blue-light-950: #002d49;
   --blue-50: #eff8ff;
+  --blue-300: #84caff;
+  --blue-400: #53b1fd;
   --blue-500: #2e90fa;
   --blue-700: #175cd3;
+  --blue-950: #082659;
   --indigo-50: #eef4ff;
+  --indigo-300: #a4bcfd;
+  --indigo-400: #8098f9;
   --indigo-500: #6172f3;
   --indigo-700: #3538cd;
+  --indigo-950: #191b57;
   --purple-50: #f4f3ff;
+  --purple-300: #bdb4fe;
+  --purple-400: #9b8afb;
   --purple-500: #7a5af8;
   --purple-700: #5925dc;
+  --purple-950: #260766;
   --pink-50: #fdf2fa;
+  --pink-300: #faa7e0;
+  --pink-400: #f670c7;
   --pink-500: #ee46bc;
   --pink-700: #c11574;
+  --pink-950: #580232;
   --rose-50: #fff1f3;
+  --rose-300: #fea3b4;
+  --rose-400: #fd6f8e;
   --rose-500: #f63d68;
   --rose-700: #c01048;
+  --rose-950: #5b0024;
   --orange-50: #fff6ed;
+  --orange-300: #feb273;
+  --orange-400: #fd853a;
   --orange-500: #fb6514;
   --orange-700: #c4320a;
+  --orange-950: #530f02;
+  --bg-primary: var(--white);
+  --bg-tertiary: var(--gray-100);
+  --bg-brand-subtle: var(--brand-50);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --fg-brand: var(--brand-600);
   --radius-sm: 4px;
   --radius-xl: 16px;
   --radius-full: 9999px;

@@ -216,8 +216,8 @@ Load `tokens.css` and `button.css`, then `modal.css`, and `modal.js` to open and
   display: grid; gap: 16px; align-content: start;
   width: min(var(--modal-w), calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 64px);
   margin: auto; padding: 24px; overflow-y: auto;
-  font: 400 var(--text-sm) var(--font); color: var(--gray-700);
-  background: var(--white); border: 0; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  font: 400 var(--text-sm) var(--font); color: var(--text-secondary);
+  background: var(--bg-primary); border: 0; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
 }
 .sb-modal[data-size="sm"] { --modal-w: 424px; }
 .sb-modal[data-size="lg"] { --modal-w: 880px; }
@@ -238,21 +238,26 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
 /* Head: optional icon, title, description. The close button sits in the corner. */
 .sb-modal-head { display: grid; gap: 16px; padding-inline-end: 32px; }
 .sb-modal-heading { display: grid; gap: 4px; }
-.sb-modal-title { margin: 0; font: 600 var(--text-xl) var(--font); color: var(--gray-900); text-wrap: balance; }
+.sb-modal-title { margin: 0; font: 600 var(--text-xl) var(--font); color: var(--text-primary); text-wrap: balance; }
 .sb-modal[data-size="sm"] .sb-modal-title { font: 600 var(--text-lg) var(--font); }
-.sb-modal-desc { margin: 0; color: var(--gray-500); text-wrap: pretty; }
+.sb-modal-desc { margin: 0; color: var(--text-quaternary); text-wrap: pretty; }
 .sb-modal-close { position: absolute; top: 16px; right: 16px; }
 
 /* Icon: 48 px circle, tone-100 fill with an 8 px tone-50 ring, 24 px tone-600 icon. */
 .sb-modal-icon {
-  --tone: var(--brand-600); --tone-fill: var(--brand-100); --tone-ring: var(--brand-50);
+  --tone: var(--brand-600); --tone-fill: var(--bg-brand-subtle-hover); --tone-ring: var(--bg-brand-subtle);
   box-sizing: border-box; display: grid; place-items: center; width: 48px; height: 48px;
   border: 8px solid var(--tone-ring); border-radius: var(--radius-full); background: var(--tone-fill); color: var(--tone);
 }
 .sb-modal-icon > svg { width: 24px; height: 24px; }
-.sb-modal-icon[data-tone="error"] { --tone: var(--error-600); --tone-fill: var(--error-100); --tone-ring: var(--error-50); }
-.sb-modal-icon[data-tone="warning"] { --tone: var(--warning-600); --tone-fill: var(--warning-100); --tone-ring: var(--warning-50); }
-.sb-modal-icon[data-tone="success"] { --tone: var(--success-600); --tone-fill: var(--success-100); --tone-ring: var(--success-50); }
+.sb-modal-icon[data-tone="error"] { --tone: var(--error-600); --tone-fill: var(--bg-error-subtle-hover); --tone-ring: var(--bg-error-subtle); }
+.sb-modal-icon[data-tone="warning"] { --tone: var(--warning-600); --tone-fill: var(--warning-100); --tone-ring: var(--bg-warning-subtle); }
+/* Dark theme: the icon steps up to 400 on the darker fills. */
+:root[data-theme="dark"] .sb-modal-icon { --tone: var(--brand-400); }
+:root[data-theme="dark"] .sb-modal-icon[data-tone="error"] { --tone: var(--error-400); }
+:root[data-theme="dark"] .sb-modal-icon[data-tone="warning"] { --tone: var(--warning-400); --tone-fill: var(--warning-900); }
+:root[data-theme="dark"] .sb-modal-icon[data-tone="success"] { --tone: var(--success-400); --tone-fill: var(--success-900); }
+.sb-modal-icon[data-tone="success"] { --tone: var(--success-600); --tone-fill: var(--success-100); --tone-ring: var(--bg-success-subtle); }
 
 .sb-modal-body { display: grid; gap: 16px; min-width: 0; }
 .sb-modal-body > p { margin: 0; }
@@ -296,22 +301,28 @@ document.addEventListener('click', modalClick);
 
 ```css
 :root {
-  --white: #ffffff;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --gray-900: #101828;
-  --brand-50: #f0f6fe;
-  --brand-100: #dfeafb;
+  --brand-400: #6ca1f0;
   --brand-600: #3966e0;
-  --error-50: #fef3f2;
-  --error-100: #fee4e2;
+  --error-400: #f97066;
   --error-600: #d92d20;
-  --warning-50: #fffaeb;
   --warning-100: #fef0c7;
+  --warning-400: #fdb022;
   --warning-600: #dc6803;
-  --success-50: #ecfdf3;
+  --warning-900: #7a2e0e;
   --success-100: #d1fadf;
+  --success-400: #32d583;
   --success-600: #039855;
+  --success-900: #054f31;
+  --bg-primary: var(--white);
+  --bg-brand-subtle: var(--brand-50);
+  --bg-brand-subtle-hover: var(--brand-100);
+  --bg-error-subtle: var(--error-50);
+  --bg-error-subtle-hover: var(--error-100);
+  --bg-warning-subtle: var(--warning-50);
+  --bg-success-subtle: var(--success-50);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
   --radius-lg: 12px;
   --radius-full: 9999px;
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);

@@ -42,7 +42,7 @@ Each property maps to one attribute, so a slide, a spec and the code describe a 
 | Size | `sm`, `md`, `lg`, `xl`, `2xl` (`xs` is code-only for now) | `data-size="md"` |
 | Icon | False, Leading, Trailing, Dot, Only | `<svg>` before or after the label, `<span class="sb-btn-dot">`, or `data-icon="only"` with `aria-label` |
 | Destructive | False, True | `data-destructive` |
-| State | Default, Hover, Focused, Disabled | `:hover`, `:focus-visible`, `disabled`. Static mockups only: `data-state="hover"` or `"focus"` |
+| State | Default, Hover, Focused, Disabled, Loading | `:hover`, `:focus-visible`, `disabled`, `aria-busy="true"` + `.sb-spinner`. Static mockups only: `data-state="hover"` or `"focus"` |
 
 ## Hierarchy
 
@@ -170,6 +170,16 @@ Hover moves one step darker, Focused adds a ring for keyboard users, Disabled is
 - The ring is `0 0 0 4px var(--focus-ring)` (`brand-600` at 20 %) in every hierarchy, on top of `shadow-xs` where the variant has one. Link hierarchies have no box, so they use the global 2 px `brand-600` outline with 2 px offset.
 - Disabled has no hover and no press, and shows `cursor: not-allowed`.
 
+### Loading
+
+After a click that waits on the server (Simpan, Kirim ke Advisor), the button stays as it is and shows a spinner in its text colour before the label, which turns into the -ing form ("Mengirim…"). `aria-busy="true"` ignores further clicks, so the action is never sent twice. Keep the button's width so the row does not jump; when the wait ends, show the result (a Toast, the next page) and restore the button. The spinner comes from Loading (`loading.css`).
+
+```html
+<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Mengirim…</button>
+<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Menyimpan…</button>
+<button class="sb-btn" type="button" data-hierarchy="secondary-color" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Memuat…</button>
+```
+
 ## Destructive
 
 Destructive=True swaps Brand and Gray for Error. Use it only when the destructive action is the primary action of the view, so the user sees it is high-consequence.
@@ -296,7 +306,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 ```css
 /* Button, Codemasters Design System
-   Needs tokens.css.
+   Needs tokens.css; loading.css for the spinner of the loading state.
 
    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
 
@@ -304,6 +314,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
    data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only)
    data-destructive  present = Destructive=True
    data-icon="only"  square icon-only button; add aria-label
+   aria-busy="true"  Loading: a <span class="sb-spinner" aria-hidden="true"> before the label, the label in -ing form ("Mengirim…")
    data-state        hover | focus. Forces a state in static mockups and docs. Never ship it in live UI:
                      live states come from :hover, :focus-visible and the disabled attribute. */
 
@@ -337,53 +348,53 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 /* Hierarchy. Primary is the base above. */
 .sb-btn[data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--white); --btn-border: var(--gray-300); --btn-fg: var(--gray-700); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
-  --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-300); --btn-fg-hover: var(--gray-800);
+  --btn-bg: var(--bg-primary); --btn-border: var(--border-primary); --btn-fg: var(--text-secondary); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
+  --btn-bg-hover: var(--bg-secondary); --btn-border-hover: var(--border-primary); --btn-fg-hover: var(--text-primary);
 }
 .sb-btn[data-hierarchy="secondary-color"] {
-  --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
-  --btn-bg-hover: var(--brand-100); --btn-border-hover: var(--brand-100); --btn-fg-hover: var(--brand-700);
+  --btn-bg: var(--bg-brand-subtle); --btn-border: var(--bg-brand-subtle); --btn-fg: var(--text-brand); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
+  --btn-bg-hover: var(--bg-brand-subtle-hover); --btn-border-hover: var(--bg-brand-subtle-hover); --btn-fg-hover: var(--text-brand);
 }
 .sb-btn[data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent;
   --btn-shadow: 0 0 #0000; --btn-sheen: none;
 }
 .sb-btn[data-hierarchy="tertiary-color"] {
-  --btn-fg: var(--brand-700); --btn-bg-hover: var(--brand-50); --btn-border-hover: var(--brand-50); --btn-fg-hover: var(--brand-700);
+  --btn-fg: var(--text-brand); --btn-bg-hover: var(--bg-brand-subtle); --btn-border-hover: var(--bg-brand-subtle); --btn-fg-hover: var(--text-brand);
 }
 .sb-btn[data-hierarchy="tertiary-gray"] {
-  --btn-fg: var(--gray-500); --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-50); --btn-fg-hover: var(--gray-600);
+  --btn-fg: var(--text-quaternary); --btn-bg-hover: var(--bg-secondary); --btn-border-hover: var(--bg-secondary); --btn-fg-hover: var(--text-tertiary);
 }
 .sb-btn[data-hierarchy^="link"] {
   --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000; --btn-sheen: none;
   --btn-bg: transparent; --btn-border: transparent; --btn-bg-hover: transparent; --btn-border-hover: transparent;
   border-width: 0;
 }
-.sb-btn[data-hierarchy="link-color"] { --btn-fg: var(--brand-600); --btn-fg-hover: var(--brand-700); }
-.sb-btn[data-hierarchy="link-gray"]  { --btn-fg: var(--gray-500); --btn-fg-hover: var(--gray-600); }
+.sb-btn[data-hierarchy="link-color"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
+.sb-btn[data-hierarchy="link-gray"]  { --btn-fg: var(--text-quaternary); --btn-fg-hover: var(--text-tertiary); }
 
 /* Destructive=True swaps Brand and Gray for Error. */
 .sb-btn[data-destructive] {
   --btn-bg: var(--error-600); --btn-border: var(--error-700); --btn-fg: var(--white);
   --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-800); --btn-fg-hover: var(--white);
-  --btn-ring: var(--error-100);
+  --btn-ring: var(--bg-error-subtle-hover);
 }
 .sb-btn[data-destructive][data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--white); --btn-border: var(--error-300); --btn-fg: var(--error-700);
-  --btn-bg-hover: var(--error-50); --btn-border-hover: var(--error-300); --btn-fg-hover: var(--error-800);
+  --btn-bg: var(--bg-primary); --btn-border: var(--border-error); --btn-fg: var(--text-error);
+  --btn-bg-hover: var(--bg-error-subtle); --btn-border-hover: var(--border-error); --btn-fg-hover: var(--text-error-strong);
 }
 .sb-btn[data-destructive][data-hierarchy="secondary-color"] {
-  --btn-bg: var(--error-50); --btn-border: var(--error-50); --btn-fg: var(--error-700);
-  --btn-bg-hover: var(--error-100); --btn-border-hover: var(--error-100); --btn-fg-hover: var(--error-700);
+  --btn-bg: var(--bg-error-subtle); --btn-border: var(--bg-error-subtle); --btn-fg: var(--text-error);
+  --btn-bg-hover: var(--bg-error-subtle-hover); --btn-border-hover: var(--bg-error-subtle-hover); --btn-fg-hover: var(--text-error);
 }
 .sb-btn[data-destructive][data-hierarchy^="tertiary"] {
-  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
-  --btn-bg-hover: var(--error-50); --btn-border-hover: var(--error-50); --btn-fg-hover: var(--error-700);
+  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--text-error);
+  --btn-bg-hover: var(--bg-error-subtle); --btn-border-hover: var(--bg-error-subtle); --btn-fg-hover: var(--text-error);
 }
-.sb-btn[data-destructive][data-hierarchy="tertiary-gray"] { --btn-fg-hover: var(--error-800); }
+.sb-btn[data-destructive][data-hierarchy="tertiary-gray"] { --btn-fg-hover: var(--text-error-strong); }
 .sb-btn[data-destructive][data-hierarchy^="link"] {
-  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
-  --btn-bg-hover: transparent; --btn-border-hover: transparent; --btn-fg-hover: var(--error-800);
+  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--text-error);
+  --btn-bg-hover: transparent; --btn-border-hover: transparent; --btn-fg-hover: var(--text-error-strong);
 }
 
 /* States */
@@ -398,7 +409,10 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 }
 /* Disabled: the default look at half opacity, flat (no sheen, highlight or shadow). One rule for every hierarchy. */
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
-.sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
+.sb-btn:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"]) { scale: .96; }
+/* Loading: the look stays (not the faded Disabled), a spinner in the text colour replaces the leading icon, clicks are ignored. */
+.sb-btn[aria-busy="true"] { cursor: progress; pointer-events: none; }
+.sb-btn > .sb-spinner { --sp-size: var(--btn-icon); color: inherit; }
 
 /* A button that opens a menu: its chevron (class sb-btn-chevron) turns when open. Other icons, such as ⋮, stay put. */
 .sb-btn[aria-expanded] > .sb-btn-chevron { transition: rotate 200ms var(--ease); }
@@ -417,24 +431,29 @@ The tokens `button.css` reads, with their values. Generated from the stylesheet.
 ```css
 :root {
   --white: #ffffff;
-  --gray-50: #f9fafb;
-  --gray-300: #d0d5dd;
-  --gray-500: #667085;
-  --gray-600: #475467;
-  --gray-700: #344054;
-  --gray-800: #1d2939;
-  --brand-50: #f0f6fe;
-  --brand-100: #dfeafb;
   --brand-600: #3966e0;
   --brand-700: #2e51cd;
   --brand-800: #2942a7;
-  --error-50: #fef3f2;
-  --error-100: #fee4e2;
-  --error-300: #fda29b;
   --error-600: #d92d20;
   --error-700: #b42318;
   --error-800: #912018;
   --success-500: #12b76a;
+  --bg-primary: var(--white);
+  --bg-secondary: var(--gray-50);
+  --bg-brand-subtle: var(--brand-50);
+  --bg-brand-subtle-hover: var(--brand-100);
+  --bg-error-subtle: var(--error-50);
+  --bg-error-subtle-hover: var(--error-100);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-tertiary: var(--gray-600);
+  --text-quaternary: var(--gray-500);
+  --text-brand: var(--brand-700);
+  --text-error: var(--error-700);
+  --text-error-strong: var(--error-800);
+  --fg-brand: var(--brand-600);
+  --border-primary: var(--gray-300);
+  --border-error: var(--error-300);
   --radius-md: 8px;
   --radius-full: 9999px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);

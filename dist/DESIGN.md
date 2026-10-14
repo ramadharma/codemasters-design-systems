@@ -16,16 +16,20 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
 - Grids & Spacing
 - Avatar
 - Badge
+- Banner
 - Button
 - Button group
 - Card
 - Chart
 - Checkbox and radio
 - Checkbox group
+- Combobox
+- Date picker
 - Dropdown menu
 - Header bar
 - Input dropdown
 - Input field
+- Loading
 - Modal
 - Progress bar and circle
 - Sidebar
@@ -206,6 +210,38 @@ The shared visual language of Codemasters and its companies, Sembuh AI and Flipm
   --orange-800: #9c2a10;
   --orange-900: #7e2410;
   --orange-950: #530f02;
+
+  /* Semantic colour: what a colour is for. Components use these; the dark theme remaps them */
+  --bg-page: var(--white);
+  --bg-primary: var(--white);
+  --bg-secondary: var(--gray-50);
+  --bg-tertiary: var(--gray-100);
+  --bg-quaternary: var(--gray-200);
+  --bg-inverse: var(--gray-900);
+  --bg-brand-subtle: var(--brand-50);
+  --bg-brand-subtle-hover: var(--brand-100);
+  --bg-error-subtle: var(--error-50);
+  --bg-error-subtle-hover: var(--error-100);
+  --bg-warning-subtle: var(--warning-50);
+  --bg-success-subtle: var(--success-50);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-tertiary: var(--gray-600);
+  --text-quaternary: var(--gray-500);
+  --text-disabled: var(--gray-400);
+  --text-brand: var(--brand-700);
+  --text-brand-strong: var(--brand-800);
+  --text-error: var(--error-700);
+  --text-error-strong: var(--error-800);
+  --fg-quaternary: var(--gray-400);
+  --fg-brand: var(--brand-600);
+  --border-primary: var(--gray-300);
+  --border-secondary: var(--gray-200);
+  --border-tertiary: var(--gray-100);
+  --border-strong: var(--gray-400);
+  --border-brand: var(--brand-300);
+  --border-brand-subtle: var(--brand-200);
+  --border-error: var(--error-300);
 
   /* Spacing: token number x 4 = px */
   --space-1: 4px;
@@ -410,7 +446,7 @@ Load `tokens.css` and `logo.css`. Swap the PNG paths for SVG files when they arr
 
 .sb-lockup { --lockup-h: 40px; display: inline-grid; justify-items: start; gap: calc(var(--lockup-h) * .2); }
 .sb-lockup-main { display: block; width: auto; max-width: 100%; height: var(--lockup-h); object-fit: contain; object-position: left; }
-.sb-lockup-endorse { display: inline-flex; align-items: center; gap: 8px; margin: 0; font: 500 var(--text-xs) var(--font); color: var(--gray-500); white-space: nowrap; }
+.sb-lockup-endorse { display: inline-flex; align-items: center; gap: 8px; margin: 0; font: 500 var(--text-xs) var(--font); color: var(--text-quaternary); white-space: nowrap; }
 .sb-lockup-endorse img { display: block; width: auto; height: calc(var(--lockup-h) * .4); }
 ```
 
@@ -849,13 +885,13 @@ Colour pairing: titles and values `gray-900`, labels `gray-500`, form labels `gr
 **Do:** A style from the scale: Text xl / Semibold.
 
 ```html
-<p style="margin: 0; font: 600 var(--text-xl) var(--font); color: var(--gray-900)">Ringkasan klaim</p>
+<p style="margin: 0; font: 600 var(--text-xl) var(--font); color: var(--text-primary)">Ringkasan klaim</p>
 ```
 
 **Don't:** 19 / 23 set by hand. Nearly Text xl, but off the scale, so the rhythm breaks.
 
 ```html
-<p style="margin: 0; font: 600 19px/23px var(--font); color: var(--gray-900)">Ringkasan klaim</p>
+<p style="margin: 0; font: 600 19px/23px var(--font); color: var(--text-primary)">Ringkasan klaim</p>
 ```
 
 ### Tokens
@@ -911,7 +947,7 @@ Feather-style outline icons on a 24 grid, in four sizes. Icons take the colour o
 
 ### Library
 
-The 52 icons used in this documentation. Click one to copy its name.
+The 54 icons used in this documentation. Click one to copy its name.
 
 ### Code
 
@@ -1516,7 +1552,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
   --av: 40px; --av-icon: 24px; --av-dot: 10px; --av-co: 14px;
   position: relative; display: inline-grid; place-items: center; flex: none; box-sizing: border-box;
   width: var(--av); height: var(--av); margin: 0; padding: 0; border: 0; border-radius: var(--radius-full);
-  background: var(--brand-50); color: var(--brand-600); font: 500 var(--text-md) var(--font); text-decoration: none;
+  background: var(--bg-brand-subtle); color: var(--fg-brand); font: 500 var(--text-md) var(--font); text-decoration: none;
 }
 .sb-avatar[data-size="xs"]  { --av: 24px; --av-icon: 16px; --av-dot: 6px;  --av-co: 10px; font: 500 var(--text-xs) var(--font); }
 .sb-avatar[data-size="sm"]  { --av: 32px; --av-icon: 20px; --av-dot: 8px;  --av-co: 12px; font: 500 var(--text-sm) var(--font); }
@@ -1527,12 +1563,12 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 .sb-avatar > svg { width: var(--av-icon); height: var(--av-icon); }
 
 /* Status, bottom-right, 1.5 px white border. Online: success-500 dot. Company: logo, 2 px outside the circle. */
-.sb-avatar-status { position: absolute; right: 0; bottom: 0; box-sizing: border-box; width: var(--av-dot); height: var(--av-dot); border: 1.5px solid var(--white); border-radius: var(--radius-full); background: var(--success-500); }
-.sb-avatar-company { position: absolute; right: -2px; bottom: -2px; box-sizing: border-box; width: var(--av-co); height: var(--av-co); border: 1.5px solid var(--white); border-radius: var(--radius-full); background: var(--white); object-fit: cover; }
+.sb-avatar-status { position: absolute; right: 0; bottom: 0; box-sizing: border-box; width: var(--av-dot); height: var(--av-dot); border: 1.5px solid var(--bg-primary); border-radius: var(--radius-full); background: var(--success-500); }
+.sb-avatar-company { position: absolute; right: -2px; bottom: -2px; box-sizing: border-box; width: var(--av-co); height: var(--av-co); border: 1.5px solid var(--bg-primary); border-radius: var(--radius-full); background: var(--bg-primary); object-fit: cover; }
 
 /* States: only for an avatar that is a button or link (account menu). A 4 px ring outside the circle. */
 :is(button, a).sb-avatar { cursor: pointer; transition: box-shadow 150ms var(--ease); }
-:is(button, a).sb-avatar:is(:hover, [data-state="hover"]) { box-shadow: 0 0 0 4px var(--gray-100); }
+:is(button, a).sb-avatar:is(:hover, [data-state="hover"]) { box-shadow: 0 0 0 4px var(--bg-tertiary); }
 :is(button, a).sb-avatar:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
 
 /* ---- Avatar group: overlapping avatars with a 1.5 px white ring, then "+N", then the add button 8 apart. */
@@ -1541,18 +1577,18 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 .sb-avatar-group[data-size="sm"] { --av-overlap: -8px; }
 .sb-avatar-stack { display: flex; align-items: center; }
 .sb-avatar-stack > :is(.sb-avatar, .sb-tooltip-wrap) + * { margin-left: var(--av-overlap); }
-.sb-avatar-stack .sb-avatar { box-shadow: 0 0 0 1.5px var(--white); }
-.sb-avatar-stack button.sb-avatar:is(:focus-visible, [data-state="focus"]) { box-shadow: 0 0 0 1.5px var(--white), 0 0 0 5.5px var(--focus-ring); }
+.sb-avatar-stack .sb-avatar { box-shadow: 0 0 0 1.5px var(--bg-primary); }
+.sb-avatar-stack button.sb-avatar:is(:focus-visible, [data-state="focus"]) { box-shadow: 0 0 0 1.5px var(--bg-primary), 0 0 0 5.5px var(--focus-ring); }
 /* Add: white, dashed gray-300 border, gray-400 plus icon at half the box. */
 .sb-avatar-add {
   display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: var(--av, 40px); height: var(--av, 40px);
-  margin: 0; padding: 0; border: 1px dashed var(--gray-300); border-radius: var(--radius-full); background: var(--raised-sheen-light) var(--white); color: var(--gray-400); cursor: pointer;
+  margin: 0; padding: 0; border: 1px dashed var(--border-primary); border-radius: var(--radius-full); background: var(--raised-sheen-light) var(--bg-primary); color: var(--fg-quaternary); cursor: pointer;
   transition-property: color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-avatar-group[data-size="xs"] .sb-avatar-add { --av: 24px; }
 .sb-avatar-group[data-size="sm"] .sb-avatar-add { --av: 32px; }
 .sb-avatar-add > svg { width: calc(var(--av, 40px) / 2); height: calc(var(--av, 40px) / 2); }
-.sb-avatar-add:is(:hover, [data-state="hover"]) { border-color: var(--gray-400); color: var(--gray-500); }
+.sb-avatar-add:is(:hover, [data-state="hover"]) { border-color: var(--border-strong); color: var(--text-quaternary); }
 .sb-avatar-add:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
 
 /* ---- Avatar label group: avatar + name + secondary line. Long text truncates (show it in a tooltip). */
@@ -1561,8 +1597,8 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 .sb-avatar-label[data-size="xl"] { gap: 16px; }
 .sb-avatar-label-text { display: grid; min-width: 0; }
 .sb-avatar-name, .sb-avatar-sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sb-avatar-name { font: 600 var(--text-sm) var(--font); color: var(--gray-700); transition: color 150ms var(--ease); }
-.sb-avatar-sub { font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-avatar-name { font: 600 var(--text-sm) var(--font); color: var(--text-secondary); transition: color 150ms var(--ease); }
+.sb-avatar-sub { font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-avatar-label[data-size="sm"] .sb-avatar-sub { font: 400 var(--text-xs) var(--font); }
 .sb-avatar-label[data-size="lg"] .sb-avatar-name { font: 600 var(--text-md) var(--font); }
 .sb-avatar-label[data-size="xl"] .sb-avatar-name { font: 600 var(--text-lg) var(--font); }
@@ -1570,9 +1606,9 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 /* Clickable group (button or link): one hit target; the avatar takes the ring, the name darkens. */
 :is(button, a).sb-avatar-label { cursor: pointer; }
 :is(button, a).sb-avatar-label:focus-visible { outline: none; }
-:is(button, a).sb-avatar-label:is(:hover, [data-state="hover"]) .sb-avatar { box-shadow: 0 0 0 4px var(--gray-100); }
+:is(button, a).sb-avatar-label:is(:hover, [data-state="hover"]) .sb-avatar { box-shadow: 0 0 0 4px var(--bg-tertiary); }
 :is(button, a).sb-avatar-label:is(:focus-visible, [data-state="focus"]) .sb-avatar { box-shadow: 0 0 0 4px var(--focus-ring); }
-:is(button, a).sb-avatar-label:is(:hover, :focus-visible, [data-state]) .sb-avatar-name { color: var(--gray-900); }
+:is(button, a).sb-avatar-label:is(:hover, :focus-visible, [data-state]) .sb-avatar-name { color: var(--text-primary); }
 .sb-avatar-label .sb-avatar { transition: box-shadow 150ms var(--ease); }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1870,7 +1906,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 
 .sb-badge {
   --bdg-h: 22px; --bdg-px: 8px; --bdg-type: var(--text-xs);
-  --bdg-bg: var(--gray-100); --bdg-fg: var(--gray-700); --bdg-icon: var(--gray-500);
+  --bdg-bg: var(--bg-tertiary); --bdg-fg: var(--text-secondary); --bdg-icon: var(--text-quaternary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; gap: 4px;
   height: var(--bdg-h); padding: 0 var(--bdg-px);
@@ -1883,7 +1919,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 .sb-badge-img { display: inline-flex; width: 16px; height: 16px; flex: none; border-radius: var(--radius-full); overflow: hidden; }
 .sb-badge-img > svg { width: 100%; height: 100%; }
 /* Placeholder avatar: user icon in brand-600 on brand-50 (DESIGN.md Avatar). Real screens use the photo or initials. */
-.sb-badge-avatar { align-items: center; justify-content: center; background: var(--brand-50); color: var(--brand-600); }
+.sb-badge-avatar { align-items: center; justify-content: center; background: var(--bg-brand-subtle); color: var(--fg-brand); }
 .sb-badge-avatar > svg { width: 12px; height: 12px; }
 .sb-badge-x {
   display: inline-flex; margin: -2px; padding: 2px; border: 0; border-radius: var(--radius-sm);
@@ -1919,6 +1955,19 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 .sb-badge[data-color="pink"] { --bdg-bg: var(--pink-50); --bdg-fg: var(--pink-700); --bdg-icon: var(--pink-500); }
 .sb-badge[data-color="rose"] { --bdg-bg: var(--rose-50); --bdg-fg: var(--rose-700); --bdg-icon: var(--rose-500); }
 .sb-badge[data-color="orange"] { --bdg-bg: var(--orange-50); --bdg-fg: var(--orange-700); --bdg-icon: var(--orange-500); }
+/* Dark theme: the 950 step as the fill, 300 text, 400 icon. */
+:root[data-theme="dark"] .sb-badge[data-color="primary"] { --bdg-bg: var(--brand-950); --bdg-fg: var(--brand-300); --bdg-icon: var(--brand-400); }
+:root[data-theme="dark"] .sb-badge[data-color="error"] { --bdg-bg: var(--error-950); --bdg-fg: var(--error-300); --bdg-icon: var(--error-400); }
+:root[data-theme="dark"] .sb-badge[data-color="warning"] { --bdg-bg: var(--warning-950); --bdg-fg: var(--warning-300); --bdg-icon: var(--warning-400); }
+:root[data-theme="dark"] .sb-badge[data-color="success"] { --bdg-bg: var(--success-950); --bdg-fg: var(--success-300); --bdg-icon: var(--success-400); }
+:root[data-theme="dark"] .sb-badge[data-color="blue-gray"] { --bdg-bg: var(--blue-gray-950); --bdg-fg: var(--blue-gray-300); --bdg-icon: var(--blue-gray-400); }
+:root[data-theme="dark"] .sb-badge[data-color="blue-light"] { --bdg-bg: var(--blue-light-950); --bdg-fg: var(--blue-light-300); --bdg-icon: var(--blue-light-400); }
+:root[data-theme="dark"] .sb-badge[data-color="blue"] { --bdg-bg: var(--blue-950); --bdg-fg: var(--blue-300); --bdg-icon: var(--blue-400); }
+:root[data-theme="dark"] .sb-badge[data-color="indigo"] { --bdg-bg: var(--indigo-950); --bdg-fg: var(--indigo-300); --bdg-icon: var(--indigo-400); }
+:root[data-theme="dark"] .sb-badge[data-color="purple"] { --bdg-bg: var(--purple-950); --bdg-fg: var(--purple-300); --bdg-icon: var(--purple-400); }
+:root[data-theme="dark"] .sb-badge[data-color="pink"] { --bdg-bg: var(--pink-950); --bdg-fg: var(--pink-300); --bdg-icon: var(--pink-400); }
+:root[data-theme="dark"] .sb-badge[data-color="rose"] { --bdg-bg: var(--rose-950); --bdg-fg: var(--rose-300); --bdg-icon: var(--rose-400); }
+:root[data-theme="dark"] .sb-badge[data-color="orange"] { --bdg-bg: var(--orange-950); --bdg-fg: var(--orange-300); --bdg-icon: var(--orange-400); }
 
 /* Badge group: a badge plus a short message in one pill.
    <a class="sb-badge-group" href="…" data-color="primary" data-theme="light">
@@ -1938,7 +1987,7 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
   border-radius: var(--radius-xl);
 }
 .sb-badge-group > svg { width: 12px; height: 12px; flex: none; color: var(--g500); }
-.sb-badge-group > .sb-badge { --bdg-bg: var(--white); --bdg-fg: var(--g700); --bdg-icon: var(--g500); }
+.sb-badge-group > .sb-badge { --bdg-bg: var(--bg-primary); --bdg-fg: var(--g700); --bdg-icon: var(--g500); }
 .sb-badge-group[data-size="lg"] { gap: 12px; padding-inline-end: 14px; font-size: 14px; line-height: 20px; }
 .sb-badge-group[data-badge="trailing"] { padding-inline: 12px 4px; }
 .sb-badge-group[data-badge="trailing"][data-size="lg"] { padding-inline: 14px 4px; }
@@ -1949,7 +1998,199 @@ Load `tokens.css`, then `badge.css`. It covers Badge and Badge group.
 .sb-badge-group[data-color="error"] { --g50: var(--error-50); --g100: var(--error-100); --g500: var(--error-500); --g600: var(--error-600); --g700: var(--error-700); }
 .sb-badge-group[data-color="warning"] { --g50: var(--warning-50); --g100: var(--warning-100); --g500: var(--warning-500); --g600: var(--warning-600); --g700: var(--warning-700); }
 .sb-badge-group[data-color="success"] { --g50: var(--success-50); --g100: var(--success-100); --g500: var(--success-500); --g600: var(--success-600); --g700: var(--success-700); }
+/* Dark theme: the same steps mirrored around 500 (950 fill, 900 medium fill, 300 text, 400 icon). */
+:root[data-theme="dark"] .sb-badge-group { --g50: var(--brand-950); --g100: var(--brand-900); --g500: var(--brand-400); --g700: var(--brand-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="gray"] { --g50: var(--gray-950); --g100: var(--gray-900); --g500: var(--gray-400); --g700: var(--gray-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="error"] { --g50: var(--error-950); --g100: var(--error-900); --g500: var(--error-400); --g700: var(--error-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="warning"] { --g50: var(--warning-950); --g100: var(--warning-900); --g500: var(--warning-400); --g700: var(--warning-300); }
+:root[data-theme="dark"] .sb-badge-group[data-color="success"] { --g50: var(--success-950); --g100: var(--success-900); --g500: var(--success-400); --g700: var(--success-300); }
 a.sb-badge-group:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+```
+
+## Banner
+
+A message about a page, a card or a form in one of four roles: info, success, warning and error. Inline inside the content, or as a full-width strip under the header bar.
+
+### Usage
+
+- Use a banner for a message that stays while it is true: a claim needs review, a form could not be sent, the plan is old. For a short confirmation that goes away by itself, use a Toast.
+- Pick the tone by what the person must do. Error: fix something before going on. Warning: check something before deciding. Success: an action worked and changed something lasting. Info: context that helps, nothing to do.
+- Inline banners sit at the top of the card or form they are about. Page banners sit under the header bar and are about the whole page.
+- One banner per place. Two messages of the same tone become one banner; never stack three.
+- The title says what happened in a few words; the description says why and what to do next. A short message needs only one line.
+
+### Anatomy
+
+| # | Part | Spec |
+| --- | --- | --- |
+| 1 | Container | Radius 8, padding `14 16`, 1 px border in the tone's 200 step, fill in its 50 step. Icon and text 12 apart. |
+| 2 | Icon | 20 px, the tone's 500 step: `info`, `check-circle`, `alert`, `alert-circle`. Top-aligned with the first line. |
+| 3 | Title | Optional. Text sm / Semibold, the tone's 700 step. |
+| 4 | Description | Text sm / Regular, the tone's 700 step, 4 below the title. Links inside are Semibold and underlined in the same colour. |
+
+### Properties
+
+| Property | Values | Code |
+| --- | --- | --- |
+| Tone | Info, Success, Warning, Error | `data-tone` (omit for Info) |
+| Placement | Inline, Page | `data-placement="page"` (omit for Inline) |
+| Title | True, False | `<p class="sb-banner-title">` before the description |
+
+### Types
+
+#### Tones
+
+| Tone | Fill | Border | Text | Icon |
+| --- | --- | --- | --- | --- |
+| Info | `blue-50` | `blue-200` | `blue-700` | `blue-500` `info` |
+| Success | `success-50` | `success-200` | `success-700` | `success-500` `check-circle` |
+| Warning | `warning-50` | `warning-200` | `warning-700` | `warning-500` `alert` |
+| Error | `error-50` | `error-200` | `error-700` | `error-500` `alert-circle` |
+
+#### One line
+
+Without a title, for short messages. The container is 48 high.
+
+```html
+<div class="sb-banner">
+  <svg aria-hidden="true"><!-- info --></svg>
+  <div class="sb-banner-text">
+    <p class="sb-banner-desc">Data peserta diperbarui dari sistem polis 5 menit lalu.</p>
+  </div>
+</div>
+```
+
+#### Page
+
+Full width under the header bar: no radius, no side borders, only a bottom border; padding `12 32` so the text lines up with the page content.
+
+### Dark theme
+
+On dark surfaces the 50 fill glows, so the fill is 12 % of the tone's 500 over `gray-900`, with an 800 border, 300 text and 400 icon. Switch the theme in the site header to compare.
+
+### Do and don't
+
+**Do:** Says what went wrong and how to fix it.
+
+```html
+<div class="sb-banner" data-tone="error">
+  <svg aria-hidden="true"><!-- alert-circle --></svg>
+  <div class="sb-banner-text">
+    <p class="sb-banner-title">Klaim gagal dikirim</p>
+    <p class="sb-banner-desc">Nomor polis tidak ditemukan. Periksa nomor di kartu peserta, lalu kirim lagi.</p>
+  </div>
+</div>
+```
+
+**Don't:** A vague error. The person cannot act on it.
+
+```html
+<div class="sb-banner" data-tone="error">
+  <svg aria-hidden="true"><!-- alert-circle --></svg>
+  <div class="sb-banner-text">
+    <p class="sb-banner-title">Terjadi kesalahan</p>
+    <p class="sb-banner-desc">Silakan coba lagi nanti.</p>
+  </div>
+</div>
+```
+
+**Do:** Related messages of one tone in one banner.
+
+```html
+<div class="sb-banner" data-tone="warning">
+  <svg aria-hidden="true"><!-- alert --></svg>
+  <div class="sb-banner-text">
+    <p class="sb-banner-desc">3 item melewati batas manfaat dan 1 obat di luar formularium.</p>
+  </div>
+</div>
+```
+
+**Don't:** A stack of banners. None of them stands out.
+
+```html
+<div class="sb-banner" data-tone="warning">
+  <svg aria-hidden="true"><!-- alert --></svg>
+  <div class="sb-banner-text">
+    <p class="sb-banner-desc">3 item melewati batas manfaat.</p>
+  </div>
+</div>
+<div class="sb-banner" data-tone="warning">
+  <svg aria-hidden="true"><!-- alert --></svg>
+  <div class="sb-banner-text">
+    <p class="sb-banner-desc">1 obat di luar formularium.</p>
+  </div>
+</div>
+<div class="sb-banner">
+  <svg aria-hidden="true"><!-- info --></svg>
+  <div class="sb-banner-text">
+    <p class="sb-banner-desc">Plan 2025 dipakai.</p>
+  </div>
+</div>
+```
+
+### Accessibility
+
+- The tone never shows by colour alone: each tone has its own icon, and the text says what happened.
+- The icon is decoration (`aria-hidden`); the title carries the meaning.
+- A banner that is on the page when it loads needs no role. A banner that appears after an action gets `role="alert"` (error, warning) or `role="status"` (info, success), so screen readers announce it.
+- After a failed submit, move focus to the error banner (give it `tabindex="-1"`) so keyboard users land on the message.
+
+| Text | On | Light | Dark | AA |
+| --- | --- | --- | --- | --- |
+| Info `blue-700` / dark `blue-300` | fill | 5.57:1 | 8.58:1 | Passes |
+| Success `success-700` / `success-300` | fill | 5.13:1 | 9.82:1 | Passes |
+| Warning `warning-700` / `warning-300` | fill | 5.20:1 | 9.63:1 | Passes |
+| Error `error-700` / `error-300` | fill | 6.05:1 | 8.25:1 | Passes |
+
+### Code
+
+Load `tokens.css`, then `banner.css`. No script.
+
+`banner.css`
+
+```css
+/* Banner, Codemasters Design System
+   Needs tokens.css. No script.
+
+   <div class="sb-banner" data-tone="warning">
+     <svg aria-hidden="true">…alert…</svg>
+     <div class="sb-banner-text">
+       <p class="sb-banner-title">Klaim perlu ditinjau ulang</p>
+       <p class="sb-banner-desc">3 item melewati batas manfaat rawat inap.</p>
+     </div>
+   </div>
+
+   data-tone       info | success | warning | error (the icon follows the tone: info, check-circle, alert, alert-circle)
+   data-placement  page: a full-width strip under the header bar (omit for inline, inside a card or form)
+   One line        drop .sb-banner-title and keep only .sb-banner-desc
+   role            role="alert" (error, warning) or role="status" (info, success) only when the banner appears after an action */
+
+.sb-banner {
+  --ban-bg: var(--blue-50); --ban-border: var(--blue-200); --ban-fg: var(--blue-700); --ban-icon: var(--blue-500);
+  box-sizing: border-box; display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px; /* control padding exception: 14 + the 20 px line lands one line on 48 */
+  border: 1px solid var(--ban-border); border-radius: var(--radius-md);
+  background: var(--ban-bg); font: 400 var(--text-sm) var(--font); color: var(--ban-fg);
+}
+.sb-banner > svg { width: 20px; height: 20px; flex: none; color: var(--ban-icon); }
+.sb-banner-text { display: grid; flex: 1; gap: 4px; min-width: 0; }
+.sb-banner-title, .sb-banner-desc { margin: 0; }
+.sb-banner-title { font-weight: 600; }
+.sb-banner a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.sb-banner a:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+.sb-banner[data-tone="success"] { --ban-bg: var(--success-50); --ban-border: var(--success-200); --ban-fg: var(--success-700); --ban-icon: var(--success-500); }
+.sb-banner[data-tone="warning"] { --ban-bg: var(--warning-50); --ban-border: var(--warning-200); --ban-fg: var(--warning-700); --ban-icon: var(--warning-500); }
+.sb-banner[data-tone="error"] { --ban-bg: var(--error-50); --ban-border: var(--error-200); --ban-fg: var(--error-700); --ban-icon: var(--error-500); }
+
+/* Page: full width under the header bar. No radius and no side borders, padding 12 32 (the page padding). */
+.sb-banner[data-placement="page"] { padding: 12px 32px; border-width: 0 0 1px; border-radius: 0; }
+
+/* Dark theme: a quiet tint of the 500 step over gray-900, 800 border, 300 text, 400 icon. */
+:root[data-theme="dark"] .sb-banner { --ban-bg: color-mix(in srgb, var(--blue-500) 12%, var(--gray-900)); --ban-border: var(--blue-800); --ban-fg: var(--blue-300); --ban-icon: var(--blue-400); }
+:root[data-theme="dark"] .sb-banner[data-tone="success"] { --ban-bg: color-mix(in srgb, var(--success-500) 12%, var(--gray-900)); --ban-border: var(--success-800); --ban-fg: var(--success-300); --ban-icon: var(--success-400); }
+:root[data-theme="dark"] .sb-banner[data-tone="warning"] { --ban-bg: color-mix(in srgb, var(--warning-500) 12%, var(--gray-900)); --ban-border: var(--warning-800); --ban-fg: var(--warning-300); --ban-icon: var(--warning-400); }
+:root[data-theme="dark"] .sb-banner[data-tone="error"] { --ban-bg: color-mix(in srgb, var(--error-500) 12%, var(--gray-900)); --ban-border: var(--error-800); --ban-fg: var(--error-300); --ban-icon: var(--error-400); }
 ```
 
 ## Button
@@ -1986,7 +2227,7 @@ Each property maps to one attribute, so a slide, a spec and the code describe a 
 | Size | `sm`, `md`, `lg`, `xl`, `2xl` (`xs` is code-only for now) | `data-size="md"` |
 | Icon | False, Leading, Trailing, Dot, Only | `<svg>` before or after the label, `<span class="sb-btn-dot">`, or `data-icon="only"` with `aria-label` |
 | Destructive | False, True | `data-destructive` |
-| State | Default, Hover, Focused, Disabled | `:hover`, `:focus-visible`, `disabled`. Static mockups only: `data-state="hover"` or `"focus"` |
+| State | Default, Hover, Focused, Disabled, Loading | `:hover`, `:focus-visible`, `disabled`, `aria-busy="true"` + `.sb-spinner`. Static mockups only: `data-state="hover"` or `"focus"` |
 
 ### Hierarchy
 
@@ -2114,6 +2355,16 @@ Hover moves one step darker, Focused adds a ring for keyboard users, Disabled is
 - The ring is `0 0 0 4px var(--focus-ring)` (`brand-600` at 20 %) in every hierarchy, on top of `shadow-xs` where the variant has one. Link hierarchies have no box, so they use the global 2 px `brand-600` outline with 2 px offset.
 - Disabled has no hover and no press, and shows `cursor: not-allowed`.
 
+#### Loading
+
+After a click that waits on the server (Simpan, Kirim ke Advisor), the button stays as it is and shows a spinner in its text colour before the label, which turns into the -ing form ("Mengirim…"). `aria-busy="true"` ignores further clicks, so the action is never sent twice. Keep the button's width so the row does not jump; when the wait ends, show the result (a Toast, the next page) and restore the button. The spinner comes from Loading (`loading.css`).
+
+```html
+<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Mengirim…</button>
+<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Menyimpan…</button>
+<button class="sb-btn" type="button" data-hierarchy="secondary-color" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Memuat…</button>
+```
+
 ### Destructive
 
 Destructive=True swaps Brand and Gray for Error. Use it only when the destructive action is the primary action of the view, so the user sees it is high-consequence.
@@ -2240,7 +2491,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 ```css
 /* Button, Codemasters Design System
-   Needs tokens.css.
+   Needs tokens.css; loading.css for the spinner of the loading state.
 
    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
 
@@ -2248,6 +2499,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
    data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only)
    data-destructive  present = Destructive=True
    data-icon="only"  square icon-only button; add aria-label
+   aria-busy="true"  Loading: a <span class="sb-spinner" aria-hidden="true"> before the label, the label in -ing form ("Mengirim…")
    data-state        hover | focus. Forces a state in static mockups and docs. Never ship it in live UI:
                      live states come from :hover, :focus-visible and the disabled attribute. */
 
@@ -2281,53 +2533,53 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 /* Hierarchy. Primary is the base above. */
 .sb-btn[data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--white); --btn-border: var(--gray-300); --btn-fg: var(--gray-700); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
-  --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-300); --btn-fg-hover: var(--gray-800);
+  --btn-bg: var(--bg-primary); --btn-border: var(--border-primary); --btn-fg: var(--text-secondary); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
+  --btn-bg-hover: var(--bg-secondary); --btn-border-hover: var(--border-primary); --btn-fg-hover: var(--text-primary);
 }
 .sb-btn[data-hierarchy="secondary-color"] {
-  --btn-bg: var(--brand-50); --btn-border: var(--brand-50); --btn-fg: var(--brand-700); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
-  --btn-bg-hover: var(--brand-100); --btn-border-hover: var(--brand-100); --btn-fg-hover: var(--brand-700);
+  --btn-bg: var(--bg-brand-subtle); --btn-border: var(--bg-brand-subtle); --btn-fg: var(--text-brand); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
+  --btn-bg-hover: var(--bg-brand-subtle-hover); --btn-border-hover: var(--bg-brand-subtle-hover); --btn-fg-hover: var(--text-brand);
 }
 .sb-btn[data-hierarchy^="tertiary"] {
   --btn-bg: transparent; --btn-border: transparent;
   --btn-shadow: 0 0 #0000; --btn-sheen: none;
 }
 .sb-btn[data-hierarchy="tertiary-color"] {
-  --btn-fg: var(--brand-700); --btn-bg-hover: var(--brand-50); --btn-border-hover: var(--brand-50); --btn-fg-hover: var(--brand-700);
+  --btn-fg: var(--text-brand); --btn-bg-hover: var(--bg-brand-subtle); --btn-border-hover: var(--bg-brand-subtle); --btn-fg-hover: var(--text-brand);
 }
 .sb-btn[data-hierarchy="tertiary-gray"] {
-  --btn-fg: var(--gray-500); --btn-bg-hover: var(--gray-50); --btn-border-hover: var(--gray-50); --btn-fg-hover: var(--gray-600);
+  --btn-fg: var(--text-quaternary); --btn-bg-hover: var(--bg-secondary); --btn-border-hover: var(--bg-secondary); --btn-fg-hover: var(--text-tertiary);
 }
 .sb-btn[data-hierarchy^="link"] {
   --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000; --btn-sheen: none;
   --btn-bg: transparent; --btn-border: transparent; --btn-bg-hover: transparent; --btn-border-hover: transparent;
   border-width: 0;
 }
-.sb-btn[data-hierarchy="link-color"] { --btn-fg: var(--brand-600); --btn-fg-hover: var(--brand-700); }
-.sb-btn[data-hierarchy="link-gray"]  { --btn-fg: var(--gray-500); --btn-fg-hover: var(--gray-600); }
+.sb-btn[data-hierarchy="link-color"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
+.sb-btn[data-hierarchy="link-gray"]  { --btn-fg: var(--text-quaternary); --btn-fg-hover: var(--text-tertiary); }
 
 /* Destructive=True swaps Brand and Gray for Error. */
 .sb-btn[data-destructive] {
   --btn-bg: var(--error-600); --btn-border: var(--error-700); --btn-fg: var(--white);
   --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-800); --btn-fg-hover: var(--white);
-  --btn-ring: var(--error-100);
+  --btn-ring: var(--bg-error-subtle-hover);
 }
 .sb-btn[data-destructive][data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--white); --btn-border: var(--error-300); --btn-fg: var(--error-700);
-  --btn-bg-hover: var(--error-50); --btn-border-hover: var(--error-300); --btn-fg-hover: var(--error-800);
+  --btn-bg: var(--bg-primary); --btn-border: var(--border-error); --btn-fg: var(--text-error);
+  --btn-bg-hover: var(--bg-error-subtle); --btn-border-hover: var(--border-error); --btn-fg-hover: var(--text-error-strong);
 }
 .sb-btn[data-destructive][data-hierarchy="secondary-color"] {
-  --btn-bg: var(--error-50); --btn-border: var(--error-50); --btn-fg: var(--error-700);
-  --btn-bg-hover: var(--error-100); --btn-border-hover: var(--error-100); --btn-fg-hover: var(--error-700);
+  --btn-bg: var(--bg-error-subtle); --btn-border: var(--bg-error-subtle); --btn-fg: var(--text-error);
+  --btn-bg-hover: var(--bg-error-subtle-hover); --btn-border-hover: var(--bg-error-subtle-hover); --btn-fg-hover: var(--text-error);
 }
 .sb-btn[data-destructive][data-hierarchy^="tertiary"] {
-  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
-  --btn-bg-hover: var(--error-50); --btn-border-hover: var(--error-50); --btn-fg-hover: var(--error-700);
+  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--text-error);
+  --btn-bg-hover: var(--bg-error-subtle); --btn-border-hover: var(--bg-error-subtle); --btn-fg-hover: var(--text-error);
 }
-.sb-btn[data-destructive][data-hierarchy="tertiary-gray"] { --btn-fg-hover: var(--error-800); }
+.sb-btn[data-destructive][data-hierarchy="tertiary-gray"] { --btn-fg-hover: var(--text-error-strong); }
 .sb-btn[data-destructive][data-hierarchy^="link"] {
-  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--error-700);
-  --btn-bg-hover: transparent; --btn-border-hover: transparent; --btn-fg-hover: var(--error-800);
+  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--text-error);
+  --btn-bg-hover: transparent; --btn-border-hover: transparent; --btn-fg-hover: var(--text-error-strong);
 }
 
 /* States */
@@ -2342,7 +2594,10 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 }
 /* Disabled: the default look at half opacity, flat (no sheen, highlight or shadow). One rule for every hierarchy. */
 .sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
-.sb-btn:active:not(:disabled, [aria-disabled="true"]) { scale: .96; }
+.sb-btn:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"]) { scale: .96; }
+/* Loading: the look stays (not the faded Disabled), a spinner in the text colour replaces the leading icon, clicks are ignored. */
+.sb-btn[aria-busy="true"] { cursor: progress; pointer-events: none; }
+.sb-btn > .sb-spinner { --sp-size: var(--btn-icon); color: inherit; }
 
 /* A button that opens a menu: its chevron (class sb-btn-chevron) turns when open. Other icons, such as ⋮, stay put. */
 .sb-btn[aria-expanded] > .sb-btn-chevron { transition: rotate 200ms var(--ease); }
@@ -2610,19 +2865,19 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 .sb-btn-group {
   box-sizing: border-box;
   display: inline-flex; height: 40px;
-  background: var(--white);
-  border: 1px solid var(--gray-300); border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   overflow: hidden; /* only the outer corners are rounded */
 }
 .sb-btn-group > button {
-  --seg-icon: var(--gray-500);
+  --seg-icon: var(--text-quaternary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: 100%; margin: 0; padding: 0 16px;
   font: 600 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--gray-700); background: var(--raised-sheen-light) var(--white);
-  border: 0; border-inline-end: 1px solid var(--gray-300); border-radius: 0;
+  color: var(--text-secondary); background: var(--raised-sheen-light) var(--bg-primary);
+  border: 0; border-inline-end: 1px solid var(--border-primary); border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
@@ -2633,14 +2888,14 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 
 /* States (fill / text / icon). Order matters: Current overrides Hover and Focused. Disabled: the default look at 50 % opacity. */
 .sb-btn-group > button:hover:not(:disabled), .sb-btn-group > button[data-state="hover"] {
-  --seg-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50);
+  --seg-icon: var(--text-secondary); color: var(--text-primary); background: var(--bg-secondary);
 }
 .sb-btn-group > button:focus-visible, .sb-btn-group > button[data-state="focus"] {
-  --seg-icon: var(--gray-700); color: var(--gray-700); background: var(--gray-50);
+  --seg-icon: var(--text-secondary); color: var(--text-secondary); background: var(--bg-secondary);
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--gray-900); color: var(--gray-900); background: var(--gray-100); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
+  --seg-icon: var(--text-primary); color: var(--text-primary); background: var(--bg-tertiary); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
 }
 .sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 
@@ -3126,9 +3381,9 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
   box-sizing: border-box; position: relative;
   display: grid; align-content: start; gap: var(--card-gap); min-width: 0;
   padding: var(--card-py) var(--card-px);
-  font: 400 var(--text-sm) var(--font); color: var(--gray-700);
-  background: var(--white);
-  border: 1px solid var(--gray-300); border-radius: var(--radius-lg); /* cards are flat: a border, never a shadow */
+  font: 400 var(--text-sm) var(--font); color: var(--text-secondary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary); border-radius: var(--radius-lg); /* cards are flat: a border, never a shadow */
 }
 .sb-card[data-size="sm"] { --card-py: 16px; --card-px: 16px; --card-gap: 12px; --card-title-lh: 24px; }
 
@@ -3137,11 +3392,11 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
 .sb-card-heading { display: grid; gap: 4px; flex: 1; min-width: 0; }
 .sb-card-title {
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0;
-  font: 600 var(--text-xl) var(--font); color: var(--gray-900); text-wrap: balance;
+  font: 600 var(--text-xl) var(--font); color: var(--text-primary); text-wrap: balance;
 }
 .sb-card[data-size="sm"] .sb-card-title { font: 600 var(--text-md) var(--font); }
 .sb-card-title > svg { width: 20px; height: 20px; flex: none; }
-.sb-card-desc { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); text-wrap: pretty; }
+.sb-card-desc { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); text-wrap: pretty; }
 /* Actions (36 px buttons) centre on the title line and overhang it, so they never make the head taller than the title. */
 .sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 36px) / 2); }
 .sb-card-fold > svg { transition: rotate 150ms var(--ease); }
@@ -3152,59 +3407,59 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
 .sb-card-foot {
   display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px;
   margin-inline: calc(var(--card-px) * -1); padding: var(--card-gap) var(--card-px) 0;
-  border-top: 1px solid var(--gray-200);
+  border-top: 1px solid var(--border-secondary);
 }
 .sb-card-body[hidden], .sb-card-foot[hidden] { display: none; }
 .sb-card-text { margin: 0; text-wrap: pretty; }
 
 /* Inner card: a box inside a card. gray-50, radius 8, padding 12 16. */
-.sb-card[data-variant="inner"] { --card-py: 12px; --card-px: 16px; --card-gap: 8px; --card-title-lh: 20px; background: var(--gray-50); border-color: var(--gray-200); border-radius: var(--radius-md); }
+.sb-card[data-variant="inner"] { --card-py: 12px; --card-px: 16px; --card-gap: 8px; --card-title-lh: 20px; background: var(--bg-secondary); border-color: var(--border-secondary); border-radius: var(--radius-md); }
 .sb-card[data-variant="inner"] .sb-card-title { font: 600 var(--text-sm) var(--font); }
 
 /* Tint: AI summary. brand-50, brand-200 border, radius 8, title in brand-700 with the loader icon. */
-.sb-card[data-variant="tint"] { --card-py: 16px; --card-px: 16px; --card-gap: 12px; --card-title-lh: 24px; background: var(--brand-50); border-color: var(--brand-200); border-radius: var(--radius-md); }
-.sb-card[data-variant="tint"] .sb-card-title { font: 600 var(--text-md) var(--font); color: var(--brand-700); }
+.sb-card[data-variant="tint"] { --card-py: 16px; --card-px: 16px; --card-gap: 12px; --card-title-lh: 24px; background: var(--bg-brand-subtle); border-color: var(--border-brand-subtle); border-radius: var(--radius-md); }
+.sb-card[data-variant="tint"] .sb-card-title { font: 600 var(--text-md) var(--font); color: var(--text-brand); }
 
 /* Summary rows: "Label …… Value". */
 .sb-card-rows { display: grid; gap: 8px; margin: 0; }
 .sb-card-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.sb-card-row > dt { color: var(--gray-500); }
-.sb-card-row > dd { margin: 0; font-weight: 500; color: var(--gray-900); text-align: end; font-variant-numeric: tabular-nums; }
-.sb-card-row[data-total] { padding-top: 8px; border-top: 1px solid var(--gray-200); }
-.sb-card-row[data-total] > dt { font-weight: 500; color: var(--gray-900); }
+.sb-card-row > dt { color: var(--text-quaternary); }
+.sb-card-row > dd { margin: 0; font-weight: 500; color: var(--text-primary); text-align: end; font-variant-numeric: tabular-nums; }
+.sb-card-row[data-total] { padding-top: 8px; border-top: 1px solid var(--border-secondary); }
+.sb-card-row[data-total] > dt { font-weight: 500; color: var(--text-primary); }
 
 /* Metric: label, value, change. */
 .sb-metric { display: grid; gap: 8px; margin: 0; }
 .sb-metric > dd { margin: 0; }
-.sb-metric-label { font: 500 var(--text-sm) var(--font); color: var(--gray-500); }
-.sb-metric-value { margin: 0; font: 600 var(--display-xs) var(--font); color: var(--gray-900); font-variant-numeric: tabular-nums; }
-.sb-metric-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
+.sb-metric-label { font: 500 var(--text-sm) var(--font); color: var(--text-quaternary); }
+.sb-metric-value { margin: 0; font: 600 var(--display-xs) var(--font); color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.sb-metric-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 var(--text-xs) var(--font); color: var(--text-quaternary); }
 
 /* Framed: a gray-100 shell (one step darker than the gray-50 page) holds the head and the footer; the content sits on a white sheet with its own border and
    radius, laid over the shell's edge. For chart and table panels (head on the shell) and forms (actions on the shell). */
-.sb-card[data-variant="framed"] { --card-px: 16px; --card-title-lh: 24px; gap: 0; padding: 0; background: var(--gray-100); border-color: var(--gray-200); }
+.sb-card[data-variant="framed"] { --card-px: 16px; --card-title-lh: 24px; gap: 0; padding: 0; background: var(--bg-tertiary); border-color: var(--border-secondary); }
 .sb-card[data-variant="framed"] > .sb-card-head { padding: 12px 16px; }
-.sb-card[data-variant="framed"] > .sb-card-head .sb-card-title { font: 600 var(--text-md) var(--font); color: var(--gray-700); }
-.sb-card[data-variant="framed"] > .sb-card-body { margin: -1px; padding: 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); }
+.sb-card[data-variant="framed"] > .sb-card-head .sb-card-title { font: 600 var(--text-md) var(--font); color: var(--text-secondary); }
+.sb-card[data-variant="framed"] > .sb-card-body { margin: -1px; padding: 16px; background: var(--bg-primary); border: 1px solid var(--border-secondary); border-radius: var(--radius-lg); }
 .sb-card[data-variant="framed"] > .sb-card-body .sb-card-title { font: 600 var(--text-md) var(--font); }
 .sb-card[data-variant="framed"] > .sb-card-head + .sb-card-body { margin-top: 0; }
 .sb-card[data-variant="framed"] > .sb-card-body:has(+ .sb-card-foot:not([hidden])) { margin-bottom: 0; }
 .sb-card[data-variant="framed"] > .sb-card-foot { margin: 0; padding: 12px 16px; border-top: 0; }
 
 /* Empty state, inside the body. In a chart or table area it takes a dashed frame the size of the missing content. */
-.sb-card-empty { display: grid; justify-items: center; align-content: center; gap: 12px; padding: 32px 16px; text-align: center; color: var(--gray-500); text-wrap: pretty; }
-.sb-card-empty > svg { width: 24px; height: 24px; color: var(--gray-400); }
+.sb-card-empty { display: grid; justify-items: center; align-content: center; gap: 12px; padding: 32px 16px; text-align: center; color: var(--text-quaternary); text-wrap: pretty; }
+.sb-card-empty > svg { width: 24px; height: 24px; color: var(--fg-quaternary); }
 .sb-card-empty p { margin: 0; }
 .sb-card-empty-text { display: grid; gap: 4px; }
-.sb-card-empty-title { font: 600 var(--text-md) var(--font); color: var(--gray-900); }
-.sb-card-empty[data-frame="dashed"] { min-height: 160px; border: 1px dashed var(--gray-300); border-radius: var(--radius-md); }
+.sb-card-empty-title { font: 600 var(--text-md) var(--font); color: var(--text-primary); }
+.sb-card-empty[data-frame="dashed"] { min-height: 160px; border: 1px dashed var(--border-primary); border-radius: var(--radius-md); }
 
 /* Link card: the title link stretches over the card. Buttons inside stay clickable (z-index above). */
 .sb-card-link { color: inherit; text-decoration: none; outline: none; }
 .sb-card-link::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; }
 .sb-card:has(.sb-card-link) { transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease); }
-.sb-card:has(.sb-card-link:hover), .sb-card[data-state="hover"] { background: var(--gray-50); border-color: var(--gray-400); }
-.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--brand-300); box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-card:has(.sb-card-link:hover), .sb-card[data-state="hover"] { background: var(--bg-secondary); border-color: var(--border-strong); }
+.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--border-brand); box-shadow: 0 0 0 4px var(--focus-ring); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-card, .sb-card-fold > svg { transition: none; }
@@ -3627,10 +3882,10 @@ Load `tokens.css`, then `chart.css`, and `chart.js` for the tooltip. Draw the SV
    Marks: bars ≤ 24 thick with a 4 px rounded data end, 2 px gap between touching marks; lines 2 px, rejected dashed 6 4;
    dots 8 with a 2 px white ring, shown on hover. Grid and axes are solid hairlines. Text never takes a series colour. */
 
-.sb-chart { position: relative; display: grid; gap: 16px; margin: 0; min-width: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-chart { position: relative; display: grid; gap: 16px; margin: 0; min-width: 0; font: 400 var(--text-sm) var(--font); color: var(--text-secondary); }
 .sb-chart-plot { display: block; width: 100%; height: auto; overflow: visible; }
-.sb-chart-plot text { font: 400 12px var(--font); fill: var(--gray-500); font-variant-numeric: tabular-nums; }
-.sb-chart-plot .sb-chart-total { font: 600 var(--text-md) var(--font); fill: var(--gray-900); }
+.sb-chart-plot text { font: 400 12px var(--font); fill: var(--text-quaternary); font-variant-numeric: tabular-nums; }
+.sb-chart-plot .sb-chart-total { font: 600 var(--text-md) var(--font); fill: var(--text-primary); }
 .sb-chart[data-layout="donut"] { grid-template-columns: 240px minmax(0, 1fr); align-items: center; gap: 16px 32px; }
 .sb-chart[data-layout="donut"] .sb-legend { flex-direction: column; align-items: flex-start; }
 .sb-chart[data-layout="donut"] > .sb-chart-table { grid-column: 1 / -1; }
@@ -3640,12 +3895,12 @@ Load `tokens.css`, then `chart.css`, and `chart.js` for the tooltip. Draw the SV
 .sb-chart-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
 .sb-chart-line[data-dashed] { stroke-dasharray: 6 4; }
 .sb-chart-area { opacity: .1; }
-.sb-chart-dot { stroke: var(--white); stroke-width: 2; opacity: 0; } /* the white ring keeps it legible on the line */
+.sb-chart-dot { stroke: var(--bg-primary); stroke-width: 2; opacity: 0; } /* the white ring keeps it legible on the line */
 .sb-chart-dot.is-on { opacity: 1; }
-.sb-chart-cross { stroke: var(--gray-300); stroke-width: 1; opacity: 0; shape-rendering: crispEdges; }
+.sb-chart-cross { stroke: var(--border-primary); stroke-width: 1; opacity: 0; shape-rendering: crispEdges; }
 .sb-chart[data-hover] .sb-chart-cross { opacity: 1; }
 .sb-chart-hit { fill: transparent; outline: none; cursor: default; transition: fill 150ms var(--ease); }
-.sb-chart-hit[data-band].is-on { fill: var(--gray-100); } /* bar charts: the hovered period's band fills behind its bars */
+.sb-chart-hit[data-band].is-on { fill: var(--bg-tertiary); } /* bar charts: the hovered period's band fills behind its bars */
 .sb-chart-mark { transition: opacity 150ms var(--ease); }
 .sb-chart[data-hover] .sb-chart-mark:not(.is-on) { opacity: .25; } /* the hovered mark stays, the rest step back */
 .sb-chart [data-tip]:focus-visible { stroke: var(--brand-600); stroke-width: 2; }
@@ -3653,35 +3908,35 @@ Load `tokens.css`, then `chart.css`, and `chart.js` for the tooltip. Draw the SV
 
 /* Legend: always for 2+ series. Key mirrors the mark: square for bars and segments, line for lines (dashed = rejected). */
 .sb-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0; padding: 0; list-style: none; }
-.sb-legend > li { display: inline-flex; align-items: center; gap: 8px; font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-legend > li { display: inline-flex; align-items: center; gap: 8px; font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
 .sb-legend-key { --key: var(--chart-1); width: 12px; height: 12px; flex: none; border-radius: var(--radius-sm); background: var(--key); }
 .sb-legend-key[data-line] { height: 2px; width: 16px; border-radius: 0; }
 .sb-legend-key[data-line="dashed"] { background: repeating-linear-gradient(90deg, var(--key) 0 6px, transparent 6px 10px); }
-.sb-legend-value { color: var(--gray-900); font-weight: 600; font-variant-numeric: tabular-nums; }
+.sb-legend-value { color: var(--text-primary); font-weight: 600; font-variant-numeric: tabular-nums; }
 
 /* Tooltip: white, gray-200 border, radius 8, shadow-lg as a filter. Value first, then the series name. */
 .sb-chart-tip {
   position: absolute; z-index: 20; top: 0; left: 0; pointer-events: none;
   transition: translate 200ms var(--ease); /* glides after the pointer, like a spring with no bounce */
   display: grid; gap: 4px; min-width: 140px; padding: 8px 12px;
-  background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md);
+  background: var(--bg-primary); border: 1px solid var(--border-secondary); border-radius: var(--radius-md);
   filter: drop-shadow(0 12px 8px rgba(16,24,40,.08)) drop-shadow(0 4px 3px rgba(16,24,40,.03));
-  font: 400 var(--text-xs) var(--font); color: var(--gray-500); white-space: nowrap;
+  font: 400 var(--text-xs) var(--font); color: var(--text-quaternary); white-space: nowrap;
 }
 .sb-chart-tip[hidden] { display: none; }
 .sb-chart-tip p { margin: 0; }
-.sb-chart-tip-title { font-weight: 500; color: var(--gray-700); }
+.sb-chart-tip-title { font-weight: 500; color: var(--text-secondary); }
 .sb-chart-tip-row { --key: var(--chart-1); display: flex; align-items: center; gap: 8px; }
 .sb-chart-tip-row::before { content: ''; width: 12px; height: 2px; flex: none; background: var(--key); } /* line key, not a box */
-.sb-chart-tip-row > strong { font: 600 var(--text-sm) var(--font); color: var(--gray-900); font-variant-numeric: tabular-nums; }
+.sb-chart-tip-row > strong { font: 600 var(--text-sm) var(--font); color: var(--text-primary); font-variant-numeric: tabular-nums; }
 
 /* Table view: the accessible twin of every chart. */
-.sb-chart-table > summary { width: fit-content; font: 500 var(--text-sm) var(--font); color: var(--gray-500); cursor: pointer; }
-.sb-chart-table > summary:hover { color: var(--gray-700); }
+.sb-chart-table > summary { width: fit-content; font: 500 var(--text-sm) var(--font); color: var(--text-quaternary); cursor: pointer; }
+.sb-chart-table > summary:hover { color: var(--text-secondary); }
 .sb-chart-table table { width: 100%; margin-top: 12px; border-collapse: collapse; font: 400 var(--text-sm) var(--font); }
-.sb-chart-table :is(th, td) { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); text-align: end; font-variant-numeric: tabular-nums; }
+.sb-chart-table :is(th, td) { padding: 8px 12px; border-bottom: 1px solid var(--border-secondary); text-align: end; font-variant-numeric: tabular-nums; }
 .sb-chart-table :is(th, td):first-child { text-align: start; }
-.sb-chart-table th { font: 500 var(--text-xs) var(--font); color: var(--gray-500); background: var(--gray-50); }
+.sb-chart-table th { font: 500 var(--text-xs) var(--font); color: var(--text-quaternary); background: var(--bg-secondary); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-chart-mark, .sb-chart-tip, .sb-chart-hit { transition: none; }
@@ -4034,8 +4289,8 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
   --ck-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M10 3 4.5 8.5 2 6' fill='none' stroke='black' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   position: relative; flex: none; box-sizing: border-box;
   width: var(--ck); height: var(--ck); margin: 0;
-  background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--ck-r);
-  color: var(--brand-600);
+  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--ck-r);
+  color: var(--fg-brand);
   appearance: none; cursor: pointer;
   transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
@@ -4056,10 +4311,10 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 .sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate])::before { visibility: visible; }
 
 /* States. Disabled uses [type] so it outranks the checked rule. */
-.sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]) { background: var(--brand-50); border-color: var(--brand-600); }
-.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate], :disabled):is(:hover, [data-state="hover"]) { background: var(--brand-50); border-color: var(--brand-600); }
+.sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]) { background: var(--bg-brand-subtle); border-color: var(--brand-600); }
+.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate], :disabled):is(:hover, [data-state="hover"]) { background: var(--bg-brand-subtle); border-color: var(--brand-600); }
 .sb-check-input:focus-visible, .sb-check-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
-.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]):is(:focus-visible, [data-state="focus"]) { border-color: var(--brand-300); }
+.sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]):is(:focus-visible, [data-state="focus"]) { border-color: var(--border-brand); }
 .sb-check-input[type]:disabled { cursor: not-allowed; }
 
 /* Check circle: solid brand-600 with a white check when checked. */
@@ -4067,8 +4322,8 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 
 /* Text: same layout as Toggle */
 .sb-check-text { display: grid; }
-.sb-check-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); cursor: pointer; }
-.sb-check-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-check-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); cursor: pointer; }
+.sb-check-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-check[data-size="md"] .sb-check-label { font-size: 16px; line-height: 24px; }
 .sb-check[data-size="md"] .sb-check-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
 /* Disabled: the whole control, label included, at 50 % opacity. */
@@ -4077,7 +4332,7 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 
 /* A list of choices: 12 between rows. A radio group gets one visible label. */
 .sb-choices { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; }
-.sb-choices-label { margin-bottom: 4px; padding: 0; font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-choices-label { margin-bottom: 4px; padding: 0; font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-check-input { transition: none; }
@@ -4456,7 +4711,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
    data-state    hover | focus on .sb-cg-item forces a state in static mockups and docs only. */
 
 .sb-cg-item {
-  --cg-bg: var(--white); --cg-bd: var(--gray-200); --cg-title: var(--gray-700); --cg-text: var(--gray-500);
+  --cg-bg: var(--bg-primary); --cg-bd: var(--border-secondary); --cg-title: var(--text-secondary); --cg-text: var(--text-quaternary);
   position: relative; display: flex; width: 100%; box-sizing: border-box; padding: 16px;
   background: var(--cg-bg); border: 1px solid var(--cg-bd); border-radius: var(--radius-md);
   transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
@@ -4468,15 +4723,15 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 .sb-cg-item > .sb-check-input:first-child { margin-top: 2px; } /* centres on the first line, as in Checkbox */
 
 /* States. Disabled comes last so it wins over Selected. */
-.sb-cg-item:has(.sb-check-input:checked) { --cg-bg: var(--brand-50); --cg-bd: var(--brand-300); --cg-title: var(--brand-800); --cg-text: var(--brand-600); }
-.sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-300); }
+.sb-cg-item:has(.sb-check-input:checked) { --cg-bg: var(--bg-brand-subtle); --cg-bd: var(--border-brand); --cg-title: var(--text-brand-strong); --cg-text: var(--fg-brand); }
+.sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--border-brand); }
 .sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-600); }
-.sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--brand-300); box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--border-brand); box-shadow: 0 0 0 4px var(--focus-ring); }
 .sb-cg-item:has(.sb-check-input:disabled) { cursor: not-allowed; } /* 50 % opacity comes from .sb-check */
 
 /* Only the card shows focus; the control keeps its Default / checked look. */
 .sb-cg-item .sb-check-input:focus-visible { box-shadow: none; }
-.sb-cg-item .sb-check-input:not(:checked, [type="checkbox"]:indeterminate):focus-visible { border-color: var(--gray-300); }
+.sb-cg-item .sb-check-input:not(:checked, [type="checkbox"]:indeterminate):focus-visible { border-color: var(--border-primary); }
 
 /* Text */
 .sb-cg-text { display: grid; flex: 1; min-width: 0; }
@@ -4489,33 +4744,898 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 .sb-cg-item:has(:disabled) .sb-cg-title { cursor: not-allowed; }
 
 /* Leading visuals. Featured icon: 32 (md 40) brand-100 circle with a 4 px brand-50 ring, overhanging the text line by 2 (md 4). */
-.sb-cg-icon { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 32px; height: 32px; margin-block: -2px; border: 4px solid var(--brand-50); border-radius: var(--radius-full); background: var(--brand-100); color: var(--brand-600); }
+.sb-cg-icon { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 32px; height: 32px; margin-block: -2px; border: 4px solid var(--bg-brand-subtle); border-radius: var(--radius-full); background: var(--bg-brand-subtle-hover); color: var(--fg-brand); }
 .sb-cg-icon svg { width: 16px; height: 16px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon { width: 40px; height: 40px; margin-block: -4px; }
 .sb-cg-item[data-size="md"] .sb-cg-icon svg { width: 20px; height: 20px; }
 /* Card logo tile, 46 x 32. Use the real brand logos. */
-.sb-cg-pay { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 46px; height: 32px; border: 1px solid var(--gray-100); border-radius: var(--radius-sm); background: var(--white); color: var(--gray-700); }
+.sb-cg-pay { display: grid; place-items: center; flex: none; box-sizing: border-box; width: 46px; height: 32px; border: 1px solid var(--border-tertiary); border-radius: var(--radius-sm); background: var(--bg-primary); color: var(--text-secondary); }
 .sb-cg-pay svg { width: 20px; height: 20px; }
 
 /* Payment icon: text links sit above the stretched label, so they never toggle the card. */
 .sb-cg-actions { position: relative; z-index: 2; display: flex; gap: 12px; margin-top: 8px; }
-.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--brand-600); --btn-fg-hover: var(--brand-700); }
+.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
 
 /* Icon card: the header carries the selection colours, the body stays white. */
-.sb-cg-item[data-type="card"] { flex-direction: column; align-items: stretch; gap: 0; padding: 0; background: var(--white); border-color: var(--gray-200); }
+.sb-cg-item[data-type="card"] { flex-direction: column; align-items: stretch; gap: 0; padding: 0; background: var(--bg-primary); border-color: var(--border-secondary); }
 .sb-cg-head { display: flex; align-items: center; gap: 12px; margin: -1px -1px 0; padding: 16px 20px 16px 16px; background: var(--cg-bg); border: 1px solid var(--cg-bd); border-radius: var(--radius-md) var(--radius-md) 0 0; transition: inherit; }
 .sb-cg-head .sb-cg-title, .sb-cg-item[data-size="md"] .sb-cg-head .sb-cg-title { flex: 1; font: 500 var(--text-md) var(--font); }
 .sb-cg-head .sb-cg-icon { margin-block: 0; }
 .sb-cg-body { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px 16px; padding: 16px; }
 .sb-cg-body .sb-cg-text { flex: 1 1 240px; } /* narrow cards: the badge wraps below */
-.sb-cg-price { margin: 0 0 4px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
-.sb-cg-price strong { font: 600 var(--display-sm) var(--font); color: var(--gray-700); }
-.sb-cg-body .sb-cg-desc { color: var(--gray-500); }
+.sb-cg-price { margin: 0 0 4px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
+.sb-cg-price strong { font: 600 var(--display-sm) var(--font); color: var(--text-secondary); }
+.sb-cg-body .sb-cg-desc { color: var(--text-quaternary); }
 .sb-cg-item[data-size="md"] .sb-cg-price strong { font: 600 var(--display-md) var(--font); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-cg-item, .sb-cg-head { transition: none; }
 }
+```
+
+## Combobox
+
+Type to find people or values and pick one or many. Picks show as chips, results can come from the server while you type, and a value that does not exist yet can be added.
+
+### Usage
+
+- Use a combobox when people search a long or open list: reviewers, hospitals, labels. For one value from a short, fixed list, use Input dropdown; for 2 to 6 visible choices, use Checkbox group or Toggle.
+- Pick many (`data-multiple`) when the field takes a set: reviewers on a claim, hospitals in a filter. Picks show as chips in the field and the list stays open.
+- Search the server (`data-async`) when the list is too long to send to the page. Show "Mencari…" while waiting, and say so when nothing matches or the request fails.
+- Let people add a value (`data-creatable`) only where new values are welcome, such as labels. Never for people or hospitals: those must already exist.
+- People options show the avatar, the name and the email, and the search matches both.
+
+### Anatomy
+
+| # | Part | Spec |
+| --- | --- | --- |
+| 1 | Field | Input field box: `gray-300` border, radius 8, `shadow-xs`, padding `9 14`; 44 high for one line and a line taller for each wrap. Leading 20 px icon (`user` for people), trailing chevron that turns when open. |
+| 2 | Chip | Badge md Gray with an × that removes the pick ("Hapus Analis D"). Chips and the text sit 4 apart and wrap. |
+| 3 | Values | Chips and the search text on shared lines. The text is Text md, at least 64 wide before it wraps under the chips. The placeholder ("Cari nama atau email") hides once there are chips. |
+| 4 | Option | An Input dropdown option: 24 px initials avatar, name in Text md / Medium, email in `gray-500`. 44 high, radius 8; hover and active `gray-50`. |
+| 5 | Picked option | `gray-50` fill and a 20 px `brand-600` check. In Multiple the list stays open, so picks can be undone in place. |
+
+### Properties
+
+| Property | Values | Code |
+| --- | --- | --- |
+| Multiple | True, False | `data-multiple` on `.sb-cb`, `aria-multiselectable="true"` on the listbox, a `ul.sb-cb-chips` before the input |
+| Async | True, False | `data-async`; the page listens for `sb-cb-search` and answers with `cbResults(cb, items)` or `cbResults(cb, null)` |
+| Add new values | True, False | `data-creatable` and a hidden `.sb-cb-create` option last in the list |
+| Option content | Text, Person | Person: `.sb-dd-avatar` + `.sb-dd-label` + `.sb-dd-sup` (email) |
+| State | Default, Open, Disabled | Open: `aria-expanded="true"` on the input. Disabled: `disabled` on the input |
+
+### Types
+
+#### Multiple
+
+Picks become chips; the list stays open and the search text clears after each pick.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="cb-2">Reviewer</label>
+  <div class="sb-cb" data-multiple>
+    <div class="sb-cb-field">
+      <svg aria-hidden="true"><!-- user --></svg>
+      <div class="sb-cb-values">
+        <ul class="sb-cb-chips" role="list" aria-label="Terpilih"><li class="sb-cb-chip" data-value="ad"><span class="sb-badge" data-size="md" data-icon="x-close">Analis D<button class="sb-badge-x" type="button" aria-label="Hapus Analis D"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li><li class="sb-cb-chip" data-value="af"><span class="sb-badge" data-size="md" data-icon="x-close">Admin F<button class="sb-badge-x" type="button" aria-label="Hapus Admin F"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li></ul>
+        <input id="cb-2" type="text" role="combobox" aria-expanded="false" aria-controls="cb-2-list" aria-autocomplete="list" placeholder="Cari nama atau email" value="" autocomplete="off">
+      </div>
+      <svg class="sb-cb-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </div>
+    <div class="sb-dd-menu sb-cb-panel" hidden>
+      <div role="listbox" id="cb-2-list" aria-multiselectable="true" aria-label="Reviewer"><div class="sb-dd-opt" role="option" id="cb-2-o0" data-value="aa" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AA</span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">advisor.a@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-2-o1" data-value="ab" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AB</span><span class="sb-dd-label">Advisor B</span><span class="sb-dd-sup">advisor.b@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-2-o2" data-value="rc" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">RC</span><span class="sb-dd-label">Reviewer C</span><span class="sb-dd-sup">reviewer.c@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-2-o3" data-value="ad" aria-selected="true"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AD</span><span class="sb-dd-label">Analis D</span><span class="sb-dd-sup">analis.d@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-2-o4" data-value="ae" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AE</span><span class="sb-dd-label">Analis E</span><span class="sb-dd-sup">analis.e@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-2-o5" data-value="af" aria-selected="true"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AF</span><span class="sb-dd-label">Admin F</span><span class="sb-dd-sup">admin.f@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-2-o6" data-value="ag" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AG</span><span class="sb-dd-label">Admin G</span><span class="sb-dd-sup">admin.g@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-2-o7" data-value="rh" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">RH</span><span class="sb-dd-label">Reviewer H</span><span class="sb-dd-sup">reviewer.h@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div></div>
+      <p class="sb-cb-status" role="status" hidden></p>
+    </div>
+  </div>
+</div>
+```
+
+#### Single person
+
+One pick fills the field with the name and closes the list, as in Input dropdown; the field stays searchable for the next change.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="cb-3">Ditugaskan ke</label>
+  <div class="sb-cb" data-value="rc">
+    <div class="sb-cb-field">
+      <svg aria-hidden="true"><!-- user --></svg>
+      <div class="sb-cb-values">
+        <input id="cb-3" type="text" role="combobox" aria-expanded="false" aria-controls="cb-3-list" aria-autocomplete="list" placeholder="Cari nama atau email" value="Reviewer C" autocomplete="off">
+      </div>
+      <svg class="sb-cb-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </div>
+    <div class="sb-dd-menu sb-cb-panel" hidden>
+      <div role="listbox" id="cb-3-list" aria-label="Ditugaskan ke"><div class="sb-dd-opt" role="option" id="cb-3-o0" data-value="aa" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AA</span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">advisor.a@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-3-o1" data-value="ab" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AB</span><span class="sb-dd-label">Advisor B</span><span class="sb-dd-sup">advisor.b@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-3-o2" data-value="rc" aria-selected="true"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">RC</span><span class="sb-dd-label">Reviewer C</span><span class="sb-dd-sup">reviewer.c@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-3-o3" data-value="ad" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AD</span><span class="sb-dd-label">Analis D</span><span class="sb-dd-sup">analis.d@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-3-o4" data-value="ae" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AE</span><span class="sb-dd-label">Analis E</span><span class="sb-dd-sup">analis.e@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-3-o5" data-value="af" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AF</span><span class="sb-dd-label">Admin F</span><span class="sb-dd-sup">admin.f@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-3-o6" data-value="ag" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AG</span><span class="sb-dd-label">Admin G</span><span class="sb-dd-sup">admin.g@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-3-o7" data-value="rh" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">RH</span><span class="sb-dd-label">Reviewer H</span><span class="sb-dd-sup">reviewer.h@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div></div>
+      <p class="sb-cb-status" role="status" hidden></p>
+    </div>
+  </div>
+</div>
+```
+
+#### Async
+
+Nothing is listed until people type. 250 ms after the last key the page asks the server; old results dim while new ones load.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="cb-4">Reviewer</label>
+  <div class="sb-cb" data-multiple data-async>
+    <div class="sb-cb-field">
+      <svg aria-hidden="true"><!-- user --></svg>
+      <div class="sb-cb-values">
+        <ul class="sb-cb-chips" role="list" aria-label="Terpilih"></ul>
+        <input id="cb-4" type="text" role="combobox" aria-expanded="false" aria-controls="cb-4-list" aria-autocomplete="list" placeholder="Cari nama atau email" value="" autocomplete="off">
+      </div>
+      <svg class="sb-cb-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </div>
+    <div class="sb-dd-menu sb-cb-panel" hidden>
+      <div role="listbox" id="cb-4-list" aria-multiselectable="true" aria-label="Reviewer"></div>
+      <p class="sb-cb-status" role="status" hidden></p>
+    </div>
+  </div>
+</div>
+```
+
+#### Add new values
+
+When nothing matches exactly, the last option offers to add what was typed. The new value is picked and joins the list.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="cb-5">Label klaim</label>
+  <div class="sb-cb" data-multiple data-creatable>
+    <div class="sb-cb-field">
+      <svg aria-hidden="true"><!-- hash --></svg>
+      <div class="sb-cb-values">
+        <ul class="sb-cb-chips" role="list" aria-label="Terpilih"><li class="sb-cb-chip" data-value="Prioritas"><span class="sb-badge" data-size="md" data-icon="x-close">Prioritas<button class="sb-badge-x" type="button" aria-label="Hapus Prioritas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li></ul>
+        <input id="cb-5" type="text" role="combobox" aria-expanded="false" aria-controls="cb-5-list" aria-autocomplete="list" placeholder="Cari atau tambah label" value="" autocomplete="off">
+      </div>
+      <svg class="sb-cb-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </div>
+    <div class="sb-dd-menu sb-cb-panel" hidden>
+      <div role="listbox" id="cb-5-list" aria-multiselectable="true" aria-label="Label klaim"><div class="sb-dd-opt" role="option" id="cb-5-o0" data-value="Prioritas" aria-selected="true"><span class="sb-dd-main"><span class="sb-dd-label">Prioritas</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-5-o1" data-value="Butuh dokumen" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-label">Butuh dokumen</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-5-o2" data-value="Rujukan" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-label">Rujukan</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-5-o3" data-value="Kecelakaan" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-label">Kecelakaan</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-5-o4" data-value="Rawat inap" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-label">Rawat inap</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-5-o5" data-value="Kronis" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-label">Kronis</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt sb-cb-create" role="option" id="cb-5-new" hidden><span class="sb-dd-main"><svg aria-hidden="true"><!-- plus --></svg><span class="sb-dd-label">Tambah “”</span></span></div></div>
+      <p class="sb-cb-status" role="status" hidden></p>
+    </div>
+  </div>
+</div>
+```
+
+### List states
+
+| State | Shows |
+| --- | --- |
+| Loading | 16 px spinner + "Mencari…" in `gray-500`. Results already shown stay, at 50 % opacity. |
+| Nothing found | "Tidak ada yang cocok" in `gray-500`; with Add new values, the "Tambah …" option instead. |
+| Error | 16 px `alert-circle` + "Gagal memuat. Ketik lagi untuk mencoba." in `error-700`. |
+| Hint (Async, empty field) | "Ketik nama atau email" in `gray-500`. |
+
+### Do and don't
+
+**Do:** People found by name or email, picked as chips.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="cb-9">Reviewer</label>
+  <div class="cb-specimen" data-multiple>
+    <div class="sb-cb-field">
+      <svg aria-hidden="true"><!-- user --></svg>
+      <div class="sb-cb-values">
+        <ul class="sb-cb-chips" role="list" aria-label="Terpilih"><li class="sb-cb-chip" data-value="ad"><span class="sb-badge" data-size="md" data-icon="x-close">Analis D<button class="sb-badge-x" type="button" aria-label="Hapus Analis D"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li><li class="sb-cb-chip" data-value="af"><span class="sb-badge" data-size="md" data-icon="x-close">Admin F<button class="sb-badge-x" type="button" aria-label="Hapus Admin F"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li></ul>
+        <input id="cb-9" type="text" role="combobox" aria-expanded="false" aria-controls="cb-9-list" aria-autocomplete="list" placeholder="Cari nama atau email" value="" autocomplete="off">
+      </div>
+      <svg class="sb-cb-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </div>
+    <div class="sb-dd-menu sb-cb-panel" hidden>
+      <div role="listbox" id="cb-9-list" aria-multiselectable="true" aria-label="Reviewer"><div class="sb-dd-opt" role="option" id="cb-9-o0" data-value="aa" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AA</span><span class="sb-dd-label">Advisor A</span><span class="sb-dd-sup">advisor.a@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-9-o1" data-value="ab" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AB</span><span class="sb-dd-label">Advisor B</span><span class="sb-dd-sup">advisor.b@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-9-o2" data-value="rc" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">RC</span><span class="sb-dd-label">Reviewer C</span><span class="sb-dd-sup">reviewer.c@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-9-o3" data-value="ad" aria-selected="true"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AD</span><span class="sb-dd-label">Analis D</span><span class="sb-dd-sup">analis.d@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-9-o4" data-value="ae" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AE</span><span class="sb-dd-label">Analis E</span><span class="sb-dd-sup">analis.e@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-9-o5" data-value="af" aria-selected="true"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AF</span><span class="sb-dd-label">Admin F</span><span class="sb-dd-sup">admin.f@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-9-o6" data-value="ag" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">AG</span><span class="sb-dd-label">Admin G</span><span class="sb-dd-sup">admin.g@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" role="option" id="cb-9-o7" data-value="rh" aria-selected="false"><span class="sb-dd-main"><span class="sb-dd-avatar" aria-hidden="true">RH</span><span class="sb-dd-label">Reviewer H</span><span class="sb-dd-sup">reviewer.h@sembuh.ai</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div></div>
+      <p class="sb-cb-status" role="status" hidden></p>
+    </div>
+  </div>
+</div>
+```
+
+**Don't:** "Tambah" on a list of people. A typo becomes a reviewer who does not exist.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="cb-10">Reviewer</label>
+  <div class="cb-specimen" data-multiple data-creatable>
+    <div class="sb-cb-field">
+      <svg aria-hidden="true"><!-- user --></svg>
+      <div class="sb-cb-values">
+        <ul class="sb-cb-chips" role="list" aria-label="Terpilih"></ul>
+        <input id="cb-10" type="text" role="combobox" aria-expanded="true" aria-controls="cb-10-list" aria-autocomplete="list" placeholder="Cari nama atau email" value="Budi" autocomplete="off">
+      </div>
+      <svg class="sb-cb-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </div>
+    <div class="sb-dd-menu sb-cb-panel">
+      <div role="listbox" id="cb-10-list" aria-multiselectable="true" aria-label="Reviewer"><div class="sb-dd-opt sb-cb-create" role="option" id="cb-10-new"><span class="sb-dd-main"><svg aria-hidden="true"><!-- plus --></svg><span class="sb-dd-label">Tambah “Budi”</span></span></div></div>
+      <p class="sb-cb-status" role="status" hidden></p>
+    </div>
+  </div>
+</div>
+```
+
+### Accessibility
+
+- The input is a `role="combobox"` with `aria-expanded`, `aria-controls` and `aria-autocomplete="list"`; focus stays in it and `aria-activedescendant` points at the active option.
+- The list is a `role="listbox"` (`aria-multiselectable` when picking many); picked options have `aria-selected="true"`, so the check is not the only signal.
+- Each chip's × is a button named after the pick ("Hapus Analis D"). Backspace in an empty field removes the last chip.
+- Loading, nothing found and errors are written in a `role="status"` line, so screen readers hear them without moving focus.
+
+| Key | Does |
+| --- | --- |
+| Typing | Filters the list, or asks the server (Async) |
+| ↓ / ↑ | Opens the list; moves the active option |
+| Enter | Picks or un-picks the active option ("Tambah …" adds the value) |
+| Backspace (empty field) | Removes the last chip |
+| Esc | Closes the list |
+| Tab | Closes the list and moves on |
+
+### Code
+
+Load `tokens.css`, `input-field.css`, `input-dropdown.css` and `badge.css`, then `combobox.css`, and add `combobox.js`. Listen for `sb-cb-change` to read the picks.
+
+`combobox.css`
+
+```css
+/* Combobox, Codemasters Design System
+   Needs tokens.css, input-field.css (label, hint), input-dropdown.css (the list and its options), badge.css (chips)
+   and combobox.js.
+
+   <div class="sb-field">
+     <label class="sb-field-label" for="reviewer">Reviewer</label>
+     <div class="sb-cb" data-multiple>
+       <div class="sb-cb-field">
+         <svg aria-hidden="true">…user…</svg>
+         <div class="sb-cb-values">
+           <ul class="sb-cb-chips" role="list" aria-label="Terpilih">…<li class="sb-cb-chip" data-value="ad">Badge with ×</li>…</ul>
+           <input id="reviewer" type="text" role="combobox" aria-expanded="false" aria-controls="reviewer-list" aria-autocomplete="list" placeholder="Cari nama atau email" autocomplete="off">
+         </div>
+         <svg class="sb-cb-chevron" aria-hidden="true">…chevron-down…</svg>
+       </div>
+       <div class="sb-dd-menu sb-cb-panel" hidden>
+         <div role="listbox" id="reviewer-list" aria-multiselectable="true" aria-label="Reviewer">….sb-dd-opt role="option"…</div>
+         <p class="sb-cb-status" role="status" hidden></p>
+       </div>
+     </div>
+   </div>
+
+   data-multiple    pick many: chips in the field, the list stays open (omit to pick one: the label fills the field)
+   data-async       results come from the page: listen for "sb-cb-search", answer with cbResults(cb, items | null)
+   data-creatable   a last "Tambah …" option adds what was typed: <div class="sb-dd-opt sb-cb-create" role="option" id="…" hidden>
+   Options are Input dropdown options: .sb-dd-avatar (initials), .sb-dd-label (name), .sb-dd-sup (email), .sb-dd-check. */
+
+.sb-cb { position: relative; }
+
+/* Field: Input field's box. It grows a line at a time as chips wrap; 9 + 24 + 9 + borders = 44 for one line. */
+.sb-cb-field {
+  box-sizing: border-box; display: flex; align-items: center; gap: 8px;
+  min-height: 44px; padding: 9px 14px;
+  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  cursor: text;
+  transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-cb-field > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
+.sb-cb-field:hover:not(:focus-within) { border-color: var(--border-strong); }
+.sb-cb-field:focus-within, .sb-cb:has([aria-expanded="true"]) .sb-cb-field { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-cb:has(input:disabled) .sb-cb-field { opacity: .5; cursor: not-allowed; }
+.sb-cb-chevron { transition: rotate 200ms var(--ease); }
+.sb-cb:has([aria-expanded="true"]) .sb-cb-chevron { rotate: 180deg; }
+
+/* Values: chips and the text input share the lines, 4 apart. */
+.sb-cb-values { display: flex; flex: 1; flex-wrap: wrap; align-items: center; gap: 4px; min-width: 0; }
+.sb-cb-chips { display: contents; margin: 0; padding: 0; list-style: none; }
+.sb-cb-chip { display: flex; }
+.sb-cb-values input {
+  flex: 1; width: 0; min-width: 64px; height: 24px; margin: 0; padding: 0; border: 0; outline: 0; background: none; /* 64: room to type beside the chips before wrapping */
+  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+}
+.sb-cb-values input::placeholder { color: var(--text-quaternary); opacity: 1; }
+.sb-cb-chips:not(:empty) + input::placeholder { color: transparent; } /* chips already say what is picked */
+
+/* Panel: the Input dropdown menu, plus a status line. */
+.sb-cb-panel[hidden] { display: none; }
+.sb-cb-panel [role="listbox"][aria-busy="true"] { opacity: .5; } /* old results while new ones load */
+.sb-cb-status { display: flex; align-items: center; gap: 8px; margin: 0; padding: 10px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
+.sb-cb-status[hidden] { display: none; }
+.sb-cb-status > svg { width: 16px; height: 16px; flex: none; }
+.sb-cb-status[data-kind="error"] { color: var(--text-error); }
+.sb-cb-spin { animation: sb-cb-spin 1s linear infinite; }
+@keyframes sb-cb-spin { to { rotate: 360deg; } }
+.sb-cb-create .sb-dd-label { color: var(--text-brand); }
+.sb-cb-create .sb-dd-main > svg { color: var(--fg-brand); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-cb-field, .sb-cb-chevron { transition: none; }
+  .sb-cb-spin { animation: none; }
+}
+```
+
+#### Script
+
+`combobox.js`
+
+```js
+// Combobox: type to filter (or, with data-async, to ask the page for results), ↑ ↓ to move, Enter or a click to pick,
+// Esc to close; Backspace in an empty field removes the last chip. Fires "sb-cb-change" with { values } and, with
+// data-async, "sb-cb-search" with { query }: answer it with cbResults(combobox, items) or cbResults(combobox, null) on error.
+const cbEsc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const cbSvg = (d, cls) => `<svg${cls ? ` class="${cls}"` : ''} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+const CB_PATH = {
+  "check": "M20 6 9 17l-5-5",
+  "x": "M18 6 6 18M6 6l12 12",
+  "loader": "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83",
+  "alert": "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 8v4M12 16h.01"
+};
+const cbOption = (item, selected, id) =>
+    `<div class="sb-dd-opt" role="option" id="${id}" data-value="${cbEsc(item.value)}" aria-selected="${selected}"><span class="sb-dd-main">${item.initials ? `<span class="sb-dd-avatar" aria-hidden="true">${cbEsc(item.initials)}</span>` : ''}<span class="sb-dd-label">${cbEsc(item.label)}</span>${item.sub ? `<span class="sb-dd-sup">${cbEsc(item.sub)}</span>` : ''}</span>${cbSvg(CB_PATH.check, 'sb-dd-check')}</div>`;
+const cbChip = (value, label) =>
+    `<li class="sb-cb-chip" data-value="${cbEsc(value)}"><span class="sb-badge" data-size="md" data-icon="x-close">${cbEsc(label)}<button class="sb-badge-x" type="button" aria-label="Hapus ${cbEsc(label)}">${cbSvg(CB_PATH.x)}</button></span></li>`;
+const cbFind = (root, value) => [...root.querySelectorAll('[data-value]')].find(el => el.dataset.value === value);
+const cbVisible = p => [...p.list.querySelectorAll('[role="option"]')].filter(o => !o.hidden);
+const cbValues = p => ('multiple' in p.cb.dataset ? [...p.chips.children].map(c => c.dataset.value) : p.cb.dataset.value ? [p.cb.dataset.value] : []);
+function cbParts(el) {
+  const cb = el.closest('.sb-cb');
+  return cb && { cb, input: cb.querySelector('input[role="combobox"]'), panel: cb.querySelector('.sb-cb-panel'), list: cb.querySelector('[role="listbox"]'), chips: cb.querySelector('.sb-cb-chips') };
+}
+function cbActivate(p, opt) {
+  p.list.querySelectorAll('[data-active]').forEach(o => o.removeAttribute('data-active'));
+  if (!opt) return p.input.removeAttribute('aria-activedescendant');
+  opt.setAttribute('data-active', '');
+  p.input.setAttribute('aria-activedescendant', opt.id);
+  opt.scrollIntoView({ block: 'nearest' });
+}
+function cbOpen(p, open) {
+  p.input.setAttribute('aria-expanded', String(open));
+  p.panel.hidden = !open;
+  if (!open) cbActivate(p, null);
+}
+function cbStatus(p, kind, text) {
+  const s = p.panel.querySelector('.sb-cb-status');
+  const msg = { loading: [CB_PATH.loader, 'Mencari…'], empty: [null, 'Tidak ada yang cocok'], error: [CB_PATH.alert, 'Gagal memuat. Ketik lagi untuk mencoba.'], hint: [null, text] }[kind];
+  s.hidden = !kind;
+  s.dataset.kind = kind || '';
+  s.innerHTML = kind ? `${msg[0] ? cbSvg(msg[0], kind === 'loading' ? 'sb-cb-spin' : '') : ''}${cbEsc(msg[1])}` : '';
+}
+function cbCreateRow(p, q) {
+  const row = p.list.querySelector('.sb-cb-create');
+  if (!row) return false;
+  const exact = [...p.list.querySelectorAll('[role="option"]:not(.sb-cb-create) .sb-dd-label')].some(l => l.textContent.toLowerCase() === q.toLowerCase());
+  row.hidden = !q || exact;
+  row.querySelector('.sb-dd-label').textContent = `Tambah “${q}”`;
+  return !row.hidden;
+}
+function cbFilter(p) {
+  const q = p.input.value.trim();
+  p.list.querySelectorAll('[role="option"]:not(.sb-cb-create)').forEach(o => (o.hidden = !o.textContent.toLowerCase().includes(q.toLowerCase())));
+  const create = cbCreateRow(p, q);
+  cbStatus(p, cbVisible(p).length || create ? null : 'empty');
+}
+function cbResults(cb, items) {
+  const p = cbParts(cb), picked = cbValues(p), create = p.list.querySelector('.sb-cb-create');
+  p.list.querySelectorAll('[role="option"]:not(.sb-cb-create)').forEach(o => o.remove());
+  p.list.removeAttribute('aria-busy');
+  if (!items) { if (create) create.hidden = true; return cbStatus(p, 'error'); }
+  (create || p.list).insertAdjacentHTML(create ? 'beforebegin' : 'beforeend', items.map((it, i) => cbOption(it, picked.includes(it.value), `${p.list.id}-r${i}`)).join(''));
+  const q = p.input.value.trim(), withCreate = cbCreateRow(p, q);
+  cbStatus(p, items.length || withCreate ? null : 'empty');
+}
+function cbChanged(p) {
+  p.cb.dispatchEvent(new CustomEvent('sb-cb-change', { bubbles: true, detail: { values: cbValues(p) } }));
+}
+function cbRemove(p, value) {
+  cbFind(p.chips, value)?.remove();
+  cbFind(p.list, value)?.setAttribute('aria-selected', 'false');
+  p.input.focus();
+  cbChanged(p);
+}
+function cbPick(p, opt) {
+  if (opt.matches('.sb-cb-create')) {
+    const label = p.input.value.trim();
+    opt.insertAdjacentHTML('beforebegin', cbOption({ value: label, label }, false, `${p.list.id}-n${p.list.children.length}`));
+    opt = opt.previousElementSibling;
+  }
+  const value = opt.dataset.value, label = opt.querySelector('.sb-dd-label').textContent;
+  if (!('multiple' in p.cb.dataset)) {
+    p.list.querySelectorAll('[aria-selected="true"]').forEach(o => o.setAttribute('aria-selected', 'false'));
+    opt.setAttribute('aria-selected', 'true');
+    p.cb.dataset.value = value;
+    p.input.value = label;
+    cbOpen(p, false);
+    return cbChanged(p);
+  }
+  const on = opt.getAttribute('aria-selected') !== 'true';
+  opt.setAttribute('aria-selected', String(on));
+  if (on) p.chips.insertAdjacentHTML('beforeend', cbChip(value, label));
+  else cbFind(p.chips, value)?.remove();
+  if (!('async' in p.cb.dataset)) { p.input.value = ''; cbFilter(p); } // async keeps the query, so the results stay
+  p.input.focus();
+  cbActivate(p, cbFind(p.list, value));
+  cbChanged(p);
+}
+function cbShow(p) {
+  cbOpen(p, true);
+  if (!('async' in p.cb.dataset)) cbFilter(p);
+  else if (!p.input.value.trim()) cbStatus(p, 'hint', 'Ketik nama atau email');
+}
+function cbClick(e) {
+  const cb = e.target.closest?.('.sb-cb');
+  document.querySelectorAll('.sb-cb').forEach(o => o !== cb && !o.querySelector('.sb-cb-panel').hidden && cbOpen(cbParts(o), false));
+  if (!cb || cb.querySelector('input').disabled) return;
+  const p = cbParts(cb), x = e.target.closest('.sb-badge-x'), opt = e.target.closest('[role="option"]');
+  if (x) return cbRemove(p, x.closest('.sb-cb-chip').dataset.value);
+  if (opt) return cbPick(p, opt);
+  if (e.target.closest('.sb-cb-field')) { p.input.focus(); if (p.panel.hidden) cbShow(p); }
+}
+function cbInput(e) {
+  const input = e.target.closest?.('.sb-cb input[role="combobox"]');
+  if (!input) return;
+  const p = cbParts(input), q = input.value.trim();
+  cbOpen(p, true);
+  if (!('async' in p.cb.dataset)) return cbFilter(p), cbActivate(p, cbVisible(p)[0]);
+  clearTimeout(p.cb.cbTimer);
+  if (!q) { cbResults(p.cb, []); return cbStatus(p, 'hint', 'Ketik nama atau email'); }
+  p.list.setAttribute('aria-busy', 'true');
+  cbStatus(p, 'loading');
+  p.cb.cbTimer = setTimeout(() => p.cb.dispatchEvent(new CustomEvent('sb-cb-search', { bubbles: true, detail: { query: q } })), 250); // wait for a pause in typing
+}
+function cbKeydown(e) {
+  const input = e.target.closest?.('.sb-cb input[role="combobox"]');
+  if (!input) return;
+  const p = cbParts(input), open = !p.panel.hidden, opts = cbVisible(p), i = opts.findIndex(o => o.hasAttribute('data-active'));
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!open) return cbShow(p);
+    if (opts.length) cbActivate(p, opts[(i + (e.key === 'ArrowDown' ? 1 : -1) + opts.length) % opts.length]);
+  } else if (e.key === 'Enter' && open && i >= 0) {
+    e.preventDefault();
+    cbPick(p, opts[i]);
+  } else if (e.key === 'Escape' && open) {
+    e.preventDefault();
+    cbOpen(p, false);
+  } else if (e.key === 'Backspace' && !input.value && 'multiple' in p.cb.dataset && p.chips.lastElementChild) {
+    cbRemove(p, p.chips.lastElementChild.dataset.value); // the last chip goes, as in most tag fields
+  } else if (e.key === 'Tab') {
+    cbOpen(p, false);
+  }
+}
+document.addEventListener('click', cbClick);
+document.addEventListener('input', cbInput);
+document.addEventListener('keydown', cbKeydown);
+```
+
+## Date picker
+
+A date field people can type into or pick from a calendar: one date (one month, picks and closes) or a range (two months, quick ranges, Batal and Terapkan). Monday first, dd/mm/yyyy.
+
+### Usage
+
+- Use Single for a date in a form (tanggal masuk, tanggal lahir) and Range for a period that filters a list or a report.
+- People can always type. The calendar helps when the date is near today or when the weekday matters; a birth date is faster to type.
+- The field shows dd/mm/yyyy, the calendar long dates, the range footer short dates (`14 Okt 2026`), as in Content rules.
+- Limit the dates people can pick with `data-min` and `data-max` (no future tanggal masuk). Days outside the limits stay visible, so the calendar keeps its shape.
+- Add quick ranges when most filters use the same periods. Keep the list to the six standard ones.
+
+### Anatomy
+
+| # | Part | Spec |
+| --- | --- | --- |
+| 1 | Field | Input field with a leading calendar button (20 px icon, 32 hit area). Opens the calendar on click or ↓. Shows dd/mm/yyyy; a range joins two dates with " – ". |
+| 2 | Month header | Month and year, Text sm / Medium `gray-900`, centred. 32 × 32 chevron buttons, `gray-500`, radius 8; on a range only the outer months have them. |
+| 3 | Weekdays | Sen to Min, Monday first. Text xs / Medium `gray-500`. |
+| 4 | Range | Days between the ends on a `brand-50` band with `brand-700` numbers. The ends, like a single selected day, are `brand-600` with `white` numbers. |
+| 5 | Day | 32 × 32, radius 4, Text sm `gray-700`. Hover `gray-50`. Days of another month and days outside min / max: `gray-400`. Today: a 4 px brand dot under the number. |
+| 6 | Footer | Range only. The pick in short dates on the left; Batal (Secondary gray sm) and Terapkan (Primary sm, disabled until both ends are set) on the right. |
+
+### Properties
+
+| Property | Values | Code |
+| --- | --- | --- |
+| Type | Single, Range | `data-type` on `.sb-dp` |
+| Value | A date, or a start and an end | `data-value="2026-10-08"`, or `data-start` and `data-end` (ISO). The field shows dd/mm/yyyy |
+| Limits | Min, Max | `data-min`, `data-max` (ISO) |
+| Quick ranges | True, False | `data-presets` (Range only) |
+| State | Default, Open, Error, Disabled | Open: the calendar button's `aria-expanded`. Error: `aria-invalid` on the input. Disabled: `disabled` on the input and the button |
+
+### Types
+
+#### Single
+
+One month, as wide as the field. A click picks the day, fills the field and closes the calendar.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="dp-3">Tanggal masuk</label>
+  <div class="sb-dp" data-type="single" data-value="2026-10-08" data-today="2026-10-14" data-max="2026-10-14">
+    <div class="sb-input">
+      <button class="sb-dp-toggle" type="button" aria-label="Pilih tanggal" aria-haspopup="dialog" aria-expanded="false" aria-controls="dp-3-cal"><svg aria-hidden="true"><!-- calendar --></svg></button>
+      <input id="dp-3" type="text" inputmode="numeric" placeholder="dd/mm/yyyy" value="08/10/2026" autocomplete="off">
+    </div>
+    <div class="sb-dp-panel" id="dp-3-cal" role="dialog" aria-label="Pilih tanggal masuk" hidden></div>
+  </div>
+</div>
+```
+
+#### Range
+
+Two months side by side. The first click sets the start, the second the end; a click before the start begins again. Terapkan writes the range into the field, Batal and Esc leave it as it was.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="dp-5">Periode klaim</label>
+  <div class="sb-dp" data-type="range" data-start="2026-10-01" data-end="2026-10-14" data-today="2026-10-14">
+    <div class="sb-input">
+      <button class="sb-dp-toggle" type="button" aria-label="Pilih tanggal" aria-haspopup="dialog" aria-expanded="false" aria-controls="dp-5-cal"><svg aria-hidden="true"><!-- calendar --></svg></button>
+      <input id="dp-5" type="text" inputmode="numeric" placeholder="dd/mm/yyyy – dd/mm/yyyy" value="01/10/2026 – 14/10/2026" autocomplete="off">
+    </div>
+    <div class="sb-dp-panel" id="dp-5-cal" role="dialog" aria-label="Pilih periode klaim" hidden></div>
+  </div>
+</div>
+```
+
+#### Range with quick ranges
+
+The six standard periods on the left. The one that matches the pick is marked, so a range made by hand that equals "Bulan ini" shows it too.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="dp-7">Periode klaim</label>
+  <div class="sb-dp" data-type="range" data-start="2026-10-01" data-end="2026-10-14" data-today="2026-10-14" data-presets>
+    <div class="sb-input">
+      <button class="sb-dp-toggle" type="button" aria-label="Pilih tanggal" aria-haspopup="dialog" aria-expanded="false" aria-controls="dp-7-cal"><svg aria-hidden="true"><!-- calendar --></svg></button>
+      <input id="dp-7" type="text" inputmode="numeric" placeholder="dd/mm/yyyy – dd/mm/yyyy" value="01/10/2026 – 14/10/2026" autocomplete="off">
+    </div>
+    <div class="sb-dp-panel" id="dp-7-cal" role="dialog" aria-label="Pilih periode klaim" hidden></div>
+  </div>
+</div>
+```
+
+### States
+
+#### Field
+
+| State | Look |
+| --- | --- |
+| Default | Input field: `gray-300` border, placeholder dd/mm/yyyy in `gray-500`. |
+| Open | The field keeps the focus look (`brand-300` border, `focus-ring`) while the calendar is open, even with focus in the calendar. |
+| Error | A typed date that does not exist, is in the wrong format or is outside min / max: Input field error state, and the hint says what to write. |
+| Disabled | Input field disabled; the calendar button cannot open. |
+
+#### Day
+
+| Day | Fill | Number |
+| --- | --- | --- |
+| Default | none | `gray-700` |
+| Hover | `gray-50` | `gray-900` |
+| Today | none, 4 px `brand-600` dot | `gray-700` |
+| Selected / range end | `brand-600` (hover `brand-700`) | `white`, Medium; the today dot turns `white` |
+| In range | `brand-50` band (hover `brand-100`) | `brand-700` |
+| Other month, outside min / max | none | `gray-400`; outside min / max cannot be picked |
+| Focused | 2 px `brand-600` outline, 1 px out | as its state |
+
+### Do and don't
+
+**Do:** A field people can type into, dd/mm/yyyy.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="dp-12">Tanggal masuk</label>
+  <div class="sb-dp" data-type="single" data-value="2026-10-08" data-today="2026-10-14">
+    <div class="sb-input">
+      <button class="sb-dp-toggle" type="button" aria-label="Pilih tanggal" aria-haspopup="dialog" aria-expanded="false" aria-controls="dp-12-cal"><svg aria-hidden="true"><!-- calendar --></svg></button>
+      <input id="dp-12" type="text" inputmode="numeric" placeholder="dd/mm/yyyy" value="08/10/2026" autocomplete="off">
+    </div>
+    <div class="sb-dp-panel" id="dp-12-cal" role="dialog" aria-label="Pilih tanggal masuk" hidden></div>
+  </div>
+</div>
+```
+
+**Don't:** A long date in the field. It cannot be typed and does not fit.
+
+```html
+<div class="sb-field">
+  <label class="sb-field-label" for="dp-13">Tanggal masuk</label>
+  <div class="sb-dp" data-type="single" data-value="2026-10-08" data-today="2026-10-14">
+    <div class="sb-input">
+      <button class="sb-dp-toggle" type="button" aria-label="Pilih tanggal" aria-haspopup="dialog" aria-expanded="false" aria-controls="dp-13-cal"><svg aria-hidden="true"><!-- calendar --></svg></button>
+      <input id="dp-13" type="text" inputmode="numeric" placeholder="dd/mm/yyyy" value="Rabu, 8 Oktober 2026" autocomplete="off">
+    </div>
+    <div class="sb-dp-panel" id="dp-13-cal" role="dialog" aria-label="Pilih tanggal masuk" hidden></div>
+  </div>
+</div>
+```
+
+### Accessibility
+
+- The field is a real text input with a `<label>`, so the date can always be typed; the calendar is a shortcut, not the only way in.
+- The calendar button has `aria-haspopup="dialog"` and `aria-expanded`; the panel is a non-modal `role="dialog"` named after the field.
+- Each month is a `role="grid"` labelled by its month name. Weekday headers carry the full name in `abbr`. Each day is a button whose label is the full date ("14 Oktober 2026"); today has `aria-current="date"`; selected days sit in cells with `aria-selected`.
+- One day is in the tab order at a time (roving `tabindex`). Changing month announces the new month (`aria-live="polite"`).
+- Days that cannot be picked have `aria-disabled` and stay focusable, so arrow keys still pass over them.
+
+| Key | In the calendar |
+| --- | --- |
+| ↓ (in the field) | Opens the calendar on the selected day, or today |
+| ← → ↑ ↓ | Previous / next day, same day last / next week; crosses into other months |
+| Home / End | Monday / Sunday of the week |
+| PageUp / PageDown | Same day last / next month (Shift: year) |
+| Enter / Space | Picks the day (Single closes; Range sets the start or end) |
+| Esc | Closes without changing the field; focus returns to it |
+
+| Text | On | Ratio | AA |
+| --- | --- | --- | --- |
+| Day `gray-700` | `white` | 10.46:1 | Passes |
+| Weekday `gray-500` | `white` | 4.97:1 | Passes |
+| Selected `white` | `brand-600` | 5.06:1 | Passes |
+| In range `brand-700` | `brand-50` | 6.09:1 | Passes |
+
+### Code
+
+Load `tokens.css`, `input-field.css` and `button.css`, then `date-picker.css`, and add `date-picker.js`. The markup is only the field and an empty panel; the script draws the calendar when it opens and fires `sb-date-change` with `{ start, end }` when a date is committed.
+
+`date-picker.css`
+
+```css
+/* Date picker, Codemasters Design System
+   Needs tokens.css, input-field.css (the field) and button.css (the range footer); date-picker.js renders the calendar.
+
+   <div class="sb-field">
+     <label class="sb-field-label" for="masuk">Tanggal masuk</label>
+     <div class="sb-dp" data-type="single" data-value="2026-10-08" data-max="2026-10-14">
+       <div class="sb-input">
+         <button class="sb-dp-toggle" type="button" aria-label="Pilih tanggal" aria-haspopup="dialog" aria-expanded="false" aria-controls="masuk-cal">…calendar…</button>
+         <input id="masuk" type="text" inputmode="numeric" placeholder="dd/mm/yyyy" value="08/10/2026" autocomplete="off">
+       </div>
+       <div class="sb-dp-panel" id="masuk-cal" role="dialog" aria-label="Pilih tanggal masuk" hidden></div>
+     </div>
+   </div>
+
+   data-type      single (one month, picks and closes) | range (two months, Batal and Terapkan)
+   data-value     single: the date, ISO yyyy-mm-dd. Range: data-start and data-end
+   data-min, data-max   dates outside are shown but cannot be picked
+   data-presets   range only: the quick ranges on the left (Hari ini … Bulan lalu)
+   The field shows dd/mm/yyyy (DESIGN.md §7); typed dates commit on change. */
+
+.sb-dp { position: relative; }
+.sb-dp input { font-variant-numeric: tabular-nums; }
+/* Calendar button: the field's leading icon, a 32 hit area that does not widen the field. */
+.sb-dp-toggle {
+  display: inline-grid; place-items: center; flex: none; width: 32px; height: 32px; margin-inline: -6px; padding: 0;
+  border: 0; border-radius: var(--radius-sm); background: none; color: var(--text-quaternary); cursor: pointer;
+  transition: color 150ms var(--ease);
+}
+.sb-dp-toggle > svg { width: 20px; height: 20px; }
+.sb-dp-toggle:is(:hover, [aria-expanded="true"]) { color: var(--text-secondary); }
+.sb-dp-toggle:focus-visible { outline: 2px solid var(--brand-600); outline-offset: -2px; }
+.sb-dp:has(.sb-dp-toggle[aria-expanded="true"]) .sb-input { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+
+/* Panel: opens 8 below the field, white, radius 12, shadow-lg. Months side by side with a divider. */
+.sb-dp-panel {
+  position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline-start: 0;
+  display: flex; width: max-content; box-sizing: border-box;
+  background: var(--bg-primary); border: 1px solid var(--border-tertiary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  font-family: var(--font);
+}
+.sb-dp-panel[hidden] { display: none; }
+.sb-dp[data-type="single"] .sb-dp-panel { inset-inline-end: 0; width: auto; min-width: max-content; } /* as wide as the field */
+.sb-dp-main { display: grid; }
+.sb-dp-months { display: flex; flex: 1; }
+.sb-dp-month { flex: 1; padding: 16px; } /* months fill the panel; a single month as wide as the field */
+.sb-dp-month + .sb-dp-month { border-inline-start: 1px solid var(--border-secondary); }
+.sb-dp-head { display: grid; grid-template-columns: 32px 1fr 32px; align-items: center; margin-bottom: 8px; }
+.sb-dp-title { margin: 0; text-align: center; font: 500 var(--text-sm) var(--font); color: var(--text-primary); } /* Text sm stops at Medium in app UI */
+.sb-dp-nav {
+  display: inline-grid; place-items: center; width: 32px; height: 32px; margin: 0; padding: 0;
+  border: 0; border-radius: var(--radius-md); background: none; color: var(--text-quaternary); cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-dp-nav > svg { width: 20px; height: 20px; }
+.sb-dp-nav:hover { background: var(--bg-secondary); color: var(--text-secondary); }
+.sb-dp-nav:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
+
+/* Grid: 32 px days, rows 4 apart; columns touch, so a range reads as one band. */
+.sb-dp-grid { width: 100%; border-collapse: separate; border-spacing: 0 4px; margin-block: -4px; } /* columns share a wider panel */
+.sb-dp-grid th { width: 32px; height: 32px; padding: 0; font: 500 var(--text-xs) var(--font); color: var(--text-quaternary); }
+.sb-dp-grid td { padding: 0; }
+.sb-dp-grid td > .sb-dp-day { margin-inline: auto; }
+.sb-dp-day {
+  position: relative; display: grid; place-items: center; width: 32px; height: 32px; margin: 0; padding: 0;
+  border: 0; border-radius: var(--radius-sm); background: none;
+  font: 400 var(--text-sm) var(--font); font-variant-numeric: tabular-nums; color: var(--text-secondary); cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-dp-day:hover { background: var(--bg-secondary); color: var(--text-primary); }
+.sb-dp-day:focus-visible { z-index: 1; outline: 2px solid var(--brand-600); outline-offset: 1px; }
+.sb-dp-day[data-outside], .sb-dp-day[aria-disabled="true"] { color: var(--text-disabled); }
+.sb-dp-day[aria-disabled="true"] { background: none; cursor: not-allowed; }
+/* Today: a 4 px dot under the number. */
+.sb-dp-day[aria-current="date"]::after { content: ''; position: absolute; bottom: 4px; left: 50%; translate: -50% 0; width: 4px; height: 4px; border-radius: var(--radius-full); background: var(--fg-brand); }
+
+/* Range: brand-50 band between the ends; each end fills half its cell, so the band starts at the end's centre. */
+.sb-dp-grid td[data-range="mid"] { background: var(--bg-brand-subtle); }
+.sb-dp-grid td[data-range="start"] { background: linear-gradient(to right, transparent 50%, var(--bg-brand-subtle) 50%); }
+.sb-dp-grid td[data-range="end"] { background: linear-gradient(to left, transparent 50%, var(--bg-brand-subtle) 50%); }
+.sb-dp-grid td[data-range="mid"]:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.sb-dp-grid td[data-range="mid"]:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.sb-dp-grid td[data-range="mid"] > .sb-dp-day { color: var(--text-brand); }
+.sb-dp-grid td[data-range="mid"] > .sb-dp-day:hover { background: var(--bg-brand-subtle-hover); }
+/* Selected day, and both ends of a range: the primary fill. */
+.sb-dp-grid td[aria-selected]:not([data-range="mid"]) > .sb-dp-day { background: var(--brand-600); color: var(--white); font-weight: 500; }
+.sb-dp-grid td[aria-selected]:not([data-range="mid"]) > .sb-dp-day:hover { background: var(--brand-700); }
+.sb-dp-grid td[aria-selected]:not([data-range="mid"]) > .sb-dp-day::after { background: var(--white); }
+
+/* Presets: the quick ranges, left of the months. */
+.sb-dp-presets { display: grid; align-content: start; gap: 4px; width: 160px; padding: 12px; border-inline-end: 1px solid var(--border-secondary); }
+.sb-dp-preset {
+  height: 36px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-md); background: none;
+  font: 500 var(--text-sm) var(--font); color: var(--text-secondary); text-align: start; cursor: pointer;
+  transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
+}
+.sb-dp-preset:hover { background: var(--bg-secondary); }
+.sb-dp-preset[aria-pressed="true"] { background: var(--bg-brand-subtle); color: var(--text-brand); } /* the matching range: brand-50 + brand-700, apart from the gray hover */
+.sb-dp-preset:focus-visible { outline: 2px solid var(--brand-600); outline-offset: -2px; }
+
+/* Footer (range): the pick on the left, Batal and Terapkan on the right, gap 12 like any button row. */
+.sb-dp-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; border-top: 1px solid var(--border-secondary); }
+.sb-dp-picked { font: 500 var(--text-sm) var(--font); font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+.sb-dp-actions { display: flex; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-dp-toggle, .sb-dp-nav, .sb-dp-day, .sb-dp-preset { transition: none; }
+}
+```
+
+#### Script
+
+`date-picker.js`
+
+```js
+// Date picker: click the field or the calendar button, or press ↓ in the field, to open. In the calendar:
+// ← → ↑ ↓ move by day and week, Home / End to the week's ends, PageUp / PageDown by month (with Shift by year),
+// Enter or Space picks, Esc closes. A range needs Terapkan. Every committed value fires "sb-date-change".
+const dpIso = d => d.toISOString().slice(0, 10);
+const dpDate = s => new Date(`${s}T00:00:00Z`);
+const dpAdd = (s, days) => { const d = dpDate(s); d.setUTCDate(d.getUTCDate() + days); return dpIso(d); };
+const dpFirst = s => `${s.slice(0, 8)}01`;
+const dpMonthAdd = (s, n) => { const d = dpDate(dpFirst(s)); d.setUTCMonth(d.getUTCMonth() + n); return dpIso(d); };
+const dpShift = (s, n) => { const first = dpMonthAdd(s, n), last = dpAdd(dpMonthAdd(first, 1), -1); return `${first.slice(0, 8)}${String(Math.min(+s.slice(8), +last.slice(8))).padStart(2, '0')}`; };
+const dpFmt = (s, o) => dpDate(s).toLocaleDateString('id-ID', { timeZone: 'UTC', ...o });
+const dpToday = () => { const d = new Date(); return dpIso(new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))); };
+const dpText = s => s.split('-').reverse().join('/');
+const dpPresets = t => [
+    ['Hari ini', t, t], ['Kemarin', dpAdd(t, -1), dpAdd(t, -1)], ['7 hari terakhir', dpAdd(t, -6), t],
+    ['30 hari terakhir', dpAdd(t, -29), t], ['Bulan ini', dpFirst(t), t], ['Bulan lalu', dpMonthAdd(t, -1), dpAdd(dpFirst(t), -1)],
+  ];
+function dpParse(v) {
+  const m = v.trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (!m) return null;
+  const s = `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`, d = dpDate(s);
+  return !Number.isNaN(+d) && dpIso(d) === s ? s : null; // rejects 31/02
+}
+function dpMonth(first, st, i, n) {
+  const WEEK = [['Sen', 'Senin'], ['Sel', 'Selasa'], ['Rab', 'Rabu'], ['Kam', 'Kamis'], ['Jum', 'Jumat'], ['Sab', 'Sabtu'], ['Min', 'Minggu']];
+  const chev = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+  const nav = step => `<button class="sb-dp-nav" type="button" data-step="${step}" aria-label="${step < 0 ? 'Bulan sebelumnya' : 'Bulan berikutnya'}">${chev(step < 0 ? 'm15 18-6-6 6-6' : 'm9 18 6-6-6-6')}</button>`;
+  const lead = (dpDate(first).getUTCDay() + 6) % 7, days = +dpAdd(dpMonthAdd(first, 1), -1).slice(8), end = st.end || st.start;
+  let rows = '';
+  for (let w = 0; w < Math.ceil((lead + days) / 7); w++) {
+    rows += '<tr>';
+    for (let c = 0; c < 7; c++) {
+      const day = dpAdd(first, w * 7 + c - lead), inMonth = day.slice(0, 7) === first.slice(0, 7);
+      if (!inMonth && st.range) { rows += '<td></td>'; continue; } // two months side by side: no repeated days
+      const on = st.start && day >= st.start && day <= end;
+      const band = st.range && on ? ` data-range="${[day === st.start && 'start', day === end && 'end'].filter(Boolean).join(' ') || 'mid'}"` : '';
+      const off = (st.min && day < st.min) || (st.max && day > st.max);
+      rows += `<td${on ? ' aria-selected="true"' : ''}${band}><button class="sb-dp-day" type="button" tabindex="${day === st.focus ? 0 : -1}" data-date="${day}" aria-label="${dpFmt(day, { day: 'numeric', month: 'long', year: 'numeric' })}"${day === st.today ? ' aria-current="date"' : ''}${inMonth ? '' : ' data-outside'}${off ? ' aria-disabled="true"' : ''}>${+day.slice(8)}</button></td>`;
+    }
+    rows += '</tr>';
+  }
+  return `<div class="sb-dp-month"><div class="sb-dp-head">${i === 0 ? nav(-1) : '<span></span>'}<p class="sb-dp-title" id="${st.id}-m${i}">${dpFmt(first, { month: 'long', year: 'numeric' })}</p>${i === n - 1 ? nav(1) : '<span></span>'}</div><table class="sb-dp-grid" role="grid" aria-labelledby="${st.id}-m${i}"><thead><tr>${WEEK.map(([s, l]) => `<th scope="col" abbr="${l}">${s}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function dpPanel(st) {
+  const views = st.range ? [st.view, dpMonthAdd(st.view, 1)] : [st.view];
+  const months = `<div class="sb-dp-months" aria-live="polite">${views.map((m, i) => dpMonth(m, st, i, views.length)).join('')}</div>`;
+  if (!st.range) return months;
+  const short = { day: 'numeric', month: 'short', year: 'numeric' };
+  const presets = st.presets ? `<div class="sb-dp-presets" role="group" aria-label="Rentang cepat">${dpPresets(st.today).map(([l, a, b]) => `<button class="sb-dp-preset" type="button" data-start="${a}" data-end="${b}" aria-pressed="${a === st.start && b === st.end}">${l}</button>`).join('')}</div>` : '';
+  const picked = st.start ? `${dpFmt(st.start, short)} – ${st.end ? dpFmt(st.end, short) : '…'}` : 'Pilih tanggal awal';
+  return `${presets}<div class="sb-dp-main">${months}<div class="sb-dp-foot"><span class="sb-dp-picked">${picked}</span><div class="sb-dp-actions"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm" data-dp="cancel">Batal</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm" data-dp="apply"${st.start && st.end ? '' : ' disabled'}>Terapkan</button></div></div></div>`;
+}
+function dpState(dp) {
+  const s = dp.dataset;
+  return { id: dp.querySelector('.sb-dp-panel').id, range: s.type === 'range', start: s.pickStart, end: s.pickEnd, view: s.view, focus: s.focus, min: s.min, max: s.max, today: s.today || dpToday(), presets: 'presets' in s };
+}
+function dpDraw(dp, focus) {
+  const panel = dp.querySelector('.sb-dp-panel');
+  panel.innerHTML = dpPanel(dpState(dp));
+  if (focus) panel.querySelector(focus === true ? `[data-date="${dp.dataset.focus}"]` : focus)?.focus();
+}
+function dpOpen(dp, focusGrid) {
+  const s = dp.dataset, range = s.type === 'range';
+  s.pickStart = (range ? s.start : s.value) || '';
+  s.pickEnd = (range ? s.end : s.value) || '';
+  s.focus = s.pickStart || s.today || dpToday();
+  s.view = dpFirst(s.focus);
+  dp.querySelector('.sb-dp-panel').hidden = false;
+  dp.querySelector('.sb-dp-toggle').setAttribute('aria-expanded', 'true');
+  dpDraw(dp, focusGrid);
+}
+function dpClose(dp, focusInput) {
+  dp.querySelector('.sb-dp-panel').hidden = true;
+  dp.querySelector('.sb-dp-toggle').setAttribute('aria-expanded', 'false');
+  if (focusInput) dp.querySelector('input').focus();
+}
+function dpCommit(dp, start, end) {
+  const s = dp.dataset, input = dp.querySelector('input');
+  if (s.type === 'range') Object.assign(s, { start, end });
+  else s.value = start;
+  input.value = s.type === 'range' ? `${dpText(start)} – ${dpText(end)}` : dpText(start);
+  input.removeAttribute('aria-invalid');
+  dp.dispatchEvent(new CustomEvent('sb-date-change', { bubbles: true, detail: { start, end } }));
+}
+function dpClick(e) {
+  const dp = e.target.closest?.('.sb-dp');
+  document.querySelectorAll('.sb-dp').forEach(o => o !== dp && !o.querySelector('.sb-dp-panel').hidden && dpClose(o));
+  const t = dp && e.target.closest('button, input');
+  if (!t || t.disabled) return;
+  const s = dp.dataset, open = !dp.querySelector('.sb-dp-panel').hidden;
+  if (t.matches('.sb-dp-toggle')) return open ? dpClose(dp, true) : dpOpen(dp, true);
+  if (t.matches('input')) return open || dpOpen(dp, false); // typing stays possible; ↓ moves into the calendar
+  if (t.matches('.sb-dp-nav')) {
+    s.view = dpMonthAdd(s.view, +t.dataset.step);
+    s.focus = s.view;
+    return dpDraw(dp, `.sb-dp-nav[data-step="${t.dataset.step}"]`);
+  }
+  if (t.matches('.sb-dp-day')) {
+    if (t.getAttribute('aria-disabled') === 'true') return;
+    const day = (s.focus = t.dataset.date);
+    if (s.type !== 'range') { dpCommit(dp, day, day); return dpClose(dp, true); }
+    if (!s.pickStart || s.pickEnd || day < s.pickStart) Object.assign(s, { pickStart: day, pickEnd: '' });
+    else s.pickEnd = day;
+    return dpDraw(dp, true);
+  }
+  if (t.matches('.sb-dp-preset')) {
+    Object.assign(s, { pickStart: t.dataset.start, pickEnd: t.dataset.end, focus: t.dataset.start, view: dpFirst(t.dataset.start) });
+    return dpDraw(dp, `.sb-dp-preset[data-start="${t.dataset.start}"][data-end="${t.dataset.end}"]`);
+  }
+  if (t.dataset.dp === 'apply') { dpCommit(dp, s.pickStart, s.pickEnd); return dpClose(dp, true); }
+  if (t.dataset.dp === 'cancel') dpClose(dp, true);
+}
+function dpKeydown(e) {
+  const dp = e.target.closest?.('.sb-dp');
+  if (!dp) return;
+  const s = dp.dataset, open = !dp.querySelector('.sb-dp-panel').hidden;
+  if (e.key === 'Escape' && open) { e.preventDefault(); return dpClose(dp, true); }
+  if (e.key === 'ArrowDown' && e.target.matches('input')) { e.preventDefault(); return dpOpen(dp, true); }
+  const day = e.target.closest('.sb-dp-day')?.dataset.date;
+  if (!day) return;
+  const col = (dpDate(day).getUTCDay() + 6) % 7, year = e.shiftKey ? 12 : 1;
+  const to = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7, Home: -col, End: 6 - col }[e.key];
+  const next = to !== undefined ? dpAdd(day, to) : e.key === 'PageUp' ? dpShift(day, -year) : e.key === 'PageDown' ? dpShift(day, year) : null;
+  if (!next) return;
+  e.preventDefault();
+  const shown = s.type === 'range' ? 2 : 1;
+  if (next < s.view) s.view = dpFirst(next);
+  else if (next >= dpMonthAdd(s.view, shown)) s.view = dpMonthAdd(next, 1 - shown);
+  s.focus = next;
+  dpDraw(dp, true);
+}
+function dpChange(e) {
+  const input = e.target.closest?.('.sb-dp input');
+  if (!input) return;
+  const dp = input.closest('.sb-dp'), s = dp.dataset, v = input.value.trim();
+  if (!v) { delete s.value; delete s.start; delete s.end; return input.removeAttribute('aria-invalid'); }
+  const [a = '', b = a] = s.type === 'range' ? v.split(/\s*[–-]\s*/) : [v];
+  const start = dpParse(a), end = dpParse(b);
+  const ok = start && end && start <= end && !(s.min && start < s.min) && !(s.max && end > s.max);
+  if (ok) dpCommit(dp, start, end);
+  else input.setAttribute('aria-invalid', 'true');
+}
+document.addEventListener('click', dpClick);
+document.addEventListener('keydown', dpKeydown);
+document.addEventListener('change', dpChange);
 ```
 
 ## Dropdown menu
@@ -4726,64 +5846,64 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-wrap { position: relative; display: inline-flex; }
 
 /* Triggers */
-.sb-menu-wrap > .sb-btn[aria-expanded="true"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--gray-100); } /* open: chevron up + gray-100 ring */
+.sb-menu-wrap > .sb-btn[aria-expanded="true"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-tertiary); } /* open: chevron up + gray-100 ring */
 .sb-menu-icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 32px; height: 32px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-md); /* hit area at least 32 x 32; radius 8 like every icon button of 32+ */
-  background: none; color: var(--gray-500); cursor: pointer;
+  background: none; color: var(--text-quaternary); cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-menu-icon > svg { width: 20px; height: 20px; }
-.sb-menu-icon:hover, .sb-menu-icon[aria-expanded="true"] { background: var(--gray-50); color: var(--gray-700); }
+.sb-menu-icon:hover, .sb-menu-icon[aria-expanded="true"] { background: var(--bg-secondary); color: var(--text-secondary); }
 .sb-menu-icon:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-menu-avatar {
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full);
-  background: var(--brand-50); font: 500 var(--text-md) var(--font); color: var(--brand-600); cursor: pointer;
+  background: var(--bg-brand-subtle); font: 500 var(--text-md) var(--font); color: var(--fg-brand); cursor: pointer;
   transition: box-shadow 150ms var(--ease);
 }
-.sb-menu-avatar:hover { box-shadow: 0 0 0 4px var(--gray-100); }
+.sb-menu-avatar:hover { box-shadow: 0 0 0 4px var(--bg-tertiary); }
 .sb-menu-avatar:focus-visible, .sb-menu-avatar[aria-expanded="true"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
 
 /* Panel: 240 wide (wider for long labels, never truncated), opens 8 below, right-aligned. */
 .sb-menu {
   position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline-end: 0;
   box-sizing: border-box; min-width: 240px; overflow: hidden;
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  background: var(--bg-primary); border: 1px solid var(--border-tertiary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
 }
 .sb-menu[hidden] { display: none; }
 .sb-menu-group { padding: 4px; } /* items sit inset, as rounded rows; dividers stay full width */
-.sb-menu-sep { height: 1px; background: var(--gray-100); }
+.sb-menu-sep { height: 1px; background: var(--bg-tertiary); }
 
 /* Header */
 .sb-menu-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
-.sb-menu-header-title { font: 600 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-menu-person { position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--brand-50); font: 500 var(--text-md) var(--font); color: var(--brand-600); }
-.sb-menu-person::after { content: ''; position: absolute; right: -1px; bottom: -1px; width: 10px; height: 10px; border: 1.5px solid var(--white); border-radius: var(--radius-full); background: var(--success-500); }
-.sb-menu-name { display: block; font: 600 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-menu-email { display: block; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-menu-header-title { font: 600 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-menu-person { position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--bg-brand-subtle); font: 500 var(--text-md) var(--font); color: var(--fg-brand); }
+.sb-menu-person::after { content: ''; position: absolute; right: -1px; bottom: -1px; width: 10px; height: 10px; border: 1.5px solid var(--bg-primary); border-radius: var(--radius-full); background: var(--success-500); }
+.sb-menu-name { display: block; font: 600 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-menu-email { display: block; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
 /* Item: 40 high, padding 10 12 (text still 16 from the edge), gap 12, radius 8 (12 panel - 4 padding) */
 .sb-menu-item {
   box-sizing: border-box; display: flex; align-items: center; gap: 12px;
   width: 100%; height: 40px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-md);
-  background: none; font: 500 var(--text-sm) var(--font); color: var(--gray-700); text-align: start; white-space: nowrap;
+  background: none; font: 500 var(--text-sm) var(--font); color: var(--text-secondary); text-align: start; white-space: nowrap;
   cursor: pointer;
 }
 .sb-menu-item > svg { width: 16px; height: 16px; flex: none; }
-.sb-menu-item:hover, .sb-menu-item:focus { outline: none; background: var(--gray-50); }
+.sb-menu-item:hover, .sb-menu-item:focus { outline: none; background: var(--bg-secondary); }
 .sb-menu-item:focus-visible { box-shadow: inset 0 0 0 2px var(--brand-600); }
 .sb-menu-label { flex: 1; }
-.sb-menu-kbd { margin-inline-start: 16px; font: 400 var(--text-xs) var(--font); color: var(--gray-500); }
+.sb-menu-kbd { margin-inline-start: 16px; font: 400 var(--text-xs) var(--font); color: var(--text-quaternary); }
 .sb-menu-item[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 
 /* Checkbox (16 px, radius 4) */
 .sb-menu-box {
   box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; flex: none;
-  width: 16px; height: 16px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm); background: var(--white); color: var(--brand-600);
+  width: 16px; height: 16px; border: 1px solid var(--border-primary); border-radius: var(--radius-sm); background: var(--bg-primary); color: var(--fg-brand);
 }
 .sb-menu-box > svg { width: 12px; height: 12px; visibility: hidden; }
-.sb-menu-item:hover .sb-menu-box, .sb-menu-item:focus .sb-menu-box, .sb-menu-item[aria-checked="true"] .sb-menu-box { background: var(--brand-50); border-color: var(--brand-600); }
+.sb-menu-item:hover .sb-menu-box, .sb-menu-item:focus .sb-menu-box, .sb-menu-item[aria-checked="true"] .sb-menu-box { background: var(--bg-brand-subtle); border-color: var(--brand-600); }
 .sb-menu-item[aria-checked="true"] .sb-menu-box > svg { visibility: visible; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5026,7 +6146,7 @@ Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-me
   position: sticky; top: 0; z-index: 10;
   box-sizing: border-box; display: flex; align-items: center; gap: 24px;
   height: 80px; padding: 0 32px;
-  background: var(--white); border-bottom: 1px solid var(--gray-200);
+  background: var(--bg-primary); border-bottom: 1px solid var(--border-secondary);
   font-family: var(--font);
 }
 
@@ -5036,23 +6156,23 @@ Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-me
 .sb-header-title > :not(.sb-header-heading, nav) { flex: none; }
 .sb-header-title > nav { min-width: 0; }
 .sb-header-title > nav + .sb-header-heading { flex: none; }
-.sb-header-heading { min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 var(--display-xs) var(--font); color: var(--gray-900); }
+.sb-header-heading { min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 var(--display-xs) var(--font); color: var(--text-primary); }
 .sb-header-title > .sb-btn { margin-inline-end: 4px; } /* back button: 16 to the breadcrumb */
 
 /* Breadcrumb: the levels above the page in Display xs / Medium gray-500, "/" in gray-300 between them. */
-.sb-crumbs { display: flex; align-items: center; gap: 12px; margin: 0; padding: 0; list-style: none; font: 500 var(--display-xs) var(--font); color: var(--gray-500); white-space: nowrap; }
+.sb-crumbs { display: flex; align-items: center; gap: 12px; margin: 0; padding: 0; list-style: none; font: 500 var(--display-xs) var(--font); color: var(--text-quaternary); white-space: nowrap; }
 .sb-crumbs > li { display: flex; align-items: center; min-width: 0; }
 .sb-crumbs > li:has(.sb-menu-wrap) { flex: none; }
-.sb-crumbs > li::after { content: '/' / ''; margin-inline-start: 12px; color: var(--gray-300); }
+.sb-crumbs > li::after { content: '/' / ''; margin-inline-start: 12px; color: var(--border-primary); }
 .sb-crumb { overflow: hidden; text-overflow: ellipsis; border-radius: var(--radius-sm); color: inherit; text-decoration: none; transition: color 150ms var(--ease); }
-.sb-crumb:hover { color: var(--gray-700); }
+.sb-crumb:hover { color: var(--text-secondary); }
 .sb-crumb:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-crumb-more {
   height: 32px; margin: 0; padding: 0 6px; border: 0; border-radius: var(--radius-md);
   background: none; font: inherit; color: inherit; cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-crumb-more:is(:hover, [aria-expanded="true"]) { background: var(--gray-50); color: var(--gray-700); }
+.sb-crumb-more:is(:hover, [aria-expanded="true"]) { background: var(--bg-secondary); color: var(--text-secondary); }
 .sb-crumb-more:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-crumbs .sb-menu { inset-inline: 0 auto; } /* opens under the "…", left-aligned */
 .sb-crumbs a.sb-menu-item { text-decoration: none; }
@@ -5063,7 +6183,7 @@ Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-me
 /* Actions: Buttons lg, gap 8, the primary action last. */
 .sb-header-actions { display: flex; flex: none; align-items: center; gap: 8px; }
 .sb-header-bell { position: relative; }
-.sb-header-dot { position: absolute; top: 10px; right: 11px; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--error-500); box-shadow: 0 0 0 2px var(--white); }
+.sb-header-dot { position: absolute; top: 10px; right: 11px; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--error-500); box-shadow: 0 0 0 2px var(--bg-primary); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-crumb, .sb-crumb-more { transition: none; }
@@ -5462,8 +6582,8 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
    data-state="open" on .sb-dd-trigger forces Open/focused in static mockups and docs only. */
 
 .sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
-.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
 .sb-dd { position: relative; }
 
@@ -5471,32 +6591,32 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-trigger {
   box-sizing: border-box; display: flex; align-items: center; gap: 8px;
   width: 100%; height: 44px; margin: 0; padding: 0 14px;
-  font: 400 var(--text-md) var(--font); color: var(--gray-900); text-align: start;
-  background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  font: 400 var(--text-md) var(--font); color: var(--text-primary); text-align: start;
+  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
   cursor: pointer;
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-dd-trigger:hover:not(:disabled, [aria-expanded="true"], :focus-within) { border-color: var(--gray-400); }
+.sb-dd-trigger:hover:not(:disabled, [aria-expanded="true"], :focus-within) { border-color: var(--border-strong); }
 .sb-dd-trigger:focus-visible, .sb-dd-trigger[aria-expanded="true"], .sb-dd-trigger:has([aria-expanded="true"], input:focus), .sb-dd-trigger[data-state="open"] {
-  outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
 }
 .sb-dd-trigger:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-dd-value, .sb-dd-main { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 .sb-dd-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sb-dd-sup { flex: none; color: var(--gray-500); font-weight: 400; }
-.sb-dd-placeholder { color: var(--gray-500); }
-.sb-dd-trigger > svg, .sb-dd-value > svg, .sb-dd-main > svg { width: 20px; height: 20px; flex: none; color: var(--gray-500); }
+.sb-dd-sup { flex: none; color: var(--text-quaternary); font-weight: 400; }
+.sb-dd-placeholder { color: var(--text-quaternary); }
+.sb-dd-trigger > svg, .sb-dd-value > svg, .sb-dd-main > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
 .sb-dd-chevron { transition: rotate 200ms var(--ease); }
 .sb-dd-trigger[aria-expanded="true"] .sb-dd-chevron, .sb-dd-trigger[data-state="open"] .sb-dd-chevron { rotate: 180deg; }
 .sb-dd-trigger[data-type="search"] { cursor: text; }
 .sb-dd-trigger input { flex: 1; min-width: 0; height: 100%; margin: 0; padding: 0; border: 0; outline: 0; background: none; font: inherit; color: inherit; }
-.sb-dd-trigger input::placeholder { color: var(--gray-500); opacity: 1; }
+.sb-dd-trigger input::placeholder { color: var(--text-quaternary); opacity: 1; }
 
 /* Leading elements */
 .sb-dd-avatar {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
   width: 24px; height: 24px; border-radius: var(--radius-full);
-  background: var(--brand-50); font: 500 var(--text-xs) var(--font); color: var(--brand-600);
+  background: var(--bg-brand-subtle); font: 500 var(--text-xs) var(--font); color: var(--fg-brand);
 }
 .sb-dd-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
 
@@ -5504,26 +6624,26 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-menu {
   position: absolute; z-index: 30; top: calc(100% + 8px); inset-inline: 0;
   box-sizing: border-box; max-height: 320px; overflow-y: auto; padding: 4px; /* options sit inset, as rounded rows */
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
-  scrollbar-width: thin; scrollbar-color: var(--gray-200) transparent;
+  background: var(--bg-primary); border: 1px solid var(--border-tertiary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  scrollbar-width: thin; scrollbar-color: var(--border-secondary) transparent;
 }
 .sb-dd-menu[hidden] { display: none; }
 /* _Scroll bar: 16 wide with padding 4, thumb 8 wide gray-200 radius 8, no track. Shows only when the list scrolls. */
 .sb-dd-menu::-webkit-scrollbar { width: 16px; }
-.sb-dd-menu::-webkit-scrollbar-thumb { background: var(--gray-200); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
+.sb-dd-menu::-webkit-scrollbar-thumb { background: var(--bg-quaternary); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
 
 /* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 8 (12 panel - 4 padding) */
 .sb-dd-opt {
   display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-md);
-  font: 500 var(--text-md) var(--font); color: var(--gray-900); cursor: pointer;
+  font: 500 var(--text-md) var(--font); color: var(--text-primary); cursor: pointer;
 }
-.sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--gray-50); }
-.sb-dd-opt:hover .sb-dd-main > svg, .sb-dd-opt[data-active] .sb-dd-main > svg { color: var(--gray-700); }
-.sb-dd-check { width: 20px; height: 20px; flex: none; color: var(--brand-600); visibility: hidden; }
+.sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--bg-secondary); }
+.sb-dd-opt:hover .sb-dd-main > svg, .sb-dd-opt[data-active] .sb-dd-main > svg { color: var(--text-secondary); }
+.sb-dd-check { width: 20px; height: 20px; flex: none; color: var(--fg-brand); visibility: hidden; }
 .sb-dd-opt[aria-selected="true"] .sb-dd-check { visibility: visible; }
 .sb-dd-opt[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; }
-.sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--gray-50); }
-.sb-dd-empty { margin: 0; padding: 12px 14px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--bg-secondary); }
+.sb-dd-empty { margin: 0; padding: 12px 14px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-dd-empty[hidden] { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5853,51 +6973,51 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 
 /* Label, control and hint sit 6 apart. */
 .sb-field { display: grid; gap: 6px; }
-.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
 .sb-input {
-  --inp-border: var(--gray-300); --inp-focus: var(--brand-300); --inp-ring: var(--focus-ring);
+  --inp-border: var(--border-primary); --inp-focus: var(--border-brand); --inp-ring: var(--focus-ring);
   position: relative; box-sizing: border-box;
   display: flex; align-items: center; gap: 8px;
   height: 44px; padding: 0 14px; /* control padding exception: 10 14 lands the height on 44 */
-  background: var(--white);
+  background: var(--bg-primary);
   border: 1px solid var(--inp-border); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-input > svg { width: 20px; height: 20px; flex: none; color: var(--gray-500); }
+.sb-input > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
 .sb-input input {
   flex: 1; min-width: 0; height: 100%; margin: 0; padding: 0;
-  font: 400 var(--text-md) var(--font); color: var(--gray-900);
+  font: 400 var(--text-md) var(--font); color: var(--text-primary);
   background: none; border: 0; outline: 0; /* focus shows on the whole field below */
 }
-.sb-input input::placeholder { color: var(--gray-500); opacity: 1; }
+.sb-input input::placeholder { color: var(--text-quaternary); opacity: 1; }
 
 /* States */
-.sb-input:hover:not(:focus-within, :has(input:disabled, [aria-invalid="true"])) { border-color: var(--gray-400); }
+.sb-input:hover:not(:focus-within, :has(input:disabled, [aria-invalid="true"])) { border-color: var(--border-strong); }
 .sb-input:has(input:focus), .sb-input[data-state="focus"] {
   border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--inp-ring);
 }
 .sb-input:has(input:disabled) { opacity: .5; cursor: not-allowed; } /* disabled: the default look at 50 % opacity */
 .sb-input input:disabled { cursor: not-allowed; }
-.sb-input:has([aria-invalid="true"]) { --inp-border: var(--error-300); --inp-focus: var(--error-300); --inp-ring: var(--error-100); }
+.sb-input:has([aria-invalid="true"]) { --inp-border: var(--border-error); --inp-focus: var(--border-error); --inp-ring: var(--bg-error-subtle-hover); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
 
 /* Help icon: 16 px help-circle at the end, opens a Dark tooltip on hover and focus.
    In error it is an alert-circle in error-500. */
 .sb-input-help {
   display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-sm);
-  background: none; color: var(--gray-400); cursor: help;
+  background: none; color: var(--fg-quaternary); cursor: help;
 }
 .sb-input-help > svg { width: 16px; height: 16px; }
-.sb-input-help:hover, .sb-input-help:focus-visible { color: var(--gray-500); }
+.sb-input-help:hover, .sb-input-help:focus-visible { color: var(--text-quaternary); }
 .sb-input-help:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-input:has([aria-invalid="true"]) .sb-input-help { color: var(--error-500); }
 .sb-input-tip {
   position: absolute; z-index: 10; bottom: calc(100% + 8px); inset-inline-end: 4px;
   max-width: 320px; padding: 8px 12px; border-radius: var(--radius-md);
-  background: var(--gray-900); box-shadow: var(--shadow-lg);
+  background: var(--bg-inverse); box-shadow: var(--shadow-lg);
   font: 600 var(--text-xs) var(--font); color: var(--white); white-space: nowrap;
   visibility: hidden; opacity: 0; transition: opacity 150ms var(--ease), visibility 0s 150ms;
 }
@@ -5906,29 +7026,271 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 /* Types */
 .sb-input-select {
   flex: none; height: 100%; margin: 0; padding: 0 24px 0 0; border: 0; outline: 0; appearance: none; cursor: pointer;
-  font: 400 var(--text-md) var(--font); color: var(--gray-900);
+  font: 400 var(--text-md) var(--font); color: var(--text-primary);
   background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center / 20px;
 }
 .sb-input-select:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 .sb-input[data-type="leading-dropdown"] .sb-input-select { margin-inline-end: 4px; } /* dropdown padding 10 12 10 14 */
-.sb-input-prefix { flex: none; font: 400 var(--text-md) var(--font); color: var(--gray-500); }
+.sb-input-prefix { flex: none; font: 400 var(--text-md) var(--font); color: var(--text-quaternary); }
 .sb-input[data-type="leading-text"] { padding-inline-start: 0; gap: 0; }
 .sb-input[data-type="leading-text"] input { padding-inline-start: 14px; }
 .sb-input-addon {
   align-self: stretch; display: flex; align-items: center; flex: none;
-  padding: 0 12px 0 14px; border-inline-end: 1px solid var(--gray-300);
-  font: 400 var(--text-md) var(--font); color: var(--gray-500);
+  padding: 0 12px 0 14px; border-inline-end: 1px solid var(--border-primary);
+  font: 400 var(--text-md) var(--font); color: var(--text-quaternary);
 }
 .sb-input[data-type="payment"] { padding-inline-start: 10px; }
 .sb-input-card {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
   width: 34px; height: 24px; box-sizing: border-box;
-  background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-sm);
+  background: var(--bg-primary); border: 1px solid var(--border-tertiary); border-radius: var(--radius-sm);
 }
 .sb-input-card > svg { width: 22px; height: 14px; }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-input, .sb-input-tip { transition: none; }
+}
+```
+
+## Loading
+
+What people see while data or an action is on its way: skeletons in the shape of the content, a spinner for waits of unknown length, and which to use when (with Button loading, Progress and Toast).
+
+### Usage
+
+- A skeleton stands in for content whose shape is known: the rows of a claim list, a summary card, a profile. It matches the real layout, so nothing jumps when the data arrives.
+- A spinner stands in for a wait whose shape or length is unknown: a search, a panel, a submit. Always with words ("Memuat klaim…") unless it sits inside a button.
+- Wait 300 ms before showing either, so fast answers never flash a loading state; once shown, keep it at least 500 ms.
+- Data already on screen stays while it refreshes: fade it to 50 % with `aria-busy="true"` (as Chart does), never swap it for skeletons.
+- Never stack them: one loading state per region, not a spinner inside a skeleton.
+
+### Anatomy
+
+| # | Part | Spec |
+| --- | --- | --- |
+| 1 | Skeleton group | The region that is loading: `aria-busy="true"` and one visually hidden "Memuat …" line. The shapes inside are `aria-hidden`. |
+| 2 | Circle | Avatars and round icons: the size of the real avatar (`--sk-size`), radius full. |
+| 3 | Line | `gray-100`, radius 4. Text line 12 high in a 20 line (Text sm); heading 20 high in a 30 line (Text xl). Widths vary so it reads as text. |
+| 4 | Spinner | 2 px ring: the colour at 20 % with one quarter at full colour, one turn in 700 ms. Brand `brand-600` on surfaces, `white` on solid buttons (it follows the text colour). |
+| 5 | Label | Text sm `gray-500`, 8 from the spinner, ending in "…". |
+
+### Skeleton
+
+Build the skeleton from the real component, with grey shapes in place of words and numbers; labels and headers that are already known stay as text.
+
+#### Card
+
+```html
+<section class="sb-card" aria-busy="true" aria-label="Ringkasan klaim">
+  <span class="sb-sr-only">Memuat ringkasan klaim…</span>
+  <header class="sb-card-head">
+    <div class="sb-card-heading" style="flex: 1">
+      <span class="sb-skeleton" data-shape="heading" style="width: 45%" aria-hidden="true"></span>
+      <span class="sb-skeleton" data-shape="text" style="width: 30%" aria-hidden="true"></span>
+    </div>
+  </header>
+  <div class="sb-card-body">
+    <dl class="sb-card-rows">
+      <div class="sb-card-row"><dt>Total tagihan</dt><dd><span class="sb-skeleton" data-shape="text" style="width: 112px; margin-inline-start: auto" aria-hidden="true"></span></dd></div>
+      <div class="sb-card-row"><dt>Ditanggung</dt><dd><span class="sb-skeleton" data-shape="text" style="width: 96px; margin-inline-start: auto" aria-hidden="true"></span></dd></div>
+      <div class="sb-card-row"><dt>Tidak ditanggung</dt><dd><span class="sb-skeleton" data-shape="text" style="width: 80px; margin-inline-start: auto" aria-hidden="true"></span></dd></div>
+    </dl>
+  </div>
+</section>
+```
+
+#### Table
+
+Headers stay. Show as many rows as fit, or the page size when it is small; numbers align right like the real cells, status pills keep their pill shape.
+
+```html
+<div class="sb-table-wrap" aria-busy="true">
+  <span class="sb-sr-only">Memuat daftar klaim…</span>
+  <table class="sb-table">
+    <thead><tr><th scope="col">ID Klaim</th><th scope="col">Peserta</th><th scope="col" data-num>Tagihan</th><th scope="col">Status</th></tr></thead>
+    <tbody>
+      <tr><td><span class="sb-skeleton" data-shape="text" style="width: 60%" aria-hidden="true"></span></td><td><span class="sb-skeleton" data-shape="text" style="width: 70%" aria-hidden="true"></span></td><td data-num><span class="sb-skeleton" data-shape="text" style="width: 80%; margin-inline-start: auto" aria-hidden="true"></span></td><td><span class="sb-skeleton" data-shape="rect" style="width: 70%; height: 22px; border-radius: var(--radius-xl)" aria-hidden="true"></span></td></tr>
+      <tr><td><span class="sb-skeleton" data-shape="text" style="width: 60%" aria-hidden="true"></span></td><td><span class="sb-skeleton" data-shape="text" style="width: 55%" aria-hidden="true"></span></td><td data-num><span class="sb-skeleton" data-shape="text" style="width: 70%; margin-inline-start: auto" aria-hidden="true"></span></td><td><span class="sb-skeleton" data-shape="rect" style="width: 60%; height: 22px; border-radius: var(--radius-xl)" aria-hidden="true"></span></td></tr>
+      <tr><td><span class="sb-skeleton" data-shape="text" style="width: 60%" aria-hidden="true"></span></td><td><span class="sb-skeleton" data-shape="text" style="width: 75%" aria-hidden="true"></span></td><td data-num><span class="sb-skeleton" data-shape="text" style="width: 75%; margin-inline-start: auto" aria-hidden="true"></span></td><td><span class="sb-skeleton" data-shape="rect" style="width: 65%; height: 22px; border-radius: var(--radius-xl)" aria-hidden="true"></span></td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+#### Shapes
+
+| Shape | Code | Size |
+| --- | --- | --- |
+| Text line | `data-shape="text"` | 12 high, 4 above and below (a Text sm line); set the width. Labels that are known (Total tagihan) stay as text |
+| Heading | `data-shape="heading"` | 20 high, 5 above and below (a Text xl line) |
+| Circle | `data-shape="circle"` | `--sk-size`, default 40 (Avatar md) |
+| Block | `data-shape="rect"` | Set width, height and the radius of what it replaces (pill: `radius-xl`) |
+
+> **Note:** The shimmer is one sweep across the whole page (`background-attachment: fixed`), 1.5 s, light `white` at 60 % (dark: 6 %). It stops with reduced motion; the grey shapes still say "loading".
+
+### Spinner
+
+#### Sizes
+
+```html
+<div class="sp-row">
+<figure class="sp-cell"><span class="sb-spinner" data-size="sm" role="status" aria-label="Memuat"></span><figcaption class="mx">sm · 16</figcaption></figure>
+<figure class="sp-cell"><span class="sb-spinner" role="status" aria-label="Memuat"></span><figcaption class="mx">md · 20</figcaption></figure>
+<figure class="sp-cell"><span class="sb-spinner" data-size="lg" role="status" aria-label="Memuat"></span><figcaption class="mx">lg · 32</figcaption></figure>
+<figure class="sp-cell"><span class="sb-spinner" data-size="xl" role="status" aria-label="Memuat"></span><figcaption class="mx">xl · 48</figcaption></figure>
+</div>
+```
+
+| Size | px | Ring | Use |
+| --- | --- | --- | --- |
+| sm | 16 | 2 | Inside small buttons, list status lines (Combobox), badges |
+| md | 20 | 2 | Default: buttons md to xl, inline with Text sm / md |
+| lg | 32 | 3 | A card or panel loading |
+| xl | 48 | 4 | A whole page or dialog loading (rare: prefer skeletons) |
+
+#### With words
+
+Outside a button, a spinner always says what is loading. Inline for small places, stacked and centred for a card or a page.
+
+```html
+<div aria-busy="true">
+  <span class="sb-sr-only">Mencari peserta…</span>
+  <div class="sb-loading"><span class="sb-spinner" data-size="sm" aria-hidden="true"></span><span>Mencari peserta…</span></div>
+</div>
+<div aria-busy="true">
+  <span class="sb-sr-only">Memuat dokumen klaim…</span>
+  <div class="sb-loading" data-layout="stack"><span class="sb-spinner" data-size="lg" aria-hidden="true"></span><span>Memuat dokumen klaim…</span></div>
+</div>
+```
+
+#### On a solid fill
+
+The spinner takes the text colour, so on a Primary button or a dark surface it turns white with no extra class. See Button → Loading.
+
+```html
+<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Mengirim…</button>
+<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Menyimpan…</button>
+```
+
+### Which loading state
+
+| Situation | Use | Example |
+| --- | --- | --- |
+| First load, the layout is known | Skeleton in that layout | Claim list rows, summary cards, a profile |
+| Refresh of data already shown | Keep it at 50 % opacity, `aria-busy="true"` | Chart after a filter change, table after sorting on the server |
+| An action started from a button | Button loading | Simpan, Kirim ke Advisor, Setujui |
+| A wait of unknown length in a small place | Spinner sm / md with words | Combobox search, a panel opening |
+| A task with a known end | Progress bar or circle | Uploading documents, AI analysis step 4 of 10 |
+| Work that continues after people move on | Toast loading, updated to success or error | Exporting a report, sending 20 claims |
+| A whole page with nothing to show yet | Skeleton of the page; spinner xl only when the layout is unknown | Opening a claim detail |
+
+### Do and don't
+
+**Do:** A skeleton in the shape of what is coming.
+
+```html
+<div aria-busy="true">
+  <span class="sb-sr-only">Memuat profil…</span>
+  <div class="sb-avatar-label" data-size="md">
+    <span class="sb-skeleton" data-shape="circle" style="--sk-size: 40px" aria-hidden="true"></span>
+    <div class="sb-avatar-label-text"><span class="sb-skeleton" data-shape="text" style="width: 120px" aria-hidden="true"></span><span class="sb-skeleton" data-shape="text" style="width: 180px" aria-hidden="true"></span></div>
+  </div>
+</div>
+```
+
+**Don't:** A big spinner with no words where the layout is known. The page jumps when the data lands.
+
+```html
+<div class="sb-loading" data-layout="stack"><span class="sb-spinner" data-size="xl"></span></div>
+```
+
+**Do:** Say what is loading.
+
+```html
+<div class="sb-loading"><span class="sb-spinner" data-size="sm" aria-hidden="true"></span><span>Memuat dokumen…</span></div>
+```
+
+**Don't:** "Mohon tunggu" says nothing about what is happening.
+
+```html
+<div class="sb-loading"><span class="sb-spinner" data-size="sm" aria-hidden="true"></span><span>Mohon tunggu…</span></div>
+```
+
+### Accessibility
+
+- Mark the loading region with `aria-busy="true"` and remove it when the content is in; put one `sb-sr-only` "Memuat …" inside. The skeleton shapes are `aria-hidden`.
+- A spinner on its own has `role="status"` and an `aria-label` ("Memuat"); next to words, the words carry the meaning and the spinner is `aria-hidden`.
+- With reduced motion the shimmer stops and the spinner slows to one turn in 2 s; it never stops, because a still ring reads as stuck.
+- When loading ends, move nothing: focus stays where it was. If the wait was long, a Toast can say it is done.
+
+| Part | On | Ratio | Needs |
+| --- | --- | --- | --- |
+| Label `gray-500` | `white` | 4.97:1 | 4.5:1, passes |
+| Spinner arc `brand-600` | `white` | 5.06:1 | 3:1 (graphic), passes |
+| Skeleton `gray-100` | `white` | 1.1:1 | Decorative, exempt; the hidden label carries the meaning |
+
+### Code
+
+Load `tokens.css`, then `loading.css`. Skeletons reuse the real component markup (Card, Table), so load their CSS too. No script: add and remove `aria-busy` and the skeleton markup from your own code.
+
+`loading.css`
+
+```css
+/* Loading: skeleton and spinner, Codemasters Design System
+   Needs tokens.css. No script.
+
+   Skeleton: grey shapes in the layout of the content that is coming. Mark the region busy and say so once.
+   <section aria-busy="true">
+     <span class="sb-sr-only">Memuat klaim…</span>
+     <span class="sb-skeleton" data-shape="circle" style="--sk-size: 40px" aria-hidden="true"></span>
+     <span class="sb-skeleton" data-shape="text" style="width: 60%" aria-hidden="true"></span>
+   </section>
+
+   data-shape   text (a line of Text sm) | heading (Text xl) | circle (avatar; --sk-size) | rect (any block; set width and height)
+   width        on text and heading lines: vary it (100 %, 80 %, 60 %) so the block reads as a paragraph
+
+   Spinner: a ring that turns, in the colour of its text (currentColor), so it is brand on a surface and white on a solid button.
+   <span class="sb-spinner" role="status" aria-label="Memuat"></span>
+   data-size    sm 16 | md 20 (default) | lg 32 | xl 48 */
+
+/* Screen-reader-only text, for "Memuat…" next to skeletons and spinners. */
+.sb-sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+/* Skeleton: gray-100 (DESIGN.md), radius 4 for lines, full for circles. One shimmer sweeps the whole page at once
+   (background-attachment: fixed), so a screen of skeletons moves together instead of flickering block by block. */
+.sb-skeleton {
+  --sk-shine: rgb(255 255 255 / .6);
+  display: block; flex: none; box-sizing: border-box;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, transparent 30%, var(--sk-shine) 50%, transparent 70%) var(--bg-tertiary);
+  background-size: 200vw 100%; background-attachment: fixed; background-repeat: no-repeat;
+  animation: sb-skeleton 1.5s ease-in-out infinite;
+}
+@keyframes sb-skeleton { from { background-position: 100vw 0; } to { background-position: -100vw 0; } }
+.sb-skeleton[data-shape="text"] { height: 12px; margin-block: 4px; } /* 12 + 4 + 4 = the 20 px line of Text sm */
+.sb-skeleton[data-shape="heading"] { height: 20px; margin-block: 5px; } /* the 30 px line of Text xl */
+.sb-skeleton[data-shape="circle"] { width: var(--sk-size, 40px); height: var(--sk-size, 40px); border-radius: var(--radius-full); }
+:root[data-theme="dark"] .sb-skeleton { --sk-shine: rgb(255 255 255 / .06); }
+
+/* Spinner: a 2 px ring at 20 % of the colour, with one quarter at full colour, turning every 700 ms. */
+.sb-spinner {
+  --sp-size: 20px;
+  display: inline-block; flex: none; box-sizing: border-box; width: var(--sp-size); height: var(--sp-size);
+  border: 2px solid color-mix(in srgb, currentColor 20%, transparent); border-top-color: currentColor; border-radius: var(--radius-full);
+  color: var(--fg-brand); vertical-align: middle;
+  animation: sb-spin 700ms linear infinite;
+}
+.sb-spinner[data-size="sm"] { --sp-size: 16px; }
+.sb-spinner[data-size="lg"] { --sp-size: 32px; border-width: 3px; }
+.sb-spinner[data-size="xl"] { --sp-size: 48px; border-width: 4px; }
+@keyframes sb-spin { to { rotate: 1turn; } }
+/* A spinner with words: "Memuat klaim…" in Text sm gray-500, 8 apart. */
+.sb-loading { display: inline-flex; align-items: center; gap: 8px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
+.sb-loading[data-layout="stack"] { flex-direction: column; gap: 12px; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-skeleton { animation: none; } /* the shapes alone say "loading" */
+  .sb-spinner { animation-duration: 2s; } /* slower, but still turning: a still ring reads as stuck */
 }
 ```
 
@@ -6140,8 +7502,8 @@ Load `tokens.css` and `button.css`, then `modal.css`, and `modal.js` to open and
   display: grid; gap: 16px; align-content: start;
   width: min(var(--modal-w), calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 64px);
   margin: auto; padding: 24px; overflow-y: auto;
-  font: 400 var(--text-sm) var(--font); color: var(--gray-700);
-  background: var(--white); border: 0; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  font: 400 var(--text-sm) var(--font); color: var(--text-secondary);
+  background: var(--bg-primary); border: 0; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
 }
 .sb-modal[data-size="sm"] { --modal-w: 424px; }
 .sb-modal[data-size="lg"] { --modal-w: 880px; }
@@ -6162,21 +7524,26 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
 /* Head: optional icon, title, description. The close button sits in the corner. */
 .sb-modal-head { display: grid; gap: 16px; padding-inline-end: 32px; }
 .sb-modal-heading { display: grid; gap: 4px; }
-.sb-modal-title { margin: 0; font: 600 var(--text-xl) var(--font); color: var(--gray-900); text-wrap: balance; }
+.sb-modal-title { margin: 0; font: 600 var(--text-xl) var(--font); color: var(--text-primary); text-wrap: balance; }
 .sb-modal[data-size="sm"] .sb-modal-title { font: 600 var(--text-lg) var(--font); }
-.sb-modal-desc { margin: 0; color: var(--gray-500); text-wrap: pretty; }
+.sb-modal-desc { margin: 0; color: var(--text-quaternary); text-wrap: pretty; }
 .sb-modal-close { position: absolute; top: 16px; right: 16px; }
 
 /* Icon: 48 px circle, tone-100 fill with an 8 px tone-50 ring, 24 px tone-600 icon. */
 .sb-modal-icon {
-  --tone: var(--brand-600); --tone-fill: var(--brand-100); --tone-ring: var(--brand-50);
+  --tone: var(--brand-600); --tone-fill: var(--bg-brand-subtle-hover); --tone-ring: var(--bg-brand-subtle);
   box-sizing: border-box; display: grid; place-items: center; width: 48px; height: 48px;
   border: 8px solid var(--tone-ring); border-radius: var(--radius-full); background: var(--tone-fill); color: var(--tone);
 }
 .sb-modal-icon > svg { width: 24px; height: 24px; }
-.sb-modal-icon[data-tone="error"] { --tone: var(--error-600); --tone-fill: var(--error-100); --tone-ring: var(--error-50); }
-.sb-modal-icon[data-tone="warning"] { --tone: var(--warning-600); --tone-fill: var(--warning-100); --tone-ring: var(--warning-50); }
-.sb-modal-icon[data-tone="success"] { --tone: var(--success-600); --tone-fill: var(--success-100); --tone-ring: var(--success-50); }
+.sb-modal-icon[data-tone="error"] { --tone: var(--error-600); --tone-fill: var(--bg-error-subtle-hover); --tone-ring: var(--bg-error-subtle); }
+.sb-modal-icon[data-tone="warning"] { --tone: var(--warning-600); --tone-fill: var(--warning-100); --tone-ring: var(--bg-warning-subtle); }
+/* Dark theme: the icon steps up to 400 on the darker fills. */
+:root[data-theme="dark"] .sb-modal-icon { --tone: var(--brand-400); }
+:root[data-theme="dark"] .sb-modal-icon[data-tone="error"] { --tone: var(--error-400); }
+:root[data-theme="dark"] .sb-modal-icon[data-tone="warning"] { --tone: var(--warning-400); --tone-fill: var(--warning-900); }
+:root[data-theme="dark"] .sb-modal-icon[data-tone="success"] { --tone: var(--success-400); --tone-fill: var(--success-900); }
+.sb-modal-icon[data-tone="success"] { --tone: var(--success-600); --tone-fill: var(--success-100); --tone-ring: var(--bg-success-subtle); }
 
 .sb-modal-body { display: grid; gap: 16px; min-width: 0; }
 .sb-modal-body > p { margin: 0; }
@@ -6456,9 +7823,9 @@ Load `tokens.css` and `progress.css`. Add `progress.js` to update the value from
 
 /* ---- Progress bar: track 8 high, gray-100; fill brand-600, min 8 wide so 0 % still shows a dot. */
 .sb-progress { --value: 0; position: relative; display: flex; align-items: center; gap: 12px; width: 100%; }
-.sb-progress-track { flex: 1; min-width: 0; height: 8px; border-radius: var(--radius-sm); background: var(--gray-100); }
+.sb-progress-track { flex: 1; min-width: 0; height: 8px; border-radius: var(--radius-sm); background: var(--bg-tertiary); }
 .sb-progress-fill { width: max(8px, calc(var(--value) * 1%)); height: 100%; border-radius: inherit; background: var(--brand-600); transition: width 300ms var(--ease); }
-.sb-progress-label { flex: none; font: 500 var(--text-sm) var(--font); color: var(--gray-700); font-variant-numeric: tabular-nums; }
+.sb-progress-label { flex: none; font: 500 var(--text-sm) var(--font); color: var(--text-secondary); font-variant-numeric: tabular-nums; }
 .sb-progress[data-label="bottom"] { flex-direction: column; align-items: stretch; gap: 8px; }
 .sb-progress[data-label="bottom"] .sb-progress-track { flex: none; }
 .sb-progress[data-label="bottom"] .sb-progress-label { align-self: flex-end; }
@@ -6466,7 +7833,7 @@ Load `tokens.css` and `progress.css`. Add `progress.js` to update the value from
    translate slides it from left-aligned at 0 % to right-aligned at 100 %, centred at 50 %, so it never leaves the bar. */
 .sb-progress[data-label$="floating"] .sb-progress-label {
   position: absolute; left: calc(var(--value) * 1%); translate: calc(var(--value) * -1%) 0;
-  padding: 8px 12px; border-radius: var(--radius-md); background: var(--white); box-shadow: var(--shadow-lg);
+  padding: 8px 12px; border-radius: var(--radius-md); background: var(--bg-primary); box-shadow: var(--shadow-lg);
   font: 600 var(--text-xs) var(--font); white-space: nowrap; transition: left 300ms var(--ease);
 }
 .sb-progress[data-label="top-floating"] { padding-top: 42px; }
@@ -6480,18 +7847,18 @@ Load `tokens.css` and `progress.css`. Add `progress.js` to update the value from
 .sb-progress-circle > svg, .sb-pc-text { grid-area: 1 / 1; }
 .sb-progress-circle > svg { display: block; width: var(--pc-box); height: auto; }
 .sb-pc-track, .sb-pc-line { fill: none; stroke-width: 10; }
-.sb-pc-track { stroke: var(--gray-100); }
+.sb-pc-track { stroke: var(--border-tertiary); }
 .sb-pc-line { stroke: var(--brand-600); stroke-linecap: round; stroke-dasharray: var(--value) 100; transition: stroke-dasharray 300ms var(--ease); }
 .sb-progress-circle:not([data-shape="half"]) .sb-pc-line { transform: rotate(-90deg); transform-origin: center; transform-box: fill-box; }
 .sb-progress-circle[data-shape="half"] .sb-pc-text { align-self: end; }
 
 .sb-pc-text { display: grid; justify-items: center; text-align: center; }
-.sb-pc-caption { font: 500 var(--text-xs) var(--font); color: var(--gray-500); }
-.sb-pc-value { font: 500 var(--display-sm) var(--font); color: var(--gray-900); font-variant-numeric: tabular-nums; }
+.sb-pc-caption { font: 500 var(--text-xs) var(--font); color: var(--text-quaternary); }
+.sb-pc-value { font: 500 var(--display-sm) var(--font); color: var(--text-primary); font-variant-numeric: tabular-nums; }
 
 .sb-progress-circle[data-size="xxs"] { --pc-box: 64px; }
 .sb-progress-circle[data-size="xxs"] :is(.sb-pc-track, .sb-pc-line) { stroke-width: 9.375; } /* 6 px at 64 */
-.sb-progress-circle[data-size="xxs"] .sb-pc-value { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
+.sb-progress-circle[data-size="xxs"] .sb-pc-value { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
 /* xxs: the caption moves below the circle, 4 apart. */
 .sb-progress-circle[data-size="xxs"] .sb-pc-text { display: contents; }
 .sb-progress-circle[data-size="xxs"] .sb-pc-value { grid-area: 1 / 1; }
@@ -6937,12 +8304,12 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 /* Rail: 24 high (the handle). Track 8 high, gray-200; selected range brand-600 between the handles. */
 .sb-slider-rail { position: relative; height: 24px; }
 .sb-slider-rail::before, .sb-slider-rail::after { content: ''; position: absolute; top: 8px; height: 8px; border-radius: var(--radius-sm); }
-.sb-slider-rail::before { left: 0; right: 0; background: var(--gray-200); }
+.sb-slider-rail::before { left: 0; right: 0; background: var(--bg-quaternary); }
 .sb-slider-rail::after { left: var(--lo); right: calc(100% - var(--hi)); background: var(--brand-600); }
 
 /* Inputs: 24 px wider than the track so each handle centres on 0 % and 100 %. Only the handle takes the pointer. */
 .sb-slider-input {
-  --th-bg: var(--white); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md); --th-sheen: var(--raised-sheen-light);
+  --th-bg: var(--bg-primary); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md); --th-sheen: var(--raised-sheen-light);
   position: absolute; z-index: 1; top: 0; left: -12px; width: calc(100% + 24px); height: 24px; margin: 0; /* above the rail's ::after, which paints last */
   background: none; appearance: none; -webkit-appearance: none; pointer-events: none;
 }
@@ -6961,7 +8328,7 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 }
 
 /* Handle states. Focused and dragging share the ring. */
-.sb-slider-input:is(:hover, [data-state="hover"]) { --th-bg: var(--brand-50); }
+.sb-slider-input:is(:hover, [data-state="hover"]) { --th-bg: var(--bg-brand-subtle); }
 .sb-slider-input:is(:focus-visible, :active, [data-state="focus"]) { --th-shadow: var(--shadow-md), 0 0 0 4px var(--focus-ring); }
 .sb-slider-input:active::-webkit-slider-thumb { cursor: grabbing; }
 .sb-slider-input:active::-moz-range-thumb { cursor: grabbing; }
@@ -6972,11 +8339,11 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 
 /* Labels: centred on each handle. Bottom: Text md / Medium gray-900, 8 below the handle.
    Floating: a Light tooltip (Tooltip, Light theme) with a 16 x 6 arrow pointing at the handle, 4 away. */
-.sb-slider-value { --pos: var(--hi); position: absolute; left: var(--pos); translate: -50% 0; font: 500 var(--text-md) var(--font); color: var(--gray-900); white-space: nowrap; pointer-events: none; }
+.sb-slider-value { --pos: var(--hi); position: absolute; left: var(--pos); translate: -50% 0; font: 500 var(--text-md) var(--font); color: var(--text-primary); white-space: nowrap; pointer-events: none; }
 .sb-slider-value[data-for="lo"] { --pos: var(--lo); }
 .sb-slider[data-label="bottom"] .sb-slider-value { top: 32px; }
-.sb-slider[data-label$="floating"] .sb-slider-value { padding: 8px 12px; border-radius: var(--radius-md); background: var(--white); box-shadow: var(--shadow-lg); font: 600 var(--text-xs) var(--font); color: var(--gray-700); }
-.sb-slider[data-label$="floating"] .sb-slider-value::after { content: ''; position: absolute; left: 50%; translate: -50% 0; width: 16px; height: 6px; background: var(--white); }
+.sb-slider[data-label$="floating"] .sb-slider-value { padding: 8px 12px; border-radius: var(--radius-md); background: var(--bg-primary); box-shadow: var(--shadow-lg); font: 600 var(--text-xs) var(--font); color: var(--text-secondary); }
+.sb-slider[data-label$="floating"] .sb-slider-value::after { content: ''; position: absolute; left: 50%; translate: -50% 0; width: 16px; height: 6px; background: var(--bg-primary); }
 .sb-slider[data-label="top-floating"] .sb-slider-value { bottom: calc(100% + 10px); }
 .sb-slider[data-label="top-floating"] .sb-slider-value::after { top: 100%; clip-path: polygon(0 0, 100% 0, 50% 100%); }
 .sb-slider[data-label="bottom-floating"] .sb-slider-value { top: calc(100% + 10px); }
@@ -7199,9 +8566,9 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
    No disabled state. */
 
 .sb-social {
-  --sc-brand: var(--gray-700); --sc-brand-hover: var(--gray-700);
-  --sc-bg: var(--white); --sc-border: var(--gray-300); --sc-fg: var(--gray-700); --sc-logo: var(--sc-brand);
-  --sc-bg-hover: var(--gray-50); --sc-border-hover: var(--gray-300);
+  --sc-brand: var(--text-secondary); --sc-brand-hover: var(--text-secondary);
+  --sc-bg: var(--bg-primary); --sc-border: var(--border-primary); --sc-fg: var(--text-secondary); --sc-logo: var(--sc-brand);
+  --sc-bg-hover: var(--bg-secondary); --sc-border-hover: var(--border-primary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: 12px;
   height: 44px; padding: 0 16px;
@@ -7230,7 +8597,7 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
   --sc-sheen: var(--raised-sheen); box-shadow: var(--raised-highlight), var(--shadow-xs);
 }
 /* Color with brand (default): white, colour logo. Color: white, gray logo. */
-.sb-social[data-theme="color"] { --sc-logo: var(--gray-400); }
+.sb-social[data-theme="color"] { --sc-logo: var(--fg-quaternary); }
 .sb-social[data-theme="color"] > svg * { fill: currentColor; }
 
 /* States */
@@ -7465,34 +8832,34 @@ Load `tokens.css`, `badge.css` and `checkbox.css` for the parts inside, then `ta
 .sb-table {
   --cell-py: 16px; --cell-px: 16px;
   width: 100%; border-collapse: separate; border-spacing: 0;
-  font: 400 var(--text-sm) var(--font); color: var(--gray-700);
+  font: 400 var(--text-sm) var(--font); color: var(--text-secondary);
 }
 .sb-table[data-size="sm"] { --cell-py: 10px; --cell-px: 12px; }
-.sb-table :is(th, td) { padding: var(--cell-py) var(--cell-px); text-align: start; vertical-align: middle; white-space: nowrap; background: var(--row-bg, var(--white)); }
+.sb-table :is(th, td) { padding: var(--cell-py) var(--cell-px); text-align: start; vertical-align: middle; white-space: nowrap; background: var(--row-bg, var(--bg-primary)); }
 
 /* Header: a gray-50 band with rounded ends; Text sm Regular gray-500. */
-.sb-table thead th { --row-bg: var(--gray-50); padding-block: 12px; font-weight: 400; color: var(--gray-500); }
+.sb-table thead th { --row-bg: var(--bg-secondary); padding-block: 12px; font-weight: 400; color: var(--text-quaternary); }
 .sb-table[data-size="sm"] thead th { padding-block: 8px; }
 .sb-table thead th:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
 .sb-table thead th:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
 
 /* Body: gray-200 row dividers, gray-50 on hover, brand-50 when selected. */
-.sb-table tbody td { border-bottom: 1px solid var(--gray-200); color: var(--gray-900); }
+.sb-table tbody td { border-bottom: 1px solid var(--border-secondary); color: var(--text-primary); }
 .sb-table tbody tr { transition: background-color 150ms var(--ease); }
-.sb-table tbody tr[data-child] { --row-bg: var(--gray-50); } /* grouped items; tones below still win */
-.sb-table tbody tr:is(:hover, [data-state="hover"]) { --row-bg: var(--gray-50); }
-.sb-table tbody tr:has(.sb-check-input:checked) { --row-bg: var(--brand-50); }
-.sb-table tbody tr[data-tone="error"] { --row-bg: var(--error-50); }
-.sb-table tbody tr[data-tone="error"] td { color: var(--error-700); }
-.sb-table tbody tr[data-tone="warning"] { --row-bg: var(--warning-50); }
+.sb-table tbody tr[data-child] { --row-bg: var(--bg-secondary); } /* grouped items; tones below still win */
+.sb-table tbody tr:is(:hover, [data-state="hover"]) { --row-bg: var(--bg-secondary); }
+.sb-table tbody tr:has(.sb-check-input:checked) { --row-bg: var(--bg-brand-subtle); }
+.sb-table tbody tr[data-tone="error"] { --row-bg: var(--bg-error-subtle); }
+.sb-table tbody tr[data-tone="error"] td { color: var(--text-error); }
+.sb-table tbody tr[data-tone="warning"] { --row-bg: var(--bg-warning-subtle); }
 
 /* Cells */
 .sb-table [data-num] { text-align: end; font-variant-numeric: tabular-nums; }
-.sb-table-link { color: var(--brand-700); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: from-font; }
-.sb-table-link:hover { color: var(--brand-800); }
+.sb-table-link { color: var(--text-brand); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: from-font; }
+.sb-table-link:hover { color: var(--text-brand-strong); }
 .sb-table-link:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
-.sb-table-sub { display: block; font-size: var(--text-xs); line-height: 18px; color: var(--gray-500); } /* second line: converted currency, email */
-.sb-table-empty { color: var(--gray-400); } /* "—" when a value is missing; never a blank cell */
+.sb-table-sub { display: block; font-size: var(--text-xs); line-height: 18px; color: var(--text-quaternary); } /* second line: converted currency, email */
+.sb-table-empty { color: var(--fg-quaternary); } /* "—" when a value is missing; never a blank cell */
 .sb-table .sb-check { vertical-align: middle; }
 .sb-table th:has(> .sb-check), .sb-table td:has(> .sb-check) { width: 16px; padding-inline-end: 0; }
 
@@ -7502,12 +8869,12 @@ Load `tokens.css`, `badge.css` and `checkbox.css` for the parts inside, then `ta
   background: none; font: inherit; color: inherit; cursor: pointer;
 }
 [data-num] > .sb-table-sort { flex-direction: row-reverse; }
-.sb-table-sort:hover { color: var(--gray-700); }
+.sb-table-sort:hover { color: var(--text-secondary); }
 .sb-table-sort:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
-.sb-table-sort > svg { width: 16px; height: 16px; flex: none; color: var(--gray-400); }
+.sb-table-sort > svg { width: 16px; height: 16px; flex: none; color: var(--fg-quaternary); }
 th:not([aria-sort]) .sb-table-sort > .is-dir, th[aria-sort] .sb-table-sort > .is-idle { display: none; }
-th[aria-sort] .sb-table-sort { color: var(--gray-700); }
-th[aria-sort] .sb-table-sort > .is-dir { color: var(--brand-600); }
+th[aria-sort] .sb-table-sort { color: var(--text-secondary); }
+th[aria-sort] .sb-table-sort > .is-dir { color: var(--fg-brand); }
 th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 
 /* Sticky first column, for wide tables. The cell keeps its row's background so nothing shows through. */
@@ -7517,18 +8884,18 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 /* The edge sits on the last sticky column and shows only once the table has scrolled (data-scrolled, set by table.js). */
 .sb-table[data-sticky] tbody td { transition: box-shadow 150ms var(--ease); }
 [data-scrolled] > .sb-table[data-sticky] tbody td:first-child:not(:has(> .sb-check)),
-[data-scrolled] > .sb-table[data-sticky] tbody td:has(> .sb-check) + td { box-shadow: inset -1px 0 var(--gray-200); }
+[data-scrolled] > .sb-table[data-sticky] tbody td:has(> .sb-check) + td { box-shadow: inset -1px 0 var(--border-secondary); }
 
 /* Grouped table: group row (chevron, number, name, total), item rows indented on gray-50, gray-100 total row. */
-.sb-table tbody tr[data-group] td { font-weight: 600; color: var(--gray-900); }
+.sb-table tbody tr[data-group] td { font-weight: 600; color: var(--text-primary); }
 .sb-table tbody tr[data-child] td:first-child { padding-inline-start: calc(var(--cell-px) + 32px); }
 .sb-table tbody tr[hidden] { display: none; }
-.sb-table-fold { display: inline-grid; place-items: center; width: 24px; height: 24px; margin: -4px 8px -4px -4px; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--gray-500); cursor: pointer; vertical-align: middle; }
-.sb-table-fold:hover { background: var(--gray-100); color: var(--gray-700); }
+.sb-table-fold { display: inline-grid; place-items: center; width: 24px; height: 24px; margin: -4px 8px -4px -4px; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; color: var(--text-quaternary); cursor: pointer; vertical-align: middle; }
+.sb-table-fold:hover { background: var(--bg-tertiary); color: var(--text-secondary); }
 .sb-table-fold:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
 .sb-table-fold > svg { width: 16px; height: 16px; transition: rotate 150ms var(--ease); }
 .sb-table-fold[aria-expanded="true"] > svg { rotate: 90deg; }
-.sb-table tfoot td { --row-bg: var(--gray-100); font-weight: 600; color: var(--gray-900); }
+.sb-table tfoot td { --row-bg: var(--bg-tertiary); font-weight: 600; color: var(--text-primary); }
 .sb-table tfoot td:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
 .sb-table tfoot td:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
 
@@ -7541,7 +8908,7 @@ th[aria-sort="ascending"] .sb-table-sort > .is-dir { rotate: 180deg; }
 .sb-table tbody tr[data-level]:has(.sb-table-fold) td:first-child { font-weight: 500; }
 
 /* Footer: count on the left, page buttons on the right. */
-.sb-table-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-table-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-table tbody tr, .sb-table-fold > svg { transition: none; }
@@ -8050,7 +9417,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: var(--tab-h); margin: 0; padding: 0 var(--tab-px);
   font: 500 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--gray-500); background: none;
+  color: var(--text-quaternary); background: none;
   border: 0; border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
@@ -8062,42 +9429,42 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tab-panel:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 
 /* Folder: the sections of a page. Tabs stand on a gray-300 baseline; the selected one fills brand-600. */
-.sb-tabs[data-type="folder"] { --tab-h: 52px; --tab-px: 24px; box-shadow: inset 0 -1px var(--gray-300); }
+.sb-tabs[data-type="folder"] { --tab-h: 52px; --tab-px: 24px; box-shadow: inset 0 -1px var(--border-primary); }
 .sb-tabs[data-type="folder"][data-size="sm"] { --tab-h: 44px; --tab-px: 16px; }
 .sb-tabs[data-type="folder"] > .sb-tab {
-  color: var(--brand-700); background: var(--brand-50);
-  border: 1px solid var(--gray-300); border-radius: var(--radius-md) var(--radius-md) 0 0;
+  color: var(--text-brand); background: var(--bg-brand-subtle);
+  border: 1px solid var(--border-primary); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
-.sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--brand-100); }
+.sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--bg-brand-subtle-hover); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
-.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--white); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--bg-primary); }
 
 /* Underline: sections inside a card or below folder tabs. A 2 px line marks the selected tab. */
-.sb-tabs[data-type="underline"] { gap: 16px; box-shadow: inset 0 -1px var(--gray-200); }
+.sb-tabs[data-type="underline"] { gap: 16px; box-shadow: inset 0 -1px var(--border-secondary); }
 .sb-tabs[data-type="underline"][data-size="sm"] { --tab-h: 36px; }
 .sb-tabs[data-type="underline"] > .sb-tab { box-shadow: inset 0 -2px transparent; }
-.sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); box-shadow: inset 0 -2px var(--gray-300); }
-.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--brand-700); box-shadow: inset 0 -2px var(--brand-600); }
+.sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--text-secondary); box-shadow: inset 0 -2px var(--border-primary); }
+.sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--text-brand); box-shadow: inset 0 -2px var(--brand-600); }
 
 /* Segmented: 2 to 4 short views of one card. 40 high in all, like Button md; radius 8 = 4 inner + 4 padding. */
 .sb-tabs[data-type="segmented"] {
   --tab-h: 30px; --tab-px: 12px;
   display: inline-flex; max-width: 100%; gap: 4px; padding: 4px;
-  background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md);
+  background: var(--bg-secondary); border: 1px solid var(--border-secondary); border-radius: var(--radius-md);
 }
 .sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 26px; --tab-px: 10px; }
 .sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: var(--radius-sm); }
-.sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--gray-700); }
-.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--gray-800); background: var(--raised-sheen-light) var(--white); border-color: var(--gray-200); box-shadow: var(--shadow-xs); }
+.sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--text-secondary); }
+.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--text-primary); background: var(--raised-sheen-light) var(--bg-primary); border-color: var(--border-secondary); box-shadow: var(--shadow-xs); }
 
 /* Vertical: settings pages and long section lists. The sidebar item's shape (radius 8) on a light surface. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
 .sb-tabs[data-type="vertical"][data-size="sm"] { --tab-h: 36px; }
-.sb-tabs[data-type="vertical"] > .sb-tab { --tab-icon: var(--gray-500); justify-content: flex-start; color: var(--gray-700); border-radius: var(--radius-md); }
+.sb-tabs[data-type="vertical"] > .sb-tab { --tab-icon: var(--text-quaternary); justify-content: flex-start; color: var(--text-secondary); border-radius: var(--radius-md); }
 .sb-tabs[data-type="vertical"] > .sb-tab > .sb-badge { margin-inline-start: auto; }
-.sb-tabs[data-type="vertical"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { --tab-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50); }
-.sb-tabs[data-type="vertical"] > .sb-tab[aria-selected="true"] { --tab-icon: var(--brand-700); color: var(--brand-700); background: var(--brand-50); }
+.sb-tabs[data-type="vertical"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { --tab-icon: var(--text-secondary); color: var(--text-primary); background: var(--bg-secondary); }
+.sb-tabs[data-type="vertical"] > .sb-tab[aria-selected="true"] { --tab-icon: var(--text-brand); color: var(--text-brand); background: var(--bg-brand-subtle); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-tab { transition: none; }
@@ -8290,38 +9657,38 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
    data-state="focus" on .sb-textarea forces Focused in static mockups and docs only. */
 
 .sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
-.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
 
 .sb-textarea { position: relative; display: grid; }
 .sb-textarea textarea {
-  --ta-border: var(--gray-300); --ta-focus: var(--brand-300); --ta-ring: var(--focus-ring);
+  --ta-border: var(--border-primary); --ta-focus: var(--border-brand); --ta-ring: var(--focus-ring);
   box-sizing: border-box; width: 100%; height: 128px; min-height: 128px; margin: 0;
   padding: 10px 14px; /* control padding exception, same as Input field */
   resize: vertical;
-  font: 400 var(--text-md) var(--font); color: var(--gray-900);
-  background: var(--white);
+  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+  background: var(--bg-primary);
   border: 1px solid var(--ta-border); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-textarea textarea::placeholder { color: var(--gray-500); opacity: 1; }
+.sb-textarea textarea::placeholder { color: var(--text-quaternary); opacity: 1; }
 /* Room for the counter so the last line never runs under it: 10 + 18 + 4. */
 .sb-textarea:has(.sb-textarea-count) textarea { padding-bottom: 32px; }
 
 /* States */
-.sb-textarea textarea:hover:not(:focus, :disabled, [aria-invalid="true"]) { border-color: var(--gray-400); }
+.sb-textarea textarea:hover:not(:focus, :disabled, [aria-invalid="true"]) { border-color: var(--border-strong); }
 .sb-textarea textarea:focus, .sb-textarea[data-state="focus"] textarea {
   outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--ta-ring);
 }
 .sb-textarea textarea:disabled { opacity: .5; cursor: not-allowed; resize: none; } /* the default look at 50 % opacity */
-.sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--error-300); --ta-focus: var(--error-300); --ta-ring: var(--error-100); }
+.sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--border-error); --ta-focus: var(--border-error); --ta-ring: var(--bg-error-subtle-hover); }
 
 /* Character counter: bottom-right inside the box. Kept 24 from the edge so it clears the resize grip. */
 .sb-textarea-count {
   position: absolute; bottom: 10px; inset-inline-end: 24px;
-  font: 400 var(--text-xs) var(--font); color: var(--gray-500);
+  font: 400 var(--text-xs) var(--font); color: var(--text-quaternary);
   pointer-events: none; font-variant-numeric: tabular-nums;
 }
 .sb-textarea-count[data-over] { color: var(--error-500); }
@@ -8509,8 +9876,8 @@ Load `tokens.css` and `toast.css`, then `toast.js` once. Call `toast()` from any
   position: relative; overflow: hidden; box-sizing: border-box; pointer-events: auto;
   display: flex; align-items: flex-start; gap: 12px;
   padding: 16px 12px 16px 16px;
-  background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
-  font: 400 var(--text-sm) var(--font); color: var(--gray-600);
+  background: var(--bg-primary); border: 1px solid var(--border-secondary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  font: 400 var(--text-sm) var(--font); color: var(--text-tertiary);
   transition: opacity 200ms var(--ease), translate 200ms var(--ease), scale 200ms var(--ease);
 }
 .sb-toaster[data-position$="left"] .sb-toast { --enter-x: -16px; }
@@ -8524,17 +9891,17 @@ Load `tokens.css` and `toast.css`, then `toast.js` once. Call `toast()` from any
 
 .sb-toast-icon { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; color: var(--tone); }
 .sb-toast-icon > svg { width: 20px; height: 20px; }
-.sb-toast-spinner { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--gray-200); border-top-color: var(--brand-600); border-radius: var(--radius-full); animation: sb-toast-spin 700ms linear infinite; }
+.sb-toast-spinner { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--border-secondary); border-top-color: var(--brand-600); border-radius: var(--radius-full); animation: sb-toast-spin 700ms linear infinite; }
 @keyframes sb-toast-spin { to { rotate: 1turn; } }
 
 .sb-toast-text { display: grid; justify-items: start; gap: 4px; flex: 1; min-width: 0; }
 .sb-toast .sb-toast-text p { margin: 0; }
-.sb-toast .sb-toast-msg { font-weight: 600; color: var(--gray-900); text-wrap: pretty; }
-.sb-toast .sb-toast-desc { color: var(--gray-600); text-wrap: pretty; }
-.sb-toast-action { margin: 4px 0 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; font: 600 var(--text-sm) var(--font); color: var(--brand-700); cursor: pointer; }
-.sb-toast-action:hover { color: var(--brand-800); text-decoration: underline; text-underline-offset: 2px; }
-.sb-toast-close { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; margin: -4px 0 -4px auto; padding: 0; border: 0; border-radius: var(--radius-md); background: none; color: var(--gray-400); cursor: pointer; }
-.sb-toast-close:hover { background: var(--gray-50); color: var(--gray-600); }
+.sb-toast .sb-toast-msg { font-weight: 600; color: var(--text-primary); text-wrap: pretty; }
+.sb-toast .sb-toast-desc { color: var(--text-tertiary); text-wrap: pretty; }
+.sb-toast-action { margin: 4px 0 0; padding: 0; border: 0; border-radius: var(--radius-sm); background: none; font: 600 var(--text-sm) var(--font); color: var(--text-brand); cursor: pointer; }
+.sb-toast-action:hover { color: var(--text-brand-strong); text-decoration: underline; text-underline-offset: 2px; }
+.sb-toast-close { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; margin: -4px 0 -4px auto; padding: 0; border: 0; border-radius: var(--radius-md); background: none; color: var(--fg-quaternary); cursor: pointer; }
+.sb-toast-close:hover { background: var(--bg-secondary); color: var(--text-tertiary); }
 .sb-toast-close > svg { width: 20px; height: 20px; }
 .sb-toast :is(.sb-toast-action, .sb-toast-close):focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 
@@ -8863,11 +10230,12 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 
 .sb-toggle {
   --tg-w: 36px; --tg-h: 20px; --tg-knob: 16px;
-  --tg-off: var(--gray-100); --tg-off-hover: var(--gray-200); --tg-on: var(--brand-600); --tg-on-hover: var(--brand-700);
+  --tg-off: var(--bg-tertiary); --tg-off-hover: var(--bg-quaternary); --tg-on: var(--brand-600); --tg-on-hover: var(--brand-700);
   display: inline-flex; align-items: flex-start; gap: 8px;
 }
 .sb-toggle[data-size="md"] { --tg-w: 44px; --tg-h: 24px; --tg-knob: 20px; gap: 12px; }
-.sb-toggle[data-theme="light"] { --tg-off: var(--brand-50); --tg-off-hover: var(--brand-100); --tg-on: var(--brand-200); --tg-on-hover: var(--brand-200); }
+.sb-toggle[data-theme="light"] { --tg-off: var(--bg-brand-subtle); --tg-off-hover: var(--bg-brand-subtle-hover); --tg-on: var(--brand-200); --tg-on-hover: var(--brand-200); }
+:root[data-theme="dark"] .sb-toggle[data-theme="light"] { --tg-on: var(--brand-800); --tg-on-hover: var(--brand-800); }
 
 /* Track: fully rounded, 2 px padding. Knob: white, shadow-sm, slides 150 ms. */
 .sb-toggle-input {
@@ -8880,7 +10248,7 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 .sb-toggle-input::before {
   content: ''; position: absolute; top: 2px; left: 2px;
   width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
-  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm);
+  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm); /* the knob stays white in both themes */
   transition: translate 150ms var(--ease);
 }
 .sb-toggle-input:checked { background: var(--tg-on); }
@@ -8893,8 +10261,8 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 
 /* Text */
 .sb-toggle-text { display: grid; }
-.sb-toggle-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); cursor: pointer; }
-.sb-toggle-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-toggle-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); cursor: pointer; }
+.sb-toggle-sup { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-toggle[data-size="md"] .sb-toggle-label { font-size: 16px; line-height: 24px; }
 .sb-toggle[data-size="md"] .sb-toggle-sup { margin-top: 2px; font-size: 16px; line-height: 24px; }
 /* Disabled: the whole control, label included, at 50 % opacity. */
@@ -9071,7 +10439,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 .sb-tooltip-wrap { position: relative; display: inline-flex; }
 
 .sb-tooltip {
-  --tip-bg: var(--gray-900); --tip-title: var(--white); --tip-text: var(--white);
+  --tip-bg: var(--bg-inverse); --tip-title: var(--white); --tip-text: var(--white);
   --tip-gap: 10px; /* 6 px arrow + 4 px to the trigger */
   position: absolute; z-index: 20; bottom: calc(100% + var(--tip-gap)); left: 50%; translate: -50% 0;
   display: grid; gap: 4px; box-sizing: border-box; width: max-content; max-width: min(320px, calc(100vw - 32px));
@@ -9079,7 +10447,7 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
   font: 400 var(--text-xs) var(--font); color: var(--tip-text); text-align: start; white-space: normal;
   visibility: hidden; opacity: 0; transition: opacity 150ms var(--ease), visibility 0s linear 150ms;
 }
-.sb-tooltip[data-theme="light"] { --tip-bg: var(--white); --tip-title: var(--gray-700); --tip-text: var(--gray-500); }
+.sb-tooltip[data-theme="light"] { --tip-bg: var(--bg-primary); --tip-title: var(--text-secondary); --tip-text: var(--text-quaternary); }
 .sb-tooltip:has(.sb-tooltip-text) { padding: 12px; }
 .sb-tooltip-title { font-weight: 600; color: var(--tip-title); }
 .sb-tooltip-text { color: var(--tip-text); }
@@ -9107,9 +10475,9 @@ Load `tokens.css` and `tooltip.css`. Showing and hiding is CSS; add `tooltip.js`
 .sb-tooltip[data-arrow="right"]::after { left: 100%; clip-path: polygon(0 0, 100% 50%, 0 100%); }
 
 /* Help icon: 16 px help-circle, gray-400; hover and open gray-500. A real button with the global focus outline. */
-.sb-help { display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full); background: none; color: var(--gray-400); cursor: help; }
+.sb-help { display: inline-flex; flex: none; margin: 0; padding: 0; border: 0; border-radius: var(--radius-full); background: none; color: var(--fg-quaternary); cursor: help; }
 .sb-help > svg { width: 16px; height: 16px; }
-.sb-help:hover, .sb-help:focus-visible, .sb-tooltip-wrap[data-state="open"] > .sb-help { color: var(--gray-500); }
+.sb-help:hover, .sb-help:focus-visible, .sb-tooltip-wrap[data-state="open"] > .sb-help { color: var(--text-quaternary); }
 .sb-help:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 /* After a label: label + help icon on one line, 4 apart. */
 .sb-help-row { display: inline-flex; align-items: center; gap: 4px; }
@@ -9344,8 +10712,8 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
    data-state="focus" on a digit forces Focused in static mockups and docs only. */
 
 .sb-field { display: grid; gap: 6px; } /* label, control, hint 6 apart */
-.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--gray-700); }
-.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--gray-500); }
+.sb-field-label { font: 500 var(--text-sm) var(--font); color: var(--text-secondary); }
+.sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-field:has([aria-invalid="true"]) .sb-field-hint { color: var(--error-500); }
 
 .sb-code { --code-box: 80px; --code-gap: 12px; --code-type: var(--display-lg); display: flex; align-items: center; gap: var(--code-gap); }
@@ -9356,23 +10724,24 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
   box-sizing: border-box; flex: none;
   width: var(--code-box); height: var(--code-box); margin: 0; padding: 8px;
   font: 500 var(--code-type) var(--font); letter-spacing: var(--tracking-display); text-align: center;
-  color: var(--brand-600); caret-color: var(--brand-600);
-  background: var(--white);
-  border: 1px solid var(--gray-300); border-radius: var(--radius-md);
+  color: var(--fg-brand); caret-color: var(--fg-brand);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-code-digit::placeholder { color: var(--gray-300); opacity: 1; }
-.sb-code-digit:not(:placeholder-shown) { border-color: var(--brand-300); }
+.sb-code-digit::placeholder { color: var(--border-primary); opacity: 1; }
+.sb-code-digit:not(:placeholder-shown) { border-color: var(--border-brand); }
 .sb-code-digit:focus, .sb-code-digit[data-state="focus"] {
-  outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
 }
 .sb-code-digit:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
-.sb-code-digit[aria-invalid="true"] { border-color: var(--error-300); color: var(--error-600); caret-color: var(--error-600); }
-.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--error-100); }
+.sb-code-digit[aria-invalid="true"] { border-color: var(--border-error); color: var(--error-600); caret-color: var(--error-600); }
+.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-error-subtle-hover); }
 
 /* 6 digits split 3 + 3 by a dash in Display xl / Medium. */
-.sb-code-sep { font: 500 var(--display-xl) var(--font); letter-spacing: var(--tracking-display); color: var(--gray-300); }
+.sb-code-sep { font: 500 var(--display-xl) var(--font); letter-spacing: var(--tracking-display); color: var(--border-primary); }
+:root[data-theme="dark"] .sb-code-sep, :root[data-theme="dark"] .sb-code-digit::placeholder { color: var(--gray-600); } /* faint like light's gray-300, still visible on gray-900 */
 
 @media (prefers-reduced-motion: reduce) {
   .sb-code-digit { transition: none; }
@@ -9666,12 +11035,12 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 .sb-wys-toolbar[data-breakpoint="mobile"] { flex-direction: column; align-items: stretch; gap: 8px; }
 .sb-wys-select {
   box-sizing: border-box; width: 240px; height: 44px; margin: 0; padding: 0 40px 0 14px;
-  font: 500 var(--text-md) var(--font); color: var(--gray-900);
-  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 20px;
-  border: 1px solid var(--gray-300); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  font: 500 var(--text-md) var(--font); color: var(--text-primary);
+  background: var(--bg-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 20px;
+  border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
   appearance: none; cursor: pointer;
 }
-.sb-wys-select:focus-visible { outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-wys-select:focus-visible { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-select { width: 100%; }
 .sb-wys-icons { display: flex; flex-wrap: wrap; gap: 4px; }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* 28 px icons, gap 2 */
@@ -9681,20 +11050,20 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
   position: relative; box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; flex: none;
   width: 32px; height: 32px; margin: 0; padding: 0;
-  color: var(--gray-400); background: none; border: 0; border-radius: var(--radius-md);
+  color: var(--fg-quaternary); background: none; border: 0; border-radius: var(--radius-md);
   cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-wys-btn > svg { width: 20px; height: 20px; }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-btn { width: 28px; height: 28px; }
-.sb-wys-btn:hover { background: var(--gray-50); color: var(--gray-600); }
-.sb-wys-btn[aria-pressed="true"] { background: var(--brand-100); color: var(--brand-700); }
+.sb-wys-btn:hover { background: var(--bg-secondary); color: var(--text-tertiary); }
+.sb-wys-btn[aria-pressed="true"] { background: var(--bg-brand-subtle-hover); color: var(--text-brand); }
 .sb-wys-btn:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 0; }
 
 /* Tooltip on each icon: name and shortcut, Dark tooltip spec. */
 .sb-wys-btn[data-tip]::after {
   content: attr(data-tip); position: absolute; z-index: 10; bottom: calc(100% + 8px); left: 50%; translate: -50% 0;
-  padding: 8px 12px; border-radius: var(--radius-md); background: var(--gray-900); box-shadow: var(--shadow-lg);
+  padding: 8px 12px; border-radius: var(--radius-md); background: var(--bg-inverse); box-shadow: var(--shadow-lg);
   font: 600 var(--text-xs) var(--font); color: var(--white); white-space: nowrap;
   visibility: hidden; opacity: 0; transition: opacity 150ms var(--ease), visibility 0s 150ms; pointer-events: none;
 }
@@ -9703,42 +11072,42 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 /* Floating tooltip (Dark): gray-900, radius 8, padding 8, icons gap 4, 16 x 6 arrow, shadow-lg drawn as a filter. */
 .sb-wys-bubble {
   position: absolute; z-index: 20; display: flex; gap: 4px; padding: 8px;
-  background: var(--gray-900); border-radius: var(--radius-md);
+  background: var(--bg-inverse); border-radius: var(--radius-md);
   filter: drop-shadow(0 12px 8px rgba(16,24,40,.08)) drop-shadow(0 4px 3px rgba(16,24,40,.03));
 }
 .sb-wys-bubble[hidden] { display: none; }
 .sb-wys-bubble::after {
   content: ''; position: absolute; top: 100%; left: 50%; translate: -50% 0;
-  border: 8px solid transparent; border-top: 6px solid var(--gray-900); border-bottom: 0;
+  border: 8px solid transparent; border-top: 6px solid var(--bg-inverse); border-bottom: 0;
 }
 .sb-wys-bubble[data-arrow="left"]::after { left: 24px; }
 .sb-wys-bubble[data-arrow="right"]::after { left: auto; right: 8px; translate: 0 0; }
 .sb-wys-bubble[data-breakpoint="mobile"] .sb-wys-btn { width: 28px; height: 28px; }
 .sb-wys-bubble[data-breakpoint="mobile"] { gap: 2px; }
 /* Dark theme icons (inside the tooltip) */
-.sb-wys-bubble .sb-wys-btn { color: var(--gray-300); }
-.sb-wys-bubble .sb-wys-btn:hover { background: var(--gray-700); color: var(--white); }
-.sb-wys-bubble .sb-wys-btn[aria-pressed="true"] { background: var(--gray-600); color: var(--white); }
+.sb-wys-bubble .sb-wys-btn { color: var(--gray-300); } /* on the always-dark bubble */
+.sb-wys-bubble .sb-wys-btn:hover { background: rgb(255 255 255 / .1); color: var(--white); } /* white tints work on the bubble in both themes */
+.sb-wys-bubble .sb-wys-btn[aria-pressed="true"] { background: rgb(255 255 255 / .2); color: var(--white); }
 
 /* Editor area: same box as Textarea input field. */
 .sb-wys-area {
   box-sizing: border-box; min-height: 128px; padding: 10px 14px;
-  font: 400 var(--text-md) var(--font); color: var(--gray-900);
-  background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
   overflow-wrap: anywhere;
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-wys-area:focus { outline: none; border-color: var(--brand-300); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
-.sb-wys-area[aria-invalid="true"] { border-color: var(--error-300); }
-.sb-wys-area[aria-invalid="true"]:focus { box-shadow: var(--shadow-xs), 0 0 0 4px var(--error-100); }
+.sb-wys-area:focus { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-wys-area[aria-invalid="true"] { border-color: var(--border-error); }
+.sb-wys-area[aria-invalid="true"]:focus { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-error-subtle-hover); }
 /* Content styles map to the type scale. */
 .sb-wys-area > * { margin: 0; }
 .sb-wys-area > * + * { margin-top: 8px; }
 .sb-wys-area h1 { font: 600 var(--text-lg) var(--font); }
 .sb-wys-area h2 { font: 600 var(--text-md) var(--font); }
-.sb-wys-area blockquote { padding-inline-start: 12px; border-inline-start: 2px solid var(--gray-300); color: var(--gray-600); }
+.sb-wys-area blockquote { padding-inline-start: 12px; border-inline-start: 2px solid var(--border-primary); color: var(--text-tertiary); }
 .sb-wys-area ul, .sb-wys-area ol { padding-inline-start: 24px; }
-.sb-wys-area a { color: var(--brand-700); text-underline-offset: 4px; }
+.sb-wys-area a { color: var(--text-brand); text-underline-offset: 4px; }
 .sb-wys-area img { max-width: 100%; border-radius: var(--radius-md); }
 
 @media (prefers-reduced-motion: reduce) {

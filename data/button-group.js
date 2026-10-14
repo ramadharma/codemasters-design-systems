@@ -21,19 +21,19 @@
 .sb-btn-group {
   box-sizing: border-box;
   display: inline-flex; height: 40px;
-  background: var(--white);
-  border: 1px solid var(--gray-300); border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs);
   overflow: hidden; /* only the outer corners are rounded */
 }
 .sb-btn-group > button {
-  --seg-icon: var(--gray-500);
+  --seg-icon: var(--text-quaternary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: 100%; margin: 0; padding: 0 16px;
   font: 600 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--gray-700); background: var(--raised-sheen-light) var(--white);
-  border: 0; border-inline-end: 1px solid var(--gray-300); border-radius: 0;
+  color: var(--text-secondary); background: var(--raised-sheen-light) var(--bg-primary);
+  border: 0; border-inline-end: 1px solid var(--border-primary); border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
@@ -44,14 +44,14 @@
 
 /* States (fill / text / icon). Order matters: Current overrides Hover and Focused. Disabled: the default look at 50 % opacity. */
 .sb-btn-group > button:hover:not(:disabled), .sb-btn-group > button[data-state="hover"] {
-  --seg-icon: var(--gray-700); color: var(--gray-800); background: var(--gray-50);
+  --seg-icon: var(--text-secondary); color: var(--text-primary); background: var(--bg-secondary);
 }
 .sb-btn-group > button:focus-visible, .sb-btn-group > button[data-state="focus"] {
-  --seg-icon: var(--gray-700); color: var(--gray-700); background: var(--gray-50);
+  --seg-icon: var(--text-secondary); color: var(--text-secondary); background: var(--bg-secondary);
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--gray-900); color: var(--gray-900); background: var(--gray-100); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
+  --seg-icon: var(--text-primary); color: var(--text-primary); background: var(--bg-tertiary); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
 }
 .sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 

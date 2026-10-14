@@ -176,7 +176,7 @@ Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-me
   position: sticky; top: 0; z-index: 10;
   box-sizing: border-box; display: flex; align-items: center; gap: 24px;
   height: 80px; padding: 0 32px;
-  background: var(--white); border-bottom: 1px solid var(--gray-200);
+  background: var(--bg-primary); border-bottom: 1px solid var(--border-secondary);
   font-family: var(--font);
 }
 
@@ -186,23 +186,23 @@ Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-me
 .sb-header-title > :not(.sb-header-heading, nav) { flex: none; }
 .sb-header-title > nav { min-width: 0; }
 .sb-header-title > nav + .sb-header-heading { flex: none; }
-.sb-header-heading { min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 var(--display-xs) var(--font); color: var(--gray-900); }
+.sb-header-heading { min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 var(--display-xs) var(--font); color: var(--text-primary); }
 .sb-header-title > .sb-btn { margin-inline-end: 4px; } /* back button: 16 to the breadcrumb */
 
 /* Breadcrumb: the levels above the page in Display xs / Medium gray-500, "/" in gray-300 between them. */
-.sb-crumbs { display: flex; align-items: center; gap: 12px; margin: 0; padding: 0; list-style: none; font: 500 var(--display-xs) var(--font); color: var(--gray-500); white-space: nowrap; }
+.sb-crumbs { display: flex; align-items: center; gap: 12px; margin: 0; padding: 0; list-style: none; font: 500 var(--display-xs) var(--font); color: var(--text-quaternary); white-space: nowrap; }
 .sb-crumbs > li { display: flex; align-items: center; min-width: 0; }
 .sb-crumbs > li:has(.sb-menu-wrap) { flex: none; }
-.sb-crumbs > li::after { content: '/' / ''; margin-inline-start: 12px; color: var(--gray-300); }
+.sb-crumbs > li::after { content: '/' / ''; margin-inline-start: 12px; color: var(--border-primary); }
 .sb-crumb { overflow: hidden; text-overflow: ellipsis; border-radius: var(--radius-sm); color: inherit; text-decoration: none; transition: color 150ms var(--ease); }
-.sb-crumb:hover { color: var(--gray-700); }
+.sb-crumb:hover { color: var(--text-secondary); }
 .sb-crumb:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-crumb-more {
   height: 32px; margin: 0; padding: 0 6px; border: 0; border-radius: var(--radius-md);
   background: none; font: inherit; color: inherit; cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-crumb-more:is(:hover, [aria-expanded="true"]) { background: var(--gray-50); color: var(--gray-700); }
+.sb-crumb-more:is(:hover, [aria-expanded="true"]) { background: var(--bg-secondary); color: var(--text-secondary); }
 .sb-crumb-more:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
 .sb-crumbs .sb-menu { inset-inline: 0 auto; } /* opens under the "…", left-aligned */
 .sb-crumbs a.sb-menu-item { text-decoration: none; }
@@ -213,7 +213,7 @@ Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-me
 /* Actions: Buttons lg, gap 8, the primary action last. */
 .sb-header-actions { display: flex; flex: none; align-items: center; gap: 8px; }
 .sb-header-bell { position: relative; }
-.sb-header-dot { position: absolute; top: 10px; right: 11px; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--error-500); box-shadow: 0 0 0 2px var(--white); }
+.sb-header-dot { position: absolute; top: 10px; right: 11px; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--error-500); box-shadow: 0 0 0 2px var(--bg-primary); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-crumb, .sb-crumb-more { transition: none; }
@@ -224,15 +224,15 @@ Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-me
 
 ```css
 :root {
-  --white: #ffffff;
-  --gray-50: #f9fafb;
-  --gray-200: #eaecf0;
-  --gray-300: #d0d5dd;
-  --gray-500: #667085;
-  --gray-700: #344054;
-  --gray-900: #101828;
   --brand-600: #3966e0;
   --error-500: #f04438;
+  --bg-primary: var(--white);
+  --bg-secondary: var(--gray-50);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-quaternary: var(--gray-500);
+  --border-primary: var(--gray-300);
+  --border-secondary: var(--gray-200);
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-full: 9999px;

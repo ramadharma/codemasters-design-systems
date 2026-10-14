@@ -49,8 +49,8 @@ document.addEventListener('click', modalClick);`;
   display: grid; gap: 16px; align-content: start;
   width: min(var(--modal-w), calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 64px);
   margin: auto; padding: 24px; overflow-y: auto;
-  font: 400 var(--text-sm) var(--font); color: var(--gray-700);
-  background: var(--white); border: 0; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  font: 400 var(--text-sm) var(--font); color: var(--text-secondary);
+  background: var(--bg-primary); border: 0; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
 }
 .sb-modal[data-size="sm"] { --modal-w: 424px; }
 .sb-modal[data-size="lg"] { --modal-w: 880px; }
@@ -71,21 +71,26 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
 /* Head: optional icon, title, description. The close button sits in the corner. */
 .sb-modal-head { display: grid; gap: 16px; padding-inline-end: 32px; }
 .sb-modal-heading { display: grid; gap: 4px; }
-.sb-modal-title { margin: 0; font: 600 var(--text-xl) var(--font); color: var(--gray-900); text-wrap: balance; }
+.sb-modal-title { margin: 0; font: 600 var(--text-xl) var(--font); color: var(--text-primary); text-wrap: balance; }
 .sb-modal[data-size="sm"] .sb-modal-title { font: 600 var(--text-lg) var(--font); }
-.sb-modal-desc { margin: 0; color: var(--gray-500); text-wrap: pretty; }
+.sb-modal-desc { margin: 0; color: var(--text-quaternary); text-wrap: pretty; }
 .sb-modal-close { position: absolute; top: 16px; right: 16px; }
 
 /* Icon: 48 px circle, tone-100 fill with an 8 px tone-50 ring, 24 px tone-600 icon. */
 .sb-modal-icon {
-  --tone: var(--brand-600); --tone-fill: var(--brand-100); --tone-ring: var(--brand-50);
+  --tone: var(--brand-600); --tone-fill: var(--bg-brand-subtle-hover); --tone-ring: var(--bg-brand-subtle);
   box-sizing: border-box; display: grid; place-items: center; width: 48px; height: 48px;
   border: 8px solid var(--tone-ring); border-radius: var(--radius-full); background: var(--tone-fill); color: var(--tone);
 }
 .sb-modal-icon > svg { width: 24px; height: 24px; }
-.sb-modal-icon[data-tone="error"] { --tone: var(--error-600); --tone-fill: var(--error-100); --tone-ring: var(--error-50); }
-.sb-modal-icon[data-tone="warning"] { --tone: var(--warning-600); --tone-fill: var(--warning-100); --tone-ring: var(--warning-50); }
-.sb-modal-icon[data-tone="success"] { --tone: var(--success-600); --tone-fill: var(--success-100); --tone-ring: var(--success-50); }
+.sb-modal-icon[data-tone="error"] { --tone: var(--error-600); --tone-fill: var(--bg-error-subtle-hover); --tone-ring: var(--bg-error-subtle); }
+.sb-modal-icon[data-tone="warning"] { --tone: var(--warning-600); --tone-fill: var(--warning-100); --tone-ring: var(--bg-warning-subtle); }
+/* Dark theme: the icon steps up to 400 on the darker fills. */
+:root[data-theme="dark"] .sb-modal-icon { --tone: var(--brand-400); }
+:root[data-theme="dark"] .sb-modal-icon[data-tone="error"] { --tone: var(--error-400); }
+:root[data-theme="dark"] .sb-modal-icon[data-tone="warning"] { --tone: var(--warning-400); --tone-fill: var(--warning-900); }
+:root[data-theme="dark"] .sb-modal-icon[data-tone="success"] { --tone: var(--success-400); --tone-fill: var(--success-900); }
+.sb-modal-icon[data-tone="success"] { --tone: var(--success-600); --tone-fill: var(--success-100); --tone-ring: var(--bg-success-subtle); }
 
 .sb-modal-body { display: grid; gap: 16px; min-width: 0; }
 .sb-modal-body > p { margin: 0; }
