@@ -457,7 +457,10 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .f-logo-tile[data-bg="gray"] { background: var(--gray-50); }
 .f-logo-tile[data-bg="brand"] { background: var(--brand-50); }
 /* Logo tiles are specimens: each keeps its stated background in both themes (light tiles go white, text dark). */
-.f-logo-tile:not([data-bg="dark"], [data-bg="blue"], [data-bg="empty"]) { color-scheme: light; --text-quaternary: var(--gray-500); }
+.f-logo-tile:not([data-bg="dark"], [data-bg="blue"], [data-bg="empty"]) {
+  color-scheme: light; --text-quaternary: var(--gray-500);
+  --bg-primary: var(--white); --bg-secondary: var(--gray-50); --border-primary: var(--gray-300); --text-secondary: var(--gray-700); --text-primary: var(--gray-900); /* the Download button stays light */
+}
 .f-logo-tile[data-bg="dark"] { border-color: var(--gray-900); background: var(--gray-900); }
 .f-logo-tile[data-bg="blue"] { border-color: var(--brand-700); background: var(--brand-700); }
 .f-logo-tile[data-bg="empty"] { border-style: dashed; background: none; }
@@ -654,3 +657,12 @@ kbd svg { width: 12px; height: 12px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Filter bar page: the claims card at full width (or phone width); menus and the calendar open over the frame. */
+.fb-stage { width: 100%; min-width: 0; }
+.fb-stage.is-narrow { max-width: 390px; margin-inline: auto; }
+.ex-preview:has(> .fb-stage), .pg-stage:has(> .fb-stage) { position: relative; z-index: 2; min-height: 0; padding: 24px; overflow: visible; }
+.dd-preview .fb-stage { padding: 0; }
+.anat .fb-stage [data-pin] { outline: 1px dashed var(--fg-quaternary); outline-offset: 2px; }
+.ex-preview.anat:has(> .fb-stage) { padding: 80px 64px; } /* room for the pins on every side */
+.anat .fb-stage :is(.sb-filter, .sb-filter-row) { gap: 48px 12px; } /* exploded: room for the pins between the rows */

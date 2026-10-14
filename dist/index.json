@@ -181,6 +181,15 @@
       "path": "components/file-upload.md"
     },
     {
+      "slug": "filter-bar",
+      "name": "Filter bar",
+      "category": "Components",
+      "status": "In progress",
+      "updated": "2026-10-14",
+      "description": "The controls above a list that narrow it down: status tabs with counts, search, filter menus, a period and the active filters as chips. Filters apply as soon as they change. On narrow screens the filters move into a sheet.",
+      "path": "components/filter-bar.md"
+    },
+    {
       "slug": "header-bar",
       "name": "Header bar",
       "category": "Components",
@@ -377,6 +386,8 @@
     "code/dropdown-menu.js",
     "code/file-upload.css",
     "code/file-upload.js",
+    "code/filter-bar.css",
+    "code/filter-bar.js",
     "code/header-bar.css",
     "code/input-dropdown.css",
     "code/input-dropdown.js",

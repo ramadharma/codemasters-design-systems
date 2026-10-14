@@ -199,6 +199,7 @@
     'file-text': '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>',
     'external-link': '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/>',
     menu: '<path d="M3 12h18M3 6h18M3 18h18"/>',
+    'filter-lines': '<path d="M3 6h18M6 12h12M10 18h4"/>',
     search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>',
     hash: '<path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/>',
     'corner-down-left': '<path d="m9 10-5 5 5 5"/><path d="M20 4v7a4 4 0 0 1-4 4H4"/>',
@@ -232,7 +233,7 @@
   // Preview HTML to copyable snippet: icon bodies collapse to a named placeholder, docs-only attributes go.
   DS.snippet = html =>
     html
-      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart|table|modal|side|header|banner|dp|cb|loading|pager|up)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
+      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart|table|modal|side|header|banner|dp|cb|loading|pager|up|fb)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
       .replace(/<svg( class="[^"]*")? data-i="([\w-]+)"[\s\S]*?<\/svg>/g, '<svg$1 aria-hidden="true"><!-- $2 --></svg>')
       .replace(/ data-(state|demo)(="[^"]*")?/g, '')
       .replace(/src="data:image\/[^"]*"/g, 'src="…"'); // inline demo images

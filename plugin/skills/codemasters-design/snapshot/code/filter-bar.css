@@ -1,0 +1,97 @@
+/* Filter bar, Codemasters Design System
+   Needs tokens.css, button.css, button-group.css, badge.css, input-field.css, dropdown-menu.css + .js and
+   date-picker.css + .js; filter-bar.js keeps the chips and counts in step and fires "sb-filter-change".
+
+   <div class="sb-filter" role="group" aria-label="Filter klaim">
+     <div class="sb-filter-top">
+       <div class="sb-btn-group sb-filter-status" role="radiogroup" aria-label="Status klaim">
+         <button type="button" role="radio" aria-checked="true" tabindex="0" data-value="">Semua <span class="sb-badge" data-size="sm">10</span></button>…
+       </div>
+       <div class="sb-input sb-filter-search"><svg…search…/><input type="search" placeholder="Cari ID klaim atau peserta" aria-label="Cari klaim"></div>
+       <button class="sb-btn sb-filter-more" … popovertarget="klaim-filter">Filter <span class="sb-badge" data-size="sm" data-color="primary">1</span></button>
+     </div>
+     <div class="sb-filter-row">
+       <div class="sb-filter-sheet" id="klaim-filter" popover>
+         <div class="sb-filter-sheet-head">…title, close…</div>
+         <div class="sb-dp" data-type="range" data-presets data-start="…" data-end="…">…Date picker…</div>
+         <div class="sb-menu-wrap" data-filter="rs">…Dropdown menu with checkbox items, each with data-value; trigger holds .sb-filter-n…</div>
+         <div class="sb-filter-sheet-foot">…Hapus semua, Lihat hasil…</div>
+       </div>
+       <div class="sb-filter-chips"><ul class="sb-filter-chip-list" aria-label="Filter aktif">…</ul><button … data-filter-clear>Hapus semua</button></div>
+     </div>
+   </div>
+
+   Wide (600 and up): status and search, then the period and the menus, then the chips.
+   Narrow: status on its own row, search with a Filter button; the period and the menus move into a bottom sheet
+   (the popover). The chips stay on the page. */
+
+.sb-filter { container-type: inline-size; display: grid; gap: 16px; min-width: 0; }
+.sb-filter > * { min-width: 0; } /* the status row scrolls instead of widening the bar */
+.sb-filter-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.sb-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+
+/* Every control in the bar is 40 high, the height of Button md and Button group. */
+.sb-filter .sb-input { height: 40px; }
+.sb-filter-status { flex: none; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.sb-filter-status > button > .sb-badge { font-variant-numeric: tabular-nums; }
+.sb-filter-status > [aria-checked="true"] > .sb-badge { --bdg-bg: var(--bg-primary); } /* the pressed segment is gray-100 too */
+.sb-filter-search { flex: 1 1 200px; } /* fills the rest of the status row, or a row of its own when it wraps */
+.sb-filter .sb-dp { width: 264px; }
+.sb-filter .sb-menu { inset-inline: 0 auto; } /* menus open from the trigger's start edge, like the calendar */
+.sb-filter :is(.sb-filter-n, .sb-filter-more .sb-badge)[hidden] { display: none; }
+.sb-filter-more { display: none; }
+
+/* Wide: the sheet is only the row of filters, so the popover's own box is undone. */
+.sb-filter-sheet {
+  position: static; inset: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+  width: auto; height: auto; margin: 0; padding: 0; overflow: visible;
+  border: 0; background: none; color: inherit;
+}
+.sb-filter-sheet-head, .sb-filter-sheet-foot { display: none; }
+
+/* Active filters: Badge md with ×, on their own row under the controls. "Hapus semua" ends the row. */
+.sb-filter-chips { display: flex; flex: 1 1 100%; flex-wrap: wrap; align-items: center; gap: 8px; }
+.sb-filter-chips[hidden] { display: none; }
+.sb-filter-chip-list { display: contents; margin: 0; padding: 0; list-style: none; }
+.sb-filter-chip-list > li { display: flex; }
+
+@container (min-width: 800px) {
+  .sb-filter-search { flex-grow: 0; flex-basis: 320px; margin-inline-start: auto; } /* room for both: 320, right-aligned */
+}
+@container (max-width: 599px) {
+  .sb-filter-search { min-width: 0; }
+  .sb-filter-more { display: inline-flex; }
+  .sb-filter-sheet:not(:popover-open) { display: none; }
+}
+
+/* Narrow, open: a bottom sheet over the scrim, the controls full width and their panels in flow. */
+.sb-filter-sheet:popover-open {
+  position: fixed; inset: auto 0 0; display: grid; align-content: start; gap: 16px;
+  box-sizing: border-box; width: min(100%, 480px); max-height: 85dvh; margin: auto auto 0; padding: 0 16px;
+  overflow-y: auto; overscroll-behavior: contain;
+  background: var(--bg-primary); border-radius: var(--radius-xl) var(--radius-xl) 0 0; box-shadow: var(--shadow-xl);
+  transition-property: translate, opacity; transition-duration: 200ms; transition-timing-function: var(--ease);
+}
+@starting-style {
+  .sb-filter-sheet:popover-open { translate: 0 24px; opacity: 0; }
+}
+.sb-filter-sheet::backdrop { background: var(--scrim); }
+.sb-filter-sheet:popover-open > :is(.sb-filter-sheet-head, .sb-filter-sheet-foot) {
+  position: sticky; z-index: 1; display: flex; align-items: center; gap: 12px; background: var(--bg-primary);
+}
+.sb-filter-sheet:popover-open > .sb-filter-sheet-head { top: 0; justify-content: space-between; padding-top: 16px; }
+.sb-filter-sheet-title { margin: 0; font: 600 var(--text-lg) var(--font); color: var(--text-primary); }
+.sb-filter-sheet:popover-open > .sb-filter-sheet-foot { bottom: 0; padding-block: 16px; border-top: 1px solid var(--border-secondary); }
+.sb-filter-sheet-foot > .sb-btn { flex: 1; }
+.sb-filter-sheet:popover-open > :is(.sb-dp, .sb-menu-wrap) { display: grid; width: 100%; }
+.sb-filter-sheet:popover-open > .sb-menu-wrap > .sb-btn { justify-content: flex-start; }
+.sb-filter-sheet:popover-open > .sb-menu-wrap > .sb-btn > .sb-btn-chevron { margin-inline-start: auto; }
+.sb-filter-sheet:popover-open :is(.sb-menu, .sb-dp-panel) { position: static; min-width: 0; width: auto; margin-top: 8px; box-shadow: none; translate: none; }
+.sb-filter-sheet:popover-open .sb-dp-panel { flex-direction: column; }
+.sb-filter-sheet:popover-open .sb-dp-presets { display: flex; flex-wrap: wrap; width: auto; border-inline-end: 0; border-bottom: 1px solid var(--border-secondary); }
+.sb-filter-sheet:popover-open .sb-dp-months { flex-direction: column; }
+.sb-filter-sheet:popover-open .sb-dp-month + .sb-dp-month { border-inline-start: 0; border-top: 1px solid var(--border-secondary); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-filter-sheet:popover-open { transition: none; }
+}

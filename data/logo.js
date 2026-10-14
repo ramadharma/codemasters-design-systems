@@ -1,7 +1,7 @@
 // Foundations: Logo and brand architecture. Codemasters is the parent company of Sembuh AI and Flipmaster;
 // all three share this system and differ only in their blue scale. Logo files live in assets/brand/.
 (() => {
-  const { meta } = DS;
+  const { meta, icon } = DS;
   const SRC = {
     codemasters: 'assets/brand/codemasters-logo.png',
     sembuh: 'assets/brand/sembuh-logo.png',
@@ -24,7 +24,7 @@
 .sb-lockup-endorse img { display: block; width: auto; height: calc(var(--lockup-h) * .4); }
 `;
 
-  const tile = (html, bg = 'white', label = '') => `<figure class="f-logo-tile" data-bg="${bg}">${html}${label ? `<figcaption class="mx">${label}</figcaption>` : ''}</figure>`;
+  const tile = (html, bg = 'white', label = '', file = '') => `<figure class="f-logo-tile" data-bg="${bg}">${html}${label ? `<figcaption class="mx">${label}</figcaption>` : ''}${file ? `<a class="sb-btn" data-hierarchy="secondary-gray" data-size="sm" href="${file}" download>${icon('download')}Download PNG</a>` : ''}</figure>`;
   const img = (src, alt, h = 40) => `<img src="${src}" alt="${alt}" style="height: ${h}px">`;
   const lockup = (h = 40) => `<div class="sb-lockup" style="--lockup-h: ${h}px">
   <img class="sb-lockup-main" src="${SRC.sembuh}" alt="Sembuh AI">
@@ -37,9 +37,9 @@
 </div>`;
 
   const logos = `<div class="f-logos">
-${tile(img(SRC.codemasters, 'Codemasters', 48), 'white', 'Codemasters · parent company')}
-${tile(img(SRC.sembuh, 'Sembuh AI', 40), 'white', 'Sembuh AI · colour')}
-${tile(img(SRC.sembuhWhite, 'Sembuh AI', 40), 'dark', 'Sembuh AI · white')}
+${tile(img(SRC.codemasters, 'Codemasters', 48), 'white', 'Codemasters · parent company', SRC.codemasters)}
+${tile(img(SRC.sembuh, 'Sembuh AI', 40), 'white', 'Sembuh AI · colour', SRC.sembuh)}
+${tile(img(SRC.sembuhWhite, 'Sembuh AI', 40), 'dark', 'Sembuh AI · white', SRC.sembuhWhite)}
 ${tile('<span class="f-logo-missing">Flipmaster logo<br><small>file not supplied yet</small></span>', 'empty', 'Flipmaster')}
 </div>`;
 
