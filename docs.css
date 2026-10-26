@@ -125,7 +125,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .code pre:focus-visible { outline-offset: -2px; }
 /* Collapsed: first 3 lines (16 + 3 × 24 + 16 = 104), fading out, with View Code centred over the fade. */
 .code.is-collapsed pre { max-height: 104px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 95%); mask-image: linear-gradient(to bottom, #000 30%, transparent 95%); }
-.code-expand { position: absolute; top: 50%; left: 50%; translate: -50% -50%; }
+.code-expand { position: absolute; inset: 0; width: max-content; margin: auto; } /* centred with margins, so translate stays free for the 1 px press */
 :is(.code, .md-dialog) :is(b, i) { font: inherit; }
 /* Row numbers: a counter on each line span, outside the copied text. Gutter width = digits of the last line. */
 :is(.code, .md-dialog) pre code { counter-reset: ln; }
