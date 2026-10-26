@@ -73,7 +73,7 @@ document.addEventListener('keydown', menuKeydown);`;
    the Button trigger also needs button.css.
 
    <div class="sb-menu-wrap">
-     <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md"
+     <button class="sb-btn" type="button" data-variant="outline"
              aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg class="sb-btn-chevron" aria-hidden="true">…chevron-down…</svg></button>
      <div class="sb-menu" id="aksi" role="menu" aria-label="Aksi" hidden>
        <div class="sb-menu-group" role="group">
@@ -93,7 +93,6 @@ document.addEventListener('keydown', menuKeydown);`;
 .sb-menu-wrap { position: relative; display: inline-flex; }
 
 /* Triggers */
-.sb-menu-wrap > .sb-btn[aria-expanded="true"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-tertiary); } /* open: chevron up + gray-100 ring */
 .sb-menu-icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 32px; height: 32px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-md); /* hit area at least 32 x 32; radius 8 like every icon button of 32+ */
@@ -110,7 +109,7 @@ document.addEventListener('keydown', menuKeydown);`;
   transition: box-shadow 150ms var(--ease);
 }
 .sb-menu-avatar:hover { box-shadow: 0 0 0 4px var(--bg-tertiary); }
-.sb-menu-avatar:focus-visible, .sb-menu-avatar[aria-expanded="true"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-menu-avatar:focus-visible, .sb-menu-avatar[aria-expanded="true"] { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* Panel: 240 wide (wider for long labels, never truncated), opens 8 below, right-aligned. */
 .sb-menu {
@@ -130,10 +129,10 @@ document.addEventListener('keydown', menuKeydown);`;
 .sb-menu-name { display: block; font: 600 var(--text-sm) var(--font); color: var(--text-secondary); }
 .sb-menu-email { display: block; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
-/* Item: 40 high, padding 10 12 (text still 16 from the edge), gap 12, radius 8 (12 panel - 4 padding) */
+/* Item: 32 high, padding 0 8, gap 8, radius 8 (12 panel - 4 padding), like a shadcn menu item */
 .sb-menu-item {
-  box-sizing: border-box; display: flex; align-items: center; gap: 12px;
-  width: 100%; height: 40px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-md);
+  box-sizing: border-box; display: flex; align-items: center; gap: 8px;
+  width: 100%; height: 32px; margin: 0; padding: 0 8px; border: 0; border-radius: var(--radius-md);
   background: none; font: 500 var(--text-sm) var(--font); color: var(--text-secondary); text-align: start; white-space: nowrap;
   cursor: pointer;
 }
@@ -182,7 +181,7 @@ document.addEventListener('keydown', menuKeydown);`;
     const name = label || (checkbox ? 'Tampilkan kolom' : trigger === 'avatar' ? 'Menu akun' : 'Aksi');
     const tAttrs = `aria-haspopup="menu" aria-expanded="${open}" aria-controls="${key}"`;
     const triggerHtml = {
-      button: `<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" ${tAttrs}>${esc(name)}${icon('chevron-down', 'sb-btn-chevron')}</button>`,
+      button: `<button class="sb-btn" type="button" data-variant="outline" ${tAttrs}>${esc(name)}${icon('chevron-down', 'sb-btn-chevron')}</button>`,
       icon: `<button class="sb-menu-icon" type="button" aria-label="${esc(name)}" ${tAttrs}>${icon('more-vertical')}</button>`,
       avatar: `<button class="sb-menu-avatar" type="button" aria-label="${esc(name)}" ${tAttrs}>NP</button>`,
     }[trigger];
@@ -291,7 +290,7 @@ ${item(['', 'Checkbox, disabled'], { checkbox: true, disabled: true })}
             rows: [
               ['1', 'Header', 'Optional. Heading: 44 high, title Text sm / Semibold `gray-700`. Avatar group: 64 high, 40 px avatar with a 10 px `success-500` online dot, name Text sm / Semibold `gray-700`, email Text sm / Regular `gray-500`, gap 12. Padding `12 16`.'],
               ['2', 'Divider', '1 px `gray-100` between the header and each group.'],
-              ['3', 'Item', '40 high, padding `10 12`, radius 8, inset 4 from the panel edge, gap 12, Text sm / Medium `gray-700`. Hover and focus `gray-50`.'],
+              ['3', 'Item', '32 high, padding `0 8`, radius 8, inset 4 from the panel edge, gap 8, Text sm / Medium `gray-700`. Hover and focus `gray-50`.'],
               ['4', 'Icon or checkbox', '16 px icon `gray-700`, or a 16 px checkbox (radius 4). Never both.'],
               ['5', 'Shortcut', 'Optional, right-aligned, Text xs / Regular `gray-500`.'],
             ],
@@ -321,13 +320,13 @@ ${item(['', 'Checkbox, disabled'], { checkbox: true, disabled: true })}
         title: 'Triggers',
         blocks: [
           { type: 'h3', id: 'trigger-button', text: 'Button' },
-          { type: 'p', text: 'Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up and a `0 0 0 4px` `gray-100` ring.' },
+          { type: 'p', text: 'An Outline Button with the label and a 16 px chevron-down. Open: chevron up and the `gray-50` hover fill stays.' },
           { type: 'example', html: stage(menu({ trigger: 'button', groups: ROW, label: 'Aksi klaim', id: 'tr-button' })) },
           { type: 'h3', id: 'trigger-icon', text: 'Icon' },
           { type: 'p', text: '20 px `more-vertical` for row actions ("⋯"), with a hit area of at least 32 × 32.' },
           { type: 'example', html: stage(menu({ trigger: 'icon', groups: ROW, label: 'Aksi baris', id: 'tr-icon' })) },
           { type: 'h3', id: 'trigger-avatar', text: 'Avatar' },
-          { type: 'p', text: '40 px avatar for the account menu in the sidebar or header. Open: 4 px `focus-ring` ring.' },
+          { type: 'p', text: '40 px avatar for the account menu in the sidebar or header. Open: 3 px `focus-ring` ring.' },
           { type: 'example', html: stage(menu({ trigger: 'avatar', header: 'avatar', id: 'tr-avatar' })) },
         ],
       },
@@ -340,7 +339,7 @@ ${item(['', 'Checkbox, disabled'], { checkbox: true, disabled: true })}
             type: 'table',
             head: ['Part', 'Default', 'Hover / Focus', 'Disabled'],
             rows: [
-              ['Row (40 high, padding `10 12`, radius 8, gap 12)', 'no fill', '`gray-50`', 'no fill, whole row at 50 % opacity'],
+              ['Row (32 high, padding `0 8`, radius 8, gap 8)', 'no fill', '`gray-50`', 'no fill, whole row at 50 % opacity'],
               ['Label, Text sm / Medium', '`gray-700`', '`gray-700`', 'Default at 50 % opacity'],
               ['Icon 16 px', '`gray-700`', '`gray-700`', 'Default at 50 % opacity'],
               ['Checkbox 16 px, radius 4', '`white`, `gray-300` border', '`brand-50` fill, `brand-600` border', 'Default at 50 % opacity'],

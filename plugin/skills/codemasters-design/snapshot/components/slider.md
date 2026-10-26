@@ -25,7 +25,7 @@ Picks a value or a range by dragging, when the position matters more than the ex
 | --- | --- | --- |
 | 1 | Track | 8 high, full width (320 in examples), `gray-200`, radius 4 |
 | 2 | Selected range | `brand-600`, radius 4, between the handles (from 0 for a single slider) |
-| 3 | Handle | 24 px circle, `white` raised (`raised-sheen-light`), 1 px `brand-600` border, `shadow-md`, centred on the value |
+| 3 | Handle | 24 px circle, `white`, 1 px `brand-600` border, `shadow-md`, centred on the value |
 | 4 | Label | Optional. Bottom: Text md / Medium `gray-900`, 8 below the handle. Floating: Light tooltip with an arrow, 4 from the handle |
 
 ## Properties
@@ -86,7 +86,7 @@ The step is Rp 500.000; labels and `aria-valuetext` use the Rupiah format.
 | State (handle) | Spec |
 | --- | --- |
 | Hover | `brand-50` fill |
-| Focused / dragging | `0 0 0 4px focus-ring` ring + `shadow-md` |
+| Focused / dragging | `0 0 0 3px focus-ring` ring + `shadow-md` |
 | Disabled | Default at 50 % opacity; handle flat, no shadow |
 
 ## Keyboard
@@ -182,7 +182,7 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 
 /* Inputs: 24 px wider than the track so each handle centres on 0 % and 100 %. Only the handle takes the pointer. */
 .sb-slider-input {
-  --th-bg: var(--bg-primary); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md); --th-sheen: var(--raised-sheen-light);
+  --th-bg: var(--bg-primary); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md);
   position: absolute; z-index: 1; top: 0; left: -12px; width: calc(100% + 24px); height: 24px; margin: 0; /* above the rail's ::after, which paints last */
   background: none; appearance: none; -webkit-appearance: none; pointer-events: none;
 }
@@ -191,22 +191,22 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 .sb-slider-input::-moz-range-track { height: 24px; background: none; }
 .sb-slider-input::-webkit-slider-thumb {
   box-sizing: border-box; width: 24px; height: 24px; border: 1px solid var(--th-bd); border-radius: var(--radius-full);
-  background: var(--th-sheen) var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto; appearance: none; -webkit-appearance: none;
+  background: var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto; appearance: none; -webkit-appearance: none;
   transition: background-color 150ms var(--ease), box-shadow 150ms var(--ease);
 }
 .sb-slider-input::-moz-range-thumb {
   box-sizing: border-box; width: 24px; height: 24px; border: 1px solid var(--th-bd); border-radius: var(--radius-full);
-  background: var(--th-sheen) var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto;
+  background: var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto;
   transition: background-color 150ms var(--ease), box-shadow 150ms var(--ease);
 }
 
 /* Handle states. Focused and dragging share the ring. */
 .sb-slider-input:is(:hover, [data-state="hover"]) { --th-bg: var(--bg-brand-subtle); }
-.sb-slider-input:is(:focus-visible, :active, [data-state="focus"]) { --th-shadow: var(--shadow-md), 0 0 0 4px var(--focus-ring); }
+.sb-slider-input:is(:focus-visible, :active, [data-state="focus"]) { --th-shadow: var(--shadow-md), 0 0 0 3px var(--focus-ring); }
 .sb-slider-input:active::-webkit-slider-thumb { cursor: grabbing; }
 .sb-slider-input:active::-moz-range-thumb { cursor: grabbing; }
 .sb-slider:has(:disabled) { opacity: .5; } /* disabled: the default look at 50 % opacity, flat handle */
-.sb-slider-input:disabled { --th-shadow: none; --th-sheen: none; }
+.sb-slider-input:disabled { --th-shadow: none; }
 .sb-slider-input:disabled::-webkit-slider-thumb { cursor: not-allowed; }
 .sb-slider-input:disabled::-moz-range-thumb { cursor: not-allowed; }
 
@@ -279,7 +279,6 @@ document.addEventListener('input', sliderInput);
   --radius-full: 9999px;
   --shadow-md: 0 4px 8px -2px rgba(16,24,40,.1), 0 2px 4px -2px rgba(16,24,40,.06);
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
-  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Timeless Sans', sans-serif;

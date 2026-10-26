@@ -26,12 +26,12 @@ The controls above a list that narrow it down: status tabs with counts, search, 
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Status tabs | Button group switch, 40 high. Each segment ends with a Badge sm count, white on the pressed segment. |
-| 2 | Search | Input field with the search icon, 40 high. 320 wide and right-aligned when the bar is 800 or wider; below that it fills the rest of the status row, or a row of its own. |
+| 1 | Status tabs | Button group switch, 32 high. Each segment ends with a Badge sm count, white on the pressed segment. |
+| 2 | Search | Input field with the search icon, 32 high. 320 wide and right-aligned when the bar is 640 or wider; below that it fills the rest of the status row, or a row of its own. |
 | 3 | Period | Date picker range with quick ranges, 264 wide, empty for "Semua tanggal". |
-| 4 | Filter menu | Button md secondary gray with a chevron; opens a Dropdown menu of checkbox items. A Badge sm primary counts the picks. |
+| 4 | Filter menu | Button, Outline, with a chevron; opens a Dropdown menu of checkbox items. A Badge sm primary counts the picks. |
 | 5 | Chips | Badge md with ×, on their own row. The period first, then each picked value. |
-| 6 | Clear | Button sm link gray "Hapus semua". Shows only with chips. |
+| 6 | Clear | Button, Link, "Hapus semua". Shows only with chips. |
 
 Rows 16 apart (12 between the controls and the chips); 12 between controls, 8 between chips.
 
@@ -55,7 +55,7 @@ Status, search, period and menus, for the main list of a module.
 
 ### Narrow
 
-Under 600 wide (the bar's own width, not the screen's), status takes its own row and scrolls sideways if needed. Search shares a row with a Filter button that counts the active filters. The period and the menus open in a bottom sheet; the chips stay on the page.
+Under 480 wide (the bar's own width, not the screen's), status takes its own row and scrolls sideways if needed. Search shares a row with a Filter button that counts the active filters. The period and the menus open in a bottom sheet; the chips stay on the page.
 
 ## States
 
@@ -85,11 +85,11 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
       <button type="button" role="radio" aria-checked="false" tabindex="-1" data-value="rejected">Ditolak <span class="sb-badge" data-size="sm">0</span></button>
     </div>
     <div class="sb-input sb-filter-search"><svg aria-hidden="true"><!-- search --></svg><input type="search" placeholder="Cari ID klaim atau peserta" aria-label="Cari klaim" value=""></div>
-    <button class="sb-btn sb-filter-more" type="button" data-hierarchy="secondary-gray" data-size="md" popovertarget="fb-7-sheet"><svg aria-hidden="true"><!-- filter-lines --></svg>Filter<span class="sb-badge" data-size="sm" data-color="primary">2</span></button>
+    <button class="sb-btn sb-filter-more" type="button" data-variant="outline" popovertarget="fb-7-sheet"><svg aria-hidden="true"><!-- filter-lines --></svg>Filter<span class="sb-badge" data-size="sm" data-color="primary">2</span></button>
   </div>
   <div class="sb-filter-row">
     <div class="sb-filter-sheet" id="fb-7-sheet" popover aria-label="Filter">
-      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" popovertarget="fb-7-sheet" popovertargetaction="hide"><svg aria-hidden="true"><!-- x --></svg></button></div>
+      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" popovertarget="fb-7-sheet" popovertargetaction="hide"><svg aria-hidden="true"><!-- x --></svg></button></div>
       <div class="sb-dp" data-type="range" data-start="2026-09-15" data-end="2026-10-14" data-today="2026-10-14" data-presets>
         <div class="sb-input">
           <button class="sb-dp-toggle" type="button" aria-label="Pilih periode" aria-haspopup="dialog" aria-expanded="false" aria-controls="fb-7-cal"><svg aria-hidden="true"><!-- calendar --></svg></button>
@@ -98,7 +98,7 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
         <div class="sb-dp-panel" id="fb-7-cal" role="dialog" aria-label="Pilih periode" hidden></div>
       </div>
     <div class="sb-menu-wrap" data-filter="rs">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-7-rs">Rumah sakit<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary">1</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-7-rs">Rumah sakit<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary">1</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
       <div class="sb-menu" id="fb-7-rs" role="menu" aria-label="Rumah sakit" hidden>
         <div class="sb-menu-group" role="group">
           <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-value="RS Medika Utama"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">RS Medika Utama</span></button>
@@ -109,7 +109,7 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
       </div>
     </div>
     <div class="sb-menu-wrap" data-filter="svc">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-7-svc">Layanan<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary" hidden>0</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-7-svc">Layanan<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary" hidden>0</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
       <div class="sb-menu" id="fb-7-svc" role="menu" aria-label="Layanan" hidden>
         <div class="sb-menu-group" role="group">
           <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-value="Rawat inap"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">Rawat inap</span></button>
@@ -118,11 +118,11 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
         </div>
       </div>
     </div>
-      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" popovertarget="fb-7-sheet" popovertargetaction="hide">Lihat hasil</button></div>
+      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-variant="outline" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" popovertarget="fb-7-sheet" popovertargetaction="hide">Lihat hasil</button></div>
     </div>
     <div class="sb-filter-chips">
       <ul class="sb-filter-chip-list" aria-label="Filter aktif"><li><span class="sb-badge" data-size="md" data-icon="x-close">15 Sep 2026 – 14 Okt 2026<button class="sb-badge-x" type="button" data-remove="date" data-value="" aria-label="Hapus filter 15 Sep 2026 – 14 Okt 2026"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li><li><span class="sb-badge" data-size="md" data-icon="x-close">RS Bunda<button class="sb-badge-x" type="button" data-remove="rs" data-value="RS Bunda" aria-label="Hapus filter RS Bunda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li></ul>
-      <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="sm" data-filter-clear>Hapus semua</button>
+      <button class="sb-btn" type="button" data-variant="link" data-size="sm" data-filter-clear>Hapus semua</button>
     </div>
   </div>
 </div>
@@ -140,11 +140,11 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
       <button type="button" role="radio" aria-checked="false" tabindex="-1" data-value="rejected">Ditolak <span class="sb-badge" data-size="sm">0</span></button>
     </div>
     <div class="sb-input sb-filter-search"><svg aria-hidden="true"><!-- search --></svg><input type="search" placeholder="Cari ID klaim atau peserta" aria-label="Cari klaim" value=""></div>
-    <button class="sb-btn sb-filter-more" type="button" data-hierarchy="secondary-gray" data-size="md" popovertarget="fb-8-sheet"><svg aria-hidden="true"><!-- filter-lines --></svg>Filter<span class="sb-badge" data-size="sm" data-color="primary">2</span></button>
+    <button class="sb-btn sb-filter-more" type="button" data-variant="outline" popovertarget="fb-8-sheet"><svg aria-hidden="true"><!-- filter-lines --></svg>Filter<span class="sb-badge" data-size="sm" data-color="primary">2</span></button>
   </div>
   <div class="sb-filter-row">
     <div class="sb-filter-sheet" id="fb-8-sheet" popover aria-label="Filter">
-      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" popovertarget="fb-8-sheet" popovertargetaction="hide"><svg aria-hidden="true"><!-- x --></svg></button></div>
+      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" popovertarget="fb-8-sheet" popovertargetaction="hide"><svg aria-hidden="true"><!-- x --></svg></button></div>
       <div class="sb-dp" data-type="range" data-start="2026-09-15" data-end="2026-10-14" data-today="2026-10-14" data-presets>
         <div class="sb-input">
           <button class="sb-dp-toggle" type="button" aria-label="Pilih periode" aria-haspopup="dialog" aria-expanded="false" aria-controls="fb-8-cal"><svg aria-hidden="true"><!-- calendar --></svg></button>
@@ -153,7 +153,7 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
         <div class="sb-dp-panel" id="fb-8-cal" role="dialog" aria-label="Pilih periode" hidden></div>
       </div>
     <div class="sb-menu-wrap" data-filter="rs">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-8-rs">Rumah sakit<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary">1</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-8-rs">Rumah sakit<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary">1</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
       <div class="sb-menu" id="fb-8-rs" role="menu" aria-label="Rumah sakit" hidden>
         <div class="sb-menu-group" role="group">
           <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-value="RS Medika Utama"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">RS Medika Utama</span></button>
@@ -164,7 +164,7 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
       </div>
     </div>
     <div class="sb-menu-wrap" data-filter="svc">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-8-svc">Layanan<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary" hidden>0</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-8-svc">Layanan<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary" hidden>0</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
       <div class="sb-menu" id="fb-8-svc" role="menu" aria-label="Layanan" hidden>
         <div class="sb-menu-group" role="group">
           <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-value="Rawat inap"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">Rawat inap</span></button>
@@ -173,11 +173,11 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
         </div>
       </div>
     </div>
-      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" popovertarget="fb-8-sheet" popovertargetaction="hide">Lihat hasil</button></div>
+      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-variant="outline" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" popovertarget="fb-8-sheet" popovertargetaction="hide">Lihat hasil</button></div>
     </div>
     <div class="sb-filter-chips" hidden>
       <ul class="sb-filter-chip-list" aria-label="Filter aktif"><li><span class="sb-badge" data-size="md" data-icon="x-close">15 Sep 2026 – 14 Okt 2026<button class="sb-badge-x" type="button" data-remove="date" data-value="" aria-label="Hapus filter 15 Sep 2026 – 14 Okt 2026"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li><li><span class="sb-badge" data-size="md" data-icon="x-close">RS Bunda<button class="sb-badge-x" type="button" data-remove="rs" data-value="RS Bunda" aria-label="Hapus filter RS Bunda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li></ul>
-      <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="sm" data-filter-clear>Hapus semua</button>
+      <button class="sb-btn" type="button" data-variant="link" data-size="sm" data-filter-clear>Hapus semua</button>
     </div>
   </div>
 </div>
@@ -225,7 +225,7 @@ Load `tokens.css`, the CSS of the parts (Button, Button group, Badge, Input fiel
      </div>
    </div>
 
-   Wide (600 and up): status and search, then the period and the menus, then the chips.
+   Wide (480 and up): status and search, then the period and the menus, then the chips.
    Narrow: status on its own row, search with a Filter button; the period and the menus move into a bottom sheet
    (the popover). The chips stay on the page. */
 
@@ -234,8 +234,7 @@ Load `tokens.css`, the CSS of the parts (Button, Button group, Badge, Input fiel
 .sb-filter-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .sb-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 
-/* Every control in the bar is 40 high, the height of Button md and Button group. */
-.sb-filter .sb-input { height: 40px; }
+/* Every control in the bar is 32 high, like every Button, field and Button group. */
 .sb-filter-status { flex: none; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
 .sb-filter-status > button > .sb-badge { font-variant-numeric: tabular-nums; }
 .sb-filter-status > [aria-checked="true"] > .sb-badge { --bdg-bg: var(--bg-primary); } /* the pressed segment is gray-100 too */
@@ -259,10 +258,10 @@ Load `tokens.css`, the CSS of the parts (Button, Button group, Badge, Input fiel
 .sb-filter-chip-list { display: contents; margin: 0; padding: 0; list-style: none; }
 .sb-filter-chip-list > li { display: flex; }
 
-@container (min-width: 800px) {
+@container (min-width: 640px) {
   .sb-filter-search { flex-grow: 0; flex-basis: 320px; margin-inline-start: auto; } /* room for both: 320, right-aligned */
 }
-@container (max-width: 599px) {
+@container (max-width: 479px) {
   .sb-filter-search { min-width: 0; }
   .sb-filter-more { display: inline-flex; }
   .sb-filter-sheet:not(:popover-open) { display: none; }

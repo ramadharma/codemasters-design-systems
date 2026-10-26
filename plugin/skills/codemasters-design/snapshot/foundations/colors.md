@@ -133,7 +133,7 @@ For pills, tags, alerts, labels and chart series. Use them sparingly, as accents
 | `brand-300` | Input focus border, light Sembuh AI series |
 | `brand-600` | Sembuh AI chart series |
 | `brand-600` | **Primary**: buttons, active tab, links, checked controls, focus outline; at 20 % it is the focus ring (`--focus-ring`) |
-| `brand-700` | Primary button hover, Secondary color / Tertiary color button text, Link color hover, table ID links, tab text |
+| `brand-700` | Link button text, table ID links, tab text, brand text on subtle fills |
 | `brand-800` | Deep accent |
 
 ## Semantic roles

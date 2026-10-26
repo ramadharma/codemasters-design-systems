@@ -24,7 +24,7 @@ Signs the user in with an account on another platform. For third-party sign-in o
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Container | One size, matching Button `lg`: 44 high, padding `10 16`, radius 8, `shadow-xs`. `white` with a 1 px `gray-300` border; the Brand theme fills it with the platform colour. Logo only: 44 × 44, padding 10. |
+| 1 | Container | One size, matching Button `lg`: 36 high, padding `0 12`, gap 8, 18 px logo, Text sm / Medium, radius 10, `shadow-xs`. `white` with a 1 px `gray-200` border; the Brand theme fills it with the platform colour. Logo only: 44 × 44, padding 10. |
 | 2 | Logo | 24 px, gap 12. Colour logo; white on a Brand fill; `gray-400` in the Color theme. |
 | 3 | Label | Text md / Semibold, `gray-700` (white on a Brand fill). "Masuk dengan …" plus the platform name. |
 
@@ -41,8 +41,8 @@ Signs the user in with an account on another platform. For third-party sign-in o
 
 | Theme | Look | Hover |
 | --- | --- | --- |
-| Brand | Fill in the platform colour, white logo and text. Google is the exception: white, `gray-300` border, colour logo, `gray-700` text. | Darker platform colour |
-| Color with brand | White, `gray-300` border, colour logo, `gray-700` text. | `gray-50` fill |
+| Brand | Fill in the platform colour, white logo and text. Google is the exception: white, `gray-200` border, colour logo, `gray-700` text. | Darker platform colour |
+| Color with brand | White, `gray-200` border, colour logo, `gray-700` text. | `gray-50` fill |
 | Color | Same as Color with brand, with a `gray-400` logo. | `gray-50` fill |
 
 ### Platform colours
@@ -57,7 +57,7 @@ Signs the user in with an account on another platform. For third-party sign-in o
 
 ## States
 
-Focused is `shadow-xs` plus a 4 px `focus-ring` ring in every theme. There is no Disabled state.
+Focused is `shadow-xs` plus a 3 px `focus-ring` ring in every theme. There is no Disabled state.
 
 ## Groups
 
@@ -184,21 +184,21 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 
 .sb-social {
   --sc-brand: var(--text-secondary); --sc-brand-hover: var(--text-secondary);
-  --sc-bg: var(--bg-primary); --sc-border: var(--border-primary); --sc-fg: var(--text-secondary); --sc-logo: var(--sc-brand);
-  --sc-bg-hover: var(--bg-secondary); --sc-border-hover: var(--border-primary);
+  --sc-bg: var(--bg-primary); --sc-border: var(--border-control); --sc-fg: var(--text-secondary); --sc-logo: var(--sc-brand);
+  --sc-bg-hover: var(--bg-secondary); --sc-border-hover: var(--border-control);
   box-sizing: border-box;
-  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-  height: 44px; padding: 0 16px;
-  font: 600 var(--text-md) var(--font); white-space: nowrap; text-decoration: none;
-  color: var(--sc-fg); background: var(--sc-sheen, var(--raised-sheen-light)) var(--sc-bg);
-  border: 1px solid var(--sc-border); border-radius: var(--radius-md);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 36px; padding: 0 12px;
+  font: 500 var(--text-sm) var(--font); white-space: nowrap; text-decoration: none;
+  color: var(--sc-fg); background: var(--sc-bg);
+  border: 1px solid var(--sc-border); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   cursor: pointer;
-  transition-property: color, background-color, border-color, box-shadow, scale;
+  transition-property: color, background-color, border-color, box-shadow, translate;
   transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-social > svg { width: 24px; height: 24px; flex: none; color: var(--sc-logo); }
-.sb-social[data-icon="only"] { width: 44px; padding: 0; }
+.sb-social > svg { width: 18px; height: 18px; flex: none; color: var(--sc-logo); }
+.sb-social[data-icon="only"] { width: 36px; padding: 0; }
 
 /* Platform colours: the only colours allowed outside the palette. */
 .sb-social[data-social="facebook"] { --sc-brand: #1877F2; --sc-brand-hover: #0C63D4; }
@@ -211,7 +211,7 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 .sb-social[data-theme="brand"]:not([data-social="google"]) {
   --sc-bg: var(--sc-brand); --sc-border: var(--sc-brand); --sc-fg: var(--white); --sc-logo: var(--white);
   --sc-bg-hover: var(--sc-brand-hover); --sc-border-hover: var(--sc-brand-hover);
-  --sc-sheen: var(--raised-sheen); box-shadow: var(--raised-highlight), var(--shadow-xs);
+  box-shadow: var(--shadow-xs);
 }
 /* Color with brand (default): white, colour logo. Color: white, gray logo. */
 .sb-social[data-theme="color"] { --sc-logo: var(--fg-quaternary); }
@@ -219,8 +219,8 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 
 /* States */
 .sb-social:hover, .sb-social[data-state="hover"] { background-color: var(--sc-bg-hover); border-color: var(--sc-border-hover); }
-.sb-social:focus-visible, .sb-social[data-state="focus"] { outline: none; box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
-.sb-social:active { scale: .96; }
+.sb-social:focus-visible, .sb-social[data-state="focus"] { outline: none; box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
+.sb-social:active { translate: 0 1px; }
 
 /* Groups: a 360 px column of full-width buttons, or a row of equal icon buttons. Gap 12. */
 .sb-social-group { display: grid; gap: 12px; width: 100%; max-width: 360px; }
@@ -266,15 +266,12 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
   --bg-secondary: var(--gray-50);
   --text-secondary: var(--gray-700);
   --fg-quaternary: var(--gray-400);
-  --border-primary: var(--gray-300);
-  --radius-md: 8px;
+  --border-control: var(--gray-200);
+  --radius-control: 10px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
-  --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
-  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
-  --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Timeless Sans', sans-serif;
-  --text-md: 16px/24px;
+  --text-sm: 14px/20px;
 }
 ```

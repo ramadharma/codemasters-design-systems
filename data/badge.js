@@ -412,7 +412,7 @@ ${GROUP_COLORS.map(c => `<span class="mx">${COLORS.find(x => x[0] === c)[2]}</sp
           {
             type: 'dodont',
             items: [
-              { kind: 'do', html: '<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>', text: 'An action is a Button.' },
+              { kind: 'do', html: '<button class="sb-btn" type="button" data-variant="outline" data-size="sm">Lihat Detail</button>', text: 'An action is a Button.' },
               { kind: 'dont', html: badge({ color: 'primary', icon: 'icon-right', label: 'Lihat Detail' }), text: 'A badge that looks clickable. Badges label; they do not act.' },
             ],
           },

@@ -23,8 +23,8 @@ A row of joined buttons for related, equal-weight choices: a view switch (Hari, 
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Group | 40 high (same as Button `md`), 1 px `gray-300` border, radius 8, `shadow-xs`. Clips its children, so only the outer corners are rounded. |
-| 2 | Segment | `white` fill, padding `10 16` (icon-only `10 12`). Current=True is pressed in: `gray-100` fill with `pressed-inset`. |
+| 1 | Group | 32 high (same as a default Button), 1 px `gray-200` border, radius 10, `shadow-xs`. Clips its children, so only the outer corners are rounded. |
+| 2 | Segment | `white` fill, padding `10 16` (icon-only `10 12`). Current=True: `gray-100` fill. |
 | 3 | Divider | 1 px `gray-300` on the trailing side of each segment. The last one is hidden by the group border. |
 | 4 | Icon | Optional. 20 px, gap 8, `gray-500` (Current: `gray-900`). The Dot variant puts a 10 px `success-500` dot here instead. |
 | 5 | Label | Text sm / Semibold, `gray-700` (Current: `gray-900`). Icon-only segments drop it and carry an `aria-label`. |
@@ -110,7 +110,7 @@ For status filters. The dot stays `success-500` in every state.
 
 | State | Current=False (fill / text / icon) | Current=True |
 | --- | --- | --- |
-| Default | `white` raised / `gray-700` / `gray-500` | `gray-100` + `pressed-inset` / `gray-900` / `gray-900` |
+| Default | `white` / `gray-700` / `gray-500` | `gray-100` / `gray-900` / `gray-900` |
 | Hover | `gray-50` / `gray-800` / `gray-700` | same as Default |
 | Focused | `gray-50` / `gray-700` / `gray-700` | same as Default + focus outline |
 | Disabled | Default at 50 % opacity | Default at 50 % opacity |
@@ -180,7 +180,7 @@ Tab reaches the group once, on the checked segment. ← → move and select.
 </div>
 ```
 
-**Don't:** A primary action hidden in a group. Use separate Buttons: Batal (Tertiary gray), Kirim (Primary).
+**Don't:** A primary action hidden in a group. Use separate Buttons: Batal (Ghost), Kirim (Default).
 
 ```html
 <div class="sb-btn-group" role="group" aria-label="Aksi formulir">
@@ -263,9 +263,9 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 
 .sb-btn-group {
   box-sizing: border-box;
-  display: inline-flex; height: 40px;
+  display: inline-flex; height: 32px;
   background: var(--bg-primary);
-  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
+  border: 1px solid var(--border-control); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   overflow: hidden; /* only the outer corners are rounded */
 }
@@ -273,16 +273,16 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
   --seg-icon: var(--text-quaternary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  height: 100%; margin: 0; padding: 0 16px;
-  font: 600 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--text-secondary); background: var(--raised-sheen-light) var(--bg-primary);
-  border: 0; border-inline-end: 1px solid var(--border-primary); border-radius: 0;
+  height: 100%; margin: 0; padding: 0 10px;
+  font: 500 var(--text-sm) var(--font); white-space: nowrap;
+  color: var(--text-secondary); background: var(--bg-primary);
+  border: 0; border-inline-end: 1px solid var(--border-control); border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-btn-group > button:last-child { border-inline-end: 0; }
-.sb-btn-group > button > svg { width: 20px; height: 20px; flex: none; color: var(--seg-icon); }
-.sb-btn-group[data-icon="only"] > button { padding: 0 12px; }
+.sb-btn-group > button > svg { width: 16px; height: 16px; flex: none; color: var(--seg-icon); }
+.sb-btn-group[data-icon="only"] > button { padding: 0 8px; }
 .sb-btn-group-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
 
 /* States (fill / text / icon). Order matters: Current overrides Hover and Focused. Disabled: the default look at 50 % opacity. */
@@ -294,7 +294,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--text-primary); color: var(--text-primary); background: var(--bg-tertiary); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
+  --seg-icon: var(--text-primary); color: var(--text-primary); background: var(--bg-tertiary); /* the chosen segment: a gray-100 fill */
 }
 .sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 
@@ -343,12 +343,10 @@ function select(seg) {
   --text-primary: var(--gray-900);
   --text-secondary: var(--gray-700);
   --text-quaternary: var(--gray-500);
-  --border-primary: var(--gray-300);
-  --radius-md: 8px;
+  --border-control: var(--gray-200);
+  --radius-control: 10px;
   --radius-full: 9999px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
-  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
-  --pressed-inset: inset 0 1px 2px rgb(16 24 40 / .1);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Timeless Sans', sans-serif;
   --text-sm: 14px/20px;

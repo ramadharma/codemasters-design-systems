@@ -14,6 +14,7 @@ The shared visual language of Codemasters and its company Sembuh AI: web apps, w
 - Icons
 - Shadows & Blur
 - Grids & Spacing
+- Accordion
 - Avatar
 - Badge
 - Banner
@@ -50,7 +51,7 @@ The shared visual language of Codemasters and its company Sembuh AI: web apps, w
 
 ## Principles
 
-1. **Data first, chrome second.** White cards on a near-white page; colour is reserved for status, series and the one primary action. No decorative gradients or illustrations; the only gradient is the raised sheen on controls.
+1. **Data first, chrome second.** White cards on a near-white page; colour is reserved for status, series and the one primary action. No decorative gradients, illustrations or bevels: controls are flat, with a thin border and a faint shadow.
 2. **One primary action per view.** The blue button is the next step of the flow (Mulai Analisis, Kirim ke Advisor, Keputusan). Everything else is secondary (white, gray border) or orange for Pending.
 3. **Status is always a coloured pill.** Every claim status has one fixed colour pair, used in tables, headers, summary cards and filters alike.
 4. **Never empty.** Every cell, field and card shows a value. Placeholder data is deterministic (same record, same value).
@@ -240,6 +241,7 @@ The shared visual language of Codemasters and its company Sembuh AI: web apps, w
   --fg-brand: var(--brand-600);
   --border-primary: var(--gray-300);
   --border-secondary: var(--gray-200);
+  --border-control: var(--gray-200);
   --border-tertiary: var(--gray-100);
   --border-strong: var(--gray-400);
   --border-brand: var(--brand-300);
@@ -271,9 +273,10 @@ The shared visual language of Codemasters and its company Sembuh AI: web apps, w
   --container-lg: 1024px;
   --container-xl: 1280px;
 
-  /* Radius: 4 small parts, 8 controls, 12 containers, 16 badges, full circles */
+  /* Radius: 4 small parts, 8 items inside panels, 10 controls, 12 containers, 16 badges, full circles */
   --radius-sm: 4px;
   --radius-md: 8px;
+  --radius-control: 10px;
   --radius-lg: 12px;
   --radius-xl: 16px;
   --radius-full: 9999px;
@@ -286,12 +289,6 @@ The shared visual language of Codemasters and its company Sembuh AI: web apps, w
   --shadow-xl: 0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03);
   --shadow-2xl: 0 24px 48px -12px rgba(16,24,40,.18);
   --shadow-3xl: 0 32px 64px -12px rgba(16,24,40,.14);
-
-  /* Raised controls: background-image and box-shadow on solid and white controls (Button, Tabs, Button group) */
-  --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
-  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
-  --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
-  --pressed-inset: inset 0 1px 2px rgb(16 24 40 / .1);
 
   /* Chart series: fixed order, validated for colour-blind separation. Light step (300) of the same family for rejected or secondary */
   --chart-1: var(--brand-500);
@@ -313,7 +310,7 @@ The shared visual language of Codemasters and its company Sembuh AI: web apps, w
   --blur-lg: blur(12px);
   --blur-xl: blur(20px);
 
-  /* Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible */
+  /* Focus ring: box-shadow: 0 0 0 3px var(--focus-ring) on :focus-visible */
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
 
   /* Motion */
@@ -628,7 +625,7 @@ For pills, tags, alerts, labels and chart series. Use them sparingly, as accents
 | `brand-300` | Input focus border, light Sembuh AI series |
 | `brand-600` | Sembuh AI chart series |
 | `brand-600` | **Primary**: buttons, active tab, links, checked controls, focus outline; at 20 % it is the focus ring (`--focus-ring`) |
-| `brand-700` | Primary button hover, Secondary color / Tertiary color button text, Link color hover, table ID links, tab text |
+| `brand-700` | Link button text, table ID links, tab text, brand text on subtle fills |
 | `brand-800` | Deep accent |
 
 ### Semantic roles
@@ -1100,22 +1097,6 @@ A background blur also lifts an element: it blurs what is behind a translucent s
 .scrim { background: rgba(255,255,255,.6); backdrop-filter: var(--blur-md); }
 ```
 
-### Raised controls
-
-Pressable controls get a little depth, so they read as buttons: a sheen over the fill (lighter top, darker bottom) and, on solid fills, a 1 px light line inside the top edge. The sheen is translucent, so one token works over any fill: brand, error or another company's blue.
-
-| Token | Use on | CSS value |
-| --- | --- | --- |
-| `--raised-sheen` | Solid fills: Primary and Destructive Primary buttons, selected Folder tab, Social button Brand theme | `linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))` |
-| `--raised-sheen-light` | White controls: Secondary gray button, Button group segments, selected Segmented tab, Social buttons, Toggle knob, Slider handle, Avatar add button | `linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))` |
-| `--raised-highlight` | With `--raised-sheen`, first in `box-shadow` | `inset 0 1px 0 rgb(255 255 255 / .28)` |
-| `--pressed-inset` | The opposite of raised: the chosen Button group segment, on a `gray-100` fill | `inset 0 1px 2px rgb(16 24 40 / .1)` |
-
-- Write it as `background: var(--raised-sheen) var(--brand-600)`. On hover change only `background-color`, so the sheen stays.
-- A solid raised control takes a border one step darker than its fill (`brand-600` fill, `brand-700` border).
-- Flat: inputs, badges, cards, Secondary color, Tertiary, Link, chosen Button group segments (pressed in with `--pressed-inset`) and every Disabled state (the default look at 50 % opacity).
-- Never on cards, panels or large surfaces. It is for controls only.
-
 ### Do and don't
 
 **Do:** A menu on `shadow-lg`, the token for floating panels.
@@ -1144,12 +1125,6 @@ Pressable controls get a little depth, so they read as buttons: a sheen over the
   --shadow-xl: 0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03);
   --shadow-2xl: 0 24px 48px -12px rgba(16,24,40,.18);
   --shadow-3xl: 0 32px 64px -12px rgba(16,24,40,.14);
-
-  /* Raised controls: background-image and box-shadow on solid and white controls (Button, Tabs, Button group) */
-  --raised-sheen: linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08));
-  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
-  --raised-highlight: inset 0 1px 0 rgb(255 255 255 / .28);
-  --pressed-inset: inset 0 1px 2px rgb(16 24 40 / .1);
 
   /* Background blur: use as backdrop-filter: var(--blur-md) */
   --blur-sm: blur(4px);
@@ -1253,7 +1228,8 @@ Content sits in a centred container with a fixed max width.
 | Value | Token | Use |
 | --- | --- | --- |
 | 4 | `--radius-sm` | Checkboxes, calendar days, progress and slider tracks, targets under 24 px (help icon, badge ×) |
-| 8 | `--radius-md` | Icon buttons of 32 px and up, buttons, inputs, menu rows, tab tops (`8 8 0 0`), inner cards, banners |
+| 8 | `--radius-md` | Items inside panels: menu rows, icon buttons in toolbars, tab tops (`8 8 0 0`), inner cards, banners |
+| 10 | `--radius-control` | Controls: buttons, button groups, input fields, dropdown and date fields, segmented tabs |
 | 12 | `--radius-lg` | Cards, dialogs, popover panels, dropdown menus |
 | 16 | `--radius-xl` | Badges, tags, chips |
 | 9999 (full) | `--radius-full` | Avatar, toggle, radio, check circle, dots |
@@ -1305,12 +1281,192 @@ Components use only these tokens, never a px value. 6 was dropped on 7 Oct 2026:
   --container-lg: 1024px;
   --container-xl: 1280px;
 
-  /* Radius: 4 small parts, 8 controls, 12 containers, 16 badges, full circles */
+  /* Radius: 4 small parts, 8 items inside panels, 10 controls, 12 containers, 16 badges, full circles */
   --radius-sm: 4px;
   --radius-md: 8px;
+  --radius-control: 10px;
   --radius-lg: 12px;
   --radius-xl: 16px;
   --radius-full: 9999px;
+}
+```
+
+## Accordion
+
+Stacked sections that open and close: FAQs, the parts of a claim, groups of filters. Each item opens on its own, divided by a line, with the chevron on the right. Native details and summary, no script.
+
+### Usage
+
+- Use an accordion when people need only some of a long page at a time: answers in an FAQ, the parts of a claim, groups of filters.
+- Do not hide what everyone needs. Content most people read, or must act on, stays open or out of the accordion.
+- Titles say what is inside, as a question in an FAQ or a noun in a detail page ("Rincian biaya").
+- Use md for FAQs and detail pages, sm for side panels and filter groups.
+- Meta shows the state of a section without opening it: a Badge ("Lengkap", "3 dari 4"), a total, or a count of active filters.
+- Each item opens on its own. Open the first one, or the one that needs attention, when the page loads.
+- For steps people must complete in order, use a stepper, not an accordion.
+
+### Anatomy
+
+| # | Part | Spec |
+| --- | --- | --- |
+| 1 | Item | `<details>`; 1 px `gray-200` line between items, none above the first or below the last. |
+| 2 | Title | md: Text md / Semibold, sm: Text sm / Semibold, `gray-900`. Wraps; never truncated. |
+| 3 | Meta | Optional. A Badge sm or Text sm `gray-500`, 12 before the chevron. |
+| 4 | Chevron | 20 px `chevron-down`, `gray-400`, `gray-700` on hover; turns 180° when open, 150 ms. |
+| 5 | Body | Text md (sm: Text sm) / Regular `gray-600`, 8 under the title (sm 4), any content. |
+
+The head is the whole row: padding 20 above and below (sm 12), no side padding, so the text lines up with the content around it.
+
+### Properties
+
+| Property | Values | Code |
+| --- | --- | --- |
+| Size | md, sm | Omit, or `data-size="sm"` on `.sb-accordion` |
+| Open | True, False | `open` on the `<details>` |
+| Meta | True, False | `<span class="sb-acc-meta">` before the chevron |
+
+### Types
+
+#### FAQ
+
+Questions as titles, short answers. md, the first answer open.
+
+#### Detail sections
+
+The parts of a claim inside a Card. Meta tells people which part needs them; open the part that does.
+
+#### Filter groups
+
+sm in a side panel, one group per filter, Checkboxes inside. Meta counts the active choices, so a closed group still shows it filters.
+
+### States
+
+| State | Look |
+| --- | --- |
+| Closed | Chevron points down, body hidden |
+| Open | Chevron points up, body shown; the height eases in 200 ms where the browser supports it |
+| Hover | Chevron `gray-700`; the whole row is the target |
+| Focused | 2 px `brand-600` outline around the head, offset 2 |
+
+### Do and don't
+
+**Do:** Meta shows the state, so people open only what needs them.
+
+```html
+<div class="sb-accordion">
+  <details class="sb-acc-item">
+    <summary class="sb-acc-head">
+      <span class="sb-acc-title">Rincian biaya</span>
+      <span class="sb-acc-meta">Rp 12.450.000</span>
+      <svg class="sb-acc-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </summary>
+    <div class="sb-acc-body"><dl class="sb-card-rows"><div class="sb-card-row"><dt>Kamar</dt><dd>Rp 4.500.000</dd></div><div class="sb-card-row"><dt>Tindakan</dt><dd>Rp 7.950.000</dd></div></dl></div>
+  </details>
+  <details class="sb-acc-item" open>
+    <summary class="sb-acc-head">
+      <span class="sb-acc-title">Dokumen</span>
+      <span class="sb-acc-meta"><span class="sb-badge" data-size="sm" data-color="warning">3 dari 4</span></span>
+      <svg class="sb-acc-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </summary>
+    <div class="sb-acc-body"><p>Kuitansi apotek belum diunggah.</p></div>
+  </details>
+</div>
+```
+
+**Don't:** Every section closed, nothing says where the problem is.
+
+```html
+<div class="sb-accordion">
+  <details class="sb-acc-item">
+    <summary class="sb-acc-head">
+      <span class="sb-acc-title">Rincian biaya</span>
+      <svg class="sb-acc-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </summary>
+    <div class="sb-acc-body"><dl class="sb-card-rows"><div class="sb-card-row"><dt>Kamar</dt><dd>Rp 4.500.000</dd></div><div class="sb-card-row"><dt>Tindakan</dt><dd>Rp 7.950.000</dd></div></dl></div>
+  </details>
+  <details class="sb-acc-item">
+    <summary class="sb-acc-head">
+      <span class="sb-acc-title">Dokumen</span>
+      <svg class="sb-acc-chevron" aria-hidden="true"><!-- chevron-down --></svg>
+    </summary>
+    <div class="sb-acc-body"><p>Kuitansi apotek belum diunggah.</p></div>
+  </details>
+</div>
+```
+
+- Do not nest an accordion inside another.
+- Do not put a primary action only inside a closed section.
+- Do not use an accordion for one item: show the content, or use a Card with a fold chevron.
+
+### Accessibility
+
+- `<details>` and `<summary>` give the toggle, its expanded state and Enter / Space for free, with no ARIA to keep in sync.
+- The summary is the only control in the head. Do not put links or buttons in it.
+- Find in page (⌘F) opens a closed item that holds the match.
+- With reduced motion, items open at once and the chevron does not turn.
+
+### Code
+
+Load `tokens.css`, `badge.css` for a meta badge, then `accordion.css`. No script.
+
+`accordion.css`
+
+```css
+/* Accordion, Codemasters Design System
+   Needs tokens.css; badge.css for a meta badge. No script: <details> opens and closes itself, each item on its own.
+
+   <div class="sb-accordion">
+     <details class="sb-acc-item" open>
+       <summary class="sb-acc-head">
+         <span class="sb-acc-title">Berapa lama klaim diproses?</span>
+         <span class="sb-acc-meta">…optional: a Badge or a short value…</span>
+         <svg class="sb-acc-chevron" aria-hidden="true">…chevron-down…</svg>
+       </summary>
+       <div class="sb-acc-body">…</div>
+     </details>
+     …
+   </div>
+
+   data-size="sm" on .sb-accordion   compact rows (filter groups, side panels); omit for md
+   open on a <details>                starts open. Any number can be open at once. */
+
+.sb-accordion {
+  --acc-py: 20px; --acc-type: var(--text-md); --acc-gap: 8px;
+  display: grid; min-width: 0;
+  font-family: var(--font);
+  interpolate-size: allow-keywords; /* lets the body animate to its own height where supported */
+}
+.sb-accordion[data-size="sm"] { --acc-py: 12px; --acc-type: var(--text-sm); --acc-gap: 4px; }
+
+/* Items are divided by a gray-200 line; no line above the first or below the last. */
+.sb-acc-item + .sb-acc-item { border-top: 1px solid var(--border-secondary); }
+
+/* Head: the whole row is the toggle. Title Semibold gray-900, meta and chevron at the end. */
+.sb-acc-head {
+  display: flex; align-items: center; gap: 12px;
+  padding-block: var(--acc-py); border-radius: var(--radius-sm);
+  font: 600 var(--acc-type) var(--font); color: var(--text-primary);
+  list-style: none; cursor: pointer;
+}
+.sb-acc-head::-webkit-details-marker { display: none; }
+.sb-acc-head:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.sb-acc-title { flex: 1; min-width: 0; text-wrap: pretty; }
+.sb-acc-meta { display: inline-flex; align-items: center; gap: 8px; flex: none; font-weight: 400; font-size: var(--text-sm); color: var(--text-quaternary); }
+.sb-acc-chevron { width: 20px; height: 20px; flex: none; color: var(--fg-quaternary); transition-property: rotate, color; transition-duration: 150ms; transition-timing-function: var(--ease); }
+.sb-acc-head:hover .sb-acc-chevron { color: var(--text-secondary); }
+.sb-acc-item[open] > .sb-acc-head .sb-acc-chevron { rotate: 180deg; }
+
+/* Body: Regular gray-600, under the title; the row's bottom padding continues below it. */
+.sb-acc-body { padding-bottom: var(--acc-py); margin-top: calc(var(--acc-gap) - var(--acc-py)); font: 400 var(--acc-type) var(--font); color: var(--text-tertiary); text-wrap: pretty; }
+.sb-acc-body > * { margin: 0; }
+.sb-acc-body > * + * { margin-top: 12px; }
+
+/* Open and close: the height eases in browsers that animate <details>; elsewhere it snaps. */
+.sb-acc-item::details-content { block-size: 0; overflow: clip; transition: block-size 200ms var(--ease), content-visibility 200ms allow-discrete; }
+.sb-acc-item[open]::details-content { block-size: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-acc-chevron, .sb-acc-item::details-content { transition: none; }
 }
 ```
 
@@ -1406,7 +1562,7 @@ Only an avatar that is a button or a link (the account menu) has states. A stati
 | State | Look |
 | --- | --- |
 | Hover | 4 px `gray-100` ring outside the circle |
-| Focused | 4 px `focus-ring` ring outside the circle (`:focus-visible`) |
+| Focused | 3 px `focus-ring` ring outside the circle (`:focus-visible`) |
 
 ### Avatar group
 
@@ -1622,7 +1778,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 /* States: only for an avatar that is a button or link (account menu). A 4 px ring outside the circle. */
 :is(button, a).sb-avatar { cursor: pointer; transition: box-shadow 150ms var(--ease); }
 :is(button, a).sb-avatar:is(:hover, [data-state="hover"]) { box-shadow: 0 0 0 4px var(--bg-tertiary); }
-:is(button, a).sb-avatar:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+:is(button, a).sb-avatar:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* ---- Avatar group: overlapping avatars with a 1.5 px white ring, then "+N", then the add button 8 apart. */
 .sb-avatar-group { --av-overlap: -12px; display: inline-flex; align-items: center; gap: 8px; }
@@ -1635,14 +1791,14 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 /* Add: white, dashed gray-300 border, gray-400 plus icon at half the box. */
 .sb-avatar-add {
   display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: var(--av, 40px); height: var(--av, 40px);
-  margin: 0; padding: 0; border: 1px dashed var(--border-primary); border-radius: var(--radius-full); background: var(--raised-sheen-light) var(--bg-primary); color: var(--fg-quaternary); cursor: pointer;
+  margin: 0; padding: 0; border: 1px dashed var(--border-primary); border-radius: var(--radius-full); background: var(--bg-primary); color: var(--fg-quaternary); cursor: pointer;
   transition-property: color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-avatar-group[data-size="xs"] .sb-avatar-add { --av: 24px; }
 .sb-avatar-group[data-size="sm"] .sb-avatar-add { --av: 32px; }
 .sb-avatar-add > svg { width: calc(var(--av, 40px) / 2); height: calc(var(--av, 40px) / 2); }
 .sb-avatar-add:is(:hover, [data-state="hover"]) { border-color: var(--border-strong); color: var(--text-quaternary); }
-.sb-avatar-add:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-avatar-add:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* ---- Avatar label group: avatar + name + secondary line. Long text truncates (show it in a tooltip). */
 .sb-avatar-label { display: inline-flex; align-items: center; gap: 12px; max-width: 100%; margin: 0; padding: 0; border: 0; background: none; text-align: start; text-decoration: none; }
@@ -1660,7 +1816,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 :is(button, a).sb-avatar-label { cursor: pointer; }
 :is(button, a).sb-avatar-label:focus-visible { outline: none; }
 :is(button, a).sb-avatar-label:is(:hover, [data-state="hover"]) .sb-avatar { box-shadow: 0 0 0 4px var(--bg-tertiary); }
-:is(button, a).sb-avatar-label:is(:focus-visible, [data-state="focus"]) .sb-avatar { box-shadow: 0 0 0 4px var(--focus-ring); }
+:is(button, a).sb-avatar-label:is(:focus-visible, [data-state="focus"]) .sb-avatar { box-shadow: 0 0 0 3px var(--focus-ring); }
 :is(button, a).sb-avatar-label:is(:hover, :focus-visible, [data-state]) .sb-avatar-name { color: var(--text-primary); }
 .sb-avatar-label .sb-avatar { transition: box-shadow 150ms var(--ease); }
 
@@ -1909,7 +2065,7 @@ A badge plus a short message in one pill, for announcements and inline notices (
 **Do:** An action is a Button.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
+<button class="sb-btn" type="button" data-variant="outline" data-size="sm">Lihat Detail</button>
 ```
 
 **Don't:** A badge that looks clickable. Badges label; they do not act.
@@ -2248,152 +2404,132 @@ Load `tokens.css`, then `banner.css`. No script.
 
 ## Button
 
-Runs an action on the current page: save, submit, open a dialog, start an analysis. Seven hierarchies tell the user which action matters most.
+Runs an action on the current page: save, submit, open a dialog, start an analysis. Six variants and the sizes of shadcn/ui, in the Codemasters colours.
 
 ### Usage
 
-Use a button for an action on the current page. Link hierarchies exist for links inside running text, not for actions.
+Use a button for an action on the current page. The Link variant is for links inside running text, not for actions.
 
-- **A button looks like a button.** Always a rectangle with radius 8 and a fill or a border. Never turn an action into bare text, an underlined word or text with an arrow; users then have to search for it.
-- **One primary action per view.** Primary is the next step of the flow (Mulai Analisis, Kirim ke Advisor, Keputusan). Every other action steps down: Primary, then Secondary color or Secondary gray, then Tertiary, then Link.
-- **Hierarchy, not sameness.** Never give all buttons in a row the same style. Without hierarchy, users must read every label.
-- **Order in a row.** Least important on the left, Primary on the right, gap 12. Several secondary actions are fine; keep their order consistent.
-- **Destructive is not automatically red.** Most destructive actions (Hapus, Tolak in a dialog with other choices) use Secondary gray. Use Destructive only when the destructive action is the primary action of the view.
+- **A button looks like a button.** A rectangle with radius 10 (8 at `xs` and `sm`) and a fill or a border. Never turn an action into bare text or text with an arrow.
+- **One Default per view.** Default (the brand fill) is the next step of the flow: Mulai Analisis, Kirim ke Advisor, Keputusan. Every other action steps down: Outline, then Secondary or Ghost, then Link.
+- **Outline** for the other actions next to Default (Batal, Ajukan). **Secondary** for low-emphasis actions on a busy surface. **Ghost** for toolbars, icon buttons and actions inside rows.
+- **Order in a row.** Least important on the left, Default on the right, gap 8.
+- **Destructive** is a soft red, for the action that deletes or rejects. In a dialog whose purpose is deleting, it is the main action; elsewhere, a destructive choice among others (Tolak next to Setujui) stays Outline.
 - **Labels are verbs in Title Case:** Mulai Analisis, Kirim ke Advisor, Ajukan Persetujuan, Sepakati Klaim.
 
 ### Anatomy
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Container | Radius 8, 1 px border, `shadow-xs` on Primary and Secondary. Height and horizontal padding come from the size; heights include the border (`box-sizing: border-box`). |
-| 2 | Leading icon | Optional. 20 px (16 at `xs`, 24 at `2xl`), gap 8 (4 at `xs`, 12 at `2xl`), `currentColor`. |
-| 3 | Label | Semibold. Text sm at `xs`, `sm` and `md`, Text md at `lg` and `xl`, Text lg at `2xl`. A verb in Title Case. |
-| 4 | Trailing icon | Optional. Same size and gap as the leading icon. A menu trigger uses chevron-down with `class="sb-btn-chevron"`, which turns 180° when the menu is open. |
+| 1 | Container | Radius 10 (`--radius-control`; 8 at `xs` and `sm`), 1 px border (transparent on filled variants), `shadow-xs` on Default and Outline. Height and padding come from the size; heights include the border. |
+| 2 | Leading icon | Optional. 16 px (12 at `xs`, 14 at `sm`), `currentColor`. The padding on its side drops to 8 (6 at `xs` and `sm`), so the icon looks centred. |
+| 3 | Label | Medium. Text sm at `default` and `lg`, Text xs at `xs` and `sm`. A verb in Title Case. |
+| 4 | Trailing icon | Optional. Same size as the leading icon. A menu trigger uses chevron-down with `class="sb-btn-chevron"`, which turns 180° when the menu is open. |
 
-### Properties
+The specimen is shown at 160 %.
 
-Each property maps to one attribute, so a slide, a spec and the code describe a button with the same words.
-
-| Property | Values | Code |
-| --- | --- | --- |
-| Hierarchy | Primary, Secondary gray, Secondary color, Tertiary color, Tertiary gray, Link color, Link gray | `data-hierarchy="primary"` to `"link-gray"` |
-| Size | `sm`, `md`, `lg`, `xl`, `2xl` (`xs` is code-only for now) | `data-size="md"` |
-| Icon | False, Leading, Trailing, Dot, Only | `<svg>` before or after the label, `<span class="sb-btn-dot">`, or `data-icon="only"` with `aria-label` |
-| Destructive | False, True | `data-destructive` |
-| State | Default, Hover, Focused, Disabled, Loading | `:hover`, `:focus-visible`, `disabled`, `aria-busy="true"` + `.sb-spinner`. Static mockups only: `data-state="hover"` or `"focus"` |
-
-### Hierarchy
-
-Seven levels, from the one next step (Primary) to links inside text. Primary, Secondary gray and Secondary color carry `shadow-xs`; Tertiary and Link have no box until hover.
-
-Primary and Secondary gray are **raised**: a sheen over the fill (lighter top, darker bottom) and, on Primary, a 1 px light line inside the top edge and a border one step darker than the fill. Secondary color, Tertiary, Link and every Disabled state stay flat. Tokens: `--raised-sheen`, `--raised-sheen-light`, `--raised-highlight` (Shadows & Blur).
+### Variants
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Primary</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">Secondary gray</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-color" data-size="md">Secondary color</button>
-<button class="sb-btn" type="button" data-hierarchy="tertiary-color" data-size="md">Tertiary color</button>
-<button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="md">Tertiary gray</button>
-<button class="sb-btn" type="button" data-hierarchy="link-color" data-size="md">Link color</button>
-<button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="md">Link gray</button>
+<button class="sb-btn" type="button">Default</button>
+<button class="sb-btn" type="button" data-variant="outline">Outline</button>
+<button class="sb-btn" type="button" data-variant="secondary">Secondary</button>
+<button class="sb-btn" type="button" data-variant="ghost">Ghost</button>
+<button class="sb-btn" type="button" data-variant="destructive">Destructive</button>
+<button class="sb-btn" type="button" data-variant="link">Link</button>
 ```
 
 #### Colours per state
 
-| Hierarchy | Default (fill / border / text) | Hover | Default at 50 % opacity, flat | Focused |
-| --- | --- | --- | --- | --- |
-| Primary | `brand-600` + `raised-sheen` / `brand-700` / `white` | `brand-700` / `brand-800` / `white` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
-| Secondary gray | `white` + `raised-sheen-light` / `gray-300` / `gray-700` | `gray-50` / `gray-300` / `gray-800` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
-| Secondary color | `brand-50` / `brand-50` / `brand-700` | `brand-100` / `brand-100` / `brand-700` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
-| Tertiary color | none / none / `brand-700` | `brand-50` fill | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
-| Tertiary gray | none / none / `gray-500` | `gray-50` fill, text `gray-600` | Default at 50 % opacity, flat | 4 px `focus-ring` ring |
-| Link color | text `brand-600`, no padding | text `brand-700` | Default at 50 % opacity, flat | 2 px `brand-600` outline |
-| Link gray | text `gray-500`, no padding | text `gray-600` | Default at 50 % opacity, flat | 2 px `brand-600` outline |
+| Variant | Default (fill / border / text) | Hover | Focused |
+| --- | --- | --- | --- |
+| Default | `brand-500` / none / `white` | `brand-600` | `brand-300` border, 3 px `focus-ring` |
+| Outline | `white` / `gray-200` / `gray-900` | `gray-50` fill | `brand-300` border, 3 px `focus-ring` |
+| Secondary | `gray-100` / none / `gray-900` | `gray-100` with 5 % `gray-900` | `brand-300` border, 3 px `focus-ring` |
+| Ghost | none / none / `gray-900` | `gray-50` fill | `brand-300` border, 3 px `focus-ring` |
+| Destructive | `error-600` at 10 % / none / `error-700` | `error-600` at 20 % | `error-600` at 40 % border, 3 px ring at 20 % |
+| Link | text `brand-700`, no box | underline, offset 4 | 2 px `brand-300` outline |
+
+In the dark theme Destructive takes 20 % (hover 30 %), and the semantic tokens remap the rest.
 
 ### Sizes
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="xs">xs</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">sm</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">md</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg">lg</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="xl">xl</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="2xl">2xl</button>
+<button class="sb-btn" type="button" data-size="xs">xs</button>
+<button class="sb-btn" type="button" data-size="sm">sm</button>
+<button class="sb-btn" type="button">default</button>
+<button class="sb-btn" type="button" data-size="lg">lg</button>
+<button class="sb-btn" type="button" data-size="xl">xl</button>
 ```
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="xs" data-icon="only" aria-label="Tambah">
+<button class="sb-btn" type="button" data-variant="outline" data-size="icon-xs" aria-label="Tambah">
   <svg aria-hidden="true"><!-- plus --></svg>
 </button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm" data-icon="only" aria-label="Tambah">
+<button class="sb-btn" type="button" data-variant="outline" data-size="icon-sm" aria-label="Tambah">
   <svg aria-hidden="true"><!-- plus --></svg>
 </button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-icon="only" aria-label="Tambah">
+<button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="Tambah">
   <svg aria-hidden="true"><!-- plus --></svg>
 </button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="Tambah">
+<button class="sb-btn" type="button" data-variant="outline" data-size="icon-lg" aria-label="Tambah">
   <svg aria-hidden="true"><!-- plus --></svg>
 </button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="xl" data-icon="only" aria-label="Tambah">
-  <svg aria-hidden="true"><!-- plus --></svg>
-</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="2xl" data-icon="only" aria-label="Tambah">
+<button class="sb-btn" type="button" data-variant="outline" data-size="icon-xl" aria-label="Tambah">
   <svg aria-hidden="true"><!-- plus --></svg>
 </button>
 ```
 
-| Size | Height | Padding (y x) | Icon-only | Text style | Icon | Gap |
+| Size | Height | Padding x (icon side) | Text | Icon | Gap | Radius |
 | --- | --- | --- | --- | --- | --- | --- |
-| `xs` | 32 | `6 12` | 32 × 32, padding 8 | Text sm / Semibold | 16 | 4 |
-| `sm` | 36 | `8 14` | 36 × 36, padding 8 | Text sm / Semibold | 20 | 8 |
-| `md` | 40 | `10 16` | 40 × 40, padding 10 | Text sm / Semibold | 20 | 8 |
-| `lg` | 44 | `10 18` | 44 × 44, padding 12 | Text md / Semibold | 20 | 8 |
-| `xl` | 48 | `12 20` | 48 × 48, padding 14 | Text md / Semibold | 20 | 8 |
-| `2xl` | 60 | `16 28` | 60 × 60, padding 18 | Text lg / Semibold | 24 | 12 |
-
-> **Note:** `xs` is for dense desktop UI only. Padding `6 12` uses the control padding exception (Grids & Spacing): it lands the height on 32.
+| `xs` | 24 | 8 (6) | Text xs / Medium | 12 | 4 | 8 |
+| `sm` | 28 | 10 (6) | Text xs / Medium | 14 | 4 | 8 |
+| `default` | 32 | 10 (8) | Text sm / Medium | 16 | 6 | 10 |
+| `lg` | 36 | 10 (8) | Text sm / Medium | 16 | 6 | 10 |
+| `xl` | 40 | 14 (12) | Text sm / Medium | 16 | 8 | 10 |
+| `icon-xs` · `icon-sm` · `icon` · `icon-lg` · `icon-xl` | 24 · 28 · 32 · 36 · 40 | square | — | 12 · 16 · 16 · 16 · 16 | — | 8 · 8 · 10 · 10 · 10 |
 
 #### Choosing a size
 
-- `lg`: page header actions and form submits. The app's main `.btn` is this size.
-- `md`: card toolbars, filters and compact forms.
-- `sm`: tables, dense lists and inline pairs such as approve and reject.
-- `xs`: actions that sit inside a table row, a card header or a toolbar next to other dense controls ("Lihat", "Unduh", a row's more menu). Desktop only: at 32 px it is below the 44 px touch target.
-- `xl` and `2xl`: website heroes, landing pages and slides. Not used in the app.
-- On touch screens use `lg` or larger, so the target is at least 44 px.
+- `default`: almost everything: forms, card toolbars, filters, dialogs. Inputs and dropdowns are 32 too, so they line up.
+- `lg`: the page header's main action and form submits that should stand out a little.
+- `xl` (40, our addition to the shadcn scale): roomier actions: a form's submit row, empty states, landing pages and anywhere 32 feels too tight.
+- `sm`: tables, dense lists and code or toolbar headers.
+- `xs`: actions inside a table row, a chip or a tight toolbar.
+- Touch: every size is below the 44 px touch target. On touch screens give a button at least 44 px of tappable space (spacing around it, or a larger `::after` hit area).
 
 ### Icon
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">False</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">
+<button class="sb-btn" type="button" data-variant="outline">False</button>
+<button class="sb-btn" type="button" data-variant="outline">
   <svg aria-hidden="true"><!-- plus --></svg>
   Leading
 </button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">
+<button class="sb-btn" type="button" data-variant="outline">
   Trailing
   <svg aria-hidden="true"><!-- arrow-right --></svg>
 </button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">
+<button class="sb-btn" type="button" data-variant="outline">
   <span class="sb-btn-dot" aria-hidden="true"></span>
   Dot
 </button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-icon="only" aria-label="Tambah">
+<button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="Tambah">
   <svg aria-hidden="true"><!-- plus --></svg>
 </button>
 ```
 
-- **Leading** and **Trailing:** a 20 px icon before or after the label (24 px at `2xl`), same gap as the size.
-- **Dot:** a 10 px `success-500` status dot before the label, same gap as an icon.
-- **Only:** a square button, width = height. Always give it an `aria-label` and a tooltip with the same text.
-- Icons are Feather-style outlines with a 1.67 px stroke at 20 px, coloured with `currentColor` so they follow the text in every state.
+- **Leading** and **Trailing:** a 16 px icon before or after the label; the padding on that side drops by 2 (4 at `xs` and `sm`).
+- **Dot:** an 8 px `success-500` status dot before the label.
+- **Only:** an `icon` size, width = height. Always give it an `aria-label` and a tooltip with the same text.
+- Icons are Feather-style outlines coloured with `currentColor`, so they follow the text in every state.
 
 #### Menu trigger
 
-A button that opens a menu carries a trailing chevron-down. Set `aria-expanded` and give the chevron `class="sb-btn-chevron"`; it turns 180° in 200 ms when the menu is open. Icon-only triggers such as ⋮ do not turn.
+A button that opens a menu carries a trailing chevron-down. Set `aria-haspopup` and `aria-expanded` and give the chevron `class="sb-btn-chevron"`; it turns 180° in 200 ms when the menu is open. While open, Outline and Ghost keep their hover fill. Menu triggers do not move when pressed.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false">
+<button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false">
   Ekspor
   <svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg>
 </button>
@@ -2401,79 +2537,57 @@ A button that opens a menu carries a trailing chevron-down. Set `aria-expanded` 
 
 ### States
 
-Hover moves one step darker, Focused adds a ring for keyboard users, Disabled is the default look at 50 % opacity, flat. Pressing scales the button to 96 %.
+Hover changes the fill, Focused adds a ring for keyboard users, Disabled is the default look at 50 % opacity. Pressing moves the button down 1 px.
 
-- Colour changes take 150 ms with `--ease`. Press is `scale(.96)`.
-- Focused shows only on `:focus-visible`, so a mouse click leaves no ring.
-- The ring is `0 0 0 4px var(--focus-ring)` (`brand-600` at 20 %) in every hierarchy, on top of `shadow-xs` where the variant has one. Link hierarchies have no box, so they use the global 2 px `brand-600` outline with 2 px offset.
-- Disabled has no hover and no press, and shows `cursor: not-allowed`.
+- Colour changes take 150 ms with `--ease`.
+- Focused shows only on `:focus-visible`: the border takes the ring colour (`brand-300`) and a 3 px `focus-ring` goes around it. Link has no box, so it uses a 2 px outline.
+- Invalid (`aria-invalid="true"`): `error-300` border and a 3 px `error-600` ring at 20 %, the same as an invalid field.
+- Disabled: 50 % opacity, no shadow and no pointer events, so there is no hover or press either.
 
 #### Loading
 
-After a click that waits on the server (Simpan, Kirim ke Advisor), the button stays as it is and shows a spinner in its text colour before the label, which turns into the -ing form ("Mengirim…"). `aria-busy="true"` ignores further clicks, so the action is never sent twice. Keep the button's width so the row does not jump; when the wait ends, show the result (a Toast, the next page) and restore the button. The spinner comes from Loading (`loading.css`).
+After a click that waits on the server (Simpan, Kirim ke Advisor), the button stays as it is and shows a spinner in its text colour before the label, which turns into the -ing form ("Mengirim…"). `aria-busy="true"` ignores further clicks, so the action is never sent twice. Keep the button's width so the row does not jump. The spinner comes from Loading (`loading.css`).
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Mengirim…</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Menyimpan…</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-color" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Memuat…</button>
+<button class="sb-btn" type="button" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Mengirim…</button>
+<button class="sb-btn" type="button" data-variant="outline" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Menyimpan…</button>
+<button class="sb-btn" type="button" data-variant="secondary" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Memuat…</button>
 ```
-
-### Destructive
-
-Destructive=True swaps Brand and Gray for Error. Use it only when the destructive action is the primary action of the view, so the user sees it is high-consequence.
-
-```html
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" data-destructive>Primary</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-destructive>Secondary gray</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-color" data-size="md" data-destructive>Secondary color</button>
-<button class="sb-btn" type="button" data-hierarchy="tertiary-color" data-size="md" data-destructive>Tertiary color</button>
-<button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="md" data-destructive>Tertiary gray</button>
-<button class="sb-btn" type="button" data-hierarchy="link-color" data-size="md" data-destructive>Link color</button>
-<button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="md" data-destructive>Link gray</button>
-```
-
-| Hierarchy | Default | Hover | Default at 50 % opacity, flat | Focused |
-| --- | --- | --- | --- | --- |
-| Primary | `error-600` + `raised-sheen` / `error-700` / `white` | `error-700`, border `error-800` | Default at 50 % opacity, flat | 4 px `error-100` ring |
-| Secondary gray | `white` / `error-300` / `error-700` | `error-50` fill, text `error-800` | Default at 50 % opacity, flat | 4 px `error-100` ring |
-| Secondary color | `error-50` / `error-50` / `error-700` | `error-100` | Default at 50 % opacity, flat | 4 px `error-100` ring |
-| Tertiary color, Tertiary gray | text `error-700` | `error-50` fill (gray: text `error-800`) | Default at 50 % opacity, flat | 4 px `error-100` ring |
-| Link color, Link gray | text `error-700` | text `error-800` | Default at 50 % opacity, flat | 2 px `brand-600` outline |
 
 ### Button row
 
-Least important on the left, Primary on the right, gap 12. Here: Batal (Tertiary gray), Simpan Draf (Secondary color), Ajukan (Secondary gray), Kirim (Primary).
+Least important on the left, Default on the right, gap 8. Here: Batal (Ghost), Simpan Draf (Secondary), Ajukan (Outline), Kirim (Default).
 
 ```html
-<div style="display: flex; justify-content: flex-end; gap: 12px; width: 100%;">
-  <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="md">Batal</button>
-  <button class="sb-btn" type="button" data-hierarchy="secondary-color" data-size="md">Simpan Draf</button>
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">Ajukan</button>
-  <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
+<div style="display: flex; justify-content: flex-end; gap: 8px; width: 100%;">
+  <button class="sb-btn" type="button" data-variant="ghost">Batal</button>
+  <button class="sb-btn" type="button" data-variant="secondary">Simpan Draf</button>
+  <button class="sb-btn" type="button" data-variant="outline">Ajukan</button>
+  <button class="sb-btn" type="button">Kirim</button>
 </div>
 ```
 
 ### Do and don't
 
-**Do:** One Primary per view. The other action steps down the hierarchy.
+**Do:** One Default per view. The other action steps down.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="md">Batal</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
+<button class="sb-btn" type="button" data-variant="outline">Batal</button>
+<button class="sb-btn" type="button">Kirim</button>
 ```
 
-**Don't:** Three Primary buttons. Users must read every label to find the next step.
+**Don't:** Three Default buttons. Users must read every label to find the next step.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Batal</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Simpan Draf</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
+<button class="sb-btn" type="button">Batal</button>
+<button class="sb-btn" type="button">Simpan Draf</button>
+<button class="sb-btn" type="button">Kirim</button>
 ```
 
 **Do:** An action is a rectangle with a fill or a border.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">Lihat Detail</button>
+<button class="sb-btn" type="button" data-variant="outline">Lihat Detail</button>
 ```
 
 **Don't:** Bare text with an arrow. Users have to search for the action.
@@ -2482,63 +2596,62 @@ Least important on the left, Primary on the right, gap 12. Here: Batal (Tertiary
 <span class="bare">Lihat detail →</span>
 ```
 
-**Do:** Tolak is one of several choices, so it uses Secondary gray.
+**Do:** Tolak is one of several choices, so it is Outline.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">Tolak</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Setujui</button>
+<button class="sb-btn" type="button" data-variant="outline">Tolak</button>
+<button class="sb-btn" type="button">Setujui</button>
 ```
 
-**Don't:** Two loud buttons compete. Red is for a view whose main action is destructive.
+**Don't:** Two loud buttons compete. Destructive is for a view whose main action deletes or rejects.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" data-destructive>Tolak</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Setujui</button>
+<button class="sb-btn" type="button" data-variant="destructive">Tolak</button>
+<button class="sb-btn" type="button">Setujui</button>
 ```
 
-**Do:** A dialog whose purpose is deleting: the delete is the primary action, so it is Destructive.
+**Do:** A dialog whose purpose is deleting: Destructive is its main action.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">Batal</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" data-destructive>Hapus Klaim</button>
+<button class="sb-btn" type="button" data-variant="outline">Batal</button>
+<button class="sb-btn" type="button" data-variant="destructive">Hapus Klaim</button>
 ```
 
 **Don't:** Vague labels. Name the result with a verb: Hapus Klaim, not Ya.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md">OK</button>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Ya</button>
+<button class="sb-btn" type="button" data-variant="outline">OK</button>
+<button class="sb-btn" type="button">Ya</button>
 ```
 
 ### Accessibility
 
 - Use `<button type="button">` for actions and `<a class="sb-btn" href="…">` for navigation. Both take the same attributes.
-- Icon-only buttons need an `aria-label` and a title-only tooltip with the same text.
-- Never remove the focus ring. Buttons show it on `:focus-visible`; Link hierarchies show the 2 px outline.
+- Icon-only buttons need an `aria-label` and a tooltip with the same text.
+- Never remove the focus ring. Buttons show it on `:focus-visible`; Link shows a 2 px outline.
 - Disable with the `disabled` attribute. Use `aria-disabled="true"` instead when the button must stay focusable, for example to show a tooltip that explains why. The CSS styles both.
 - Menu triggers set `aria-haspopup="menu"` and `aria-expanded`.
-- With `prefers-reduced-motion: reduce`, transitions and the press scale switch off.
+- Sizes are below 44 px: on touch screens add tappable space around buttons.
+- With `prefers-reduced-motion: reduce`, transitions and the 1 px press switch off.
 
 #### Contrast
 
-Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for button text. Disabled states are exempt. On raised buttons the text sits in the middle, where the sheen is transparent, so the ratio is the plain fill.
+Text against its fill, measured with the WCAG 2.1 formula. AA needs 4.5:1 for button text. Disabled states are exempt.
+
+> **Warning:** Default uses `brand-500` by design decision (2026-10-26): the lighter blue suits the flat style. White text on it is 3.62:1, below AA for 12 to 14 px labels. `brand-600` (5.06:1) is the accessible alternative; switch `--btn-bg` if a product must meet AA.
 
 | Variant | Text on fill | Ratio | AA |
 | --- | --- | --- | --- |
-| Primary | `white` on `brand-600` | 5.06:1 | Passes |
-| Primary, hover | `white` on `brand-700` | 6.61:1 | Passes |
-| Secondary gray | `gray-700` on `white` | 10.46:1 | Passes |
-| Secondary color | `brand-700` on `brand-50` | 6.09:1 | Passes |
-| Tertiary color | `brand-700` on `white` | 6.61:1 | Passes |
-| Tertiary gray, Link gray | `gray-500` on `white` | 4.97:1 | Passes |
-| Link color | `brand-600` on `white` | 5.06:1 | Passes |
-| Destructive Primary | `white` on `error-600` | 4.83:1 | Passes |
-| Destructive Secondary gray, Tertiary, Link | `error-700` on `white` | 6.57:1 | Passes |
-| Destructive Secondary color | `error-700` on `error-50` | 6.05:1 | Passes |
+| Default | `white` on `brand-500` | 3.62:1 | **Fails** (passes for text of 18.66 px bold or 24 px) |
+| Default, hover | `white` on `brand-600` | 5.06:1 | Passes |
+| Outline, Ghost | `gray-900` on `white` | 17.75:1 | Passes |
+| Secondary | `gray-900` on `gray-100` | 16.11:1 | Passes |
+| Destructive | `error-700` on `error-600` at 10 % | 5.65:1 | Passes |
+| Link | `brand-700` on `white` | 6.61:1 | Passes |
 
 ### Code
 
-Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size and shadow is a token, so changing a token changes every button.
+Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size and shadow is a token, so changing a token changes every button. The attribute names match shadcn/ui: `data-variant` and `data-size`.
 
 `button.css`
 
@@ -2546,108 +2659,92 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 /* Button, Codemasters Design System
    Needs tokens.css; loading.css for the spinner of the loading state.
 
-   <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
+   <button class="sb-btn" type="button">Kirim</button>
+   <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Batal</button>
+   <button class="sb-btn" type="button" data-variant="ghost" data-size="icon" aria-label="Hapus"><svg…/></button>
 
-   data-hierarchy    primary | secondary-gray | secondary-color | tertiary-color | tertiary-gray | link-color | link-gray
-   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only)
-   data-destructive  present = Destructive=True
-   data-icon="only"  square icon-only button; add aria-label
-   aria-busy="true"  Loading: a <span class="sb-spinner" aria-hidden="true"> before the label, the label in -ing form ("Mengirim…")
-   data-state        hover | focus. Forces a state in static mockups and docs. Never ship it in live UI:
-                     live states come from :hover, :focus-visible and the disabled attribute. */
+   data-variant   default (omit) | outline | secondary | ghost | destructive | link
+   data-size      xs | sm | default (omit) | lg | xl | icon-xs | icon-sm | icon | icon-lg | icon-xl   (icon sizes are square; add aria-label)
+   aria-invalid="true"   error border and ring, for a button that picks a value in a form
+   aria-busy="true"      Loading: a <span class="sb-spinner" aria-hidden="true"> before the label, the label in -ing form ("Mengirim…")
+   data-state            hover | focus. Forces a state in static mockups and docs. Never ship it in live UI. */
 
 .sb-btn {
-  --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
-  --btn-bg: var(--brand-600); --btn-border: var(--brand-700); --btn-fg: var(--white);
-  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-800); --btn-fg-hover: var(--white);
-  --btn-ring: var(--focus-ring); --btn-shadow: var(--raised-highlight), var(--shadow-xs);
-  --btn-sheen: var(--raised-sheen); /* raised: lighter top, darker bottom, over any fill */
-  box-sizing: border-box;
-  display: inline-flex; align-items: center; justify-content: center; gap: var(--btn-gap);
+  --btn-h: 32px; --btn-px: 10px; --btn-px-icon: 8px; --btn-gap: 6px; --btn-icon: 16px; --btn-type: var(--text-sm); --btn-r: var(--radius-control);
+  --btn-bg: var(--brand-500); --btn-border: transparent; --btn-fg: var(--white); /* brand-500 by choice: white text 3.62:1, below AA (see Contrast) */
+  --btn-bg-hover: var(--brand-600); --btn-fg-hover: var(--white);
+  --btn-shadow: var(--shadow-xs); --btn-ring: var(--focus-ring); --btn-ring-border: var(--border-brand);
+  box-sizing: border-box; position: relative;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; gap: var(--btn-gap);
   height: var(--btn-h); padding: 0 var(--btn-px);
-  font: 600 var(--btn-type) var(--font); white-space: nowrap; text-decoration: none;
-  color: var(--btn-fg); background: var(--btn-sheen) var(--btn-bg);
-  border: 1px solid var(--btn-border); border-radius: var(--radius-md);
+  font: 500 var(--btn-type) var(--font); white-space: nowrap; text-decoration: none; user-select: none;
+  color: var(--btn-fg); background: var(--btn-bg) padding-box;
+  border: 1px solid var(--btn-border); border-radius: var(--btn-r);
   box-shadow: var(--btn-shadow);
   cursor: pointer;
-  transition-property: color, background-color, border-color, box-shadow, scale;
+  transition-property: color, background-color, border-color, box-shadow, translate;
   transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-btn > svg { width: var(--btn-icon); height: var(--btn-icon); flex: none; }
-.sb-btn-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
+.sb-btn > svg { width: var(--btn-icon); height: var(--btn-icon); flex: none; pointer-events: none; }
+.sb-btn-dot { width: 8px; height: 8px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
+/* A leading or trailing icon pulls that side's padding in a little, so the icon looks centred in the space. */
+.sb-btn:has(> :is(svg, .sb-spinner, .sb-btn-dot):first-child:not(:only-child)) { padding-inline-start: var(--btn-px-icon); }
+.sb-btn:has(> svg:last-child:not(:only-child)) { padding-inline-end: var(--btn-px-icon); }
 
-/* Sizes. Height includes the 1px border. */
-.sb-btn[data-size="xs"]  { --btn-h: 32px; --btn-px: 12px; --btn-icon: 16px; --btn-gap: 4px; } /* code-first size for dense rows; below 44, so never on touch */
-.sb-btn[data-size="sm"]  { --btn-h: 36px; --btn-px: 14px; }
-.sb-btn[data-size="lg"]  { --btn-h: 44px; --btn-px: 18px; --btn-type: var(--text-md); }
-.sb-btn[data-size="xl"]  { --btn-h: 48px; --btn-px: 20px; --btn-type: var(--text-md); }
-.sb-btn[data-size="2xl"] { --btn-h: 60px; --btn-px: 28px; --btn-type: var(--text-lg); --btn-icon: 24px; --btn-gap: 12px; }
-.sb-btn[data-icon="only"] { width: var(--btn-h); padding: 0; }
+/* Sizes. Height includes the 1 px border. */
+.sb-btn[data-size="xs"] { --btn-h: 24px; --btn-px: 8px; --btn-px-icon: 6px; --btn-gap: 4px; --btn-icon: 12px; --btn-type: var(--text-xs); --btn-r: var(--radius-md); }
+.sb-btn[data-size="sm"] { --btn-h: 28px; --btn-px: 10px; --btn-px-icon: 6px; --btn-gap: 4px; --btn-icon: 14px; --btn-type: var(--text-xs); --btn-r: var(--radius-md); }
+.sb-btn[data-size="lg"] { --btn-h: 36px; }
+.sb-btn[data-size="xl"] { --btn-h: 40px; --btn-px: 14px; --btn-px-icon: 12px; --btn-gap: 8px; } /* not in shadcn: a roomier size for page and form actions */
+.sb-btn[data-size^="icon"] { width: var(--btn-h); padding: 0; }
+.sb-btn[data-size="icon-xs"] { --btn-h: 24px; --btn-icon: 12px; --btn-r: var(--radius-md); }
+.sb-btn[data-size="icon-sm"] { --btn-h: 28px; --btn-r: var(--radius-md); }
+.sb-btn[data-size="icon-lg"] { --btn-h: 36px; }
+.sb-btn[data-size="icon-xl"] { --btn-h: 40px; }
 
-/* Hierarchy. Primary is the base above. */
-.sb-btn[data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--bg-primary); --btn-border: var(--border-primary); --btn-fg: var(--text-secondary); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
-  --btn-bg-hover: var(--bg-secondary); --btn-border-hover: var(--border-primary); --btn-fg-hover: var(--text-primary);
+/* Variants. Default (brand fill) is the base above. */
+.sb-btn[data-variant="outline"] {
+  --btn-bg: var(--bg-primary); --btn-border: var(--border-control); --btn-fg: var(--text-primary);
+  --btn-bg-hover: var(--bg-secondary); --btn-fg-hover: var(--text-primary);
 }
-.sb-btn[data-hierarchy="secondary-color"] {
-  --btn-bg: var(--bg-brand-subtle); --btn-border: var(--bg-brand-subtle); --btn-fg: var(--text-brand); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
-  --btn-bg-hover: var(--bg-brand-subtle-hover); --btn-border-hover: var(--bg-brand-subtle-hover); --btn-fg-hover: var(--text-brand);
+.sb-btn[data-variant="secondary"] {
+  --btn-bg: var(--bg-tertiary); --btn-fg: var(--text-primary); --btn-shadow: 0 0 #0000;
+  --btn-bg-hover: color-mix(in srgb, var(--bg-tertiary), var(--text-primary) 5%); --btn-fg-hover: var(--text-primary);
 }
-.sb-btn[data-hierarchy^="tertiary"] {
-  --btn-bg: transparent; --btn-border: transparent;
-  --btn-shadow: 0 0 #0000; --btn-sheen: none;
+.sb-btn[data-variant="ghost"] {
+  --btn-bg: transparent; --btn-fg: var(--text-primary); --btn-shadow: 0 0 #0000;
+  --btn-bg-hover: var(--bg-secondary); --btn-fg-hover: var(--text-primary);
 }
-.sb-btn[data-hierarchy="tertiary-color"] {
-  --btn-fg: var(--text-brand); --btn-bg-hover: var(--bg-brand-subtle); --btn-border-hover: var(--bg-brand-subtle); --btn-fg-hover: var(--text-brand);
+.sb-btn[data-variant="destructive"] {
+  --btn-bg: color-mix(in srgb, var(--error-600) 10%, transparent); --btn-fg: var(--text-error); --btn-shadow: 0 0 #0000;
+  --btn-bg-hover: color-mix(in srgb, var(--error-600) 20%, transparent); --btn-fg-hover: var(--text-error);
+  --btn-ring: color-mix(in srgb, var(--error-600) 20%, transparent); --btn-ring-border: color-mix(in srgb, var(--error-600) 40%, transparent);
 }
-.sb-btn[data-hierarchy="tertiary-gray"] {
-  --btn-fg: var(--text-quaternary); --btn-bg-hover: var(--bg-secondary); --btn-border-hover: var(--bg-secondary); --btn-fg-hover: var(--text-tertiary);
+:root[data-theme="dark"] .sb-btn[data-variant="destructive"] {
+  --btn-bg: color-mix(in srgb, var(--error-600) 20%, transparent); --btn-bg-hover: color-mix(in srgb, var(--error-600) 30%, transparent);
+  --btn-ring: color-mix(in srgb, var(--error-600) 40%, transparent);
 }
-.sb-btn[data-hierarchy^="link"] {
-  --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000; --btn-sheen: none;
-  --btn-bg: transparent; --btn-border: transparent; --btn-bg-hover: transparent; --btn-border-hover: transparent;
-  border-width: 0;
+/* Link: text in running copy, underlined on hover. No box, so it sits on the text baseline. */
+.sb-btn[data-variant="link"] {
+  --btn-h: auto; --btn-px: 0; --btn-px-icon: 0; --btn-shadow: 0 0 #0000;
+  --btn-bg: transparent; --btn-bg-hover: transparent; --btn-fg: var(--text-brand); --btn-fg-hover: var(--text-brand);
+  border-width: 0; text-underline-offset: 4px;
 }
-.sb-btn[data-hierarchy="link-color"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
-.sb-btn[data-hierarchy="link-gray"]  { --btn-fg: var(--text-quaternary); --btn-fg-hover: var(--text-tertiary); }
-
-/* Destructive=True swaps Brand and Gray for Error. */
-.sb-btn[data-destructive] {
-  --btn-bg: var(--error-600); --btn-border: var(--error-700); --btn-fg: var(--white);
-  --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-800); --btn-fg-hover: var(--white);
-  --btn-ring: var(--bg-error-subtle-hover);
-}
-.sb-btn[data-destructive][data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--bg-primary); --btn-border: var(--border-error); --btn-fg: var(--text-error);
-  --btn-bg-hover: var(--bg-error-subtle); --btn-border-hover: var(--border-error); --btn-fg-hover: var(--text-error-strong);
-}
-.sb-btn[data-destructive][data-hierarchy="secondary-color"] {
-  --btn-bg: var(--bg-error-subtle); --btn-border: var(--bg-error-subtle); --btn-fg: var(--text-error);
-  --btn-bg-hover: var(--bg-error-subtle-hover); --btn-border-hover: var(--bg-error-subtle-hover); --btn-fg-hover: var(--text-error);
-}
-.sb-btn[data-destructive][data-hierarchy^="tertiary"] {
-  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--text-error);
-  --btn-bg-hover: var(--bg-error-subtle); --btn-border-hover: var(--bg-error-subtle); --btn-fg-hover: var(--text-error);
-}
-.sb-btn[data-destructive][data-hierarchy="tertiary-gray"] { --btn-fg-hover: var(--text-error-strong); }
-.sb-btn[data-destructive][data-hierarchy^="link"] {
-  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--text-error);
-  --btn-bg-hover: transparent; --btn-border-hover: transparent; --btn-fg-hover: var(--text-error-strong);
-}
+.sb-btn[data-variant="link"]:hover:not(:disabled), .sb-btn[data-variant="link"][data-state="hover"] { text-decoration: underline; }
 
 /* States */
-.sb-btn:hover:not(:disabled, [aria-disabled="true"]), .sb-btn[data-state="hover"] {
-  color: var(--btn-fg-hover); background-color: var(--btn-bg-hover); border-color: var(--btn-border-hover);
-}
-.sb-btn:focus-visible, .sb-btn[data-state="focus"] {
-  outline: none; box-shadow: var(--btn-shadow), 0 0 0 4px var(--btn-ring);
-}
-.sb-btn[data-hierarchy^="link"]:focus-visible, .sb-btn[data-hierarchy^="link"][data-state="focus"] {
-  box-shadow: none; outline: 2px solid var(--brand-600); outline-offset: 2px;
-}
-/* Disabled: the default look at half opacity, flat (no sheen, highlight or shadow). One rule for every hierarchy. */
-.sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
-.sb-btn:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"]) { scale: .96; }
+.sb-btn:hover:not(:disabled, [aria-disabled="true"]), .sb-btn[data-state="hover"] { color: var(--btn-fg-hover); background-color: var(--btn-bg-hover); }
+.sb-btn[aria-expanded="true"]:is([data-variant="outline"], [data-variant="ghost"]) { background-color: var(--bg-secondary); }
+/* Focused: the border takes the ring colour and a 3 px ring goes around, in every variant. */
+.sb-btn:focus-visible, .sb-btn[data-state="focus"] { outline: none; border-color: var(--btn-ring-border); box-shadow: var(--btn-shadow), 0 0 0 3px var(--btn-ring); }
+.sb-btn[data-variant="link"]:focus-visible, .sb-btn[data-variant="link"][data-state="focus"] { box-shadow: none; outline: 2px solid var(--border-brand); outline-offset: 2px; border-radius: var(--radius-sm); }
+/* Invalid: a button that picks a value in a form (a date, a file) and holds a wrong one. */
+.sb-btn[aria-invalid="true"] { border-color: var(--border-error); box-shadow: 0 0 0 3px color-mix(in srgb, var(--error-600) 20%, transparent); }
+:root[data-theme="dark"] .sb-btn[aria-invalid="true"] { box-shadow: 0 0 0 3px color-mix(in srgb, var(--error-600) 40%, transparent); }
+/* Disabled: the default look at half opacity, no shadow, no pointer events. */
+.sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; box-shadow: none; pointer-events: none; }
+/* Pressed: down 1 px. Not on menu triggers, which stay put while their menu opens. */
+.sb-btn:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"], [aria-haspopup]) { translate: 0 1px; }
 /* Loading: the look stays (not the faded Disabled), a spinner in the text colour replaces the leading icon, clicks are ignored. */
 .sb-btn[aria-busy="true"] { cursor: progress; pointer-events: none; }
 .sb-btn > .sb-spinner { --sp-size: var(--btn-icon); color: inherit; }
@@ -2658,7 +2755,7 @@ Load `tokens.css` (on the Overview page), then `button.css`. Every colour, size 
 
 @media (prefers-reduced-motion: reduce) {
   .sb-btn, .sb-btn > svg { transition: none; }
-  .sb-btn:active:not(:disabled) { scale: 1; }
+  .sb-btn:active:not(:disabled) { translate: none; }
 }
 ```
 
@@ -2677,8 +2774,8 @@ A row of joined buttons for related, equal-weight choices: a view switch (Hari, 
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Group | 40 high (same as Button `md`), 1 px `gray-300` border, radius 8, `shadow-xs`. Clips its children, so only the outer corners are rounded. |
-| 2 | Segment | `white` fill, padding `10 16` (icon-only `10 12`). Current=True is pressed in: `gray-100` fill with `pressed-inset`. |
+| 1 | Group | 32 high (same as a default Button), 1 px `gray-200` border, radius 10, `shadow-xs`. Clips its children, so only the outer corners are rounded. |
+| 2 | Segment | `white` fill, padding `10 16` (icon-only `10 12`). Current=True: `gray-100` fill. |
 | 3 | Divider | 1 px `gray-300` on the trailing side of each segment. The last one is hidden by the group border. |
 | 4 | Icon | Optional. 20 px, gap 8, `gray-500` (Current: `gray-900`). The Dot variant puts a 10 px `success-500` dot here instead. |
 | 5 | Label | Text sm / Semibold, `gray-700` (Current: `gray-900`). Icon-only segments drop it and carry an `aria-label`. |
@@ -2764,7 +2861,7 @@ For status filters. The dot stays `success-500` in every state.
 
 | State | Current=False (fill / text / icon) | Current=True |
 | --- | --- | --- |
-| Default | `white` raised / `gray-700` / `gray-500` | `gray-100` + `pressed-inset` / `gray-900` / `gray-900` |
+| Default | `white` / `gray-700` / `gray-500` | `gray-100` / `gray-900` / `gray-900` |
 | Hover | `gray-50` / `gray-800` / `gray-700` | same as Default |
 | Focused | `gray-50` / `gray-700` / `gray-700` | same as Default + focus outline |
 | Disabled | Default at 50 % opacity | Default at 50 % opacity |
@@ -2834,7 +2931,7 @@ Tab reaches the group once, on the checked segment. ← → move and select.
 </div>
 ```
 
-**Don't:** A primary action hidden in a group. Use separate Buttons: Batal (Tertiary gray), Kirim (Primary).
+**Don't:** A primary action hidden in a group. Use separate Buttons: Batal (Ghost), Kirim (Default).
 
 ```html
 <div class="sb-btn-group" role="group" aria-label="Aksi formulir">
@@ -2917,9 +3014,9 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
 
 .sb-btn-group {
   box-sizing: border-box;
-  display: inline-flex; height: 40px;
+  display: inline-flex; height: 32px;
   background: var(--bg-primary);
-  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
+  border: 1px solid var(--border-control); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   overflow: hidden; /* only the outer corners are rounded */
 }
@@ -2927,16 +3024,16 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
   --seg-icon: var(--text-quaternary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  height: 100%; margin: 0; padding: 0 16px;
-  font: 600 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--text-secondary); background: var(--raised-sheen-light) var(--bg-primary);
-  border: 0; border-inline-end: 1px solid var(--border-primary); border-radius: 0;
+  height: 100%; margin: 0; padding: 0 10px;
+  font: 500 var(--text-sm) var(--font); white-space: nowrap;
+  color: var(--text-secondary); background: var(--bg-primary);
+  border: 0; border-inline-end: 1px solid var(--border-control); border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-btn-group > button:last-child { border-inline-end: 0; }
-.sb-btn-group > button > svg { width: 20px; height: 20px; flex: none; color: var(--seg-icon); }
-.sb-btn-group[data-icon="only"] > button { padding: 0 12px; }
+.sb-btn-group > button > svg { width: 16px; height: 16px; flex: none; color: var(--seg-icon); }
+.sb-btn-group[data-icon="only"] > button { padding: 0 8px; }
 .sb-btn-group-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
 
 /* States (fill / text / icon). Order matters: Current overrides Hover and Focused. Disabled: the default look at 50 % opacity. */
@@ -2948,7 +3045,7 @@ Load `tokens.css`, then `button-group.css`. A switch also needs the arrow-key sc
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--text-primary); color: var(--text-primary); background: var(--bg-tertiary); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
+  --seg-icon: var(--text-primary); color: var(--text-primary); background: var(--bg-tertiary); /* the chosen segment: a gray-100 fill */
 }
 .sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 
@@ -2994,7 +3091,7 @@ The container for one topic on a page: a claim summary, a table, a chart, a metr
 - One card holds one topic: a summary, a table, a chart, a form section. The title names the topic.
 - Cards sit on the page 24 apart (Grids & Spacing). Blocks inside a card sit 16 apart.
 - Group related values inside a card with an inner card, never with a second card in a card.
-- One primary action per card at most, in the footer or the head. Other actions are Secondary gray, Tertiary or in a "more" menu.
+- One primary action per card at most, in the footer or the head. Other actions are Outline, Ghost or in a "more" menu.
 - Cards are flat: a `gray-300` border, no shadow. Shadows are for layers that float (menus, dialogs).
 
 ### Anatomy
@@ -3005,8 +3102,8 @@ The container for one topic on a page: a claim summary, a table, a chart, a metr
 | 2 | Head | Title block on the left, actions on the right, top-aligned, gap 16. |
 | 3 | Title | Text xl / Semibold (sm: Text md), `gray-900`, Title Case. A heading element at the level the page needs. Optional description below: Text sm `gray-500`, 4 apart. |
 | 4 | Badge | Optional status pill or count, Badge sm, 8 after the title. |
-| 5 | Actions | Buttons sm, gap 8: Secondary gray or Tertiary, an icon button with a "more" menu. Centred on the title line and allowed to overhang it, so the head is only as tall as the title. |
-| 6 | Fold chevron | Optional. Tertiary gray icon button sm; points up when open, down when folded. Hides the body and footer. |
+| 5 | Actions | Buttons sm (28), gap 8: Outline or Ghost, an icon button with a "more" menu. Centred on the title line and allowed to overhang it, so the head is only as tall as the title. |
+| 6 | Fold chevron | Optional. Ghost icon button `icon-sm`; points up when open, down when folded. Hides the body and footer. |
 | 7 | Body | Blocks 16 apart (sm 12): text, inner cards, tables, charts. |
 | 8 | Footer | Optional. Actions right-aligned, gap 12, above a `gray-200` divider that runs edge to edge. |
 
@@ -3037,8 +3134,8 @@ The white card for a topic. Here with an inner card of summary rows and a footer
       <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
-      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Lihat Detail</button>
+      <button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-3-body">
@@ -3052,8 +3149,8 @@ The white card for a topic. Here with an inner card of summary rows and a footer
     </div>
   </div>
   <footer class="sb-card-foot" id="card-3-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Tolak</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Setujui Klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Tolak</button>
+    <button class="sb-btn" type="button" data-size="sm">Setujui Klaim</button>
   </footer>
 </section>
 ```
@@ -3085,8 +3182,8 @@ For text the AI wrote: `brand-50`, 1 px `brand-200` border, radius 8, padding 16
       <h3 class="sb-card-title" id="card-4-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
-      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="true" aria-controls="card-4-body" aria-labelledby="card-4-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Edit Ringkasan</button>
+      <button class="sb-btn sb-card-fold" type="button" data-variant="ghost" data-size="icon-sm" aria-expanded="true" aria-controls="card-4-body" aria-labelledby="card-4-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-4-body">
@@ -3106,7 +3203,7 @@ A `gray-100` shell (one step darker than the `gray-50` page) with a `gray-200` b
       <h3 class="sb-card-title" id="card-2-title">Klaim Masuk</h3>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Buka Laporan Klaim"><svg aria-hidden="true"><!-- external-link --></svg></button>
+      <button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Buka Laporan Klaim"><svg aria-hidden="true"><!-- external-link --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-2-body">
@@ -3128,7 +3225,7 @@ A `gray-100` shell (one step darker than the `gray-50` page) with a `gray-200` b
     </div>
   </div>
   <footer class="sb-card-foot">
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm" disabled>Lanjutkan</button>
+    <button class="sb-btn" type="button" data-size="sm" disabled>Lanjutkan</button>
   </footer>
 </section>
 ```
@@ -3170,7 +3267,7 @@ A compact card (sm) for one number: label Text sm / Medium `gray-500`, value Dis
 
 #### Link card
 
-A card that opens a page. The title is the link; its hit area stretches over the whole card, so the card has one tab stop and the link text is the accessible name. Hover: `gray-50` fill and `gray-400` border. Focus: `brand-300` border and the 4 px `focus-ring` ring.
+A card that opens a page. The title is the link; its hit area stretches over the whole card, so the card has one tab stop and the link text is the accessible name. Hover: `gray-50` fill and `gray-400` border. Focus: `brand-300` border and the 3 px `focus-ring` ring.
 
 ```html
 <section class="sb-card" data-size="sm">
@@ -3211,8 +3308,8 @@ md for page sections, sm for compact cards in a grid (metrics, links, side panel
       <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
-      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Lihat Detail</button>
+      <button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-5-body">
@@ -3233,8 +3330,8 @@ md for page sections, sm for compact cards in a grid (metrics, links, side panel
       <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
-      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Lihat Detail</button>
+      <button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-6-body">
@@ -3263,8 +3360,8 @@ Folding keeps the head and hides the body and footer. The chevron turns in 150 m
       <h3 class="sb-card-title" id="card-7-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
-      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="true" aria-controls="card-7-body" aria-labelledby="card-7-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Edit Ringkasan</button>
+      <button class="sb-btn sb-card-fold" type="button" data-variant="ghost" data-size="icon-sm" aria-expanded="true" aria-controls="card-7-body" aria-labelledby="card-7-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-7-body">
@@ -3277,8 +3374,8 @@ Folding keeps the head and hides the body and footer. The chevron turns in 150 m
       <h3 class="sb-card-title" id="card-8-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
-      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="false" aria-controls="card-8-body" aria-labelledby="card-8-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Edit Ringkasan</button>
+      <button class="sb-btn sb-card-fold" type="button" data-variant="ghost" data-size="icon-sm" aria-expanded="false" aria-controls="card-8-body" aria-labelledby="card-8-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-8-body" hidden>
@@ -3291,7 +3388,7 @@ Folding keeps the head and hides the body and footer. The chevron turns in 150 m
 
 #### Empty
 
-A card never shows a blank body. Say what is missing in Text sm `gray-500`, centred, with a 24 px `gray-400` icon and, when the user can fix it, one Secondary gray button.
+A card never shows a blank body. Say what is missing in Text sm `gray-500`, centred, with a 24 px `gray-400` icon and, when the user can fix it, one Outline button.
 
 ```html
 <section class="sb-card" aria-labelledby="card-1-title">
@@ -3307,7 +3404,7 @@ A card never shows a blank body. Say what is missing in Text sm `gray-500`, cent
         <p class="sb-card-empty-title">Belum ada klaim</p>
         <p>Klaim peserta ini akan tampil di sini setelah dikirim rumah sakit.</p>
       </div>
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Tambah Klaim</button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Tambah Klaim</button>
     </div>
   </div>
 </section>
@@ -3372,8 +3469,8 @@ Where a chart or table would be, keep its size and draw a dashed `gray-300` fram
     </dl>
   </div>
   <footer class="sb-card-foot" id="card-9-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Tolak</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Setujui Klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Tolak</button>
+    <button class="sb-btn" type="button" data-size="sm">Setujui Klaim</button>
   </footer>
 </section>
 ```
@@ -3384,7 +3481,7 @@ Where a chart or table would be, keep its size and draw a dashed `gray-300` fram
 <section class="sb-card" data-size="sm"><dl class="sb-card-rows">
   <div class="sb-card-row"><dt>Total tagihan</dt><dd>Rp 12.450.000</dd></div>
   <div class="sb-card-row"><dt>Ditanggung</dt><dd>Rp 11.200.000</dd></div>
-</dl><footer class="sb-card-foot"><button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Simpan</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Kirim</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Setujui</button></footer></section>
+</dl><footer class="sb-card-foot"><button class="sb-btn" type="button" data-size="sm">Simpan</button><button class="sb-btn" type="button" data-size="sm">Kirim</button><button class="sb-btn" type="button" data-size="sm">Setujui</button></footer></section>
 ```
 
 ### Accessibility
@@ -3451,7 +3548,7 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
 .sb-card-title > svg { width: 20px; height: 20px; flex: none; }
 .sb-card-desc { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); text-wrap: pretty; }
 /* Actions (36 px buttons) centre on the title line and overhang it, so they never make the head taller than the title. */
-.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 36px) / 2); }
+.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 28px) / 2); }
 .sb-card-fold > svg { transition: rotate 150ms var(--ease); }
 .sb-card-fold[aria-expanded="true"] > svg { rotate: 180deg; }
 
@@ -3512,7 +3609,7 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
 .sb-card-link::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; }
 .sb-card:has(.sb-card-link) { transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease); }
 .sb-card:has(.sb-card-link:hover), .sb-card[data-state="hover"] { background: var(--bg-secondary); border-color: var(--border-strong); }
-.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--border-brand); box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--border-brand); box-shadow: 0 0 0 3px var(--focus-ring); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-card, .sb-card-fold > svg { transition: none; }
@@ -4202,7 +4299,7 @@ For selectable cards and rows, where the whole item is the target. Checkbox grou
 | --- | --- | --- |
 | Default | `white`, 1 px `gray-300` border | `brand-50` fill, `brand-600` border, `brand-600` check / minus / dot |
 | Hover | `brand-50` fill, `brand-600` border | same as Default |
-| Focused | `white`, `brand-300` border + 4 px `focus-ring` ring | Default + 4 px `focus-ring` ring |
+| Focused | `white`, `brand-300` border + 3 px `focus-ring` ring | Default + 3 px `focus-ring` ring |
 | Disabled | Default at 50 % opacity, label included | Default at 50 % opacity, label included |
 
 Check circle, checked: solid `brand-600` with a white check.
@@ -4366,7 +4463,7 @@ Load `tokens.css` and `checkbox.css`. The controls need no script; add `checkbox
 /* States. Disabled uses [type] so it outranks the checked rule. */
 .sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]) { background: var(--bg-brand-subtle); border-color: var(--brand-600); }
 .sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate], :disabled):is(:hover, [data-state="hover"]) { background: var(--bg-brand-subtle); border-color: var(--brand-600); }
-.sb-check-input:focus-visible, .sb-check-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-check-input:focus-visible, .sb-check-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 .sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]):is(:focus-visible, [data-state="focus"]) { border-color: var(--border-brand); }
 .sb-check-input[type]:disabled { cursor: not-allowed; }
 
@@ -4578,8 +4675,8 @@ Selectable cards: a list of bordered cards where the whole card is the control. 
       <label class="sb-cg-title" for="cg-pay-0">Kartu berakhiran 1234</label>
       <p class="sb-cg-desc" id="cg-pay-0-desc">Berlaku s.d. 06/2027</p>
       <div class="sb-cg-actions">
-        <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="sm">Jadikan utama</button>
-        <button class="sb-btn" type="button" data-hierarchy="link-color" data-size="sm">Ubah</button>
+        <button class="sb-btn" type="button" data-variant="link" data-size="sm">Jadikan utama</button>
+        <button class="sb-btn" type="button" data-variant="link" data-size="sm">Ubah</button>
       </div>
     </div>
     <input class="sb-check-input" type="radio" id="cg-pay-0" data-variant="circle" name="cg-pay" aria-describedby="cg-pay-0-desc" checked>
@@ -4590,8 +4687,8 @@ Selectable cards: a list of bordered cards where the whole card is the control. 
       <label class="sb-cg-title" for="cg-pay-1">Kartu berakhiran 5678</label>
       <p class="sb-cg-desc" id="cg-pay-1-desc">Berlaku s.d. 11/2026</p>
       <div class="sb-cg-actions">
-        <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="sm">Jadikan utama</button>
-        <button class="sb-btn" type="button" data-hierarchy="link-color" data-size="sm">Ubah</button>
+        <button class="sb-btn" type="button" data-variant="link" data-size="sm">Jadikan utama</button>
+        <button class="sb-btn" type="button" data-variant="link" data-size="sm">Ubah</button>
       </div>
     </div>
     <input class="sb-check-input" type="radio" id="cg-pay-1" data-variant="circle" name="cg-pay" aria-describedby="cg-pay-1-desc">
@@ -4667,13 +4764,13 @@ Icon card titles are Text md in both sizes; `md` raises the price from Display s
 | --- | --- | --- |
 | Default | `white`, `gray-200` border | `brand-50` fill, `brand-300` border |
 | Hover | `white`, `brand-300` border | `brand-50` fill, `brand-600` border |
-| Focused | `white`, `brand-300` border + 4 px `focus-ring` ring | `brand-50`, `brand-300` border + 4 px `focus-ring` ring |
+| Focused | `white`, `brand-300` border + 3 px `focus-ring` ring | `brand-50`, `brand-300` border + 3 px `focus-ring` ring |
 | Disabled | Default at 50 % opacity | Default at 50 % opacity |
 
 - Only the card shows the focus ring; the control inside keeps its Default or checked look.
 - Selected text: title `brand-800`, subtitle and description `brand-600`.
 - Icon card: the header takes the fill and border, the body stays white with a `gray-200` border.
-- Payment icon, selected: "Set as default" (Link gray) turns `brand-600`.
+- Payment icon, selected: "Set as default" (Link) turns `brand-600`.
 
 ### Do and don't
 
@@ -4779,7 +4876,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 .sb-cg-item:has(.sb-check-input:checked) { --cg-bg: var(--bg-brand-subtle); --cg-bd: var(--border-brand); --cg-title: var(--text-brand-strong); --cg-text: var(--fg-brand); }
 .sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--border-brand); }
 .sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-600); }
-.sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--border-brand); box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--border-brand); box-shadow: 0 0 0 3px var(--focus-ring); }
 .sb-cg-item:has(.sb-check-input:disabled) { cursor: not-allowed; } /* 50 % opacity comes from .sb-check */
 
 /* Only the card shows focus; the control keeps its Default / checked look. */
@@ -4807,7 +4904,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 
 /* Payment icon: text links sit above the stretched label, so they never toggle the card. */
 .sb-cg-actions { position: relative; z-index: 2; display: flex; gap: 12px; margin-top: 8px; }
-.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
+.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-variant="link"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
 
 /* Icon card: the header carries the selection colours, the body stays white. */
 .sb-cg-item[data-type="card"] { flex-direction: column; align-items: stretch; gap: 0; padding: 0; background: var(--bg-primary); border-color: var(--border-secondary); }
@@ -4842,10 +4939,10 @@ Type to find people or values and pick one or many. Picks show as chips, results
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Field | Input field box: `gray-300` border, radius 8, `shadow-xs`, padding `9 14`; 44 high for one line and a line taller for each wrap. Leading 20 px icon (`user` for people), trailing chevron that turns when open. |
+| 1 | Field | Input field box: `gray-200` border, radius 10, `shadow-xs`, padding `3 10`; 32 high for one line and a line taller for each wrap. Leading 16 px icon (`user` for people), trailing chevron that turns when open. |
 | 2 | Chip | Badge md Gray with an × that removes the pick ("Hapus Analis D"). Chips and the text sit 4 apart and wrap. |
 | 3 | Values | Chips and the search text on shared lines. The text is Text md, at least 64 wide before it wraps under the chips. The placeholder ("Cari nama atau email") hides once there are chips. |
-| 4 | Option | An Input dropdown option: 24 px initials avatar, name in Text md / Medium, email in `gray-500`. 44 high, radius 8; hover and active `gray-50`. |
+| 4 | Option | An Input dropdown option: 20 px initials avatar, name in Text sm / Regular, email in `gray-500`. 32 high, radius 8; hover and active `gray-50`. |
 | 5 | Picked option | `gray-50` fill and a 20 px `brand-600` check. In Multiple the list stays open, so picks can be undone in place. |
 
 ### Properties
@@ -5062,17 +5159,16 @@ Load `tokens.css`, `input-field.css`, `input-dropdown.css` and `badge.css`, then
 
 .sb-cb { position: relative; }
 
-/* Field: Input field's box. It grows a line at a time as chips wrap; 9 + 24 + 9 + borders = 44 for one line. */
+/* Field: Input field's box. It grows a line at a time as chips wrap; 3 + 24 + 3 + borders = 32 for one line. */
 .sb-cb-field {
   box-sizing: border-box; display: flex; align-items: center; gap: 8px;
-  min-height: 44px; padding: 9px 14px;
-  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  min-height: 32px; padding: 3px 10px;
+  background: var(--bg-primary); border: 1px solid var(--border-control); border-radius: var(--radius-control); box-shadow: var(--shadow-xs);
   cursor: text;
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-cb-field > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
-.sb-cb-field:hover:not(:focus-within) { border-color: var(--border-strong); }
-.sb-cb-field:focus-within, .sb-cb:has([aria-expanded="true"]) .sb-cb-field { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-cb-field > svg { width: 16px; height: 16px; flex: none; color: var(--text-quaternary); }
+.sb-cb-field:focus-within, .sb-cb:has([aria-expanded="true"]) .sb-cb-field { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
 .sb-cb:has(input:disabled) .sb-cb-field { opacity: .5; cursor: not-allowed; }
 .sb-cb-chevron { transition: rotate 200ms var(--ease); }
 .sb-cb:has([aria-expanded="true"]) .sb-cb-chevron { rotate: 180deg; }
@@ -5083,7 +5179,7 @@ Load `tokens.css`, `input-field.css`, `input-dropdown.css` and `badge.css`, then
 .sb-cb-chip { display: flex; }
 .sb-cb-values input {
   flex: 1; width: 0; min-width: 64px; height: 24px; margin: 0; padding: 0; border: 0; outline: 0; background: none; /* 64: room to type beside the chips before wrapping */
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
 }
 .sb-cb-values input::placeholder { color: var(--text-quaternary); opacity: 1; }
 .sb-cb-chips:not(:empty) + input::placeholder { color: transparent; } /* chips already say what is picked */
@@ -5103,6 +5199,10 @@ Load `tokens.css`, `input-field.css`, `input-dropdown.css` and `badge.css`, then
 @media (prefers-reduced-motion: reduce) {
   .sb-cb-field, .sb-cb-chevron { transition: none; }
   .sb-cb-spin { animation: none; }
+}
+/* Phones: 16 px text in fields, so iOS does not zoom in on focus (shadcn: text-base md:text-sm). */
+@media (max-width: 767px) {
+  .sb-cb-values input { font-size: 16px; }
 }
 ```
 
@@ -5280,7 +5380,7 @@ A date field people can type into or pick from a calendar: one date (one month, 
 | 3 | Weekdays | Sen to Min, Monday first. Text xs / Medium `gray-500`. |
 | 4 | Range | Days between the ends on a `brand-50` band with `brand-700` numbers. The ends, like a single selected day, are `brand-600` with `white` numbers. |
 | 5 | Day | 32 × 32, radius 4, Text sm `gray-700`. Hover `gray-50`. Days of another month and days outside min / max: `gray-400`. Today: a 4 px brand dot under the number. |
-| 6 | Footer | Range only. The pick in short dates on the left; Batal (Secondary gray sm) and Terapkan (Primary sm, disabled until both ends are set) on the right. |
+| 6 | Footer | Range only. The pick in short dates on the left; Batal (Outline sm) and Terapkan (Default sm, disabled until both ends are set) on the right. |
 
 ### Properties
 
@@ -5351,7 +5451,7 @@ The six standard periods on the left. The one that matches the pick is marked, s
 
 | State | Look |
 | --- | --- |
-| Default | Input field: `gray-300` border, placeholder dd/mm/yyyy in `gray-500`. |
+| Default | Input field: `gray-200` border, placeholder dd/mm/yyyy in `gray-500`. |
 | Open | The field keeps the focus look (`brand-300` border, `focus-ring`) while the calendar is open, even with focus in the calendar. |
 | Error | A typed date that does not exist, is in the wrong format or is outside min / max: Input field error state, and the hint says what to write. |
 | Disabled | Input field disabled; the calendar button cannot open. |
@@ -5462,7 +5562,7 @@ Load `tokens.css`, `input-field.css` and `button.css`, then `date-picker.css`, a
 .sb-dp-toggle > svg { width: 20px; height: 20px; }
 .sb-dp-toggle:is(:hover, [aria-expanded="true"]) { color: var(--text-secondary); }
 .sb-dp-toggle:focus-visible { outline: 2px solid var(--brand-600); outline-offset: -2px; }
-.sb-dp:has(.sb-dp-toggle[aria-expanded="true"]) .sb-input { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-dp:has(.sb-dp-toggle[aria-expanded="true"]) .sb-input { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
 
 /* Panel: opens 8 below the field, white, radius 12, shadow-lg. Months side by side with a divider. */
 .sb-dp-panel {
@@ -5594,7 +5694,7 @@ function dpPanel(st) {
   const short = { day: 'numeric', month: 'short', year: 'numeric' };
   const presets = st.presets ? `<div class="sb-dp-presets" role="group" aria-label="Rentang cepat">${dpPresets(st.today).map(([l, a, b]) => `<button class="sb-dp-preset" type="button" data-start="${a}" data-end="${b}" aria-pressed="${a === st.start && b === st.end}">${l}</button>`).join('')}</div>` : '';
   const picked = st.start ? `${dpFmt(st.start, short)} – ${st.end ? dpFmt(st.end, short) : '…'}` : 'Pilih tanggal awal';
-  return `${presets}<div class="sb-dp-main">${months}<div class="sb-dp-foot"><span class="sb-dp-picked">${picked}</span><div class="sb-dp-actions"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm" data-dp="cancel">Batal</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm" data-dp="apply"${st.start && st.end ? '' : ' disabled'}>Terapkan</button></div></div></div>`;
+  return `${presets}<div class="sb-dp-main">${months}<div class="sb-dp-foot"><span class="sb-dp-picked">${picked}</span><div class="sb-dp-actions"><button class="sb-btn" type="button" data-variant="outline" data-size="sm" data-dp="cancel">Batal</button><button class="sb-btn" type="button" data-size="sm" data-dp="apply"${st.start && st.end ? '' : ' disabled'}>Terapkan</button></div></div></div>`;
 }
 function dpState(dp) {
   const s = dp.dataset;
@@ -5710,7 +5810,7 @@ An action menu opened from a button, a row-actions icon or the account avatar. F
 | --- | --- | --- |
 | 1 | Header | Optional. Heading: 44 high, title Text sm / Semibold `gray-700`. Avatar group: 64 high, 40 px avatar with a 10 px `success-500` online dot, name Text sm / Semibold `gray-700`, email Text sm / Regular `gray-500`, gap 12. Padding `12 16`. |
 | 2 | Divider | 1 px `gray-100` between the header and each group. |
-| 3 | Item | 40 high, padding `10 12`, radius 8, inset 4 from the panel edge, gap 12, Text sm / Medium `gray-700`. Hover and focus `gray-50`. |
+| 3 | Item | 32 high, padding `0 8`, radius 8, inset 4 from the panel edge, gap 8, Text sm / Medium `gray-700`. Hover and focus `gray-50`. |
 | 4 | Icon or checkbox | 16 px icon `gray-700`, or a 16 px checkbox (radius 4). Never both. |
 | 5 | Shortcut | Optional, right-aligned, Text xs / Regular `gray-500`. |
 
@@ -5730,11 +5830,11 @@ The panel is 240 wide, `white`, 1 px `gray-100` border, radius 12 (like every po
 
 #### Button
 
-Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up and a `0 0 0 4px` `gray-100` ring.
+An Outline Button with the label and a 16 px chevron-down. Open: chevron up and the `gray-50` hover fill stays.
 
 ```html
 <div class="sb-menu-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="tr-button">Aksi klaim<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+  <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="tr-button">Aksi klaim<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
   <div class="sb-menu" id="tr-button" role="menu" aria-label="Aksi klaim" hidden>
     <div class="sb-menu-group" role="group">
       <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1"><svg aria-hidden="true"><!-- eye --></svg><span class="sb-menu-label">Lihat detail</span></button>
@@ -5772,7 +5872,7 @@ Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up an
 
 #### Avatar
 
-40 px avatar for the account menu in the sidebar or header. Open: 4 px `focus-ring` ring.
+40 px avatar for the account menu in the sidebar or header. Open: 3 px `focus-ring` ring.
 
 ```html
 <div class="sb-menu-wrap">
@@ -5797,7 +5897,7 @@ Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up an
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (40 high, padding `10 12`, radius 8, gap 12) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Row (32 high, padding `0 8`, radius 8, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
 | Label, Text sm / Medium | `gray-700` | `gray-700` | Default at 50 % opacity |
 | Icon 16 px | `gray-700` | `gray-700` | Default at 50 % opacity |
 | Checkbox 16 px, radius 4 | `white`, `gray-300` border | `brand-50` fill, `brand-600` border | Default at 50 % opacity |
@@ -5811,7 +5911,7 @@ For multi-select filters inside a menu. Toggling an item keeps the menu open; Es
 
 ```html
 <div class="sb-menu-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="cb-menu">Tampilkan kolom<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+  <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="cb-menu">Tampilkan kolom<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
   <div class="sb-menu" id="cb-menu" role="menu" aria-label="Tampilkan kolom" hidden>
     <div class="sb-menu-group" role="group">
       <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="true" aria-disabled="true"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">No. klaim</span></button>
@@ -5879,7 +5979,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
    the Button trigger also needs button.css.
 
    <div class="sb-menu-wrap">
-     <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md"
+     <button class="sb-btn" type="button" data-variant="outline"
              aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg class="sb-btn-chevron" aria-hidden="true">…chevron-down…</svg></button>
      <div class="sb-menu" id="aksi" role="menu" aria-label="Aksi" hidden>
        <div class="sb-menu-group" role="group">
@@ -5899,7 +5999,6 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-wrap { position: relative; display: inline-flex; }
 
 /* Triggers */
-.sb-menu-wrap > .sb-btn[aria-expanded="true"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-tertiary); } /* open: chevron up + gray-100 ring */
 .sb-menu-icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 32px; height: 32px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-md); /* hit area at least 32 x 32; radius 8 like every icon button of 32+ */
@@ -5916,7 +6015,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
   transition: box-shadow 150ms var(--ease);
 }
 .sb-menu-avatar:hover { box-shadow: 0 0 0 4px var(--bg-tertiary); }
-.sb-menu-avatar:focus-visible, .sb-menu-avatar[aria-expanded="true"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-menu-avatar:focus-visible, .sb-menu-avatar[aria-expanded="true"] { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* Panel: 240 wide (wider for long labels, never truncated), opens 8 below, right-aligned. */
 .sb-menu {
@@ -5936,10 +6035,10 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-name { display: block; font: 600 var(--text-sm) var(--font); color: var(--text-secondary); }
 .sb-menu-email { display: block; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
-/* Item: 40 high, padding 10 12 (text still 16 from the edge), gap 12, radius 8 (12 panel - 4 padding) */
+/* Item: 32 high, padding 0 8, gap 8, radius 8 (12 panel - 4 padding), like a shadcn menu item */
 .sb-menu-item {
-  box-sizing: border-box; display: flex; align-items: center; gap: 12px;
-  width: 100%; height: 40px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-md);
+  box-sizing: border-box; display: flex; align-items: center; gap: 8px;
+  width: 100%; height: 32px; margin: 0; padding: 0 8px; border: 0; border-radius: var(--radius-md);
   background: none; font: 500 var(--text-sm) var(--font); color: var(--text-secondary); text-align: start; white-space: nowrap;
   cursor: pointer;
 }
@@ -6082,7 +6181,7 @@ Adds documents to a claim: a drop zone people click or drag files onto, and a ro
     <p class="sb-file-name"><span>invoice-rs-medika-utama.pdf</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
     <p class="sb-file-meta">1,2 MB<span class="sb-file-error"></span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah invoice-rs-medika-utama.pdf" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">100%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="Hapus invoice-rs-medika-utama.pdf"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
 </li>
@@ -6092,7 +6191,7 @@ Adds documents to a claim: a drop zone people click or drag files onto, and a ro
     <p class="sb-file-name"><span>resume-medis-KLM-0241.pdf</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
     <p class="sb-file-meta">2,4 MB<span class="sb-file-error"></span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah resume-medis-KLM-0241.pdf" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" style="--value: 64"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">64%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="Batalkan unggahan resume-medis-KLM-0241.pdf"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
 </li></ul>
@@ -6118,7 +6217,7 @@ The file takes the zone's place. Remove it and the zone comes back; pick again a
     <p class="sb-file-name"><span>ktp-budi-santoso.jpg</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
     <p class="sb-file-meta">640 KB<span class="sb-file-error"></span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah ktp-budi-santoso.jpg" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">100%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="Hapus ktp-budi-santoso.jpg"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
 </li></ul>
@@ -6152,7 +6251,7 @@ One row per document the claim needs: its name, Wajib or Opsional, the types it 
       <p class="sb-file-name"><span>invoice-rs-medika-utama.pdf</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
       <p class="sb-file-meta">1,2 MB<span class="sb-file-error"></span></p>
       <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah invoice-rs-medika-utama.pdf" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">100%</span></div>
-      <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+      <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
     </div>
     <button class="sb-file-action" type="button" aria-label="Hapus invoice-rs-medika-utama.pdf"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
   </li></ul>
@@ -6175,7 +6274,7 @@ One row per document the claim needs: its name, Wajib or Opsional, the types it 
       <p class="sb-file-name"><span>resume-medis-KLM-0241.pdf</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
       <p class="sb-file-meta">2,4 MB<span class="sb-file-error"></span></p>
       <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah resume-medis-KLM-0241.pdf" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" style="--value: 64"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">64%</span></div>
-      <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+      <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
     </div>
     <button class="sb-file-action" type="button" aria-label="Batalkan unggahan resume-medis-KLM-0241.pdf"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
   </li></ul>
@@ -6211,7 +6310,7 @@ One row per document the claim needs: its name, Wajib or Opsional, the types it 
       <p class="sb-file-name"><span>kuitansi-apotek.jpg</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
       <p class="sb-file-meta">640 KB<span class="sb-file-error"></span></p>
       <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah kuitansi-apotek.jpg" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">100%</span></div>
-      <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+      <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
     </div>
     <button class="sb-file-action" type="button" aria-label="Hapus kuitansi-apotek.jpg"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
   </li></ul>
@@ -6240,7 +6339,7 @@ One row per document the claim needs: its name, Wajib or Opsional, the types it 
     <p class="sb-file-name"><span>rontgen-thorax.dcm</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
     <p class="sb-file-meta">14,6 MB<span class="sb-file-error">Jenis file tidak didukung</span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah rontgen-thorax.dcm" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="--value: 0"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">0%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="Hapus rontgen-thorax.dcm"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
 </li></ul>
@@ -6398,7 +6497,7 @@ const upItem = ({ name, size, state = 'uploading', value = 0, error = '', thumb 
     <p class="sb-file-name"><span>${upEsc(name)}</span>${upSvg(UP_PATH.check).replace('<svg ', '<svg class="sb-file-done" ')}</p>
     <p class="sb-file-meta">${upSize(size)}<span class="sb-file-error">${upEsc(error)}</span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah ${upEsc(name)}" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="100" style="--value: ${value}"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">${value}%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="${state === 'uploading' ? 'Batalkan unggahan' : 'Hapus'} ${upEsc(name)}">${upSvg(UP_PATH.x).replace('<svg ', '<svg class="sb-file-x" ')}${upSvg(UP_PATH.trash).replace('<svg ', '<svg class="sb-file-trash" ')}</button>
 </li>`;
@@ -6481,12 +6580,12 @@ The controls above a list that narrow it down: status tabs with counts, search, 
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Status tabs | Button group switch, 40 high. Each segment ends with a Badge sm count, white on the pressed segment. |
-| 2 | Search | Input field with the search icon, 40 high. 320 wide and right-aligned when the bar is 800 or wider; below that it fills the rest of the status row, or a row of its own. |
+| 1 | Status tabs | Button group switch, 32 high. Each segment ends with a Badge sm count, white on the pressed segment. |
+| 2 | Search | Input field with the search icon, 32 high. 320 wide and right-aligned when the bar is 640 or wider; below that it fills the rest of the status row, or a row of its own. |
 | 3 | Period | Date picker range with quick ranges, 264 wide, empty for "Semua tanggal". |
-| 4 | Filter menu | Button md secondary gray with a chevron; opens a Dropdown menu of checkbox items. A Badge sm primary counts the picks. |
+| 4 | Filter menu | Button, Outline, with a chevron; opens a Dropdown menu of checkbox items. A Badge sm primary counts the picks. |
 | 5 | Chips | Badge md with ×, on their own row. The period first, then each picked value. |
-| 6 | Clear | Button sm link gray "Hapus semua". Shows only with chips. |
+| 6 | Clear | Button, Link, "Hapus semua". Shows only with chips. |
 
 Rows 16 apart (12 between the controls and the chips); 12 between controls, 8 between chips.
 
@@ -6510,7 +6609,7 @@ Status, search, period and menus, for the main list of a module.
 
 #### Narrow
 
-Under 600 wide (the bar's own width, not the screen's), status takes its own row and scrolls sideways if needed. Search shares a row with a Filter button that counts the active filters. The period and the menus open in a bottom sheet; the chips stay on the page.
+Under 480 wide (the bar's own width, not the screen's), status takes its own row and scrolls sideways if needed. Search shares a row with a Filter button that counts the active filters. The period and the menus open in a bottom sheet; the chips stay on the page.
 
 ### States
 
@@ -6540,11 +6639,11 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
       <button type="button" role="radio" aria-checked="false" tabindex="-1" data-value="rejected">Ditolak <span class="sb-badge" data-size="sm">0</span></button>
     </div>
     <div class="sb-input sb-filter-search"><svg aria-hidden="true"><!-- search --></svg><input type="search" placeholder="Cari ID klaim atau peserta" aria-label="Cari klaim" value=""></div>
-    <button class="sb-btn sb-filter-more" type="button" data-hierarchy="secondary-gray" data-size="md" popovertarget="fb-7-sheet"><svg aria-hidden="true"><!-- filter-lines --></svg>Filter<span class="sb-badge" data-size="sm" data-color="primary">2</span></button>
+    <button class="sb-btn sb-filter-more" type="button" data-variant="outline" popovertarget="fb-7-sheet"><svg aria-hidden="true"><!-- filter-lines --></svg>Filter<span class="sb-badge" data-size="sm" data-color="primary">2</span></button>
   </div>
   <div class="sb-filter-row">
     <div class="sb-filter-sheet" id="fb-7-sheet" popover aria-label="Filter">
-      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" popovertarget="fb-7-sheet" popovertargetaction="hide"><svg aria-hidden="true"><!-- x --></svg></button></div>
+      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" popovertarget="fb-7-sheet" popovertargetaction="hide"><svg aria-hidden="true"><!-- x --></svg></button></div>
       <div class="sb-dp" data-type="range" data-start="2026-09-15" data-end="2026-10-14" data-today="2026-10-14" data-presets>
         <div class="sb-input">
           <button class="sb-dp-toggle" type="button" aria-label="Pilih periode" aria-haspopup="dialog" aria-expanded="false" aria-controls="fb-7-cal"><svg aria-hidden="true"><!-- calendar --></svg></button>
@@ -6553,7 +6652,7 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
         <div class="sb-dp-panel" id="fb-7-cal" role="dialog" aria-label="Pilih periode" hidden></div>
       </div>
     <div class="sb-menu-wrap" data-filter="rs">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-7-rs">Rumah sakit<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary">1</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-7-rs">Rumah sakit<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary">1</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
       <div class="sb-menu" id="fb-7-rs" role="menu" aria-label="Rumah sakit" hidden>
         <div class="sb-menu-group" role="group">
           <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-value="RS Medika Utama"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">RS Medika Utama</span></button>
@@ -6564,7 +6663,7 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
       </div>
     </div>
     <div class="sb-menu-wrap" data-filter="svc">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-7-svc">Layanan<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary" hidden>0</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-7-svc">Layanan<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary" hidden>0</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
       <div class="sb-menu" id="fb-7-svc" role="menu" aria-label="Layanan" hidden>
         <div class="sb-menu-group" role="group">
           <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-value="Rawat inap"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">Rawat inap</span></button>
@@ -6573,11 +6672,11 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
         </div>
       </div>
     </div>
-      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" popovertarget="fb-7-sheet" popovertargetaction="hide">Lihat hasil</button></div>
+      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-variant="outline" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" popovertarget="fb-7-sheet" popovertargetaction="hide">Lihat hasil</button></div>
     </div>
     <div class="sb-filter-chips">
       <ul class="sb-filter-chip-list" aria-label="Filter aktif"><li><span class="sb-badge" data-size="md" data-icon="x-close">15 Sep 2026 – 14 Okt 2026<button class="sb-badge-x" type="button" data-remove="date" data-value="" aria-label="Hapus filter 15 Sep 2026 – 14 Okt 2026"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li><li><span class="sb-badge" data-size="md" data-icon="x-close">RS Bunda<button class="sb-badge-x" type="button" data-remove="rs" data-value="RS Bunda" aria-label="Hapus filter RS Bunda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li></ul>
-      <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="sm" data-filter-clear>Hapus semua</button>
+      <button class="sb-btn" type="button" data-variant="link" data-size="sm" data-filter-clear>Hapus semua</button>
     </div>
   </div>
 </div>
@@ -6595,11 +6694,11 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
       <button type="button" role="radio" aria-checked="false" tabindex="-1" data-value="rejected">Ditolak <span class="sb-badge" data-size="sm">0</span></button>
     </div>
     <div class="sb-input sb-filter-search"><svg aria-hidden="true"><!-- search --></svg><input type="search" placeholder="Cari ID klaim atau peserta" aria-label="Cari klaim" value=""></div>
-    <button class="sb-btn sb-filter-more" type="button" data-hierarchy="secondary-gray" data-size="md" popovertarget="fb-8-sheet"><svg aria-hidden="true"><!-- filter-lines --></svg>Filter<span class="sb-badge" data-size="sm" data-color="primary">2</span></button>
+    <button class="sb-btn sb-filter-more" type="button" data-variant="outline" popovertarget="fb-8-sheet"><svg aria-hidden="true"><!-- filter-lines --></svg>Filter<span class="sb-badge" data-size="sm" data-color="primary">2</span></button>
   </div>
   <div class="sb-filter-row">
     <div class="sb-filter-sheet" id="fb-8-sheet" popover aria-label="Filter">
-      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" popovertarget="fb-8-sheet" popovertargetaction="hide"><svg aria-hidden="true"><!-- x --></svg></button></div>
+      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" popovertarget="fb-8-sheet" popovertargetaction="hide"><svg aria-hidden="true"><!-- x --></svg></button></div>
       <div class="sb-dp" data-type="range" data-start="2026-09-15" data-end="2026-10-14" data-today="2026-10-14" data-presets>
         <div class="sb-input">
           <button class="sb-dp-toggle" type="button" aria-label="Pilih periode" aria-haspopup="dialog" aria-expanded="false" aria-controls="fb-8-cal"><svg aria-hidden="true"><!-- calendar --></svg></button>
@@ -6608,7 +6707,7 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
         <div class="sb-dp-panel" id="fb-8-cal" role="dialog" aria-label="Pilih periode" hidden></div>
       </div>
     <div class="sb-menu-wrap" data-filter="rs">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-8-rs">Rumah sakit<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary">1</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-8-rs">Rumah sakit<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary">1</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
       <div class="sb-menu" id="fb-8-rs" role="menu" aria-label="Rumah sakit" hidden>
         <div class="sb-menu-group" role="group">
           <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-value="RS Medika Utama"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">RS Medika Utama</span></button>
@@ -6619,7 +6718,7 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
       </div>
     </div>
     <div class="sb-menu-wrap" data-filter="svc">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-8-svc">Layanan<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary" hidden>0</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="fb-8-svc">Layanan<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary" hidden>0</span><svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
       <div class="sb-menu" id="fb-8-svc" role="menu" aria-label="Layanan" hidden>
         <div class="sb-menu-group" role="group">
           <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-value="Rawat inap"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">Rawat inap</span></button>
@@ -6628,11 +6727,11 @@ The table keeps its header and says so in one full-width cell. The chips stay, s
         </div>
       </div>
     </div>
-      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" popovertarget="fb-8-sheet" popovertargetaction="hide">Lihat hasil</button></div>
+      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-variant="outline" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" popovertarget="fb-8-sheet" popovertargetaction="hide">Lihat hasil</button></div>
     </div>
     <div class="sb-filter-chips" hidden>
       <ul class="sb-filter-chip-list" aria-label="Filter aktif"><li><span class="sb-badge" data-size="md" data-icon="x-close">15 Sep 2026 – 14 Okt 2026<button class="sb-badge-x" type="button" data-remove="date" data-value="" aria-label="Hapus filter 15 Sep 2026 – 14 Okt 2026"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li><li><span class="sb-badge" data-size="md" data-icon="x-close">RS Bunda<button class="sb-badge-x" type="button" data-remove="rs" data-value="RS Bunda" aria-label="Hapus filter RS Bunda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span></li></ul>
-      <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="sm" data-filter-clear>Hapus semua</button>
+      <button class="sb-btn" type="button" data-variant="link" data-size="sm" data-filter-clear>Hapus semua</button>
     </div>
   </div>
 </div>
@@ -6680,7 +6779,7 @@ Load `tokens.css`, the CSS of the parts (Button, Button group, Badge, Input fiel
      </div>
    </div>
 
-   Wide (600 and up): status and search, then the period and the menus, then the chips.
+   Wide (480 and up): status and search, then the period and the menus, then the chips.
    Narrow: status on its own row, search with a Filter button; the period and the menus move into a bottom sheet
    (the popover). The chips stay on the page. */
 
@@ -6689,8 +6788,7 @@ Load `tokens.css`, the CSS of the parts (Button, Button group, Badge, Input fiel
 .sb-filter-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .sb-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 
-/* Every control in the bar is 40 high, the height of Button md and Button group. */
-.sb-filter .sb-input { height: 40px; }
+/* Every control in the bar is 32 high, like every Button, field and Button group. */
 .sb-filter-status { flex: none; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
 .sb-filter-status > button > .sb-badge { font-variant-numeric: tabular-nums; }
 .sb-filter-status > [aria-checked="true"] > .sb-badge { --bdg-bg: var(--bg-primary); } /* the pressed segment is gray-100 too */
@@ -6714,10 +6812,10 @@ Load `tokens.css`, the CSS of the parts (Button, Button group, Badge, Input fiel
 .sb-filter-chip-list { display: contents; margin: 0; padding: 0; list-style: none; }
 .sb-filter-chip-list > li { display: flex; }
 
-@container (min-width: 800px) {
+@container (min-width: 640px) {
   .sb-filter-search { flex-grow: 0; flex-basis: 320px; margin-inline-start: auto; } /* room for both: 320, right-aligned */
 }
-@container (max-width: 599px) {
+@container (max-width: 479px) {
   .sb-filter-search { min-width: 0; }
   .sb-filter-more { display: inline-flex; }
   .sb-filter-sheet:not(:popover-open) { display: none; }
@@ -6876,11 +6974,11 @@ The top of every app page: the page title, or a breadcrumb on detail pages, on t
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Bar | Sticky, `white`, 80 high, padding `0 32`, 1 px `gray-200` bottom border. Parts 24 apart, centred vertically. |
-| 2 | Back button | Button secondary gray sm, icon only (`arrow-left`). Goes to the parent level. 16 to the breadcrumb. |
+| 2 | Back button | Button, Outline, `icon-sm` (`arrow-left`). Goes to the parent level. 16 to the breadcrumb. |
 | 3 | Breadcrumb | Display xs / Medium `gray-500`, hover `gray-700`; "/" in `gray-300`, 12 apart. Levels above the parent fold into "…" (opens a Dropdown menu). |
 | 4 | Title | Display xs / Semibold `gray-900`, one line; a long title truncates with an ellipsis. A record ID never truncates: the breadcrumb shrinks first. |
 | 5 | Status | Optional Badge md in the status colour, 12 after the title. |
-| 6 | Notifications | Button secondary gray lg, icon only (`bell`). Unread: an 8 px `error-500` dot with a 2 px `white` ring. |
+| 6 | Notifications | Button, Outline, `icon-lg` (`bell`). Unread: an 8 px `error-500` dot with a 2 px `white` ring. |
 | 7 | Actions | Buttons lg, gap 8, primary last. Extra actions in a ⋮ Dropdown menu. |
 
 ### Properties
@@ -6925,8 +7023,8 @@ The header bar and the Sidebar head are both 80 high, so their bottom lines meet
     <h1 class="sb-header-heading">Klaim</h1>
   </div>
   <div class="sb-header-actions">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
   </div>
 </header>
 ```
@@ -6939,8 +7037,8 @@ The header bar and the Sidebar head are both 80 high, so their bottom lines meet
     <h1 class="sb-header-heading">Klaim</h1>
   </div>
   <div class="sb-header-actions">
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
   </div>
 </header>
 ```
@@ -6953,8 +7051,8 @@ The header bar and the Sidebar head are both 80 high, so their bottom lines meet
     <h1 class="sb-header-heading">Klaim</h1>
   </div>
   <div class="sb-header-actions">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
   </div>
 </header>
 ```
@@ -6967,8 +7065,8 @@ The header bar and the Sidebar head are both 80 high, so their bottom lines meet
     <h1 class="sb-header-heading">Klaim</h1>
   </div>
   <div class="sb-header-actions">
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
   </div>
 </header>
 ```
@@ -7001,7 +7099,7 @@ Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-me
 
    <header class="sb-header">
      <div class="sb-header-title">
-       <a class="sb-btn" href="/klaim/rawat-inap" data-hierarchy="secondary-gray" data-size="sm" data-icon="only" aria-label="Kembali ke Rawat inap">…arrow-left…</a>
+       <a class="sb-btn" href="/klaim/rawat-inap" data-variant="outline" data-size="icon-sm" aria-label="Kembali ke Rawat inap">…arrow-left…</a>
        <nav aria-label="Breadcrumb">
          <ol class="sb-crumbs">
            <li><div class="sb-menu-wrap"><button class="sb-crumb-more" type="button" aria-label="Level lain" aria-haspopup="menu" aria-expanded="false" aria-controls="crumbs-more">…</button>
@@ -7085,8 +7183,8 @@ A select field: pick one value for a form field or a filter. For running an acti
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Label | Text sm / Medium `gray-700`, 6 above the field. 44 high without a label, 70 with one. |
-| 2 | Field | Same box as Input field: 44 high, padding `10 14`, gap 8, `white`, 1 px `gray-300` border, radius 8, `shadow-xs`. Open/focused: `brand-300` border + 4 px `focus-ring` ring. |
+| 1 | Label | Text sm / Medium `gray-700`, 6 above the field. 32 high without a label, 58 with one. |
+| 2 | Field | Same box as Input field: 32 high, padding `0 10`, gap 8, Text sm, `white`, 1 px `gray-200` border, radius 10, `shadow-xs`. Open/focused: `brand-300` border + 3 px `focus-ring` ring. |
 | 3 | Leading element | Optional: 20 px icon `gray-500`, 24 px avatar, 10 px `success-500` dot, or 20 px search icon (Search type). |
 | 4 | Value + supporting text | Text md / Regular. Placeholder `gray-500`, value `gray-900`, supporting text after it in `gray-500`. |
 | 5 | Chevron | 20 px `gray-500`; turns up when open. The Search type has none. |
@@ -7305,8 +7403,8 @@ A select field: pick one value for a form field or a filter. For running an acti
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (44 high, padding `10 10`, radius 8, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
-| Label, Text md / Medium | `gray-900` | `gray-900` | Default at 50 % opacity |
+| Row (32 high, padding `0 8`, radius 8, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Label, Text sm / Regular | `gray-900` | `gray-900` | Default at 50 % opacity |
 | Supporting text, Text md / Regular | `gray-500` | `gray-500` | Default at 50 % opacity |
 | Leading icon 20 px | `gray-500` | `gray-700` | Default at 50 % opacity |
 | Check (selected) | 20 px `brand-600`, row fill `gray-50` | same | Default at 50 % opacity, fill `gray-50` |
@@ -7470,22 +7568,21 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 /* Field: same box as Input field */
 .sb-dd-trigger {
   box-sizing: border-box; display: flex; align-items: center; gap: 8px;
-  width: 100%; height: 44px; margin: 0; padding: 0 14px;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary); text-align: start;
-  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  width: 100%; height: 32px; margin: 0; padding: 0 10px;
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary); text-align: start;
+  background: var(--bg-primary); border: 1px solid var(--border-control); border-radius: var(--radius-control); box-shadow: var(--shadow-xs);
   cursor: pointer;
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-dd-trigger:hover:not(:disabled, [aria-expanded="true"], :focus-within) { border-color: var(--border-strong); }
 .sb-dd-trigger:focus-visible, .sb-dd-trigger[aria-expanded="true"], .sb-dd-trigger:has([aria-expanded="true"], input:focus), .sb-dd-trigger[data-state="open"] {
-  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring);
 }
 .sb-dd-trigger:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-dd-value, .sb-dd-main { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 .sb-dd-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sb-dd-sup { flex: none; color: var(--text-quaternary); font-weight: 400; }
 .sb-dd-placeholder { color: var(--text-quaternary); }
-.sb-dd-trigger > svg, .sb-dd-value > svg, .sb-dd-main > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
+.sb-dd-trigger > svg, .sb-dd-value > svg, .sb-dd-main > svg { width: 16px; height: 16px; flex: none; color: var(--text-quaternary); }
 .sb-dd-chevron { transition: rotate 200ms var(--ease); }
 .sb-dd-trigger[aria-expanded="true"] .sb-dd-chevron, .sb-dd-trigger[data-state="open"] .sb-dd-chevron { rotate: 180deg; }
 .sb-dd-trigger[data-type="search"] { cursor: text; }
@@ -7495,10 +7592,10 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 /* Leading elements */
 .sb-dd-avatar {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
-  width: 24px; height: 24px; border-radius: var(--radius-full);
-  background: var(--bg-brand-subtle); font: 500 var(--text-xs) var(--font); color: var(--fg-brand);
+  width: 20px; height: 20px; border-radius: var(--radius-full);
+  background: var(--bg-brand-subtle); font: 500 10px/1 var(--font); color: var(--fg-brand);
 }
-.sb-dd-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
+.sb-dd-dot { width: 8px; height: 8px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
 
 /* Menu: width of the field, max height 320 (about 7 options), opens 8 below. */
 .sb-dd-menu {
@@ -7512,14 +7609,14 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-menu::-webkit-scrollbar { width: 16px; }
 .sb-dd-menu::-webkit-scrollbar-thumb { background: var(--bg-quaternary); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
 
-/* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 8 (12 panel - 4 padding) */
+/* Option row: 32 high, padding 0 8, gap 8, radius 8 (12 panel - 4 padding), Text sm Regular like a shadcn select item */
 .sb-dd-opt {
-  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-md);
-  font: 500 var(--text-md) var(--font); color: var(--text-primary); cursor: pointer;
+  display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 8px; border-radius: var(--radius-md);
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary); cursor: pointer;
 }
 .sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--bg-secondary); }
 .sb-dd-opt:hover .sb-dd-main > svg, .sb-dd-opt[data-active] .sb-dd-main > svg { color: var(--text-secondary); }
-.sb-dd-check { width: 20px; height: 20px; flex: none; color: var(--fg-brand); visibility: hidden; }
+.sb-dd-check { width: 16px; height: 16px; flex: none; color: var(--fg-brand); visibility: hidden; }
 .sb-dd-opt[aria-selected="true"] .sb-dd-check { visibility: visible; }
 .sb-dd-opt[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; }
 .sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--bg-secondary); }
@@ -7638,7 +7735,7 @@ A single-line text field with a label above, an optional hint below, and an erro
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Label | Text sm / Medium, `gray-700`. 6 above the field. |
-| 2 | Field | 44 high, padding `10 14`, `white`, 1 px `gray-300` border, radius 8, `shadow-xs`, gap 8 between items. |
+| 2 | Field | 32 high, padding `0 10`, Text sm (16 on phones, so iOS does not zoom), `white`, 1 px `gray-200` border, radius 10, `shadow-xs`, gap 8 between items. |
 | 3 | Leading icon | Optional. 20 px, `gray-500`. |
 | 4 | Value / placeholder | Text md / Regular. Placeholder `gray-500`, value `gray-900`. |
 | 5 | Help icon | Optional. 16 px `help-circle`, `gray-400`, at the end. Opens a Dark tooltip on hover and focus. |
@@ -7690,7 +7787,7 @@ A dropdown (`gray-900` value + 20 px chevron, padding `10 12 10 14`) before the 
 
 #### Trailing dropdown
 
-Prefix text (`Rp`) + value, dropdown after it (padding `10 14`). Amount with currency.
+Prefix text (`Rp`) + value, dropdown after it. Amount with currency.
 
 ```html
 <div class="sb-field">
@@ -7740,10 +7837,10 @@ A gray add-on (`gray-500`, padding `10 12 10 14`) joined to the input by a divid
 | --- | --- | --- | --- | --- |
 | Placeholder | `white` | `gray-300` | `gray-500` | Hover: border `gray-400` |
 | Filled | `white` | `gray-300` | `gray-900` | — |
-| Focused | `white` | `brand-300` | `gray-900` | ring `0 0 0 4px` `focus-ring` + `shadow-xs` |
+| Focused | `white` | `brand-300` | `gray-900` | ring `0 0 0 3px` `focus-ring` + `shadow-xs` |
 | Disabled | Default at 50 % opacity | Default at 50 % opacity | Default at 50 % opacity | not editable, `cursor: not-allowed` |
 | Destructive | `white` | `error-300` | as above | help icon becomes 16 px `alert-circle` in `error-500`; hint becomes the error message in `error-500` |
-| Destructive + Focused | `white` | `error-300` | `gray-900` | ring `0 0 0 4px` `error-100` |
+| Destructive + Focused | `white` | `error-300` | `gray-900` | ring `0 0 0 3px` `error-100` |
 
 Destructive has no Disabled variant: a disabled field cannot be in error.
 
@@ -7819,7 +7916,7 @@ Destructive has no Disabled variant: a disabled field cannot be in error.
 - Point `aria-describedby` at the hint (and the tooltip when there is a help icon). In error, set `aria-invalid="true"`.
 - Use the right keyboard on mobile: `inputmode="numeric"` for amounts and card numbers, `"tel"` for phone numbers.
 - The help icon is a real button (`aria-label="Info"`) and its tooltip has `role="tooltip"`, so it works with keyboard focus, not only hover.
-- Focus shows on the whole field: `brand-300` border and a 4 px `focus-ring` ring.
+- Focus shows on the whole field: `brand-300` border and a 3 px `focus-ring` ring.
 
 | Text | On | Ratio | AA |
 | --- | --- | --- | --- |
@@ -7829,7 +7926,7 @@ Destructive has no Disabled variant: a disabled field cannot be in error.
 | Error message `error-500` | `white` | 3.76:1 | **Fails** |
 | Field border `gray-300` | `white` | 1.47:1 | Below the 3:1 WCAG 1.4.11 asks for control boundaries |
 
-> **Warning:** **Open decision.** The error message in `error-500` is 3.76:1, below AA for 14 px text. `error-600` (4.83:1) or `error-700` (6.57:1) pass. The `gray-300` border is also faint (1.47:1); the label above the field keeps it identifiable, but a darker border (`gray-400`) would help low-vision users. Both need a design team decision.
+> **Warning:** **Open decision.** The error message in `error-500` is 3.76:1, below AA for 14 px text. `error-600` (4.83:1) or `error-700` (6.57:1) pass. The `gray-200` border is faint (1.19:1), like every control since the flat restyle; the label above the field keeps it identifiable, and focus adds a `brand-300` border and ring. A darker border (`gray-400`) would help low-vision users. Both need a design team decision.
 
 ### Code
 
@@ -7860,27 +7957,26 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
 .sb-input {
-  --inp-border: var(--border-primary); --inp-focus: var(--border-brand); --inp-ring: var(--focus-ring);
+  --inp-border: var(--border-control); --inp-focus: var(--border-brand); --inp-ring: var(--focus-ring);
   position: relative; box-sizing: border-box;
   display: flex; align-items: center; gap: 8px;
-  height: 44px; padding: 0 14px; /* control padding exception: 10 14 lands the height on 44 */
+  height: 32px; padding: 0 10px; /* shadcn input: h-8 px-2.5 */
   background: var(--bg-primary);
-  border: 1px solid var(--inp-border); border-radius: var(--radius-md);
+  border: 1px solid var(--inp-border); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-input > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
+.sb-input > svg { width: 16px; height: 16px; flex: none; color: var(--text-quaternary); }
 .sb-input input {
   flex: 1; min-width: 0; height: 100%; margin: 0; padding: 0;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
   background: none; border: 0; outline: 0; /* focus shows on the whole field below */
 }
 .sb-input input::placeholder { color: var(--text-quaternary); opacity: 1; }
 
 /* States */
-.sb-input:hover:not(:focus-within, :has(input:disabled, [aria-invalid="true"])) { border-color: var(--border-strong); }
 .sb-input:has(input:focus), .sb-input[data-state="focus"] {
-  border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--inp-ring);
+  border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 3px var(--inp-ring);
 }
 .sb-input:has(input:disabled) { opacity: .5; cursor: not-allowed; } /* disabled: the default look at 50 % opacity */
 .sb-input input:disabled { cursor: not-allowed; }
@@ -7908,21 +8004,21 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 
 /* Types */
 .sb-input-select {
-  flex: none; height: 100%; margin: 0; padding: 0 24px 0 0; border: 0; outline: 0; appearance: none; cursor: pointer;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
-  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center / 20px;
+  flex: none; height: 100%; margin: 0; padding: 0 20px 0 0; border: 0; outline: 0; appearance: none; cursor: pointer;
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center / 16px;
 }
 .sb-input-select:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 .sb-input[data-type="leading-dropdown"] .sb-input-select { margin-inline-end: 4px; } /* dropdown padding 10 12 10 14 */
-.sb-input-prefix { flex: none; font: 400 var(--text-md) var(--font); color: var(--text-quaternary); }
+.sb-input-prefix { flex: none; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-input[data-type="leading-text"] { padding-inline-start: 0; gap: 0; }
-.sb-input[data-type="leading-text"] input { padding-inline-start: 14px; }
+.sb-input[data-type="leading-text"] input { padding-inline-start: 10px; }
 .sb-input-addon {
   align-self: stretch; display: flex; align-items: center; flex: none;
-  padding: 0 12px 0 14px; border-inline-end: 1px solid var(--border-primary);
-  font: 400 var(--text-md) var(--font); color: var(--text-quaternary);
+  padding: 0 10px; border-inline-end: 1px solid var(--border-control);
+  font: 400 var(--text-sm) var(--font); color: var(--text-quaternary);
 }
-.sb-input[data-type="payment"] { padding-inline-start: 10px; }
+.sb-input[data-type="payment"] { padding-inline-start: 4px; }
 .sb-input-card {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
   width: 34px; height: 24px; box-sizing: border-box;
@@ -7932,6 +8028,10 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 
 @media (prefers-reduced-motion: reduce) {
   .sb-input, .sb-input-tip { transition: none; }
+}
+/* Phones: 16 px text in fields, so iOS does not zoom in on focus (shadcn: text-base md:text-sm). */
+@media (max-width: 767px) {
+  .sb-input :is(input, select), .sb-input-prefix, .sb-input-addon { font-size: 16px; }
 }
 ```
 
@@ -8048,11 +8148,11 @@ Outside a button, a spinner always says what is loading. Inline for small places
 
 #### On a solid fill
 
-The spinner takes the text colour, so on a Primary button or a dark surface it turns white with no extra class. See Button → Loading.
+The spinner takes the text colour, so on a Default button or a dark surface it turns white with no extra class. See Button → Loading.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Mengirim…</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Menyimpan…</button>
+<button class="sb-btn" type="button" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Mengirim…</button>
+<button class="sb-btn" type="button" data-variant="outline" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Menyimpan…</button>
 ```
 
 ### Which loading state
@@ -8188,7 +8288,7 @@ A dialog that stops the page for one decision or one short form: confirmations, 
 - Not for long forms or anything that needs scrolling and reference to the page behind. That is a page or a side panel.
 - One modal at a time. Never open a modal from a modal.
 - The title asks the question or names the action, in Title Case ("Tolak Klaim?"). The primary button repeats the action ("Tolak Klaim"), never "Ya" or "OK".
-- Two actions: Batal (Secondary gray) on the left, the action (Primary, or Destructive) on the right. An acknowledgement has one button.
+- Two actions: Batal (Outline) on the left, the action (Default, or Destructive) on the right. An acknowledgement has one button.
 
 ### Anatomy
 
@@ -8198,7 +8298,7 @@ A dialog that stops the page for one decision or one short form: confirmations, 
 | 2 | Icon | Optional. 48 px circle: tone-100 fill, 8 px tone-50 ring, 24 px tone-600 icon. Error for destructive, warning for losing work, success for done, brand otherwise. |
 | 3 | Title | Text xl / Semibold `gray-900` (sm: Text lg), Title Case. Asks the question or names the action. `aria-labelledby` points to it. |
 | 4 | Description | Text sm `gray-500`, 4 under the title. Says what happens. `aria-describedby` points to it. |
-| 5 | Close | Tertiary gray icon button sm, 16 from the top and right. Leave it out when the modal needs an answer (an acknowledgement still closes with its button and Esc). |
+| 5 | Close | Ghost icon button `icon-sm`, 16 from the top and right. Leave it out when the modal needs an answer (an acknowledgement still closes with its button and Esc). |
 | 6 | Footer | Buttons md, right-aligned, gap 12, 24 under the content. In sm the buttons share the width; under 480 px they stack, primary on top. |
 
 ### Properties
@@ -8215,10 +8315,10 @@ A dialog that stops the page for one decision or one short form: confirmations, 
 
 #### Destructive confirmation
 
-Error icon, the action as a Destructive Primary button. Focus starts on Batal (`autofocus`), so Enter never destroys by accident.
+Error icon, the action as a Destructive button. Focus starts on Batal (`autofocus`), so Enter never destroys by accident.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-1">Tolak Klaim</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-1">Tolak Klaim</button>
 <dialog class="sb-modal" id="demo-modal-1" data-size="sm" aria-labelledby="demo-modal-1-title" aria-describedby="demo-modal-1-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="error" aria-hidden="true"><svg aria-hidden="true"><!-- trash --></svg></span>
@@ -8227,10 +8327,10 @@ Error icon, the action as a Destructive Primary button. Focus starts on Batal (`
       <p class="sb-modal-desc" id="demo-modal-1-desc">Klaim KLM-0241 dikembalikan ke rumah sakit dengan alasan penolakan. Tindakan ini tidak bisa dibatalkan.</p>
     </div>
   </header>
-  <button class="sb-btn sb-modal-close" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" data-modal-close><svg aria-hidden="true"><!-- x --></svg></button>
+  <button class="sb-btn sb-modal-close" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" data-modal-close><svg aria-hidden="true"><!-- x --></svg></button>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-destructive>Tolak Klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-modal-close autofocus>Batal</button>
+    <button class="sb-btn" type="button" data-variant="destructive">Tolak Klaim</button>
   </footer>
 </dialog>
 ```
@@ -8262,7 +8362,7 @@ Only when the user must see the result before going on. One full-width button, n
 
 ```html
 <div class="modal-live">
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-7">Lihat Contoh</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-7">Lihat Contoh</button>
 <dialog class="sb-modal" id="demo-modal-7" data-size="sm" aria-labelledby="demo-modal-7-title" aria-describedby="demo-modal-7-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="error" aria-hidden="true"><svg aria-hidden="true"><!-- trash --></svg></span>
@@ -8272,8 +8372,8 @@ Only when the user must see the result before going on. One full-width button, n
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-destructive>Tolak Klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-modal-close autofocus>Batal</button>
+    <button class="sb-btn" type="button" data-variant="destructive">Tolak Klaim</button>
   </footer>
 </dialog>
 </div>
@@ -8283,7 +8383,7 @@ Only when the user must see the result before going on. One full-width button, n
 
 ```html
 <div class="modal-live">
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-8">Lihat Contoh</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-8">Lihat Contoh</button>
 <dialog class="sb-modal" id="demo-modal-8" data-size="sm" aria-labelledby="demo-modal-8-title" aria-describedby="demo-modal-8-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="error" aria-hidden="true"><svg aria-hidden="true"><!-- trash --></svg></span>
@@ -8293,8 +8393,8 @@ Only when the user must see the result before going on. One full-width button, n
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close>Tidak</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-modal-close>Ya</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-modal-close>Tidak</button>
+    <button class="sb-btn" type="button" data-modal-close>Ya</button>
   </footer>
 </dialog>
 </div>
@@ -8304,7 +8404,7 @@ Only when the user must see the result before going on. One full-width button, n
 
 ```html
 <div class="modal-live">
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-9">Lihat Contoh</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-9">Lihat Contoh</button>
 <dialog class="sb-modal" id="demo-modal-9" data-size="sm" aria-labelledby="demo-modal-9-title" aria-describedby="demo-modal-9-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="warning" aria-hidden="true"><svg aria-hidden="true"><!-- alert --></svg></span>
@@ -8314,8 +8414,8 @@ Only when the user must see the result before going on. One full-width button, n
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close>Buang</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary">Simpan</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-modal-close>Buang</button>
+    <button class="sb-btn" type="button">Simpan</button>
   </footer>
 </dialog>
 </div>
@@ -8325,7 +8425,7 @@ Only when the user must see the result before going on. One full-width button, n
 
 ```html
 <div class="modal-live">
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-10">Lihat Contoh</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-10">Lihat Contoh</button>
 <dialog class="sb-modal" id="demo-modal-10" data-size="sm" aria-labelledby="demo-modal-10-title" aria-describedby="demo-modal-10-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="warning" aria-hidden="true"><svg aria-hidden="true"><!-- alert --></svg></span>
@@ -8335,8 +8435,8 @@ Only when the user must see the result before going on. One full-width button, n
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-modal-close>Simpan</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-destructive data-modal-close>Buang</button>
+    <button class="sb-btn" type="button" data-modal-close>Simpan</button>
+    <button class="sb-btn" type="button" data-variant="destructive" data-modal-close>Buang</button>
   </footer>
 </dialog>
 </div>
@@ -8369,10 +8469,10 @@ Load `tokens.css` and `button.css`, then `modal.css`, and `modal.js` to open and
          <p class="sb-modal-desc" id="tolak-desc">…</p>
        </div>
      </header>
-     <button class="sb-btn sb-modal-close" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" data-modal-close>…x…</button>
+     <button class="sb-btn sb-modal-close" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" data-modal-close>…x…</button>
      <footer class="sb-modal-foot">
-       <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
-       <button class="sb-btn" type="button" data-destructive>Tolak Klaim</button>
+       <button class="sb-btn" type="button" data-variant="outline" data-modal-close autofocus>Batal</button>
+       <button class="sb-btn" type="button" data-variant="destructive">Tolak Klaim</button>
      </footer>
    </dialog>
 
@@ -8483,9 +8583,9 @@ The footer of a long list: how many rows per page, which rows are shown out of h
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Label | "Baris per halaman", Text md `gray-500`, 12 from the list. |
-| 2 | Page size | Input dropdown, 88 wide, 44 high: 5, 10, 25, 50. |
+| 2 | Page size | Input dropdown, 88 wide, 32 high: 5, 10, 25, 50. |
 | 3 | Range | "6–10 dari 1.542 klaim", Text md `gray-500`, tabular figures, 24 from the list and the arrows. Read out when it changes (`aria-live="polite"`). |
-| 4 | Arrows | Button secondary gray lg, icon only (44 × 44, chevron left / right), 12 apart. Disabled on the first and the last page. |
+| 4 | Arrows | Button, Outline, `icon` (32 × 32, chevron left / right), 12 apart. Disabled on the first and the last page. |
 
 ### Properties
 
@@ -8546,7 +8646,7 @@ Load `tokens.css`, `button.css` and `input-dropdown.css` (with `input-dropdown.j
 
 .sb-pagination {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 12px;
-  font: 400 var(--text-md) var(--font); color: var(--text-quaternary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-quaternary);
 }
 .sb-pagination-label { white-space: nowrap; }
 .sb-pagination-size { width: 88px; }
@@ -8569,7 +8669,7 @@ function pgRender(nav) {
   const num = n => n.toLocaleString('id-ID');
   const sizes = (s.sizes || '5,10,25,50').split(',').map(Number);
   const opts = sizes.map((n, i) => `<div class="sb-dd-opt" id="${id}-o${i}" role="option" aria-selected="${n === size}" data-value="${n}"><span class="sb-dd-main"><span class="sb-dd-label">${n}</span></span>${svg('M20 6 9 17l-5-5').replace('<svg ', '<svg class="sb-dd-check" ')}</div>`).join('');
-  const step = (to, label, d) => `<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="${label}" data-go="${to}"${to < 1 || to > pages ? ' disabled' : ''}>${svg(d)}</button>`;
+  const step = (to, label, d) => `<button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="${label}" data-go="${to}"${to < 1 || to > pages ? ' disabled' : ''}>${svg(d)}</button>`;
   const first = total ? (page - 1) * size + 1 : 0, last = Math.min(total, page * size);
   nav.innerHTML = `<span class="sb-pagination-label" id="${id}-l">Baris per halaman</span>
 <div class="sb-dd sb-pagination-size">
@@ -9171,7 +9271,7 @@ Picks a value or a range by dragging, when the position matters more than the ex
 | --- | --- | --- |
 | 1 | Track | 8 high, full width (320 in examples), `gray-200`, radius 4 |
 | 2 | Selected range | `brand-600`, radius 4, between the handles (from 0 for a single slider) |
-| 3 | Handle | 24 px circle, `white` raised (`raised-sheen-light`), 1 px `brand-600` border, `shadow-md`, centred on the value |
+| 3 | Handle | 24 px circle, `white`, 1 px `brand-600` border, `shadow-md`, centred on the value |
 | 4 | Label | Optional. Bottom: Text md / Medium `gray-900`, 8 below the handle. Floating: Light tooltip with an arrow, 4 from the handle |
 
 ### Properties
@@ -9232,7 +9332,7 @@ The step is Rp 500.000; labels and `aria-valuetext` use the Rupiah format.
 | State (handle) | Spec |
 | --- | --- |
 | Hover | `brand-50` fill |
-| Focused / dragging | `0 0 0 4px focus-ring` ring + `shadow-md` |
+| Focused / dragging | `0 0 0 3px focus-ring` ring + `shadow-md` |
 | Disabled | Default at 50 % opacity; handle flat, no shadow |
 
 ### Keyboard
@@ -9328,7 +9428,7 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 
 /* Inputs: 24 px wider than the track so each handle centres on 0 % and 100 %. Only the handle takes the pointer. */
 .sb-slider-input {
-  --th-bg: var(--bg-primary); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md); --th-sheen: var(--raised-sheen-light);
+  --th-bg: var(--bg-primary); --th-bd: var(--brand-600); --th-shadow: var(--shadow-md);
   position: absolute; z-index: 1; top: 0; left: -12px; width: calc(100% + 24px); height: 24px; margin: 0; /* above the rail's ::after, which paints last */
   background: none; appearance: none; -webkit-appearance: none; pointer-events: none;
 }
@@ -9337,22 +9437,22 @@ Load `tokens.css`, `slider.css` and `slider.js`. Labelled sliders in a form also
 .sb-slider-input::-moz-range-track { height: 24px; background: none; }
 .sb-slider-input::-webkit-slider-thumb {
   box-sizing: border-box; width: 24px; height: 24px; border: 1px solid var(--th-bd); border-radius: var(--radius-full);
-  background: var(--th-sheen) var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto; appearance: none; -webkit-appearance: none;
+  background: var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto; appearance: none; -webkit-appearance: none;
   transition: background-color 150ms var(--ease), box-shadow 150ms var(--ease);
 }
 .sb-slider-input::-moz-range-thumb {
   box-sizing: border-box; width: 24px; height: 24px; border: 1px solid var(--th-bd); border-radius: var(--radius-full);
-  background: var(--th-sheen) var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto;
+  background: var(--th-bg); box-shadow: var(--th-shadow); cursor: grab; pointer-events: auto;
   transition: background-color 150ms var(--ease), box-shadow 150ms var(--ease);
 }
 
 /* Handle states. Focused and dragging share the ring. */
 .sb-slider-input:is(:hover, [data-state="hover"]) { --th-bg: var(--bg-brand-subtle); }
-.sb-slider-input:is(:focus-visible, :active, [data-state="focus"]) { --th-shadow: var(--shadow-md), 0 0 0 4px var(--focus-ring); }
+.sb-slider-input:is(:focus-visible, :active, [data-state="focus"]) { --th-shadow: var(--shadow-md), 0 0 0 3px var(--focus-ring); }
 .sb-slider-input:active::-webkit-slider-thumb { cursor: grabbing; }
 .sb-slider-input:active::-moz-range-thumb { cursor: grabbing; }
 .sb-slider:has(:disabled) { opacity: .5; } /* disabled: the default look at 50 % opacity, flat handle */
-.sb-slider-input:disabled { --th-shadow: none; --th-sheen: none; }
+.sb-slider-input:disabled { --th-shadow: none; }
 .sb-slider-input:disabled::-webkit-slider-thumb { cursor: not-allowed; }
 .sb-slider-input:disabled::-moz-range-thumb { cursor: not-allowed; }
 
@@ -9426,7 +9526,7 @@ Signs the user in with an account on another platform. For third-party sign-in o
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Container | One size, matching Button `lg`: 44 high, padding `10 16`, radius 8, `shadow-xs`. `white` with a 1 px `gray-300` border; the Brand theme fills it with the platform colour. Logo only: 44 × 44, padding 10. |
+| 1 | Container | One size, matching Button `lg`: 36 high, padding `0 12`, gap 8, 18 px logo, Text sm / Medium, radius 10, `shadow-xs`. `white` with a 1 px `gray-200` border; the Brand theme fills it with the platform colour. Logo only: 44 × 44, padding 10. |
 | 2 | Logo | 24 px, gap 12. Colour logo; white on a Brand fill; `gray-400` in the Color theme. |
 | 3 | Label | Text md / Semibold, `gray-700` (white on a Brand fill). "Masuk dengan …" plus the platform name. |
 
@@ -9443,8 +9543,8 @@ Signs the user in with an account on another platform. For third-party sign-in o
 
 | Theme | Look | Hover |
 | --- | --- | --- |
-| Brand | Fill in the platform colour, white logo and text. Google is the exception: white, `gray-300` border, colour logo, `gray-700` text. | Darker platform colour |
-| Color with brand | White, `gray-300` border, colour logo, `gray-700` text. | `gray-50` fill |
+| Brand | Fill in the platform colour, white logo and text. Google is the exception: white, `gray-200` border, colour logo, `gray-700` text. | Darker platform colour |
+| Color with brand | White, `gray-200` border, colour logo, `gray-700` text. | `gray-50` fill |
 | Color | Same as Color with brand, with a `gray-400` logo. | `gray-50` fill |
 
 #### Platform colours
@@ -9459,7 +9559,7 @@ Signs the user in with an account on another platform. For third-party sign-in o
 
 ### States
 
-Focused is `shadow-xs` plus a 4 px `focus-ring` ring in every theme. There is no Disabled state.
+Focused is `shadow-xs` plus a 3 px `focus-ring` ring in every theme. There is no Disabled state.
 
 ### Groups
 
@@ -9586,21 +9686,21 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 
 .sb-social {
   --sc-brand: var(--text-secondary); --sc-brand-hover: var(--text-secondary);
-  --sc-bg: var(--bg-primary); --sc-border: var(--border-primary); --sc-fg: var(--text-secondary); --sc-logo: var(--sc-brand);
-  --sc-bg-hover: var(--bg-secondary); --sc-border-hover: var(--border-primary);
+  --sc-bg: var(--bg-primary); --sc-border: var(--border-control); --sc-fg: var(--text-secondary); --sc-logo: var(--sc-brand);
+  --sc-bg-hover: var(--bg-secondary); --sc-border-hover: var(--border-control);
   box-sizing: border-box;
-  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-  height: 44px; padding: 0 16px;
-  font: 600 var(--text-md) var(--font); white-space: nowrap; text-decoration: none;
-  color: var(--sc-fg); background: var(--sc-sheen, var(--raised-sheen-light)) var(--sc-bg);
-  border: 1px solid var(--sc-border); border-radius: var(--radius-md);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 36px; padding: 0 12px;
+  font: 500 var(--text-sm) var(--font); white-space: nowrap; text-decoration: none;
+  color: var(--sc-fg); background: var(--sc-bg);
+  border: 1px solid var(--sc-border); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   cursor: pointer;
-  transition-property: color, background-color, border-color, box-shadow, scale;
+  transition-property: color, background-color, border-color, box-shadow, translate;
   transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-social > svg { width: 24px; height: 24px; flex: none; color: var(--sc-logo); }
-.sb-social[data-icon="only"] { width: 44px; padding: 0; }
+.sb-social > svg { width: 18px; height: 18px; flex: none; color: var(--sc-logo); }
+.sb-social[data-icon="only"] { width: 36px; padding: 0; }
 
 /* Platform colours: the only colours allowed outside the palette. */
 .sb-social[data-social="facebook"] { --sc-brand: #1877F2; --sc-brand-hover: #0C63D4; }
@@ -9613,7 +9713,7 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 .sb-social[data-theme="brand"]:not([data-social="google"]) {
   --sc-bg: var(--sc-brand); --sc-border: var(--sc-brand); --sc-fg: var(--white); --sc-logo: var(--white);
   --sc-bg-hover: var(--sc-brand-hover); --sc-border-hover: var(--sc-brand-hover);
-  --sc-sheen: var(--raised-sheen); box-shadow: var(--raised-highlight), var(--shadow-xs);
+  box-shadow: var(--shadow-xs);
 }
 /* Color with brand (default): white, colour logo. Color: white, gray logo. */
 .sb-social[data-theme="color"] { --sc-logo: var(--fg-quaternary); }
@@ -9621,8 +9721,8 @@ Load `tokens.css`, then `social-button.css`. The logos are below.
 
 /* States */
 .sb-social:hover, .sb-social[data-state="hover"] { background-color: var(--sc-bg-hover); border-color: var(--sc-border-hover); }
-.sb-social:focus-visible, .sb-social[data-state="focus"] { outline: none; box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
-.sb-social:active { scale: .96; }
+.sb-social:focus-visible, .sb-social[data-state="focus"] { outline: none; box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
+.sb-social:active { translate: 0 1px; }
 
 /* Groups: a 360 px column of full-width buttons, or a row of equal icon buttons. Gap 12. */
 .sb-social-group { display: grid; gap: 12px; width: 100%; max-width: 360px; }
@@ -9719,7 +9819,7 @@ Rows of records: claims, invoice items, members. A gray-50 header band, gray-200
   <div class="sb-dd-menu" id="pg-6-list" role="listbox" aria-labelledby="pg-6-l" hidden><div class="sb-dd-opt" id="pg-6-o0" role="option" aria-selected="true" data-value="5"><span class="sb-dd-main"><span class="sb-dd-label">5</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" id="pg-6-o1" role="option" aria-selected="false" data-value="10"><span class="sb-dd-main"><span class="sb-dd-label">10</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" id="pg-6-o2" role="option" aria-selected="false" data-value="25"><span class="sb-dd-main"><span class="sb-dd-label">25</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><div class="sb-dd-opt" id="pg-6-o3" role="option" aria-selected="false" data-value="50"><span class="sb-dd-main"><span class="sb-dd-label">50</span></span><svg class="sb-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div></div>
 </div>
 <p class="sb-pagination-count" aria-live="polite">1–5 dari 128 klaim</p>
-<div class="sb-pagination-steps"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="Halaman sebelumnya" data-go="0" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="Halaman berikutnya" data-go="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div>
+<div class="sb-pagination-steps"><button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="Halaman sebelumnya" data-go="0" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="Halaman berikutnya" data-go="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div>
 </nav></div>
 ```
 
@@ -10002,7 +10102,7 @@ Switch between panels of content in one place: the sections of a claim, the view
 | --- | --- | --- |
 | 1 | Tab list | One row, gap 8, on a 1 px `gray-300` baseline. Scrolls sideways when the tabs do not fit. |
 | 2 | Tab | 52 high (sm 44), padding `0 24` (sm `0 16`), radius `8 8 0 0`, 1 px `gray-300` border, `brand-50` fill, `brand-700` text. Hover: `brand-100` fill. |
-| 3 | Selected tab | Raised: `brand-600` fill with `raised-sheen` and `raised-highlight`, `brand-700` border, `white` text and icon. Its bottom edge covers the baseline. |
+| 3 | Selected tab | `brand-600` fill and border, `white` text and icon. Its bottom edge covers the baseline. |
 | 4 | Icon | Optional. 20 px, gap 8, the text colour. Every tab in a row has one, or none has. |
 | 5 | Label | Text sm / Medium, Title Case, never wraps. |
 | 6 | Badge | Optional count, Badge sm. Error for counts that need action (FWA findings), Gray for plain totals. `white` fill on the selected Folder tab. |
@@ -10098,7 +10198,7 @@ Text `gray-500`, hover `gray-700` with a `gray-300` line, selected `brand-700` w
 
 #### Segmented
 
-A `gray-50` track with a `gray-200` border, radius 8, padding 4. The selected tab is `white` with a `gray-200` border and `shadow-xs`, radius 4, so the corners stay concentric. Same height as Button md.
+A `gray-50` track with a `gray-200` border, radius 10, padding 3, 32 high. The selected tab is `white` with a `gray-200` border and `shadow-xs`, radius 7, so the corners stay concentric. Same height as Button md.
 
 ```html
 <div class="sb-tabs" data-type="segmented" role="tablist" aria-label="Tampilan data">
@@ -10191,7 +10291,7 @@ md for the main level, sm for sub-levels and dense cards. The text stays Text sm
 
 | Type | Default (fill / text) | Hover | Selected | Disabled |
 | --- | --- | --- | --- | --- |
-| Folder | `brand-50` / `brand-700`, `gray-300` border | `brand-100` fill | `brand-600` raised / `white`, `brand-700` border | Default at 50 % opacity |
+| Folder | `brand-50` / `brand-700`, `gray-300` border | `brand-100` fill | `brand-600` / `white`, `brand-600` border | Default at 50 % opacity |
 | Underline | none / `gray-500` | `gray-700`, 2 px `gray-300` line | `brand-700`, 2 px `brand-600` line | Default at 50 % opacity |
 | Segmented | none / `gray-500` | `gray-700` | `white` / `gray-800`, `gray-200` border, `shadow-xs` | Default at 50 % opacity |
 | Vertical | none / `gray-700`, icon `gray-500` | `gray-50` / `gray-800` | `brand-50` / `brand-700` | Default at 50 % opacity |
@@ -10457,7 +10557,7 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
   border: 1px solid var(--border-primary); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--bg-brand-subtle-hover); }
-.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-600); border-color: var(--brand-600); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--bg-primary); }
 
@@ -10468,16 +10568,16 @@ Load `tokens.css`, `badge.css` when tabs carry a count, then `tabs.css`. Add `ta
 .sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--text-secondary); box-shadow: inset 0 -2px var(--border-primary); }
 .sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--text-brand); box-shadow: inset 0 -2px var(--brand-600); }
 
-/* Segmented: 2 to 4 short views of one card. 40 high in all, like Button md; radius 8 = 4 inner + 4 padding. */
+/* Segmented: 2 to 4 short views of one card. 32 high in all, like a Button; radius 10 like every control, 7 inside (10 - 3 padding). */
 .sb-tabs[data-type="segmented"] {
-  --tab-h: 30px; --tab-px: 12px;
-  display: inline-flex; max-width: 100%; gap: 4px; padding: 4px;
-  background: var(--bg-secondary); border: 1px solid var(--border-secondary); border-radius: var(--radius-md);
+  --tab-h: 24px; --tab-px: 8px;
+  display: inline-flex; max-width: 100%; gap: 2px; padding: 3px;
+  background: var(--bg-secondary); border: 1px solid var(--border-secondary); border-radius: var(--radius-control);
 }
-.sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 26px; --tab-px: 10px; }
-.sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: var(--radius-sm); }
+.sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 20px; --tab-px: 6px; }
+.sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: calc(var(--radius-control) - 3px); }
 .sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--text-secondary); }
-.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--text-primary); background: var(--raised-sheen-light) var(--bg-primary); border-color: var(--border-secondary); box-shadow: var(--shadow-xs); }
+.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--text-primary); background: var(--bg-primary); border-color: var(--border-secondary); box-shadow: var(--shadow-xs); }
 
 /* Vertical: settings pages and long section lists. The sidebar item's shape (radius 8) on a light surface. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
@@ -10545,7 +10645,7 @@ Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint an
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Label | Text sm / Medium, `gray-700`. Same as Input field. |
-| 2 | Box | 128 high by default, padding `10 14`, `white`, 1 px `gray-300` border, radius 8, `shadow-xs`. Text md / Regular from the top-left: placeholder `gray-500`, value `gray-900`. No help or alert icon inside. |
+| 2 | Box | 128 high by default, padding `8 10`, `white`, 1 px `gray-200` border, radius 10, `shadow-xs`. Text sm / Regular (16 on phones) from the top-left: placeholder `gray-500`, value `gray-900`. No help or alert icon inside. |
 | 3 | Character counter | Optional. Text xs / Regular `gray-500`, bottom-right inside the box (`0/150`). Turns `error-500` past the limit (`151/150`). |
 | 4 | Hint text | Text sm / Regular `gray-500`. In error it becomes the message in `error-500`. |
 
@@ -10565,7 +10665,7 @@ Multi-line text: notes, rejection reasons, AI summary edits. Same label, hint an
 | --- | --- | --- | --- |
 | Placeholder | `white` | `gray-300` | Placeholder `gray-500`. Hover: border `gray-400` |
 | Default (filled) | `white` | `gray-300` | Value `gray-900` |
-| Focused | `white` | `brand-300` | ring `0 0 0 4px` `focus-ring` + `shadow-xs` |
+| Focused | `white` | `brand-300` | ring `0 0 0 3px` `focus-ring` + `shadow-xs` |
 | Disabled | Default at 50 % opacity | Default at 50 % opacity | No resize, `cursor: not-allowed` |
 | Destructive | `white` | `error-300` | Message in `error-500`; focused ring `error-100` |
 | Over the limit | `white` | `error-300` | Counter `error-500`, message "Maksimal 150 karakter." |
@@ -10684,13 +10784,13 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
 
 .sb-textarea { position: relative; display: grid; }
 .sb-textarea textarea {
-  --ta-border: var(--border-primary); --ta-focus: var(--border-brand); --ta-ring: var(--focus-ring);
+  --ta-border: var(--border-control); --ta-focus: var(--border-brand); --ta-ring: var(--focus-ring);
   box-sizing: border-box; width: 100%; height: 128px; min-height: 128px; margin: 0;
-  padding: 10px 14px; /* control padding exception, same as Input field */
+  padding: 8px 10px; /* shadcn textarea: py-2 px-2.5 */
   resize: vertical;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
   background: var(--bg-primary);
-  border: 1px solid var(--ta-border); border-radius: var(--radius-md);
+  border: 1px solid var(--ta-border); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
@@ -10701,7 +10801,7 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
 /* States */
 .sb-textarea textarea:hover:not(:focus, :disabled, [aria-invalid="true"]) { border-color: var(--border-strong); }
 .sb-textarea textarea:focus, .sb-textarea[data-state="focus"] textarea {
-  outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--ta-ring);
+  outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 3px var(--ta-ring);
 }
 .sb-textarea textarea:disabled { opacity: .5; cursor: not-allowed; resize: none; } /* the default look at 50 % opacity */
 .sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--border-error); --ta-focus: var(--border-error); --ta-ring: var(--bg-error-subtle-hover); }
@@ -10716,6 +10816,10 @@ Load `tokens.css`, then `textarea.css`. Add `textarea-counter.js` only when a fi
 
 @media (prefers-reduced-motion: reduce) {
   .sb-textarea textarea { transition: none; }
+}
+/* Phones: 16 px text in fields, so iOS does not zoom in on focus (shadcn: text-base md:text-sm). */
+@media (max-width: 767px) {
+  .sb-textarea textarea { font-size: 16px; }
 }
 ```
 
@@ -11100,7 +11204,7 @@ An on/off switch whose change takes effect immediately, such as "Tampilkan hanya
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Track + knob | Track fully rounded with 2 px padding. Knob white, raised (`raised-sheen-light`) with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`. |
+| 1 | Track + knob | Track fully rounded with 2 px padding. Knob white with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`. |
 | 2 | Label | Optional. Text sm / Medium (`md`: Text md / Medium), `gray-700`. Says what is turned on. |
 | 3 | Supporting text | Optional. Text sm / Regular (`md`: Text md / Regular, 2 px below), `gray-500`. |
 
@@ -11144,7 +11248,7 @@ An on/off switch whose change takes effect immediately, such as "Tampilkan hanya
 | --- | --- | --- |
 | Default | `gray-100` | `brand-600` |
 | Hover | `gray-200` | `brand-700` |
-| Focus | Default + `0 0 0 4px` `focus-ring` ring | Default + `0 0 0 4px` `focus-ring` ring |
+| Focus | Default + `0 0 0 3px` `focus-ring` ring | Default + `0 0 0 3px` `focus-ring` ring |
 | Disabled | Default at 50 % opacity, flat knob | Default at 50 % opacity, flat knob |
 
 Disabled: the whole toggle, label included, at 50 % opacity.
@@ -11185,7 +11289,7 @@ For brand-tinted surfaces only, such as the AI summary box. Off `brand-50`, hove
     <label class="sb-toggle-label" for="tg-dont-save">Kirim salinan ke peserta</label>
   </div>
 </div>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Simpan</button></div>
+<button class="sb-btn" type="button" data-size="sm">Simpan</button></div>
 ```
 
 **Do:** The label names what is switched on.
@@ -11215,7 +11319,7 @@ For brand-tinted surfaces only, such as the AI summary box. Off `brand-50`, hove
 - Use a native checkbox with `role="switch"`: it is focusable, Space flips it, and screen readers announce "switch, on/off" from `checked`.
 - Connect the label with `for` / `id`, and the supporting text with `aria-describedby`. A toggle without visible text needs `aria-label`.
 - The state also shows by position (knob left or right), not only by colour.
-- Focus shows a 4 px `focus-ring` ring on `:focus-visible`.
+- Focus shows a 3 px `focus-ring` ring on `:focus-visible`.
 
 | Pair | Ratio | Needed | Result |
 | --- | --- | --- | --- |
@@ -11269,14 +11373,14 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 .sb-toggle-input::before {
   content: ''; position: absolute; top: 2px; left: 2px;
   width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
-  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm); /* the knob stays white in both themes */
+  background: var(--white); box-shadow: var(--shadow-sm); /* the knob stays white in both themes */
   transition: translate 150ms var(--ease);
 }
 .sb-toggle-input:checked { background: var(--tg-on); }
 .sb-toggle-input:checked::before { translate: calc(var(--tg-w) - var(--tg-knob) - 4px) 0; }
 .sb-toggle-input:hover:not(:disabled), .sb-toggle-input[data-state="hover"] { background: var(--tg-off-hover); }
 .sb-toggle-input:checked:hover:not(:disabled), .sb-toggle-input:checked[data-state="hover"] { background: var(--tg-on-hover); }
-.sb-toggle-input:focus-visible, .sb-toggle-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-toggle-input:focus-visible, .sb-toggle-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 .sb-toggle-input:disabled { cursor: not-allowed; }
 .sb-toggle-input:disabled::before { background-image: none; box-shadow: none; } /* flat */
 
@@ -11371,7 +11475,7 @@ Icon-only buttons get a title-only tooltip with their label. Hover or focus the 
 
 ```html
 <span class="sb-tooltip-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-icon="only" aria-label="Unduh laporan" aria-describedby="tb-dl-tip"><svg aria-hidden="true"><!-- download --></svg></button>
+  <button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="Unduh laporan" aria-describedby="tb-dl-tip"><svg aria-hidden="true"><!-- download --></svg></button>
   <span class="sb-tooltip" role="tooltip" id="tb-dl-tip">
     <span class="sb-tooltip-title">Unduh laporan</span>
   </span>
@@ -11545,7 +11649,7 @@ One large box per digit, for OTP and verification codes only. Also called Mega i
 | --- | --- | --- |
 | 1 | Label | One label for the whole group: Text sm / Medium, `gray-700`. |
 | 2 | Group | Row of boxes, gap 8 (`sm`) or 12 (`md`, `lg`). `role="group"` named by the label. |
-| 3 | Digit box | Square, padding 8, 1 px border, radius 8, `shadow-xs`, digit centred. Size and type from the size table. |
+| 3 | Digit box | Square, padding 8, 1 px `gray-200` border, radius 10, `shadow-xs`, digit centred. Size and type from the size table. |
 | 4 | Separator | 6 digits only: a `-` after the third box, Display xl / Medium `gray-300`. |
 | 5 | Hint text | Text sm / Regular `gray-500`. In error it becomes the message in `error-500`. |
 
@@ -11636,7 +11740,7 @@ One large box per digit, for OTP and verification codes only. Also called Mega i
 | --- | --- | --- | --- |
 | Placeholder | `white` | `gray-300` | `0` in `gray-300` |
 | Filled | `white` | `brand-300` | `brand-600` |
-| Focused | `white` | `brand-300` + 4 px `focus-ring` ring | `brand-600` |
+| Focused | `white` | `brand-300` + 3 px `focus-ring` ring | `brand-600` |
 | Disabled | Default at 50 % opacity | Default at 50 % opacity | Default at 50 % opacity |
 | Error | `white` | `error-300` | `error-600` |
 | Error + Focused | `white` | `error-300` + 4 px `error-100` ring | `error-600` |
@@ -11747,18 +11851,18 @@ Load `tokens.css`, `verification-code.css` and `verification-code.js`. The scrip
   font: 500 var(--code-type) var(--font); letter-spacing: var(--tracking-display); text-align: center;
   color: var(--fg-brand); caret-color: var(--fg-brand);
   background: var(--bg-primary);
-  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
+  border: 1px solid var(--border-control); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-code-digit::placeholder { color: var(--border-primary); opacity: 1; }
 .sb-code-digit:not(:placeholder-shown) { border-color: var(--border-brand); }
 .sb-code-digit:focus, .sb-code-digit[data-state="focus"] {
-  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring);
 }
 .sb-code-digit:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-code-digit[aria-invalid="true"] { border-color: var(--border-error); color: var(--error-600); caret-color: var(--error-600); }
-.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-error-subtle-hover); }
+.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 3px var(--bg-error-subtle-hover); }
 
 /* 6 digits split 3 + 3 by a dash in Display xl / Medium. */
 .sb-code-sep { font: 500 var(--display-xl) var(--font); letter-spacing: var(--tracking-display); color: var(--border-primary); }
@@ -11842,9 +11946,9 @@ Rich-text formatting for long text a user writes or edits: the AI summary ("Edit
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Toolbar | Fixed above the editor area. Desktop: row, gap 12. Mobile: column, gap 8. |
-| 2 | Text-style dropdown | 240 × 44 (full width on mobile), "Normal text", Text md / Medium `gray-900`, 20 px chevron. |
+| 2 | Text-style dropdown | 240 × 32 (full width on mobile), "Normal text", Text sm / Medium `gray-900`, 16 px chevron. |
 | 3 | Editor icon | 32 × 32 (28 on mobile), 20 px glyph, radius 8. Inactive `gray-400`; active `brand-100` fill, `brand-700` glyph. |
-| 4 | Editor area | Same box as Textarea input field: min height 128, padding `10 14`, 1 px `gray-300` border, radius 8, `shadow-xs`. |
+| 4 | Editor area | Same box as Textarea input field: min height 128, padding `8 10`, 1 px `gray-200` border, radius 10, `shadow-xs`. |
 
 ### Properties
 
@@ -12055,13 +12159,13 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 .sb-wys-toolbar { display: flex; align-items: center; gap: 12px; }
 .sb-wys-toolbar[data-breakpoint="mobile"] { flex-direction: column; align-items: stretch; gap: 8px; }
 .sb-wys-select {
-  box-sizing: border-box; width: 240px; height: 44px; margin: 0; padding: 0 40px 0 14px;
-  font: 500 var(--text-md) var(--font); color: var(--text-primary);
-  background: var(--bg-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 20px;
-  border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  box-sizing: border-box; width: 240px; height: 32px; margin: 0; padding: 0 32px 0 10px;
+  font: 500 var(--text-sm) var(--font); color: var(--text-primary);
+  background: var(--bg-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center / 16px;
+  border: 1px solid var(--border-control); border-radius: var(--radius-control); box-shadow: var(--shadow-xs);
   appearance: none; cursor: pointer;
 }
-.sb-wys-select:focus-visible { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-wys-select:focus-visible { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-select { width: 100%; }
 .sb-wys-icons { display: flex; flex-wrap: wrap; gap: 4px; }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* 28 px icons, gap 2 */
@@ -12112,15 +12216,15 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 
 /* Editor area: same box as Textarea input field. */
 .sb-wys-area {
-  box-sizing: border-box; min-height: 128px; padding: 10px 14px;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
-  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  box-sizing: border-box; min-height: 128px; padding: 8px 10px;
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
+  background: var(--bg-primary); border: 1px solid var(--border-control); border-radius: var(--radius-control); box-shadow: var(--shadow-xs);
   overflow-wrap: anywhere;
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-wys-area:focus { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-wys-area:focus { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
 .sb-wys-area[aria-invalid="true"] { border-color: var(--border-error); }
-.sb-wys-area[aria-invalid="true"]:focus { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-error-subtle-hover); }
+.sb-wys-area[aria-invalid="true"]:focus { box-shadow: var(--shadow-xs), 0 0 0 3px var(--bg-error-subtle-hover); }
 /* Content styles map to the type scale. */
 .sb-wys-area > * { margin: 0; }
 .sb-wys-area > * + * { margin-top: 8px; }

@@ -25,7 +25,7 @@ A single-line text field with a label above, an optional hint below, and an erro
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Label | Text sm / Medium, `gray-700`. 6 above the field. |
-| 2 | Field | 44 high, padding `10 14`, `white`, 1 px `gray-300` border, radius 8, `shadow-xs`, gap 8 between items. |
+| 2 | Field | 32 high, padding `0 10`, Text sm (16 on phones, so iOS does not zoom), `white`, 1 px `gray-200` border, radius 10, `shadow-xs`, gap 8 between items. |
 | 3 | Leading icon | Optional. 20 px, `gray-500`. |
 | 4 | Value / placeholder | Text md / Regular. Placeholder `gray-500`, value `gray-900`. |
 | 5 | Help icon | Optional. 16 px `help-circle`, `gray-400`, at the end. Opens a Dark tooltip on hover and focus. |
@@ -77,7 +77,7 @@ A dropdown (`gray-900` value + 20 px chevron, padding `10 12 10 14`) before the 
 
 ### Trailing dropdown
 
-Prefix text (`Rp`) + value, dropdown after it (padding `10 14`). Amount with currency.
+Prefix text (`Rp`) + value, dropdown after it. Amount with currency.
 
 ```html
 <div class="sb-field">
@@ -127,10 +127,10 @@ A gray add-on (`gray-500`, padding `10 12 10 14`) joined to the input by a divid
 | --- | --- | --- | --- | --- |
 | Placeholder | `white` | `gray-300` | `gray-500` | Hover: border `gray-400` |
 | Filled | `white` | `gray-300` | `gray-900` | — |
-| Focused | `white` | `brand-300` | `gray-900` | ring `0 0 0 4px` `focus-ring` + `shadow-xs` |
+| Focused | `white` | `brand-300` | `gray-900` | ring `0 0 0 3px` `focus-ring` + `shadow-xs` |
 | Disabled | Default at 50 % opacity | Default at 50 % opacity | Default at 50 % opacity | not editable, `cursor: not-allowed` |
 | Destructive | `white` | `error-300` | as above | help icon becomes 16 px `alert-circle` in `error-500`; hint becomes the error message in `error-500` |
-| Destructive + Focused | `white` | `error-300` | `gray-900` | ring `0 0 0 4px` `error-100` |
+| Destructive + Focused | `white` | `error-300` | `gray-900` | ring `0 0 0 3px` `error-100` |
 
 Destructive has no Disabled variant: a disabled field cannot be in error.
 
@@ -206,7 +206,7 @@ Destructive has no Disabled variant: a disabled field cannot be in error.
 - Point `aria-describedby` at the hint (and the tooltip when there is a help icon). In error, set `aria-invalid="true"`.
 - Use the right keyboard on mobile: `inputmode="numeric"` for amounts and card numbers, `"tel"` for phone numbers.
 - The help icon is a real button (`aria-label="Info"`) and its tooltip has `role="tooltip"`, so it works with keyboard focus, not only hover.
-- Focus shows on the whole field: `brand-300` border and a 4 px `focus-ring` ring.
+- Focus shows on the whole field: `brand-300` border and a 3 px `focus-ring` ring.
 
 | Text | On | Ratio | AA |
 | --- | --- | --- | --- |
@@ -216,7 +216,7 @@ Destructive has no Disabled variant: a disabled field cannot be in error.
 | Error message `error-500` | `white` | 3.76:1 | **Fails** |
 | Field border `gray-300` | `white` | 1.47:1 | Below the 3:1 WCAG 1.4.11 asks for control boundaries |
 
-> **Warning:** **Open decision.** The error message in `error-500` is 3.76:1, below AA for 14 px text. `error-600` (4.83:1) or `error-700` (6.57:1) pass. The `gray-300` border is also faint (1.47:1); the label above the field keeps it identifiable, but a darker border (`gray-400`) would help low-vision users. Both need a design team decision.
+> **Warning:** **Open decision.** The error message in `error-500` is 3.76:1, below AA for 14 px text. `error-600` (4.83:1) or `error-700` (6.57:1) pass. The `gray-200` border is faint (1.19:1), like every control since the flat restyle; the label above the field keeps it identifiable, and focus adds a `brand-300` border and ring. A darker border (`gray-400`) would help low-vision users. Both need a design team decision.
 
 ## Code
 
@@ -247,27 +247,26 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 .sb-field-hint { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
 .sb-input {
-  --inp-border: var(--border-primary); --inp-focus: var(--border-brand); --inp-ring: var(--focus-ring);
+  --inp-border: var(--border-control); --inp-focus: var(--border-brand); --inp-ring: var(--focus-ring);
   position: relative; box-sizing: border-box;
   display: flex; align-items: center; gap: 8px;
-  height: 44px; padding: 0 14px; /* control padding exception: 10 14 lands the height on 44 */
+  height: 32px; padding: 0 10px; /* shadcn input: h-8 px-2.5 */
   background: var(--bg-primary);
-  border: 1px solid var(--inp-border); border-radius: var(--radius-md);
+  border: 1px solid var(--inp-border); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-input > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
+.sb-input > svg { width: 16px; height: 16px; flex: none; color: var(--text-quaternary); }
 .sb-input input {
   flex: 1; min-width: 0; height: 100%; margin: 0; padding: 0;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
   background: none; border: 0; outline: 0; /* focus shows on the whole field below */
 }
 .sb-input input::placeholder { color: var(--text-quaternary); opacity: 1; }
 
 /* States */
-.sb-input:hover:not(:focus-within, :has(input:disabled, [aria-invalid="true"])) { border-color: var(--border-strong); }
 .sb-input:has(input:focus), .sb-input[data-state="focus"] {
-  border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--inp-ring);
+  border-color: var(--inp-focus); box-shadow: var(--shadow-xs), 0 0 0 3px var(--inp-ring);
 }
 .sb-input:has(input:disabled) { opacity: .5; cursor: not-allowed; } /* disabled: the default look at 50 % opacity */
 .sb-input input:disabled { cursor: not-allowed; }
@@ -295,21 +294,21 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 
 /* Types */
 .sb-input-select {
-  flex: none; height: 100%; margin: 0; padding: 0 24px 0 0; border: 0; outline: 0; appearance: none; cursor: pointer;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
-  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center / 20px;
+  flex: none; height: 100%; margin: 0; padding: 0 20px 0 0; border: 0; outline: 0; appearance: none; cursor: pointer;
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center / 16px;
 }
 .sb-input-select:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; border-radius: var(--radius-sm); }
 .sb-input[data-type="leading-dropdown"] .sb-input-select { margin-inline-end: 4px; } /* dropdown padding 10 12 10 14 */
-.sb-input-prefix { flex: none; font: 400 var(--text-md) var(--font); color: var(--text-quaternary); }
+.sb-input-prefix { flex: none; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 .sb-input[data-type="leading-text"] { padding-inline-start: 0; gap: 0; }
-.sb-input[data-type="leading-text"] input { padding-inline-start: 14px; }
+.sb-input[data-type="leading-text"] input { padding-inline-start: 10px; }
 .sb-input-addon {
   align-self: stretch; display: flex; align-items: center; flex: none;
-  padding: 0 12px 0 14px; border-inline-end: 1px solid var(--border-primary);
-  font: 400 var(--text-md) var(--font); color: var(--text-quaternary);
+  padding: 0 10px; border-inline-end: 1px solid var(--border-control);
+  font: 400 var(--text-sm) var(--font); color: var(--text-quaternary);
 }
-.sb-input[data-type="payment"] { padding-inline-start: 10px; }
+.sb-input[data-type="payment"] { padding-inline-start: 4px; }
 .sb-input-card {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
   width: 34px; height: 24px; box-sizing: border-box;
@@ -319,6 +318,10 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
 
 @media (prefers-reduced-motion: reduce) {
   .sb-input, .sb-input-tip { transition: none; }
+}
+/* Phones: 16 px text in fields, so iOS does not zoom in on focus (shadcn: text-base md:text-sm). */
+@media (max-width: 767px) {
+  .sb-input :is(input, select), .sb-input-prefix, .sb-input-addon { font-size: 16px; }
 }
 ```
 
@@ -336,19 +339,18 @@ Load `tokens.css`, then `input-field.css`. States come from the input itself (`:
   --text-secondary: var(--gray-700);
   --text-quaternary: var(--gray-500);
   --fg-quaternary: var(--gray-400);
-  --border-primary: var(--gray-300);
+  --border-control: var(--gray-200);
   --border-tertiary: var(--gray-100);
-  --border-strong: var(--gray-400);
   --border-brand: var(--brand-300);
   --border-error: var(--error-300);
   --radius-sm: 4px;
   --radius-md: 8px;
+  --radius-control: 10px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Timeless Sans', sans-serif;
-  --text-md: 16px/24px;
   --text-sm: 14px/20px;
   --text-xs: 12px/18px;
 }

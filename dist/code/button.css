@@ -1,108 +1,92 @@
 /* Button, Codemasters Design System
    Needs tokens.css; loading.css for the spinner of the loading state.
 
-   <button class="sb-btn" type="button" data-hierarchy="primary" data-size="md">Kirim</button>
+   <button class="sb-btn" type="button">Kirim</button>
+   <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Batal</button>
+   <button class="sb-btn" type="button" data-variant="ghost" data-size="icon" aria-label="Hapus"><svg…/></button>
 
-   data-hierarchy    primary | secondary-gray | secondary-color | tertiary-color | tertiary-gray | link-color | link-gray
-   data-size         xs | sm | md | lg | xl | 2xl   (xs: dense desktop UI only)
-   data-destructive  present = Destructive=True
-   data-icon="only"  square icon-only button; add aria-label
-   aria-busy="true"  Loading: a <span class="sb-spinner" aria-hidden="true"> before the label, the label in -ing form ("Mengirim…")
-   data-state        hover | focus. Forces a state in static mockups and docs. Never ship it in live UI:
-                     live states come from :hover, :focus-visible and the disabled attribute. */
+   data-variant   default (omit) | outline | secondary | ghost | destructive | link
+   data-size      xs | sm | default (omit) | lg | xl | icon-xs | icon-sm | icon | icon-lg | icon-xl   (icon sizes are square; add aria-label)
+   aria-invalid="true"   error border and ring, for a button that picks a value in a form
+   aria-busy="true"      Loading: a <span class="sb-spinner" aria-hidden="true"> before the label, the label in -ing form ("Mengirim…")
+   data-state            hover | focus. Forces a state in static mockups and docs. Never ship it in live UI. */
 
 .sb-btn {
-  --btn-h: 40px; --btn-px: 16px; --btn-gap: 8px; --btn-icon: 20px; --btn-type: var(--text-sm);
-  --btn-bg: var(--brand-600); --btn-border: var(--brand-700); --btn-fg: var(--white);
-  --btn-bg-hover: var(--brand-700); --btn-border-hover: var(--brand-800); --btn-fg-hover: var(--white);
-  --btn-ring: var(--focus-ring); --btn-shadow: var(--raised-highlight), var(--shadow-xs);
-  --btn-sheen: var(--raised-sheen); /* raised: lighter top, darker bottom, over any fill */
-  box-sizing: border-box;
-  display: inline-flex; align-items: center; justify-content: center; gap: var(--btn-gap);
+  --btn-h: 32px; --btn-px: 10px; --btn-px-icon: 8px; --btn-gap: 6px; --btn-icon: 16px; --btn-type: var(--text-sm); --btn-r: var(--radius-control);
+  --btn-bg: var(--brand-500); --btn-border: transparent; --btn-fg: var(--white); /* brand-500 by choice: white text 3.62:1, below AA (see Contrast) */
+  --btn-bg-hover: var(--brand-600); --btn-fg-hover: var(--white);
+  --btn-shadow: var(--shadow-xs); --btn-ring: var(--focus-ring); --btn-ring-border: var(--border-brand);
+  box-sizing: border-box; position: relative;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; gap: var(--btn-gap);
   height: var(--btn-h); padding: 0 var(--btn-px);
-  font: 600 var(--btn-type) var(--font); white-space: nowrap; text-decoration: none;
-  color: var(--btn-fg); background: var(--btn-sheen) var(--btn-bg);
-  border: 1px solid var(--btn-border); border-radius: var(--radius-md);
+  font: 500 var(--btn-type) var(--font); white-space: nowrap; text-decoration: none; user-select: none;
+  color: var(--btn-fg); background: var(--btn-bg) padding-box;
+  border: 1px solid var(--btn-border); border-radius: var(--btn-r);
   box-shadow: var(--btn-shadow);
   cursor: pointer;
-  transition-property: color, background-color, border-color, box-shadow, scale;
+  transition-property: color, background-color, border-color, box-shadow, translate;
   transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-btn > svg { width: var(--btn-icon); height: var(--btn-icon); flex: none; }
-.sb-btn-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
+.sb-btn > svg { width: var(--btn-icon); height: var(--btn-icon); flex: none; pointer-events: none; }
+.sb-btn-dot { width: 8px; height: 8px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
+/* A leading or trailing icon pulls that side's padding in a little, so the icon looks centred in the space. */
+.sb-btn:has(> :is(svg, .sb-spinner, .sb-btn-dot):first-child:not(:only-child)) { padding-inline-start: var(--btn-px-icon); }
+.sb-btn:has(> svg:last-child:not(:only-child)) { padding-inline-end: var(--btn-px-icon); }
 
-/* Sizes. Height includes the 1px border. */
-.sb-btn[data-size="xs"]  { --btn-h: 32px; --btn-px: 12px; --btn-icon: 16px; --btn-gap: 4px; } /* code-first size for dense rows; below 44, so never on touch */
-.sb-btn[data-size="sm"]  { --btn-h: 36px; --btn-px: 14px; }
-.sb-btn[data-size="lg"]  { --btn-h: 44px; --btn-px: 18px; --btn-type: var(--text-md); }
-.sb-btn[data-size="xl"]  { --btn-h: 48px; --btn-px: 20px; --btn-type: var(--text-md); }
-.sb-btn[data-size="2xl"] { --btn-h: 60px; --btn-px: 28px; --btn-type: var(--text-lg); --btn-icon: 24px; --btn-gap: 12px; }
-.sb-btn[data-icon="only"] { width: var(--btn-h); padding: 0; }
+/* Sizes. Height includes the 1 px border. */
+.sb-btn[data-size="xs"] { --btn-h: 24px; --btn-px: 8px; --btn-px-icon: 6px; --btn-gap: 4px; --btn-icon: 12px; --btn-type: var(--text-xs); --btn-r: var(--radius-md); }
+.sb-btn[data-size="sm"] { --btn-h: 28px; --btn-px: 10px; --btn-px-icon: 6px; --btn-gap: 4px; --btn-icon: 14px; --btn-type: var(--text-xs); --btn-r: var(--radius-md); }
+.sb-btn[data-size="lg"] { --btn-h: 36px; }
+.sb-btn[data-size="xl"] { --btn-h: 40px; --btn-px: 14px; --btn-px-icon: 12px; --btn-gap: 8px; } /* not in shadcn: a roomier size for page and form actions */
+.sb-btn[data-size^="icon"] { width: var(--btn-h); padding: 0; }
+.sb-btn[data-size="icon-xs"] { --btn-h: 24px; --btn-icon: 12px; --btn-r: var(--radius-md); }
+.sb-btn[data-size="icon-sm"] { --btn-h: 28px; --btn-r: var(--radius-md); }
+.sb-btn[data-size="icon-lg"] { --btn-h: 36px; }
+.sb-btn[data-size="icon-xl"] { --btn-h: 40px; }
 
-/* Hierarchy. Primary is the base above. */
-.sb-btn[data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--bg-primary); --btn-border: var(--border-primary); --btn-fg: var(--text-secondary); --btn-sheen: var(--raised-sheen-light); --btn-shadow: var(--shadow-xs);
-  --btn-bg-hover: var(--bg-secondary); --btn-border-hover: var(--border-primary); --btn-fg-hover: var(--text-primary);
+/* Variants. Default (brand fill) is the base above. */
+.sb-btn[data-variant="outline"] {
+  --btn-bg: var(--bg-primary); --btn-border: var(--border-control); --btn-fg: var(--text-primary);
+  --btn-bg-hover: var(--bg-secondary); --btn-fg-hover: var(--text-primary);
 }
-.sb-btn[data-hierarchy="secondary-color"] {
-  --btn-bg: var(--bg-brand-subtle); --btn-border: var(--bg-brand-subtle); --btn-fg: var(--text-brand); --btn-sheen: none; --btn-shadow: var(--shadow-xs);
-  --btn-bg-hover: var(--bg-brand-subtle-hover); --btn-border-hover: var(--bg-brand-subtle-hover); --btn-fg-hover: var(--text-brand);
+.sb-btn[data-variant="secondary"] {
+  --btn-bg: var(--bg-tertiary); --btn-fg: var(--text-primary); --btn-shadow: 0 0 #0000;
+  --btn-bg-hover: color-mix(in srgb, var(--bg-tertiary), var(--text-primary) 5%); --btn-fg-hover: var(--text-primary);
 }
-.sb-btn[data-hierarchy^="tertiary"] {
-  --btn-bg: transparent; --btn-border: transparent;
-  --btn-shadow: 0 0 #0000; --btn-sheen: none;
+.sb-btn[data-variant="ghost"] {
+  --btn-bg: transparent; --btn-fg: var(--text-primary); --btn-shadow: 0 0 #0000;
+  --btn-bg-hover: var(--bg-secondary); --btn-fg-hover: var(--text-primary);
 }
-.sb-btn[data-hierarchy="tertiary-color"] {
-  --btn-fg: var(--text-brand); --btn-bg-hover: var(--bg-brand-subtle); --btn-border-hover: var(--bg-brand-subtle); --btn-fg-hover: var(--text-brand);
+.sb-btn[data-variant="destructive"] {
+  --btn-bg: color-mix(in srgb, var(--error-600) 10%, transparent); --btn-fg: var(--text-error); --btn-shadow: 0 0 #0000;
+  --btn-bg-hover: color-mix(in srgb, var(--error-600) 20%, transparent); --btn-fg-hover: var(--text-error);
+  --btn-ring: color-mix(in srgb, var(--error-600) 20%, transparent); --btn-ring-border: color-mix(in srgb, var(--error-600) 40%, transparent);
 }
-.sb-btn[data-hierarchy="tertiary-gray"] {
-  --btn-fg: var(--text-quaternary); --btn-bg-hover: var(--bg-secondary); --btn-border-hover: var(--bg-secondary); --btn-fg-hover: var(--text-tertiary);
+:root[data-theme="dark"] .sb-btn[data-variant="destructive"] {
+  --btn-bg: color-mix(in srgb, var(--error-600) 20%, transparent); --btn-bg-hover: color-mix(in srgb, var(--error-600) 30%, transparent);
+  --btn-ring: color-mix(in srgb, var(--error-600) 40%, transparent);
 }
-.sb-btn[data-hierarchy^="link"] {
-  --btn-h: auto; --btn-px: 0; --btn-shadow: 0 0 #0000; --btn-sheen: none;
-  --btn-bg: transparent; --btn-border: transparent; --btn-bg-hover: transparent; --btn-border-hover: transparent;
-  border-width: 0;
+/* Link: text in running copy, underlined on hover. No box, so it sits on the text baseline. */
+.sb-btn[data-variant="link"] {
+  --btn-h: auto; --btn-px: 0; --btn-px-icon: 0; --btn-shadow: 0 0 #0000;
+  --btn-bg: transparent; --btn-bg-hover: transparent; --btn-fg: var(--text-brand); --btn-fg-hover: var(--text-brand);
+  border-width: 0; text-underline-offset: 4px;
 }
-.sb-btn[data-hierarchy="link-color"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
-.sb-btn[data-hierarchy="link-gray"]  { --btn-fg: var(--text-quaternary); --btn-fg-hover: var(--text-tertiary); }
-
-/* Destructive=True swaps Brand and Gray for Error. */
-.sb-btn[data-destructive] {
-  --btn-bg: var(--error-600); --btn-border: var(--error-700); --btn-fg: var(--white);
-  --btn-bg-hover: var(--error-700); --btn-border-hover: var(--error-800); --btn-fg-hover: var(--white);
-  --btn-ring: var(--bg-error-subtle-hover);
-}
-.sb-btn[data-destructive][data-hierarchy="secondary-gray"] {
-  --btn-bg: var(--bg-primary); --btn-border: var(--border-error); --btn-fg: var(--text-error);
-  --btn-bg-hover: var(--bg-error-subtle); --btn-border-hover: var(--border-error); --btn-fg-hover: var(--text-error-strong);
-}
-.sb-btn[data-destructive][data-hierarchy="secondary-color"] {
-  --btn-bg: var(--bg-error-subtle); --btn-border: var(--bg-error-subtle); --btn-fg: var(--text-error);
-  --btn-bg-hover: var(--bg-error-subtle-hover); --btn-border-hover: var(--bg-error-subtle-hover); --btn-fg-hover: var(--text-error);
-}
-.sb-btn[data-destructive][data-hierarchy^="tertiary"] {
-  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--text-error);
-  --btn-bg-hover: var(--bg-error-subtle); --btn-border-hover: var(--bg-error-subtle); --btn-fg-hover: var(--text-error);
-}
-.sb-btn[data-destructive][data-hierarchy="tertiary-gray"] { --btn-fg-hover: var(--text-error-strong); }
-.sb-btn[data-destructive][data-hierarchy^="link"] {
-  --btn-bg: transparent; --btn-border: transparent; --btn-fg: var(--text-error);
-  --btn-bg-hover: transparent; --btn-border-hover: transparent; --btn-fg-hover: var(--text-error-strong);
-}
+.sb-btn[data-variant="link"]:hover:not(:disabled), .sb-btn[data-variant="link"][data-state="hover"] { text-decoration: underline; }
 
 /* States */
-.sb-btn:hover:not(:disabled, [aria-disabled="true"]), .sb-btn[data-state="hover"] {
-  color: var(--btn-fg-hover); background-color: var(--btn-bg-hover); border-color: var(--btn-border-hover);
-}
-.sb-btn:focus-visible, .sb-btn[data-state="focus"] {
-  outline: none; box-shadow: var(--btn-shadow), 0 0 0 4px var(--btn-ring);
-}
-.sb-btn[data-hierarchy^="link"]:focus-visible, .sb-btn[data-hierarchy^="link"][data-state="focus"] {
-  box-shadow: none; outline: 2px solid var(--brand-600); outline-offset: 2px;
-}
-/* Disabled: the default look at half opacity, flat (no sheen, highlight or shadow). One rule for every hierarchy. */
-.sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; background-image: none; box-shadow: none; cursor: not-allowed; }
-.sb-btn:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"]) { scale: .96; }
+.sb-btn:hover:not(:disabled, [aria-disabled="true"]), .sb-btn[data-state="hover"] { color: var(--btn-fg-hover); background-color: var(--btn-bg-hover); }
+.sb-btn[aria-expanded="true"]:is([data-variant="outline"], [data-variant="ghost"]) { background-color: var(--bg-secondary); }
+/* Focused: the border takes the ring colour and a 3 px ring goes around, in every variant. */
+.sb-btn:focus-visible, .sb-btn[data-state="focus"] { outline: none; border-color: var(--btn-ring-border); box-shadow: var(--btn-shadow), 0 0 0 3px var(--btn-ring); }
+.sb-btn[data-variant="link"]:focus-visible, .sb-btn[data-variant="link"][data-state="focus"] { box-shadow: none; outline: 2px solid var(--border-brand); outline-offset: 2px; border-radius: var(--radius-sm); }
+/* Invalid: a button that picks a value in a form (a date, a file) and holds a wrong one. */
+.sb-btn[aria-invalid="true"] { border-color: var(--border-error); box-shadow: 0 0 0 3px color-mix(in srgb, var(--error-600) 20%, transparent); }
+:root[data-theme="dark"] .sb-btn[aria-invalid="true"] { box-shadow: 0 0 0 3px color-mix(in srgb, var(--error-600) 40%, transparent); }
+/* Disabled: the default look at half opacity, no shadow, no pointer events. */
+.sb-btn:disabled, .sb-btn[aria-disabled="true"] { opacity: .5; box-shadow: none; pointer-events: none; }
+/* Pressed: down 1 px. Not on menu triggers, which stay put while their menu opens. */
+.sb-btn:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"], [aria-haspopup]) { translate: 0 1px; }
 /* Loading: the look stays (not the faded Disabled), a spinner in the text colour replaces the leading icon, clicks are ignored. */
 .sb-btn[aria-busy="true"] { cursor: progress; pointer-events: none; }
 .sb-btn > .sb-spinner { --sp-size: var(--btn-icon); color: inherit; }
@@ -113,5 +97,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .sb-btn, .sb-btn > svg { transition: none; }
-  .sb-btn:active:not(:disabled) { scale: 1; }
+  .sb-btn:active:not(:disabled) { translate: none; }
 }

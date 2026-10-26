@@ -17,7 +17,7 @@ The container for one topic on a page: a claim summary, a table, a chart, a metr
 - One card holds one topic: a summary, a table, a chart, a form section. The title names the topic.
 - Cards sit on the page 24 apart (Grids & Spacing). Blocks inside a card sit 16 apart.
 - Group related values inside a card with an inner card, never with a second card in a card.
-- One primary action per card at most, in the footer or the head. Other actions are Secondary gray, Tertiary or in a "more" menu.
+- One primary action per card at most, in the footer or the head. Other actions are Outline, Ghost or in a "more" menu.
 - Cards are flat: a `gray-300` border, no shadow. Shadows are for layers that float (menus, dialogs).
 
 ## Anatomy
@@ -28,8 +28,8 @@ The container for one topic on a page: a claim summary, a table, a chart, a metr
 | 2 | Head | Title block on the left, actions on the right, top-aligned, gap 16. |
 | 3 | Title | Text xl / Semibold (sm: Text md), `gray-900`, Title Case. A heading element at the level the page needs. Optional description below: Text sm `gray-500`, 4 apart. |
 | 4 | Badge | Optional status pill or count, Badge sm, 8 after the title. |
-| 5 | Actions | Buttons sm, gap 8: Secondary gray or Tertiary, an icon button with a "more" menu. Centred on the title line and allowed to overhang it, so the head is only as tall as the title. |
-| 6 | Fold chevron | Optional. Tertiary gray icon button sm; points up when open, down when folded. Hides the body and footer. |
+| 5 | Actions | Buttons sm (28), gap 8: Outline or Ghost, an icon button with a "more" menu. Centred on the title line and allowed to overhang it, so the head is only as tall as the title. |
+| 6 | Fold chevron | Optional. Ghost icon button `icon-sm`; points up when open, down when folded. Hides the body and footer. |
 | 7 | Body | Blocks 16 apart (sm 12): text, inner cards, tables, charts. |
 | 8 | Footer | Optional. Actions right-aligned, gap 12, above a `gray-200` divider that runs edge to edge. |
 
@@ -60,8 +60,8 @@ The white card for a topic. Here with an inner card of summary rows and a footer
       <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
-      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Lihat Detail</button>
+      <button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-3-body">
@@ -75,8 +75,8 @@ The white card for a topic. Here with an inner card of summary rows and a footer
     </div>
   </div>
   <footer class="sb-card-foot" id="card-3-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Tolak</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Setujui Klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Tolak</button>
+    <button class="sb-btn" type="button" data-size="sm">Setujui Klaim</button>
   </footer>
 </section>
 ```
@@ -108,8 +108,8 @@ For text the AI wrote: `brand-50`, 1 px `brand-200` border, radius 8, padding 16
       <h3 class="sb-card-title" id="card-4-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
-      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="true" aria-controls="card-4-body" aria-labelledby="card-4-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Edit Ringkasan</button>
+      <button class="sb-btn sb-card-fold" type="button" data-variant="ghost" data-size="icon-sm" aria-expanded="true" aria-controls="card-4-body" aria-labelledby="card-4-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-4-body">
@@ -129,7 +129,7 @@ A `gray-100` shell (one step darker than the `gray-50` page) with a `gray-200` b
       <h3 class="sb-card-title" id="card-2-title">Klaim Masuk</h3>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Buka Laporan Klaim"><svg aria-hidden="true"><!-- external-link --></svg></button>
+      <button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Buka Laporan Klaim"><svg aria-hidden="true"><!-- external-link --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-2-body">
@@ -151,7 +151,7 @@ A `gray-100` shell (one step darker than the `gray-50` page) with a `gray-200` b
     </div>
   </div>
   <footer class="sb-card-foot">
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm" disabled>Lanjutkan</button>
+    <button class="sb-btn" type="button" data-size="sm" disabled>Lanjutkan</button>
   </footer>
 </section>
 ```
@@ -193,7 +193,7 @@ A compact card (sm) for one number: label Text sm / Medium `gray-500`, value Dis
 
 ### Link card
 
-A card that opens a page. The title is the link; its hit area stretches over the whole card, so the card has one tab stop and the link text is the accessible name. Hover: `gray-50` fill and `gray-400` border. Focus: `brand-300` border and the 4 px `focus-ring` ring.
+A card that opens a page. The title is the link; its hit area stretches over the whole card, so the card has one tab stop and the link text is the accessible name. Hover: `gray-50` fill and `gray-400` border. Focus: `brand-300` border and the 3 px `focus-ring` ring.
 
 ```html
 <section class="sb-card" data-size="sm">
@@ -234,8 +234,8 @@ md for page sections, sm for compact cards in a grid (metrics, links, side panel
       <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
-      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Lihat Detail</button>
+      <button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-5-body">
@@ -256,8 +256,8 @@ md for page sections, sm for compact cards in a grid (metrics, links, side panel
       <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
-      <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Lihat Detail</button>
+      <button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Opsi lain"><svg aria-hidden="true"><!-- more-vertical --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-6-body">
@@ -286,8 +286,8 @@ Folding keeps the head and hides the body and footer. The chevron turns in 150 m
       <h3 class="sb-card-title" id="card-7-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
-      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="true" aria-controls="card-7-body" aria-labelledby="card-7-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Edit Ringkasan</button>
+      <button class="sb-btn sb-card-fold" type="button" data-variant="ghost" data-size="icon-sm" aria-expanded="true" aria-controls="card-7-body" aria-labelledby="card-7-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-7-body">
@@ -300,8 +300,8 @@ Folding keeps the head and hides the body and footer. The chevron turns in 150 m
       <h3 class="sb-card-title" id="card-8-title"><svg aria-hidden="true"><!-- loader --></svg>Ringkasan AI</h3>
     </div>
     <div class="sb-card-actions">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Edit Ringkasan</button>
-      <button class="sb-btn sb-card-fold" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-expanded="false" aria-controls="card-8-body" aria-labelledby="card-8-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Edit Ringkasan</button>
+      <button class="sb-btn sb-card-fold" type="button" data-variant="ghost" data-size="icon-sm" aria-expanded="false" aria-controls="card-8-body" aria-labelledby="card-8-title"><svg aria-hidden="true"><!-- chevron-down --></svg></button>
     </div>
   </header>
   <div class="sb-card-body" id="card-8-body" hidden>
@@ -314,7 +314,7 @@ Folding keeps the head and hides the body and footer. The chevron turns in 150 m
 
 ### Empty
 
-A card never shows a blank body. Say what is missing in Text sm `gray-500`, centred, with a 24 px `gray-400` icon and, when the user can fix it, one Secondary gray button.
+A card never shows a blank body. Say what is missing in Text sm `gray-500`, centred, with a 24 px `gray-400` icon and, when the user can fix it, one Outline button.
 
 ```html
 <section class="sb-card" aria-labelledby="card-1-title">
@@ -330,7 +330,7 @@ A card never shows a blank body. Say what is missing in Text sm `gray-500`, cent
         <p class="sb-card-empty-title">Belum ada klaim</p>
         <p>Klaim peserta ini akan tampil di sini setelah dikirim rumah sakit.</p>
       </div>
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Tambah Klaim</button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Tambah Klaim</button>
     </div>
   </div>
 </section>
@@ -395,8 +395,8 @@ Where a chart or table would be, keep its size and draw a dashed `gray-300` fram
     </dl>
   </div>
   <footer class="sb-card-foot" id="card-9-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Tolak</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Setujui Klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="sm">Tolak</button>
+    <button class="sb-btn" type="button" data-size="sm">Setujui Klaim</button>
   </footer>
 </section>
 ```
@@ -407,7 +407,7 @@ Where a chart or table would be, keep its size and draw a dashed `gray-300` fram
 <section class="sb-card" data-size="sm"><dl class="sb-card-rows">
   <div class="sb-card-row"><dt>Total tagihan</dt><dd>Rp 12.450.000</dd></div>
   <div class="sb-card-row"><dt>Ditanggung</dt><dd>Rp 11.200.000</dd></div>
-</dl><footer class="sb-card-foot"><button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Simpan</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Kirim</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Setujui</button></footer></section>
+</dl><footer class="sb-card-foot"><button class="sb-btn" type="button" data-size="sm">Simpan</button><button class="sb-btn" type="button" data-size="sm">Kirim</button><button class="sb-btn" type="button" data-size="sm">Setujui</button></footer></section>
 ```
 
 ## Accessibility
@@ -474,7 +474,7 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
 .sb-card-title > svg { width: 20px; height: 20px; flex: none; }
 .sb-card-desc { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); text-wrap: pretty; }
 /* Actions (36 px buttons) centre on the title line and overhang it, so they never make the head taller than the title. */
-.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 36px) / 2); }
+.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 28px) / 2); }
 .sb-card-fold > svg { transition: rotate 150ms var(--ease); }
 .sb-card-fold[aria-expanded="true"] > svg { rotate: 180deg; }
 
@@ -535,7 +535,7 @@ Load `tokens.css`, `button.css` and `badge.css` for the parts inside, then `card
 .sb-card-link::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; }
 .sb-card:has(.sb-card-link) { transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease); }
 .sb-card:has(.sb-card-link:hover), .sb-card[data-state="hover"] { background: var(--bg-secondary); border-color: var(--border-strong); }
-.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--border-brand); box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--border-brand); box-shadow: 0 0 0 3px var(--focus-ring); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-card, .sb-card-fold > svg { transition: none; }

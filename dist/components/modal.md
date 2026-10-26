@@ -19,7 +19,7 @@ A dialog that stops the page for one decision or one short form: confirmations, 
 - Not for long forms or anything that needs scrolling and reference to the page behind. That is a page or a side panel.
 - One modal at a time. Never open a modal from a modal.
 - The title asks the question or names the action, in Title Case ("Tolak Klaim?"). The primary button repeats the action ("Tolak Klaim"), never "Ya" or "OK".
-- Two actions: Batal (Secondary gray) on the left, the action (Primary, or Destructive) on the right. An acknowledgement has one button.
+- Two actions: Batal (Outline) on the left, the action (Default, or Destructive) on the right. An acknowledgement has one button.
 
 ## Anatomy
 
@@ -29,7 +29,7 @@ A dialog that stops the page for one decision or one short form: confirmations, 
 | 2 | Icon | Optional. 48 px circle: tone-100 fill, 8 px tone-50 ring, 24 px tone-600 icon. Error for destructive, warning for losing work, success for done, brand otherwise. |
 | 3 | Title | Text xl / Semibold `gray-900` (sm: Text lg), Title Case. Asks the question or names the action. `aria-labelledby` points to it. |
 | 4 | Description | Text sm `gray-500`, 4 under the title. Says what happens. `aria-describedby` points to it. |
-| 5 | Close | Tertiary gray icon button sm, 16 from the top and right. Leave it out when the modal needs an answer (an acknowledgement still closes with its button and Esc). |
+| 5 | Close | Ghost icon button `icon-sm`, 16 from the top and right. Leave it out when the modal needs an answer (an acknowledgement still closes with its button and Esc). |
 | 6 | Footer | Buttons md, right-aligned, gap 12, 24 under the content. In sm the buttons share the width; under 480 px they stack, primary on top. |
 
 ## Properties
@@ -46,10 +46,10 @@ A dialog that stops the page for one decision or one short form: confirmations, 
 
 ### Destructive confirmation
 
-Error icon, the action as a Destructive Primary button. Focus starts on Batal (`autofocus`), so Enter never destroys by accident.
+Error icon, the action as a Destructive button. Focus starts on Batal (`autofocus`), so Enter never destroys by accident.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-1">Tolak Klaim</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-1">Tolak Klaim</button>
 <dialog class="sb-modal" id="demo-modal-1" data-size="sm" aria-labelledby="demo-modal-1-title" aria-describedby="demo-modal-1-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="error" aria-hidden="true"><svg aria-hidden="true"><!-- trash --></svg></span>
@@ -58,10 +58,10 @@ Error icon, the action as a Destructive Primary button. Focus starts on Batal (`
       <p class="sb-modal-desc" id="demo-modal-1-desc">Klaim KLM-0241 dikembalikan ke rumah sakit dengan alasan penolakan. Tindakan ini tidak bisa dibatalkan.</p>
     </div>
   </header>
-  <button class="sb-btn sb-modal-close" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" data-modal-close><svg aria-hidden="true"><!-- x --></svg></button>
+  <button class="sb-btn sb-modal-close" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" data-modal-close><svg aria-hidden="true"><!-- x --></svg></button>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-destructive>Tolak Klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-modal-close autofocus>Batal</button>
+    <button class="sb-btn" type="button" data-variant="destructive">Tolak Klaim</button>
   </footer>
 </dialog>
 ```
@@ -93,7 +93,7 @@ Only when the user must see the result before going on. One full-width button, n
 
 ```html
 <div class="modal-live">
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-7">Lihat Contoh</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-7">Lihat Contoh</button>
 <dialog class="sb-modal" id="demo-modal-7" data-size="sm" aria-labelledby="demo-modal-7-title" aria-describedby="demo-modal-7-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="error" aria-hidden="true"><svg aria-hidden="true"><!-- trash --></svg></span>
@@ -103,8 +103,8 @@ Only when the user must see the result before going on. One full-width button, n
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-destructive>Tolak Klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-modal-close autofocus>Batal</button>
+    <button class="sb-btn" type="button" data-variant="destructive">Tolak Klaim</button>
   </footer>
 </dialog>
 </div>
@@ -114,7 +114,7 @@ Only when the user must see the result before going on. One full-width button, n
 
 ```html
 <div class="modal-live">
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-8">Lihat Contoh</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-8">Lihat Contoh</button>
 <dialog class="sb-modal" id="demo-modal-8" data-size="sm" aria-labelledby="demo-modal-8-title" aria-describedby="demo-modal-8-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="error" aria-hidden="true"><svg aria-hidden="true"><!-- trash --></svg></span>
@@ -124,8 +124,8 @@ Only when the user must see the result before going on. One full-width button, n
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close>Tidak</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-modal-close>Ya</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-modal-close>Tidak</button>
+    <button class="sb-btn" type="button" data-modal-close>Ya</button>
   </footer>
 </dialog>
 </div>
@@ -135,7 +135,7 @@ Only when the user must see the result before going on. One full-width button, n
 
 ```html
 <div class="modal-live">
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-9">Lihat Contoh</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-9">Lihat Contoh</button>
 <dialog class="sb-modal" id="demo-modal-9" data-size="sm" aria-labelledby="demo-modal-9-title" aria-describedby="demo-modal-9-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="warning" aria-hidden="true"><svg aria-hidden="true"><!-- alert --></svg></span>
@@ -145,8 +145,8 @@ Only when the user must see the result before going on. One full-width button, n
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close>Buang</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary">Simpan</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-modal-close>Buang</button>
+    <button class="sb-btn" type="button">Simpan</button>
   </footer>
 </dialog>
 </div>
@@ -156,7 +156,7 @@ Only when the user must see the result before going on. One full-width button, n
 
 ```html
 <div class="modal-live">
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-open="demo-modal-10">Lihat Contoh</button>
+<button class="sb-btn" type="button" data-variant="outline" data-modal-open="demo-modal-10">Lihat Contoh</button>
 <dialog class="sb-modal" id="demo-modal-10" data-size="sm" aria-labelledby="demo-modal-10-title" aria-describedby="demo-modal-10-desc">
   <header class="sb-modal-head">
     <span class="sb-modal-icon" data-tone="warning" aria-hidden="true"><svg aria-hidden="true"><!-- alert --></svg></span>
@@ -166,8 +166,8 @@ Only when the user must see the result before going on. One full-width button, n
     </div>
   </header>
   <footer class="sb-modal-foot">
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-modal-close>Simpan</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-destructive data-modal-close>Buang</button>
+    <button class="sb-btn" type="button" data-modal-close>Simpan</button>
+    <button class="sb-btn" type="button" data-variant="destructive" data-modal-close>Buang</button>
   </footer>
 </dialog>
 </div>
@@ -200,10 +200,10 @@ Load `tokens.css` and `button.css`, then `modal.css`, and `modal.js` to open and
          <p class="sb-modal-desc" id="tolak-desc">…</p>
        </div>
      </header>
-     <button class="sb-btn sb-modal-close" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" data-modal-close>…x…</button>
+     <button class="sb-btn sb-modal-close" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" data-modal-close>…x…</button>
      <footer class="sb-modal-foot">
-       <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
-       <button class="sb-btn" type="button" data-destructive>Tolak Klaim</button>
+       <button class="sb-btn" type="button" data-variant="outline" data-modal-close autofocus>Batal</button>
+       <button class="sb-btn" type="button" data-variant="destructive">Tolak Klaim</button>
      </footer>
    </dialog>
 

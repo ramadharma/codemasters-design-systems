@@ -27,7 +27,7 @@ An action menu opened from a button, a row-actions icon or the account avatar. F
 | --- | --- | --- |
 | 1 | Header | Optional. Heading: 44 high, title Text sm / Semibold `gray-700`. Avatar group: 64 high, 40 px avatar with a 10 px `success-500` online dot, name Text sm / Semibold `gray-700`, email Text sm / Regular `gray-500`, gap 12. Padding `12 16`. |
 | 2 | Divider | 1 px `gray-100` between the header and each group. |
-| 3 | Item | 40 high, padding `10 12`, radius 8, inset 4 from the panel edge, gap 12, Text sm / Medium `gray-700`. Hover and focus `gray-50`. |
+| 3 | Item | 32 high, padding `0 8`, radius 8, inset 4 from the panel edge, gap 8, Text sm / Medium `gray-700`. Hover and focus `gray-50`. |
 | 4 | Icon or checkbox | 16 px icon `gray-700`, or a 16 px checkbox (radius 4). Never both. |
 | 5 | Shortcut | Optional, right-aligned, Text xs / Regular `gray-500`. |
 
@@ -47,11 +47,11 @@ The panel is 240 wide, `white`, 1 px `gray-100` border, radius 12 (like every po
 
 ### Button
 
-Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up and a `0 0 0 4px` `gray-100` ring.
+An Outline Button with the label and a 16 px chevron-down. Open: chevron up and the `gray-50` hover fill stays.
 
 ```html
 <div class="sb-menu-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="tr-button">Aksi klaim<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+  <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="tr-button">Aksi klaim<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
   <div class="sb-menu" id="tr-button" role="menu" aria-label="Aksi klaim" hidden>
     <div class="sb-menu-group" role="group">
       <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1"><svg aria-hidden="true"><!-- eye --></svg><span class="sb-menu-label">Lihat detail</span></button>
@@ -89,7 +89,7 @@ Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up an
 
 ### Avatar
 
-40 px avatar for the account menu in the sidebar or header. Open: 4 px `focus-ring` ring.
+40 px avatar for the account menu in the sidebar or header. Open: 3 px `focus-ring` ring.
 
 ```html
 <div class="sb-menu-wrap">
@@ -114,7 +114,7 @@ Secondary gray `md` with the label and a 20 px chevron-down. Open: chevron up an
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (40 high, padding `10 12`, radius 8, gap 12) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Row (32 high, padding `0 8`, radius 8, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
 | Label, Text sm / Medium | `gray-700` | `gray-700` | Default at 50 % opacity |
 | Icon 16 px | `gray-700` | `gray-700` | Default at 50 % opacity |
 | Checkbox 16 px, radius 4 | `white`, `gray-300` border | `brand-50` fill, `brand-600` border | Default at 50 % opacity |
@@ -128,7 +128,7 @@ For multi-select filters inside a menu. Toggling an item keeps the menu open; Es
 
 ```html
 <div class="sb-menu-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="cb-menu">Tampilkan kolom<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
+  <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="cb-menu">Tampilkan kolom<svg class="sb-btn-chevron" aria-hidden="true"><!-- chevron-down --></svg></button>
   <div class="sb-menu" id="cb-menu" role="menu" aria-label="Tampilkan kolom" hidden>
     <div class="sb-menu-group" role="group">
       <button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="true" aria-disabled="true"><span class="sb-menu-box" aria-hidden="true"><svg aria-hidden="true"><!-- check --></svg></span><span class="sb-menu-label">No. klaim</span></button>
@@ -196,7 +196,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
    the Button trigger also needs button.css.
 
    <div class="sb-menu-wrap">
-     <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md"
+     <button class="sb-btn" type="button" data-variant="outline"
              aria-haspopup="menu" aria-expanded="false" aria-controls="aksi">Aksi <svg class="sb-btn-chevron" aria-hidden="true">…chevron-down…</svg></button>
      <div class="sb-menu" id="aksi" role="menu" aria-label="Aksi" hidden>
        <div class="sb-menu-group" role="group">
@@ -216,7 +216,6 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-wrap { position: relative; display: inline-flex; }
 
 /* Triggers */
-.sb-menu-wrap > .sb-btn[aria-expanded="true"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-tertiary); } /* open: chevron up + gray-100 ring */
 .sb-menu-icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 32px; height: 32px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-md); /* hit area at least 32 x 32; radius 8 like every icon button of 32+ */
@@ -233,7 +232,7 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
   transition: box-shadow 150ms var(--ease);
 }
 .sb-menu-avatar:hover { box-shadow: 0 0 0 4px var(--bg-tertiary); }
-.sb-menu-avatar:focus-visible, .sb-menu-avatar[aria-expanded="true"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-menu-avatar:focus-visible, .sb-menu-avatar[aria-expanded="true"] { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* Panel: 240 wide (wider for long labels, never truncated), opens 8 below, right-aligned. */
 .sb-menu {
@@ -253,10 +252,10 @@ Load `tokens.css`, `dropdown-menu.css` (and `button.css` for the Button trigger)
 .sb-menu-name { display: block; font: 600 var(--text-sm) var(--font); color: var(--text-secondary); }
 .sb-menu-email { display: block; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); }
 
-/* Item: 40 high, padding 10 12 (text still 16 from the edge), gap 12, radius 8 (12 panel - 4 padding) */
+/* Item: 32 high, padding 0 8, gap 8, radius 8 (12 panel - 4 padding), like a shadcn menu item */
 .sb-menu-item {
-  box-sizing: border-box; display: flex; align-items: center; gap: 12px;
-  width: 100%; height: 40px; margin: 0; padding: 0 12px; border: 0; border-radius: var(--radius-md);
+  box-sizing: border-box; display: flex; align-items: center; gap: 8px;
+  width: 100%; height: 32px; margin: 0; padding: 0 8px; border: 0; border-radius: var(--radius-md);
   background: none; font: 500 var(--text-sm) var(--font); color: var(--text-secondary); text-align: start; white-space: nowrap;
   cursor: pointer;
 }
@@ -367,7 +366,6 @@ document.addEventListener('keydown', menuKeydown);
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-full: 9999px;
-  --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);

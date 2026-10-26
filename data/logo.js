@@ -12,7 +12,7 @@
     symbol: 'assets/brand/codemasters-symbol.svg',
   };
 
-  const tile = (html, bg = 'white', label = '', file = '') => `<figure class="f-logo-tile" data-bg="${bg}">${html}${label ? `<figcaption class="mx">${label}</figcaption>` : ''}${file ? `<a class="sb-btn" data-hierarchy="secondary-gray" data-size="sm" href="${file}" download>${icon('download')}Download ${file.split('.').pop().toUpperCase()}</a>` : ''}</figure>`;
+  const tile = (html, bg = 'white', label = '', file = '') => `<figure class="f-logo-tile" data-bg="${bg}">${html}${label ? `<figcaption class="mx">${label}</figcaption>` : ''}${file ? `<div class="f-logo-dl"><a class="sb-btn" data-variant="outline" data-size="xs" href="${file}" download>${icon('download')}SVG</a><button class="sb-btn" type="button" data-variant="outline" data-size="xs" data-png="${file}">${icon('download')}PNG</button></div>` : ''}</figure>`; // PNG: app.js draws the SVG at 4x
   const img = (src, alt, h = 40, style = '') => `<img src="${src}" alt="${alt}" style="height: ${h}px${style ? `; ${style}` : ''}">`;
   const on = (bg, html) => `<div style="display: grid; place-items: center; padding: 24px 32px; border-radius: 8px; background: var(--${bg})">${html}</div>`; // a logo on a stated background, for do and don't
   const logos = `<div class="f-logos">

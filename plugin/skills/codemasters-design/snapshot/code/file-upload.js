@@ -15,7 +15,7 @@ const upItem = ({ name, size, state = 'uploading', value = 0, error = '', thumb 
     <p class="sb-file-name"><span>${upEsc(name)}</span>${upSvg(UP_PATH.check).replace('<svg ', '<svg class="sb-file-done" ')}</p>
     <p class="sb-file-meta">${upSize(size)}<span class="sb-file-error">${upEsc(error)}</span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah ${upEsc(name)}" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="100" style="--value: ${value}"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">${value}%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="${state === 'uploading' ? 'Batalkan unggahan' : 'Hapus'} ${upEsc(name)}">${upSvg(UP_PATH.x).replace('<svg ', '<svg class="sb-file-x" ')}${upSvg(UP_PATH.trash).replace('<svg ', '<svg class="sb-file-trash" ')}</button>
 </li>`;

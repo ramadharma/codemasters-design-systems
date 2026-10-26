@@ -34,14 +34,14 @@
 .sb-toggle-input::before {
   content: ''; position: absolute; top: 2px; left: 2px;
   width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
-  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm); /* the knob stays white in both themes */
+  background: var(--white); box-shadow: var(--shadow-sm); /* the knob stays white in both themes */
   transition: translate 150ms var(--ease);
 }
 .sb-toggle-input:checked { background: var(--tg-on); }
 .sb-toggle-input:checked::before { translate: calc(var(--tg-w) - var(--tg-knob) - 4px) 0; }
 .sb-toggle-input:hover:not(:disabled), .sb-toggle-input[data-state="hover"] { background: var(--tg-off-hover); }
 .sb-toggle-input:checked:hover:not(:disabled), .sb-toggle-input:checked[data-state="hover"] { background: var(--tg-on-hover); }
-.sb-toggle-input:focus-visible, .sb-toggle-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-toggle-input:focus-visible, .sb-toggle-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 .sb-toggle-input:disabled { cursor: not-allowed; }
 .sb-toggle-input:disabled::before { background-image: none; box-shadow: none; } /* flat */
 

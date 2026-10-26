@@ -25,9 +25,9 @@ The footer of a long list: how many rows per page, which rows are shown out of h
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Label | "Baris per halaman", Text md `gray-500`, 12 from the list. |
-| 2 | Page size | Input dropdown, 88 wide, 44 high: 5, 10, 25, 50. |
+| 2 | Page size | Input dropdown, 88 wide, 32 high: 5, 10, 25, 50. |
 | 3 | Range | "6–10 dari 1.542 klaim", Text md `gray-500`, tabular figures, 24 from the list and the arrows. Read out when it changes (`aria-live="polite"`). |
-| 4 | Arrows | Button secondary gray lg, icon only (44 × 44, chevron left / right), 12 apart. Disabled on the first and the last page. |
+| 4 | Arrows | Button, Outline, `icon` (32 × 32, chevron left / right), 12 apart. Disabled on the first and the last page. |
 
 ## Properties
 
@@ -88,7 +88,7 @@ Load `tokens.css`, `button.css` and `input-dropdown.css` (with `input-dropdown.j
 
 .sb-pagination {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 12px;
-  font: 400 var(--text-md) var(--font); color: var(--text-quaternary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-quaternary);
 }
 .sb-pagination-label { white-space: nowrap; }
 .sb-pagination-size { width: 88px; }
@@ -111,7 +111,7 @@ function pgRender(nav) {
   const num = n => n.toLocaleString('id-ID');
   const sizes = (s.sizes || '5,10,25,50').split(',').map(Number);
   const opts = sizes.map((n, i) => `<div class="sb-dd-opt" id="${id}-o${i}" role="option" aria-selected="${n === size}" data-value="${n}"><span class="sb-dd-main"><span class="sb-dd-label">${n}</span></span>${svg('M20 6 9 17l-5-5').replace('<svg ', '<svg class="sb-dd-check" ')}</div>`).join('');
-  const step = (to, label, d) => `<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="${label}" data-go="${to}"${to < 1 || to > pages ? ' disabled' : ''}>${svg(d)}</button>`;
+  const step = (to, label, d) => `<button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="${label}" data-go="${to}"${to < 1 || to > pages ? ' disabled' : ''}>${svg(d)}</button>`;
   const first = total ? (page - 1) * size + 1 : 0, last = Math.min(total, page * size);
   nav.innerHTML = `<span class="sb-pagination-label" id="${id}-l">Baris per halaman</span>
 <div class="sb-dd sb-pagination-size">
@@ -150,6 +150,6 @@ document.addEventListener('sb-dd-change', pgSize);
 :root {
   --text-quaternary: var(--gray-500);
   --font: 'Timeless Sans', sans-serif;
-  --text-md: 16px/24px;
+  --text-sm: 14px/20px;
 }
 ```

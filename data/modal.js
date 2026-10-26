@@ -33,10 +33,10 @@ document.addEventListener('click', modalClick);`;
          <p class="sb-modal-desc" id="tolak-desc">…</p>
        </div>
      </header>
-     <button class="sb-btn sb-modal-close" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" data-modal-close>…x…</button>
+     <button class="sb-btn sb-modal-close" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" data-modal-close>…x…</button>
      <footer class="sb-modal-foot">
-       <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
-       <button class="sb-btn" type="button" data-destructive>Tolak Klaim</button>
+       <button class="sb-btn" type="button" data-variant="outline" data-modal-close autofocus>Batal</button>
+       <button class="sb-btn" type="button" data-variant="destructive">Tolak Klaim</button>
      </footer>
    </dialog>
 
@@ -110,7 +110,7 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
 
   // ---- Builders. The docs show a static specimen (<div>); the code shows the <dialog>.
   let uid = 0;
-  const btn = (label, h = 'secondary-gray', extra = '') => `<button class="sb-btn" type="button" data-hierarchy="${h}"${extra}>${esc(label)}</button>`;
+  const btn = (label, v = 'outline', extra = '') => `<button class="sb-btn" type="button"${v === 'default' ? '' : ` data-variant="${v}"`}${extra}>${esc(label)}</button>`;
   function modal({ size = 'md', tone, glyph, title, desc, body = '', actions, close = true, live = false, id = `modal-${++uid}` } = {}) {
     const tag = live ? 'dialog' : 'div';
     const a = ['class="sb-modal"'];
@@ -124,7 +124,7 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
       <h2 class="sb-modal-title" id="${id}-title">${esc(title)}</h2>${desc ? `\n      <p class="sb-modal-desc" id="${id}-desc">${esc(desc)}</p>` : ''}
     </div>
   </header>`,
-      close ? `  <button class="sb-btn sb-modal-close" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" data-modal-close>${icon('x')}</button>` : '',
+      close ? `  <button class="sb-btn sb-modal-close" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" data-modal-close>${icon('x')}</button>` : '',
       body ? `  <div class="sb-modal-body">\n    ${body.replace(/\n/g, '\n    ')}\n  </div>` : '',
       `  <footer class="sb-modal-foot">\n    ${actions.join('\n    ')}\n  </footer>`,
     ].filter(Boolean);
@@ -133,7 +133,7 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
   // Static specimen on a scrim, plus the <dialog> markup as its code.
   const stage = html => `<div class="modal-stage">\n${html}\n</div>`;
   // Every preview is a trigger button plus its closed <dialog>: click it to see the modal and how it behaves.
-  const live = (o, label, h = 'secondary-gray') => {
+  const live = (o, label, h = 'outline') => {
     const id = `demo-modal-${++uid}`;
     return `${btn(label, h, ` data-modal-open="${id}"`)}\n${modal({ ...o, live: true, id })}`;
   };
@@ -143,7 +143,7 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
   const REJECT = {
     size: 'sm', tone: 'error', glyph: 'trash', title: 'Tolak Klaim?',
     desc: 'Klaim KLM-0241 dikembalikan ke rumah sakit dengan alasan penolakan. Tindakan ini tidak bisa dibatalkan.',
-    actions: [btn('Batal', 'secondary-gray', ' data-modal-close autofocus'), btn('Tolak Klaim', 'primary', ' data-destructive')],
+    actions: [btn('Batal', 'outline', ' data-modal-close autofocus'), btn('Tolak Klaim', 'destructive')],
   };
   const SEND = {
     title: 'Kirim ke Advisor', desc: 'Advisor meninjau klaim ini dan memberi keputusan akhir.',
@@ -155,17 +155,17 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
   <label class="sb-field-label" for="catatan">Catatan</label>
   <div class="sb-textarea"><textarea id="catatan" rows="3">Mohon tinjau item obat di luar formularium.</textarea></div>
 </div>`,
-    actions: [btn('Batal', 'secondary-gray', ' data-modal-close'), btn('Kirim ke Advisor', 'primary')],
+    actions: [btn('Batal', 'outline', ' data-modal-close'), btn('Kirim ke Advisor', 'default')],
   };
   const DONE = {
     size: 'sm', tone: 'success', glyph: 'check', title: 'Klaim Terkirim',
     desc: 'Advisor akan menerima notifikasi. Kamu bisa memantau statusnya di daftar klaim.',
-    close: false, actions: [btn('Selesai', 'primary', ' data-modal-close')],
+    close: false, actions: [btn('Selesai', 'default', ' data-modal-close')],
   };
   const WARN = {
     size: 'sm', tone: 'warning', glyph: 'alert', title: 'Simpan Perubahan?',
     desc: 'Ada perubahan pada ringkasan yang belum disimpan. Kalau keluar sekarang, perubahan itu hilang.',
-    actions: [btn('Buang', 'secondary-gray', ' data-modal-close'), btn('Simpan', 'primary')],
+    actions: [btn('Buang', 'outline', ' data-modal-close'), btn('Simpan', 'default')],
   };
 
   const anatomy = `<div class="modal-stage">
@@ -177,8 +177,8 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
       <p class="sb-modal-desc"><span data-pin="4" data-pin-at="start">Klaim dikembalikan ke rumah sakit.</span></p>
     </div>
   </header>
-  <span data-pin="5" style="position: absolute; top: 16px; right: 16px"><button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" tabindex="-1">${icon('x')}</button></span>
-  <footer class="sb-modal-foot" data-pin="6" data-pin-at="bottom">${btn('Batal', 'secondary-gray', ' tabindex="-1"')}${btn('Tolak Klaim', 'primary', ' data-destructive tabindex="-1"')}</footer>
+  <span data-pin="5" style="position: absolute; top: 16px; right: 16px"><button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" tabindex="-1">${icon('x')}</button></span>
+  <footer class="sb-modal-foot" data-pin="6" data-pin-at="bottom">${btn('Batal', 'outline', ' tabindex="-1"')}${btn('Tolak Klaim', 'destructive', ' tabindex="-1"')}</footer>
 </div>
 </div>`;
 
@@ -212,7 +212,7 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
               { key: 'close', label: 'Close button', type: 'toggle' },
             ],
             render: s => trigger(pgOpts(s), 'Buka Modal'),
-            code: s => DS.snippet(`${btn('Buka Modal', 'secondary-gray', ' data-modal-open="modal"')}\n${modal({ ...pgOpts(s), live: true, id: 'modal' })}`),
+            code: s => DS.snippet(`${btn('Buka Modal', 'outline', ' data-modal-open="modal"')}\n${modal({ ...pgOpts(s), live: true, id: 'modal' })}`),
           },
         ],
       },
@@ -228,7 +228,7 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
               'Not for long forms or anything that needs scrolling and reference to the page behind. That is a page or a side panel.',
               'One modal at a time. Never open a modal from a modal.',
               'The title asks the question or names the action, in Title Case ("Tolak Klaim?"). The primary button repeats the action ("Tolak Klaim"), never "Ya" or "OK".',
-              'Two actions: Batal (Secondary gray) on the left, the action (Primary, or Destructive) on the right. An acknowledgement has one button.',
+              'Two actions: Batal (Outline) on the left, the action (Default, or Destructive) on the right. An acknowledgement has one button.',
             ],
           },
         ],
@@ -246,7 +246,7 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
               ['2', 'Icon', 'Optional. 48 px circle: tone-100 fill, 8 px tone-50 ring, 24 px tone-600 icon. Error for destructive, warning for losing work, success for done, brand otherwise.'],
               ['3', 'Title', 'Text xl / Semibold `gray-900` (sm: Text lg), Title Case. Asks the question or names the action. `aria-labelledby` points to it.'],
               ['4', 'Description', 'Text sm `gray-500`, 4 under the title. Says what happens. `aria-describedby` points to it.'],
-              ['5', 'Close', 'Tertiary gray icon button sm, 16 from the top and right. Leave it out when the modal needs an answer (an acknowledgement still closes with its button and Esc).'],
+              ['5', 'Close', 'Ghost icon button `icon-sm`, 16 from the top and right. Leave it out when the modal needs an answer (an acknowledgement still closes with its button and Esc).'],
               ['6', 'Footer', 'Buttons md, right-aligned, gap 12, 24 under the content. In sm the buttons share the width; under 480 px they stack, primary on top.'],
             ],
           },
@@ -274,7 +274,7 @@ html:has(dialog.sb-modal[open]) { overflow: hidden; } /* the page behind does no
         title: 'Types',
         blocks: [
           { type: 'h3', id: 'type-destructive', text: 'Destructive confirmation' },
-          { type: 'p', text: 'Error icon, the action as a Destructive Primary button. Focus starts on Batal (`autofocus`), so Enter never destroys by accident.' },
+          { type: 'p', text: 'Error icon, the action as a Destructive button. Focus starts on Batal (`autofocus`), so Enter never destroys by accident.' },
           show(REJECT, 'Tolak Klaim'),
           { type: 'h3', id: 'type-warning', text: 'Warning' },
           { type: 'p', text: 'For losing work or a step that is hard to undo. The safe choice is the primary button.' },
@@ -315,14 +315,14 @@ ${live(SEND, 'Kirim ke Advisor')}
             type: 'dodont',
             items: [
               { kind: 'do', html: trigger({ ...REJECT, close: false }, 'Lihat Contoh'), text: 'The button says the action: Tolak Klaim.' },
-              { kind: 'dont', html: trigger({ ...REJECT, close: false, title: 'Apakah Anda yakin?', actions: [btn('Tidak', 'secondary-gray', ' data-modal-close'), btn('Ya', 'primary', ' data-modal-close')] }, 'Lihat Contoh'), text: '"Apakah Anda yakin?" with Ya / Tidak. People answer without reading; say what will happen.' },
+              { kind: 'dont', html: trigger({ ...REJECT, close: false, title: 'Apakah Anda yakin?', actions: [btn('Tidak', 'outline', ' data-modal-close'), btn('Ya', 'default', ' data-modal-close')] }, 'Lihat Contoh'), text: '"Apakah Anda yakin?" with Ya / Tidak. People answer without reading; say what will happen.' },
             ],
           },
           {
             type: 'dodont',
             items: [
               { kind: 'do', html: trigger({ ...WARN, close: false }, 'Lihat Contoh'), text: 'Batal or the safe choice on the left, the action on the right.' },
-              { kind: 'dont', html: trigger({ ...WARN, close: false, actions: [btn('Simpan', 'primary', ' data-modal-close'), btn('Buang', 'primary', ' data-destructive data-modal-close')] }, 'Lihat Contoh'), text: 'Two primary buttons. Only one next step looks like one.' },
+              { kind: 'dont', html: trigger({ ...WARN, close: false, actions: [btn('Simpan', 'default', ' data-modal-close'), btn('Buang', 'destructive', ' data-modal-close')] }, 'Lihat Contoh'), text: 'Two primary buttons. Only one next step looks like one.' },
             ],
           },
         ],

@@ -23,7 +23,7 @@ An on/off switch whose change takes effect immediately, such as "Tampilkan hanya
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Track + knob | Track fully rounded with 2 px padding. Knob white, raised (`raised-sheen-light`) with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`. |
+| 1 | Track + knob | Track fully rounded with 2 px padding. Knob white with `shadow-sm`, left when off, right when on; it slides in 150 ms with `--ease`. |
 | 2 | Label | Optional. Text sm / Medium (`md`: Text md / Medium), `gray-700`. Says what is turned on. |
 | 3 | Supporting text | Optional. Text sm / Regular (`md`: Text md / Regular, 2 px below), `gray-500`. |
 
@@ -67,7 +67,7 @@ An on/off switch whose change takes effect immediately, such as "Tampilkan hanya
 | --- | --- | --- |
 | Default | `gray-100` | `brand-600` |
 | Hover | `gray-200` | `brand-700` |
-| Focus | Default + `0 0 0 4px` `focus-ring` ring | Default + `0 0 0 4px` `focus-ring` ring |
+| Focus | Default + `0 0 0 3px` `focus-ring` ring | Default + `0 0 0 3px` `focus-ring` ring |
 | Disabled | Default at 50 % opacity, flat knob | Default at 50 % opacity, flat knob |
 
 Disabled: the whole toggle, label included, at 50 % opacity.
@@ -108,7 +108,7 @@ For brand-tinted surfaces only, such as the AI summary box. Off `brand-50`, hove
     <label class="sb-toggle-label" for="tg-dont-save">Kirim salinan ke peserta</label>
   </div>
 </div>
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm">Simpan</button></div>
+<button class="sb-btn" type="button" data-size="sm">Simpan</button></div>
 ```
 
 **Do:** The label names what is switched on.
@@ -138,7 +138,7 @@ For brand-tinted surfaces only, such as the AI summary box. Off `brand-50`, hove
 - Use a native checkbox with `role="switch"`: it is focusable, Space flips it, and screen readers announce "switch, on/off" from `checked`.
 - Connect the label with `for` / `id`, and the supporting text with `aria-describedby`. A toggle without visible text needs `aria-label`.
 - The state also shows by position (knob left or right), not only by colour.
-- Focus shows a 4 px `focus-ring` ring on `:focus-visible`.
+- Focus shows a 3 px `focus-ring` ring on `:focus-visible`.
 
 | Pair | Ratio | Needed | Result |
 | --- | --- | --- | --- |
@@ -192,14 +192,14 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
 .sb-toggle-input::before {
   content: ''; position: absolute; top: 2px; left: 2px;
   width: var(--tg-knob); height: var(--tg-knob); border-radius: var(--radius-full);
-  background: var(--raised-sheen-light) var(--white); box-shadow: var(--shadow-sm); /* the knob stays white in both themes */
+  background: var(--white); box-shadow: var(--shadow-sm); /* the knob stays white in both themes */
   transition: translate 150ms var(--ease);
 }
 .sb-toggle-input:checked { background: var(--tg-on); }
 .sb-toggle-input:checked::before { translate: calc(var(--tg-w) - var(--tg-knob) - 4px) 0; }
 .sb-toggle-input:hover:not(:disabled), .sb-toggle-input[data-state="hover"] { background: var(--tg-off-hover); }
 .sb-toggle-input:checked:hover:not(:disabled), .sb-toggle-input:checked[data-state="hover"] { background: var(--tg-on-hover); }
-.sb-toggle-input:focus-visible, .sb-toggle-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-toggle-input:focus-visible, .sb-toggle-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 .sb-toggle-input:disabled { cursor: not-allowed; }
 .sb-toggle-input:disabled::before { background-image: none; box-shadow: none; } /* flat */
 
@@ -235,7 +235,6 @@ Load `tokens.css` and `toggle.css`. No script: the switch is a native checkbox, 
   --text-quaternary: var(--gray-500);
   --radius-full: 9999px;
   --shadow-sm: 0 1px 3px rgba(16,24,40,.1), 0 1px 2px rgba(16,24,40,.06);
-  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Timeless Sans', sans-serif;

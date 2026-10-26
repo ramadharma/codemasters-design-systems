@@ -84,7 +84,7 @@ Icon-only buttons get a title-only tooltip with their label. Hover or focus the 
 
 ```html
 <span class="sb-tooltip-wrap">
-  <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-icon="only" aria-label="Unduh laporan" aria-describedby="tb-dl-tip"><svg aria-hidden="true"><!-- download --></svg></button>
+  <button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="Unduh laporan" aria-describedby="tb-dl-tip"><svg aria-hidden="true"><!-- download --></svg></button>
   <span class="sb-tooltip" role="tooltip" id="tb-dl-tip">
     <span class="sb-tooltip-title">Unduh laporan</span>
   </span>

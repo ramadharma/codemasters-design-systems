@@ -109,10 +109,10 @@
   const codeBox = (code, lang, filename) => {
     const long = code.trim().split('\n').length > 3;
     return `<div class="code${long ? ' is-collapsed' : ''}">
-    ${filename ? `<div class="code-head"><span>${filename}</span><button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-download="${filename}">${icon('download')}Download</button></div>` : ''}
+    ${filename ? `<div class="code-head"><span>${filename}</span><button class="sb-btn" type="button" data-variant="ghost" data-size="sm" data-download="${filename}">${icon('download')}Download</button></div>` : ''}
     <div class="code-body"><pre tabindex="0"><code style="${gutter(code)}">${numbered(code, lang)}</code></pre>
-    <button class="sb-btn copy" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Copy code" data-copy>${icon('copy')}${icon('check')}</button>
-    ${long ? '<button class="sb-btn code-expand" type="button" data-hierarchy="secondary-gray" data-size="sm" data-expand>View Code</button>' : ''}</div>
+    <button class="sb-btn copy" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Copy code" data-copy>${icon('copy')}${icon('check')}</button>
+    ${long ? '<button class="sb-btn code-expand" type="button" data-variant="outline" data-size="sm" data-expand>View Code</button>' : ''}</div>
   </div>`;
   };
 
@@ -209,7 +209,7 @@
         <div class="sb-tabs" data-type="underline" role="tablist" aria-label="Code">${files
           .map(([name], i) => `<button class="sb-tab" type="button" role="tab" id="${id}-t${i}" aria-selected="${i === 0}" aria-controls="${id}-p${i}" tabindex="${i === 0 ? 0 : -1}">${name}</button>`)
           .join('')}</div>
-        <button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-download-tab>${icon('download')}Download</button>
+        <button class="sb-btn" type="button" data-variant="ghost" data-size="sm" data-download-tab>${icon('download')}Download</button>
       </div>
       ${files
         .map(([, code, lang, file], i) => `<div class="sb-tab-panel" role="tabpanel" id="${id}-p${i}" aria-labelledby="${id}-t${i}" data-file="${file}"${i === 0 ? '' : ' hidden'}>${codeBox(code, lang)}</div>`)
@@ -279,8 +279,8 @@
           <p class="lead">${inline(p.description)}</p>
         </div>
         <div class="split sb-menu-wrap">
-          <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="xs" data-md="copy">${icon('copy')}Copy Markdown</button>
-          <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="xs" data-icon="only" aria-label="More export options" aria-haspopup="menu" aria-expanded="false" aria-controls="export-menu">${icon('chevron-down', 'sb-btn-chevron')}</button>
+          <button class="sb-btn" type="button" data-variant="outline" data-size="xs" data-md="copy">${icon('copy')}Copy Markdown</button>
+          <button class="sb-btn" type="button" data-variant="outline" data-size="icon-xs" aria-label="More export options" aria-haspopup="menu" aria-expanded="false" aria-controls="export-menu">${icon('chevron-down', 'sb-btn-chevron')}</button>
           <div class="sb-menu" id="export-menu" role="menu" aria-label="Export" hidden>
             <div class="sb-menu-group" role="group">
               <button class="sb-menu-item" type="button" role="menuitem" tabindex="-1" data-md="download">${icon('download')}<span class="sb-menu-label">Download ${file}</span></button>
@@ -292,13 +292,13 @@
       ${p.status ? `<div class="meta">${statusBadge(p.status)}<span>Updated ${fmtDate(p.updated)}</span></div>` : ''}
       ${p.sections.map(s => `<section><h2 id="${s.id}">${s.title}</h2>${sectionBody(s, p)}</section>`).join('')}
       <nav class="pager" aria-label="Pages">
-        ${prev ? `<a class="sb-btn" data-hierarchy="secondary-gray" data-size="sm" href="#/${prev.slug}">${icon('arrow-left')}${prev.name}</a>` : '<span></span>'}
-        ${next ? `<a class="sb-btn" data-hierarchy="secondary-gray" data-size="sm" href="#/${next.slug}">${next.name}${icon('arrow-right')}</a>` : ''}
+        ${prev ? `<a class="sb-btn" data-variant="outline" data-size="sm" href="#/${prev.slug}">${icon('arrow-left')}${prev.name}</a>` : '<span></span>'}
+        ${next ? `<a class="sb-btn" data-variant="outline" data-size="sm" href="#/${next.slug}">${next.name}${icon('arrow-right')}</a>` : ''}
       </nav>`;
 
     $$('.pg', main).forEach(mountPlayground);
 
-    const heads = $$('h2[id], h3[id]', main);
+    const heads = $$('h2[id], h3[id]', main).filter(h => !h.closest('.sb-modal, .ex-preview, .pg-stage')); // page headings, not titles inside examples
     toc.innerHTML = `<h2>On this page</h2>${heads.map(h => `<a href="#/${p.slug}/${h.id}" data-to="${h.id}"${h.tagName === 'H3' ? ' class="sub"' : ''}>${h.textContent}</a>`).join('')}`;
     spy(heads);
     renderSide();
@@ -372,9 +372,21 @@
   // ---- Events
   const dialog = $('.md-dialog');
 
+  // Logo PNG: the SVG drawn on a canvas at 4x its own size, so it stays sharp on slides and in print.
+  const downloadPng = async src => {
+    const img = Object.assign(new Image(), { src });
+    await img.decode();
+    const c = Object.assign(document.createElement('canvas'), { width: img.naturalWidth * 4, height: img.naturalHeight * 4 });
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+    const name = src.split('/').pop().replace(/\.svg$/, '.png');
+    Object.assign(document.createElement('a'), { href: c.toDataURL('image/png'), download: name }).click();
+    toast.success(`Downloaded ${name}`);
+  };
+
   document.addEventListener('click', async e => {
     const t = e.target.closest('button, a');
     if (!t) return;
+    if (t.matches('[data-png]')) return downloadPng(t.dataset.png);
 
     if (t.matches('[data-copy-text]')) {
       if (await copyText(t.dataset.copyText, `Copied ${t.dataset.copyText}`)) { // swatches, icons, tokens on Foundations pages

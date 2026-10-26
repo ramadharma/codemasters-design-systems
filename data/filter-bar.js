@@ -135,7 +135,7 @@ for (const type of ['input', 'change', 'sb-menu-select', 'sb-date-change']) docu
      </div>
    </div>
 
-   Wide (600 and up): status and search, then the period and the menus, then the chips.
+   Wide (480 and up): status and search, then the period and the menus, then the chips.
    Narrow: status on its own row, search with a Filter button; the period and the menus move into a bottom sheet
    (the popover). The chips stay on the page. */
 
@@ -144,8 +144,7 @@ for (const type of ['input', 'change', 'sb-menu-select', 'sb-date-change']) docu
 .sb-filter-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .sb-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 
-/* Every control in the bar is 40 high, the height of Button md and Button group. */
-.sb-filter .sb-input { height: 40px; }
+/* Every control in the bar is 32 high, like every Button, field and Button group. */
 .sb-filter-status { flex: none; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
 .sb-filter-status > button > .sb-badge { font-variant-numeric: tabular-nums; }
 .sb-filter-status > [aria-checked="true"] > .sb-badge { --bdg-bg: var(--bg-primary); } /* the pressed segment is gray-100 too */
@@ -169,10 +168,10 @@ for (const type of ['input', 'change', 'sb-menu-select', 'sb-date-change']) docu
 .sb-filter-chip-list { display: contents; margin: 0; padding: 0; list-style: none; }
 .sb-filter-chip-list > li { display: flex; }
 
-@container (min-width: 800px) {
+@container (min-width: 640px) {
   .sb-filter-search { flex-grow: 0; flex-basis: 320px; margin-inline-start: auto; } /* room for both: 320, right-aligned */
 }
-@container (max-width: 599px) {
+@container (max-width: 479px) {
   .sb-filter-search { min-width: 0; }
   .sb-filter-more { display: inline-flex; }
   .sb-filter-sheet:not(:popover-open) { display: none; }
@@ -251,7 +250,7 @@ for (const type of ['input', 'change', 'sb-menu-select', 'sb-date-change']) docu
   let uid = 0;
   const menuItem = (value, on) => `<button class="sb-menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="${on}" data-value="${esc(value)}"><span class="sb-menu-box" aria-hidden="true">${icon('check')}</span><span class="sb-menu-label">${esc(value)}</span></button>`;
   const filterMenu = (id, key, label, values, picked, pin) => `<div class="sb-menu-wrap" data-filter="${key}"${pin || ''}>
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-haspopup="menu" aria-expanded="false" aria-controls="${id}-${key}">${esc(label)}<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary"${picked.length ? '' : ' hidden'}>${picked.length}</span>${icon('chevron-down', 'sb-btn-chevron')}</button>
+      <button class="sb-btn" type="button" data-variant="outline" aria-haspopup="menu" aria-expanded="false" aria-controls="${id}-${key}">${esc(label)}<span class="sb-badge sb-filter-n" data-size="sm" data-color="primary"${picked.length ? '' : ' hidden'}>${picked.length}</span>${icon('chevron-down', 'sb-btn-chevron')}</button>
       <div class="sb-menu" id="${id}-${key}" role="menu" aria-label="${esc(label)}" hidden>
         <div class="sb-menu-group" role="group">
           ${values.map(v => menuItem(v, picked.includes(v))).join('\n          ')}
@@ -274,11 +273,11 @@ for (const type of ['input', 'change', 'sb-menu-select', 'sb-date-change']) docu
       ${tabs.join('\n      ')}
     </div>
     <div class="sb-input sb-filter-search"${pin(2, 'end')}>${icon('search')}<input type="search" placeholder="Cari ID klaim atau peserta" aria-label="Cari klaim" value="${esc(q)}"></div>
-    <button class="sb-btn sb-filter-more" type="button" data-hierarchy="secondary-gray" data-size="md" popovertarget="${id}-sheet">${icon('filter-lines')}Filter<span class="sb-badge" data-size="sm" data-color="primary"${chips.length ? '' : ' hidden'}>${chips.length}</span></button>
+    <button class="sb-btn sb-filter-more" type="button" data-variant="outline" popovertarget="${id}-sheet">${icon('filter-lines')}Filter<span class="sb-badge" data-size="sm" data-color="primary"${chips.length ? '' : ' hidden'}>${chips.length}</span></button>
   </div>
   <div class="sb-filter-row">
     <div class="sb-filter-sheet" id="${id}-sheet" popover aria-label="Filter">
-      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" popovertarget="${id}-sheet" popovertargetaction="hide">${icon('x')}</button></div>
+      <div class="sb-filter-sheet-head"><p class="sb-filter-sheet-title">Filter</p><button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" popovertarget="${id}-sheet" popovertargetaction="hide">${icon('x')}</button></div>
       <div class="sb-dp" data-type="range" ${dates}data-today="${TODAY}" data-presets${pin(3, 'bottom')}>
         <div class="sb-input">
           <button class="sb-dp-toggle" type="button" aria-label="Pilih periode" aria-haspopup="dialog" aria-expanded="false" aria-controls="${id}-cal">${icon('calendar')}</button>
@@ -288,11 +287,11 @@ for (const type of ['input', 'change', 'sb-menu-select', 'sb-date-change']) docu
       </div>
     ${filterMenu(id, 'rs', 'Rumah sakit', RS, rs, pin(4, 'bottom'))}
     ${filterMenu(id, 'svc', 'Layanan', SVC, svc)}
-      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" popovertarget="${id}-sheet" popovertargetaction="hide">Lihat hasil</button></div>
+      <div class="sb-filter-sheet-foot"><button class="sb-btn" type="button" data-variant="outline" data-filter-clear>Hapus semua</button><button class="sb-btn" type="button" popovertarget="${id}-sheet" popovertargetaction="hide">Lihat hasil</button></div>
     </div>
     <div class="sb-filter-chips"${chips.length ? '' : ' hidden'}>
       <ul class="sb-filter-chip-list" aria-label="Filter aktif">${chips.join('').replace('<li>', `<li${pin(5, 'bottom')}>`)}</ul>
-      <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="sm" data-filter-clear${pin(6, 'end')}>Hapus semua</button>
+      <button class="sb-btn" type="button" data-variant="link" data-size="sm" data-filter-clear${pin(6, 'end')}>Hapus semua</button>
     </div>
   </div>
 </div>`;
@@ -397,12 +396,12 @@ ${body(list)}
             type: 'table',
             head: ['#', 'Part', 'Spec'],
             rows: [
-              ['1', 'Status tabs', 'Button group switch, 40 high. Each segment ends with a Badge sm count, white on the pressed segment.'],
-              ['2', 'Search', 'Input field with the search icon, 40 high. 320 wide and right-aligned when the bar is 800 or wider; below that it fills the rest of the status row, or a row of its own.'],
+              ['1', 'Status tabs', 'Button group switch, 32 high. Each segment ends with a Badge sm count, white on the pressed segment.'],
+              ['2', 'Search', 'Input field with the search icon, 32 high. 320 wide and right-aligned when the bar is 640 or wider; below that it fills the rest of the status row, or a row of its own.'],
               ['3', 'Period', 'Date picker range with quick ranges, 264 wide, empty for "Semua tanggal".'],
-              ['4', 'Filter menu', 'Button md secondary gray with a chevron; opens a Dropdown menu of checkbox items. A Badge sm primary counts the picks.'],
+              ['4', 'Filter menu', 'Button, Outline, with a chevron; opens a Dropdown menu of checkbox items. A Badge sm primary counts the picks.'],
               ['5', 'Chips', 'Badge md with ×, on their own row. The period first, then each picked value.'],
-              ['6', 'Clear', 'Button sm link gray "Hapus semua". Shows only with chips.'],
+              ['6', 'Clear', 'Button, Link, "Hapus semua". Shows only with chips.'],
             ],
           },
           { type: 'p', text: 'Rows 16 apart (12 between the controls and the chips); 12 between controls, 8 between chips.' },
@@ -435,7 +434,7 @@ ${body(list)}
           { type: 'p', text: 'Status, search, period and menus, for the main list of a module.' },
           { type: 'example', html: stage(card({ svc: ['Rawat inap'] })), code: false },
           { type: 'h3', id: 'type-narrow', text: 'Narrow' },
-          { type: 'p', text: 'Under 600 wide (the bar\'s own width, not the screen\'s), status takes its own row and scrolls sideways if needed. Search shares a row with a Filter button that counts the active filters. The period and the menus open in a bottom sheet; the chips stay on the page.' },
+          { type: 'p', text: 'Under 480 wide (the bar\'s own width, not the screen\'s), status takes its own row and scrolls sideways if needed. Search shares a row with a Filter button that counts the active filters. The period and the menus open in a bottom sheet; the chips stay on the page.' },
           { type: 'example', html: stage(card({ rs: ['RS Medika Utama'] }), 'is-narrow'), code: false },
         ],
       },

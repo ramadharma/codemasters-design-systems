@@ -29,7 +29,7 @@ A date field people can type into or pick from a calendar: one date (one month, 
 | 3 | Weekdays | Sen to Min, Monday first. Text xs / Medium `gray-500`. |
 | 4 | Range | Days between the ends on a `brand-50` band with `brand-700` numbers. The ends, like a single selected day, are `brand-600` with `white` numbers. |
 | 5 | Day | 32 × 32, radius 4, Text sm `gray-700`. Hover `gray-50`. Days of another month and days outside min / max: `gray-400`. Today: a 4 px brand dot under the number. |
-| 6 | Footer | Range only. The pick in short dates on the left; Batal (Secondary gray sm) and Terapkan (Primary sm, disabled until both ends are set) on the right. |
+| 6 | Footer | Range only. The pick in short dates on the left; Batal (Outline sm) and Terapkan (Default sm, disabled until both ends are set) on the right. |
 
 ## Properties
 
@@ -100,7 +100,7 @@ The six standard periods on the left. The one that matches the pick is marked, s
 
 | State | Look |
 | --- | --- |
-| Default | Input field: `gray-300` border, placeholder dd/mm/yyyy in `gray-500`. |
+| Default | Input field: `gray-200` border, placeholder dd/mm/yyyy in `gray-500`. |
 | Open | The field keeps the focus look (`brand-300` border, `focus-ring`) while the calendar is open, even with focus in the calendar. |
 | Error | A typed date that does not exist, is in the wrong format or is outside min / max: Input field error state, and the hint says what to write. |
 | Disabled | Input field disabled; the calendar button cannot open. |
@@ -211,7 +211,7 @@ Load `tokens.css`, `input-field.css` and `button.css`, then `date-picker.css`, a
 .sb-dp-toggle > svg { width: 20px; height: 20px; }
 .sb-dp-toggle:is(:hover, [aria-expanded="true"]) { color: var(--text-secondary); }
 .sb-dp-toggle:focus-visible { outline: 2px solid var(--brand-600); outline-offset: -2px; }
-.sb-dp:has(.sb-dp-toggle[aria-expanded="true"]) .sb-input { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-dp:has(.sb-dp-toggle[aria-expanded="true"]) .sb-input { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
 
 /* Panel: opens 8 below the field, white, radius 12, shadow-lg. Months side by side with a divider. */
 .sb-dp-panel {
@@ -343,7 +343,7 @@ function dpPanel(st) {
   const short = { day: 'numeric', month: 'short', year: 'numeric' };
   const presets = st.presets ? `<div class="sb-dp-presets" role="group" aria-label="Rentang cepat">${dpPresets(st.today).map(([l, a, b]) => `<button class="sb-dp-preset" type="button" data-start="${a}" data-end="${b}" aria-pressed="${a === st.start && b === st.end}">${l}</button>`).join('')}</div>` : '';
   const picked = st.start ? `${dpFmt(st.start, short)} – ${st.end ? dpFmt(st.end, short) : '…'}` : 'Pilih tanggal awal';
-  return `${presets}<div class="sb-dp-main">${months}<div class="sb-dp-foot"><span class="sb-dp-picked">${picked}</span><div class="sb-dp-actions"><button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm" data-dp="cancel">Batal</button><button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm" data-dp="apply"${st.start && st.end ? '' : ' disabled'}>Terapkan</button></div></div></div>`;
+  return `${presets}<div class="sb-dp-main">${months}<div class="sb-dp-foot"><span class="sb-dp-picked">${picked}</span><div class="sb-dp-actions"><button class="sb-btn" type="button" data-variant="outline" data-size="sm" data-dp="cancel">Batal</button><button class="sb-btn" type="button" data-size="sm" data-dp="apply"${st.start && st.end ? '' : ' disabled'}>Terapkan</button></div></div></div>`;
 }
 function dpState(dp) {
   const s = dp.dataset;

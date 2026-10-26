@@ -57,7 +57,7 @@ document.addEventListener('click', cardFold);`;
 .sb-card-title > svg { width: 20px; height: 20px; flex: none; }
 .sb-card-desc { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); text-wrap: pretty; }
 /* Actions (36 px buttons) centre on the title line and overhang it, so they never make the head taller than the title. */
-.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 36px) / 2); }
+.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 28px) / 2); }
 .sb-card-fold > svg { transition: rotate 150ms var(--ease); }
 .sb-card-fold[aria-expanded="true"] > svg { rotate: 180deg; }
 
@@ -118,7 +118,7 @@ document.addEventListener('click', cardFold);`;
 .sb-card-link::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; }
 .sb-card:has(.sb-card-link) { transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease); }
 .sb-card:has(.sb-card-link:hover), .sb-card[data-state="hover"] { background: var(--bg-secondary); border-color: var(--border-strong); }
-.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--border-brand); box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--border-brand); box-shadow: 0 0 0 3px var(--focus-ring); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-card, .sb-card-fold > svg { transition: none; }
@@ -133,8 +133,8 @@ document.addEventListener('click', cardFold);`;
     }\n</dl>`;
   const inner = (body, title) => `<div class="sb-card" data-variant="inner">${title ? `\n  <p class="sb-card-title">${esc(title)}</p>` : ''}\n  ${body.replace(/\n/g, '\n  ')}\n</div>`;
   const statusBadge = `<span class="sb-badge" data-size="sm" data-color="success" data-icon="dot"><span class="sb-badge-dot" aria-hidden="true"></span>Disetujui</span>`;
-  const btn = (label, h = 'secondary-gray', extra = '') => `<button class="sb-btn" type="button" data-hierarchy="${h}" data-size="sm"${extra}>${label}</button>`;
-  const iconBtn = (glyph, label, extra = '') => `<button class="sb-btn" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="${label}"${extra}>${icon(glyph)}</button>`;
+  const btn = (label, v = 'outline', extra = '') => `<button class="sb-btn" type="button"${v === 'default' ? '' : ` data-variant="${v}"`} data-size="sm"${extra}>${label}</button>`;
+  const iconBtn = (glyph, label, extra = '') => `<button class="sb-btn" type="button" data-variant="ghost" data-size="icon-sm" aria-label="${label}"${extra}>${icon(glyph)}</button>`;
 
   let uid = 0; // ids stay unique across every example on the page
   function card({
@@ -158,7 +158,7 @@ document.addEventListener('click', cardFold);`;
     </div>${acts.length ? `\n    <div class="sb-card-actions">\n      ${acts.join('\n      ')}\n    </div>` : ''}
   </header>`;
     const parts = [head, `  <div class="sb-card-body" id="${id}-body"${open ? '' : ' hidden'}>\n    ${body.replace(/\n/g, '\n    ')}\n  </div>`];
-    if (footer) parts.push(`  <footer class="sb-card-foot" id="${id}-foot"${open ? '' : ' hidden'}>\n    ${btn('Tolak')}\n    ${btn('Setujui Klaim', 'primary')}\n  </footer>`);
+    if (footer) parts.push(`  <footer class="sb-card-foot" id="${id}-foot"${open ? '' : ' hidden'}>\n    ${btn('Tolak')}\n    ${btn('Setujui Klaim', 'default')}\n  </footer>`);
     return `<section ${a.join(' ')}>\n${parts.join('\n')}\n</section>`;
   }
 
@@ -214,7 +214,7 @@ document.addEventListener('click', cardFold);`;
     </div>
   </div>
   <footer class="sb-card-foot">
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="sm" disabled>Lanjutkan</button>
+    <button class="sb-btn" type="button" data-size="sm" disabled>Lanjutkan</button>
   </footer>
 </section>`;
 
@@ -225,14 +225,14 @@ document.addEventListener('click', cardFold);`;
       <p class="sb-card-desc">Diperbarui 7 Oktober 2026, 14.20</p>
     </div>
     <div class="sb-card-actions" data-pin="5">
-      ${btn('Lihat Detail', 'secondary-gray', ' tabindex="-1"')}
+      ${btn('Lihat Detail', 'outline', ' tabindex="-1"')}
       <span data-pin="6">${iconBtn('chevron-down', 'Lipat', ' tabindex="-1" aria-expanded="true"').replace('class="sb-btn"', 'class="sb-btn sb-card-fold"')}</span>
     </div>
   </header>
   <div class="sb-card-body" data-pin="7" data-pin-at="start">
     ${inner(rows()).replace(/\n/g, '\n    ')}
   </div>
-  <footer class="sb-card-foot" data-pin="8" data-pin-at="start">${btn('Tolak', 'secondary-gray', ' tabindex="-1"')}${btn('Setujui Klaim', 'primary', ' tabindex="-1"')}</footer>
+  <footer class="sb-card-foot" data-pin="8" data-pin-at="start">${btn('Tolak', 'outline', ' tabindex="-1"')}${btn('Setujui Klaim', 'default', ' tabindex="-1"')}</footer>
 </section>`;
 
   DS.components.push({
@@ -275,7 +275,7 @@ document.addEventListener('click', cardFold);`;
               'One card holds one topic: a summary, a table, a chart, a form section. The title names the topic.',
               'Cards sit on the page 24 apart (Grids & Spacing). Blocks inside a card sit 16 apart.',
               'Group related values inside a card with an inner card, never with a second card in a card.',
-              'One primary action per card at most, in the footer or the head. Other actions are Secondary gray, Tertiary or in a "more" menu.',
+              'One primary action per card at most, in the footer or the head. Other actions are Outline, Ghost or in a "more" menu.',
               'Cards are flat: a `gray-300` border, no shadow. Shadows are for layers that float (menus, dialogs).',
             ],
           },
@@ -294,8 +294,8 @@ document.addEventListener('click', cardFold);`;
               ['2', 'Head', 'Title block on the left, actions on the right, top-aligned, gap 16.'],
               ['3', 'Title', 'Text xl / Semibold (sm: Text md), `gray-900`, Title Case. A heading element at the level the page needs. Optional description below: Text sm `gray-500`, 4 apart.'],
               ['4', 'Badge', 'Optional status pill or count, Badge sm, 8 after the title.'],
-              ['5', 'Actions', 'Buttons sm, gap 8: Secondary gray or Tertiary, an icon button with a "more" menu. Centred on the title line and allowed to overhang it, so the head is only as tall as the title.'],
-              ['6', 'Fold chevron', 'Optional. Tertiary gray icon button sm; points up when open, down when folded. Hides the body and footer.'],
+              ['5', 'Actions', 'Buttons sm (28), gap 8: Outline or Ghost, an icon button with a "more" menu. Centred on the title line and allowed to overhang it, so the head is only as tall as the title.'],
+              ['6', 'Fold chevron', 'Optional. Ghost icon button `icon-sm`; points up when open, down when folded. Hides the body and footer.'],
               ['7', 'Body', 'Blocks 16 apart (sm 12): text, inner cards, tables, charts.'],
               ['8', 'Footer', 'Optional. Actions right-aligned, gap 12, above a `gray-200` divider that runs edge to edge.'],
             ],
@@ -342,7 +342,7 @@ document.addEventListener('click', cardFold);`;
           { type: 'p', text: 'A compact card (sm) for one number: label Text sm / Medium `gray-500`, value Display xs / Semibold `gray-900` tabular, then a change badge and a caption in Text xs `gray-500`. The badge colour says good or bad, not up or down: a shorter analysis time is `success` with a down arrow. Money stays in full Rupiah.' },
           { type: 'example', html: metrics },
           { type: 'h3', id: 'type-link', text: 'Link card' },
-          { type: 'p', text: 'A card that opens a page. The title is the link; its hit area stretches over the whole card, so the card has one tab stop and the link text is the accessible name. Hover: `gray-50` fill and `gray-400` border. Focus: `brand-300` border and the 4 px `focus-ring` ring.' },
+          { type: 'p', text: 'A card that opens a page. The title is the link; its hit area stretches over the whole card, so the card has one tab stop and the link text is the accessible name. Hover: `gray-50` fill and `gray-400` border. Focus: `brand-300` border and the 3 px `focus-ring` ring.' },
           { type: 'example', html: links },
         ],
       },
@@ -364,7 +364,7 @@ document.addEventListener('click', cardFold);`;
           { type: 'h3', id: 'state-link', text: 'Link card' },
           { type: 'example', html: stage(['', 'hover', 'focus'].map(s => linkCard(['Default', 'Hover', 'Focused'][['', 'hover', 'focus'].indexOf(s)], 'Laporan klaim per bulan.', s)).join('\n'), 'is-grid'), code: false },
           { type: 'h3', id: 'state-empty', text: 'Empty' },
-          { type: 'p', text: 'A card never shows a blank body. Say what is missing in Text sm `gray-500`, centred, with a 24 px `gray-400` icon and, when the user can fix it, one Secondary gray button.' },
+          { type: 'p', text: 'A card never shows a blank body. Say what is missing in Text sm `gray-500`, centred, with a 24 px `gray-400` icon and, when the user can fix it, one Outline button.' },
           { type: 'example', html: stage(empty) },
           { type: 'p', text: 'Where a chart or table would be, keep its size and draw a dashed `gray-300` frame (radius 8, at least 160 high) with one line of text, so the layout does not jump when data arrives. A page-level empty state adds a title (Text md / Semibold `gray-900`) above the description.' },
           { type: 'example', html: stage(framedPanel), code: false },
@@ -392,7 +392,7 @@ document.addEventListener('click', cardFold);`;
             type: 'dodont',
             items: [
               { kind: 'do', html: stage(card({ size: 'sm', footer: true, actions: false, badge: false, desc: '', body: rows(ROWS.slice(0, 2)) })), text: 'One primary action, in the footer.' },
-              { kind: 'dont', html: stage(`<section class="sb-card" data-size="sm">${rows(ROWS.slice(0, 2))}<footer class="sb-card-foot">${btn('Simpan', 'primary')}${btn('Kirim', 'primary')}${btn('Setujui', 'primary')}</footer></section>`), text: 'Several primary buttons. Pick the one next step; the others are Secondary gray.' },
+              { kind: 'dont', html: stage(`<section class="sb-card" data-size="sm">${rows(ROWS.slice(0, 2))}<footer class="sb-card-foot">${btn('Simpan', 'default')}${btn('Kirim', 'default')}${btn('Setujui', 'default')}</footer></section>`), text: 'Several primary buttons. Pick the one next step; the others are Secondary gray.' },
             ],
           },
         ],

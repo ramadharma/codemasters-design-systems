@@ -202,7 +202,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .anat > [data-pin] { outline: 1px dashed var(--brand-400); outline-offset: 8px; }
 .anat [data-pin] { position: relative; }
 .anat span[data-pin] { display: inline-flex; align-items: center; height: 28px; outline: 1px dashed var(--border-strong); outline-offset: 4px; } /* same height, so top pins line up */
-.anat .sb-btn svg, .anat .sb-social svg { width: 24px; height: 24px; }
+.anat .sb-social svg { width: 24px; height: 24px; }
 .anat .sb-btn-group svg { width: 20px; height: 20px; color: var(--seg-icon); }
 .anat > .sb-card { width: 520px; max-width: 100%; }
 .anat .sb-tabs { overflow: visible; } /* pins sit outside the row */
@@ -555,9 +555,6 @@ p.f-font-glyphs { margin: 0; font: 400 var(--text-lg) var(--font); color: var(--
 .f-grid-frame figcaption { margin-top: 8px; }
 .f-radius { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; }
 .f-radius-tile { display: grid; justify-items: center; gap: 8px; margin: 0; text-align: center; }
-.f-raised { display: flex; flex-wrap: wrap; gap: 16px; }
-.ex-preview:has(> .f-raised) { min-height: 0; padding: 32px; }
-.f-raised-tile { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid var(--border-primary); border-radius: var(--radius-md); font: 600 var(--text-sm) var(--font); color: var(--text-secondary); }
 .f-radius-tile span { width: 64px; height: 64px; border: 2px solid var(--brand-600); background: var(--bg-brand-subtle); }
 .f-dd-stack { display: grid; width: 160px; }
 .f-dd-stack span { height: 24px; border-radius: 4px; background: var(--bg-brand-subtle-hover); }
@@ -676,3 +673,12 @@ kbd svg { width: 12px; height: 12px; }
 .ex-preview.anat:has(> .fb-stage) { padding: 80px 64px; } /* room for the pins on every side */
 .anat .fb-stage :is(.sb-filter, .sb-filter-row) { gap: 48px 12px; } /* exploded: room for the pins between the rows */
 :root[data-theme="dark"] .dd-preview:has(> img[src*="assets/brand/"]) { background: var(--white); } /* colour logo specimens keep their light background */
+
+/* Accordion page: reading width, centred; the filter panel at side-panel width. */
+.acc-stage { width: 100%; max-width: 640px; }
+.acc-stage.is-narrow { max-width: 320px; }
+.ex-preview:has(> .acc-stage) { min-height: 0; padding: 32px; }
+.anat .acc-stage [data-pin] { outline: 1px dashed var(--fg-quaternary); outline-offset: 2px; }
+.ex-preview.anat:has(> .acc-stage) { padding: 80px 96px; } /* room for the pins */
+.anat .acc-stage .sb-acc-item::details-content { overflow: visible; } /* the body's pin sits outside it */
+.f-logo-dl { display: flex; gap: 8px; }

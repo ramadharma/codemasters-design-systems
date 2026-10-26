@@ -10,10 +10,10 @@
          <p class="sb-modal-desc" id="tolak-desc">…</p>
        </div>
      </header>
-     <button class="sb-btn sb-modal-close" type="button" data-hierarchy="tertiary-gray" data-size="sm" data-icon="only" aria-label="Tutup" data-modal-close>…x…</button>
+     <button class="sb-btn sb-modal-close" type="button" data-variant="ghost" data-size="icon-sm" aria-label="Tutup" data-modal-close>…x…</button>
      <footer class="sb-modal-foot">
-       <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-modal-close autofocus>Batal</button>
-       <button class="sb-btn" type="button" data-destructive>Tolak Klaim</button>
+       <button class="sb-btn" type="button" data-variant="outline" data-modal-close autofocus>Batal</button>
+       <button class="sb-btn" type="button" data-variant="destructive">Tolak Klaim</button>
      </footer>
    </dialog>
 

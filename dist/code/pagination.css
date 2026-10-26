@@ -11,7 +11,7 @@
 
 .sb-pagination {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 12px;
-  font: 400 var(--text-md) var(--font); color: var(--text-quaternary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-quaternary);
 }
 .sb-pagination-label { white-space: nowrap; }
 .sb-pagination-size { width: 88px; }

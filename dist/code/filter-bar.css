@@ -21,7 +21,7 @@
      </div>
    </div>
 
-   Wide (600 and up): status and search, then the period and the menus, then the chips.
+   Wide (480 and up): status and search, then the period and the menus, then the chips.
    Narrow: status on its own row, search with a Filter button; the period and the menus move into a bottom sheet
    (the popover). The chips stay on the page. */
 
@@ -30,8 +30,7 @@
 .sb-filter-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .sb-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 
-/* Every control in the bar is 40 high, the height of Button md and Button group. */
-.sb-filter .sb-input { height: 40px; }
+/* Every control in the bar is 32 high, like every Button, field and Button group. */
 .sb-filter-status { flex: none; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
 .sb-filter-status > button > .sb-badge { font-variant-numeric: tabular-nums; }
 .sb-filter-status > [aria-checked="true"] > .sb-badge { --bdg-bg: var(--bg-primary); } /* the pressed segment is gray-100 too */
@@ -55,10 +54,10 @@
 .sb-filter-chip-list { display: contents; margin: 0; padding: 0; list-style: none; }
 .sb-filter-chip-list > li { display: flex; }
 
-@container (min-width: 800px) {
+@container (min-width: 640px) {
   .sb-filter-search { flex-grow: 0; flex-basis: 320px; margin-inline-start: auto; } /* room for both: 320, right-aligned */
 }
-@container (max-width: 599px) {
+@container (max-width: 479px) {
   .sb-filter-search { min-width: 0; }
   .sb-filter-more { display: inline-flex; }
   .sb-filter-sheet:not(:popover-open) { display: none; }

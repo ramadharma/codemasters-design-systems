@@ -16,9 +16,9 @@
 
 .sb-btn-group {
   box-sizing: border-box;
-  display: inline-flex; height: 40px;
+  display: inline-flex; height: 32px;
   background: var(--bg-primary);
-  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
+  border: 1px solid var(--border-control); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   overflow: hidden; /* only the outer corners are rounded */
 }
@@ -26,16 +26,16 @@
   --seg-icon: var(--text-quaternary);
   box-sizing: border-box;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  height: 100%; margin: 0; padding: 0 16px;
-  font: 600 var(--text-sm) var(--font); white-space: nowrap;
-  color: var(--text-secondary); background: var(--raised-sheen-light) var(--bg-primary);
-  border: 0; border-inline-end: 1px solid var(--border-primary); border-radius: 0;
+  height: 100%; margin: 0; padding: 0 10px;
+  font: 500 var(--text-sm) var(--font); white-space: nowrap;
+  color: var(--text-secondary); background: var(--bg-primary);
+  border: 0; border-inline-end: 1px solid var(--border-control); border-radius: 0;
   cursor: pointer;
   transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-btn-group > button:last-child { border-inline-end: 0; }
-.sb-btn-group > button > svg { width: 20px; height: 20px; flex: none; color: var(--seg-icon); }
-.sb-btn-group[data-icon="only"] > button { padding: 0 12px; }
+.sb-btn-group > button > svg { width: 16px; height: 16px; flex: none; color: var(--seg-icon); }
+.sb-btn-group[data-icon="only"] > button { padding: 0 8px; }
 .sb-btn-group-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
 
 /* States (fill / text / icon). Order matters: Current overrides Hover and Focused. Disabled: the default look at 50 % opacity. */
@@ -47,7 +47,7 @@
   outline: 2px solid var(--brand-600); outline-offset: -2px; /* inside, because the group clips */
 }
 .sb-btn-group > [aria-checked="true"], .sb-btn-group > [aria-pressed="true"] {
-  --seg-icon: var(--text-primary); color: var(--text-primary); background: var(--bg-tertiary); box-shadow: var(--pressed-inset); /* pressed in, against the raised segments */
+  --seg-icon: var(--text-primary); color: var(--text-primary); background: var(--bg-tertiary); /* the chosen segment: a gray-100 fill */
 }
 .sb-btn-group > button:disabled { opacity: .5; cursor: not-allowed; }
 

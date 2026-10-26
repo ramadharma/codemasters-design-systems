@@ -430,6 +430,8 @@ Components with their own focus style replace it:
 
 ### Buttons
 
+> **Changed 2026-10-26.** Buttons, fields, dropdowns and menus now follow shadcn/ui (base-nova): variants `default · outline · secondary · ghost · destructive · link` (`data-variant`), sizes `xs 24 · sm 28 · default 32 · lg 36` plus `icon-*` (`data-size`), fields 32 high, 3 px focus ring, pressed = down 1 px, soft Destructive. The dashboard's Button page is the live spec; the tables below are the earlier Figma spec, kept for the mapping to the app.
+
 Source: Figma **Shared components → Buttons**: Button
 ([node 1038-34411](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1038-34411)),
 Social button ([node 1256-130788](https://www.figma.com/design/MKPOHzJT5mlZhE7zq43XNG/Sembuh.AI---Design-Systems?node-id=1256-130788)),
@@ -479,15 +481,15 @@ on its radius-8 box. Link has no box, so it uses the global focus outline (§4.8
 | Tertiary (color, gray) | text `error-700` | `error-50` fill (gray: text `error-800`) | text `error-300` | `0 0 0 4px error-100` |
 | Link (color, gray) | text `error-700` | text `error-800` | text `error-300` | outline (§4.8) |
 
-**Sizes** (radius 8 for all)
+**Sizes** (radius 10 for all)
 
 | Size | Height | Padding (y x) | Icon-only | Text style | Icon | Icon–text gap |
 |---|---|---|---|---|---|---|
-| `sm` | 36 | `8 14` | 36 × 36, padding 8 | Text sm / Semibold | 20 | 8 |
-| `md` | 40 | `10 16` | 40 × 40, padding 10 | Text sm / Semibold | 20 | 8 |
-| `lg` | 44 | `10 18` | 44 × 44, padding 12 | Text md / Semibold | 20 | 8 |
-| `xl` | 48 | `12 20` | 48 × 48, padding 14 | Text md / Semibold | 20 | 8 |
-| `2xl` | 60 | `16 28` | 60 × 60, padding 18 | Text lg / Semibold | 24 | 12 |
+| `sm` | 36 | `8 14` | 36 × 36, padding 8 | Text sm / Medium | 20 | 8 |
+| `md` | 40 | `10 16` | 40 × 40, padding 10 | Text sm / Medium | 20 | 8 |
+| `lg` | 44 | `10 18` | 44 × 44, padding 12 | Text md / Medium | 20 | 8 |
+| `xl` | 48 | `12 20` | 48 × 48, padding 14 | Text md / Medium | 20 | 8 |
+| `2xl` | 60 | `16 28` | 60 × 60, padding 18 | Text lg / Medium | 24 | 12 |
 
 - Heights include the 1 px border: use `box-sizing: border-box`.
 - `Icon=Dot` puts a 10 px status dot before the label (same gap as an icon).

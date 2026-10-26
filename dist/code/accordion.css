@@ -1,0 +1,56 @@
+/* Accordion, Codemasters Design System
+   Needs tokens.css; badge.css for a meta badge. No script: <details> opens and closes itself, each item on its own.
+
+   <div class="sb-accordion">
+     <details class="sb-acc-item" open>
+       <summary class="sb-acc-head">
+         <span class="sb-acc-title">Berapa lama klaim diproses?</span>
+         <span class="sb-acc-meta">…optional: a Badge or a short value…</span>
+         <svg class="sb-acc-chevron" aria-hidden="true">…chevron-down…</svg>
+       </summary>
+       <div class="sb-acc-body">…</div>
+     </details>
+     …
+   </div>
+
+   data-size="sm" on .sb-accordion   compact rows (filter groups, side panels); omit for md
+   open on a <details>                starts open. Any number can be open at once. */
+
+.sb-accordion {
+  --acc-py: 20px; --acc-type: var(--text-md); --acc-gap: 8px;
+  display: grid; min-width: 0;
+  font-family: var(--font);
+  interpolate-size: allow-keywords; /* lets the body animate to its own height where supported */
+}
+.sb-accordion[data-size="sm"] { --acc-py: 12px; --acc-type: var(--text-sm); --acc-gap: 4px; }
+
+/* Items are divided by a gray-200 line; no line above the first or below the last. */
+.sb-acc-item + .sb-acc-item { border-top: 1px solid var(--border-secondary); }
+
+/* Head: the whole row is the toggle. Title Semibold gray-900, meta and chevron at the end. */
+.sb-acc-head {
+  display: flex; align-items: center; gap: 12px;
+  padding-block: var(--acc-py); border-radius: var(--radius-sm);
+  font: 600 var(--acc-type) var(--font); color: var(--text-primary);
+  list-style: none; cursor: pointer;
+}
+.sb-acc-head::-webkit-details-marker { display: none; }
+.sb-acc-head:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.sb-acc-title { flex: 1; min-width: 0; text-wrap: pretty; }
+.sb-acc-meta { display: inline-flex; align-items: center; gap: 8px; flex: none; font-weight: 400; font-size: var(--text-sm); color: var(--text-quaternary); }
+.sb-acc-chevron { width: 20px; height: 20px; flex: none; color: var(--fg-quaternary); transition-property: rotate, color; transition-duration: 150ms; transition-timing-function: var(--ease); }
+.sb-acc-head:hover .sb-acc-chevron { color: var(--text-secondary); }
+.sb-acc-item[open] > .sb-acc-head .sb-acc-chevron { rotate: 180deg; }
+
+/* Body: Regular gray-600, under the title; the row's bottom padding continues below it. */
+.sb-acc-body { padding-bottom: var(--acc-py); margin-top: calc(var(--acc-gap) - var(--acc-py)); font: 400 var(--acc-type) var(--font); color: var(--text-tertiary); text-wrap: pretty; }
+.sb-acc-body > * { margin: 0; }
+.sb-acc-body > * + * { margin-top: 12px; }
+
+/* Open and close: the height eases in browsers that animate <details>; elsewhere it snaps. */
+.sb-acc-item::details-content { block-size: 0; overflow: clip; transition: block-size 200ms var(--ease), content-visibility 200ms allow-discrete; }
+.sb-acc-item[open]::details-content { block-size: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-acc-chevron, .sb-acc-item::details-content { transition: none; }
+}

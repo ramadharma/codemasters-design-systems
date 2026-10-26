@@ -167,8 +167,8 @@ Selectable cards: a list of bordered cards where the whole card is the control. 
       <label class="sb-cg-title" for="cg-pay-0">Kartu berakhiran 1234</label>
       <p class="sb-cg-desc" id="cg-pay-0-desc">Berlaku s.d. 06/2027</p>
       <div class="sb-cg-actions">
-        <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="sm">Jadikan utama</button>
-        <button class="sb-btn" type="button" data-hierarchy="link-color" data-size="sm">Ubah</button>
+        <button class="sb-btn" type="button" data-variant="link" data-size="sm">Jadikan utama</button>
+        <button class="sb-btn" type="button" data-variant="link" data-size="sm">Ubah</button>
       </div>
     </div>
     <input class="sb-check-input" type="radio" id="cg-pay-0" data-variant="circle" name="cg-pay" aria-describedby="cg-pay-0-desc" checked>
@@ -179,8 +179,8 @@ Selectable cards: a list of bordered cards where the whole card is the control. 
       <label class="sb-cg-title" for="cg-pay-1">Kartu berakhiran 5678</label>
       <p class="sb-cg-desc" id="cg-pay-1-desc">Berlaku s.d. 11/2026</p>
       <div class="sb-cg-actions">
-        <button class="sb-btn" type="button" data-hierarchy="link-gray" data-size="sm">Jadikan utama</button>
-        <button class="sb-btn" type="button" data-hierarchy="link-color" data-size="sm">Ubah</button>
+        <button class="sb-btn" type="button" data-variant="link" data-size="sm">Jadikan utama</button>
+        <button class="sb-btn" type="button" data-variant="link" data-size="sm">Ubah</button>
       </div>
     </div>
     <input class="sb-check-input" type="radio" id="cg-pay-1" data-variant="circle" name="cg-pay" aria-describedby="cg-pay-1-desc">
@@ -256,13 +256,13 @@ Icon card titles are Text md in both sizes; `md` raises the price from Display s
 | --- | --- | --- |
 | Default | `white`, `gray-200` border | `brand-50` fill, `brand-300` border |
 | Hover | `white`, `brand-300` border | `brand-50` fill, `brand-600` border |
-| Focused | `white`, `brand-300` border + 4 px `focus-ring` ring | `brand-50`, `brand-300` border + 4 px `focus-ring` ring |
+| Focused | `white`, `brand-300` border + 3 px `focus-ring` ring | `brand-50`, `brand-300` border + 3 px `focus-ring` ring |
 | Disabled | Default at 50 % opacity | Default at 50 % opacity |
 
 - Only the card shows the focus ring; the control inside keeps its Default or checked look.
 - Selected text: title `brand-800`, subtitle and description `brand-600`.
 - Icon card: the header takes the fill and border, the body stays white with a `gray-200` border.
-- Payment icon, selected: "Set as default" (Link gray) turns `brand-600`.
+- Payment icon, selected: "Set as default" (Link) turns `brand-600`.
 
 ## Do and don't
 
@@ -368,7 +368,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 .sb-cg-item:has(.sb-check-input:checked) { --cg-bg: var(--bg-brand-subtle); --cg-bd: var(--border-brand); --cg-title: var(--text-brand-strong); --cg-text: var(--fg-brand); }
 .sb-cg-item:not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--border-brand); }
 .sb-cg-item:has(.sb-check-input:checked):not(:has(:disabled)):is(:hover, [data-state="hover"]) { --cg-bd: var(--brand-600); }
-.sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--border-brand); box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-cg-item:is(:has(.sb-check-input:focus-visible), [data-state="focus"]) { --cg-bd: var(--border-brand); box-shadow: 0 0 0 3px var(--focus-ring); }
 .sb-cg-item:has(.sb-check-input:disabled) { cursor: not-allowed; } /* 50 % opacity comes from .sb-check */
 
 /* Only the card shows focus; the control keeps its Default / checked look. */
@@ -396,7 +396,7 @@ Load `tokens.css`, `checkbox.css` and `checkbox-group.css`; add `avatar.css` for
 
 /* Payment icon: text links sit above the stretched label, so they never toggle the card. */
 .sb-cg-actions { position: relative; z-index: 2; display: flex; gap: 12px; margin-top: 8px; }
-.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-hierarchy="link-gray"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
+.sb-cg-item:has(.sb-check-input:checked) .sb-btn[data-variant="link"] { --btn-fg: var(--fg-brand); --btn-fg-hover: var(--text-brand); }
 
 /* Icon card: the header carries the selection colours, the body stays white. */
 .sb-cg-item[data-type="card"] { flex-direction: column; align-items: stretch; gap: 0; padding: 0; background: var(--bg-primary); border-color: var(--border-secondary); }

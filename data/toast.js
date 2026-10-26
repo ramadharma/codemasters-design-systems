@@ -238,7 +238,7 @@ window.toast = (${installToast.toString().replace(/^  /gm, '')})(${JSON.stringif
   const stage = html => `<div class="toast-stage">\n${html}\n</div>`;
 
   // A trigger button carries its call as JSON; one listener runs it on DS.toast.
-  const fire = (label, call) => `<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm" data-toast='${esc(JSON.stringify(call))}'>${esc(label)}</button>`;
+  const fire = (label, call) => `<button class="sb-btn" type="button" data-variant="outline" data-size="sm" data-toast='${esc(JSON.stringify(call))}'>${esc(label)}</button>`;
   function runToast(e) {
     const btn = e.target.closest?.('[data-toast]');
     if (!btn || !DS.toast) return;

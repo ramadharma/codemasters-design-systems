@@ -29,7 +29,7 @@
 .sb-dp-toggle > svg { width: 20px; height: 20px; }
 .sb-dp-toggle:is(:hover, [aria-expanded="true"]) { color: var(--text-secondary); }
 .sb-dp-toggle:focus-visible { outline: 2px solid var(--brand-600); outline-offset: -2px; }
-.sb-dp:has(.sb-dp-toggle[aria-expanded="true"]) .sb-input { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-dp:has(.sb-dp-toggle[aria-expanded="true"]) .sb-input { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
 
 /* Panel: opens 8 below the field, white, radius 12, shadow-lg. Months side by side with a divider. */
 .sb-dp-panel {

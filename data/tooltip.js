@@ -123,7 +123,7 @@ ${ARROWS.map(([k, l]) => `<figure class="tip-cell">${help({ open: true, arrow: k
   const iconButton = help({
     id: 'tb-dl',
     title: 'Unduh laporan',
-    trigger: tid => `<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" data-icon="only" aria-label="Unduh laporan" aria-describedby="${tid}">${icon('download')}</button>`,
+    trigger: tid => `<button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="Unduh laporan" aria-describedby="${tid}">${icon('download')}</button>`,
   });
 
   const labelRow = `<div class="field-stage">

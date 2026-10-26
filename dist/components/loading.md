@@ -121,11 +121,11 @@ Outside a button, a spinner always says what is loading. Inline for small places
 
 ### On a solid fill
 
-The spinner takes the text colour, so on a Primary button or a dark surface it turns white with no extra class. See Button → Loading.
+The spinner takes the text colour, so on a Default button or a dark surface it turns white with no extra class. See Button → Loading.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Mengirim…</button>
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Menyimpan…</button>
+<button class="sb-btn" type="button" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Mengirim…</button>
+<button class="sb-btn" type="button" data-variant="outline" aria-busy="true"><span class="sb-spinner" aria-hidden="true"></span>Menyimpan…</button>
 ```
 
 ## Which loading state

@@ -100,7 +100,7 @@ Only an avatar that is a button or a link (the account menu) has states. A stati
 | State | Look |
 | --- | --- |
 | Hover | 4 px `gray-100` ring outside the circle |
-| Focused | 4 px `focus-ring` ring outside the circle (`:focus-visible`) |
+| Focused | 3 px `focus-ring` ring outside the circle (`:focus-visible`) |
 
 ## Avatar group
 
@@ -316,7 +316,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 /* States: only for an avatar that is a button or link (account menu). A 4 px ring outside the circle. */
 :is(button, a).sb-avatar { cursor: pointer; transition: box-shadow 150ms var(--ease); }
 :is(button, a).sb-avatar:is(:hover, [data-state="hover"]) { box-shadow: 0 0 0 4px var(--bg-tertiary); }
-:is(button, a).sb-avatar:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+:is(button, a).sb-avatar:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* ---- Avatar group: overlapping avatars with a 1.5 px white ring, then "+N", then the add button 8 apart. */
 .sb-avatar-group { --av-overlap: -12px; display: inline-flex; align-items: center; gap: 8px; }
@@ -329,14 +329,14 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 /* Add: white, dashed gray-300 border, gray-400 plus icon at half the box. */
 .sb-avatar-add {
   display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: var(--av, 40px); height: var(--av, 40px);
-  margin: 0; padding: 0; border: 1px dashed var(--border-primary); border-radius: var(--radius-full); background: var(--raised-sheen-light) var(--bg-primary); color: var(--fg-quaternary); cursor: pointer;
+  margin: 0; padding: 0; border: 1px dashed var(--border-primary); border-radius: var(--radius-full); background: var(--bg-primary); color: var(--fg-quaternary); cursor: pointer;
   transition-property: color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-avatar-group[data-size="xs"] .sb-avatar-add { --av: 24px; }
 .sb-avatar-group[data-size="sm"] .sb-avatar-add { --av: 32px; }
 .sb-avatar-add > svg { width: calc(var(--av, 40px) / 2); height: calc(var(--av, 40px) / 2); }
 .sb-avatar-add:is(:hover, [data-state="hover"]) { border-color: var(--border-strong); color: var(--text-quaternary); }
-.sb-avatar-add:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-avatar-add:is(:focus-visible, [data-state="focus"]) { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* ---- Avatar label group: avatar + name + secondary line. Long text truncates (show it in a tooltip). */
 .sb-avatar-label { display: inline-flex; align-items: center; gap: 12px; max-width: 100%; margin: 0; padding: 0; border: 0; background: none; text-align: start; text-decoration: none; }
@@ -354,7 +354,7 @@ Load `tokens.css` and `avatar.css`. Avatar groups with "+N" also use `tooltip.cs
 :is(button, a).sb-avatar-label { cursor: pointer; }
 :is(button, a).sb-avatar-label:focus-visible { outline: none; }
 :is(button, a).sb-avatar-label:is(:hover, [data-state="hover"]) .sb-avatar { box-shadow: 0 0 0 4px var(--bg-tertiary); }
-:is(button, a).sb-avatar-label:is(:focus-visible, [data-state="focus"]) .sb-avatar { box-shadow: 0 0 0 4px var(--focus-ring); }
+:is(button, a).sb-avatar-label:is(:focus-visible, [data-state="focus"]) .sb-avatar { box-shadow: 0 0 0 3px var(--focus-ring); }
 :is(button, a).sb-avatar-label:is(:hover, :focus-visible, [data-state]) .sb-avatar-name { color: var(--text-primary); }
 .sb-avatar-label .sb-avatar { transition: box-shadow 150ms var(--ease); }
 
@@ -395,7 +395,6 @@ function initials(name) {
   --border-primary: var(--gray-300);
   --border-strong: var(--gray-400);
   --radius-full: 9999px;
-  --raised-sheen-light: linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04));
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Timeless Sans', sans-serif;

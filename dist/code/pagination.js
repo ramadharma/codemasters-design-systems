@@ -8,7 +8,7 @@ function pgRender(nav) {
   const num = n => n.toLocaleString('id-ID');
   const sizes = (s.sizes || '5,10,25,50').split(',').map(Number);
   const opts = sizes.map((n, i) => `<div class="sb-dd-opt" id="${id}-o${i}" role="option" aria-selected="${n === size}" data-value="${n}"><span class="sb-dd-main"><span class="sb-dd-label">${n}</span></span>${svg('M20 6 9 17l-5-5').replace('<svg ', '<svg class="sb-dd-check" ')}</div>`).join('');
-  const step = (to, label, d) => `<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="${label}" data-go="${to}"${to < 1 || to > pages ? ' disabled' : ''}>${svg(d)}</button>`;
+  const step = (to, label, d) => `<button class="sb-btn" type="button" data-variant="outline" data-size="icon" aria-label="${label}" data-go="${to}"${to < 1 || to > pages ? ' disabled' : ''}>${svg(d)}</button>`;
   const first = total ? (page - 1) * size + 1 : 0, last = Math.min(total, page * size);
   nav.innerHTML = `<span class="sb-pagination-label" id="${id}-l">Baris per halaman</span>
 <div class="sb-dd sb-pagination-size">

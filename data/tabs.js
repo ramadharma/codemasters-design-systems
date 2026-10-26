@@ -83,7 +83,7 @@ document.addEventListener('keydown', tabsKeydown);`;
   border: 1px solid var(--border-primary); border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .sb-tabs[data-type="folder"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { background: var(--bg-brand-subtle-hover); }
-.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--raised-sheen) var(--brand-600); border-color: var(--brand-700); box-shadow: var(--raised-highlight); }
+.sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] { color: var(--white); background: var(--brand-600); border-color: var(--brand-600); }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"]:is(:focus-visible, [data-state="focus"]) { outline-color: var(--white); outline-offset: -4px; }
 .sb-tabs[data-type="folder"] > .sb-tab[aria-selected="true"] .sb-badge { --bdg-bg: var(--bg-primary); }
 
@@ -94,16 +94,16 @@ document.addEventListener('keydown', tabsKeydown);`;
 .sb-tabs[data-type="underline"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--text-secondary); box-shadow: inset 0 -2px var(--border-primary); }
 .sb-tabs[data-type="underline"] > .sb-tab[aria-selected="true"] { color: var(--text-brand); box-shadow: inset 0 -2px var(--brand-600); }
 
-/* Segmented: 2 to 4 short views of one card. 40 high in all, like Button md; radius 8 = 4 inner + 4 padding. */
+/* Segmented: 2 to 4 short views of one card. 32 high in all, like a Button; radius 10 like every control, 7 inside (10 - 3 padding). */
 .sb-tabs[data-type="segmented"] {
-  --tab-h: 30px; --tab-px: 12px;
-  display: inline-flex; max-width: 100%; gap: 4px; padding: 4px;
-  background: var(--bg-secondary); border: 1px solid var(--border-secondary); border-radius: var(--radius-md);
+  --tab-h: 24px; --tab-px: 8px;
+  display: inline-flex; max-width: 100%; gap: 2px; padding: 3px;
+  background: var(--bg-secondary); border: 1px solid var(--border-secondary); border-radius: var(--radius-control);
 }
-.sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 26px; --tab-px: 10px; }
-.sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: var(--radius-sm); }
+.sb-tabs[data-type="segmented"][data-size="sm"] { --tab-h: 20px; --tab-px: 6px; }
+.sb-tabs[data-type="segmented"] > .sb-tab { border: 1px solid transparent; border-radius: calc(var(--radius-control) - 3px); }
 .sb-tabs[data-type="segmented"] > .sb-tab:is(:hover, [data-state="hover"]):not(:disabled, [aria-selected="true"]) { color: var(--text-secondary); }
-.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--text-primary); background: var(--raised-sheen-light) var(--bg-primary); border-color: var(--border-secondary); box-shadow: var(--shadow-xs); }
+.sb-tabs[data-type="segmented"] > .sb-tab[aria-selected="true"] { color: var(--text-primary); background: var(--bg-primary); border-color: var(--border-secondary); box-shadow: var(--shadow-xs); }
 
 /* Vertical: settings pages and long section lists. The sidebar item's shape (radius 8) on a light surface. */
 .sb-tabs[data-type="vertical"] { --tab-h: 40px; --tab-px: 12px; flex-direction: column; gap: 4px; overflow: visible; }
@@ -243,7 +243,7 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
             rows: [
               ['1', 'Tab list', 'One row, gap 8, on a 1 px `gray-300` baseline. Scrolls sideways when the tabs do not fit.'],
               ['2', 'Tab', '52 high (sm 44), padding `0 24` (sm `0 16`), radius `8 8 0 0`, 1 px `gray-300` border, `brand-50` fill, `brand-700` text. Hover: `brand-100` fill.'],
-              ['3', 'Selected tab', 'Raised: `brand-600` fill with `raised-sheen` and `raised-highlight`, `brand-700` border, `white` text and icon. Its bottom edge covers the baseline.'],
+              ['3', 'Selected tab', '`brand-600` fill and border, `white` text and icon. Its bottom edge covers the baseline.'],
               ['4', 'Icon', 'Optional. 20 px, gap 8, the text colour. Every tab in a row has one, or none has.'],
               ['5', 'Label', 'Text sm / Medium, Title Case, never wraps.'],
               ['6', 'Badge', 'Optional count, Badge sm. Error for counts that need action (FWA findings), Gray for plain totals. `white` fill on the selected Folder tab.'],
@@ -291,7 +291,7 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
           { type: 'h3', id: 'type-segmented', text: 'Segmented' },
           {
             type: 'p',
-            text: 'A `gray-50` track with a `gray-200` border, radius 8, padding 4. The selected tab is `white` with a `gray-200` border and `shadow-xs`, radius 4, so the corners stay concentric. Same height as Button md.',
+            text: 'A `gray-50` track with a `gray-200` border, radius 10, padding 3, 32 high. The selected tab is `white` with a `gray-200` border and `shadow-xs`, radius 7, so the corners stay concentric. Same height as Button md.',
           },
           { type: 'example', html: example({ type: 'segmented' }) },
           {
@@ -320,7 +320,7 @@ ${TYPES.map(([t, l]) => `<span class="mx">${l}</span>${STATES.map(([s]) => cell(
             type: 'table',
             head: ['Type', 'Default (fill / text)', 'Hover', 'Selected', 'Disabled'],
             rows: [
-              ['Folder', '`brand-50` / `brand-700`, `gray-300` border', '`brand-100` fill', '`brand-600` raised / `white`, `brand-700` border', 'Default at 50 % opacity'],
+              ['Folder', '`brand-50` / `brand-700`, `gray-300` border', '`brand-100` fill', '`brand-600` / `white`, `brand-600` border', 'Default at 50 % opacity'],
               ['Underline', 'none / `gray-500`', '`gray-700`, 2 px `gray-300` line', '`brand-700`, 2 px `brand-600` line', 'Default at 50 % opacity'],
               ['Segmented', 'none / `gray-500`', '`gray-700`', '`white` / `gray-800`, `gray-200` border, `shadow-xs`', 'Default at 50 % opacity'],
               ['Vertical', 'none / `gray-700`, icon `gray-500`', '`gray-50` / `gray-800`', '`brand-50` / `brand-700`', 'Default at 50 % opacity'],

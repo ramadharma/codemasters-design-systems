@@ -24,10 +24,10 @@ Type to find people or values and pick one or many. Picks show as chips, results
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Field | Input field box: `gray-300` border, radius 8, `shadow-xs`, padding `9 14`; 44 high for one line and a line taller for each wrap. Leading 20 px icon (`user` for people), trailing chevron that turns when open. |
+| 1 | Field | Input field box: `gray-200` border, radius 10, `shadow-xs`, padding `3 10`; 32 high for one line and a line taller for each wrap. Leading 16 px icon (`user` for people), trailing chevron that turns when open. |
 | 2 | Chip | Badge md Gray with an × that removes the pick ("Hapus Analis D"). Chips and the text sit 4 apart and wrap. |
 | 3 | Values | Chips and the search text on shared lines. The text is Text md, at least 64 wide before it wraps under the chips. The placeholder ("Cari nama atau email") hides once there are chips. |
-| 4 | Option | An Input dropdown option: 24 px initials avatar, name in Text md / Medium, email in `gray-500`. 44 high, radius 8; hover and active `gray-50`. |
+| 4 | Option | An Input dropdown option: 20 px initials avatar, name in Text sm / Regular, email in `gray-500`. 32 high, radius 8; hover and active `gray-50`. |
 | 5 | Picked option | `gray-50` fill and a 20 px `brand-600` check. In Multiple the list stays open, so picks can be undone in place. |
 
 ## Properties
@@ -244,17 +244,16 @@ Load `tokens.css`, `input-field.css`, `input-dropdown.css` and `badge.css`, then
 
 .sb-cb { position: relative; }
 
-/* Field: Input field's box. It grows a line at a time as chips wrap; 9 + 24 + 9 + borders = 44 for one line. */
+/* Field: Input field's box. It grows a line at a time as chips wrap; 3 + 24 + 3 + borders = 32 for one line. */
 .sb-cb-field {
   box-sizing: border-box; display: flex; align-items: center; gap: 8px;
-  min-height: 44px; padding: 9px 14px;
-  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  min-height: 32px; padding: 3px 10px;
+  background: var(--bg-primary); border: 1px solid var(--border-control); border-radius: var(--radius-control); box-shadow: var(--shadow-xs);
   cursor: text;
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-cb-field > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
-.sb-cb-field:hover:not(:focus-within) { border-color: var(--border-strong); }
-.sb-cb-field:focus-within, .sb-cb:has([aria-expanded="true"]) .sb-cb-field { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-cb-field > svg { width: 16px; height: 16px; flex: none; color: var(--text-quaternary); }
+.sb-cb-field:focus-within, .sb-cb:has([aria-expanded="true"]) .sb-cb-field { border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
 .sb-cb:has(input:disabled) .sb-cb-field { opacity: .5; cursor: not-allowed; }
 .sb-cb-chevron { transition: rotate 200ms var(--ease); }
 .sb-cb:has([aria-expanded="true"]) .sb-cb-chevron { rotate: 180deg; }
@@ -265,7 +264,7 @@ Load `tokens.css`, `input-field.css`, `input-dropdown.css` and `badge.css`, then
 .sb-cb-chip { display: flex; }
 .sb-cb-values input {
   flex: 1; width: 0; min-width: 64px; height: 24px; margin: 0; padding: 0; border: 0; outline: 0; background: none; /* 64: room to type beside the chips before wrapping */
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
 }
 .sb-cb-values input::placeholder { color: var(--text-quaternary); opacity: 1; }
 .sb-cb-chips:not(:empty) + input::placeholder { color: transparent; } /* chips already say what is picked */
@@ -285,6 +284,10 @@ Load `tokens.css`, `input-field.css`, `input-dropdown.css` and `badge.css`, then
 @media (prefers-reduced-motion: reduce) {
   .sb-cb-field, .sb-cb-chevron { transition: none; }
   .sb-cb-spin { animation: none; }
+}
+/* Phones: 16 px text in fields, so iOS does not zoom in on focus (shadcn: text-base md:text-sm). */
+@media (max-width: 767px) {
+  .sb-cb-values input { font-size: 16px; }
 }
 ```
 
@@ -451,15 +454,13 @@ document.addEventListener('keydown', cbKeydown);
   --text-brand: var(--brand-700);
   --text-error: var(--error-700);
   --fg-brand: var(--brand-600);
-  --border-primary: var(--gray-300);
-  --border-strong: var(--gray-400);
+  --border-control: var(--gray-200);
   --border-brand: var(--brand-300);
-  --radius-md: 8px;
+  --radius-control: 10px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Timeless Sans', sans-serif;
-  --text-md: 16px/24px;
   --text-sm: 14px/20px;
 }
 ```

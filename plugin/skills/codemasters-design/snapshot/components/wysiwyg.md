@@ -25,9 +25,9 @@ Rich-text formatting for long text a user writes or edits: the AI summary ("Edit
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Toolbar | Fixed above the editor area. Desktop: row, gap 12. Mobile: column, gap 8. |
-| 2 | Text-style dropdown | 240 × 44 (full width on mobile), "Normal text", Text md / Medium `gray-900`, 20 px chevron. |
+| 2 | Text-style dropdown | 240 × 32 (full width on mobile), "Normal text", Text sm / Medium `gray-900`, 16 px chevron. |
 | 3 | Editor icon | 32 × 32 (28 on mobile), 20 px glyph, radius 8. Inactive `gray-400`; active `brand-100` fill, `brand-700` glyph. |
-| 4 | Editor area | Same box as Textarea input field: min height 128, padding `10 14`, 1 px `gray-300` border, radius 8, `shadow-xs`. |
+| 4 | Editor area | Same box as Textarea input field: min height 128, padding `8 10`, 1 px `gray-200` border, radius 10, `shadow-xs`. |
 
 ## Properties
 
@@ -238,13 +238,13 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 .sb-wys-toolbar { display: flex; align-items: center; gap: 12px; }
 .sb-wys-toolbar[data-breakpoint="mobile"] { flex-direction: column; align-items: stretch; gap: 8px; }
 .sb-wys-select {
-  box-sizing: border-box; width: 240px; height: 44px; margin: 0; padding: 0 40px 0 14px;
-  font: 500 var(--text-md) var(--font); color: var(--text-primary);
-  background: var(--bg-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 20px;
-  border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  box-sizing: border-box; width: 240px; height: 32px; margin: 0; padding: 0 32px 0 10px;
+  font: 500 var(--text-sm) var(--font); color: var(--text-primary);
+  background: var(--bg-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center / 16px;
+  border: 1px solid var(--border-control); border-radius: var(--radius-control); box-shadow: var(--shadow-xs);
   appearance: none; cursor: pointer;
 }
-.sb-wys-select:focus-visible { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-wys-select:focus-visible { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-select { width: 100%; }
 .sb-wys-icons { display: flex; flex-wrap: wrap; gap: 4px; }
 .sb-wys-toolbar[data-breakpoint="mobile"] .sb-wys-icons { gap: 2px; } /* 28 px icons, gap 2 */
@@ -295,15 +295,15 @@ Load `tokens.css` and `wysiwyg.css`. The reference script below makes this page 
 
 /* Editor area: same box as Textarea input field. */
 .sb-wys-area {
-  box-sizing: border-box; min-height: 128px; padding: 10px 14px;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
-  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  box-sizing: border-box; min-height: 128px; padding: 8px 10px;
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
+  background: var(--bg-primary); border: 1px solid var(--border-control); border-radius: var(--radius-control); box-shadow: var(--shadow-xs);
   overflow-wrap: anywhere;
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-wys-area:focus { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring); }
+.sb-wys-area:focus { outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring); }
 .sb-wys-area[aria-invalid="true"] { border-color: var(--border-error); }
-.sb-wys-area[aria-invalid="true"]:focus { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-error-subtle-hover); }
+.sb-wys-area[aria-invalid="true"]:focus { box-shadow: var(--shadow-xs), 0 0 0 3px var(--bg-error-subtle-hover); }
 /* Content styles map to the type scale. */
 .sb-wys-area > * { margin: 0; }
 .sb-wys-area > * + * { margin-top: 8px; }
@@ -410,9 +410,11 @@ document.addEventListener('selectionchange', wysSelection);
   --text-brand: var(--brand-700);
   --fg-quaternary: var(--gray-400);
   --border-primary: var(--gray-300);
+  --border-control: var(--gray-200);
   --border-brand: var(--brand-300);
   --border-error: var(--error-300);
   --radius-md: 8px;
+  --radius-control: 10px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
   --shadow-lg: 0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
@@ -420,6 +422,7 @@ document.addEventListener('selectionchange', wysSelection);
   --font: 'Timeless Sans', sans-serif;
   --text-lg: 18px/28px;
   --text-md: 16px/24px;
+  --text-sm: 14px/20px;
   --text-xs: 12px/18px;
 }
 ```

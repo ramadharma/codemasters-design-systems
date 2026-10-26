@@ -49,13 +49,13 @@ document.addEventListener('input', updateCounter);`;
 
 .sb-textarea { position: relative; display: grid; }
 .sb-textarea textarea {
-  --ta-border: var(--border-primary); --ta-focus: var(--border-brand); --ta-ring: var(--focus-ring);
+  --ta-border: var(--border-control); --ta-focus: var(--border-brand); --ta-ring: var(--focus-ring);
   box-sizing: border-box; width: 100%; height: 128px; min-height: 128px; margin: 0;
-  padding: 10px 14px; /* control padding exception, same as Input field */
+  padding: 8px 10px; /* shadcn textarea: py-2 px-2.5 */
   resize: vertical;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary);
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary);
   background: var(--bg-primary);
-  border: 1px solid var(--ta-border); border-radius: var(--radius-md);
+  border: 1px solid var(--ta-border); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
@@ -66,7 +66,7 @@ document.addEventListener('input', updateCounter);`;
 /* States */
 .sb-textarea textarea:hover:not(:focus, :disabled, [aria-invalid="true"]) { border-color: var(--border-strong); }
 .sb-textarea textarea:focus, .sb-textarea[data-state="focus"] textarea {
-  outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 4px var(--ta-ring);
+  outline: none; border-color: var(--ta-focus); box-shadow: var(--shadow-xs), 0 0 0 3px var(--ta-ring);
 }
 .sb-textarea textarea:disabled { opacity: .5; cursor: not-allowed; resize: none; } /* the default look at 50 % opacity */
 .sb-textarea textarea[aria-invalid="true"] { --ta-border: var(--border-error); --ta-focus: var(--border-error); --ta-ring: var(--bg-error-subtle-hover); }
@@ -81,6 +81,10 @@ document.addEventListener('input', updateCounter);`;
 
 @media (prefers-reduced-motion: reduce) {
   .sb-textarea textarea { transition: none; }
+}
+/* Phones: 16 px text in fields, so iOS does not zoom in on focus (shadcn: text-base md:text-sm). */
+@media (max-width: 767px) {
+  .sb-textarea textarea { font-size: 16px; }
 }
 `;
 
@@ -201,7 +205,7 @@ ${[
             head: ['#', 'Part', 'Spec'],
             rows: [
               ['1', 'Label', 'Text sm / Medium, `gray-700`. Same as Input field.'],
-              ['2', 'Box', '128 high by default, padding `10 14`, `white`, 1 px `gray-300` border, radius 8, `shadow-xs`. Text md / Regular from the top-left: placeholder `gray-500`, value `gray-900`. No help or alert icon inside.'],
+              ['2', 'Box', '128 high by default, padding `8 10`, `white`, 1 px `gray-200` border, radius 10, `shadow-xs`. Text sm / Regular (16 on phones) from the top-left: placeholder `gray-500`, value `gray-900`. No help or alert icon inside.'],
               ['3', 'Character counter', 'Optional. Text xs / Regular `gray-500`, bottom-right inside the box (`0/150`). Turns `error-500` past the limit (`151/150`).'],
               ['4', 'Hint text', 'Text sm / Regular `gray-500`. In error it becomes the message in `error-500`.'],
             ],
@@ -236,7 +240,7 @@ ${[
             rows: [
               ['Placeholder', '`white`', '`gray-300`', 'Placeholder `gray-500`. Hover: border `gray-400`'],
               ['Default (filled)', '`white`', '`gray-300`', 'Value `gray-900`'],
-              ['Focused', '`white`', '`brand-300`', 'ring `0 0 0 4px` `focus-ring` + `shadow-xs`'],
+              ['Focused', '`white`', '`brand-300`', 'ring `0 0 0 3px` `focus-ring` + `shadow-xs`'],
               ['Disabled', 'Default at 50 % opacity', 'Default at 50 % opacity', 'No resize, `cursor: not-allowed`'],
               ['Destructive', '`white`', '`error-300`', 'Message in `error-500`; focused ring `error-100`'],
               ['Over the limit', '`white`', '`error-300`', 'Counter `error-500`, message "Maksimal 150 karakter."'],

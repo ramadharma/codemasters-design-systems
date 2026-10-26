@@ -91,18 +91,18 @@ document.addEventListener('paste', codePaste);`;
   font: 500 var(--code-type) var(--font); letter-spacing: var(--tracking-display); text-align: center;
   color: var(--fg-brand); caret-color: var(--fg-brand);
   background: var(--bg-primary);
-  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
+  border: 1px solid var(--border-control); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-code-digit::placeholder { color: var(--border-primary); opacity: 1; }
 .sb-code-digit:not(:placeholder-shown) { border-color: var(--border-brand); }
 .sb-code-digit:focus, .sb-code-digit[data-state="focus"] {
-  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring);
 }
 .sb-code-digit:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-code-digit[aria-invalid="true"] { border-color: var(--border-error); color: var(--error-600); caret-color: var(--error-600); }
-.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-error-subtle-hover); }
+.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 3px var(--bg-error-subtle-hover); }
 
 /* 6 digits split 3 + 3 by a dash in Display xl / Medium. */
 .sb-code-sep { font: 500 var(--display-xl) var(--font); letter-spacing: var(--tracking-display); color: var(--border-primary); }
@@ -227,7 +227,7 @@ document.addEventListener('paste', codePaste);`;
             rows: [
               ['1', 'Label', 'One label for the whole group: Text sm / Medium, `gray-700`.'],
               ['2', 'Group', 'Row of boxes, gap 8 (`sm`) or 12 (`md`, `lg`). `role="group"` named by the label.'],
-              ['3', 'Digit box', 'Square, padding 8, 1 px border, radius 8, `shadow-xs`, digit centred. Size and type from the size table.'],
+              ['3', 'Digit box', 'Square, padding 8, 1 px `gray-200` border, radius 10, `shadow-xs`, digit centred. Size and type from the size table.'],
               ['4', 'Separator', '6 digits only: a `-` after the third box, Display xl / Medium `gray-300`.'],
               ['5', 'Hint text', 'Text sm / Regular `gray-500`. In error it becomes the message in `error-500`.'],
             ],
@@ -289,7 +289,7 @@ document.addEventListener('paste', codePaste);`;
             rows: [
               ['Placeholder', '`white`', '`gray-300`', '`0` in `gray-300`'],
               ['Filled', '`white`', '`brand-300`', '`brand-600`'],
-              ['Focused', '`white`', '`brand-300` + 4 px `focus-ring` ring', '`brand-600`'],
+              ['Focused', '`white`', '`brand-300` + 3 px `focus-ring` ring', '`brand-600`'],
               ['Disabled', 'Default at 50 % opacity', 'Default at 50 % opacity', 'Default at 50 % opacity'],
               ['Error', '`white`', '`error-300`', '`error-600`'],
               ['Error + Focused', '`white`', '`error-300` + 4 px `error-100` ring', '`error-600`'],

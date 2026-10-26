@@ -4,7 +4,7 @@
 
    <header class="sb-header">
      <div class="sb-header-title">
-       <a class="sb-btn" href="/klaim/rawat-inap" data-hierarchy="secondary-gray" data-size="sm" data-icon="only" aria-label="Kembali ke Rawat inap">…arrow-left…</a>
+       <a class="sb-btn" href="/klaim/rawat-inap" data-variant="outline" data-size="icon-sm" aria-label="Kembali ke Rawat inap">…arrow-left…</a>
        <nav aria-label="Breadcrumb">
          <ol class="sb-crumbs">
            <li><div class="sb-menu-wrap"><button class="sb-crumb-more" type="button" aria-label="Level lain" aria-haspopup="menu" aria-expanded="false" aria-controls="crumbs-more">…</button>

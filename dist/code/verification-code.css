@@ -31,18 +31,18 @@
   font: 500 var(--code-type) var(--font); letter-spacing: var(--tracking-display); text-align: center;
   color: var(--fg-brand); caret-color: var(--fg-brand);
   background: var(--bg-primary);
-  border: 1px solid var(--border-primary); border-radius: var(--radius-md);
+  border: 1px solid var(--border-control); border-radius: var(--radius-control);
   box-shadow: var(--shadow-xs);
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
 .sb-code-digit::placeholder { color: var(--border-primary); opacity: 1; }
 .sb-code-digit:not(:placeholder-shown) { border-color: var(--border-brand); }
 .sb-code-digit:focus, .sb-code-digit[data-state="focus"] {
-  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring);
 }
 .sb-code-digit:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-code-digit[aria-invalid="true"] { border-color: var(--border-error); color: var(--error-600); caret-color: var(--error-600); }
-.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 4px var(--bg-error-subtle-hover); }
+.sb-code-digit[aria-invalid="true"]:focus, .sb-code-digit[aria-invalid="true"][data-state="focus"] { box-shadow: var(--shadow-xs), 0 0 0 3px var(--bg-error-subtle-hover); }
 
 /* 6 digits split 3 + 3 by a dash in Display xl / Medium. */
 .sb-code-sep { font: 500 var(--display-xl) var(--font); letter-spacing: var(--tracking-display); color: var(--border-primary); }

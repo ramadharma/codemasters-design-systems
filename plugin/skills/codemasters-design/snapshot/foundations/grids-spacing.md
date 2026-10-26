@@ -102,7 +102,8 @@ Content sits in a centred container with a fixed max width.
 | Value | Token | Use |
 | --- | --- | --- |
 | 4 | `--radius-sm` | Checkboxes, calendar days, progress and slider tracks, targets under 24 px (help icon, badge ×) |
-| 8 | `--radius-md` | Icon buttons of 32 px and up, buttons, inputs, menu rows, tab tops (`8 8 0 0`), inner cards, banners |
+| 8 | `--radius-md` | Items inside panels: menu rows, icon buttons in toolbars, tab tops (`8 8 0 0`), inner cards, banners |
+| 10 | `--radius-control` | Controls: buttons, button groups, input fields, dropdown and date fields, segmented tabs |
 | 12 | `--radius-lg` | Cards, dialogs, popover panels, dropdown menus |
 | 16 | `--radius-xl` | Badges, tags, chips |
 | 9999 (full) | `--radius-full` | Avatar, toggle, radio, check circle, dots |
@@ -154,9 +155,10 @@ Components use only these tokens, never a px value. 6 was dropped on 7 Oct 2026:
   --container-lg: 1024px;
   --container-xl: 1280px;
 
-  /* Radius: 4 small parts, 8 controls, 12 containers, 16 badges, full circles */
+  /* Radius: 4 small parts, 8 items inside panels, 10 controls, 12 containers, 16 badges, full circles */
   --radius-sm: 4px;
   --radius-md: 8px;
+  --radius-control: 10px;
   --radius-lg: 12px;
   --radius-xl: 16px;
   --radius-full: 9999px;

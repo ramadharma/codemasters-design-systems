@@ -26,11 +26,11 @@ The top of every app page: the page title, or a breadcrumb on detail pages, on t
 | # | Part | Spec |
 | --- | --- | --- |
 | 1 | Bar | Sticky, `white`, 80 high, padding `0 32`, 1 px `gray-200` bottom border. Parts 24 apart, centred vertically. |
-| 2 | Back button | Button secondary gray sm, icon only (`arrow-left`). Goes to the parent level. 16 to the breadcrumb. |
+| 2 | Back button | Button, Outline, `icon-sm` (`arrow-left`). Goes to the parent level. 16 to the breadcrumb. |
 | 3 | Breadcrumb | Display xs / Medium `gray-500`, hover `gray-700`; "/" in `gray-300`, 12 apart. Levels above the parent fold into "…" (opens a Dropdown menu). |
 | 4 | Title | Display xs / Semibold `gray-900`, one line; a long title truncates with an ellipsis. A record ID never truncates: the breadcrumb shrinks first. |
 | 5 | Status | Optional Badge md in the status colour, 12 after the title. |
-| 6 | Notifications | Button secondary gray lg, icon only (`bell`). Unread: an 8 px `error-500` dot with a 2 px `white` ring. |
+| 6 | Notifications | Button, Outline, `icon-lg` (`bell`). Unread: an 8 px `error-500` dot with a 2 px `white` ring. |
 | 7 | Actions | Buttons lg, gap 8, primary last. Extra actions in a ⋮ Dropdown menu. |
 
 ## Properties
@@ -75,8 +75,8 @@ The header bar and the Sidebar head are both 80 high, so their bottom lines meet
     <h1 class="sb-header-heading">Klaim</h1>
   </div>
   <div class="sb-header-actions">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
   </div>
 </header>
 ```
@@ -89,8 +89,8 @@ The header bar and the Sidebar head are both 80 high, so their bottom lines meet
     <h1 class="sb-header-heading">Klaim</h1>
   </div>
   <div class="sb-header-actions">
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
   </div>
 </header>
 ```
@@ -103,8 +103,8 @@ The header bar and the Sidebar head are both 80 high, so their bottom lines meet
     <h1 class="sb-header-heading">Klaim</h1>
   </div>
   <div class="sb-header-actions">
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
   </div>
 </header>
 ```
@@ -117,8 +117,8 @@ The header bar and the Sidebar head are both 80 high, so their bottom lines meet
     <h1 class="sb-header-heading">Klaim</h1>
   </div>
   <div class="sb-header-actions">
-    <button class="sb-btn" type="button" data-hierarchy="primary" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
-    <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
+    <button class="sb-btn" type="button" data-size="lg"><svg aria-hidden="true"><!-- plus --></svg>Buat klaim</button>
+    <button class="sb-btn" type="button" data-variant="outline" data-size="lg"><svg aria-hidden="true"><!-- download --></svg>Unduh</button>
   </div>
 </header>
 ```
@@ -151,7 +151,7 @@ Load `tokens.css`, `button.css`, `badge.css`, `input-field.css` and `dropdown-me
 
    <header class="sb-header">
      <div class="sb-header-title">
-       <a class="sb-btn" href="/klaim/rawat-inap" data-hierarchy="secondary-gray" data-size="sm" data-icon="only" aria-label="Kembali ke Rawat inap">…arrow-left…</a>
+       <a class="sb-btn" href="/klaim/rawat-inap" data-variant="outline" data-size="icon-sm" aria-label="Kembali ke Rawat inap">…arrow-left…</a>
        <nav aria-label="Breadcrumb">
          <ol class="sb-crumbs">
            <li><div class="sb-menu-wrap"><button class="sb-crumb-more" type="button" aria-label="Level lain" aria-haspopup="menu" aria-expanded="false" aria-controls="crumbs-more">…</button>

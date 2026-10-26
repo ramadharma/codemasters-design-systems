@@ -9,7 +9,7 @@
 
    <header class="sb-header">
      <div class="sb-header-title">
-       <a class="sb-btn" href="/klaim/rawat-inap" data-hierarchy="secondary-gray" data-size="sm" data-icon="only" aria-label="Kembali ke Rawat inap">…arrow-left…</a>
+       <a class="sb-btn" href="/klaim/rawat-inap" data-variant="outline" data-size="icon-sm" aria-label="Kembali ke Rawat inap">…arrow-left…</a>
        <nav aria-label="Breadcrumb">
          <ol class="sb-crumbs">
            <li><div class="sb-menu-wrap"><button class="sb-crumb-more" type="button" aria-label="Level lain" aria-haspopup="menu" aria-expanded="false" aria-controls="crumbs-more">…</button>
@@ -80,8 +80,8 @@
 
   // ---- Markup
   let uid = 0;
-  const btn = (label, hierarchy, glyph, extra = '') =>
-    `<button class="sb-btn" type="button" data-hierarchy="${hierarchy}" data-size="lg"${extra}>${glyph ? icon(glyph) : ''}${esc(label)}</button>`;
+  const btn = (label, v, glyph, extra = '') =>
+    `<button class="sb-btn" type="button"${v === 'default' ? '' : ` data-variant="${v}"`} data-size="lg"${extra}>${glyph ? icon(glyph) : ''}${esc(label)}</button>`;
   const menuItems = items => items.map(([glyph, label, href]) =>
     href
       ? `<a class="sb-menu-item" role="menuitem" href="${href}" tabindex="-1">${icon(glyph)}<span class="sb-menu-label">${esc(label)}</span></a>`
@@ -91,7 +91,7 @@
     const id = `hdr-${++uid}`;
     const pin = (n, at) => (pins ? ` data-pin="${n}"${at ? ` data-pin-at="${at}"` : ''}` : '');
     const left = type === 'detail'
-      ? `<a class="sb-btn" href="#/header-bar" data-hierarchy="secondary-gray" data-size="sm" data-icon="only" aria-label="Kembali ke Rawat inap"${pin(2)}>${icon('arrow-left')}</a>
+      ? `<a class="sb-btn" href="#/header-bar" data-variant="outline" data-size="icon-sm" aria-label="Kembali ke Rawat inap"${pin(2)}>${icon('arrow-left')}</a>
     <nav aria-label="Breadcrumb"${pin(3)}>
       <ol class="sb-crumbs">
         <li><div class="sb-menu-wrap">
@@ -111,22 +111,22 @@
     <div class="sb-input">${icon('search')}<input type="search" placeholder="Cari klaim, peserta, rumah sakit" aria-label="Cari"></div>
   </div>`
       : '';
-    const ring = bell ? `\n    <button class="sb-btn sb-header-bell" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="Notifikasi, 3 baru"${pin(type === 'detail' ? 6 : 7)}>${icon('bell')}<span class="sb-header-dot"></span></button>` : '';
+    const ring = bell ? `\n    <button class="sb-btn sb-header-bell" type="button" data-variant="outline" data-size="icon-lg" aria-label="Notifikasi, 3 baru"${pin(type === 'detail' ? 6 : 7)}>${icon('bell')}<span class="sb-header-dot"></span></button>` : '';
     const actions = type === 'detail'
       ? `<div class="sb-menu-wrap">
-      <button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="lg" data-icon="only" aria-label="Aksi lain" aria-haspopup="menu" aria-expanded="false" aria-controls="${id}-aksi">${icon('more-vertical')}</button>
+      <button class="sb-btn" type="button" data-variant="outline" data-size="icon-lg" aria-label="Aksi lain" aria-haspopup="menu" aria-expanded="false" aria-controls="${id}-aksi">${icon('more-vertical')}</button>
       <div class="sb-menu" id="${id}-aksi" role="menu" aria-label="Aksi lain" hidden>
         <div class="sb-menu-group" role="group">${menuItems([['download', 'Unduh PDF'], ['user-plus', 'Tugaskan ulang']])}</div>
         <div class="sb-menu-sep" role="separator"></div>
         <div class="sb-menu-group" role="group">${menuItems([['trash', 'Hapus klaim']])}</div>
       </div>
     </div>
-    ${btn('Setujui', 'primary', 'check')}`
+    ${btn('Setujui', 'default', 'check')}`
       : twoPrimary
-        ? `${btn('Unduh', 'primary', 'download')}\n    ${btn('Buat klaim', 'primary', 'plus')}`
+        ? `${btn('Unduh', 'default', 'download')}\n    ${btn('Buat klaim', 'default', 'plus')}`
         : primaryFirst
-          ? `${btn('Buat klaim', 'primary', 'plus')}\n    ${btn('Unduh', 'secondary-gray', 'download')}`
-          : `${btn('Unduh', 'secondary-gray', 'download')}\n    ${btn('Buat klaim', 'primary', 'plus')}`;
+          ? `${btn('Buat klaim', 'default', 'plus')}\n    ${btn('Unduh', 'outline', 'download')}`
+          : `${btn('Unduh', 'outline', 'download')}\n    ${btn('Buat klaim', 'default', 'plus')}`;
     return `<header class="sb-header"${pin(1, 'bottom edge')}>
   <div class="sb-header-title">
     ${left}
@@ -202,11 +202,11 @@ ${header({ type: 'detail', bell: true })}
             head: ['#', 'Part', 'Spec'],
             rows: [
               ['1', 'Bar', 'Sticky, `white`, 80 high, padding `0 32`, 1 px `gray-200` bottom border. Parts 24 apart, centred vertically.'],
-              ['2', 'Back button', 'Button secondary gray sm, icon only (`arrow-left`). Goes to the parent level. 16 to the breadcrumb.'],
+              ['2', 'Back button', 'Button, Outline, `icon-sm` (`arrow-left`). Goes to the parent level. 16 to the breadcrumb.'],
               ['3', 'Breadcrumb', 'Display xs / Medium `gray-500`, hover `gray-700`; "/" in `gray-300`, 12 apart. Levels above the parent fold into "…" (opens a Dropdown menu).'],
               ['4', 'Title', 'Display xs / Semibold `gray-900`, one line; a long title truncates with an ellipsis. A record ID never truncates: the breadcrumb shrinks first.'],
               ['5', 'Status', 'Optional Badge md in the status colour, 12 after the title.'],
-              ['6', 'Notifications', 'Button secondary gray lg, icon only (`bell`). Unread: an 8 px `error-500` dot with a 2 px `white` ring.'],
+              ['6', 'Notifications', 'Button, Outline, `icon-lg` (`bell`). Unread: an 8 px `error-500` dot with a 2 px `white` ring.'],
               ['7', 'Actions', 'Buttons lg, gap 8, primary last. Extra actions in a ⋮ Dropdown menu.'],
             ],
           },

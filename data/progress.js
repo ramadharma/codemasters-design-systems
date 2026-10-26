@@ -115,7 +115,7 @@ ${setProgress.toString().replace(/^  /gm, '')}
   const demo = `<div class="progress-demo">
 ${bar({ value: 0, label: 'top-floating', name: 'Analisis AI', id: 'pd-bar' })}
 ${circle({ value: 0, size: 'xs', caption: 'Analisis AI', id: 'pd-circle' })}
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm" data-demo="progress">Mulai analisis</button>
+<button class="sb-btn" type="button" data-variant="outline" data-size="sm" data-demo="progress">Mulai analisis</button>
 </div>`;
 
   const anatomyBar = `<div class="sb-progress" data-label="right" role="progressbar" aria-label="Contoh" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="--value: 30">

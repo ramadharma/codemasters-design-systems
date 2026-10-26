@@ -232,7 +232,7 @@ A badge plus a short message in one pill, for announcements and inline notices (
 **Do:** An action is a Button.
 
 ```html
-<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="sm">Lihat Detail</button>
+<button class="sb-btn" type="button" data-variant="outline" data-size="sm">Lihat Detail</button>
 ```
 
 **Don't:** A badge that looks clickable. Badges label; they do not act.

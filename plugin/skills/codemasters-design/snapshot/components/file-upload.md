@@ -59,7 +59,7 @@ Adds documents to a claim: a drop zone people click or drag files onto, and a ro
     <p class="sb-file-name"><span>invoice-rs-medika-utama.pdf</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
     <p class="sb-file-meta">1,2 MB<span class="sb-file-error"></span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah invoice-rs-medika-utama.pdf" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">100%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="Hapus invoice-rs-medika-utama.pdf"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
 </li>
@@ -69,7 +69,7 @@ Adds documents to a claim: a drop zone people click or drag files onto, and a ro
     <p class="sb-file-name"><span>resume-medis-KLM-0241.pdf</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
     <p class="sb-file-meta">2,4 MB<span class="sb-file-error"></span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah resume-medis-KLM-0241.pdf" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" style="--value: 64"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">64%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="Batalkan unggahan resume-medis-KLM-0241.pdf"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
 </li></ul>
@@ -95,7 +95,7 @@ The file takes the zone's place. Remove it and the zone comes back; pick again a
     <p class="sb-file-name"><span>ktp-budi-santoso.jpg</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
     <p class="sb-file-meta">640 KB<span class="sb-file-error"></span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah ktp-budi-santoso.jpg" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">100%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="Hapus ktp-budi-santoso.jpg"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
 </li></ul>
@@ -129,7 +129,7 @@ One row per document the claim needs: its name, Wajib or Opsional, the types it 
       <p class="sb-file-name"><span>invoice-rs-medika-utama.pdf</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
       <p class="sb-file-meta">1,2 MB<span class="sb-file-error"></span></p>
       <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah invoice-rs-medika-utama.pdf" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">100%</span></div>
-      <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+      <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
     </div>
     <button class="sb-file-action" type="button" aria-label="Hapus invoice-rs-medika-utama.pdf"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
   </li></ul>
@@ -152,7 +152,7 @@ One row per document the claim needs: its name, Wajib or Opsional, the types it 
       <p class="sb-file-name"><span>resume-medis-KLM-0241.pdf</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
       <p class="sb-file-meta">2,4 MB<span class="sb-file-error"></span></p>
       <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah resume-medis-KLM-0241.pdf" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" style="--value: 64"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">64%</span></div>
-      <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+      <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
     </div>
     <button class="sb-file-action" type="button" aria-label="Batalkan unggahan resume-medis-KLM-0241.pdf"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
   </li></ul>
@@ -188,7 +188,7 @@ One row per document the claim needs: its name, Wajib or Opsional, the types it 
       <p class="sb-file-name"><span>kuitansi-apotek.jpg</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
       <p class="sb-file-meta">640 KB<span class="sb-file-error"></span></p>
       <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah kuitansi-apotek.jpg" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">100%</span></div>
-      <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+      <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
     </div>
     <button class="sb-file-action" type="button" aria-label="Hapus kuitansi-apotek.jpg"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
   </li></ul>
@@ -217,7 +217,7 @@ One row per document the claim needs: its name, Wajib or Opsional, the types it 
     <p class="sb-file-name"><span>rontgen-thorax.dcm</span><svg class="sb-file-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3"/></svg></p>
     <p class="sb-file-meta">14,6 MB<span class="sb-file-error">Jenis file tidak didukung</span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah rontgen-thorax.dcm" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="--value: 0"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">0%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="Hapus rontgen-thorax.dcm"><svg class="sb-file-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="sb-file-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
 </li></ul>
@@ -375,7 +375,7 @@ const upItem = ({ name, size, state = 'uploading', value = 0, error = '', thumb 
     <p class="sb-file-name"><span>${upEsc(name)}</span>${upSvg(UP_PATH.check).replace('<svg ', '<svg class="sb-file-done" ')}</p>
     <p class="sb-file-meta">${upSize(size)}<span class="sb-file-error">${upEsc(error)}</span></p>
     <div class="sb-progress" data-label="right" role="progressbar" aria-label="Mengunggah ${upEsc(name)}" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="100" style="--value: ${value}"><div class="sb-progress-track"><div class="sb-progress-fill"></div></div><span class="sb-progress-label">${value}%</span></div>
-    <button class="sb-btn sb-file-retry" type="button" data-hierarchy="link-color" data-size="sm">Coba lagi</button>
+    <button class="sb-btn sb-file-retry" type="button" data-variant="link" data-size="sm">Coba lagi</button>
   </div>
   <button class="sb-file-action" type="button" aria-label="${state === 'uploading' ? 'Batalkan unggahan' : 'Hapus'} ${upEsc(name)}">${upSvg(UP_PATH.x).replace('<svg ', '<svg class="sb-file-x" ')}${upSvg(UP_PATH.trash).replace('<svg ', '<svg class="sb-file-trash" ')}</button>
 </li>`;

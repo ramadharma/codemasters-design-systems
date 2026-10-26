@@ -76,7 +76,7 @@ document.addEventListener('change', selectAll);`;
 /* States. Disabled uses [type] so it outranks the checked rule. */
 .sb-check-input:is(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]) { background: var(--bg-brand-subtle); border-color: var(--brand-600); }
 .sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate], :disabled):is(:hover, [data-state="hover"]) { background: var(--bg-brand-subtle); border-color: var(--brand-600); }
-.sb-check-input:focus-visible, .sb-check-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-check-input:focus-visible, .sb-check-input[data-state="focus"] { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 .sb-check-input:not(:checked, [type="checkbox"]:indeterminate, [data-indeterminate]):is(:focus-visible, [data-state="focus"]) { border-color: var(--border-brand); }
 .sb-check-input[type]:disabled { cursor: not-allowed; }
 
@@ -291,7 +291,7 @@ ${['Klaim A', 'Klaim B', 'Klaim C', 'Klaim D'].map((l, i) => indent(check({ labe
             rows: [
               ['Default', '`white`, 1 px `gray-300` border', '`brand-50` fill, `brand-600` border, `brand-600` check / minus / dot'],
               ['Hover', '`brand-50` fill, `brand-600` border', 'same as Default'],
-              ['Focused', '`white`, `brand-300` border + 4 px `focus-ring` ring', 'Default + 4 px `focus-ring` ring'],
+              ['Focused', '`white`, `brand-300` border + 3 px `focus-ring` ring', 'Default + 3 px `focus-ring` ring'],
               ['Disabled', 'Default at 50 % opacity, label included', 'Default at 50 % opacity, label included'],
             ],
           },

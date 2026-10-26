@@ -40,7 +40,7 @@
 .sb-card-title > svg { width: 20px; height: 20px; flex: none; }
 .sb-card-desc { margin: 0; font: 400 var(--text-sm) var(--font); color: var(--text-quaternary); text-wrap: pretty; }
 /* Actions (36 px buttons) centre on the title line and overhang it, so they never make the head taller than the title. */
-.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 36px) / 2); }
+.sb-card-actions { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; flex: none; margin-block: calc((var(--card-title-lh) - 28px) / 2); }
 .sb-card-fold > svg { transition: rotate 150ms var(--ease); }
 .sb-card-fold[aria-expanded="true"] > svg { rotate: 180deg; }
 
@@ -101,7 +101,7 @@
 .sb-card-link::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; }
 .sb-card:has(.sb-card-link) { transition-property: background-color, border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease); }
 .sb-card:has(.sb-card-link:hover), .sb-card[data-state="hover"] { background: var(--bg-secondary); border-color: var(--border-strong); }
-.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--border-brand); box-shadow: 0 0 0 4px var(--focus-ring); }
+.sb-card:has(.sb-card-link:focus-visible), .sb-card[data-state="focus"] { border-color: var(--border-brand); box-shadow: 0 0 0 3px var(--focus-ring); }
 
 @media (prefers-reduced-motion: reduce) {
   .sb-card, .sb-card-fold > svg { transition: none; }

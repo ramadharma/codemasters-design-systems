@@ -14,7 +14,7 @@
   };
 
   DS.principles = [
-    '**Data first, chrome second.** White cards on a near-white page; colour is reserved for status, series and the one primary action. No decorative gradients or illustrations; the only gradient is the raised sheen on controls.',
+    '**Data first, chrome second.** White cards on a near-white page; colour is reserved for status, series and the one primary action. No decorative gradients, illustrations or bevels: controls are flat, with a thin border and a faint shadow.',
     '**One primary action per view.** The blue button is the next step of the flow (Mulai Analisis, Kirim ke Advisor, Keputusan). Everything else is secondary (white, gray border) or orange for Pending.',
     '**Status is always a coloured pill.** Every claim status has one fixed colour pair, used in tables, headers, summary cards and filters alike.',
     '**Never empty.** Every cell, field and card shows a value. Placeholder data is deterministic (same record, same value).',
@@ -71,8 +71,9 @@
     '--text-error-strong': ['error-800', 'error-200'],
     '--fg-quaternary': ['gray-400', 'gray-400'], // idle icons: chevrons, placeholders, help icons
     '--fg-brand': ['brand-600', 'brand-400'], // brand icons and strokes on a surface
-    '--border-primary': ['gray-300', 'gray-700'], // inputs, secondary buttons
+    '--border-primary': ['gray-300', 'gray-700'], // checkboxes, dashed drop zones, card borders
     '--border-secondary': ['gray-200', 'gray-800'], // dividers, cards
+    '--border-control': ['gray-200', 'gray-700'], // buttons, fields, button groups: light like a divider, but still visible in dark
     '--border-tertiary': ['gray-100', 'gray-800'], // menus, the lightest lines
     '--border-strong': ['gray-400', 'gray-600'], // hover on checkboxes and radios
     '--border-brand': ['brand-300', 'brand-500'], // focused inputs
@@ -90,7 +91,6 @@
     ...Object.fromEntries(Object.entries(SEMANTIC).map(([k, [, dark]]) => [k, ref(dark)])),
     '--chart-grid': 'var(--gray-800)', '--chart-axis': 'var(--gray-700)',
     '--scrim': 'rgba(0, 0, 0, .6)',
-    '--raised-sheen-light': 'linear-gradient(180deg, rgb(255 255 255 / .04), rgb(0 0 0 / 0))',
   };
 
   const GROUPS = [
@@ -98,7 +98,7 @@
     ['Semantic colour: what a colour is for. Components use these; the dark theme remaps them', semantic],
     ['Spacing: token number x 4 = px', Object.fromEntries([1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 56, 64].map(n => [`--space-${n}`, `${n * 4}px`]))],
     ['Containers', { '--container-sm': '640px', '--container-md': '768px', '--container-lg': '1024px', '--container-xl': '1280px' }],
-    ['Radius: 4 small parts, 8 controls, 12 containers, 16 badges, full circles', { '--radius-sm': '4px', '--radius-md': '8px', '--radius-lg': '12px', '--radius-xl': '16px', '--radius-full': '9999px' }],
+    ['Radius: 4 small parts, 8 items inside panels, 10 controls, 12 containers, 16 badges, full circles', { '--radius-sm': '4px', '--radius-md': '8px', '--radius-control': '10px', '--radius-lg': '12px', '--radius-xl': '16px', '--radius-full': '9999px' }],
     ['Shadows: all gray-900 at low opacity', {
       '--shadow-xs': '0 1px 2px rgba(16,24,40,.05)',
       '--shadow-sm': '0 1px 3px rgba(16,24,40,.1), 0 1px 2px rgba(16,24,40,.06)',
@@ -108,12 +108,6 @@
       '--shadow-2xl': '0 24px 48px -12px rgba(16,24,40,.18)',
       '--shadow-3xl': '0 32px 64px -12px rgba(16,24,40,.14)',
     }],
-    ['Raised controls: background-image and box-shadow on solid and white controls (Button, Tabs, Button group)', {
-      '--raised-sheen': 'linear-gradient(180deg, rgb(255 255 255 / .1), rgb(0 0 0 / .08))',
-      '--raised-sheen-light': 'linear-gradient(180deg, rgb(255 255 255 / 0), rgb(16 24 40 / .04))',
-      '--raised-highlight': 'inset 0 1px 0 rgb(255 255 255 / .28)',
-      '--pressed-inset': 'inset 0 1px 2px rgb(16 24 40 / .1)',
-    }],
     ['Chart series: fixed order, validated for colour-blind separation. Light step (300) of the same family for rejected or secondary', {
       '--chart-1': 'var(--brand-500)', '--chart-2': 'var(--orange-600)', '--chart-3': 'var(--blue-light-600)',
       '--chart-4': 'var(--purple-600)', '--chart-5': 'var(--pink-600)', '--chart-6': 'var(--indigo-500)', '--chart-other': 'var(--gray-400)',
@@ -121,7 +115,7 @@
     }],
     ['Overlay: the scrim behind modal dialogs', { '--scrim': 'rgba(0, 0, 0, .2)' }],
     ['Background blur: use as backdrop-filter: var(--blur-md)', { '--blur-sm': 'blur(4px)', '--blur-md': 'blur(8px)', '--blur-lg': 'blur(12px)', '--blur-xl': 'blur(20px)' }],
-    ['Focus ring: box-shadow: 0 0 0 4px var(--focus-ring) on :focus-visible', { '--focus-ring': 'color-mix(in srgb, var(--brand-600) 20%, transparent)' }],
+    ['Focus ring: box-shadow: 0 0 0 3px var(--focus-ring) on :focus-visible', { '--focus-ring': 'color-mix(in srgb, var(--brand-600) 20%, transparent)' }],
     ['Motion', { '--ease': 'cubic-bezier(.22,.61,.36,1)' }],
     ['Typography: font: 600 var(--text-sm) var(--font). Display md and larger add letter-spacing: var(--tracking-display)', {
       '--font': "'Timeless Sans', sans-serif",
@@ -233,7 +227,7 @@
   // Preview HTML to copyable snippet: icon bodies collapse to a named placeholder, docs-only attributes go.
   DS.snippet = html =>
     html
-      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart|table|modal|side|header|banner|dp|cb|loading|pager|up|fb)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
+      .replace(/^<div class="(?:field|wys|dd|menu|tint|cg|progress|avatar|slider|tabs|card|chart|table|modal|side|header|banner|dp|cb|loading|pager|up|fb|acc)-stage[^"]*"(?: inert)?>([\s\S]*)<\/div>$/, '$1') // docs-only width wrappers
       .replace(/<svg( class="[^"]*")? data-i="([\w-]+)"[\s\S]*?<\/svg>/g, '<svg$1 aria-hidden="true"><!-- $2 --></svg>')
       .replace(/ data-(state|demo)(="[^"]*")?/g, '')
       .replace(/src="data:image\/[^"]*"/g, 'src="…"'); // inline demo images

@@ -207,8 +207,8 @@ ${[['60%', '70%', '80%', '70%'], ['60%', '55%', '70%', '60%'], ['60%', '75%', '7
           { type: 'p', text: 'Outside a button, a spinner always says what is loading. Inline for small places, stacked and centred for a card or a page.' },
           { type: 'example', html: stage(`${busy(`  <div class="sb-loading">${spinner('sm', ' aria-hidden="true"')}<span>Mencari peserta…</span></div>`, 'Mencari peserta…')}\n${busy(`  <div class="sb-loading" data-layout="stack">${spinner('lg', ' aria-hidden="true"')}<span>Memuat dokumen klaim…</span></div>`, 'Memuat dokumen klaim…')}`, 'is-row') },
           { type: 'h3', id: 'sp-solid', text: 'On a solid fill' },
-          { type: 'p', text: 'The spinner takes the text colour, so on a Primary button or a dark surface it turns white with no extra class. See Button → Loading.' },
-          { type: 'example', html: stage(`<button class="sb-btn" type="button" data-hierarchy="primary" data-size="md" aria-busy="true">${spinner('md', ' aria-hidden="true"')}Mengirim…</button>\n<button class="sb-btn" type="button" data-hierarchy="secondary-gray" data-size="md" aria-busy="true">${spinner('md', ' aria-hidden="true"')}Menyimpan…</button>`, 'is-row') },
+          { type: 'p', text: 'The spinner takes the text colour, so on a Default button or a dark surface it turns white with no extra class. See Button → Loading.' },
+          { type: 'example', html: stage(`<button class="sb-btn" type="button" aria-busy="true">${spinner('md', ' aria-hidden="true"')}Mengirim…</button>\n<button class="sb-btn" type="button" data-variant="outline" aria-busy="true">${spinner('md', ' aria-hidden="true"')}Menyimpan…</button>`, 'is-row') },
         ],
       },
       {

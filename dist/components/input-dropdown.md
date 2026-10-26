@@ -23,8 +23,8 @@ A select field: pick one value for a form field or a filter. For running an acti
 
 | # | Part | Spec |
 | --- | --- | --- |
-| 1 | Label | Text sm / Medium `gray-700`, 6 above the field. 44 high without a label, 70 with one. |
-| 2 | Field | Same box as Input field: 44 high, padding `10 14`, gap 8, `white`, 1 px `gray-300` border, radius 8, `shadow-xs`. Open/focused: `brand-300` border + 4 px `focus-ring` ring. |
+| 1 | Label | Text sm / Medium `gray-700`, 6 above the field. 32 high without a label, 58 with one. |
+| 2 | Field | Same box as Input field: 32 high, padding `0 10`, gap 8, Text sm, `white`, 1 px `gray-200` border, radius 10, `shadow-xs`. Open/focused: `brand-300` border + 3 px `focus-ring` ring. |
 | 3 | Leading element | Optional: 20 px icon `gray-500`, 24 px avatar, 10 px `success-500` dot, or 20 px search icon (Search type). |
 | 4 | Value + supporting text | Text md / Regular. Placeholder `gray-500`, value `gray-900`, supporting text after it in `gray-500`. |
 | 5 | Chevron | 20 px `gray-500`; turns up when open. The Search type has none. |
@@ -243,8 +243,8 @@ A select field: pick one value for a form field or a filter. For running an acti
 
 | Part | Default | Hover / Focus | Disabled |
 | --- | --- | --- | --- |
-| Row (44 high, padding `10 10`, radius 8, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
-| Label, Text md / Medium | `gray-900` | `gray-900` | Default at 50 % opacity |
+| Row (32 high, padding `0 8`, radius 8, gap 8) | no fill | `gray-50` | no fill, whole row at 50 % opacity |
+| Label, Text sm / Regular | `gray-900` | `gray-900` | Default at 50 % opacity |
 | Supporting text, Text md / Regular | `gray-500` | `gray-500` | Default at 50 % opacity |
 | Leading icon 20 px | `gray-500` | `gray-700` | Default at 50 % opacity |
 | Check (selected) | 20 px `brand-600`, row fill `gray-50` | same | Default at 50 % opacity, fill `gray-50` |
@@ -408,22 +408,21 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 /* Field: same box as Input field */
 .sb-dd-trigger {
   box-sizing: border-box; display: flex; align-items: center; gap: 8px;
-  width: 100%; height: 44px; margin: 0; padding: 0 14px;
-  font: 400 var(--text-md) var(--font); color: var(--text-primary); text-align: start;
-  background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-xs);
+  width: 100%; height: 32px; margin: 0; padding: 0 10px;
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary); text-align: start;
+  background: var(--bg-primary); border: 1px solid var(--border-control); border-radius: var(--radius-control); box-shadow: var(--shadow-xs);
   cursor: pointer;
   transition-property: border-color, box-shadow; transition-duration: 150ms; transition-timing-function: var(--ease);
 }
-.sb-dd-trigger:hover:not(:disabled, [aria-expanded="true"], :focus-within) { border-color: var(--border-strong); }
 .sb-dd-trigger:focus-visible, .sb-dd-trigger[aria-expanded="true"], .sb-dd-trigger:has([aria-expanded="true"], input:focus), .sb-dd-trigger[data-state="open"] {
-  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 4px var(--focus-ring);
+  outline: none; border-color: var(--border-brand); box-shadow: var(--shadow-xs), 0 0 0 3px var(--focus-ring);
 }
 .sb-dd-trigger:disabled { opacity: .5; cursor: not-allowed; } /* the default look at 50 % opacity */
 .sb-dd-value, .sb-dd-main { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 .sb-dd-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sb-dd-sup { flex: none; color: var(--text-quaternary); font-weight: 400; }
 .sb-dd-placeholder { color: var(--text-quaternary); }
-.sb-dd-trigger > svg, .sb-dd-value > svg, .sb-dd-main > svg { width: 20px; height: 20px; flex: none; color: var(--text-quaternary); }
+.sb-dd-trigger > svg, .sb-dd-value > svg, .sb-dd-main > svg { width: 16px; height: 16px; flex: none; color: var(--text-quaternary); }
 .sb-dd-chevron { transition: rotate 200ms var(--ease); }
 .sb-dd-trigger[aria-expanded="true"] .sb-dd-chevron, .sb-dd-trigger[data-state="open"] .sb-dd-chevron { rotate: 180deg; }
 .sb-dd-trigger[data-type="search"] { cursor: text; }
@@ -433,10 +432,10 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 /* Leading elements */
 .sb-dd-avatar {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
-  width: 24px; height: 24px; border-radius: var(--radius-full);
-  background: var(--bg-brand-subtle); font: 500 var(--text-xs) var(--font); color: var(--fg-brand);
+  width: 20px; height: 20px; border-radius: var(--radius-full);
+  background: var(--bg-brand-subtle); font: 500 10px/1 var(--font); color: var(--fg-brand);
 }
-.sb-dd-dot { width: 10px; height: 10px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
+.sb-dd-dot { width: 8px; height: 8px; flex: none; border-radius: var(--radius-full); background: var(--success-500); }
 
 /* Menu: width of the field, max height 320 (about 7 options), opens 8 below. */
 .sb-dd-menu {
@@ -450,14 +449,14 @@ Load `tokens.css`, `input-dropdown.css` and `input-dropdown.js`. The script foll
 .sb-dd-menu::-webkit-scrollbar { width: 16px; }
 .sb-dd-menu::-webkit-scrollbar-thumb { background: var(--bg-quaternary); border: 4px solid transparent; border-radius: var(--radius-md); background-clip: padding-box; }
 
-/* Option row: 44 high, padding 10 10 (text still 14 from the edge), gap 8, radius 8 (12 panel - 4 padding) */
+/* Option row: 32 high, padding 0 8, gap 8, radius 8 (12 panel - 4 padding), Text sm Regular like a shadcn select item */
 .sb-dd-opt {
-  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-md);
-  font: 500 var(--text-md) var(--font); color: var(--text-primary); cursor: pointer;
+  display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 8px; border-radius: var(--radius-md);
+  font: 400 var(--text-sm) var(--font); color: var(--text-primary); cursor: pointer;
 }
 .sb-dd-opt:hover, .sb-dd-opt[data-active], .sb-dd-opt[aria-selected="true"] { background: var(--bg-secondary); }
 .sb-dd-opt:hover .sb-dd-main > svg, .sb-dd-opt[data-active] .sb-dd-main > svg { color: var(--text-secondary); }
-.sb-dd-check { width: 20px; height: 20px; flex: none; color: var(--fg-brand); visibility: hidden; }
+.sb-dd-check { width: 16px; height: 16px; flex: none; color: var(--fg-brand); visibility: hidden; }
 .sb-dd-opt[aria-selected="true"] .sb-dd-check { visibility: visible; }
 .sb-dd-opt[aria-disabled="true"] { background: none; opacity: .5; cursor: not-allowed; }
 .sb-dd-opt[aria-disabled="true"][aria-selected="true"] { background: var(--bg-secondary); }
@@ -572,12 +571,12 @@ document.addEventListener('input', ddFilter);
   --text-secondary: var(--gray-700);
   --text-quaternary: var(--gray-500);
   --fg-brand: var(--brand-600);
-  --border-primary: var(--gray-300);
   --border-secondary: var(--gray-200);
+  --border-control: var(--gray-200);
   --border-tertiary: var(--gray-100);
-  --border-strong: var(--gray-400);
   --border-brand: var(--brand-300);
   --radius-md: 8px;
+  --radius-control: 10px;
   --radius-lg: 12px;
   --radius-full: 9999px;
   --shadow-xs: 0 1px 2px rgba(16,24,40,.05);
@@ -585,8 +584,6 @@ document.addEventListener('input', ddFilter);
   --focus-ring: color-mix(in srgb, var(--brand-600) 20%, transparent);
   --ease: cubic-bezier(.22,.61,.36,1);
   --font: 'Timeless Sans', sans-serif;
-  --text-md: 16px/24px;
   --text-sm: 14px/20px;
-  --text-xs: 12px/18px;
 }
 ```
